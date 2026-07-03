@@ -1,6 +1,6 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "1f9fc8769068c8",
+  "dataVersion": "1cea36f0097602",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
@@ -187,22 +187,22 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "rival_breakthrough",
-      "choiceIndex": 0
+      "eventId": "benchmark_gaming",
+      "choiceIndex": 1
     }
   ],
   "perTurnHashes": [
-    "163704f46a3a3d",
-    "09dc5860ebf783",
-    "1ced24040c1a1e",
-    "165988c18c330e",
-    "0d2acea6192552",
-    "168935a2d4a383",
-    "10304a59dc6562",
-    "10949a5242ddae",
-    "101e42d0ac999a",
-    "1d6c9774e602f0",
-    "1683c627e3726b"
+    "15c4276ecbde7b",
+    "1d564a3c1c31cb",
+    "051aba5e171895",
+    "0a38ae976f7ebf",
+    "1816a9427d3ea7",
+    "0f5df25614824f",
+    "1a66ab2d178f22",
+    "06206708e19450",
+    "1781c16e1f750d",
+    "186c833820ddd0",
+    "0e309372430b32"
   ],
-  "finalHash": "1683c627e3726b"
+  "finalHash": "0e309372430b32"
 }

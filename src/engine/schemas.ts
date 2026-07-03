@@ -231,6 +231,11 @@ export const parametersSchema = z.strictObject({
     deceptionMaxLift: sourcedIntSchema,
     deceptionInsightCounter: sourcedIntSchema,
   }),
+  alignmentModel: z.strictObject({
+    startBase: sourcedIntSchema,
+    crashThresholdShare: sourcedIntSchema,
+    crashPenalty: sourcedIntSchema,
+  }),
   thresholds: z.strictObject({
     fogZoneStart: sourcedIntSchema,
     capabilityThreshold: sourcedIntSchema,

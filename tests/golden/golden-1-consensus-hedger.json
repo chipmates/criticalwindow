@@ -1,11 +1,11 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "1f9fc8769068c8",
+  "dataVersion": "1cea36f0097602",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
-  "endingId": "societalBreakdown",
-  "turns": 15,
+  "endingId": "outpaced",
+  "turns": 12,
   "actions": [
     {
       "type": "allocate",
@@ -121,110 +121,6 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "treaty_feeler",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 50,
-      "safety": 25,
-      "diffusion": 25
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "lab_merger",
-      "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 50,
-      "safety": 25,
-      "diffusion": 25
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "energy_crunch",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 50,
-      "safety": 25,
-      "diffusion": 25
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
-      "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 50,
-      "safety": 25,
-      "diffusion": 25
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "energy_buildout"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "agentic_incident",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 50,
-      "safety": 25,
-      "diffusion": 25
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "benchmark_gaming",
-      "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 50,
-      "safety": 25,
-      "diffusion": 25
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
       "eventId": "general_strike",
       "choiceIndex": 1
     },
@@ -242,7 +138,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "verification_offer",
+      "eventId": "model_weight_theft",
       "choiceIndex": 0
     },
     {
@@ -259,26 +155,74 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "rival_breakthrough",
+      "eventId": "lab_merger",
       "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "taiwan_strait_crisis",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "benchmark_gaming",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "rival_breakthrough",
+      "choiceIndex": 0
     }
   ],
   "perTurnHashes": [
-    "18825b5296f2c3",
-    "1b237296c25496",
-    "17ed8c8bc89cce",
-    "0099fed7780eb2",
-    "16d93114827d6d",
-    "14282a604a22ef",
-    "08eff91cb70a09",
-    "17d8bf256f8d75",
-    "113282369abdc1",
-    "1ae27b63faa73e",
-    "0d874097ce37c6",
-    "0334e4e60568ff",
-    "10355e739d950d",
-    "1c5669c16c9a04",
-    "136ea43311dfb0"
+    "1ebbe3a05718dd",
+    "1055553c2fb7fc",
+    "10ed7955f252c1",
+    "186e1dc3b6d9e1",
+    "19704a1a5e953f",
+    "0fe69840b59c2a",
+    "094374983e44a2",
+    "00d4d455c809f9",
+    "0b064592d7a4ca",
+    "0eeb944f19c5a5",
+    "1b4ac0780bcef2",
+    "0f68b3655fab9a"
   ],
-  "finalHash": "136ea43311dfb0"
+  "finalHash": "0f68b3655fab9a"
 }

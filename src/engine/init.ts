@@ -65,8 +65,12 @@ export function initGame(data: EngineData, options: InitOptions): GameState {
     hidden: {
       alignmentDifficulty: difficulty,
       takeoffSteepness: steepness,
-      // A harder world starts with less aligned systems; evolves each turn.
-      trueAlignment: 1000 - difficulty,
+      // Alignment is an achievement, not a default: a low start that only
+      // safety work raises. Harder worlds start lower still.
+      trueAlignment: Math.max(
+        0,
+        data.parameters.alignmentModel.startBase.value - Math.trunc(difficulty / 2),
+      ),
       agencyErosion: 0,
     },
     evalHistory: [],

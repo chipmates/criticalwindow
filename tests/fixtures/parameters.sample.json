@@ -282,5 +282,19 @@
       "sourceIds": ["TODO-SOURCE"],
       "note": "draft shape; Milestone C sources this against Epoch data"
     }
+  },
+  "alignmentModel": {
+    "startBase": {
+      "value": 500,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    },
+    "crashThresholdShare": {
+      "value": 70,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    },
+    "crashPenalty": {
+      "value": 25,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    }
   }
 }

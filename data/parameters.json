@@ -124,8 +124,9 @@
       },
       "mirror": {
         "capability": {
-          "value": 40,
-          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+          "value": 30,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"],
+          "note": "unprovoked mirror pace; the rival mostly accelerates when YOU do (match bonus) or when provoked into race posture. Retuned with the alignment-earned model (2026-07-03 playtest follow-up)"
         },
         "matchBonus": {
           "value": 25,
@@ -337,15 +338,32 @@
     },
     "displacementFromCapability": {
       "x": [0, 200, 400, 600, 800, 1000],
-      "y": [0, 0, 50, 150, 300, 500],
+      "y": [0, 75, 175, 300, 425, 550],
       "sourceIds": ["SRC-IMF-GENAI", "SRC-PAYROLLS-TO-PROMPTS"],
-      "note": "equilibrium displacement by capability: top of curve maps IMF exposure (almost 40% of global employment, about 60% in advanced economies) onto index 500 at frontier capability; near-zero early per observed 2025-26 payroll evidence"
+      "note": "equilibrium displacement by capability: exposure is already material at 2026 capability levels (IMF: almost 40% of global employment exposed) and rises toward index 550 at frontier; early knee raised 2026-07-03 after Michel playtest (displacement was FALLING early game because the start value exceeded the old curve target)"
     },
     "trustFromUnrest": {
       "x": [0, 200, 400, 600, 800, 1000],
       "y": [0, -25, -50, -100, -175, -250],
       "sourceIds": ["SRC-DESIGN-HANDOVER"],
       "note": "trust erosion accelerates with unrest; design curve, playtests tune"
+    }
+  },
+  "alignmentModel": {
+    "startBase": {
+      "value": 500,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "true alignment starts at startBase - difficulty/2: alignment is an achievement, not a default. Retuned 2026-07-03 after Michel's playtest finding: zero safety investment could win (old start 1000-difficulty meant easy worlds came pre-aligned)"
+    },
+    "crashThresholdShare": {
+      "value": 70,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "capability allocation share at or above this cuts true alignment per turn (corners get cut under race pressure)"
+    },
+    "crashPenalty": {
+      "value": 25,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "per-turn true-alignment cost of racing-heavy allocation"
     }
   }
 }

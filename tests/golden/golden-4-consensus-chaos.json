@@ -1,11 +1,11 @@
 {
   "name": "golden-4-consensus-chaos",
-  "dataVersion": "1f9fc8769068c8",
+  "dataVersion": "1cea36f0097602",
   "seed": "golden-4",
   "presetId": "consensus",
   "bot": "chaos",
   "endingId": "outpaced",
-  "turns": 10,
+  "turns": 11,
   "actions": [
     {
       "type": "allocate",
@@ -174,19 +174,38 @@
       "type": "resolveEventChoice",
       "eventId": "whistleblower",
       "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 40,
+      "diffusion": 40
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "natsec_merge"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "rival_breakthrough",
+      "choiceIndex": 0
     }
   ],
   "perTurnHashes": [
-    "0b702b08e30b7b",
-    "027e960054aaa6",
-    "13864d464f8f6c",
-    "1a137aff7bcbd8",
-    "0a29f50febc675",
-    "0313ee4e7c856d",
-    "0c7927012dcc96",
-    "1da8b259feed35",
-    "0da43f28138731",
-    "1b3d25d44ef657"
+    "082afe9837c98c",
+    "08d9a0fb115c20",
+    "1cdf32914f2ca4",
+    "074e40dd06c028",
+    "140fe642af6a1e",
+    "0959b2f6aee344",
+    "069f05869b9ffb",
+    "03ece53d745939",
+    "015c6f4a0f7299",
+    "1662b397c8372c",
+    "144aaf6f87db8a"
   ],
-  "finalHash": "1b3d25d44ef657"
+  "finalHash": "144aaf6f87db8a"
 }

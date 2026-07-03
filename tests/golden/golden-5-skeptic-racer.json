@@ -1,10 +1,10 @@
 {
   "name": "golden-5-skeptic-racer",
-  "dataVersion": "1f9fc8769068c8",
+  "dataVersion": "1cea36f0097602",
   "seed": "golden-5",
   "presetId": "skeptic",
   "bot": "racer",
-  "endingId": "flourishing",
+  "endingId": "misalignedCatastrophe",
   "turns": 11,
   "actions": [
     {
@@ -192,17 +192,17 @@
     }
   ],
   "perTurnHashes": [
-    "0d5f0a453a81f6",
-    "0323e88a9f269a",
-    "11f3f0bd03d05d",
-    "0613ef07a7ed3a",
-    "10e2a9aa90f7b0",
-    "0fe2fda376a552",
-    "01887ecbd30f4f",
-    "09564f4a2ca844",
-    "1661b08aa9429c",
-    "15326694b5ed3a",
-    "15b409fd3625bd"
+    "17b863677a39f1",
+    "16195d551d12bd",
+    "0a779105bf2425",
+    "0ef2f50cf43da3",
+    "07696df141a602",
+    "159035eb947251",
+    "128d969d5f724b",
+    "01a07a57e55e6f",
+    "059acad25670dc",
+    "1e049e3bad683c",
+    "085e654b5f6a9e"
   ],
-  "finalHash": "15b409fd3625bd"
+  "finalHash": "085e654b5f6a9e"
 }

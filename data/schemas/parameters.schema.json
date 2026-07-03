@@ -499,6 +499,119 @@
       ],
       "additionalProperties": false
     },
+    "alignmentModel": {
+      "type": "object",
+      "properties": {
+        "startBase": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "crashThresholdShare": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "crashPenalty": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "startBase",
+        "crashThresholdShare",
+        "crashPenalty"
+      ],
+      "additionalProperties": false
+    },
     "thresholds": {
       "type": "object",
       "properties": {
@@ -2179,6 +2292,7 @@
   "required": [
     "worldviewPresets",
     "evalUncertainty",
+    "alignmentModel",
     "thresholds",
     "worldRules",
     "turnStructure",

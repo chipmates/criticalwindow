@@ -615,8 +615,8 @@ function worldUpdate(data: EngineData, state: GameState): void {
     100,
   );
   let alignmentDrift = divRound(safetyPts, 2);
-  if (state.allocation.capability >= 70) {
-    alignmentDrift -= 25;
+  if (state.allocation.capability >= data.parameters.alignmentModel.crashThresholdShare.value) {
+    alignmentDrift -= data.parameters.alignmentModel.crashPenalty.value;
   }
   state.hidden.trueAlignment = clamp(state.hidden.trueAlignment + alignmentDrift, 0, SCALE_MAX);
 

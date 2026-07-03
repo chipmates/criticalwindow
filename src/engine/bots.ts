@@ -9,7 +9,7 @@ import { initStream, nextInt, type RngStreamState } from './rng';
 import { playablePolicies, step } from './step';
 import type { Action, GameState } from './types';
 
-export const BOT_IDS = ['racer', 'dove', 'hedger', 'chaos'] as const;
+export const BOT_IDS = ['racer', 'steward', 'dove', 'hedger', 'chaos'] as const;
 export type BotId = (typeof BOT_IDS)[number];
 
 interface BotContext {
@@ -78,6 +78,10 @@ function decide(bot: BotId, context: BotContext): BotDecision {
       if (bot === 'racer') {
         return { action: { type: 'allocate', capability: 80, safety: 10, diffusion: 10 }, rng };
       }
+      if (bot === 'steward') {
+        // The taught strategy: push the frontier AND pay for alignment.
+        return { action: { type: 'allocate', capability: 65, safety: 25, diffusion: 10 }, rng };
+      }
       if (bot === 'dove') {
         return { action: { type: 'allocate', capability: 20, safety: 50, diffusion: 30 }, rng };
       }
@@ -100,6 +104,17 @@ function decide(bot: BotId, context: BotContext): BotDecision {
             'natsec_merge',
             'chip_subsidies',
             'export_controls',
+            'energy_buildout',
+          ]),
+          rng,
+        };
+      }
+      if (bot === 'steward') {
+        return {
+          action: preferPolicy(context, [
+            'interpretability_moonshot',
+            'eval_mandate',
+            'chip_subsidies',
             'energy_buildout',
           ]),
           rng,
@@ -145,6 +160,13 @@ function decide(bot: BotId, context: BotContext): BotDecision {
       let nextRng = rng;
       if (bot === 'racer') {
         choiceIndex = bestChoice(card, { capability: 3, compute: 1, 'rival.capability': -1 });
+      } else if (bot === 'steward') {
+        choiceIndex = bestChoice(card, {
+          capability: 2,
+          safetyInsight: 2,
+          publicTrust: 1,
+          'society.unrest': -1,
+        });
       } else if (bot === 'dove') {
         choiceIndex = bestChoice(card, {
           'rival.trust': 3,
