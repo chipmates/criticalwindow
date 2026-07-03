@@ -769,6 +769,7 @@ function upkeep(data: EngineData, state: GameState): void {
   if (income !== 0) {
     state.resources.capital = clamp(state.resources.capital + income, 0, SCALE_MAX);
   }
+  const skippedLastTurn = state.policy.playedThisTurn === null;
   state.turnScratch = { capabilityGained: 0, diffusionPts: 0, playedDiplomacy: false };
   state.policy.playedThisTurn = null;
 
@@ -807,7 +808,19 @@ function upkeep(data: EngineData, state: GameState): void {
       delete state.policy.cooldowns[id];
     }
   }
+  // The hand ROTATES: skip a turn with a full hand and the longest-held
+  // card returns to the pool. No refill deadlock, no infinite hoarding.
   const handSize = data.parameters.turnStructure.handSize.value;
+  if (skippedLastTurn && state.policy.hand.length >= handSize) {
+    const rotated = state.policy.hand[0]!;
+    state.policy.hand = state.policy.hand.slice(1);
+    pushLog(state, {
+      kind: 'upkeep',
+      stringKey: null,
+      deltas: null,
+      meta: { rule: 'handRotation', policyId: rotated },
+    });
+  }
   if (state.policy.hand.length < handSize) {
     const unavailable = new Set([
       ...state.policy.hand,
@@ -819,7 +832,9 @@ function upkeep(data: EngineData, state: GameState): void {
       .filter((id) => !unavailable.has(id))
       .sort();
     while (state.policy.hand.length < handSize && pool.length > 0) {
-      state.policy.hand = [...state.policy.hand, pool.shift()!].sort();
+      // Append in deterministic pool order; hand keeps insertion order so
+      // "longest-held" is simply the front.
+      state.policy.hand = [...state.policy.hand, pool.shift()!];
     }
   }
 
