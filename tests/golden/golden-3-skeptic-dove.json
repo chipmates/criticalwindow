@@ -1,11 +1,11 @@
 {
   "name": "golden-3-skeptic-dove",
-  "dataVersion": "096780bf0e6ef6",
+  "dataVersion": "1436ccdb5807f3",
   "seed": "golden-3",
   "presetId": "skeptic",
   "bot": "dove",
-  "endingId": "outpaced",
-  "turns": 9,
+  "endingId": "negotiatedSlowdown",
+  "turns": 11,
   "actions": [
     {
       "type": "allocate",
@@ -20,7 +20,7 @@
     {
       "type": "resolveEventChoice",
       "eventId": "viral_job_loss",
-      "choiceIndex": 1
+      "choiceIndex": 0
     },
     {
       "type": "advance"
@@ -37,7 +37,7 @@
     {
       "type": "resolveEventChoice",
       "eventId": "open_weights_shock",
-      "choiceIndex": 1
+      "choiceIndex": 0
     },
     {
       "type": "advance"
@@ -72,7 +72,7 @@
     {
       "type": "resolveEventChoice",
       "eventId": "eval_breakthrough",
-      "choiceIndex": 1
+      "choiceIndex": 0
     },
     {
       "type": "advance"
@@ -100,7 +100,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "treaty_feeler",
+      "eventId": "model_weight_theft",
       "choiceIndex": 1
     },
     {
@@ -115,6 +115,23 @@
     {
       "type": "playPolicy",
       "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "whistleblower",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
     },
     {
       "type": "resolveEventChoice",
@@ -134,11 +151,6 @@
       "type": "skipPolicy"
     },
     {
-      "type": "resolveEventChoice",
-      "eventId": "whistleblower",
-      "choiceIndex": 1
-    },
-    {
       "type": "advance"
     },
     {
@@ -151,21 +163,36 @@
       "type": "skipPolicy"
     },
     {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
+    },
+    {
       "type": "resolveEventChoice",
-      "eventId": "model_weight_theft",
-      "choiceIndex": 1
+      "eventId": "agentic_incident",
+      "choiceIndex": 0
     }
   ],
   "perTurnHashes": [
-    "11bbe42d82193e",
-    "15e712597a7b36",
-    "08f1d414558072",
-    "18c32e4809ca90",
-    "1378ae9235272e",
-    "0f31042099a622",
-    "1854e029d35576",
-    "0d5fb5b27774b3",
-    "045feab10010e7"
+    "136267f20cb575",
+    "1636ab6f37b225",
+    "1bd49fb5710832",
+    "143719be440569",
+    "0660d9b5e899b3",
+    "054ebe5423cf7b",
+    "00f6fd203cc48d",
+    "1cf2fcbee8f895",
+    "1d4b064ef2eeb1",
+    "0c3f044fff2448",
+    "17b22b62637bd9"
   ],
-  "finalHash": "045feab10010e7"
+  "finalHash": "17b22b62637bd9"
 }

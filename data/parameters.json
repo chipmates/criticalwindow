@@ -58,8 +58,8 @@
     },
     "safetyInsightNarrowing": {
       "value": 40,
-      "sourceIds": ["SRC-SLEEPER", "TODO-SOURCE"],
-      "note": "band narrowing per 100 points of Safety Insight; draft rate, tuned in paper playtests"
+      "sourceIds": ["SRC-SLEEPER-PROBES", "SRC-DESIGN-HANDOVER"],
+      "note": "narrowing per 100 Safety Insight: simple probes catch sleeper agents (Anthropic), so interpretability investment buys real eval confidence; the rate itself is a design constant tuned in playtests"
     },
     "floorBandWidth": {
       "value": 80,
@@ -73,8 +73,8 @@
     },
     "deceptionInsightCounter": {
       "value": 40,
-      "sourceIds": ["SRC-SLEEPER-PROBES", "TODO-SOURCE"],
-      "note": "lift reduction per 100 Safety Insight: interpretability (probes) is the counter to deceptive passes"
+      "sourceIds": ["SRC-SLEEPER-PROBES", "SRC-DESIGN-HANDOVER"],
+      "note": "lift reduction per 100 Safety Insight: probes are the counter to deceptive passes; rate is design-tuned"
     }
   },
   "thresholds": {
@@ -90,98 +90,126 @@
     },
     "breakdownUnrest": {
       "value": 800,
-      "sourceIds": ["TODO-SOURCE"],
-      "note": "unrest level that ends the run as Societal Breakdown; paper playtests tune"
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "unrest level that ends the run; paper playtests tune"
     },
     "treatyTrustMin": {
       "value": 700,
-      "sourceIds": ["TODO-SOURCE"],
-      "note": "rival trust required to sign the verified slowdown"
+      "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-DESIGN-HANDOVER"],
+      "note": "verified agreements need institutional trust infrastructure; the exact bar is design-tuned"
     },
     "gridSlackBeforeCap": {
       "value": 300,
-      "sourceIds": ["SRC-IEA-ENERGY-AI", "TODO-SOURCE"],
-      "note": "compute may exceed energy by this much before the grid limit bites in upkeep"
+      "sourceIds": ["SRC-IEA-ENERGY-AI", "SRC-DESIGN-HANDOVER"],
+      "note": "compute outrunning energy decays: IEA base case has datacentre demand rising 415 TWh (2024, ~1.5% of world electricity) to ~945 TWh by 2030; slack width is design-tuned"
+    },
+    "treatySignTurnMin": {
+      "value": 8,
+      "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-DESIGN-HANDOVER"],
+      "note": "verification regimes take time to negotiate: signing is possible from the midterm onward, so trust must SURVIVE events, not just spike once"
     }
   },
   "worldRules": {
     "rivalMoves": {
       "race": {
         "capability": {
-          "value": 100,
-          "sourceIds": ["TODO-SOURCE"],
-          "note": "rival capability per turn in race posture; v0 from the paper reference card"
+          "value": 60,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"],
+          "note": "rival pace in race posture; tuned against the B6 simulation grid (median run length target 11+ turns)"
         },
-        "trust": { "value": -50, "sourceIds": ["TODO-SOURCE"] }
+        "trust": {
+          "value": -50,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        }
       },
       "mirror": {
-        "capability": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+        "capability": {
+          "value": 40,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        },
         "matchBonus": {
-          "value": 50,
-          "sourceIds": ["TODO-SOURCE"],
-          "note": "extra rival capability when the player gained 100+ this turn (tit-for-tat)"
+          "value": 25,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"],
+          "note": "tit-for-tat: extra rival capability when the player gained 100+ this turn"
         },
         "diplomacyTrust": {
           "value": 50,
-          "sourceIds": ["TODO-SOURCE"],
+          "sourceIds": ["SRC-DESIGN-HANDOVER"],
           "note": "trust gain when the player played a diplomacy-tagged card this turn"
+        },
+        "matchTrigger": {
+          "value": 50,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"],
+          "note": "player capability gain this turn that triggers the tit-for-tat match bonus"
         }
       },
       "cautious": {
-        "capability": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
-        "trust": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+        "capability": {
+          "value": 30,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        },
+        "trust": {
+          "value": 50,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        }
       }
     },
     "postureChecks": {
       "cautiousTrustMin": {
         "value": 700,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "trust + treatyChannel flag flips rival to cautious"
       },
       "raceGapMin": {
         "value": 200,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "player capability lead that flips rival to race"
       },
       "raceTrustMax": {
         "value": 250,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "trust at or below this flips rival to race"
       }
     },
     "society": {
       "displacementCapabilityMin": {
         "value": 400,
-        "sourceIds": ["SRC-IMF-GENAI", "TODO-SOURCE"],
+        "sourceIds": ["SRC-IMF-GENAI", "SRC-DESIGN-HANDOVER"],
         "note": "capability level where displacement pressure starts; v2 uses the displacementFromCapability curve"
       },
-      "displacementPerTurn": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+      "displacementPerTurn": {
+        "value": 50,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      },
       "displacementSurgeCapability": {
         "value": 700,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "above this, displacement accrues double"
       },
       "diffusionReliefPer": {
         "value": 100,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "diffusion R&D points (digital) per unit of relief chosen in the society step"
       },
       "unrestFromDisplacementGap": {
         "value": 50,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "unrest per turn while displacement exceeds public trust"
       },
       "unrestSurgeDisplacement": {
         "value": 600,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "above this displacement, unrest accrues double"
       },
       "trustErosionUnrestMin": {
         "value": 500,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "unrest level where public trust starts eroding"
       },
-      "trustErosionPerTurn": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+      "trustErosionPerTurn": {
+        "value": 50,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      }
     },
     "election": {
       "trustMin": {
@@ -189,7 +217,10 @@
         "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "midterm verdict: trust at or above this AND unrest at or below unrestMax renews the mandate"
       },
-      "unrestMax": { "value": 400, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+      "unrestMax": {
+        "value": 400,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      },
       "mandateSwing": {
         "value": 100,
         "sourceIds": ["SRC-DESIGN-HANDOVER"],
@@ -199,36 +230,36 @@
     "upkeep": {
       "capitalIncomePerDiffusion": {
         "value": 25,
-        "sourceIds": ["TODO-SOURCE"],
-        "note": "capital income per 100 diffusion R&D points invested the previous turn (diffusion converts capability into the economy)"
+        "sourceIds": ["SRC-GATE", "SRC-DESIGN-HANDOVER"],
+        "note": "diffusion converts capability into economic output (compute-centric growth models); the rate is design pacing"
       }
     },
     "rivalDepth": {
       "substitutionBonusMin": {
         "value": 700,
-        "sourceIds": ["SRC-CSIS-EXPORT", "TODO-SOURCE"],
-        "note": "substitution progress at which the rival's domestic chip path starts paying"
+        "sourceIds": ["SRC-CSIS-EXPORT", "SRC-DEEPSEEK-COST"],
+        "note": "substitution maturity threshold: export controls accelerate domestic alternatives and efficiency under constraint"
       },
       "substitutionBonus": {
         "value": 25,
-        "sourceIds": ["TODO-SOURCE"],
-        "note": "extra rival capability per turn once substitution matured (export controls' long bite)"
+        "sourceIds": ["SRC-CSIS-EXPORT", "SRC-DESIGN-HANDOVER"],
+        "note": "extra rival capability per turn once substitution matured; magnitude design-tuned"
       },
       "progressVariance": {
         "value": 25,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "seeded per-turn rival capability variance (their progress is foggy too); drawn from the rival stream"
       }
     },
     "societyDepth": {
       "displacementEquilibriumDivisor": {
         "value": 6,
-        "sourceIds": ["SRC-IMF-GENAI", "TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "displacement drifts toward displacementFromCapability(capability) by gap/divisor per turn: diffusion-coupled, not instant"
       },
       "trustCurveDivisor": {
         "value": 4,
-        "sourceIds": ["TODO-SOURCE"],
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "trustFromUnrest(unrest)/divisor applied to public trust per turn"
       }
     },
@@ -240,13 +271,13 @@
       },
       "perTurn": {
         "value": 25,
-        "sourceIds": ["SRC-GRADUAL-DISEMPOWERMENT", "TODO-SOURCE"],
-        "note": "quiet per-turn handover of decision-making; no P1 ending, Alpha ships it"
+        "sourceIds": ["SRC-GRADUAL-DISEMPOWERMENT", "SRC-DESIGN-HANDOVER"],
+        "note": "quiet per-turn handover of decision-making at high capability; no P1 ending, Alpha ships it"
       },
       "diffusionShieldMin": {
         "value": 30,
-        "sourceIds": ["TODO-SOURCE"],
-        "note": "allocating at least this diffusion share halves erosion: broad benefit-sharing keeps humans in the loop"
+        "sourceIds": ["SRC-GRADUAL-DISEMPOWERMENT", "SRC-DESIGN-HANDOVER"],
+        "note": "broad benefit-sharing keeps humans in the loop; share threshold is design-tuned"
       }
     }
   },
@@ -267,35 +298,44 @@
       "note": "rotating policy hand; refills from the unspent pool each upkeep"
     },
     "eras": [
-      { "id": "early", "fromTurn": 1 },
-      { "id": "mid", "fromTurn": 6 },
-      { "id": "late", "fromTurn": 11 }
+      {
+        "id": "early",
+        "fromTurn": 1
+      },
+      {
+        "id": "mid",
+        "fromTurn": 6
+      },
+      {
+        "id": "late",
+        "fromTurn": 11
+      }
     ]
   },
   "curves": {
     "rndCapacity": {
       "x": [0, 400, 800, 1200, 1600, 2000],
       "y": [50, 150, 250, 330, 380, 400],
-      "sourceIds": ["TODO-SOURCE"],
-      "note": "draft: R&D points per turn from compute+talent (sum of both, 0..2000); diminishing returns above the frontier"
+      "sourceIds": ["SRC-GATE", "SRC-DESIGN-HANDOVER"],
+      "note": "R&D points from compute+talent with diminishing returns; shape motivated by compute-centric growth models (Epoch GATE), values are design pacing"
     },
     "capabilityPerRnd": {
       "x": [0, 100, 200, 300, 400],
-      "y": [0, 30, 60, 85, 100],
-      "sourceIds": ["TODO-SOURCE"],
-      "note": "draft: capability gain per turn from R&D points allocated to capability; paced so a hard racer enters the fog zone around turn 9 of 16, not turn 5; C2 calibrates against Epoch/METR doubling trends"
+      "y": [0, 20, 40, 55, 65],
+      "sourceIds": ["SRC-EPOCH-COMPUTE", "SRC-METR-HORIZON", "SRC-DESIGN-HANDOVER"],
+      "note": "abstraction of the measured regime (training compute doubling every 5.2 months since 2020; 50% task horizon doubling every ~207 days per the v3 estimate) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16"
     },
     "displacementFromCapability": {
       "x": [0, 200, 400, 600, 800, 1000],
       "y": [0, 0, 50, 150, 300, 500],
-      "sourceIds": ["SRC-IMF-GENAI", "TODO-SOURCE"],
-      "note": "draft: displacement pressure by capability level; anchored loosely on IMF 40%-exposure at high capability, C2 tightens"
+      "sourceIds": ["SRC-IMF-GENAI", "SRC-PAYROLLS-TO-PROMPTS"],
+      "note": "equilibrium displacement by capability: top of curve maps IMF exposure (almost 40% of global employment, about 60% in advanced economies) onto index 500 at frontier capability; near-zero early per observed 2025-26 payroll evidence"
     },
     "trustFromUnrest": {
       "x": [0, 200, 400, 600, 800, 1000],
       "y": [0, -25, -50, -100, -175, -250],
-      "sourceIds": ["TODO-SOURCE"],
-      "note": "draft: trust erosion per turn as a function of unrest level"
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "trust erosion accelerates with unrest; design curve, playtests tune"
     }
   }
 }

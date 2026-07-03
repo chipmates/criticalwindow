@@ -19,7 +19,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "validate": "tsx scripts/validate-data.ts",
+    "validate": "tsx scripts/validate-data.ts --strict-sources",
     "schemas": "tsx scripts/generate-schemas.ts",
     "simulate": "tsx scripts/simulate.ts",
     "print-kit": "tsx scripts/print-kit.ts",

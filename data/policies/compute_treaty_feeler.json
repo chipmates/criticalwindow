@@ -3,15 +3,19 @@
   "id": "compute_treaty_feeler",
   "title": "strings:policy.computeTreatyFeeler.title",
   "body": "strings:policy.computeTreatyFeeler.body",
-  "cost": { "politicalCapital": 50 },
+  "cost": {
+    "politicalCapital": 50
+  },
   "effects": {
-    "rival.trust": 150,
+    "rival.trust": 100,
     "flags": ["treatyChannel"]
   },
   "delayedEffects": [
     {
       "inTurns": 2,
-      "effects": { "politicalCapital": -50 }
+      "effects": {
+        "politicalCapital": -50
+      }
     }
   ],
   "cooldown": 3,

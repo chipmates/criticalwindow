@@ -8,97 +8,263 @@
         "max": 950,
         "sourceIds": ["SRC-AI2027", "SRC-CARLSMITH"]
       },
-      "takeoffSteepness": { "min": 500, "max": 900, "sourceIds": ["SRC-AI2027"] }
+      "takeoffSteepness": {
+        "min": 500,
+        "max": 900,
+        "sourceIds": ["SRC-AI2027"]
+      }
     },
     "consensus": {
       "label": "strings:preset.consensus.label",
       "description": "strings:preset.consensus.description",
-      "alignmentDifficulty": { "min": 300, "max": 800, "sourceIds": ["SRC-IAISR"] },
-      "takeoffSteepness": { "min": 300, "max": 800, "sourceIds": ["SRC-GRACE-SURVEY"] }
+      "alignmentDifficulty": {
+        "min": 300,
+        "max": 800,
+        "sourceIds": ["SRC-IAISR"]
+      },
+      "takeoffSteepness": {
+        "min": 300,
+        "max": 800,
+        "sourceIds": ["SRC-GRACE-SURVEY"]
+      }
     },
     "skeptic": {
       "label": "strings:preset.skeptic.label",
       "description": "strings:preset.skeptic.description",
-      "alignmentDifficulty": { "min": 50, "max": 500, "sourceIds": ["SRC-NORMAL-TECH"] },
-      "takeoffSteepness": { "min": 100, "max": 500, "sourceIds": ["TODO-SOURCE"] }
+      "alignmentDifficulty": {
+        "min": 50,
+        "max": 500,
+        "sourceIds": ["SRC-NORMAL-TECH"]
+      },
+      "takeoffSteepness": {
+        "min": 100,
+        "max": 500,
+        "sourceIds": ["TODO-SOURCE"]
+      }
     }
   },
   "evalUncertainty": {
-    "baseBandWidth": { "value": 400, "sourceIds": ["SRC-SLEEPER"] },
-    "safetyInsightNarrowing": { "value": 30, "sourceIds": ["SRC-SLEEPER"] },
-    "floorBandWidth": { "value": 80, "sourceIds": ["SRC-SLEEPER"] },
-    "deceptionMaxLift": { "value": 250, "sourceIds": ["SRC-SLEEPER"] },
-    "deceptionInsightCounter": { "value": 40, "sourceIds": ["SRC-SLEEPER"] }
+    "baseBandWidth": {
+      "value": 400,
+      "sourceIds": ["SRC-SLEEPER"]
+    },
+    "safetyInsightNarrowing": {
+      "value": 30,
+      "sourceIds": ["SRC-SLEEPER"]
+    },
+    "floorBandWidth": {
+      "value": 80,
+      "sourceIds": ["SRC-SLEEPER"]
+    },
+    "deceptionMaxLift": {
+      "value": 250,
+      "sourceIds": ["SRC-SLEEPER"]
+    },
+    "deceptionInsightCounter": {
+      "value": 40,
+      "sourceIds": ["SRC-SLEEPER"]
+    }
   },
   "thresholds": {
-    "fogZoneStart": { "value": 800, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
-    "capabilityThreshold": { "value": 1000, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
-    "breakdownUnrest": { "value": 800, "sourceIds": ["TODO-SOURCE"] },
-    "treatyTrustMin": { "value": 700, "sourceIds": ["TODO-SOURCE"] },
-    "gridSlackBeforeCap": { "value": 300, "sourceIds": ["TODO-SOURCE"] }
+    "fogZoneStart": {
+      "value": 800,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    },
+    "capabilityThreshold": {
+      "value": 1000,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    },
+    "breakdownUnrest": {
+      "value": 800,
+      "sourceIds": ["TODO-SOURCE"]
+    },
+    "treatyTrustMin": {
+      "value": 700,
+      "sourceIds": ["TODO-SOURCE"]
+    },
+    "gridSlackBeforeCap": {
+      "value": 300,
+      "sourceIds": ["TODO-SOURCE"]
+    },
+    "treatySignTurnMin": {
+      "value": 8,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    }
   },
   "worldRules": {
     "rivalMoves": {
       "race": {
-        "capability": { "value": 100, "sourceIds": ["TODO-SOURCE"] },
-        "trust": { "value": -50, "sourceIds": ["TODO-SOURCE"] }
+        "capability": {
+          "value": 100,
+          "sourceIds": ["TODO-SOURCE"]
+        },
+        "trust": {
+          "value": -50,
+          "sourceIds": ["TODO-SOURCE"]
+        }
       },
       "mirror": {
-        "capability": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
-        "matchBonus": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
-        "diplomacyTrust": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+        "capability": {
+          "value": 50,
+          "sourceIds": ["TODO-SOURCE"]
+        },
+        "matchBonus": {
+          "value": 50,
+          "sourceIds": ["TODO-SOURCE"]
+        },
+        "diplomacyTrust": {
+          "value": 50,
+          "sourceIds": ["TODO-SOURCE"]
+        },
+        "matchTrigger": {
+          "value": 50,
+          "sourceIds": ["TODO-SOURCE"]
+        }
       },
       "cautious": {
-        "capability": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
-        "trust": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+        "capability": {
+          "value": 50,
+          "sourceIds": ["TODO-SOURCE"]
+        },
+        "trust": {
+          "value": 50,
+          "sourceIds": ["TODO-SOURCE"]
+        }
       }
     },
     "postureChecks": {
-      "cautiousTrustMin": { "value": 700, "sourceIds": ["TODO-SOURCE"] },
-      "raceGapMin": { "value": 200, "sourceIds": ["TODO-SOURCE"] },
-      "raceTrustMax": { "value": 250, "sourceIds": ["TODO-SOURCE"] }
+      "cautiousTrustMin": {
+        "value": 700,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "raceGapMin": {
+        "value": 200,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "raceTrustMax": {
+        "value": 250,
+        "sourceIds": ["TODO-SOURCE"]
+      }
     },
     "society": {
-      "displacementCapabilityMin": { "value": 400, "sourceIds": ["TODO-SOURCE"] },
-      "displacementPerTurn": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
-      "displacementSurgeCapability": { "value": 700, "sourceIds": ["TODO-SOURCE"] },
-      "diffusionReliefPer": { "value": 100, "sourceIds": ["TODO-SOURCE"] },
-      "unrestFromDisplacementGap": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
-      "unrestSurgeDisplacement": { "value": 600, "sourceIds": ["TODO-SOURCE"] },
-      "trustErosionUnrestMin": { "value": 500, "sourceIds": ["TODO-SOURCE"] },
-      "trustErosionPerTurn": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+      "displacementCapabilityMin": {
+        "value": 400,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "displacementPerTurn": {
+        "value": 50,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "displacementSurgeCapability": {
+        "value": 700,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "diffusionReliefPer": {
+        "value": 100,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "unrestFromDisplacementGap": {
+        "value": 50,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "unrestSurgeDisplacement": {
+        "value": 600,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "trustErosionUnrestMin": {
+        "value": 500,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "trustErosionPerTurn": {
+        "value": 50,
+        "sourceIds": ["TODO-SOURCE"]
+      }
     },
     "election": {
-      "trustMin": { "value": 400, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
-      "unrestMax": { "value": 400, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
-      "mandateSwing": { "value": 100, "sourceIds": ["SRC-DESIGN-HANDOVER"] }
+      "trustMin": {
+        "value": 400,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      },
+      "unrestMax": {
+        "value": 400,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      },
+      "mandateSwing": {
+        "value": 100,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      }
     },
     "upkeep": {
-      "capitalIncomePerDiffusion": { "value": 25, "sourceIds": ["TODO-SOURCE"] }
+      "capitalIncomePerDiffusion": {
+        "value": 25,
+        "sourceIds": ["TODO-SOURCE"]
+      }
     },
     "rivalDepth": {
-      "substitutionBonusMin": { "value": 700, "sourceIds": ["TODO-SOURCE"] },
-      "substitutionBonus": { "value": 25, "sourceIds": ["TODO-SOURCE"] },
-      "progressVariance": { "value": 25, "sourceIds": ["TODO-SOURCE"] }
+      "substitutionBonusMin": {
+        "value": 700,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "substitutionBonus": {
+        "value": 25,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "progressVariance": {
+        "value": 25,
+        "sourceIds": ["TODO-SOURCE"]
+      }
     },
     "societyDepth": {
-      "displacementEquilibriumDivisor": { "value": 6, "sourceIds": ["TODO-SOURCE"] },
-      "trustCurveDivisor": { "value": 4, "sourceIds": ["TODO-SOURCE"] }
+      "displacementEquilibriumDivisor": {
+        "value": 6,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "trustCurveDivisor": {
+        "value": 4,
+        "sourceIds": ["TODO-SOURCE"]
+      }
     },
     "agencyErosion": {
-      "highCapabilityMin": { "value": 800, "sourceIds": ["TODO-SOURCE"] },
-      "perTurn": { "value": 25, "sourceIds": ["TODO-SOURCE"] },
-      "diffusionShieldMin": { "value": 30, "sourceIds": ["TODO-SOURCE"] }
+      "highCapabilityMin": {
+        "value": 800,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "perTurn": {
+        "value": 25,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "diffusionShieldMin": {
+        "value": 30,
+        "sourceIds": ["TODO-SOURCE"]
+      }
     }
   },
   "turnStructure": {
-    "maxTurns": { "value": 16, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
-    "electionTurn": { "value": 8, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
-    "handSize": { "value": 3, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+    "maxTurns": {
+      "value": 16,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    },
+    "electionTurn": {
+      "value": 8,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    },
+    "handSize": {
+      "value": 3,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    },
     "eras": [
-      { "id": "early", "fromTurn": 1 },
-      { "id": "mid", "fromTurn": 6 },
-      { "id": "late", "fromTurn": 11 }
+      {
+        "id": "early",
+        "fromTurn": 1
+      },
+      {
+        "id": "mid",
+        "fromTurn": 6
+      },
+      {
+        "id": "late",
+        "fromTurn": 11
+      }
     ]
   },
   "curves": {

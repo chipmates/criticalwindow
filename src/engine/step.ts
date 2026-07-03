@@ -463,7 +463,7 @@ function worldUpdate(data: EngineData, state: GameState): void {
     rivalTrustDelta = rules.rivalMoves.race.trust.value;
   } else if (posture === 'mirror') {
     rivalCapabilityGain = rules.rivalMoves.mirror.capability.value;
-    if (state.turnScratch.capabilityGained >= 100) {
+    if (state.turnScratch.capabilityGained >= rules.rivalMoves.mirror.matchTrigger.value) {
       rivalCapabilityGain += rules.rivalMoves.mirror.matchBonus.value;
     }
     if (state.turnScratch.playedDiplomacy) {
@@ -674,17 +674,20 @@ function worldUpdate(data: EngineData, state: GameState): void {
     endRun(state, 'societalBreakdown', { trigger: 'unrest' });
     return;
   }
-  if (state.rival.capability >= thresholds.capabilityThreshold.value) {
-    endRun(state, 'outpaced', { trigger: 'rivalThreshold' });
-    return;
-  }
+  // The player's crossing resolves first: if you reach the threshold, the
+  // story is your gamble, even if the rival crossed the same quarter.
   if (state.resources.capability >= thresholds.capabilityThreshold.value) {
     resolveAlignment(state, { trigger: 'playerThreshold' });
+    return;
+  }
+  if (state.rival.capability >= thresholds.capabilityThreshold.value) {
+    endRun(state, 'outpaced', { trigger: 'rivalThreshold' });
     return;
   }
   if (
     state.flags.includes('treatyChannel') &&
     state.rival.trust >= thresholds.treatyTrustMin.value &&
+    state.turn >= thresholds.treatySignTurnMin.value &&
     state.policy.playedThisTurn === 'compute_treaty_feeler'
   ) {
     endRun(state, 'negotiatedSlowdown', { trigger: 'treatySigned' });

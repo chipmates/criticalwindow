@@ -1,11 +1,11 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "096780bf0e6ef6",
+  "dataVersion": "1436ccdb5807f3",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
   "endingId": "misalignedCatastrophe",
-  "turns": 7,
+  "turns": 11,
   "actions": [
     {
       "type": "allocate",
@@ -73,7 +73,7 @@
     {
       "type": "resolveEventChoice",
       "eventId": "eval_breakthrough",
-      "choiceIndex": 0
+      "choiceIndex": 1
     },
     {
       "type": "advance"
@@ -104,6 +104,41 @@
     {
       "type": "resolveEventChoice",
       "eventId": "model_weight_theft",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "energy_buildout"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "taiwan_strait_crisis",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "chip_smuggling",
       "choiceIndex": 0
     },
     {
@@ -120,18 +155,51 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
+      "eventId": "whistleblower",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "rival_breakthrough",
       "choiceIndex": 0
     }
   ],
   "perTurnHashes": [
-    "1aca2d1d13e6cb",
-    "1e296adba8e4cb",
-    "1e3db9fa3cd3ec",
-    "13f38250a40cbb",
-    "1cd51b7bf81bdc",
-    "14dd7aa3731353",
-    "164796e248ccb2"
+    "0ace22be3da4ce",
+    "0a14dd835441e3",
+    "0969d4edc0bbb3",
+    "0c512ec196099b",
+    "16e0a1a41d0ebc",
+    "0702519ad63898",
+    "136ea7574ad405",
+    "0902b89c786617",
+    "02d4de059ddc2d",
+    "0f8c39ea89f200",
+    "1d938afbf80a04"
   ],
-  "finalHash": "164796e248ccb2"
+  "finalHash": "1d938afbf80a04"
 }

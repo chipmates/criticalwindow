@@ -1,11 +1,11 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "096780bf0e6ef6",
+  "dataVersion": "1436ccdb5807f3",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
-  "endingId": "negotiatedSlowdown",
-  "turns": 7,
+  "endingId": "outpaced",
+  "turns": 12,
   "actions": [
     {
       "type": "allocate",
@@ -123,16 +123,103 @@
       "type": "resolveEventChoice",
       "eventId": "taiwan_strait_crisis",
       "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "model_weight_theft",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "treaty_feeler",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "energy_buildout"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "benchmark_gaming",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "rival_breakthrough",
+      "choiceIndex": 0
     }
   ],
   "perTurnHashes": [
-    "174ecaace85dce",
-    "11131db17abed4",
-    "0780890207b9a1",
-    "0370f9dfefa81d",
-    "0eeef504493921",
-    "0a315a34ef8572",
-    "09abca0ef0a0e5"
+    "1c89d5502cfe93",
+    "086f6e8517f109",
+    "1c69ab827972c0",
+    "1fb72bee17dd3e",
+    "0caaac932a9720",
+    "19aa633986119e",
+    "043280b67243e2",
+    "0743b02cc3ff66",
+    "1babb4830105fa",
+    "0f2536f38025e1",
+    "1bf5d619c04fcc",
+    "0a54f1f9be811b"
   ],
-  "finalHash": "09abca0ef0a0e5"
+  "finalHash": "0a54f1f9be811b"
 }

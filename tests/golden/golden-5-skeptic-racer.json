@@ -1,11 +1,11 @@
 {
   "name": "golden-5-skeptic-racer",
-  "dataVersion": "096780bf0e6ef6",
+  "dataVersion": "1436ccdb5807f3",
   "seed": "golden-5",
   "presetId": "skeptic",
   "bot": "racer",
   "endingId": "flourishing",
-  "turns": 7,
+  "turns": 11,
   "actions": [
     {
       "type": "allocate",
@@ -73,7 +73,7 @@
     {
       "type": "resolveEventChoice",
       "eventId": "eval_breakthrough",
-      "choiceIndex": 0
+      "choiceIndex": 1
     },
     {
       "type": "advance"
@@ -104,7 +104,25 @@
     {
       "type": "resolveEventChoice",
       "eventId": "model_weight_theft",
-      "choiceIndex": 0
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "energy_buildout"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "taiwan_strait_crisis",
+      "choiceIndex": 1
     },
     {
       "type": "advance"
@@ -120,18 +138,68 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
+      "eventId": "whistleblower",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "chip_smuggling",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "rival_breakthrough",
       "choiceIndex": 0
     }
   ],
   "perTurnHashes": [
-    "0647a9759824a3",
-    "03b454d627d5a5",
-    "1838df7219b609",
-    "144dd87e1dd33c",
-    "0a41c35b0216d4",
-    "10fc9b301c9ccc",
-    "1971111c11ca70"
+    "05ca66e3bf6d68",
+    "078e736a0a4645",
+    "1b263f0ca464ab",
+    "0bd0b8a6e16db7",
+    "129d8f26f1a902",
+    "0d7d66392f3eae",
+    "1b397df179c64e",
+    "0a6c08ddcbcff7",
+    "07fbacdba70160",
+    "1b9a99d51a98fe",
+    "0ddff28edfd884"
   ],
-  "finalHash": "1971111c11ca70"
+  "finalHash": "0ddff28edfd884"
 }

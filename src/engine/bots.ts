@@ -23,6 +23,42 @@ interface BotDecision {
   rng: RngStreamState;
 }
 
+/**
+ * Score a card's choices by weighted effect deltas (immediate + delayed
+ * together: bites count). Deterministic; ties go to the earlier choice.
+ */
+function bestChoice(
+  card: {
+    choices: Array<{
+      effects?: Record<string, unknown> | undefined;
+      delayedEffects?: Array<{ effects: Record<string, unknown> }> | undefined;
+    }>;
+  },
+  weights: Record<string, number>,
+): number {
+  let best = 0;
+  let bestScore = Number.NEGATIVE_INFINITY;
+  card.choices.forEach((choice, index) => {
+    let score = 0;
+    const tally = (effects: Record<string, unknown> | undefined): void => {
+      for (const [key, value] of Object.entries(effects ?? {})) {
+        if (typeof value === 'number' && weights[key] !== undefined) {
+          score += value * weights[key];
+        }
+      }
+    };
+    tally(choice.effects);
+    for (const delayed of choice.delayedEffects ?? []) {
+      tally(delayed.effects);
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      best = index;
+    }
+  });
+  return best;
+}
+
 function preferPolicy(context: BotContext, preferences: string[]): Action {
   const playable = playablePolicies(context.data, context.state)
     .filter((p) => p.playable)
@@ -108,9 +144,14 @@ function decide(bot: BotId, context: BotContext): BotDecision {
       let choiceIndex: number;
       let nextRng = rng;
       if (bot === 'racer') {
-        choiceIndex = 0;
+        choiceIndex = bestChoice(card, { capability: 3, compute: 1, 'rival.capability': -1 });
       } else if (bot === 'dove') {
-        choiceIndex = card.choices.length - 1;
+        choiceIndex = bestChoice(card, {
+          'rival.trust': 3,
+          publicTrust: 2,
+          safetyInsight: 1,
+          'society.unrest': -2,
+        });
       } else if (bot === 'hedger') {
         choiceIndex = state.turn % card.choices.length;
       } else {

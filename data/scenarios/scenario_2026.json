@@ -3,7 +3,10 @@
   "id": "scenario_2026",
   "seat": "usa",
   "label": "strings:scenario.usa2026.label",
-  "startTime": { "year": 2026, "quarter": 3 },
+  "startTime": {
+    "year": 2026,
+    "quarter": 3
+  },
   "startResources": {
     "compute": {
       "value": 700,
@@ -13,22 +16,22 @@
     "energy": {
       "value": 450,
       "sourceIds": ["SRC-IEA-ENERGY-AI"],
-      "note": "grid adequate today, tightening: IEA projects datacenter demand roughly doubling by 2030"
+      "note": "grid adequate today, tightening: IEA has datacentre demand at 415 TWh in 2024 rising to ~945 TWh by 2030 (base case)"
     },
     "talent": {
       "value": 650,
-      "sourceIds": ["TODO-SOURCE"],
-      "note": "strong but contested lead in frontier researchers; immigration policy sensitive"
+      "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
+      "note": "strong but contested US lead in frontier researchers per the AI Index workforce chapters; index mapping is design judgment"
     },
     "capital": {
       "value": 750,
-      "sourceIds": ["TODO-SOURCE"],
-      "note": "capex boom: private AI investment at record highs in 2025-2026"
+      "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
+      "note": "record private AI investment through 2025-26 per the AI Index; index mapping is design judgment"
     },
     "publicTrust": {
       "value": 400,
-      "sourceIds": ["TODO-SOURCE"],
-      "note": "polls show majority unease about AI; below the midpoint by design"
+      "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
+      "note": "public-opinion surveys show majority unease about AI; below midpoint by design"
     },
     "politicalCapital": {
       "value": 500,
@@ -42,8 +45,8 @@
     },
     "safetyInsight": {
       "value": 200,
-      "sourceIds": ["TODO-SOURCE"],
-      "note": "interpretability is real but young; eval science immature"
+      "sourceIds": ["SRC-SCALING-MONOSEMANTICITY", "SRC-IAISR-UPDATE-2"],
+      "note": "interpretability real but young; technical safeguards immature per the 2025 IAISR second update"
     }
   },
   "startSociety": {
@@ -54,7 +57,7 @@
     },
     "unrest": {
       "value": 150,
-      "sourceIds": ["TODO-SOURCE"],
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
       "note": "background political tension, no AI-specific movement yet"
     }
   },
@@ -67,7 +70,7 @@
     },
     "trust": {
       "value": 350,
-      "sourceIds": ["TODO-SOURCE"],
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
       "note": "wary engagement: dialogue channels exist, verification does not"
     },
     "substitution": {

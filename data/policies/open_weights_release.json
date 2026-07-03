@@ -3,7 +3,9 @@
   "id": "open_weights_release",
   "title": "strings:policy.openWeightsRelease.title",
   "body": "strings:policy.openWeightsRelease.body",
-  "cost": { "politicalCapital": 50 },
+  "cost": {
+    "politicalCapital": 50
+  },
   "effects": {
     "publicTrust": 100,
     "rival.trust": 50,
@@ -14,10 +16,12 @@
   "delayedEffects": [
     {
       "inTurns": 3,
-      "effects": { "safetyInsight": 50 }
+      "effects": {
+        "safetyInsight": 50
+      }
     }
   ],
   "oncePerRun": true,
-  "sourceIds": ["SRC-DEEPSEEK-R1", "TODO-SOURCE"],
+  "sourceIds": ["SRC-DEEPSEEK-R1", "SRC-US-POLICY-CHINA-OPEN-ECOSYSTEM"],
   "tags": ["open-weights", "transparency", "diffusion"]
 }

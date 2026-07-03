@@ -638,6 +638,40 @@
           ],
           "additionalProperties": false
         },
+        "treatySignTurnMin": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
         "gridSlackBeforeCap": {
           "type": "object",
           "properties": {
@@ -678,6 +712,7 @@
         "capabilityThreshold",
         "breakdownUnrest",
         "treatyTrustMin",
+        "treatySignTurnMin",
         "gridSlackBeforeCap"
       ],
       "additionalProperties": false
@@ -837,6 +872,40 @@
                   ],
                   "additionalProperties": false
                 },
+                "matchTrigger": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "minimum": -1000,
+                      "maximum": 1000
+                    },
+                    "sourceIds": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                          },
+                          {
+                            "type": "string",
+                            "const": "TODO-SOURCE"
+                          }
+                        ]
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceIds"
+                  ],
+                  "additionalProperties": false
+                },
                 "diplomacyTrust": {
                   "type": "object",
                   "properties": {
@@ -875,6 +944,7 @@
               "required": [
                 "capability",
                 "matchBonus",
+                "matchTrigger",
                 "diplomacyTrust"
               ],
               "additionalProperties": false

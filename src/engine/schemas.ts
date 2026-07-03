@@ -233,6 +233,7 @@ export const parametersSchema = z.strictObject({
     capabilityThreshold: sourcedIntSchema,
     breakdownUnrest: sourcedIntSchema,
     treatyTrustMin: sourcedIntSchema,
+    treatySignTurnMin: sourcedIntSchema,
     gridSlackBeforeCap: sourcedIntSchema,
   }),
   worldRules: z.strictObject({
@@ -241,6 +242,7 @@ export const parametersSchema = z.strictObject({
       mirror: z.strictObject({
         capability: sourcedIntSchema,
         matchBonus: sourcedIntSchema,
+        matchTrigger: sourcedIntSchema,
         diplomacyTrust: sourcedIntSchema,
       }),
       cautious: z.strictObject({ capability: sourcedIntSchema, trust: sourcedIntSchema }),
