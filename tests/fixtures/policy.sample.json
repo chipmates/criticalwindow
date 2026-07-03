@@ -1,0 +1,12 @@
+{
+  "id": "export_controls",
+  "title": "strings:policy.exportControls.title",
+  "body": "strings:policy.exportControls.body",
+  "cost": { "politicalCapital": 80 },
+  "gates": { "politicalCapitalMin": 100 },
+  "effects": { "rival.capability": -40, "rival.trust": -80 },
+  "delayedEffects": [{ "inTurns": 3, "effects": { "rival.substitution": 60 } }],
+  "cooldown": 4,
+  "sourceIds": ["SRC-CSIS-EXPORT"],
+  "tags": ["chips", "china"]
+}

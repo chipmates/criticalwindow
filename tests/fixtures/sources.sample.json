@@ -1,0 +1,133 @@
+{
+  "sources": [
+    {
+      "id": "SRC-DESIGN-HANDOVER",
+      "title": "Race Conditions design handover (founding document)",
+      "org": "project",
+      "year": 2026,
+      "type": "design",
+      "status": "verified",
+      "gameUse": "design constants with no empirical referent (turn counts, starting defaults)"
+    },
+    {
+      "id": "SRC-DEEPSEEK-R1",
+      "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL",
+      "authors": "DeepSeek-AI",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2501.12948",
+      "type": "paper",
+      "status": "verified",
+      "gameUse": "open-weights shock event"
+    },
+    {
+      "id": "SRC-CSIS-EXPORT",
+      "title": "Choking Off China's Access to the Future of AI",
+      "authors": "Gregory C. Allen",
+      "org": "CSIS",
+      "year": 2022,
+      "url": "https://www.csis.org/analysis/choking-chinas-access-future-artificial-intelligence",
+      "type": "report",
+      "status": "verified",
+      "gameUse": "export-control policy card; rival substitution track"
+    },
+    {
+      "id": "SRC-SLEEPER",
+      "title": "Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training",
+      "authors": "Hubinger et al.",
+      "org": "Anthropic",
+      "year": 2024,
+      "url": "https://arxiv.org/abs/2401.05566",
+      "type": "paper",
+      "status": "verified",
+      "gameUse": "eval uncertainty band; deceptive-pass rule"
+    },
+    {
+      "id": "SRC-EPOCH-COMPUTE",
+      "title": "Epoch AI data hub: compute trends",
+      "org": "Epoch AI",
+      "url": "https://epoch.ai/data",
+      "type": "dataset",
+      "status": "verified",
+      "gameUse": "compute start values and growth curve"
+    },
+    {
+      "id": "SRC-AI2027",
+      "title": "AI 2027 scenario",
+      "authors": "Kokotajlo, Alexander et al.",
+      "year": 2025,
+      "url": "https://ai-2027.com",
+      "type": "web",
+      "status": "verified",
+      "gameUse": "cautious preset anchors"
+    },
+    {
+      "id": "SRC-CARLSMITH",
+      "title": "Is Power-Seeking AI an Existential Risk?",
+      "authors": "Joseph Carlsmith",
+      "year": 2022,
+      "url": "https://arxiv.org/abs/2206.13353",
+      "type": "paper",
+      "status": "verified",
+      "gameUse": "cautious preset anchors"
+    },
+    {
+      "id": "SRC-IAISR",
+      "title": "International AI Safety Report",
+      "authors": "Bengio et al.",
+      "year": 2025,
+      "url": "https://internationalaisafetyreport.org",
+      "type": "report",
+      "status": "verified",
+      "gameUse": "consensus preset anchors"
+    },
+    {
+      "id": "SRC-GRACE-SURVEY",
+      "title": "Thousands of AI Authors on the Future of AI",
+      "authors": "Grace et al.",
+      "year": 2024,
+      "url": "https://arxiv.org/abs/2401.02843",
+      "type": "paper",
+      "status": "verified",
+      "gameUse": "consensus preset anchors"
+    },
+    {
+      "id": "SRC-NORMAL-TECH",
+      "title": "AI as Normal Technology",
+      "authors": "Narayanan & Kapoor",
+      "year": 2025,
+      "type": "web",
+      "status": "pending",
+      "gameUse": "skeptic preset anchors"
+    },
+    {
+      "id": "SRC-METR-HORIZON",
+      "title": "Measuring AI Ability to Complete Long Tasks",
+      "org": "METR",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2503.14499",
+      "type": "paper",
+      "status": "verified",
+      "gameUse": "capability clock calibration"
+    },
+    {
+      "id": "SRC-IMF-GENAI",
+      "title": "Gen-AI: Artificial Intelligence and the Future of Work",
+      "org": "IMF",
+      "year": 2024,
+      "url": "https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379",
+      "type": "report",
+      "status": "verified",
+      "gameUse": "job displacement calibration"
+    },
+    {
+      "id": "SRC-IEA-ENERGY-AI",
+      "title": "Energy and AI",
+      "org": "IEA",
+      "year": 2025,
+      "url": "https://www.iea.org/reports/energy-and-ai",
+      "type": "report",
+      "status": "verified",
+      "gameUse": "energy resource calibration"
+    }
+  ]
+}

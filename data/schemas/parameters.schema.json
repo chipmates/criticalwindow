@@ -1,0 +1,601 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "worldviewPresets": {
+      "type": "object",
+      "properties": {
+        "cautious": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+            },
+            "description": {
+              "type": "string",
+              "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+            },
+            "alignmentDifficulty": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "min",
+                "max",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "takeoffSteepness": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "min",
+                "max",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "label",
+            "description",
+            "alignmentDifficulty",
+            "takeoffSteepness"
+          ],
+          "additionalProperties": false
+        },
+        "consensus": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+            },
+            "description": {
+              "type": "string",
+              "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+            },
+            "alignmentDifficulty": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "min",
+                "max",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "takeoffSteepness": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "min",
+                "max",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "label",
+            "description",
+            "alignmentDifficulty",
+            "takeoffSteepness"
+          ],
+          "additionalProperties": false
+        },
+        "skeptic": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+            },
+            "description": {
+              "type": "string",
+              "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+            },
+            "alignmentDifficulty": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "min",
+                "max",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "takeoffSteepness": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "max": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "min",
+                "max",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "label",
+            "description",
+            "alignmentDifficulty",
+            "takeoffSteepness"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "cautious",
+        "consensus",
+        "skeptic"
+      ],
+      "additionalProperties": false
+    },
+    "evalUncertainty": {
+      "type": "object",
+      "properties": {
+        "baseBandWidth": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "safetyInsightNarrowing": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "floorBandWidth": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "baseBandWidth",
+        "safetyInsightNarrowing",
+        "floorBandWidth"
+      ],
+      "additionalProperties": false
+    },
+    "turnStructure": {
+      "type": "object",
+      "properties": {
+        "maxTurns": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "electionTurn": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "eras": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": [
+                  "early",
+                  "mid",
+                  "late"
+                ]
+              },
+              "fromTurn": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64
+              }
+            },
+            "required": [
+              "id",
+              "fromTurn"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "maxTurns",
+        "electionTurn",
+        "eras"
+      ],
+      "additionalProperties": false
+    },
+    "curves": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-zA-Z0-9]*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "minItems": 2,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": -100000,
+              "maximum": 100000
+            }
+          },
+          "y": {
+            "minItems": 2,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": -100000,
+              "maximum": 100000
+            }
+          },
+          "sourceIds": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                },
+                {
+                  "type": "string",
+                  "const": "TODO-SOURCE"
+                }
+              ]
+            }
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "sourceIds"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "worldviewPresets",
+    "evalUncertainty",
+    "turnStructure",
+    "curves"
+  ],
+  "additionalProperties": false
+}

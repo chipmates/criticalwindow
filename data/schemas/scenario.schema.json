@@ -1,0 +1,594 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "seat": {
+      "type": "string",
+      "enum": [
+        "usa",
+        "china",
+        "eu"
+      ]
+    },
+    "label": {
+      "type": "string",
+      "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+    },
+    "startTime": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "minimum": 2020,
+          "maximum": 2100
+        },
+        "quarter": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        }
+      },
+      "required": [
+        "year",
+        "quarter"
+      ],
+      "additionalProperties": false
+    },
+    "startResources": {
+      "type": "object",
+      "properties": {
+        "compute": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "energy": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "talent": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "capital": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "publicTrust": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "politicalCapital": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "capability": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "safetyInsight": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "compute",
+        "energy",
+        "talent",
+        "capital",
+        "publicTrust",
+        "politicalCapital",
+        "capability",
+        "safetyInsight"
+      ],
+      "additionalProperties": false
+    },
+    "startSociety": {
+      "type": "object",
+      "properties": {
+        "jobDisplacement": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "unrest": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "jobDisplacement",
+        "unrest"
+      ],
+      "additionalProperties": false
+    },
+    "startRival": {
+      "type": "object",
+      "properties": {
+        "posture": {
+          "type": "string",
+          "enum": [
+            "race",
+            "mirror",
+            "cautious"
+          ]
+        },
+        "capability": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "trust": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "substitution": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "posture",
+        "capability",
+        "trust",
+        "substitution"
+      ],
+      "additionalProperties": false
+    },
+    "startAllocation": {
+      "type": "object",
+      "properties": {
+        "capability": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "safety": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "diffusion": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "sourceIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+              },
+              {
+                "type": "string",
+                "const": "TODO-SOURCE"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "capability",
+        "safety",
+        "diffusion",
+        "sourceIds"
+      ],
+      "additionalProperties": false
+    },
+    "startingHand": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "seat",
+    "label",
+    "startTime",
+    "startResources",
+    "startSociety",
+    "startRival",
+    "startAllocation"
+  ],
+  "additionalProperties": false
+}

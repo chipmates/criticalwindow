@@ -1,0 +1,48 @@
+{
+  "worldviewPresets": {
+    "cautious": {
+      "label": "strings:preset.cautious.label",
+      "description": "strings:preset.cautious.description",
+      "alignmentDifficulty": {
+        "min": 550,
+        "max": 950,
+        "sourceIds": ["SRC-AI2027", "SRC-CARLSMITH"]
+      },
+      "takeoffSteepness": { "min": 500, "max": 900, "sourceIds": ["SRC-AI2027"] }
+    },
+    "consensus": {
+      "label": "strings:preset.consensus.label",
+      "description": "strings:preset.consensus.description",
+      "alignmentDifficulty": { "min": 300, "max": 800, "sourceIds": ["SRC-IAISR"] },
+      "takeoffSteepness": { "min": 300, "max": 800, "sourceIds": ["SRC-GRACE-SURVEY"] }
+    },
+    "skeptic": {
+      "label": "strings:preset.skeptic.label",
+      "description": "strings:preset.skeptic.description",
+      "alignmentDifficulty": { "min": 50, "max": 500, "sourceIds": ["SRC-NORMAL-TECH"] },
+      "takeoffSteepness": { "min": 100, "max": 500, "sourceIds": ["TODO-SOURCE"] }
+    }
+  },
+  "evalUncertainty": {
+    "baseBandWidth": { "value": 400, "sourceIds": ["SRC-SLEEPER"] },
+    "safetyInsightNarrowing": { "value": 30, "sourceIds": ["SRC-SLEEPER"] },
+    "floorBandWidth": { "value": 80, "sourceIds": ["SRC-SLEEPER"] }
+  },
+  "turnStructure": {
+    "maxTurns": { "value": 16, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+    "electionTurn": { "value": 8, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+    "eras": [
+      { "id": "early", "fromTurn": 1 },
+      { "id": "mid", "fromTurn": 6 },
+      { "id": "late", "fromTurn": 11 }
+    ]
+  },
+  "curves": {
+    "capabilityPerCompute": {
+      "x": [0, 250, 500, 750, 1000],
+      "y": [0, 180, 380, 640, 1000],
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "draft shape; Milestone C sources this against Epoch data"
+    }
+  }
+}

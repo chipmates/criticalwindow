@@ -1,0 +1,25 @@
+{
+  "id": "open_weights_shock",
+  "title": "strings:event.openWeightsShock.title",
+  "body": "strings:event.openWeightsShock.body",
+  "trigger": {
+    "era": "early",
+    "turnMin": 2,
+    "turnMax": 8,
+    "weight": 3,
+    "conditions": { "rivalPosture": "race" }
+  },
+  "choices": [
+    {
+      "label": "strings:event.openWeightsShock.embrace",
+      "effects": { "publicTrust": -30, "capability": 20, "flags": ["openWeightsWorld"] },
+      "delayedEffects": [{ "inTurns": 4, "effects": { "capital": -40 } }]
+    },
+    {
+      "label": "strings:event.openWeightsShock.crackdown",
+      "effects": { "politicalCapital": -50, "rival.trust": -60, "flags": ["exportCrackdown"] }
+    }
+  ],
+  "sourceIds": ["SRC-DEEPSEEK-R1", "SRC-CSIS-EXPORT"],
+  "tags": ["china", "open-weights", "shock"]
+}
