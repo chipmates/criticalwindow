@@ -18,8 +18,18 @@ interface GoldenFixture {
   actions: Action[];
 }
 
-const rawData = import.meta.glob('/data/**/*.json', { eager: true, query: '?raw' });
-const goldenModules = import.meta.glob('/tests/golden/*.json', { eager: true });
+// import.meta.glob returns unknown module shapes; narrow them structurally.
+function moduleDefault<T>(mod: unknown): T {
+  return (mod as { default: T }).default;
+}
+
+const rawData: Record<string, unknown> = import.meta.glob('/data/**/*.json', {
+  eager: true,
+  query: '?raw',
+});
+const goldenModules: Record<string, unknown> = import.meta.glob('/tests/golden/*.json', {
+  eager: true,
+});
 
 function relPath(viteKey: string): string {
   return viteKey.replace('/data/', '');
@@ -27,11 +37,11 @@ function relPath(viteKey: string): string {
 
 const files = Object.entries(rawData)
   .filter(([key]) => !key.includes('/schemas/'))
-  .map(([key, mod]) => ({ path: relPath(key), content: mod.default }));
+  .map(([key, mod]) => ({ path: relPath(key), content: moduleDefault<string>(mod) }));
 // dataVersion hashes ALL data files incl. schemas, matching the node side.
 const allFiles = Object.entries(rawData).map(([key, mod]) => ({
   path: relPath(key),
-  content: mod.default,
+  content: moduleDefault<string>(mod),
 }));
 
 const parse = (path: string): unknown => JSON.parse(files.find((f) => f.path === path)!.content);
@@ -51,7 +61,7 @@ const data = loadEngineData({
 const results: Record<string, { perTurnHashes: string[]; finalHash: string }> = {};
 
 for (const mod of Object.values(goldenModules)) {
-  const golden = mod.default;
+  const golden = moduleDefault<GoldenFixture>(mod);
   let state = initGame(data, { seed: golden.seed, presetId: golden.presetId });
   const perTurnHashes: string[] = [];
   let lastTurn = 0;
