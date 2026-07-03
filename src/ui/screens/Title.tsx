@@ -26,14 +26,19 @@ export function Title() {
           )}
         </div>
         <p className="title-privacy">{t('footer.privacy')}</p>
-        <button
-          type="button"
-          className="btn"
-          aria-label={t('settings.heading')}
-          onClick={() => setSettingsOpen(true)}
-        >
-          {t('settings.heading')}
-        </button>
+        <div className="title-secondary">
+          <button type="button" className="btn" onClick={() => goTo('help')}>
+            {t('help.title.button')}
+          </button>
+          <button
+            type="button"
+            className="btn"
+            aria-label={t('settings.heading')}
+            onClick={() => setSettingsOpen(true)}
+          >
+            {t('settings.heading')}
+          </button>
+        </div>
       </div>
       {settingsOpen && <SettingsDialog onClose={() => setSettingsOpen(false)} />}
     </main>

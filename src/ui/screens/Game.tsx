@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { evalCurve } from '../../engine/math';
+import { divRound, evalCurve, mulDiv } from '../../engine/math';
 import { eraForTurn } from '../../engine/step';
 import { hashString } from '../../engine/hash';
 import { AllocationControl } from '../components/AllocationControl';
@@ -74,6 +74,14 @@ export function Game() {
         <button
           type="button"
           className="btn"
+          aria-label={t('help.title.button')}
+          onClick={() => goTo('help')}
+        >
+          ?
+        </button>
+        <button
+          type="button"
+          className="btn"
           aria-label={t('settings.heading')}
           onClick={() => setSettingsOpen(true)}
         >
@@ -100,6 +108,18 @@ export function Game() {
             <AllocationControl
               initial={run.allocation}
               points={rndPoints}
+              preview={(shares) => ({
+                capabilityGain: evalCurve(
+                  data.parameters.curves['capabilityPerRnd']!,
+                  mulDiv(rndPoints, shares.capability, 100),
+                ),
+                insightGain: divRound(mulDiv(rndPoints, shares.safety, 100), 2),
+                capitalIncome: mulDiv(
+                  mulDiv(rndPoints, shares.diffusion, 100),
+                  data.parameters.worldRules.upkeep.capitalIncomePerDiffusion.value,
+                  100,
+                ),
+              })}
               onCommit={(a) => dispatch({ type: 'allocate', ...a })}
             />
           )}

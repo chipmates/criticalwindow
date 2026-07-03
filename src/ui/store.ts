@@ -20,7 +20,7 @@ import {
   type Settings,
 } from './storage';
 
-export type Screen = 'title' | 'setup' | 'game' | 'debrief';
+export type Screen = 'title' | 'setup' | 'game' | 'debrief' | 'help';
 
 interface RunMeta {
   seed: string;
@@ -29,6 +29,7 @@ interface RunMeta {
 
 interface UiStore {
   screen: Screen;
+  helpReturn: Screen;
   run: GameState | null;
   runMeta: RunMeta | null;
   actionsLog: Action[];
@@ -65,6 +66,7 @@ function applyDocumentSettings(settings: Settings): void {
 
 export const useStore = create<UiStore>((set, get) => ({
   screen: 'title',
+  helpReturn: 'title',
   run: null,
   runMeta: null,
   actionsLog: [],
@@ -73,6 +75,9 @@ export const useStore = create<UiStore>((set, get) => ({
 
   goTo(screen) {
     const { settings } = get();
+    if (screen === 'help') {
+      set({ helpReturn: get().screen });
+    }
     if (settings.musicOn) {
       setMusic(true, screen === 'game' ? 'ambient' : 'reflective');
     }

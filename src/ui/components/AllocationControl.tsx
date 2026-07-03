@@ -4,6 +4,12 @@ import { t } from '../i18n';
 interface AllocationControlProps {
   initial: { capability: number; safety: number; diffusion: number };
   points: number;
+  /** Pure preview of this allocation's direct yields (engine curves). */
+  preview: (shares: { capability: number; safety: number; diffusion: number }) => {
+    capabilityGain: number;
+    insightGain: number;
+    capitalIncome: number;
+  };
   onCommit: (a: { capability: number; safety: number; diffusion: number }) => void;
 }
 
@@ -30,10 +36,16 @@ const ROWS = [
   },
 ] as const;
 
-export function AllocationControl({ initial, points, onCommit }: AllocationControlProps) {
+export function AllocationControl({ initial, points, preview, onCommit }: AllocationControlProps) {
   const [shares, setShares] = useState(initial);
   const total = shares.capability + shares.safety + shares.diffusion;
   const remaining = 100 - total;
+  const yields = preview(shares);
+  const previewLine: Record<(typeof ROWS)[number]['key'], string> = {
+    capability: t('alloc.preview.capability', { gain: yields.capabilityGain }),
+    safety: t('alloc.preview.safety', { gain: yields.insightGain }),
+    diffusion: t('alloc.preview.diffusion', { income: yields.capitalIncome }),
+  };
 
   function bump(key: (typeof ROWS)[number]['key'], delta: number): void {
     setShares((current) => {
@@ -84,6 +96,7 @@ export function AllocationControl({ initial, points, onCommit }: AllocationContr
               </button>
             </div>
             <p className="alloc-hint">{t(row.hint)}</p>
+            <p className="alloc-preview">{previewLine[row.key]}</p>
           </div>
         ))}
       </div>

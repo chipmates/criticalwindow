@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { parseShare } from '../engine/save';
 import { t } from './i18n';
 import { Debrief } from './screens/Debrief';
+import { Help } from './screens/Help';
 import { Game } from './screens/Game';
 import { Setup } from './screens/Setup';
 import { Title } from './screens/Title';
@@ -26,6 +27,8 @@ export function App() {
   }, [startRun]);
 
   switch (screen) {
+    case 'help':
+      return <Help onBack={() => useStore.getState().goTo(useStore.getState().helpReturn)} />;
     case 'title':
       return <Title />;
     case 'setup':
