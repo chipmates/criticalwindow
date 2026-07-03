@@ -1,0 +1,42 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "verification_offer",
+  "title": "strings:event.verificationOffer.title",
+  "body": "strings:event.verificationOffer.body",
+  "trigger": {
+    "era": "late",
+    "turnMin": 10,
+    "turnMax": 16,
+    "weight": 3,
+    "conditions": {
+      "flagsAll": ["treatyChannel"]
+    }
+  },
+  "choices": [
+    {
+      "label": "strings:event.verificationOffer.accept",
+      "effects": {
+        "safetyInsight": 100,
+        "rival.trust": 100,
+        "politicalCapital": -100,
+        "flags": ["verificationPilot"]
+      }
+    },
+    {
+      "label": "strings:event.verificationOffer.counter",
+      "effects": {
+        "rival.trust": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "rival.capability": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-GOVAI-COMPUTE", "SRC-HO-INTL-INSTITUTIONS"],
+  "tags": ["verification", "treaty", "window"]
+}

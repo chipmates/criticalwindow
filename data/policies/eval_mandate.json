@@ -1,0 +1,25 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "eval_mandate",
+  "title": "strings:policy.evalMandate.title",
+  "body": "strings:policy.evalMandate.body",
+  "cost": {
+    "politicalCapital": 100
+  },
+  "effects": {
+    "safetyInsight": 50,
+    "capability": -50,
+    "publicTrust": 50
+  },
+  "delayedEffects": [
+    {
+      "inTurns": 2,
+      "effects": {
+        "safetyInsight": 50
+      }
+    }
+  ],
+  "oncePerRun": true,
+  "sourceIds": ["SRC-UK-AISI", "SRC-BENCH-COP"],
+  "tags": ["safety", "evals", "regulation"]
+}

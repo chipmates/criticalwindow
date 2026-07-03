@@ -1,6 +1,6 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "1436ccdb5807f3",
+  "dataVersion": "0fe2fefa0d1a5e",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
@@ -121,7 +121,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
+      "eventId": "treaty_feeler",
       "choiceIndex": 1
     },
     {
@@ -138,7 +138,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "model_weight_theft",
+      "eventId": "lab_merger",
       "choiceIndex": 0
     },
     {
@@ -155,7 +155,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "treaty_feeler",
+      "eventId": "energy_crunch",
       "choiceIndex": 1
     },
     {
@@ -169,7 +169,12 @@
     },
     {
       "type": "playPolicy",
-      "policyId": "energy_buildout"
+      "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "taiwan_strait_crisis",
+      "choiceIndex": 0
     },
     {
       "type": "advance"
@@ -182,7 +187,7 @@
     },
     {
       "type": "playPolicy",
-      "policyId": "compute_treaty_feeler"
+      "policyId": "energy_buildout"
     },
     {
       "type": "resolveEventChoice",
@@ -208,18 +213,18 @@
     }
   ],
   "perTurnHashes": [
-    "1c89d5502cfe93",
-    "086f6e8517f109",
-    "1c69ab827972c0",
-    "1fb72bee17dd3e",
-    "0caaac932a9720",
-    "19aa633986119e",
-    "043280b67243e2",
-    "0743b02cc3ff66",
-    "1babb4830105fa",
-    "0f2536f38025e1",
-    "1bf5d619c04fcc",
-    "0a54f1f9be811b"
+    "056d80ea7f4885",
+    "1ef5e7b9c8e80d",
+    "17624cf0581922",
+    "168a7000f90a8a",
+    "0644f0e9a76d6d",
+    "0ea5dec5830fe3",
+    "1c920e66ee1dd6",
+    "0aa2634064bb47",
+    "00186ba97fd6b3",
+    "09fa46e3e4ee81",
+    "032f0d1837b5cc",
+    "16d05e5ed99214"
   ],
-  "finalHash": "0a54f1f9be811b"
+  "finalHash": "16d05e5ed99214"
 }

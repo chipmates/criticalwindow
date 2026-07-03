@@ -1,0 +1,45 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "public_opinion_swing",
+  "title": "strings:event.publicOpinionSwing.title",
+  "body": "strings:event.publicOpinionSwing.body",
+  "trigger": {
+    "era": "late",
+    "turnMin": 9,
+    "turnMax": 14,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.publicOpinionSwing.engage",
+      "effects": {
+        "politicalCapital": -50,
+        "publicTrust": 100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "capability": -50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.publicOpinionSwing.dismiss",
+      "effects": {
+        "publicTrust": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "society.unrest": 100
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-AI-INDEX-2026"],
+  "tags": ["society", "media", "trust"]
+}

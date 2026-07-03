@@ -1,11 +1,11 @@
 {
   "name": "golden-3-skeptic-dove",
-  "dataVersion": "1436ccdb5807f3",
+  "dataVersion": "0fe2fefa0d1a5e",
   "seed": "golden-3",
   "presetId": "skeptic",
   "bot": "dove",
   "endingId": "negotiatedSlowdown",
-  "turns": 11,
+  "turns": 8,
   "actions": [
     {
       "type": "allocate",
@@ -49,8 +49,7 @@
       "diffusion": 30
     },
     {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler"
+      "type": "skipPolicy"
     },
     {
       "type": "resolveEventChoice",
@@ -67,7 +66,8 @@
       "diffusion": 30
     },
     {
-      "type": "skipPolicy"
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
     },
     {
       "type": "resolveEventChoice",
@@ -100,7 +100,24 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "model_weight_theft",
+      "eventId": "treaty_feeler",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "energy_crunch",
       "choiceIndex": 1
     },
     {
@@ -120,79 +137,17 @@
       "type": "resolveEventChoice",
       "eventId": "whistleblower",
       "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 20,
-      "safety": 50,
-      "diffusion": 30
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 20,
-      "safety": 50,
-      "diffusion": 30
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 20,
-      "safety": 50,
-      "diffusion": 30
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 20,
-      "safety": 50,
-      "diffusion": 30
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "agentic_incident",
-      "choiceIndex": 0
     }
   ],
   "perTurnHashes": [
-    "136267f20cb575",
-    "1636ab6f37b225",
-    "1bd49fb5710832",
-    "143719be440569",
-    "0660d9b5e899b3",
-    "054ebe5423cf7b",
-    "00f6fd203cc48d",
-    "1cf2fcbee8f895",
-    "1d4b064ef2eeb1",
-    "0c3f044fff2448",
-    "17b22b62637bd9"
+    "1b3a4fc6f8f479",
+    "0aac80a9348068",
+    "0824948994047e",
+    "0e672e09244bdf",
+    "0d2cd53c8b6691",
+    "0dcb5d4c8a3cb0",
+    "1dbddc60dbb405",
+    "0af077b87d30db"
   ],
-  "finalHash": "17b22b62637bd9"
+  "finalHash": "0af077b87d30db"
 }

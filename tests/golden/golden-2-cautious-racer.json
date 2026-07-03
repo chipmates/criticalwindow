@@ -1,6 +1,6 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "1436ccdb5807f3",
+  "dataVersion": "0fe2fefa0d1a5e",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
@@ -33,7 +33,7 @@
     },
     {
       "type": "playPolicy",
-      "policyId": "chip_subsidies"
+      "policyId": "energy_buildout"
     },
     {
       "type": "resolveEventChoice",
@@ -51,7 +51,7 @@
     },
     {
       "type": "playPolicy",
-      "policyId": "energy_buildout"
+      "policyId": "chip_subsidies"
     },
     {
       "type": "resolveEventChoice",
@@ -85,44 +85,7 @@
       "diffusion": 10
     },
     {
-      "type": "playPolicy",
-      "policyId": "export_controls"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "natsec_merge"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "model_weight_theft",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "energy_buildout"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
-      "choiceIndex": 1
+      "type": "skipPolicy"
     },
     {
       "type": "advance"
@@ -138,8 +101,8 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "chip_smuggling",
-      "choiceIndex": 0
+      "eventId": "model_weight_theft",
+      "choiceIndex": 1
     },
     {
       "type": "advance"
@@ -168,7 +131,47 @@
       "diffusion": 10
     },
     {
+      "type": "playPolicy",
+      "policyId": "energy_buildout"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "election_scandal",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
       "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "taiwan_strait_crisis",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "lab_merger",
+      "choiceIndex": 0
     },
     {
       "type": "advance"
@@ -189,17 +192,17 @@
     }
   ],
   "perTurnHashes": [
-    "0ace22be3da4ce",
-    "0a14dd835441e3",
-    "0969d4edc0bbb3",
-    "0c512ec196099b",
-    "16e0a1a41d0ebc",
-    "0702519ad63898",
-    "136ea7574ad405",
-    "0902b89c786617",
-    "02d4de059ddc2d",
-    "0f8c39ea89f200",
-    "1d938afbf80a04"
+    "1d93d5c8a6f1b6",
+    "17d73116f2d14a",
+    "13f79727168dba",
+    "0b4c44ae82398e",
+    "07a9ca0dddb2cb",
+    "14595050cc0290",
+    "1d512ce736544b",
+    "0fca33faf707b1",
+    "1fd70137772921",
+    "0bdaa5f5e95269",
+    "1f71cfe4421899"
   ],
-  "finalHash": "1d938afbf80a04"
+  "finalHash": "1f71cfe4421899"
 }

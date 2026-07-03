@@ -1,0 +1,49 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "allied_export_fracture",
+  "title": "strings:event.alliedExportFracture.title",
+  "body": "strings:event.alliedExportFracture.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 8,
+    "turnMax": 13,
+    "weight": 2,
+    "conditions": {
+      "flagsAll": ["exportCrackdown"]
+    }
+  },
+  "choices": [
+    {
+      "label": "strings:event.alliedExportFracture.compensate",
+      "effects": {
+        "capital": -150,
+        "politicalCapital": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "rival.capability": -50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.alliedExportFracture.fray",
+      "effects": {
+        "rival.capability": 100,
+        "rival.substitution": 50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "politicalCapital": -50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-CSIS-SME-CONTROLS", "SRC-CSIS-EXPORT"],
+  "tags": ["chips", "allies", "chokepoint"]
+}

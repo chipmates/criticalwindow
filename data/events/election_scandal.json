@@ -1,0 +1,47 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "election_scandal",
+  "title": "strings:event.electionScandal.title",
+  "body": "strings:event.electionScandal.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 6,
+    "turnMax": 9,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.electionScandal.rules",
+      "effects": {
+        "politicalCapital": -50,
+        "publicTrust": 50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "capital": -50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.electionScandal.exploit",
+      "effects": {
+        "politicalCapital": 100,
+        "flags": ["deepfakePolitics"]
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "publicTrust": -150,
+            "society.unrest": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-AI-INCIDENT-DB", "SRC-AI-INDEX-2026"],
+  "tags": ["election", "media", "trust"]
+}

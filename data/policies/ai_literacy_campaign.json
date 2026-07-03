@@ -1,0 +1,25 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "ai_literacy_campaign",
+  "title": "strings:policy.aiLiteracyCampaign.title",
+  "body": "strings:policy.aiLiteracyCampaign.body",
+  "cost": {
+    "capital": 100,
+    "politicalCapital": 50
+  },
+  "effects": {
+    "publicTrust": 50
+  },
+  "delayedEffects": [
+    {
+      "inTurns": 3,
+      "effects": {
+        "publicTrust": 50,
+        "society.unrest": -50
+      }
+    }
+  ],
+  "oncePerRun": true,
+  "sourceIds": ["SRC-OECD-EMPLOYMENT", "SRC-AI-INDEX-2026"],
+  "tags": ["society", "education", "trust"]
+}

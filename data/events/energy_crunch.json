@@ -1,0 +1,46 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "energy_crunch",
+  "title": "strings:event.energyCrunch.title",
+  "body": "strings:event.energyCrunch.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 5,
+    "turnMax": 10,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.energyCrunch.subsidize",
+      "effects": {
+        "capital": -100,
+        "publicTrust": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "society.unrest": 50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.energyCrunch.throttleAi",
+      "effects": {
+        "compute": -50,
+        "publicTrust": 50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "energy": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-IEA-ENERGY-AI", "SRC-GRID-DATACENTER"],
+  "tags": ["energy", "economy", "society"]
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "lab_merger",
+  "title": "strings:event.labMerger.title",
+  "body": "strings:event.labMerger.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 7,
+    "turnMax": 12,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.labMerger.approve",
+      "effects": {
+        "capability": 50,
+        "capital": 50,
+        "safetyInsight": 50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "publicTrust": -50,
+            "hidden.agencyErosion": 25
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.labMerger.block",
+      "effects": {
+        "politicalCapital": -50,
+        "capital": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "rival.capability": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-NSCAI", "SRC-CSET-LIBRARY"],
+  "tags": ["labs", "concentration", "governance"]
+}

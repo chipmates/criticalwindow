@@ -1,11 +1,11 @@
 {
   "name": "golden-4-consensus-chaos",
-  "dataVersion": "1436ccdb5807f3",
+  "dataVersion": "0fe2fefa0d1a5e",
   "seed": "golden-4",
   "presetId": "consensus",
   "bot": "chaos",
   "endingId": "outpaced",
-  "turns": 11,
+  "turns": 10,
   "actions": [
     {
       "type": "allocate",
@@ -49,7 +49,7 @@
     },
     {
       "type": "playPolicy",
-      "policyId": "compute_treaty_feeler"
+      "policyId": "chip_subsidies"
     },
     {
       "type": "resolveEventChoice",
@@ -100,7 +100,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "whistleblower",
+      "eventId": "energy_crunch",
       "choiceIndex": 1
     },
     {
@@ -114,11 +114,11 @@
     },
     {
       "type": "playPolicy",
-      "policyId": "export_controls"
+      "policyId": "energy_buildout"
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "chip_smuggling",
+      "eventId": "treaty_feeler",
       "choiceIndex": 1
     },
     {
@@ -132,11 +132,11 @@
     },
     {
       "type": "playPolicy",
-      "policyId": "chip_subsidies"
+      "policyId": "ai_literacy_campaign"
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
+      "eventId": "model_weight_theft",
       "choiceIndex": 1
     },
     {
@@ -150,11 +150,11 @@
     },
     {
       "type": "playPolicy",
-      "policyId": "natsec_merge"
+      "policyId": "export_controls"
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "treaty_feeler",
+      "eventId": "lab_merger",
       "choiceIndex": 1
     },
     {
@@ -167,43 +167,26 @@
       "diffusion": 10
     },
     {
-      "type": "skipPolicy"
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "model_weight_theft",
-      "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 10,
-      "safety": 40,
-      "diffusion": 50
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "rival_breakthrough",
-      "choiceIndex": 0
+      "eventId": "whistleblower",
+      "choiceIndex": 1
     }
   ],
   "perTurnHashes": [
-    "1612df81351b6d",
-    "04b52d20bf77d2",
-    "02f90099113b13",
-    "0610baede7efd5",
-    "13302b36b19122",
-    "0be0382a524b6e",
-    "0687dbf1f94ac8",
-    "1f11352a9e45e2",
-    "0719e9ec7c2e1d",
-    "0ec8237640158f",
-    "03928ec3977706"
+    "1ec384d6e8374b",
+    "00f292c3ebb886",
+    "13b20c25733f97",
+    "0e8558c878eb25",
+    "198fde86ebdfa9",
+    "17d11f7137db22",
+    "036f82e409efef",
+    "11f45e3d6fd47f",
+    "00727e1e04273c",
+    "06b6625f223c95"
   ],
-  "finalHash": "03928ec3977706"
+  "finalHash": "06b6625f223c95"
 }
