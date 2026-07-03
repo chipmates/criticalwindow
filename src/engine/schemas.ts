@@ -225,6 +225,8 @@ export const parametersSchema = z.strictObject({
     baseBandWidth: sourcedIntSchema,
     safetyInsightNarrowing: sourcedIntSchema,
     floorBandWidth: sourcedIntSchema,
+    deceptionMaxLift: sourcedIntSchema,
+    deceptionInsightCounter: sourcedIntSchema,
   }),
   thresholds: z.strictObject({
     fogZoneStart: sourcedIntSchema,
@@ -265,6 +267,20 @@ export const parametersSchema = z.strictObject({
     }),
     upkeep: z.strictObject({
       capitalIncomePerDiffusion: sourcedIntSchema,
+    }),
+    rivalDepth: z.strictObject({
+      substitutionBonusMin: sourcedIntSchema,
+      substitutionBonus: sourcedIntSchema,
+      progressVariance: sourcedIntSchema,
+    }),
+    societyDepth: z.strictObject({
+      displacementEquilibriumDivisor: sourcedIntSchema,
+      trustCurveDivisor: sourcedIntSchema,
+    }),
+    agencyErosion: z.strictObject({
+      highCapabilityMin: sourcedIntSchema,
+      perTurn: sourcedIntSchema,
+      diffusionShieldMin: sourcedIntSchema,
     }),
   }),
   turnStructure: z.strictObject({

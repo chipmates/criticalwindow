@@ -473,6 +473,16 @@ function worldUpdate(data: EngineData, state: GameState): void {
     rivalCapabilityGain = rules.rivalMoves.cautious.capability.value;
     rivalTrustDelta = rules.rivalMoves.cautious.trust.value;
   }
+  // Chip substitution pays off late: the long bite of export controls.
+  if (state.rival.substitution >= rules.rivalDepth.substitutionBonusMin.value) {
+    rivalCapabilityGain += rules.rivalDepth.substitutionBonus.value;
+  }
+  // Their progress is foggy too: seeded variance from the rival stream.
+  const variance = rules.rivalDepth.progressVariance.value;
+  const [wobble, nextRival] = nextIntInRange(state.rng.rival, -variance, variance);
+  state.rng = { ...state.rng, rival: [...nextRival] as [number, number, number, number] };
+  rivalCapabilityGain = Math.max(0, rivalCapabilityGain + wobble);
+
   state.rival.capability = clamp(state.rival.capability + rivalCapabilityGain, 0, SCALE_MAX);
   state.rival.trust = clamp(state.rival.trust + rivalTrustDelta, 0, SCALE_MAX);
   pushLog(state, {
@@ -509,14 +519,24 @@ function worldUpdate(data: EngineData, state: GameState): void {
     state.rival.posture = nextPosture;
   }
 
-  // 3. Society.
+  // 3. Society. Displacement drifts toward the sourced curve's level for the
+  // current capability (diffusion-coupled equilibrium, not an instant jump).
   const society = rules.society;
+  const displacementCurve = data.parameters.curves['displacementFromCapability'];
   let displacementGain = 0;
-  if (state.resources.capability >= society.displacementCapabilityMin.value) {
-    displacementGain += society.displacementPerTurn.value;
-  }
-  if (state.resources.capability >= society.displacementSurgeCapability.value) {
-    displacementGain += society.displacementPerTurn.value;
+  if (displacementCurve) {
+    const target = evalCurve(displacementCurve, state.resources.capability);
+    displacementGain = divRound(
+      target - state.society.jobDisplacement,
+      Math.max(1, rules.societyDepth.displacementEquilibriumDivisor.value),
+    );
+  } else {
+    if (state.resources.capability >= society.displacementCapabilityMin.value) {
+      displacementGain += society.displacementPerTurn.value;
+    }
+    if (state.resources.capability >= society.displacementSurgeCapability.value) {
+      displacementGain += society.displacementPerTurn.value;
+    }
   }
   // Diffusion converts: relief against displacement first, trust when covered.
   const reliefUnits = Math.floor(
@@ -541,7 +561,13 @@ function worldUpdate(data: EngineData, state: GameState): void {
   }
   state.society.unrest = clamp(state.society.unrest + unrestGain, 0, SCALE_MAX);
   let trustDelta = trustFromDiffusion;
-  if (state.society.unrest >= society.trustErosionUnrestMin.value) {
+  const trustCurve = data.parameters.curves['trustFromUnrest'];
+  if (trustCurve) {
+    trustDelta += divRound(
+      evalCurve(trustCurve, state.society.unrest),
+      Math.max(1, rules.societyDepth.trustCurveDivisor.value),
+    );
+  } else if (state.society.unrest >= society.trustErosionUnrestMin.value) {
     trustDelta -= society.trustErosionPerTurn.value;
   }
   state.resources.publicTrust = clamp(state.resources.publicTrust + trustDelta, 0, SCALE_MAX);
@@ -571,6 +597,16 @@ function worldUpdate(data: EngineData, state: GameState): void {
   }
   state.hidden.trueAlignment = clamp(state.hidden.trueAlignment + alignmentDrift, 0, SCALE_MAX);
 
+  // 3c. Agency erosion (Gradual Disempowerment hook; accrues silently, no
+  // log entry: every visible metric can stay green while this climbs. No P1
+  // ending fires from it; the Alpha ending and debrief read it later).
+  const erosion = rules.agencyErosion;
+  if (state.resources.capability >= erosion.highCapabilityMin.value) {
+    const shielded = state.allocation.diffusion >= erosion.diffusionShieldMin.value;
+    const accrual = shielded ? divRound(erosion.perTurn.value, 2) : erosion.perTurn.value;
+    state.hidden.agencyErosion = clamp(state.hidden.agencyErosion + accrual, 0, SCALE_MAX);
+  }
+
   // 4. Election.
   if (state.turn === data.parameters.turnStructure.electionTurn.value) {
     const election = rules.election;
@@ -598,10 +634,28 @@ function worldUpdate(data: EngineData, state: GameState): void {
     evalParams.baseBandWidth.value -
       mulDiv(evalParams.safetyInsightNarrowing.value, state.resources.safetyInsight, 100),
   );
+  // Deceptive pass (Sleeper Agents / alignment faking): the worse the true
+  // alignment, the further the report reads ABOVE the truth. Interpretability
+  // investment (Safety Insight) is the counter. The report never lies
+  // downward: bad news you can trust, good news you cannot.
+  let deceptionLift = 0;
+  if (state.hidden.trueAlignment < 500) {
+    const rawLift = mulDiv(
+      500 - state.hidden.trueAlignment,
+      evalParams.deceptionMaxLift.value,
+      500,
+    );
+    const counter = mulDiv(
+      evalParams.deceptionInsightCounter.value,
+      state.resources.safetyInsight,
+      100,
+    );
+    deceptionLift = Math.max(0, rawLift - counter);
+  }
   const quarter = Math.max(1, divRound(band, 4));
   const [jitter, nextHidden] = nextIntInRange(state.rng.hiddenDice, -quarter, quarter);
   state.rng = { ...state.rng, hiddenDice: [...nextHidden] as [number, number, number, number] };
-  const center = clamp(state.hidden.trueAlignment + jitter, 0, SCALE_MAX);
+  const center = clamp(state.hidden.trueAlignment + deceptionLift + jitter, 0, SCALE_MAX);
   const report = {
     turn: state.turn,
     bandLow: clamp(center - divRound(band, 2), 0, SCALE_MAX),
@@ -682,16 +736,27 @@ function finalResolution(data: EngineData, state: GameState): void {
     return;
   }
   setFlag(state, 'windowStillOpen');
-  // Nearest tendency, v0 priority chain (B4 replaces with proximity scoring).
-  if (state.rival.capability > state.resources.capability) {
-    endRun(state, 'outpaced', { trigger: 'turnLimit', windowStillOpen: true });
-  } else if (state.society.unrest >= 500) {
-    endRun(state, 'societalBreakdown', { trigger: 'turnLimit', windowStillOpen: true });
-  } else if (state.flags.includes('treatyChannel') && state.rival.trust >= 500) {
-    endRun(state, 'negotiatedSlowdown', { trigger: 'turnLimit', windowStillOpen: true });
-  } else {
-    endRun(state, 'flourishing', { trigger: 'turnLimit', windowStillOpen: true });
+  // Nearest tendency: score each ending's proximity, highest wins.
+  // Ties break in declaration order (documented, deterministic).
+  const scores: Array<[GameState['endingId'] & string, number]> = [
+    ['outpaced', state.rival.capability - state.resources.capability],
+    ['societalBreakdown', state.society.unrest - divRound(thresholds.breakdownUnrest.value, 2)],
+    ['negotiatedSlowdown', state.flags.includes('treatyChannel') ? state.rival.trust - 500 : -1000],
+    [
+      'flourishing',
+      divRound(
+        state.resources.publicTrust + (1000 - state.society.unrest) + state.resources.safetyInsight,
+        3,
+      ) - 500,
+    ],
+  ];
+  let best = scores[0]!;
+  for (const candidate of scores) {
+    if (candidate[1] > best[1]) {
+      best = candidate;
+    }
   }
+  endRun(state, best[0], { trigger: 'turnLimit', windowStillOpen: true, score: best[1] });
 }
 
 function upkeep(data: EngineData, state: GameState): void {

@@ -420,12 +420,82 @@
             "sourceIds"
           ],
           "additionalProperties": false
+        },
+        "deceptionMaxLift": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "deceptionInsightCounter": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
         "baseBandWidth",
         "safetyInsightNarrowing",
-        "floorBandWidth"
+        "floorBandWidth",
+        "deceptionMaxLift",
+        "deceptionInsightCounter"
       ],
       "additionalProperties": false
     },
@@ -1451,6 +1521,310 @@
             "capitalIncomePerDiffusion"
           ],
           "additionalProperties": false
+        },
+        "rivalDepth": {
+          "type": "object",
+          "properties": {
+            "substitutionBonusMin": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "substitutionBonus": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "progressVariance": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "substitutionBonusMin",
+            "substitutionBonus",
+            "progressVariance"
+          ],
+          "additionalProperties": false
+        },
+        "societyDepth": {
+          "type": "object",
+          "properties": {
+            "displacementEquilibriumDivisor": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "trustCurveDivisor": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "displacementEquilibriumDivisor",
+            "trustCurveDivisor"
+          ],
+          "additionalProperties": false
+        },
+        "agencyErosion": {
+          "type": "object",
+          "properties": {
+            "highCapabilityMin": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "perTurn": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "diffusionShieldMin": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "highCapabilityMin",
+            "perTurn",
+            "diffusionShieldMin"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -1458,7 +1832,10 @@
         "postureChecks",
         "society",
         "election",
-        "upkeep"
+        "upkeep",
+        "rivalDepth",
+        "societyDepth",
+        "agencyErosion"
       ],
       "additionalProperties": false
     },

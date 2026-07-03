@@ -26,7 +26,9 @@
   "evalUncertainty": {
     "baseBandWidth": { "value": 400, "sourceIds": ["SRC-SLEEPER"] },
     "safetyInsightNarrowing": { "value": 30, "sourceIds": ["SRC-SLEEPER"] },
-    "floorBandWidth": { "value": 80, "sourceIds": ["SRC-SLEEPER"] }
+    "floorBandWidth": { "value": 80, "sourceIds": ["SRC-SLEEPER"] },
+    "deceptionMaxLift": { "value": 250, "sourceIds": ["SRC-SLEEPER"] },
+    "deceptionInsightCounter": { "value": 40, "sourceIds": ["SRC-SLEEPER"] }
   },
   "thresholds": {
     "fogZoneStart": { "value": 800, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
@@ -73,6 +75,20 @@
     },
     "upkeep": {
       "capitalIncomePerDiffusion": { "value": 25, "sourceIds": ["TODO-SOURCE"] }
+    },
+    "rivalDepth": {
+      "substitutionBonusMin": { "value": 700, "sourceIds": ["TODO-SOURCE"] },
+      "substitutionBonus": { "value": 25, "sourceIds": ["TODO-SOURCE"] },
+      "progressVariance": { "value": 25, "sourceIds": ["TODO-SOURCE"] }
+    },
+    "societyDepth": {
+      "displacementEquilibriumDivisor": { "value": 6, "sourceIds": ["TODO-SOURCE"] },
+      "trustCurveDivisor": { "value": 4, "sourceIds": ["TODO-SOURCE"] }
+    },
+    "agencyErosion": {
+      "highCapabilityMin": { "value": 800, "sourceIds": ["TODO-SOURCE"] },
+      "perTurn": { "value": 25, "sourceIds": ["TODO-SOURCE"] },
+      "diffusionShieldMin": { "value": 30, "sourceIds": ["TODO-SOURCE"] }
     }
   },
   "turnStructure": {

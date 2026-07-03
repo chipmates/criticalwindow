@@ -65,6 +65,16 @@
       "value": 80,
       "sourceIds": ["SRC-SLEEPER"],
       "note": "the band never closes: perfect verification is not on the menu (Sleeper Agents persistence result)"
+    },
+    "deceptionMaxLift": {
+      "value": 250,
+      "sourceIds": ["SRC-SLEEPER", "SRC-ALIGNMENT-FAKING"],
+      "note": "how far a badly aligned model's eval report can read ABOVE the truth: deceptive alignment survives safety training and looks fine on the outside"
+    },
+    "deceptionInsightCounter": {
+      "value": 40,
+      "sourceIds": ["SRC-SLEEPER-PROBES", "TODO-SOURCE"],
+      "note": "lift reduction per 100 Safety Insight: interpretability (probes) is the counter to deceptive passes"
     }
   },
   "thresholds": {
@@ -191,6 +201,52 @@
         "value": 25,
         "sourceIds": ["TODO-SOURCE"],
         "note": "capital income per 100 diffusion R&D points invested the previous turn (diffusion converts capability into the economy)"
+      }
+    },
+    "rivalDepth": {
+      "substitutionBonusMin": {
+        "value": 700,
+        "sourceIds": ["SRC-CSIS-EXPORT", "TODO-SOURCE"],
+        "note": "substitution progress at which the rival's domestic chip path starts paying"
+      },
+      "substitutionBonus": {
+        "value": 25,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "extra rival capability per turn once substitution matured (export controls' long bite)"
+      },
+      "progressVariance": {
+        "value": 25,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "seeded per-turn rival capability variance (their progress is foggy too); drawn from the rival stream"
+      }
+    },
+    "societyDepth": {
+      "displacementEquilibriumDivisor": {
+        "value": 6,
+        "sourceIds": ["SRC-IMF-GENAI", "TODO-SOURCE"],
+        "note": "displacement drifts toward displacementFromCapability(capability) by gap/divisor per turn: diffusion-coupled, not instant"
+      },
+      "trustCurveDivisor": {
+        "value": 4,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "trustFromUnrest(unrest)/divisor applied to public trust per turn"
+      }
+    },
+    "agencyErosion": {
+      "highCapabilityMin": {
+        "value": 800,
+        "sourceIds": ["SRC-GRADUAL-DISEMPOWERMENT"],
+        "note": "erosion accrues once systems this capable run core functions"
+      },
+      "perTurn": {
+        "value": 25,
+        "sourceIds": ["SRC-GRADUAL-DISEMPOWERMENT", "TODO-SOURCE"],
+        "note": "quiet per-turn handover of decision-making; no P1 ending, Alpha ships it"
+      },
+      "diffusionShieldMin": {
+        "value": 30,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "allocating at least this diffusion share halves erosion: broad benefit-sharing keeps humans in the loop"
       }
     }
   },
