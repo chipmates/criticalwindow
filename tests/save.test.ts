@@ -22,9 +22,7 @@ describe('save round-trips (property)', () => {
       fc.property(
         fc.string({ minLength: 1, maxLength: 24 }).filter((s) => s.trim().length > 0),
         fc.constantFrom(...BOT_IDS),
-        fc.constantFrom('cautious', 'consensus', 'skeptic') as fc.Arbitrary<
-          'cautious' | 'consensus' | 'skeptic'
-        >,
+        fc.constantFrom('cautious', 'consensus', 'skeptic'),
         (seed, bot, presetId) => {
           const initial = initGame(data, { seed, presetId });
           const run = runBot(data, initial, bot);
@@ -137,7 +135,11 @@ describe('debrief probes on known histories', () => {
     const initial = initGame(data, { seed, presetId: 'consensus' });
     const run = runBot(data, initial, 'hedger');
     const probes = runProbes(data, { seed, presetId: 'consensus' }, run.actions);
-    for (const result of Object.values(probes)) {
+    for (const result of [
+      probes.treatyWindowOpen,
+      probes.safetyUnderinvestment,
+      probes.societyNeglect,
+    ]) {
       for (const turn of result.turns) {
         expect(turn).toBeGreaterThanOrEqual(1);
         expect(turn).toBeLessThanOrEqual(run.finalState.turn);

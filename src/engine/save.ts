@@ -62,8 +62,8 @@ export function loadSave(data: EngineData, raw: unknown): LoadedRun {
   }
   try {
     const initial = initGame(data, { seed: save.seed, presetId: save.presetId });
-    const state = runActions(data, initial, save.actions as Action[]);
-    return { state, actions: save.actions as Action[] };
+    const state = runActions(data, initial, save.actions);
+    return { state, actions: save.actions };
   } catch (error) {
     throw new SaveError('replayFailed', `replay failed: ${String(error)}`);
   }
