@@ -1,0 +1,113 @@
+{
+  "$schema": "./schemas/parameters.schema.json",
+  "worldviewPresets": {
+    "cautious": {
+      "label": "strings:preset.cautious.label",
+      "description": "strings:preset.cautious.description",
+      "alignmentDifficulty": {
+        "min": 550,
+        "max": 950,
+        "sourceIds": ["SRC-AI2027", "SRC-CARLSMITH", "SRC-IABIED"],
+        "note": "maps the power-seeking-AI risk cluster (Carlsmith >10% x-risk, AI-2027 race ending, IABIED thesis) onto the upper half of the difficulty scale"
+      },
+      "takeoffSteepness": {
+        "min": 500,
+        "max": 900,
+        "sourceIds": ["SRC-AI2027", "SRC-SITUATIONAL-AWARENESS"],
+        "note": "fast-takeoff worldview: software intelligence explosion plausible within the game window"
+      }
+    },
+    "consensus": {
+      "label": "strings:preset.consensus.label",
+      "description": "strings:preset.consensus.description",
+      "alignmentDifficulty": {
+        "min": 300,
+        "max": 800,
+        "sourceIds": ["SRC-IAISR", "SRC-GRACE-SURVEY"],
+        "note": "wide band: expert median worry with heavy disagreement (Grace 2024: 38-51% give >=10% to extremely bad outcomes; IAISR: deep uncertainty)"
+      },
+      "takeoffSteepness": {
+        "min": 300,
+        "max": 800,
+        "sourceIds": ["SRC-IAISR", "SRC-METR-HORIZON"],
+        "note": "capability doubling trends real but discontinuity contested"
+      }
+    },
+    "skeptic": {
+      "label": "strings:preset.skeptic.label",
+      "description": "strings:preset.skeptic.description",
+      "alignmentDifficulty": {
+        "min": 50,
+        "max": 500,
+        "sourceIds": ["SRC-NORMAL-TECH", "SRC-SNAKE-OIL"],
+        "note": "normal-technology worldview: control problems mostly engineering, diffusion friction dominates"
+      },
+      "takeoffSteepness": {
+        "min": 100,
+        "max": 500,
+        "sourceIds": ["SRC-NORMAL-TECH"],
+        "note": "adoption and integration lags cap effective takeoff speed"
+      }
+    }
+  },
+  "evalUncertainty": {
+    "baseBandWidth": {
+      "value": 400,
+      "sourceIds": ["SRC-SLEEPER", "SRC-SCHEMING"],
+      "note": "wide starting band: deceptive models can pass evals, so low evidence means low confidence either way"
+    },
+    "safetyInsightNarrowing": {
+      "value": 40,
+      "sourceIds": ["SRC-SLEEPER", "TODO-SOURCE"],
+      "note": "band narrowing per 100 points of Safety Insight; draft rate, tuned in paper playtests"
+    },
+    "floorBandWidth": {
+      "value": 80,
+      "sourceIds": ["SRC-SLEEPER"],
+      "note": "the band never closes: perfect verification is not on the menu (Sleeper Agents persistence result)"
+    }
+  },
+  "turnStructure": {
+    "maxTurns": {
+      "value": 16,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "16 quarters: 2026 Q3 through 2030 Q2"
+    },
+    "electionTurn": {
+      "value": 8,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "US midterms fall on turn 8 of the quarterly clock"
+    },
+    "eras": [
+      { "id": "early", "fromTurn": 1 },
+      { "id": "mid", "fromTurn": 6 },
+      { "id": "late", "fromTurn": 11 }
+    ]
+  },
+  "curves": {
+    "rndCapacity": {
+      "x": [0, 400, 800, 1200, 1600, 2000],
+      "y": [50, 150, 250, 330, 380, 400],
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "draft: R&D points per turn from compute+talent (sum of both, 0..2000); diminishing returns above the frontier"
+    },
+    "capabilityPerRnd": {
+      "x": [0, 100, 200, 300, 400],
+      "y": [0, 50, 90, 120, 140],
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "draft: capability gain per turn from R&D points allocated to capability; C2 calibrates against Epoch/METR doubling trends"
+    },
+    "displacementFromCapability": {
+      "x": [0, 200, 400, 600, 800, 1000],
+      "y": [0, 0, 50, 150, 300, 500],
+      "sourceIds": ["SRC-IMF-GENAI", "TODO-SOURCE"],
+      "note": "draft: displacement pressure by capability level; anchored loosely on IMF 40%-exposure at high capability, C2 tightens"
+    },
+    "trustFromUnrest": {
+      "x": [0, 200, 400, 600, 800, 1000],
+      "y": [0, -25, -50, -100, -175, -250],
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "draft: trust erosion per turn as a function of unrest level"
+    }
+  }
+}

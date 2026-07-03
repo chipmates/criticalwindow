@@ -270,6 +270,7 @@ export const scenarioSchema = z.strictObject({
       safety: shareInt,
       diffusion: shareInt,
       sourceIds: sourceIdsSchema,
+      note: z.string().optional(),
     })
     .refine((a) => a.capability + a.safety + a.diffusion === 100, {
       message: 'allocation shares must sum to 100',

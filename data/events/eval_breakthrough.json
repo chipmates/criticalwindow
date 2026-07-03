@@ -1,0 +1,29 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "eval_breakthrough",
+  "title": "strings:event.evalBreakthrough.title",
+  "body": "strings:event.evalBreakthrough.body",
+  "trigger": { "era": "early", "turnMin": 3, "turnMax": 9, "weight": 2 },
+  "choices": [
+    {
+      "label": "strings:event.evalBreakthrough.publish",
+      "effects": {
+        "safetyInsight": 100,
+        "rival.trust": 50,
+        "flags": ["evalsPublic"]
+      },
+      "delayedEffects": [{ "inTurns": 3, "effects": { "rival.capability": 50 } }]
+    },
+    {
+      "label": "strings:event.evalBreakthrough.classify",
+      "effects": {
+        "safetyInsight": 150,
+        "rival.trust": -50,
+        "publicTrust": -50,
+        "flags": ["evalsClassified"]
+      }
+    }
+  ],
+  "sourceIds": ["SRC-SCALING-MONOSEMANTICITY", "SRC-SLEEPER"],
+  "tags": ["safety", "interpretability", "dual-use"]
+}

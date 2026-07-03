@@ -1,0 +1,30 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "open_weights_shock",
+  "title": "strings:event.openWeightsShock.title",
+  "body": "strings:event.openWeightsShock.body",
+  "trigger": { "era": "early", "turnMin": 2, "turnMax": 6, "weight": 3 },
+  "choices": [
+    {
+      "label": "strings:event.openWeightsShock.ride",
+      "effects": {
+        "capability": 50,
+        "rival.capability": 50,
+        "publicTrust": -50,
+        "flags": ["openWeightsWorld"]
+      },
+      "delayedEffects": [{ "inTurns": 3, "effects": { "capital": -100 } }]
+    },
+    {
+      "label": "strings:event.openWeightsShock.crackdown",
+      "effects": {
+        "politicalCapital": -100,
+        "rival.trust": -100,
+        "flags": ["exportCrackdown"]
+      },
+      "delayedEffects": [{ "inTurns": 2, "effects": { "rival.substitution": 100 } }]
+    }
+  ],
+  "sourceIds": ["SRC-DEEPSEEK-R1", "SRC-DEEPSEEK-COST"],
+  "tags": ["china", "open-weights", "shock"]
+}

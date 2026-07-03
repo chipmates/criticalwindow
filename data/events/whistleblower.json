@@ -1,0 +1,27 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "whistleblower",
+  "title": "strings:event.whistleblower.title",
+  "body": "strings:event.whistleblower.body",
+  "trigger": { "era": "mid", "turnMin": 5, "turnMax": 11, "weight": 3 },
+  "choices": [
+    {
+      "label": "strings:event.whistleblower.investigate",
+      "effects": {
+        "capability": -50,
+        "publicTrust": 100,
+        "safetyInsight": 50
+      },
+      "delayedEffects": [{ "inTurns": 2, "effects": { "capital": -50 } }]
+    },
+    {
+      "label": "strings:event.whistleblower.discredit",
+      "effects": { "publicTrust": -50, "politicalCapital": -50 },
+      "delayedEffects": [
+        { "inTurns": 3, "effects": { "publicTrust": -150, "society.unrest": 100 } }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-RIGHT-TO-WARN", "SRC-SLEEPER"],
+  "tags": ["safety", "labs", "press"]
+}

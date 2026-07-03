@@ -562,6 +562,9 @@
               }
             ]
           }
+        },
+        "note": {
+          "type": "string"
         }
       },
       "required": [

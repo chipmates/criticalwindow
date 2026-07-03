@@ -1,0 +1,20 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "compute_treaty_feeler",
+  "title": "strings:policy.computeTreatyFeeler.title",
+  "body": "strings:policy.computeTreatyFeeler.body",
+  "cost": { "politicalCapital": 50 },
+  "effects": {
+    "rival.trust": 150,
+    "flags": ["treatyChannel"]
+  },
+  "delayedEffects": [
+    {
+      "inTurns": 2,
+      "effects": { "politicalCapital": -50 }
+    }
+  ],
+  "cooldown": 3,
+  "sourceIds": ["SRC-MAIM", "SRC-HO-INTL-INSTITUTIONS"],
+  "tags": ["diplomacy", "treaty", "verification"]
+}

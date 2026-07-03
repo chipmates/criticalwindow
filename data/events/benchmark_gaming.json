@@ -1,0 +1,27 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "benchmark_gaming",
+  "title": "strings:event.benchmarkGaming.title",
+  "body": "strings:event.benchmarkGaming.body",
+  "trigger": { "era": "late", "turnMin": 10, "turnMax": 16, "weight": 2 },
+  "choices": [
+    {
+      "label": "strings:event.benchmarkGaming.independent",
+      "effects": {
+        "politicalCapital": -100,
+        "safetyInsight": 100,
+        "publicTrust": 50
+      },
+      "delayedEffects": [{ "inTurns": 2, "effects": { "capability": -50 } }]
+    },
+    {
+      "label": "strings:event.benchmarkGaming.market",
+      "effects": { "publicTrust": -100 },
+      "delayedEffects": [
+        { "inTurns": 3, "effects": { "safetyInsight": -100, "society.unrest": 50 } }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-BENCH-COP", "SRC-SCHEMING"],
+  "tags": ["evals", "benchmarks", "trust"]
+}

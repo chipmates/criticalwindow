@@ -1,0 +1,21 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "export_controls",
+  "title": "strings:policy.exportControls.title",
+  "body": "strings:policy.exportControls.body",
+  "cost": { "politicalCapital": 100 },
+  "effects": {
+    "rival.capability": -100,
+    "rival.trust": -100,
+    "flags": ["exportCrackdown"]
+  },
+  "delayedEffects": [
+    {
+      "inTurns": 3,
+      "effects": { "rival.substitution": 150 }
+    }
+  ],
+  "cooldown": 4,
+  "sourceIds": ["SRC-CSIS-EXPORT"],
+  "tags": ["chips", "china", "chokepoint"]
+}

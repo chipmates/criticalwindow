@@ -1,0 +1,21 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "taiwan_strait_crisis",
+  "title": "strings:event.taiwanStraitCrisis.title",
+  "body": "strings:event.taiwanStraitCrisis.body",
+  "trigger": { "era": "mid", "turnMin": 7, "turnMax": 13, "weight": 3 },
+  "choices": [
+    {
+      "label": "strings:event.taiwanStraitCrisis.deter",
+      "effects": { "rival.trust": -150, "capital": -100 },
+      "delayedEffects": [{ "inTurns": 2, "effects": { "compute": -100 } }]
+    },
+    {
+      "label": "strings:event.taiwanStraitCrisis.backchannel",
+      "effects": { "politicalCapital": -100, "rival.trust": 100 },
+      "delayedEffects": [{ "inTurns": 2, "effects": { "publicTrust": -50 } }]
+    }
+  ],
+  "sourceIds": ["SRC-CHIP-WAR", "SRC-CSIS-EXPORT"],
+  "tags": ["taiwan", "chips", "crisis"]
+}

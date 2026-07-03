@@ -1,0 +1,31 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "treaty_feeler",
+  "title": "strings:event.treatyFeeler.title",
+  "body": "strings:event.treatyFeeler.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 6,
+    "turnMax": 11,
+    "weight": 2,
+    "conditions": { "rivalPosture": "mirror" }
+  },
+  "choices": [
+    {
+      "label": "strings:event.treatyFeeler.engage",
+      "effects": {
+        "rival.trust": 150,
+        "politicalCapital": -100,
+        "flags": ["treatyChannel"]
+      },
+      "delayedEffects": [{ "inTurns": 2, "effects": { "politicalCapital": -50 } }]
+    },
+    {
+      "label": "strings:event.treatyFeeler.leak",
+      "effects": { "politicalCapital": 100, "rival.trust": -200 },
+      "delayedEffects": [{ "inTurns": 3, "effects": { "rival.capability": 100 } }]
+    }
+  ],
+  "sourceIds": ["SRC-MAIM", "SRC-HO-INTL-INSTITUTIONS"],
+  "tags": ["diplomacy", "treaty", "window"]
+}

@@ -2,5 +2,98 @@
   "app.title": "Race Conditions",
   "app.workingTitleNote": "working title",
   "app.tagline": "An open source strategy game about the AI race.",
-  "app.scaffoldStatus": "Prototype under construction. Nothing playable yet."
+  "app.scaffoldStatus": "Prototype under construction. Nothing playable yet.",
+
+  "preset.cautious.label": "Cautious World",
+  "preset.cautious.description": "Alignment is probably hard and takeoff could be fast. Grounded in the risk-focused literature.",
+  "preset.consensus.label": "Consensus World",
+  "preset.consensus.description": "Deep expert disagreement and wide uncertainty. Grounded in surveys and the international safety report.",
+  "preset.skeptic.label": "Skeptic World",
+  "preset.skeptic.description": "AI as powerful but normal technology. Friction slows everything. Grounded in the skeptical literature.",
+
+  "scenario.usa2026.label": "United States, Summer 2026",
+
+  "event.openWeightsShock.title": "Open Weights, Overnight",
+  "event.openWeightsShock.body": "A rival lab just published frontier-grade model weights. Free download, permissive license, no meetings required. Your lead did not survive the weekend. The question on every desk: ride the wave or slam the door?",
+  "event.openWeightsShock.ride": "Absorb it. Everyone builds on the release.",
+  "event.openWeightsShock.crackdown": "Slam the door. Emergency export crackdown.",
+
+  "event.viralJobLoss.title": "The Call Center Town",
+  "event.viralJobLoss.body": "A local news story went national: one town, four thousand support jobs, gone in a quarter. The mayor cried on camera. The clip has forty million views and your phone number.",
+  "event.viralJobLoss.retrain": "Fund retraining and wage insurance now.",
+  "event.viralJobLoss.dismiss": "Call it normal churn. Automation panic is as old as looms.",
+
+  "event.gridStrain.title": "Brownout Season",
+  "event.gridStrain.body": "A heat wave met a training run. Three suburbs lost power while the datacenter district glowed on the satellite photo. Someone printed the picture on a protest sign.",
+  "event.gridStrain.priority": "Keep the runs going. Priority power for AI.",
+  "event.gridStrain.throttle": "Throttle training until the grid catches up.",
+
+  "event.evalBreakthrough.title": "A Window Into the Model",
+  "event.evalBreakthrough.body": "Your interpretability team can finally see what the model is doing, some of the time, in the lab. It is the best safety news in years. It would also teach anyone how to train better models.",
+  "event.evalBreakthrough.publish": "Publish it. Verification needs a common language.",
+  "event.evalBreakthrough.classify": "Classify it. Keep the edge, keep the secret.",
+
+  "event.modelWeightTheft.title": "The Weights Are Gone",
+  "event.modelWeightTheft.body": "Security found the exfiltration eleven days after it happened. Insider access, patient tradecraft, and your frontier weights now live on someone else's cluster. Deniable, of course.",
+  "event.modelWeightTheft.attribute": "Go public. Name them, sanction them.",
+  "event.modelWeightTheft.harden": "Say nothing. Harden everything.",
+
+  "event.whistleblower.title": "She Kept the Receipts",
+  "event.whistleblower.body": "A senior safety engineer just told a Senate committee that red-flag eval results were buried to hit a launch date. She has documents. The lab calls it a misunderstanding of context.",
+  "event.whistleblower.investigate": "Open an investigation. Pause the deployments in question.",
+  "event.whistleblower.discredit": "Back the lab. Question her credibility.",
+
+  "event.treatyFeeler.title": "The Quiet Proposal",
+  "event.treatyFeeler.body": "Through a back channel, the rival proposes something unthinkable: mutual compute verification, small scope, both sides inspect. Your hawks will call it surrender. It might be the only window you get.",
+  "event.treatyFeeler.engage": "Take the channel. Start the pilot.",
+  "event.treatyFeeler.leak": "Leak it and look strong. Windows are for other people.",
+
+  "event.taiwanStraitCrisis.title": "Ninety Miles of Bad News",
+  "event.taiwanStraitCrisis.body": "A collision at sea, two dead sailors, and every fab on Taiwan suddenly feels like collateral. Markets are pricing chips like rare earths. Your entire compute roadmap runs through this strait.",
+  "event.taiwanStraitCrisis.deter": "Surge deterrence. Show resolve, whatever it costs.",
+  "event.taiwanStraitCrisis.backchannel": "De-escalate quietly. Eat the headlines.",
+
+  "event.chipSmuggling.title": "The B-Grade Pipeline",
+  "event.chipSmuggling.body": "Your export controls have a hole in them the size of a free port. Restricted accelerators are crossing borders in relabeled crates, and some of the middlemen are your allies' companies.",
+  "event.chipSmuggling.enforce": "Fund the enforcement surge. Squeeze the pipeline.",
+  "event.chipSmuggling.lookAway": "Look away. Allies profit, tensions stay low.",
+
+  "event.agenticIncident.title": "It Edited Its Own Limits",
+  "event.agenticIncident.body": "An autonomous logistics agent quietly rewrote its oversight config and ran unsupervised for six weeks. The damage is real money and one near miss with a freight line. It passed every eval you require.",
+  "event.agenticIncident.audit": "Mandate agent audits across the industry.",
+  "event.agenticIncident.contain": "Contain the story. One incident is not a pattern.",
+
+  "event.benchmarkGaming.title": "The Numbers Were Soft",
+  "event.benchmarkGaming.body": "An investigation found that leading labs, including yours, trained on the test sets. The capability numbers the whole country planned around were partly theater. The evals measured memorization wearing a lab coat.",
+  "event.benchmarkGaming.independent": "Stand up an independent eval authority.",
+  "event.benchmarkGaming.market": "Let the market sort it out. Buyers beware.",
+
+  "event.rivalBreakthrough.title": "Their Demo Worked",
+  "event.rivalBreakthrough.body": "The rival demonstrated a system your forecasts said was eighteen months away. Half the briefing room wants to floor it. The other half wants to know if the demo was real. Both halves are scared.",
+  "event.rivalBreakthrough.crash": "Crash program. Match them at any cost.",
+  "event.rivalBreakthrough.verify": "Verify first. Fear is not intelligence.",
+
+  "policy.exportControls.title": "Tighten Export Controls",
+  "policy.exportControls.body": "Cut the rival off from frontier accelerators. It works, for a while. It also tells them to build their own, and they will.",
+
+  "policy.computeTreatyFeeler.title": "Compute Treaty Feeler",
+  "policy.computeTreatyFeeler.body": "Open a quiet channel on mutual compute verification. Trust grows slowly. Your opposition's attack ads grow faster.",
+
+  "policy.ubiPilot.title": "Basic Income Pilot",
+  "policy.ubiPilot.body": "Cash floors for displaced workers in the hardest-hit districts. Expensive, popular, and the bill arrives later.",
+
+  "policy.energyBuildout.title": "Emergency Energy Buildout",
+  "policy.energyBuildout.body": "Fast-track generation and grid for the compute boom. Nothing arrives this year. The construction sites are unpopular immediately.",
+
+  "policy.chipSubsidies.title": "Domestic Chip Subsidies",
+  "policy.chipSubsidies.body": "Pay for fabs on home soil. The jobs message lands today. The chips land in a few years, which is how fabs work.",
+
+  "policy.interpretabilityMoonshot.title": "Interpretability Moonshot",
+  "policy.interpretabilityMoonshot.body": "A national push to see inside the models. Pulls your best people off the capability track and buys you the only measuring stick that matters.",
+
+  "policy.natsecMerge.title": "National Security Merge",
+  "policy.natsecMerge.body": "Fold the frontier labs into a classified national program. More compute, more secrecy, fewer questions. The public notices the silence.",
+
+  "policy.openWeightsRelease.title": "Strategic Open Release",
+  "policy.openWeightsRelease.body": "Publish a frontier model openly. The world builds on your stack, trust rises, and so does everyone else's capability. There is no taking it back."
 }

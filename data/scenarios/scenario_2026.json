@@ -1,0 +1,87 @@
+{
+  "$schema": "../schemas/scenario.schema.json",
+  "id": "scenario_2026",
+  "seat": "usa",
+  "label": "strings:scenario.usa2026.label",
+  "startTime": { "year": 2026, "quarter": 3 },
+  "startResources": {
+    "compute": {
+      "value": 700,
+      "sourceIds": ["SRC-EPOCH-COMPUTE"],
+      "note": "US holds the large majority of frontier training compute; 700/1000 maps that dominance with room to grow or lose it"
+    },
+    "energy": {
+      "value": 450,
+      "sourceIds": ["SRC-IEA-ENERGY-AI"],
+      "note": "grid adequate today, tightening: IEA projects datacenter demand roughly doubling by 2030"
+    },
+    "talent": {
+      "value": 650,
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "strong but contested lead in frontier researchers; immigration policy sensitive"
+    },
+    "capital": {
+      "value": 750,
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "capex boom: private AI investment at record highs in 2025-2026"
+    },
+    "publicTrust": {
+      "value": 400,
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "polls show majority unease about AI; below the midpoint by design"
+    },
+    "politicalCapital": {
+      "value": 500,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "neutral starting mandate"
+    },
+    "capability": {
+      "value": 350,
+      "sourceIds": ["SRC-METR-HORIZON"],
+      "note": "frontier systems handle hour-scale tasks reliably; the fog zone starts far above"
+    },
+    "safetyInsight": {
+      "value": 200,
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "interpretability is real but young; eval science immature"
+    }
+  },
+  "startSociety": {
+    "jobDisplacement": {
+      "value": 100,
+      "sourceIds": ["SRC-IMF-GENAI"],
+      "note": "measurable early displacement in exposed occupations, not yet macro-visible"
+    },
+    "unrest": {
+      "value": 150,
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "background political tension, no AI-specific movement yet"
+    }
+  },
+  "startRival": {
+    "posture": "mirror",
+    "capability": {
+      "value": 300,
+      "sourceIds": ["SRC-DEEPSEEK-COST"],
+      "note": "months behind the frontier, not years: DeepSeek-class efficiency closed much of the gap"
+    },
+    "trust": {
+      "value": 350,
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "wary engagement: dialogue channels exist, verification does not"
+    },
+    "substitution": {
+      "value": 250,
+      "sourceIds": ["SRC-CSIS-EXPORT"],
+      "note": "domestic chip substitution underway (Huawei/SMIC), progress real but constrained"
+    }
+  },
+  "startAllocation": {
+    "capability": 60,
+    "safety": 15,
+    "diffusion": 25,
+    "sourceIds": ["SRC-DESIGN-HANDOVER"],
+    "note": "mirrors the current revealed preference of the ecosystem: capability-heavy"
+  },
+  "startingHand": ["export_controls", "energy_buildout", "interpretability_moonshot"]
+}

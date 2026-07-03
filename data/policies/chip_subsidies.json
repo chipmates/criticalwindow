@@ -1,0 +1,19 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "chip_subsidies",
+  "title": "strings:policy.chipSubsidies.title",
+  "body": "strings:policy.chipSubsidies.body",
+  "cost": { "capital": 200, "politicalCapital": 50 },
+  "effects": {
+    "publicTrust": 50
+  },
+  "delayedEffects": [
+    {
+      "inTurns": 4,
+      "effects": { "compute": 200 }
+    }
+  ],
+  "oncePerRun": true,
+  "sourceIds": ["SRC-CSET-AI-CHIPS", "SRC-CSIS-EXPORT"],
+  "tags": ["chips", "industrial-policy", "compute"]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "ubi_pilot",
+  "title": "strings:policy.ubiPilot.title",
+  "body": "strings:policy.ubiPilot.body",
+  "cost": { "politicalCapital": 100, "capital": 150 },
+  "effects": {
+    "society.unrest": -100,
+    "publicTrust": 50
+  },
+  "delayedEffects": [
+    {
+      "inTurns": 4,
+      "effects": { "capital": -100 }
+    }
+  ],
+  "oncePerRun": true,
+  "sourceIds": ["SRC-OPENRESEARCH-UBI", "SRC-IMF-GENAI"],
+  "tags": ["society", "labor", "welfare"]
+}

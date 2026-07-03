@@ -1,0 +1,25 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "natsec_merge",
+  "title": "strings:policy.natsecMerge.title",
+  "body": "strings:policy.natsecMerge.body",
+  "cost": { "politicalCapital": 150 },
+  "gates": { "capabilityMin": 500, "eraMin": "mid" },
+  "effects": {
+    "compute": 100,
+    "capability": 50,
+    "publicTrust": -100,
+    "talent": -50,
+    "hidden.agencyErosion": 50,
+    "flags": ["natsecMerged"]
+  },
+  "delayedEffects": [
+    {
+      "inTurns": 3,
+      "effects": { "society.unrest": 50 }
+    }
+  ],
+  "oncePerRun": true,
+  "sourceIds": ["SRC-MAIM", "SRC-SITUATIONAL-AWARENESS"],
+  "tags": ["natsec", "secrecy", "escalation"]
+}
