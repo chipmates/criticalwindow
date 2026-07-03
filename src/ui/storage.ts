@@ -46,12 +46,17 @@ export interface Settings {
   theme: 'auto' | 'light' | 'dark' | 'contrast';
   reducedMotion: 'auto' | 'on';
   textSize: 'normal' | 'large';
+  /** Sound is off by default: classrooms, autoplay policies, respect. */
+  musicOn: boolean;
+  voiceOn: boolean;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   theme: 'auto',
   reducedMotion: 'auto',
   textSize: 'normal',
+  musicOn: false,
+  voiceOn: false,
 };
 
 export function readSettings(): Settings {

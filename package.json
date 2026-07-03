@@ -25,7 +25,8 @@
     "print-kit": "tsx scripts/print-kit.ts",
     "sources-md": "tsx scripts/generate-sources-md.ts",
     "golden": "tsx scripts/make-golden.ts",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "audio": "tsx scripts/generate-audio.ts"
   },
   "dependencies": {
     "react": "^19.2.7",

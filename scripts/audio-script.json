@@ -1,0 +1,27 @@
+{
+  "comment": "Build-time narration inputs (NOT in data/: presentation assets never churn the sim dataVersion). House rule: every generation uses the with-timestamps endpoint and stores alignment beside the audio. Voice: calm documentary read, no drama.",
+  "voiceId": "21m00Tcm4TlvDq8ikWAM",
+  "modelId": "eleven_multilingual_v2",
+  "lines": [
+    {
+      "id": "ending-flourishing",
+      "text": "You crossed the threshold, and the systems held. Enough understanding was in place when it counted. Be suspicious of how you got here. The numbers will tell you."
+    },
+    {
+      "id": "ending-misaligned-catastrophe",
+      "text": "You crossed the threshold with systems you did not understand. There was no single dramatic moment. There was a Tuesday, and then a different kind of world. The reports looked fine. That was the problem."
+    },
+    {
+      "id": "ending-outpaced",
+      "text": "The rival reached decisive capability first. The race you were running ended in a world someone else designed. Some of your choices still mattered. Fewer than you hoped."
+    },
+    {
+      "id": "ending-negotiated-slowdown",
+      "text": "You signed the verified slowdown. It cost you politically, it cost speed, and nobody throws parades for the disaster that did not happen. Maintenance is underrated."
+    },
+    {
+      "id": "ending-societal-breakdown",
+      "text": "The country broke before the question resolved. The machines were never the immediate problem. The bill for ignoring the humans was."
+    }
+  ]
+}

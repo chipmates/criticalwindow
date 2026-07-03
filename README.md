@@ -32,6 +32,10 @@ The simulation engine is pure and deterministic: same seed, same run, on every m
 
 Every number in `data/` cites a source in `data/sources.json`, and `pnpm validate` fails when one does not. If you change a value, your commit names the source. If you think a number is wrong, bring a better source. That argument is the project working as designed.
 
+## Sound
+
+Off by default, everything works silent. Music by Scott Buckley (CC BY 4.0), see [CREDITS.md](CREDITS.md). Voice narration is generated at build time; nothing talks to a server while you play.
+
 ## License
 
 Code: [AGPL-3.0](LICENSE). Game content (data, text, later art): [CC BY-SA 4.0](LICENSE-CONTENT). The privacy claims are verifiable in this repository: there is no tracking code to find.

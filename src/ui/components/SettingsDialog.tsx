@@ -120,6 +120,31 @@ export function SettingsDialog({ onClose }: SettingsDialogProps) {
           onPick={(textSize) => patch({ textSize })}
         />
 
+        <div className="settings-row">
+          <span className="settings-label">{t('settings.audio')}</span>
+          <p className="panel-explain">{t('settings.audio.explain')}</p>
+          <div className="settings-options">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.musicOn}
+              className={settings.musicOn ? 'btn settings-on' : 'btn'}
+              onClick={() => patch({ musicOn: !settings.musicOn })}
+            >
+              {t('settings.audio.music')}
+            </button>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.voiceOn}
+              className={settings.voiceOn ? 'btn settings-on' : 'btn'}
+              onClick={() => patch({ voiceOn: !settings.voiceOn })}
+            >
+              {t('settings.audio.voice')}
+            </button>
+          </div>
+        </div>
+
         <section aria-label={t('saves.heading')} className="settings-saves">
           <h3 className="panel-heading">{t('saves.heading')}</h3>
           {SAVE_SLOTS.filter((slot) => slot !== 'auto').map((slot, i) => (

@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { replayTurns, runProbes } from '../../engine/probes';
 import { encodeShare } from '../../engine/save';
+import { playNarration } from '../audio';
 import { Timeline } from '../components/Timeline';
 import en from '../../../data/strings/en.json';
 import { t, type StringKey } from '../i18n';
@@ -17,6 +18,13 @@ export function Debrief() {
   const goTo = useStore((s) => s.goTo);
   const data = gameData();
   const [copied, setCopied] = useState(false);
+  const voiceOn = useStore((s) => s.settings.voiceOn);
+  const endingForVoice = run?.endingId ?? null;
+  useEffect(() => {
+    if (endingForVoice) {
+      playNarration(endingForVoice, voiceOn);
+    }
+  }, [endingForVoice, voiceOn]);
 
   const analysis = useMemo(() => {
     if (!runMeta) {

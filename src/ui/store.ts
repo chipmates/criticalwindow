@@ -8,6 +8,7 @@ import { initGame } from '../engine/init';
 import { buildSave, loadSave, SaveError } from '../engine/save';
 import { step } from '../engine/step';
 import type { Action, GameState, WorldviewPresetId } from '../engine/types';
+import { setMusic } from './audio';
 import { loadGameData } from './load-data';
 import {
   DEFAULT_SETTINGS,
@@ -71,6 +72,10 @@ export const useStore = create<UiStore>((set, get) => ({
   lastError: null,
 
   goTo(screen) {
+    const { settings } = get();
+    if (settings.musicOn) {
+      setMusic(true, screen === 'game' ? 'ambient' : 'reflective');
+    }
     set({ screen });
   },
 
@@ -130,6 +135,9 @@ export const useStore = create<UiStore>((set, get) => ({
     const settings = { ...get().settings, ...patch };
     writeSettings(settings);
     applyDocumentSettings(settings);
+    if ('musicOn' in patch) {
+      setMusic(settings.musicOn, get().screen === 'game' ? 'ambient' : 'reflective');
+    }
     set({ settings });
   },
 
