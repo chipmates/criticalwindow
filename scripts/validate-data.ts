@@ -85,6 +85,29 @@ if (parsed.has('strings/en.json')) {
   errors.push('data/strings/en.json is missing (i18n from day one)');
 }
 
+// Additional locales: same schema, and key sets compared against en.json.
+// Missing keys are honest warnings (runtime falls back to English); unknown
+// keys are errors (they would silently never render). docs/i18n.md has the rules.
+for (const file of byDir('strings')) {
+  if (file.relPath === 'strings/en.json' || !strings) {
+    continue;
+  }
+  const locale = validateFile<StringsData>(file.relPath, stringsFileSchema);
+  if (!locale) {
+    continue;
+  }
+  const missing = Object.keys(strings).filter((key) => !(key in locale));
+  const unknown = Object.keys(locale).filter((key) => !(key in strings));
+  if (missing.length > 0) {
+    warnings.push(
+      `data/${file.relPath}: ${missing.length} untranslated key(s) (English fallback applies)`,
+    );
+  }
+  for (const key of unknown) {
+    errors.push(`data/${file.relPath}: key '${key}' does not exist in en.json`);
+  }
+}
+
 const sources = parsed.has('sources.json')
   ? validateFile<SourcesRegistryData>('sources.json', sourcesRegistrySchema)
   : null;

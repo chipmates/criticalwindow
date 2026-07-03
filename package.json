@@ -22,7 +22,8 @@
     "validate": "tsx scripts/validate-data.ts",
     "schemas": "tsx scripts/generate-schemas.ts",
     "simulate": "tsx scripts/simulate.ts",
-    "print-kit": "tsx scripts/print-kit.ts"
+    "print-kit": "tsx scripts/print-kit.ts",
+    "sources-md": "tsx scripts/generate-sources-md.ts"
   },
   "dependencies": {
     "react": "^19.2.7",
