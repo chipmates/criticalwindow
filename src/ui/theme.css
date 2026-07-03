@@ -1,0 +1,214 @@
+/*
+ * Design tokens: "The Situation Room, printed."
+ * Editorial briefing DNA (serif display, memo surfaces, hairline rules)
+ * over a command-room dashboard. Dark is the native mood (2 a.m. ops room);
+ * light is the morning print edition; contrast is the accessibility theme.
+ *
+ * RULES
+ * - Components consume ONLY semantic tokens (--ink, --surface, --accent...),
+ *   never raw hex. Theme switching is a token swap on :root[data-theme].
+ * - Every ink/surface pair in this file is contrast-tested programmatically
+ *   (tests/tokens.test.ts). Changing a color that breaks WCAG AA fails CI.
+ * - Meter colors never carry meaning alone: every use pairs with a label
+ *   and/or position (colorblind safety is layout's job first).
+ */
+
+:root {
+  /* type */
+  --font-display: 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font-data: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+
+  --text-xs: clamp(0.694rem, 0.66rem + 0.15vw, 0.75rem);
+  --text-sm: clamp(0.833rem, 0.79rem + 0.18vw, 0.9rem);
+  --text-base: clamp(1rem, 0.95rem + 0.22vw, 1.08rem);
+  --text-lg: clamp(1.2rem, 1.13rem + 0.3vw, 1.32rem);
+  --text-xl: clamp(1.44rem, 1.34rem + 0.42vw, 1.62rem);
+  --text-2xl: clamp(1.728rem, 1.58rem + 0.62vw, 2rem);
+  --text-3xl: clamp(2.074rem, 1.86rem + 0.9vw, 2.5rem);
+
+  /* rhythm */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --radius: 3px;
+  --radius-lg: 6px;
+  --hairline: 1px;
+  --target: 44px; /* minimum touch target */
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --t-fast: 140ms;
+  --t-slow: 260ms;
+
+  color-scheme: light;
+
+  /* ============ LIGHT: the morning print edition ============ */
+  --bg: #f6f3ec; /* warm paper */
+  --surface: #fdfbf7; /* memo sheet */
+  --surface-raised: #ffffff;
+  --surface-sunken: #eee9df;
+  --ink: #1c1e21; /* printer's ink */
+  --ink-muted: #565b63;
+  --ink-faint: #767c86; /* large text / decorative only */
+  --rule: #d8d2c4; /* hairline rules */
+  --rule-strong: #1c1e21;
+
+  --accent: #8a4d00; /* signal amber, print edition */
+  --accent-ink: #ffffff; /* text on accent */
+  --focus: #0f62fe;
+
+  --good: #1a6b47;
+  --warn: #8a5a00;
+  --danger: #a8232d;
+  --danger-ink: #ffffff;
+
+  /* meters (paired with labels always; tuned for white surfaces) */
+  --m-capability: #6b3fa0;
+  --m-safety: #0f6674;
+  --m-diffusion: #2a6b2f;
+  --m-trust: #275ea6;
+  --m-unrest: #a8232d;
+  --m-rival: #8f2d33;
+  --m-energy: #7a5800;
+  --m-capital: #4d5d43;
+
+  --fog: rgba(28, 30, 33, 0.14);
+  --band: rgba(15, 102, 116, 0.22);
+  --shadow: 0 1px 3px rgba(28, 30, 33, 0.1);
+  --shadow-raised: 0 4px 16px rgba(28, 30, 33, 0.14);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* ============ DARK: the situation room at 2 a.m. ============ */
+  --bg: #101318; /* deep desaturated blue-black */
+  --surface: #171b22;
+  --surface-raised: #1e242d;
+  --surface-sunken: #0b0e12;
+  --ink: #e8e4da; /* aged paper, not white */
+  --ink-muted: #a49f93;
+  --ink-faint: #8a857a;
+  --rule: #2c333e;
+  --rule-strong: #e8e4da;
+
+  --accent: #e0a458; /* phosphor amber */
+  --accent-ink: #101318;
+  --focus: #6ea8fe;
+
+  --good: #57c28d;
+  --warn: #e0a458;
+  --danger: #ef6a6a;
+  --danger-ink: #101318;
+
+  --m-capability: #b18ae8;
+  --m-safety: #5fc4d4;
+  --m-diffusion: #7dc87f;
+  --m-trust: #7aa5e8;
+  --m-unrest: #ef6a6a;
+  --m-rival: #e87f7f;
+  --m-energy: #d9b654;
+  --m-capital: #a3b592;
+
+  --fog: rgba(232, 228, 218, 0.1);
+  --band: rgba(95, 196, 212, 0.18);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-raised: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme='contrast'] {
+  color-scheme: dark;
+
+  /* ============ CONTRAST: maximum legibility ============ */
+  --bg: #000000;
+  --surface: #000000;
+  --surface-raised: #101010;
+  --surface-sunken: #000000;
+  --ink: #ffffff;
+  --ink-muted: #e6e6e6;
+  --ink-faint: #cccccc;
+  --rule: #666666;
+  --rule-strong: #ffffff;
+
+  --accent: #ffd166;
+  --accent-ink: #000000;
+  --focus: #99ccff;
+
+  --good: #7fe6a8;
+  --warn: #ffd166;
+  --danger: #ff8080;
+  --danger-ink: #000000;
+
+  --m-capability: #d0aaff;
+  --m-safety: #7fdbea;
+  --m-diffusion: #90e090;
+  --m-trust: #99bbff;
+  --m-unrest: #ff9999;
+  --m-rival: #ffaaaa;
+  --m-energy: #ffe08a;
+  --m-capital: #c8d8b8;
+
+  --fog: rgba(255, 255, 255, 0.18);
+  --band: rgba(127, 219, 234, 0.3);
+  --shadow: none;
+  --shadow-raised: none;
+}
+
+/* ============ base ============ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+:root[data-textsize='large'] {
+  font-size: 19px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-fast: 0ms;
+    --t-slow: 0ms;
+  }
+}
+
+:root[data-motion='reduced'] {
+  --t-fast: 0ms;
+  --t-slow: 0ms;
+}
