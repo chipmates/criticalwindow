@@ -261,6 +261,16 @@
         "value": 4,
         "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "trustFromUnrest(unrest)/divisor applied to public trust per turn"
+      },
+      "unrestEconomicDragMin": {
+        "value": 600,
+        "sourceIds": ["SRC-OECD-EMPLOYMENT", "SRC-DESIGN-HANDOVER"],
+        "note": "sustained high unrest starts costing the economy (strikes, capital flight, risk premia); threshold design-tuned"
+      },
+      "unrestEconomicDrag": {
+        "value": 25,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
+        "note": "capital drag per turn at high unrest; talent drains at half rate"
       }
     },
     "agencyErosion": {

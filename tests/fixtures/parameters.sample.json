@@ -222,6 +222,14 @@
       "trustCurveDivisor": {
         "value": 4,
         "sourceIds": ["TODO-SOURCE"]
+      },
+      "unrestEconomicDragMin": {
+        "value": 600,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "unrestEconomicDrag": {
+        "value": 25,
+        "sourceIds": ["TODO-SOURCE"]
       }
     },
     "agencyErosion": {

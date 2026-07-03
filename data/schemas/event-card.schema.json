@@ -161,6 +161,38 @@
                 }
               },
               "additionalProperties": false
+            },
+            "societyMin": {
+              "type": "object",
+              "properties": {
+                "jobDisplacement": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "unrest": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                }
+              },
+              "additionalProperties": false
+            },
+            "societyMax": {
+              "type": "object",
+              "properties": {
+                "jobDisplacement": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "unrest": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                }
+              },
+              "additionalProperties": false
             }
           },
           "additionalProperties": false

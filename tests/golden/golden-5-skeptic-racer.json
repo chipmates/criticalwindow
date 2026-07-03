@@ -1,6 +1,6 @@
 {
   "name": "golden-5-skeptic-racer",
-  "dataVersion": "0fe2fefa0d1a5e",
+  "dataVersion": "11c610175e2d26",
   "seed": "golden-5",
   "presetId": "skeptic",
   "bot": "racer",
@@ -187,22 +187,22 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "benchmark_gaming",
+      "eventId": "public_opinion_swing",
       "choiceIndex": 1
     }
   ],
   "perTurnHashes": [
-    "05e6518ae1eda0",
-    "002ee5489c1e8f",
-    "0d3b430b1d0a0e",
-    "03829ac3961e3d",
-    "1344357b82beaa",
-    "04c689de7b6a04",
-    "13a8e6cd9c5563",
-    "1428a784a9a685",
-    "077c94eba807b7",
-    "1bdc900922c20f",
-    "00baf693765be7"
+    "1d30d4dbdf1639",
+    "185f756e81b67c",
+    "15b902170fbce2",
+    "1b0709197d4488",
+    "07433096cc0224",
+    "0d9b42cf9029fa",
+    "0a852c319dee71",
+    "1e923f1c3f2384",
+    "0ceb0f4073c153",
+    "063d30b67add4f",
+    "039b8e0bbb19ec"
   ],
-  "finalHash": "00baf693765be7"
+  "finalHash": "039b8e0bbb19ec"
 }

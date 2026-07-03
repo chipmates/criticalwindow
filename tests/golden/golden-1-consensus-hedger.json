@@ -1,11 +1,11 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "0fe2fefa0d1a5e",
+  "dataVersion": "11c610175e2d26",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
-  "endingId": "outpaced",
-  "turns": 12,
+  "endingId": "societalBreakdown",
+  "turns": 15,
   "actions": [
     {
       "type": "allocate",
@@ -191,7 +191,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "benchmark_gaming",
+      "eventId": "agentic_incident",
       "choiceIndex": 1
     },
     {
@@ -208,23 +208,77 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "rival_breakthrough",
+      "eventId": "benchmark_gaming",
       "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "general_strike",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "verification_offer",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "rival_breakthrough",
+      "choiceIndex": 1
     }
   ],
   "perTurnHashes": [
-    "056d80ea7f4885",
-    "1ef5e7b9c8e80d",
-    "17624cf0581922",
-    "168a7000f90a8a",
-    "0644f0e9a76d6d",
-    "0ea5dec5830fe3",
-    "1c920e66ee1dd6",
-    "0aa2634064bb47",
-    "00186ba97fd6b3",
-    "09fa46e3e4ee81",
-    "032f0d1837b5cc",
-    "16d05e5ed99214"
+    "1ce6c69e0809ab",
+    "0f1f007221e4ec",
+    "178927ee4c1627",
+    "001fd9b072941f",
+    "177dfcc72626b9",
+    "185e2f67d979d1",
+    "1209d01ec8842a",
+    "1aa3c2f33f9223",
+    "02f74a188c467e",
+    "0f20c34921957f",
+    "13e29e610a2ee0",
+    "0066f128bb3889",
+    "016bb4c6ba3764",
+    "178dd0517e48f0",
+    "18f4da9591a73e"
   ],
-  "finalHash": "16d05e5ed99214"
+  "finalHash": "18f4da9591a73e"
 }

@@ -16,6 +16,7 @@ import {
   RESOURCE_KEYS,
   RIVAL_POSTURES,
   SEAT_IDS,
+  SOCIETY_KEYS,
   WORLDVIEW_PRESET_IDS,
 } from './types';
 
@@ -124,6 +125,8 @@ const conditionsSchema = z.strictObject({
   flagsNone: z.array(flagName).min(1).optional(),
   resourceMin: z.strictObject(optionalKeys(RESOURCE_KEYS, scaledInt)).optional(),
   resourceMax: z.strictObject(optionalKeys(RESOURCE_KEYS, scaledInt)).optional(),
+  societyMin: z.strictObject(optionalKeys(SOCIETY_KEYS, scaledInt)).optional(),
+  societyMax: z.strictObject(optionalKeys(SOCIETY_KEYS, scaledInt)).optional(),
 });
 
 // ---------------------------------------------------------------------------
@@ -278,6 +281,8 @@ export const parametersSchema = z.strictObject({
     societyDepth: z.strictObject({
       displacementEquilibriumDivisor: sourcedIntSchema,
       trustCurveDivisor: sourcedIntSchema,
+      unrestEconomicDragMin: sourcedIntSchema,
+      unrestEconomicDrag: sourcedIntSchema,
     }),
     agencyErosion: z.strictObject({
       highCapabilityMin: sourcedIntSchema,

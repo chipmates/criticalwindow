@@ -7,7 +7,8 @@ test('every string key is a dot-path with a non-empty value', () => {
   const entries = Object.entries(strings as Record<string, unknown>);
   expect(entries.length).toBeGreaterThan(0);
   for (const [key, value] of entries) {
-    expect(key).toMatch(/^[a-z][a-zA-Z0-9]*(\.[a-z][a-zA-Z0-9]*)+$/);
+    // Same pattern the schema enforces (numeric segments allowed: ticker.early.0).
+    expect(key).toMatch(/^[a-z][a-zA-Z0-9]*(\.[a-zA-Z0-9]+)+$/);
     expect(typeof value).toBe('string');
     expect((value as string).length).toBeGreaterThan(0);
   }

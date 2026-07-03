@@ -394,6 +394,16 @@ function eventEligible(parameters: ParametersData, state: GameState, card: Event
         return false;
       }
     }
+    for (const [key, min] of Object.entries(conditions.societyMin ?? {})) {
+      if (state.society[key as keyof GameState['society']] < (min as number)) {
+        return false;
+      }
+    }
+    for (const [key, max] of Object.entries(conditions.societyMax ?? {})) {
+      if (state.society[key as keyof GameState['society']] > (max as number)) {
+        return false;
+      }
+    }
   }
   return true;
 }
@@ -571,6 +581,18 @@ function worldUpdate(data: EngineData, state: GameState): void {
     trustDelta -= society.trustErosionPerTurn.value;
   }
   state.resources.publicTrust = clamp(state.resources.publicTrust + trustDelta, 0, SCALE_MAX);
+  // Unrest is not economically free: sustained disorder drags capital and
+  // talent (strikes, flight, risk premia). Takeaway 5 with teeth.
+  let economicDrag = 0;
+  if (state.society.unrest >= rules.societyDepth.unrestEconomicDragMin.value) {
+    economicDrag = rules.societyDepth.unrestEconomicDrag.value;
+    state.resources.capital = clamp(state.resources.capital - economicDrag, 0, SCALE_MAX);
+    state.resources.talent = clamp(
+      state.resources.talent - divRound(economicDrag, 2),
+      0,
+      SCALE_MAX,
+    );
+  }
   pushLog(state, {
     kind: 'societyUpdate',
     stringKey: null,
@@ -578,6 +600,7 @@ function worldUpdate(data: EngineData, state: GameState): void {
       'society.jobDisplacement': displacementGain - reliefApplied,
       'society.unrest': unrestGain,
       publicTrust: trustDelta,
+      capital: -economicDrag,
     },
     meta: { reliefApplied },
   });

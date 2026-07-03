@@ -1,0 +1,52 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "general_strike",
+  "title": "strings:event.generalStrike.title",
+  "body": "strings:event.generalStrike.body",
+  "trigger": {
+    "turnMin": 6,
+    "turnMax": 16,
+    "weight": 3,
+    "conditions": {
+      "societyMin": {
+        "unrest": 500
+      }
+    }
+  },
+  "choices": [
+    {
+      "label": "strings:event.generalStrike.crackdown",
+      "effects": {
+        "society.unrest": -100,
+        "publicTrust": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "society.unrest": 150
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.generalStrike.compact",
+      "effects": {
+        "politicalCapital": -100,
+        "capital": -100,
+        "society.unrest": -100,
+        "publicTrust": 50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "publicTrust": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-IMF-GENAI", "SRC-OECD-EMPLOYMENT"],
+  "tags": ["society", "labor", "unrest"]
+}
