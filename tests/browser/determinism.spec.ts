@@ -20,12 +20,20 @@ const goldens: Golden[] = readdirSync(goldenDir)
   .filter((f) => f.endsWith('.json'))
   .map((f) => JSON.parse(readFileSync(join(goldenDir, f), 'utf8')) as Golden);
 
+interface HarnessGlobals {
+  __GOLDEN_RESULTS__?: Record<string, { perTurnHashes: string[]; finalHash: string }>;
+}
+
 test('golden fixtures replay hash-exact in this browser engine', async ({ page }) => {
   await page.goto('/determinism.html');
-  await page.waitForFunction(() => window.__GOLDEN_RESULTS__ !== undefined, undefined, {
-    timeout: 30_000,
-  });
-  const results = await page.evaluate(() => window.__GOLDEN_RESULTS__!);
+  await page.waitForFunction(
+    () => (globalThis as unknown as HarnessGlobals).__GOLDEN_RESULTS__ !== undefined,
+    undefined,
+    { timeout: 30_000 },
+  );
+  const results = await page.evaluate(
+    () => (globalThis as unknown as HarnessGlobals).__GOLDEN_RESULTS__!,
+  );
 
   expect(goldens.length).toBe(5);
   for (const golden of goldens) {

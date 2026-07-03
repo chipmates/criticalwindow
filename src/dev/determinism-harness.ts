@@ -5,11 +5,11 @@
  * The Playwright spec compares them across Chromium, Firefox and WebKit:
  * if any hash differs, the engine leaked implementation-defined behavior.
  */
-import { loadEngineData } from '../../src/engine/data';
-import { hashDataFiles, hashJsonValue } from '../../src/engine/hash';
-import { initGame } from '../../src/engine/init';
-import { step } from '../../src/engine/step';
-import type { Action, WorldviewPresetId } from '../../src/engine/types';
+import { loadEngineData } from '../engine/data';
+import { hashDataFiles, hashJsonValue } from '../engine/hash';
+import { initGame } from '../engine/init';
+import { step } from '../engine/step';
+import type { Action, WorldviewPresetId } from '../engine/types';
 
 interface GoldenFixture {
   name: string;
@@ -18,14 +18,8 @@ interface GoldenFixture {
   actions: Action[];
 }
 
-const rawData = import.meta.glob('/data/**/*.json', { eager: true, query: '?raw' }) as Record<
-  string,
-  { default: string }
->;
-const goldenModules = import.meta.glob('/tests/golden/*.json', { eager: true }) as Record<
-  string,
-  { default: GoldenFixture }
->;
+const rawData = import.meta.glob('/data/**/*.json', { eager: true, query: '?raw' });
+const goldenModules = import.meta.glob('/tests/golden/*.json', { eager: true });
 
 function relPath(viteKey: string): string {
   return viteKey.replace('/data/', '');
