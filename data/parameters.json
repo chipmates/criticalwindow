@@ -93,9 +93,9 @@
     },
     "capabilityPerRnd": {
       "x": [0, 100, 200, 300, 400],
-      "y": [0, 50, 90, 120, 140],
+      "y": [0, 30, 60, 85, 100],
       "sourceIds": ["TODO-SOURCE"],
-      "note": "draft: capability gain per turn from R&D points allocated to capability; C2 calibrates against Epoch/METR doubling trends"
+      "note": "draft: capability gain per turn from R&D points allocated to capability; paced so a hard racer enters the fog zone around turn 9 of 16, not turn 5; C2 calibrates against Epoch/METR doubling trends"
     },
     "displacementFromCapability": {
       "x": [0, 200, 400, 600, 800, 1000],

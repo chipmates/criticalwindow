@@ -21,7 +21,8 @@
     "test": "vitest run",
     "validate": "tsx scripts/validate-data.ts",
     "schemas": "tsx scripts/generate-schemas.ts",
-    "simulate": "tsx scripts/simulate.ts"
+    "simulate": "tsx scripts/simulate.ts",
+    "print-kit": "tsx scripts/print-kit.ts"
   },
   "dependencies": {
     "react": "^19.2.7",
@@ -38,6 +39,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
+    "playwright": "^1.61.1",
     "prettier": "^3.9.4",
     "tsx": "^4.22.5",
     "typescript": "^6.0.3",

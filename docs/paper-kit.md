@@ -75,6 +75,12 @@ learn the truth. That is takeaway 2, physically.
 - Society updates and rival behavior run from small if-then tables on the reference card
   (checked top to bottom during World Update), not from the full curve set. The rival's
   three postures act with fixed printed moves per posture.
+- Policies sit in an open rack: all eight visible and playable when their gates allow.
+  The digital game rotates a smaller hand instead. Same cards, different access.
+- Incident dice checks are reserved for future cards. Kit v0 uses the d10s only for
+  the envelope ritual.
+- The hidden agency counter (Gradual Disempowerment hook) is digital-only. Cards that
+  move it print without that line. The paper endgame ignores it by design.
 - The satirical news ticker is digital-only. On paper the event cards carry the tone.
 - Eval reports happen when you choose to read them (free action), not automatically.
 
