@@ -9,7 +9,6 @@
  * - Idempotent: a line regenerates only when its text/voice hash changes.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { hashStringHex } from '../src/engine/hash';
 
@@ -23,16 +22,7 @@ function resolveKey(): string {
   if (process.env.ELEVENLABS_API_KEY) {
     return process.env.ELEVENLABS_API_KEY;
   }
-  const envPath = join(homedir(), 'Documents/Coding/story-generator/.env');
-  if (existsSync(envPath)) {
-    for (const line of readFileSync(envPath, 'utf8').split('\n')) {
-      const match = /^ELEVENLABS_API_KEY=(.+)$/.exec(line.trim());
-      if (match) {
-        return match[1]!.trim();
-      }
-    }
-  }
-  throw new Error('ELEVENLABS_API_KEY not found (env or recorded .env location)');
+  throw new Error('set ELEVENLABS_API_KEY in the environment (build-time only, never committed)');
 }
 
 const script = JSON.parse(
