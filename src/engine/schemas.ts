@@ -226,9 +226,51 @@ export const parametersSchema = z.strictObject({
     safetyInsightNarrowing: sourcedIntSchema,
     floorBandWidth: sourcedIntSchema,
   }),
+  thresholds: z.strictObject({
+    fogZoneStart: sourcedIntSchema,
+    capabilityThreshold: sourcedIntSchema,
+    breakdownUnrest: sourcedIntSchema,
+    treatyTrustMin: sourcedIntSchema,
+    gridSlackBeforeCap: sourcedIntSchema,
+  }),
+  worldRules: z.strictObject({
+    rivalMoves: z.strictObject({
+      race: z.strictObject({ capability: sourcedIntSchema, trust: sourcedIntSchema }),
+      mirror: z.strictObject({
+        capability: sourcedIntSchema,
+        matchBonus: sourcedIntSchema,
+        diplomacyTrust: sourcedIntSchema,
+      }),
+      cautious: z.strictObject({ capability: sourcedIntSchema, trust: sourcedIntSchema }),
+    }),
+    postureChecks: z.strictObject({
+      cautiousTrustMin: sourcedIntSchema,
+      raceGapMin: sourcedIntSchema,
+      raceTrustMax: sourcedIntSchema,
+    }),
+    society: z.strictObject({
+      displacementCapabilityMin: sourcedIntSchema,
+      displacementPerTurn: sourcedIntSchema,
+      displacementSurgeCapability: sourcedIntSchema,
+      diffusionReliefPer: sourcedIntSchema,
+      unrestFromDisplacementGap: sourcedIntSchema,
+      unrestSurgeDisplacement: sourcedIntSchema,
+      trustErosionUnrestMin: sourcedIntSchema,
+      trustErosionPerTurn: sourcedIntSchema,
+    }),
+    election: z.strictObject({
+      trustMin: sourcedIntSchema,
+      unrestMax: sourcedIntSchema,
+      mandateSwing: sourcedIntSchema,
+    }),
+    upkeep: z.strictObject({
+      capitalIncomePerDiffusion: sourcedIntSchema,
+    }),
+  }),
   turnStructure: z.strictObject({
     maxTurns: sourcedIntSchema,
     electionTurn: sourcedIntSchema,
+    handSize: sourcedIntSchema,
     eras: z
       .array(z.strictObject({ id: z.enum(ERA_IDS), fromTurn: turnInt }))
       .min(1)

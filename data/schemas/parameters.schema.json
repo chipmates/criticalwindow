@@ -429,6 +429,1039 @@
       ],
       "additionalProperties": false
     },
+    "thresholds": {
+      "type": "object",
+      "properties": {
+        "fogZoneStart": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "capabilityThreshold": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "breakdownUnrest": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "treatyTrustMin": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
+        "gridSlackBeforeCap": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "fogZoneStart",
+        "capabilityThreshold",
+        "breakdownUnrest",
+        "treatyTrustMin",
+        "gridSlackBeforeCap"
+      ],
+      "additionalProperties": false
+    },
+    "worldRules": {
+      "type": "object",
+      "properties": {
+        "rivalMoves": {
+          "type": "object",
+          "properties": {
+            "race": {
+              "type": "object",
+              "properties": {
+                "capability": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "minimum": -1000,
+                      "maximum": 1000
+                    },
+                    "sourceIds": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                          },
+                          {
+                            "type": "string",
+                            "const": "TODO-SOURCE"
+                          }
+                        ]
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceIds"
+                  ],
+                  "additionalProperties": false
+                },
+                "trust": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "minimum": -1000,
+                      "maximum": 1000
+                    },
+                    "sourceIds": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                          },
+                          {
+                            "type": "string",
+                            "const": "TODO-SOURCE"
+                          }
+                        ]
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceIds"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "capability",
+                "trust"
+              ],
+              "additionalProperties": false
+            },
+            "mirror": {
+              "type": "object",
+              "properties": {
+                "capability": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "minimum": -1000,
+                      "maximum": 1000
+                    },
+                    "sourceIds": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                          },
+                          {
+                            "type": "string",
+                            "const": "TODO-SOURCE"
+                          }
+                        ]
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceIds"
+                  ],
+                  "additionalProperties": false
+                },
+                "matchBonus": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "minimum": -1000,
+                      "maximum": 1000
+                    },
+                    "sourceIds": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                          },
+                          {
+                            "type": "string",
+                            "const": "TODO-SOURCE"
+                          }
+                        ]
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceIds"
+                  ],
+                  "additionalProperties": false
+                },
+                "diplomacyTrust": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "minimum": -1000,
+                      "maximum": 1000
+                    },
+                    "sourceIds": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                          },
+                          {
+                            "type": "string",
+                            "const": "TODO-SOURCE"
+                          }
+                        ]
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceIds"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "capability",
+                "matchBonus",
+                "diplomacyTrust"
+              ],
+              "additionalProperties": false
+            },
+            "cautious": {
+              "type": "object",
+              "properties": {
+                "capability": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "minimum": -1000,
+                      "maximum": 1000
+                    },
+                    "sourceIds": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                          },
+                          {
+                            "type": "string",
+                            "const": "TODO-SOURCE"
+                          }
+                        ]
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceIds"
+                  ],
+                  "additionalProperties": false
+                },
+                "trust": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "minimum": -1000,
+                      "maximum": 1000
+                    },
+                    "sourceIds": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                          },
+                          {
+                            "type": "string",
+                            "const": "TODO-SOURCE"
+                          }
+                        ]
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceIds"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "capability",
+                "trust"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "race",
+            "mirror",
+            "cautious"
+          ],
+          "additionalProperties": false
+        },
+        "postureChecks": {
+          "type": "object",
+          "properties": {
+            "cautiousTrustMin": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "raceGapMin": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "raceTrustMax": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "cautiousTrustMin",
+            "raceGapMin",
+            "raceTrustMax"
+          ],
+          "additionalProperties": false
+        },
+        "society": {
+          "type": "object",
+          "properties": {
+            "displacementCapabilityMin": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "displacementPerTurn": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "displacementSurgeCapability": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "diffusionReliefPer": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "unrestFromDisplacementGap": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "unrestSurgeDisplacement": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "trustErosionUnrestMin": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "trustErosionPerTurn": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "displacementCapabilityMin",
+            "displacementPerTurn",
+            "displacementSurgeCapability",
+            "diffusionReliefPer",
+            "unrestFromDisplacementGap",
+            "unrestSurgeDisplacement",
+            "trustErosionUnrestMin",
+            "trustErosionPerTurn"
+          ],
+          "additionalProperties": false
+        },
+        "election": {
+          "type": "object",
+          "properties": {
+            "trustMin": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "unrestMax": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            },
+            "mandateSwing": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "trustMin",
+            "unrestMax",
+            "mandateSwing"
+          ],
+          "additionalProperties": false
+        },
+        "upkeep": {
+          "type": "object",
+          "properties": {
+            "capitalIncomePerDiffusion": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                "sourceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                      },
+                      {
+                        "type": "string",
+                        "const": "TODO-SOURCE"
+                      }
+                    ]
+                  }
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "sourceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "capitalIncomePerDiffusion"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "rivalMoves",
+        "postureChecks",
+        "society",
+        "election",
+        "upkeep"
+      ],
+      "additionalProperties": false
+    },
     "turnStructure": {
       "type": "object",
       "properties": {
@@ -500,6 +1533,40 @@
           ],
           "additionalProperties": false
         },
+        "handSize": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "sourceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "TODO-SOURCE"
+                  }
+                ]
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        },
         "eras": {
           "minItems": 1,
           "type": "array",
@@ -531,6 +1598,7 @@
       "required": [
         "maxTurns",
         "electionTurn",
+        "handSize",
         "eras"
       ],
       "additionalProperties": false
@@ -594,6 +1662,8 @@
   "required": [
     "worldviewPresets",
     "evalUncertainty",
+    "thresholds",
+    "worldRules",
     "turnStructure",
     "curves"
   ],

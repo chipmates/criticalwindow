@@ -68,10 +68,11 @@ export function initStream(masterSeed: string, streamName: string): RngStreamSta
     carry = nextCarry;
   }
   // xoshiro must never start all-zero; unreachable in practice, cheap to guard.
-  if (out.every((w) => w === 0)) {
-    out[0] = 1;
+  const state: [number, number, number, number] = [out[0]!, out[1]!, out[2]!, out[3]!];
+  if (state[0] === 0 && state[1] === 0 && state[2] === 0 && state[3] === 0) {
+    return [1, 0, 0, 0];
   }
-  return [out[0]!, out[1]!, out[2]!, out[3]!];
+  return state;
 }
 
 /** All named streams for a run. */

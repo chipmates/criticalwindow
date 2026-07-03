@@ -67,6 +67,133 @@
       "note": "the band never closes: perfect verification is not on the menu (Sleeper Agents persistence result)"
     }
   },
+  "thresholds": {
+    "fogZoneStart": {
+      "value": 800,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "capability level where the threshold zone begins; the race track shades from here"
+    },
+    "capabilityThreshold": {
+      "value": 1000,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "crossing forces the alignment resolution (envelope opens)"
+    },
+    "breakdownUnrest": {
+      "value": 800,
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "unrest level that ends the run as Societal Breakdown; paper playtests tune"
+    },
+    "treatyTrustMin": {
+      "value": 700,
+      "sourceIds": ["TODO-SOURCE"],
+      "note": "rival trust required to sign the verified slowdown"
+    },
+    "gridSlackBeforeCap": {
+      "value": 300,
+      "sourceIds": ["SRC-IEA-ENERGY-AI", "TODO-SOURCE"],
+      "note": "compute may exceed energy by this much before the grid limit bites in upkeep"
+    }
+  },
+  "worldRules": {
+    "rivalMoves": {
+      "race": {
+        "capability": {
+          "value": 100,
+          "sourceIds": ["TODO-SOURCE"],
+          "note": "rival capability per turn in race posture; v0 from the paper reference card"
+        },
+        "trust": { "value": -50, "sourceIds": ["TODO-SOURCE"] }
+      },
+      "mirror": {
+        "capability": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+        "matchBonus": {
+          "value": 50,
+          "sourceIds": ["TODO-SOURCE"],
+          "note": "extra rival capability when the player gained 100+ this turn (tit-for-tat)"
+        },
+        "diplomacyTrust": {
+          "value": 50,
+          "sourceIds": ["TODO-SOURCE"],
+          "note": "trust gain when the player played a diplomacy-tagged card this turn"
+        }
+      },
+      "cautious": {
+        "capability": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+        "trust": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+      }
+    },
+    "postureChecks": {
+      "cautiousTrustMin": {
+        "value": 700,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "trust + treatyChannel flag flips rival to cautious"
+      },
+      "raceGapMin": {
+        "value": 200,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "player capability lead that flips rival to race"
+      },
+      "raceTrustMax": {
+        "value": 250,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "trust at or below this flips rival to race"
+      }
+    },
+    "society": {
+      "displacementCapabilityMin": {
+        "value": 400,
+        "sourceIds": ["SRC-IMF-GENAI", "TODO-SOURCE"],
+        "note": "capability level where displacement pressure starts; v2 uses the displacementFromCapability curve"
+      },
+      "displacementPerTurn": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+      "displacementSurgeCapability": {
+        "value": 700,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "above this, displacement accrues double"
+      },
+      "diffusionReliefPer": {
+        "value": 100,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "diffusion R&D points (digital) per unit of relief chosen in the society step"
+      },
+      "unrestFromDisplacementGap": {
+        "value": 50,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "unrest per turn while displacement exceeds public trust"
+      },
+      "unrestSurgeDisplacement": {
+        "value": 600,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "above this displacement, unrest accrues double"
+      },
+      "trustErosionUnrestMin": {
+        "value": 500,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "unrest level where public trust starts eroding"
+      },
+      "trustErosionPerTurn": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+    },
+    "election": {
+      "trustMin": {
+        "value": 400,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
+        "note": "midterm verdict: trust at or above this AND unrest at or below unrestMax renews the mandate"
+      },
+      "unrestMax": { "value": 400, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+      "mandateSwing": {
+        "value": 100,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
+        "note": "political capital gained on renewal, lost on rebuke"
+      }
+    },
+    "upkeep": {
+      "capitalIncomePerDiffusion": {
+        "value": 25,
+        "sourceIds": ["TODO-SOURCE"],
+        "note": "capital income per 100 diffusion R&D points invested the previous turn (diffusion converts capability into the economy)"
+      }
+    }
+  },
   "turnStructure": {
     "maxTurns": {
       "value": 16,
@@ -77,6 +204,11 @@
       "value": 8,
       "sourceIds": ["SRC-DESIGN-HANDOVER"],
       "note": "US midterms fall on turn 8 of the quarterly clock"
+    },
+    "handSize": {
+      "value": 3,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "rotating policy hand; refills from the unspent pool each upkeep"
     },
     "eras": [
       { "id": "early", "fromTurn": 1 },

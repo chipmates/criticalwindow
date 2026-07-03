@@ -20,5 +20,5 @@
     "noImplicitReturns": true,
     "noImplicitOverride": true
   },
-  "include": ["src", "tests", "data"]
+  "include": ["src", "data"]
 }

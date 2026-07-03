@@ -28,9 +28,57 @@
     "safetyInsightNarrowing": { "value": 30, "sourceIds": ["SRC-SLEEPER"] },
     "floorBandWidth": { "value": 80, "sourceIds": ["SRC-SLEEPER"] }
   },
+  "thresholds": {
+    "fogZoneStart": { "value": 800, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+    "capabilityThreshold": { "value": 1000, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+    "breakdownUnrest": { "value": 800, "sourceIds": ["TODO-SOURCE"] },
+    "treatyTrustMin": { "value": 700, "sourceIds": ["TODO-SOURCE"] },
+    "gridSlackBeforeCap": { "value": 300, "sourceIds": ["TODO-SOURCE"] }
+  },
+  "worldRules": {
+    "rivalMoves": {
+      "race": {
+        "capability": { "value": 100, "sourceIds": ["TODO-SOURCE"] },
+        "trust": { "value": -50, "sourceIds": ["TODO-SOURCE"] }
+      },
+      "mirror": {
+        "capability": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+        "matchBonus": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+        "diplomacyTrust": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+      },
+      "cautious": {
+        "capability": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+        "trust": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+      }
+    },
+    "postureChecks": {
+      "cautiousTrustMin": { "value": 700, "sourceIds": ["TODO-SOURCE"] },
+      "raceGapMin": { "value": 200, "sourceIds": ["TODO-SOURCE"] },
+      "raceTrustMax": { "value": 250, "sourceIds": ["TODO-SOURCE"] }
+    },
+    "society": {
+      "displacementCapabilityMin": { "value": 400, "sourceIds": ["TODO-SOURCE"] },
+      "displacementPerTurn": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+      "displacementSurgeCapability": { "value": 700, "sourceIds": ["TODO-SOURCE"] },
+      "diffusionReliefPer": { "value": 100, "sourceIds": ["TODO-SOURCE"] },
+      "unrestFromDisplacementGap": { "value": 50, "sourceIds": ["TODO-SOURCE"] },
+      "unrestSurgeDisplacement": { "value": 600, "sourceIds": ["TODO-SOURCE"] },
+      "trustErosionUnrestMin": { "value": 500, "sourceIds": ["TODO-SOURCE"] },
+      "trustErosionPerTurn": { "value": 50, "sourceIds": ["TODO-SOURCE"] }
+    },
+    "election": {
+      "trustMin": { "value": 400, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+      "unrestMax": { "value": 400, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+      "mandateSwing": { "value": 100, "sourceIds": ["SRC-DESIGN-HANDOVER"] }
+    },
+    "upkeep": {
+      "capitalIncomePerDiffusion": { "value": 25, "sourceIds": ["TODO-SOURCE"] }
+    }
+  },
   "turnStructure": {
     "maxTurns": { "value": 16, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
     "electionTurn": { "value": 8, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
+    "handSize": { "value": 3, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
     "eras": [
       { "id": "early", "fromTurn": 1 },
       { "id": "mid", "fromTurn": 6 },

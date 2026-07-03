@@ -238,6 +238,17 @@ export interface GameState {
   /** Sorted string set. */
   flags: string[];
 
+  /**
+   * Per-turn scratch, reset each upkeep. Lets world-update rules react to
+   * what happened THIS turn (tit-for-tat, diffusion conversion) without
+   * re-deriving it from the log.
+   */
+  turnScratch: {
+    capabilityGained: number;
+    diffusionPts: number;
+    playedDiplomacy: boolean;
+  };
+
   log: LogEntry[];
   rng: RngState;
 
