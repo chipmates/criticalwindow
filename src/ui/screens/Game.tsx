@@ -1,0 +1,212 @@
+import { useEffect, useRef } from 'react';
+import { evalCurve } from '../../engine/math';
+import { eraForTurn } from '../../engine/step';
+import { hashString } from '../../engine/hash';
+import { AllocationControl } from '../components/AllocationControl';
+import { EvalBand } from '../components/EvalBand';
+import { EventMemo } from '../components/EventMemo';
+import { Meter } from '../components/Meter';
+import { PolicyHand } from '../components/PolicyHand';
+import { RaceTrack } from '../components/RaceTrack';
+import { TurnReport } from '../components/TurnReport';
+import { eraLabelKey, turnDate } from '../format';
+import { t, tickerPool } from '../i18n';
+import { gameData, useStore } from '../store';
+
+/** Deterministic, replay-stable ticker line: hash(seed, turn) over the era pool. */
+function tickerLine(seed: string, turn: number, era: 'early' | 'mid' | 'late'): string {
+  const pool = tickerPool(era);
+  return pool[hashString(`${seed}::ticker::${turn}`) % pool.length]!;
+}
+
+export function Game() {
+  const run = useStore((s) => s.run);
+  const dispatch = useStore((s) => s.dispatch);
+  const goTo = useStore((s) => s.goTo);
+  const data = gameData();
+  const liveRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (run && liveRef.current) {
+      liveRef.current.textContent =
+        run.phase === 'ended'
+          ? t('a11y.runEnded', { ending: run.endingId ?? '' })
+          : t('a11y.turnAdvanced', { turn: run.turn });
+    }
+  }, [run]);
+
+  if (!run) {
+    return null;
+  }
+
+  const era = eraForTurn(data.parameters, run.turn);
+  const date = turnDate(data.scenario.startTime, run.turn);
+  const maxTurns = data.parameters.turnStructure.maxTurns.value;
+  const report = run.evalHistory[run.evalHistory.length - 1];
+  const bandWidth = report ? report.bandHigh - report.bandLow : 400;
+  const rndPoints = evalCurve(
+    data.parameters.curves['rndCapacity']!,
+    run.resources.compute + run.resources.talent,
+  );
+  const prev = (target: string): number => {
+    for (let i = run.log.length - 1; i >= 0; i -= 1) {
+      const entry = run.log[i]!;
+      if (entry.turn < run.turn && entry.deltas && target in entry.deltas) {
+        return entry.deltas[target as keyof typeof entry.deltas] ?? 0;
+      }
+    }
+    return 0;
+  };
+
+  return (
+    <main className="game">
+      <p ref={liveRef} className="visually-hidden" role="status" aria-live="polite" />
+
+      <header className="game-head">
+        <span className="game-brand">{t('app.title')}</span>
+        <span className="game-clock">
+          {t('hud.turn', { turn: run.turn, maxTurns })} ·{' '}
+          {t('hud.date', { quarter: date.quarter, year: date.year })}
+        </span>
+        <span className="game-era">{t(eraLabelKey(era))}</span>
+      </header>
+
+      <div className="wire" aria-label={t('a11y.tickerLabel')}>
+        <span className="wire-masthead">{t('ticker.masthead')}</span>
+        <span className="wire-line">{tickerLine(run.seed, run.turn, era)}</span>
+      </div>
+
+      <RaceTrack
+        you={run.resources.capability}
+        rival={run.rival.capability}
+        fogFrom={data.parameters.thresholds.fogZoneStart.value}
+        threshold={data.parameters.thresholds.capabilityThreshold.value}
+        bandWidth={bandWidth}
+      />
+
+      <div className="game-grid">
+        <div className="game-main">
+          {run.phase === 'allocate' && (
+            <AllocationControl
+              initial={run.allocation}
+              points={rndPoints}
+              onCommit={(a) => dispatch({ type: 'allocate', ...a })}
+            />
+          )}
+          {run.phase === 'policy' && (
+            <PolicyHand
+              data={data}
+              run={run}
+              onPlay={(policyId) => dispatch({ type: 'playPolicy', policyId })}
+              onSkip={() => dispatch({ type: 'skipPolicy' })}
+            />
+          )}
+          {(run.phase === 'report' || run.phase === 'ended') && (
+            <TurnReport
+              data={data}
+              run={run}
+              onAdvance={() =>
+                run.phase === 'ended' ? goTo('debrief') : dispatch({ type: 'advance' })
+              }
+            />
+          )}
+          <EvalBand run={run} />
+        </div>
+
+        <aside className="game-side" aria-label={t('dash.heading')}>
+          <h2 className="panel-heading">{t('dash.heading')}</h2>
+          <Meter
+            label={t('resource.compute.label')}
+            value={run.resources.compute}
+            token="--m-capital"
+            trend={prev('compute')}
+          />
+          <Meter
+            label={t('resource.energy.label')}
+            value={run.resources.energy}
+            token="--m-energy"
+            trend={prev('energy')}
+          />
+          <Meter
+            label={t('resource.talent.label')}
+            value={run.resources.talent}
+            token="--m-capital"
+            trend={prev('talent')}
+          />
+          <Meter
+            label={t('resource.capital.label')}
+            value={run.resources.capital}
+            token="--m-capital"
+            trend={prev('capital')}
+          />
+          <Meter
+            label={t('resource.publicTrust.label')}
+            value={run.resources.publicTrust}
+            token="--m-trust"
+            trend={prev('publicTrust')}
+          />
+          <Meter
+            label={t('resource.politicalCapital.label')}
+            value={run.resources.politicalCapital}
+            token="--m-trust"
+            trend={prev('politicalCapital')}
+          />
+          <Meter
+            label={t('resource.capability.label')}
+            value={run.resources.capability}
+            token="--m-capability"
+            trend={prev('capability')}
+          />
+          <Meter
+            label={t('resource.safetyInsight.label')}
+            value={run.resources.safetyInsight}
+            token="--m-safety"
+            trend={prev('safetyInsight')}
+          />
+          <h2 className="panel-heading side-sub">{t('society.jobDisplacement.label')}</h2>
+          <Meter
+            label={t('society.jobDisplacement.label')}
+            value={run.society.jobDisplacement}
+            token="--m-unrest"
+            trend={prev('society.jobDisplacement')}
+          />
+          <Meter
+            label={t('society.unrest.label')}
+            value={run.society.unrest}
+            token="--m-unrest"
+            trend={prev('society.unrest')}
+          />
+          <h2 className="panel-heading side-sub">{t('race.rival')}</h2>
+          <Meter
+            label={t('rival.capability.label')}
+            value={run.rival.capability}
+            token="--m-rival"
+            trend={prev('rival.capability')}
+          />
+          <Meter
+            label={t('rival.trust.label')}
+            value={run.rival.trust}
+            token="--m-trust"
+            trend={prev('rival.trust')}
+          />
+          <Meter
+            label={t('rival.substitution.label')}
+            value={run.rival.substitution}
+            token="--m-rival"
+            trend={prev('rival.substitution')}
+          />
+        </aside>
+      </div>
+
+      {run.phase === 'event' && (
+        <EventMemo
+          data={data}
+          run={run}
+          onChoose={(eventId, choiceIndex) =>
+            dispatch({ type: 'resolveEventChoice', eventId, choiceIndex })
+          }
+        />
+      )}
+    </main>
+  );
+}

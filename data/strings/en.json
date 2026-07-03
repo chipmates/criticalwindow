@@ -351,5 +351,12 @@
   "a11y.raceTrack": "Race track: your capability {you} of 1000, rival {rival} of 1000, threshold fog begins at {fog}",
   "a11y.skipToGame": "Skip to game controls",
   "footer.privacy": "No accounts. No tracking. Saves live in your browser.",
-  "footer.feedback": "Found something wrong? We collect arguments."
+  "footer.feedback": "Found something wrong? We collect arguments.",
+  "report.kind.upkeep": "Upkeep",
+  "report.kind.delayedEffect": "Delayed consequence: {source}",
+  "report.kind.policyPlayed": "Policy enacted: {source}",
+  "report.kind.eventResolved": "Memo decided: {source}",
+  "report.kind.societyUpdate": "Society",
+  "report.kind.rivalAction": "Rival moves",
+  "report.kind.election": "Midterms"
 }

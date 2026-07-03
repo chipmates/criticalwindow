@@ -1,0 +1,63 @@
+import { useEffect, useRef } from 'react';
+import type { EngineData } from '../../engine/data';
+import type { GameState } from '../../engine/types';
+import { delayedSummary, effectSummary, turnDate } from '../format';
+import { t, tRef } from '../i18n';
+
+interface EventMemoProps {
+  data: EngineData;
+  run: GameState;
+  onChoose: (eventId: string, choiceIndex: number) => void;
+}
+
+/**
+ * The priority memo. A forced decision: no dismiss, no escape, exactly like
+ * the situation it models. Focus moves into the dialog and stays until a
+ * choice is made.
+ */
+export function EventMemo({ data, run, onChoose }: EventMemoProps) {
+  const pending = run.pendingEvents[0];
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, [pending?.eventId]);
+
+  if (!pending) {
+    return null;
+  }
+  const card = data.events.find((e) => e.id === pending.eventId)!;
+  const date = turnDate(data.scenario.startTime, run.turn);
+
+  return (
+    <div className="memo-backdrop">
+      <section className="memo" role="dialog" aria-modal="true" aria-labelledby="memo-title">
+        <div className="memo-masthead">
+          {t('phase.event.heading')} · {date.quarter} {date.year}
+        </div>
+        <h2 id="memo-title" className="memo-title" tabIndex={-1} ref={headingRef}>
+          {tRef(card.title)}
+        </h2>
+        <p className="memo-body">{tRef(card.body)}</p>
+        <div className="memo-choices">
+          {card.choices.map((choice, index) => (
+            <button
+              key={index}
+              type="button"
+              className="memo-choice"
+              onClick={() => onChoose(card.id, index)}
+            >
+              <span className="memo-choice-label">{tRef(choice.label)}</span>
+              <span className="memo-choice-effects">
+                {[...effectSummary(choice.effects), ...delayedSummary(choice.delayedEffects)].join(
+                  ' · ',
+                )}
+              </span>
+            </button>
+          ))}
+        </div>
+        <p className="memo-sources">{card.sourceIds.join(' · ')}</p>
+      </section>
+    </div>
+  );
+}
