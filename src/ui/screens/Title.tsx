@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { SettingsDialog } from '../components/SettingsDialog';
 import { t } from '../i18n';
 import { useStore } from '../store';
 
@@ -5,6 +7,7 @@ export function Title() {
   const goTo = useStore((s) => s.goTo);
   const loadFrom = useStore((s) => s.loadFrom);
   const hasAutosave = useStore((s) => s.hasAutosave)();
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
     <main className="title-screen">
@@ -23,7 +26,16 @@ export function Title() {
           )}
         </div>
         <p className="title-privacy">{t('footer.privacy')}</p>
+        <button
+          type="button"
+          className="btn"
+          aria-label={t('settings.heading')}
+          onClick={() => setSettingsOpen(true)}
+        >
+          {t('settings.heading')}
+        </button>
       </div>
+      {settingsOpen && <SettingsDialog onClose={() => setSettingsOpen(false)} />}
     </main>
   );
 }

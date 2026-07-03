@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { evalCurve } from '../../engine/math';
 import { eraForTurn } from '../../engine/step';
 import { hashString } from '../../engine/hash';
@@ -8,6 +8,7 @@ import { EventMemo } from '../components/EventMemo';
 import { Meter } from '../components/Meter';
 import { PolicyHand } from '../components/PolicyHand';
 import { RaceTrack } from '../components/RaceTrack';
+import { SettingsDialog } from '../components/SettingsDialog';
 import { TurnReport } from '../components/TurnReport';
 import { eraLabelKey, turnDate } from '../format';
 import { t, tickerPool } from '../i18n';
@@ -25,6 +26,7 @@ export function Game() {
   const goTo = useStore((s) => s.goTo);
   const data = gameData();
   const liveRef = useRef<HTMLParagraphElement>(null);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
     if (run && liveRef.current) {
@@ -69,6 +71,14 @@ export function Game() {
           {t('hud.date', { quarter: date.quarter, year: date.year })}
         </span>
         <span className="game-era">{t(eraLabelKey(era))}</span>
+        <button
+          type="button"
+          className="btn"
+          aria-label={t('settings.heading')}
+          onClick={() => setSettingsOpen(true)}
+        >
+          ⚙
+        </button>
       </header>
 
       <div className="wire" aria-label={t('a11y.tickerLabel')}>
@@ -198,6 +208,7 @@ export function Game() {
         </aside>
       </div>
 
+      {settingsOpen && <SettingsDialog onClose={() => setSettingsOpen(false)} />}
       {run.phase === 'event' && (
         <EventMemo
           data={data}

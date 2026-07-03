@@ -133,7 +133,7 @@
 .title-privacy {
   margin: var(--space-4) 0 0;
   font-size: var(--text-xs);
-  color: var(--ink-faint);
+  color: var(--ink-muted);
 }
 
 /* ---------- setup ---------- */
@@ -182,14 +182,14 @@
   margin: 0;
   font-family: var(--font-data);
   font-size: var(--text-xs);
-  color: var(--ink-faint);
+  color: var(--ink-muted);
   overflow-wrap: anywhere;
 }
 
 .setup-sources-note {
   margin: 0;
   font-size: var(--text-xs);
-  color: var(--ink-faint);
+  color: var(--ink-muted);
   font-variant: small-caps;
   letter-spacing: 0.1em;
 }
@@ -415,7 +415,7 @@
 .alloc-hint {
   margin: var(--space-1) 0 0;
   font-size: var(--text-xs);
-  color: var(--ink-faint);
+  color: var(--ink-muted);
 }
 
 .alloc-remaining {
@@ -465,7 +465,7 @@
 
 .card-badge {
   font-size: var(--text-xs);
-  color: var(--ink-faint);
+  color: var(--ink-muted);
   white-space: nowrap;
 }
 
@@ -503,7 +503,7 @@
 
 .card-lock-reason {
   font-size: var(--text-xs);
-  color: var(--ink-faint);
+  color: var(--ink-muted);
   font-style: italic;
 }
 
@@ -591,7 +591,7 @@
   margin: 0;
   font-family: var(--font-data);
   font-size: var(--text-xs);
-  color: var(--ink-faint);
+  color: var(--ink-muted);
 }
 
 /* report */
@@ -748,4 +748,56 @@
 .debrief-provocation {
   border-top: var(--hairline) solid var(--rule);
   padding-top: var(--space-3);
+}
+
+/* ---------- settings dialog ---------- */
+
+.settings {
+  max-width: 30rem;
+}
+
+.settings-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-row {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.settings-label {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.settings-slot-state {
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+.settings-options {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.settings-on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.settings-saves {
+  display: grid;
+  gap: var(--space-3);
+  border-top: var(--hairline) solid var(--rule);
+  padding-top: var(--space-3);
+}
+
+.settings-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: var(--text-sm);
 }
