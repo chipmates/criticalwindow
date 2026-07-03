@@ -19,6 +19,9 @@ devDependencies:
   '@eslint/js':
     specifier: ^10.0.1
     version: 10.0.1(eslint@10.6.0)
+  '@playwright/test':
+    specifier: ^1.61.1
+    version: 1.61.1
   '@types/node':
     specifier: ^26.1.0
     version: 26.1.0
@@ -621,6 +624,14 @@ packages:
 
   /@oxc-project/types@0.138.0:
     resolution: {integrity: sha512-1a7ZKmrRTCoN1XMZ4L0PyyqrMnrNlLyPuOkdSX2MZg7IiIGRUyurNhAm73ptDOraoBcIordsIGKNPKUzy3ZmfA==}
+    dev: true
+
+  /@playwright/test@1.61.1:
+    resolution: {integrity: sha512-8nKv6+0RJSL9FE4jYOEGXnPeM/Hg12qZpmqzZjRh3qM0Y7c3z1mrOTfFLids72RDQYVh9WpLEfR5WdpNX4fkig==}
+    engines: {node: '>=18'}
+    hasBin: true
+    dependencies:
+      playwright: 1.61.1
     dev: true
 
   /@rolldown/binding-android-arm64@1.1.4:

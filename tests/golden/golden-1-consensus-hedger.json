@@ -1,0 +1,138 @@
+{
+  "name": "golden-1-consensus-hedger",
+  "dataVersion": "096780bf0e6ef6",
+  "seed": "golden-1",
+  "presetId": "consensus",
+  "bot": "hedger",
+  "endingId": "negotiatedSlowdown",
+  "turns": 7,
+  "actions": [
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "energy_buildout"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "viral_job_loss",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "interpretability_moonshot"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "grid_strain",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "chip_subsidies"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "eval_breakthrough",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "open_weights_shock",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "energy_buildout"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "whistleblower",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "taiwan_strait_crisis",
+      "choiceIndex": 1
+    }
+  ],
+  "perTurnHashes": [
+    "174ecaace85dce",
+    "11131db17abed4",
+    "0780890207b9a1",
+    "0370f9dfefa81d",
+    "0eeef504493921",
+    "0a315a34ef8572",
+    "09abca0ef0a0e5"
+  ],
+  "finalHash": "09abca0ef0a0e5"
+}

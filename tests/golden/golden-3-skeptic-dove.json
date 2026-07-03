@@ -1,0 +1,171 @@
+{
+  "name": "golden-3-skeptic-dove",
+  "dataVersion": "096780bf0e6ef6",
+  "seed": "golden-3",
+  "presetId": "skeptic",
+  "bot": "dove",
+  "endingId": "outpaced",
+  "turns": 9,
+  "actions": [
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "interpretability_moonshot"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "viral_job_loss",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "open_weights_shock",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "grid_strain",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "eval_breakthrough",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "treaty_feeler",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "taiwan_strait_crisis",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "whistleblower",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "model_weight_theft",
+      "choiceIndex": 1
+    }
+  ],
+  "perTurnHashes": [
+    "11bbe42d82193e",
+    "15e712597a7b36",
+    "08f1d414558072",
+    "18c32e4809ca90",
+    "1378ae9235272e",
+    "0f31042099a622",
+    "1854e029d35576",
+    "0d5fb5b27774b3",
+    "045feab10010e7"
+  ],
+  "finalHash": "045feab10010e7"
+}

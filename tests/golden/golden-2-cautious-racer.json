@@ -1,0 +1,137 @@
+{
+  "name": "golden-2-cautious-racer",
+  "dataVersion": "096780bf0e6ef6",
+  "seed": "golden-2",
+  "presetId": "cautious",
+  "bot": "racer",
+  "endingId": "misalignedCatastrophe",
+  "turns": 7,
+  "actions": [
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "export_controls"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "viral_job_loss",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "chip_subsidies"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "open_weights_shock",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "energy_buildout"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "grid_strain",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "eval_breakthrough",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "export_controls"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "natsec_merge"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "model_weight_theft",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "taiwan_strait_crisis",
+      "choiceIndex": 0
+    }
+  ],
+  "perTurnHashes": [
+    "1aca2d1d13e6cb",
+    "1e296adba8e4cb",
+    "1e3db9fa3cd3ec",
+    "13f38250a40cbb",
+    "1cd51b7bf81bdc",
+    "14dd7aa3731353",
+    "164796e248ccb2"
+  ],
+  "finalHash": "164796e248ccb2"
+}

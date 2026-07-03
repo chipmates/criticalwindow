@@ -41,3 +41,9 @@ jobs:
 
       - name: Simulation smoke (headless batch)
         run: pnpm simulate -- --runs 100
+
+      - name: Install browsers for determinism suite
+        run: pnpm exec playwright install --with-deps chromium firefox webkit
+
+      - name: Cross-browser determinism (golden hashes in 3 engines)
+        run: pnpm test:browser

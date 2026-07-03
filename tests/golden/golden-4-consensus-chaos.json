@@ -1,0 +1,209 @@
+{
+  "name": "golden-4-consensus-chaos",
+  "dataVersion": "096780bf0e6ef6",
+  "seed": "golden-4",
+  "presetId": "consensus",
+  "bot": "chaos",
+  "endingId": "outpaced",
+  "turns": 11,
+  "actions": [
+    {
+      "type": "allocate",
+      "capability": 100,
+      "safety": 0,
+      "diffusion": 0
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "viral_job_loss",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 40,
+      "safety": 0,
+      "diffusion": 60
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "grid_strain",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 100,
+      "safety": 0,
+      "diffusion": 0
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "eval_breakthrough",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 10,
+      "diffusion": 70
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "interpretability_moonshot"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "open_weights_shock",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 0,
+      "safety": 60,
+      "diffusion": 40
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 40,
+      "safety": 40,
+      "diffusion": 20
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "whistleblower",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 100,
+      "safety": 0,
+      "diffusion": 0
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "export_controls"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "chip_smuggling",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 0,
+      "safety": 40,
+      "diffusion": 60
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "chip_subsidies"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "taiwan_strait_crisis",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 30,
+      "safety": 30,
+      "diffusion": 40
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "natsec_merge"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "treaty_feeler",
+      "choiceIndex": 1
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 70,
+      "diffusion": 10
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "model_weight_theft",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 10,
+      "safety": 40,
+      "diffusion": 50
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "rival_breakthrough",
+      "choiceIndex": 0
+    }
+  ],
+  "perTurnHashes": [
+    "08d0989f8a6a50",
+    "1d8464d72fa989",
+    "0ca131b6291919",
+    "1404510b31f060",
+    "0c102652f6be42",
+    "0ef0f2a15065ee",
+    "02eaa1d73c1236",
+    "0157bfd22b6fdc",
+    "123dc9505ec632",
+    "101957b746277c",
+    "0c10ca87442fba"
+  ],
+  "finalHash": "0c10ca87442fba"
+}
