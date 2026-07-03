@@ -19,7 +19,7 @@
       "url": "https://arxiv.org/abs/2001.08361",
       "type": "paper",
       "tags": ["scaling", "compute", "forecasting"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "power-law scaling; foundation of compute mechanic"
     },
     {
@@ -31,7 +31,7 @@
       "url": "https://arxiv.org/abs/2203.15556",
       "type": "paper",
       "tags": ["scaling", "compute", "data"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "compute/params/data tradeoff (20 tokens/param heuristic)"
     },
     {
@@ -43,7 +43,7 @@
       "url": "https://arxiv.org/abs/2404.10102",
       "type": "paper",
       "tags": ["scaling", "uncertainty"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "models scaling-law uncertainty"
     },
     {
@@ -53,7 +53,7 @@
       "url": "https://epoch.ai/data/notable-ai-models",
       "type": "dataset",
       "tags": ["compute", "dataset", "models"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": ">3,500-model training-run database for the tech tree",
       "note": "Living database (ongoing)."
     },
@@ -64,7 +64,7 @@
       "url": "https://epoch.ai/data",
       "type": "dataset",
       "tags": ["compute", "trends", "dataset", "live-data"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "compute tech-tree and growth-curve anchor; frontier training compute doubling every 5.2 months since 2020 (~5x/yr)",
       "note": "Living hub, also listed in section 10 (models, hardware, benchmarks, chip sales, data centers). Trends dashboard: https://epoch.ai/trends (largest known run Grok 4 ~5e26 FLOP). HANDOVER section 11 lists https://epoch.ai."
     },
@@ -77,7 +77,7 @@
       "url": "https://epoch.ai/data-insights/compute-trend-post-2010",
       "type": "web",
       "tags": ["compute", "trends"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "compute growth-rate anchor"
     },
     {
@@ -88,7 +88,7 @@
       "url": "https://arxiv.org/abs/2504.16138",
       "type": "paper",
       "tags": ["forecasting", "compute"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "models exceeding compute thresholds over time"
     },
     {
@@ -99,7 +99,7 @@
       "url": "https://arxiv.org/abs/2503.04941",
       "type": "paper",
       "tags": ["economics", "automation", "takeoff"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "compute-centric economic takeoff model; automation/growth economic engine",
       "note": "Playground: https://epoch.ai/gate. Cross-listed in section 6 of BIBLIOGRAPHY-FULL."
     },
@@ -112,7 +112,7 @@
       "url": "https://ai-2027.com/",
       "type": "web",
       "tags": ["scenario", "forecasting", "timelines"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "race vs. slowdown endings; core scenario spine; cautious preset anchors",
       "note": "About: https://ai-2027.com/about. Author blog 'Our first project: AI 2027' (Kokotajlo): https://blog.aifutures.org/p/our-first-project-ai-2027. Caveat: scenario/projection, not established outcome."
     },
@@ -125,7 +125,7 @@
       "url": "https://arxiv.org/abs/2503.14499",
       "type": "paper",
       "tags": ["capabilities", "forecasting", "benchmarks"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "50% task-completion time horizon doubling ~every 7 months since 2019; capability clock calibration",
       "note": "Blog: https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/"
     },
@@ -137,7 +137,7 @@
       "url": "https://situational-awareness.ai/",
       "type": "web",
       "tags": ["forecasting", "takeoff", "worldview"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "aggressive-timeline / intelligence-explosion worldview preset",
       "note": "PDF: https://situational-awareness.ai/wp-content/uploads/2024/06/situationalawareness.pdf. Caveat: scenario/strategy argument, label as projection."
     },
@@ -149,7 +149,7 @@
       "url": "https://arxiv.org/abs/1705.08807",
       "type": "paper",
       "tags": ["forecasting", "timelines", "survey"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "expert-timeline survey (AI Impacts); treat estimates as ranges, not points",
       "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL flags that a newer 2023 AI Impacts survey exists. See SRC-GRACE-SURVEY for the 2024 paper."
     },
@@ -161,7 +161,7 @@
       "url": "https://arxiv.org/abs/2401.02843",
       "type": "paper",
       "tags": ["forecasting", "timelines", "survey"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "expert-survey timeline distributions; consensus preset anchors (HANDOVER core anchor)"
     },
     {
@@ -171,7 +171,7 @@
       "url": "https://ourworldindata.org/grapher/artificial-intelligence-training-computation",
       "type": "dataset",
       "tags": ["dataset", "compute", "live-data"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "live chart/data for UI",
       "note": "Live chart; bibliography dates it 2026. OWID AI topic hub (HANDOVER section 11): https://ourworldindata.org/artificial-intelligence"
     },
@@ -183,9 +183,9 @@
       "year": 2020,
       "type": "report",
       "tags": ["forecasting", "timelines", "compute"],
-      "status": "pending",
+      "status": "flagged",
       "gameUse": "bio-anchors timeline model",
-      "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL flags exact URLs for the Cotra/Davidson/Christiano bio-anchors cluster as unverified (Open Philanthropy site). HANDOVER hint: search openphilanthropy.org."
+      "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL flags exact URLs for the Cotra/Davidson/Christiano bio-anchors cluster as unverified (Open Philanthropy site). HANDOVER hint: search openphilanthropy.org. Verification 2026-07-03: unclear. No fetchable canonical page under the exact title. The report itself lives in an unlisted Google Drive folder per Cotra's own LessWrong announcement post, which is titled differently ('Draft report on AI timelines', not 'Forecasting TAI with Biological Anchors'). openphilanthropy.org/coefficientgiving.org has no confirmed page for it either (its 'key writings' page 403'd). All other search results are third-party commentary about the report, not the report itself."
     },
     {
       "id": "SRC-DAVIDSON-TAKEOFF",
@@ -196,7 +196,7 @@
       "url": "https://takeoffspeeds.com",
       "type": "web",
       "tags": ["takeoff", "forecasting", "compute"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "takeoff-speed modeling",
       "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL flags exact URLs for the Cotra/Davidson/Christiano cluster as unverified; this URL comes from HANDOVER section 11."
     },
@@ -208,7 +208,7 @@
       "url": "https://arxiv.org/abs/1606.06565",
       "type": "paper",
       "tags": ["safety", "alignment"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "taxonomy of failure modes"
     },
     {
@@ -220,7 +220,7 @@
       "url": "https://arxiv.org/abs/2401.05566",
       "type": "paper",
       "tags": ["alignment", "deception", "evals"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "deceptive-alignment mechanic; eval uncertainty band"
     },
     {
@@ -232,7 +232,7 @@
       "url": "https://arxiv.org/abs/2412.14093",
       "type": "paper",
       "tags": ["alignment", "deception"],
-      "status": "pending",
+      "status": "verified",
       "note": "Anthropic post: https://www.anthropic.com/news/alignment-faking"
     },
     {
@@ -244,7 +244,7 @@
       "url": "https://arxiv.org/abs/2412.04984",
       "type": "paper",
       "tags": ["alignment", "deception", "evals"],
-      "status": "pending",
+      "status": "verified",
       "note": "Apollo page: https://www.apolloresearch.ai/science/frontier-models-are-capable-of-incontext-scheming/"
     },
     {
@@ -256,7 +256,7 @@
       "url": "https://transformer-circuits.pub/2023/monosemantic-features/index.html",
       "type": "paper",
       "tags": ["interpretability", "alignment"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "interpretability mechanic"
     },
     {
@@ -268,7 +268,7 @@
       "url": "https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html",
       "type": "paper",
       "tags": ["interpretability", "alignment"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-GOLDEN-GATE",
@@ -278,7 +278,7 @@
       "url": "https://www.anthropic.com/news/golden-gate-claude",
       "type": "web",
       "tags": ["interpretability"],
-      "status": "pending",
+      "status": "verified",
       "note": "PRIORITY-VERIFY: flagged in BIBLIOGRAPHY-FULL; gap audit resolves the canonical URL as https://www.anthropic.com/news/golden-gate-claude [BETTER-LINK]."
     },
     {
@@ -289,7 +289,7 @@
       "url": "https://arxiv.org/abs/1706.03741",
       "type": "paper",
       "tags": ["alignment", "training"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-INSTRUCTGPT",
@@ -300,7 +300,7 @@
       "url": "https://arxiv.org/abs/2203.02155",
       "type": "paper",
       "tags": ["alignment", "training"],
-      "status": "pending",
+      "status": "verified",
       "note": "PRIORITY-VERIFY: arXiv ID flagged in BIBLIOGRAPHY-FULL; gap audit confirms the canonical version at https://arxiv.org/abs/2203.02155 [BETTER-LINK]."
     },
     {
@@ -312,7 +312,7 @@
       "url": "https://arxiv.org/abs/2212.08073",
       "type": "paper",
       "tags": ["alignment", "training"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-WEAK-TO-STRONG",
@@ -323,7 +323,7 @@
       "url": "https://arxiv.org/abs/2312.09390",
       "type": "paper",
       "tags": ["alignment", "oversight"],
-      "status": "pending",
+      "status": "verified",
       "note": "OpenAI post: https://openai.com/index/weak-to-strong-generalization/"
     },
     {
@@ -335,7 +335,7 @@
       "url": "https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/",
       "type": "web",
       "tags": ["alignment", "reward-hacking"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "reward-hacking mechanic"
     },
     {
@@ -347,7 +347,7 @@
       "url": "https://arxiv.org/abs/2210.01790",
       "type": "paper",
       "tags": ["alignment", "generalization"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-GOAL-MISGEN-RL",
@@ -357,7 +357,7 @@
       "url": "https://arxiv.org/abs/2105.14111",
       "type": "paper",
       "tags": ["alignment", "generalization"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-POWER-SEEKING-POLICIES",
@@ -367,7 +367,7 @@
       "url": "https://arxiv.org/abs/1912.01683",
       "type": "paper",
       "tags": ["alignment", "power-seeking"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "instrumental convergence / power-seeking",
       "note": "2019 (arXiv) / 2021 (NeurIPS)."
     },
@@ -380,7 +380,7 @@
       "url": "https://arxiv.org/abs/2312.06942",
       "type": "paper",
       "tags": ["safety", "control", "evals"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "control-agenda mechanic",
       "note": "Dated 2023/2024 in BIBLIOGRAPHY-FULL."
     },
@@ -391,7 +391,7 @@
       "url": "https://www.anthropic.com/responsible-scaling-policy",
       "type": "web",
       "tags": ["governance", "lab-policy", "safety"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "lab self-governance representation",
       "note": "Living document (2023+); gap audit flags a 2026 update [NEWER-THAN-MINE] that materially affects lab self-governance in-game. HANDOVER alt URL: https://www.anthropic.com/rsp. Pin version/date when citing."
     },
@@ -403,7 +403,7 @@
       "url": "https://openai.com/index/updating-our-preparedness-framework/",
       "type": "web",
       "tags": ["governance", "lab-policy", "evals"],
-      "status": "pending",
+      "status": "verified",
       "note": "Dated 2023/2025 in BIBLIOGRAPHY-FULL. Gap audit ([NEWER-THAN-MINE], 'Our updated Preparedness Framework'): clarifies tracked vs. research categories, safeguard reports, competitive-adjustment logic. Pin version/date when citing."
     },
     {
@@ -413,7 +413,7 @@
       "url": "https://deepmind.google/blog/strengthening-our-frontier-safety-framework/",
       "type": "web",
       "tags": ["governance", "lab-policy", "safety"],
-      "status": "pending",
+      "status": "verified",
       "note": "Living framework (2024+; gap audit: 2025, updated 2026, [NEWER-THAN-MINE]). Adds harmful-manipulation and misalignment-risk framing plus tracked capability thresholds. Pin version/date when citing."
     },
     {
@@ -424,7 +424,7 @@
       "url": "https://www.anthropic.com/research/probes-catch-sleeper-agents",
       "type": "web",
       "tags": ["evals", "deception", "interpretability"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "detection/eval mechanic"
     },
     {
@@ -435,7 +435,7 @@
       "url": "https://arxiv.org/abs/2501.16946",
       "type": "paper",
       "tags": ["risk", "endings", "economics"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "gradual-disempowerment ending (HANDOVER: grounds the hidden ending)",
       "note": "ICML: https://proceedings.mlr.press/v267/kulveit25a.html"
     },
@@ -447,7 +447,7 @@
       "url": "https://intelligence-curse.ai/",
       "type": "web",
       "tags": ["risk", "economics", "endings"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "societal-breakdown ending",
       "note": "PDF: https://intelligence-curse.ai/intelligence-curse.pdf"
     },
@@ -459,7 +459,7 @@
       "url": "https://arxiv.org/abs/2501.17805",
       "type": "report",
       "tags": ["risk", "governance", "consensus"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "consensus risk synthesis; consensus preset anchors",
       "note": "96 experts, 30 countries; UK-commissioned track. Site: https://internationalaisafetyreport.org/. See SRC-IAISR-UPDATE-1, SRC-IAISR-UPDATE-2, SRC-IAISR-2026 for later editions."
     },
@@ -471,7 +471,7 @@
       "url": "https://arxiv.org/abs/2510.13653",
       "type": "report",
       "tags": ["risk", "capabilities"],
-      "status": "pending",
+      "status": "verified",
       "note": "October 2025."
     },
     {
@@ -482,7 +482,7 @@
       "url": "https://arxiv.org/abs/2511.19863",
       "type": "report",
       "tags": ["risk", "safeguards"],
-      "status": "pending",
+      "status": "verified",
       "note": "November 2025. Gap audit ([NEWER-THAN-MINE]): valuable for operational safeguards and risk-management practice rather than abstract risk alone."
     },
     {
@@ -492,7 +492,7 @@
       "url": "https://www.aisi.gov.uk/",
       "type": "web",
       "tags": ["evals", "governance", "institution"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "eval/regulation actor",
       "note": "PRIORITY-VERIFY: flagged in BIBLIOGRAPHY-FULL; gap audit resolves the current canonical home as https://www.aisi.gov.uk/ [BETTER-LINK]."
     },
@@ -504,7 +504,7 @@
       "url": "https://arxiv.org/abs/2310.19852",
       "type": "paper",
       "tags": ["alignment", "survey"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "background reference"
     },
     {
@@ -538,7 +538,7 @@
       "url": "https://arxiv.org/abs/2402.08797",
       "type": "paper",
       "tags": ["compute-governance", "export-controls", "hardware", "ai-policy"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "compute-governance mechanic",
       "note": "secondary PDF: https://cdn.governance.ai/Computing_Power_and_the_Governance_of_AI.pdf; also cross-referenced in the bibliography's governance section as the compute-chokepoint source"
     },
@@ -551,7 +551,7 @@
       "url": "https://www.csis.org/analysis/choking-chinas-access-future-ai",
       "type": "report",
       "tags": ["export-controls", "china", "chips", "geopolitics"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Oct 7 2022 export controls"
     },
     {
@@ -563,7 +563,7 @@
       "url": "https://www.csis.org/analysis/understanding-biden-administrations-updated-export-controls",
       "type": "report",
       "tags": ["export-controls", "china", "chips", "us-policy"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-CSIS-SME-CONTROLS",
@@ -574,7 +574,7 @@
       "url": "https://www.csis.org/analysis/true-impact-allied-export-controls-us-and-chinese-semiconductor-manufacturing-equipment",
       "type": "report",
       "tags": ["export-controls", "semiconductors", "china", "allies"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-CSIS-COUNTERING-CHINA",
@@ -585,7 +585,7 @@
       "url": "https://www.csis.org/analysis/countering-chinas-challenge-american-ai-leadership",
       "type": "report",
       "tags": ["china", "ai-leadership", "chips", "datacenters"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "data-center scale, \"No chip, no AI\""
     },
     {
@@ -597,7 +597,7 @@
       "url": "https://www.csis.org/analysis/understanding-us-allies-current-legal-authority-implement-ai-and-semiconductor-export",
       "type": "report",
       "tags": ["export-controls", "allies", "legal", "chips"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-CSIS-SEISMIC-SHIFT",
@@ -607,7 +607,7 @@
       "url": "https://www.csis.org/analysis/seismic-shift-new-us-semiconductor-export-controls-and-implications-us-firms-allies-and",
       "type": "report",
       "tags": ["export-controls", "semiconductors", "us-policy", "china"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-DEEPSEEK-COST",
@@ -618,7 +618,7 @@
       "url": "https://newsletter.semianalysis.com/p/deepseek-debates",
       "type": "report",
       "tags": ["deepseek", "china", "compute-cost", "chips"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "DeepSeek cost mechanic (~$1.6B server capex; MLA cuts KV-cache 93.3%)"
     },
     {
@@ -628,7 +628,7 @@
       "url": "https://arxiv.org/abs/2506.03409",
       "type": "paper",
       "tags": ["hardware-governance", "verification", "chips", "compute"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "hardware-enabled governance mechanic"
     },
     {
@@ -640,7 +640,7 @@
       "url": "https://www.rand.org/pubs/research_reports/RRA2849-1.html",
       "type": "report",
       "tags": ["model-weights", "security", "espionage", "china"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "weight-security mechanic; also cited in the US-China section as the model-weight-theft / espionage mechanic (RAND, RR-A2849-1)",
       "note": "cross-referenced twice in the source bibliography (compute/chips section and US-China geopolitics section) as the same report; counted once here"
     },
@@ -663,7 +663,7 @@
       "url": "https://arxiv.org/abs/2503.05628",
       "type": "paper",
       "tags": ["us-china", "deterrence", "geopolitics", "superintelligence"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "deterrence/sabotage/nonproliferation mechanic",
       "note": "also at site https://www.nationalsecurity.ai/ and PDF https://files.nationalsecurity.ai/Superintelligence_Strategy.pdf"
     },
@@ -675,7 +675,7 @@
       "url": "https://www.rand.org/pubs/commentary/2025/03/seeking-stability-in-the-competition-for-ai-advantage.html",
       "type": "web",
       "tags": ["us-china", "maim-critique", "deterrence", "commentary"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "critique of MAIM"
     },
     {
@@ -686,7 +686,7 @@
       "url": "https://thezvi.substack.com/p/on-maim-and-superintelligence-strategy",
       "type": "web",
       "tags": ["maim", "analysis", "commentary", "us-china"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "analysis"
     },
     {
@@ -697,7 +697,8 @@
       "url": "https://www.nscai.gov/2021-final-report/",
       "type": "report",
       "tags": ["us-policy", "national-security", "ai-strategy", "geopolitics"],
-      "status": "pending"
+      "status": "flagged",
+      "note": "Verification 2026-07-03: unclear. DNS failure (ENOTFOUND) from this sandbox on retry, but WebSearch confirms live page with exact matching title '2021 Final Report - NSCAI'. Likely local network/DNS issue, not a dead site."
     },
     {
       "id": "SRC-AI-ACTION-PLAN",
@@ -707,7 +708,7 @@
       "url": "https://www.whitehouse.gov/wp-content/uploads/2025/07/Americas-AI-Action-Plan.pdf",
       "type": "report",
       "tags": ["us-policy", "ai-strategy", "export-controls", "geopolitics"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-CARNEGIE-CHINA-REGS",
@@ -718,7 +719,7 @@
       "url": "https://carnegieendowment.org/research/2023/07/chinas-ai-regulations-and-how-they-get-made",
       "type": "report",
       "tags": ["china", "ai-regulation", "policy", "geopolitics"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-CARNEGIE-CHINA-ROOTS",
@@ -729,7 +730,7 @@
       "url": "https://carnegieendowment.org/research/2024/02/tracing-the-roots-of-chinas-ai-regulations",
       "type": "report",
       "tags": ["china", "ai-regulation", "policy", "history"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-CSIS-LIMITS-EXPORT",
@@ -738,7 +739,7 @@
       "url": "https://www.csis.org/analysis/limits-chip-export-controls-meeting-china-challenge",
       "type": "report",
       "tags": ["export-controls", "china", "chips", "policy"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-EU-AI-ACT",
@@ -748,7 +749,7 @@
       "url": "https://artificialintelligenceact.eu/the-act/",
       "type": "report",
       "tags": ["eu-regulation", "ai-act", "europe", "policy"],
-      "status": "pending",
+      "status": "verified",
       "note": "official Commission page: https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai; HANDOVER also cites the official legal text host https://eur-lex.europa.eu"
     },
     {
@@ -758,7 +759,7 @@
       "url": "https://artificialintelligenceact.eu/implementation-timeline/",
       "type": "web",
       "tags": ["eu-regulation", "ai-act", "timeline", "europe"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "phased dates (bans Feb 2025; GPAI Aug 2025; bulk Aug 2026; high-risk Aug 2027)"
     },
     {
@@ -769,7 +770,7 @@
       "url": "https://www.whitecase.com/insight-alert/long-awaited-eu-ai-act-becomes-law-after-publication-eus-official-journal",
       "type": "web",
       "tags": ["eu-regulation", "ai-act", "legal-analysis", "europe"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-DRAGHI-REPORT",
@@ -780,7 +781,7 @@
       "url": "https://commission.europa.eu/topics/competitiveness/draghi-report_en",
       "type": "report",
       "tags": ["europe", "competitiveness", "eu-policy", "economy"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "\"Europe left behind\" / competitiveness mechanic (\u20ac800B/yr investment gap)"
     },
     {
@@ -790,7 +791,7 @@
       "url": "https://en.wikipedia.org/wiki/Draghi_report",
       "type": "web",
       "tags": ["europe", "competitiveness", "draghi", "tracking"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "implementation tracking incl. EPIC Observatory: 11.2% fully implemented after 1 yr"
     },
     {
@@ -799,11 +800,11 @@
       "authors": "Khan & Mann",
       "org": "CSET",
       "year": 2020,
-      "url": "https://cset.georgetown.edu",
+      "url": "https://cset.georgetown.edu/publication/ai-chips-what-they-are-and-why-they-matter/",
       "type": "report",
       "tags": ["chips", "hardware", "export-controls", "compute"],
-      "status": "pending",
-      "note": "HANDOVER gives only the CSET homepage as the URL, not the specific report page; find and verify the exact report URL before shipping"
+      "status": "verified",
+      "note": "HANDOVER gives only the CSET homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://cset.georgetown.edu."
     },
     {
       "id": "SRC-IEA-ENERGY-AI",
@@ -813,7 +814,7 @@
       "url": "https://www.iea.org/reports/energy-and-ai",
       "type": "report",
       "tags": ["energy", "compute", "climate"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Grounds electricity demand, energy-source mix, affordability, security, and climate tradeoffs",
       "note": "gap-audit tag: [NEWER-THAN-MINE]. Also listed in HANDOVER \u00a711 'Compute, chips, energy' subsection (outside worker C's assigned HANDOVER subsections; not found in BIBLIOGRAPHY-FULL.md sec.3 as read)."
     },
@@ -822,11 +823,11 @@
       "title": "Preventing AI Chip Smuggling",
       "authors": "Fist et al.",
       "org": "CNAS",
-      "url": "https://www.cnas.org",
+      "url": "https://www.cnas.org/publications/reports/preventing-ai-chip-smuggling-to-china",
       "type": "report",
       "tags": ["chips", "smuggling", "export-controls", "china"],
-      "status": "pending",
-      "note": "HANDOVER gives only the CNAS homepage as the URL, not the specific report page; find and verify the exact report URL before shipping"
+      "status": "verified",
+      "note": "HANDOVER gives only the CNAS homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://www.cnas.org."
     },
     {
       "id": "SRC-SEMIANALYSIS-BLOG",
@@ -835,7 +836,7 @@
       "url": "https://semianalysis.com",
       "type": "web",
       "tags": ["chips", "semiconductors", "industry-analysis", "live-data"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "live industry-data layer: fabs, accelerators, datacenters",
       "note": "general ongoing blog resource (industry blog: fabs, accelerators, datacenters), distinct from the specific SRC-DEEPSEEK-COST newsletter post"
     },
@@ -847,7 +848,7 @@
       "url": "https://arxiv.org/abs/2412.19437",
       "type": "paper",
       "tags": ["deepseek", "china", "llm", "compute"],
-      "status": "pending",
+      "status": "verified",
       "note": "Gap audit re-listed this (NEWER-THAN-MINE tag); one entry kept."
     },
     {
@@ -858,7 +859,7 @@
       "url": "https://arxiv.org/abs/2501.12948",
       "type": "paper",
       "tags": ["deepseek", "china", "llm", "reasoning"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-MERICS",
@@ -867,7 +868,7 @@
       "url": "https://merics.org",
       "type": "web",
       "tags": ["china", "geopolitics", "think-tank", "policy"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-CSET-LIBRARY",
@@ -876,7 +877,7 @@
       "url": "https://cset.georgetown.edu",
       "type": "web",
       "tags": ["china", "us-china", "think-tank", "reports"],
-      "status": "pending",
+      "status": "verified",
       "note": "general CSET reports-library resource cited in the US-China section, distinct from the specific 2020 AI Chips paper (SRC-CSET-AI-CHIPS); same homepage URL given in source"
     },
     {
@@ -885,8 +886,8 @@
       "year": 2025,
       "type": "web",
       "tags": ["europe", "eu-investment", "ai-infrastructure", "summit"],
-      "status": "pending",
-      "note": "search hint only, no URL given in source: search commission.europa.eu \"InvestAI\". Covers Feb 2025 AI Action Summit outcomes and the EU AI gigafactories initiative"
+      "status": "flagged",
+      "note": "search hint only, no URL given in source: search commission.europa.eu \"InvestAI\". Covers Feb 2025 AI Action Summit outcomes and the EU AI gigafactories initiative Verification 2026-07-03: unclear. This is a compound description (InvestAI + AI gigafactories + AI Action Summit outcomes), not one work. No single EC page covers all three: /ai-gigafactories_en is scoped narrowly to gigafactories only, /ai-factories covers AI Factories with just a brief InvestAI mention, and the press release covers only the InvestAI launch. Picking any one would be a close-but-different-scope match."
     },
     {
       "id": "SRC-BRUSSELS-EFFECT",
@@ -906,7 +907,7 @@
       "url": "https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf",
       "type": "report",
       "tags": ["labor-market", "job-displacement", "economy"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "job-displacement mechanic; ~40% of global jobs exposed (60% advanced economies, 40% emerging, 26% low-income)"
     },
     {
@@ -918,7 +919,7 @@
       "url": "https://www.imf.org/en/blogs/articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity",
       "type": "web",
       "tags": ["labor-market", "economy", "policy"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-IMF-SKILLGAPS",
@@ -928,7 +929,7 @@
       "url": "https://www.imf.org/-/media/files/publications/sdn/2026/english/sdnea2026001.pdf",
       "type": "report",
       "tags": ["labor-market", "job-creation", "economy"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "includes entry-level hiring decline evidence"
     },
     {
@@ -940,7 +941,7 @@
       "url": "https://www.goldmansachs.com/insights/articles/generative-ai-could-raise-global-gdp-by-7-percent",
       "type": "report",
       "tags": ["economy", "gdp", "labor-market"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "~$7T/decade GDP; ~300M full-time jobs exposed to automation"
     },
     {
@@ -951,7 +952,7 @@
       "url": "https://www.anthropic.com/economic-index",
       "type": "dataset",
       "tags": ["labor-market", "economy", "usage-data"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "real usage-by-occupation data",
       "note": "launch post: https://www.anthropic.com/news/the-anthropic-economic-index Gap audit notes a 2026 edition at the same URL; living resource, one entry kept."
     },
@@ -974,7 +975,7 @@
       "url": "https://arxiv.org/abs/2303.10130",
       "type": "paper",
       "tags": ["labor-market", "automation", "llm-exposure"],
-      "status": "pending",
+      "status": "verified",
       "note": "PRIORITY-VERIFY: bundled under an unverified-URLs note in FULL section 6 (economy/labor); title and URL confirmed instead via HANDOVER section 11 Economy & labor"
     },
     {
@@ -984,8 +985,9 @@
       "year": 2024,
       "type": "paper",
       "tags": ["economy", "macroeconomics", "automation"],
-      "status": "pending",
-      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. PRIORITY-VERIFY: exact URL not confirmed"
+      "status": "verified",
+      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. PRIORITY-VERIFY: exact URL not confirmed URL updated at verification from (none).",
+      "url": "https://www.nber.org/papers/w32487"
     },
     {
       "id": "SRC-BRYNJOLFSSON-GENAI-WORK",
@@ -994,9 +996,10 @@
       "year": 2023,
       "type": "paper",
       "tags": ["labor-market", "productivity", "automation"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "productivity mechanic; the 'Brynjolfsson call-center study' referenced in FULL section 6",
-      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. PRIORITY-VERIFY: exact URL not confirmed"
+      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. PRIORITY-VERIFY: exact URL not confirmed URL updated at verification from (none).",
+      "url": "https://www.nber.org/papers/w31161"
     },
     {
       "id": "SRC-NOY-ZHANG",
@@ -1005,8 +1008,9 @@
       "year": 2023,
       "type": "paper",
       "tags": ["labor-market", "productivity", "automation"],
-      "status": "pending",
-      "note": "published in Science (2023) per HANDOVER section 11; no URL given. PRIORITY-VERIFY: exact URL not confirmed"
+      "status": "verified",
+      "note": "published in Science (2023) per HANDOVER section 11; no URL given. PRIORITY-VERIFY: exact URL not confirmed URL updated at verification from (none).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37440646/"
     },
     {
       "id": "SRC-DELLACQUA-JAGGED",
@@ -1016,19 +1020,20 @@
       "year": 2023,
       "type": "paper",
       "tags": ["labor-market", "productivity", "automation"],
-      "status": "pending",
-      "note": "search hint from HANDOVER section 11, no URL given. PRIORITY-VERIFY: exact URL not confirmed"
+      "status": "verified",
+      "note": "search hint from HANDOVER section 11, no URL given. PRIORITY-VERIFY: exact URL not confirmed URL updated at verification from (none).",
+      "url": "https://pubsonline.informs.org/doi/10.1287/orsc.2025.21838"
     },
     {
       "id": "SRC-OPENRESEARCH-UBI",
       "title": "OpenResearch Unconditional Income Study",
       "year": 2024,
-      "url": "https://www.openresearchlab.org",
+      "url": "https://www.openresearchlab.org/our-work/unconditional-cash-study",
       "type": "report",
       "tags": ["ubi", "redistribution", "economy"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "UBI/redistribution mechanic",
-      "note": "referenced only as 'OpenResearch/Altman UBI study' in FULL section 6; title and URL confirmed via HANDOVER section 11. PRIORITY-VERIFY: this is the lab homepage, not necessarily the specific study page"
+      "note": "referenced only as 'OpenResearch/Altman UBI study' in FULL section 6; title and URL confirmed via HANDOVER section 11. PRIORITY-VERIFY: this is the lab homepage, not necessarily the specific study page URL updated at verification from https://www.openresearchlab.org."
     },
     {
       "id": "SRC-OECD-EMPLOYMENT",
@@ -1037,8 +1042,8 @@
       "url": "https://www.oecd.org",
       "type": "report",
       "tags": ["labor-market", "policy", "economy"],
-      "status": "pending",
-      "note": "ongoing publication series, no single year given; homepage URL only, per HANDOVER section 11 (absent from FULL section 6)"
+      "status": "flagged",
+      "note": "ongoing publication series, no single year given; homepage URL only, per HANDOVER section 11 (absent from FULL section 6) Verification 2026-07-03: unclear. oecd.org returned HTTP 403 to WebFetch twice (bot-blocking, not necessarily dead). WebSearch confirms live OECD Employment Outlook pages with AI chapters exist under oecd.org/en/publications/."
     },
     {
       "id": "SRC-CAIS-STATEMENT",
@@ -1048,7 +1053,7 @@
       "url": "https://safe.ai/work/statement-on-ai-risk",
       "type": "web",
       "tags": ["x-risk", "worldview-doom", "consensus"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "one-sentence extinction-risk consensus"
     },
     {
@@ -1059,7 +1064,7 @@
       "url": "https://arxiv.org/abs/2206.13353",
       "type": "paper",
       "tags": ["x-risk", "power-seeking", "worldview-doom"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "decomposed risk model"
     },
     {
@@ -1070,7 +1075,7 @@
       "url": "https://www.darioamodei.com/essay/machines-of-loving-grace",
       "type": "web",
       "tags": ["worldview-optimistic", "benefit-scenario"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "flourishing ending / optimistic preset"
     },
     {
@@ -1082,7 +1087,8 @@
       "url": "https://openai.com/index/planning-for-agi-and-beyond/",
       "type": "web",
       "tags": ["worldview-optimistic", "agi-governance"],
-      "status": "pending"
+      "status": "flagged",
+      "note": "Verification 2026-07-03: unclear. openai.com returned HTTP 403 to WebFetch twice (bot-blocking). WebSearch confirms the page exists at this exact URL with matching title and content."
     },
     {
       "id": "SRC-PAUSE-LETTER",
@@ -1092,7 +1098,7 @@
       "url": "https://futureoflife.org/open-letter/pause-giant-ai-experiments/",
       "type": "web",
       "tags": ["treaty-slowdown", "coordination", "worldview-doom"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "treaty/slowdown mechanic"
     },
     {
@@ -1104,7 +1110,7 @@
       "url": "https://forecastingresearch.org/xpt",
       "type": "report",
       "tags": ["forecasting", "x-risk", "expert-disagreement"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "forecasting-disagreement mechanic"
     },
     {
@@ -1116,7 +1122,7 @@
       "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
       "type": "report",
       "tags": ["worldview-skeptic", "benefit-scenario"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "skeptical worldview preset",
       "note": "also on Substack: https://www.normaltech.ai/p/ai-as-normal-technology"
     },
@@ -1128,7 +1134,7 @@
       "url": "https://www.normaltech.ai/p/a-guide-to-understanding-ai-as-normal",
       "type": "web",
       "tags": ["worldview-skeptic", "benefit-scenario"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-PRECIPICE",
@@ -1171,7 +1177,7 @@
       "url": "https://www.thecompendium.ai/",
       "type": "web",
       "tags": ["x-risk", "worldview-doom", "synthesis"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "risk-emphasizing synthesis",
       "note": "PRIORITY-VERIFY: canonical URL flagged unverified in FULL section 7"
     },
@@ -1184,7 +1190,7 @@
       "url": "https://link.springer.com/article/10.1007/s00146-015-0590-y",
       "type": "paper",
       "tags": ["game-theory", "race-dynamics", "coordination"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "race game-theory core model",
       "note": "open-access record: https://ora.ox.ac.uk/objects/uuid:d87d8e34-22d6-4597-ac31-041fcb63903f"
     },
@@ -1196,7 +1202,7 @@
       "url": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023",
       "type": "report",
       "tags": ["summit-diplomacy", "coordination", "treaty"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-PARIS-STATEMENT",
@@ -1206,7 +1212,7 @@
       "url": "https://www.elysee.fr/en/emmanuel-macron/2025/02/11/statement-on-inclusive-and-sustainable-artificial-intelligence-for-people-and-the-planet",
       "type": "report",
       "tags": ["summit-diplomacy", "coordination", "fracturing"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "US and UK declined to sign, dramatizes fracturing coordination",
       "note": "dated Feb 2025"
     },
@@ -1218,7 +1224,7 @@
       "url": "https://www.un.org/sites/un2.un.org/files/governing_ai_for_humanity_final_report_en.pdf",
       "type": "report",
       "tags": ["governance", "coordination", "international"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-HEIM-TECH-GOVERNANCE",
@@ -1227,7 +1233,7 @@
       "url": "https://blog.heim.xyz/technical-ai-governance/",
       "type": "web",
       "tags": ["governance", "verification", "monitoring"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "verification/monitoring mechanisms"
     },
     {
@@ -1238,7 +1244,7 @@
       "url": "https://arxiv.org/abs/2307.04699",
       "type": "paper",
       "tags": ["governance", "coordination", "international-institutions"],
-      "status": "pending",
+      "status": "verified",
       "note": "present in HANDOVER section 11 Governance & coordination, absent from FULL section 8"
     },
     {
@@ -1248,7 +1254,7 @@
       "url": "https://www.governance.ai",
       "type": "web",
       "tags": ["governance", "coordination", "research-library"],
-      "status": "pending",
+      "status": "verified",
       "note": "present in HANDOVER section 11 only, absent from FULL section 8"
     },
     {
@@ -1258,8 +1264,9 @@
       "org": "GovAI",
       "type": "paper",
       "tags": ["governance", "benefit-sharing", "coordination"],
-      "status": "pending",
-      "note": "search hint from HANDOVER section 11: search title, no URL or year given. Present in HANDOVER only, absent from FULL section 8"
+      "status": "verified",
+      "note": "search hint from HANDOVER section 11: search title, no URL or year given. Present in HANDOVER only, absent from FULL section 8 URL updated at verification from (none).",
+      "url": "https://www.governance.ai/research-paper/the-windfall-clause-distributing-the-benefits-of-ai-for-the-common-good"
     },
     {
       "id": "SRC-AI-FUTURES-ROLEPLAY",
@@ -1269,7 +1276,7 @@
       "url": "https://arxiv.org/abs/1912.08964",
       "type": "paper",
       "tags": ["serious-games", "ai-race", "roleplay", "wargaming"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "closest direct precedent to Race Conditions",
       "note": "ACM version: https://dl.acm.org/doi/abs/10.1145/3375627.3375817 (AIES '20). Also listed in HANDOVER \u00a711 Serious games & learning science with ACM link https://dl.acm.org/doi/10.1145/3375627.3375817 (same DOI, no new info)."
     },
@@ -1281,7 +1288,7 @@
       "url": "https://arxiv.org/pdf/2410.03092",
       "type": "paper",
       "tags": ["serious-games", "ai-race", "wargaming", "facilitation"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "facilitator insights from 43 Intelligence Rising games",
       "note": "ScienceDirect version: https://www.sciencedirect.com/science/article/abs/pii/S0016328725000254. Also listed in HANDOVER \u00a711 (search hint only, no new info)."
     },
@@ -1292,28 +1299,29 @@
       "url": "https://www.cser.ac.uk/work/intelligence-rising/",
       "type": "web",
       "tags": ["serious-games", "ai-race", "wargaming"],
-      "status": "pending",
-      "note": "Official project site per HANDOVER \u00a711 Serious games & learning science: https://www.intelligencerising.org"
+      "status": "flagged",
+      "note": "Official project site per HANDOVER \u00a711 Serious games & learning science: https://www.intelligencerising.org Verification 2026-07-03: unclear. WebFetch got 403 Forbidden twice (bot-blocked, not confirmed dead). WebSearch confirms page exists and is indexed with matching title/content."
     },
     {
       "id": "SRC-AVIN-AI-FUTURES-SURVEY",
       "title": "Exploring Artificial Intelligence Futures (survey of methods)",
       "authors": "Shahar Avin",
       "year": 2019,
-      "url": "https://books.openbookpublishers.com/10.11647/obp.0360/ch8.xhtml",
+      "url": "https://www.openbookpublishers.com/books/10.11647/obp.0360/chapters/10.11647/obp.0360.08",
       "type": "paper",
       "tags": ["serious-games", "ai-futures", "forecasting-methods", "roleplay"],
-      "status": "pending",
-      "gameUse": "narrative to roleplay to participatory methods"
+      "status": "verified",
+      "gameUse": "narrative to roleplay to participatory methods",
+      "note": "URL updated at verification from https://books.openbookpublishers.com/10.11647/obp.0360/ch8.xhtml."
     },
     {
       "id": "SRC-SERIOUS-GAMES-BUNDLE",
       "title": "RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak)",
       "type": "web",
       "tags": ["serious-games", "wargaming", "ttx-methodology", "debrief-design"],
-      "status": "pending",
+      "status": "flagged",
       "gameUse": "debrief, learning-outcome, and persuasive-game grounding",
-      "note": "PRIORITY-VERIFY: bundled placeholder entry from BIBLIOGRAPHY-FULL.md sec.9 (source explicitly flags verify-individual-URLs, no single URL given). RAND wargaming series, Wouters et al. 2013, Clark et al. 2016, and Bogost's Persuasive Games are also captured individually with cleaner citations from HANDOVER \u00a711 (see SRC-RAND-WARGAMING, SRC-WOUTERS-2013, SRC-CLARK-2016, SRC-BOGOST-PERSUASIVE-GAMES) - merger should dedupe those against this bundle. Schelling on gaming, matrix-games/TTX methodology, and climate-game studies (e.g. Daybreak) remain unresolved individual citations with no source elsewhere in worker C's material."
+      "note": "PRIORITY-VERIFY: bundled placeholder entry from BIBLIOGRAPHY-FULL.md sec.9 (source explicitly flags verify-individual-URLs, no single URL given). RAND wargaming series, Wouters et al. 2013, Clark et al. 2016, and Bogost's Persuasive Games are also captured individually with cleaner citations from HANDOVER \u00a711 (see SRC-RAND-WARGAMING, SRC-WOUTERS-2013, SRC-CLARK-2016, SRC-BOGOST-PERSUASIVE-GAMES) - merger should dedupe those against this bundle. Schelling on gaming, matrix-games/TTX methodology, and climate-game studies (e.g. Daybreak) remain unresolved individual citations with no source elsewhere in worker C's material. Bundle entry, no single URL by design."
     },
     {
       "id": "SRC-WOUTERS-2013",
@@ -1322,9 +1330,10 @@
       "year": 2013,
       "type": "paper",
       "tags": ["serious-games", "learning-outcomes", "pedagogy", "meta-analysis"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "debrief / learning-outcome grounding",
-      "note": "From HANDOVER \u00a711 Serious games & learning science; no URL given in source (hint: 'search title'). possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE)."
+      "note": "From HANDOVER \u00a711 Serious games & learning science; no URL given in source (hint: 'search title'). possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE). URL updated at verification from (none).",
+      "url": "https://eric.ed.gov/?id=EJ1008015"
     },
     {
       "id": "SRC-CLARK-2016",
@@ -1333,9 +1342,10 @@
       "year": 2016,
       "type": "paper",
       "tags": ["serious-games", "learning-outcomes", "pedagogy", "meta-analysis"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "debrief / learning-outcome grounding",
-      "note": "From HANDOVER \u00a711 Serious games & learning science; no URL given in source (hint: 'search title'). possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE)."
+      "note": "From HANDOVER \u00a711 Serious games & learning science; no URL given in source (hint: 'search title'). possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE). URL updated at verification from (none).",
+      "url": "https://journals.sagepub.com/doi/10.3102/0034654315582065"
     },
     {
       "id": "SRC-BOGOST-PERSUASIVE-GAMES",
@@ -1355,9 +1365,9 @@
       "url": "https://www.rand.org",
       "type": "report",
       "tags": ["wargaming", "methodology", "ttx", "serious-games"],
-      "status": "pending",
+      "status": "flagged",
       "gameUse": "matrix-game / TTX methodology grounding",
-      "note": "From HANDOVER \u00a711 Serious games & learning science. URL is RAND homepage only; source hint: search \"wargaming\" on rand.org for specific reports. possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE)."
+      "note": "From HANDOVER \u00a711 Serious games & learning science. URL is RAND homepage only; source hint: search \"wargaming\" on rand.org for specific reports. possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE). Verification 2026-07-03: unclear. rand.org 403'd WebFetch (bot-blocked). Search confirms rand.org has wargaming methodology pubs (e.g. rand.org/pubs/research_memoranda/RM2413.html) but URL is generic homepage, not a specific report."
     },
     {
       "id": "SRC-AI-INDEX-2025",
@@ -1367,7 +1377,7 @@
       "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report",
       "type": "report",
       "tags": ["ai-index", "benchmarks", "live-data", "annual-report"],
-      "status": "pending",
+      "status": "verified",
       "note": "PDF: https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf"
     },
     {
@@ -1379,7 +1389,7 @@
       "url": "https://airisk.mit.edu/",
       "type": "dataset",
       "tags": ["risk-taxonomy", "dataset", "live-data", "ai-safety"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": ">1,600 risks; risk-taxonomy layer",
       "note": "arXiv: https://arxiv.org/abs/2408.12622"
     },
@@ -1391,7 +1401,7 @@
       "url": "https://arcprize.org/arc-agi",
       "type": "dataset",
       "tags": ["benchmark", "capability-eval", "live-data"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "capability benchmark",
       "note": "Founded 2019, ongoing/living resource (year omitted). Successor benchmark ARC-AGI-2 filed separately (see SRC-ARC-AGI-2, gap audit)."
     },
@@ -1399,12 +1409,12 @@
       "id": "SRC-LMARENA",
       "title": "LMArena (Chatbot Arena / \"Arena\")",
       "org": "UC Berkeley SkyLab \u2192 Arena Inc.",
-      "url": "https://lmarena.ai/",
+      "url": "https://arena.ai/",
       "type": "web",
       "tags": ["leaderboard", "live-data", "model-ranking", "benchmark"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "live model-ranking leaderboard",
-      "note": "Founded 2023, ongoing/living resource (year omitted)."
+      "note": "Founded 2023, ongoing/living resource (year omitted). URL updated at verification from https://lmarena.ai/."
     },
     {
       "id": "SRC-EPOCH-DATA-TRAJECTORY",
@@ -1413,7 +1423,7 @@
       "url": "https://epoch.ai/data",
       "type": "dataset",
       "tags": ["live-data", "compute-trends", "dataset", "benchmarks"],
-      "status": "pending",
+      "status": "verified",
       "note": "Ongoing/living resource (year omitted). Likely duplicate of BIBLIOGRAPHY-FULL.md sec.1 line 'Data on the Trajectory of AI (databases hub) \u2014 Epoch AI \u2014 ongoing \u2014 https://epoch.ai/data' (outside worker C's assigned sections; probably already assigned one of the TAKEN SRC-EPOCH-* ids by another worker). possible-dup-of: Data on the Trajectory of AI (databases hub)."
     },
     {
@@ -1423,7 +1433,7 @@
       "url": "https://oecd.ai/en/",
       "type": "web",
       "tags": ["policy-tracker", "live-data", "governance"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "national AI policy tracker"
     },
     {
@@ -1433,7 +1443,7 @@
       "url": "https://incidentdatabase.ai/",
       "type": "dataset",
       "tags": ["incidents", "live-data", "empirical-harms", "dataset"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "real-world harm cases",
       "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL.md sec.10 flags this \u26a0verify (canonical URL not independently re-fetched). Resolved by gap audit's canonical-link flag section, which confirms https://incidentdatabase.ai/ resolves cleanly. Also listed in HANDOVER \u00a711 Live data & community. Duplicate also appears in gap audit body (see SRC-AI-INCIDENT-DB-GA). Gap audit re-listed this; one entry kept."
     },
@@ -1445,7 +1455,7 @@
       "url": "https://80000hours.org/problem-profiles/artificial-intelligence/",
       "type": "web",
       "tags": ["problem-profile", "ai-risk", "curriculum"],
-      "status": "pending",
+      "status": "verified",
       "note": "Published 2022, living/updated resource (year omitted). Matches HANDOVER \u00a711 Live data & community: '80,000 Hours AI problem profile'."
     },
     {
@@ -1456,7 +1466,7 @@
       "url": "https://80000hours.org/problem-profiles/gradual-disempowerment/",
       "type": "web",
       "tags": ["problem-profile", "ai-risk", "gradual-disempowerment"],
-      "status": "pending"
+      "status": "verified"
     },
     {
       "id": "SRC-BLUEDOT-IMPACT",
@@ -1465,7 +1475,7 @@
       "url": "https://bluedot.org/",
       "type": "web",
       "tags": ["curriculum", "education", "ai-safety"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "curriculum scaffolding",
       "note": "Courses page: https://bluedot.org/courses/alignment. Matches HANDOVER \u00a711 Live data & community: 'BlueDot / AI Safety Fundamentals curricula'."
     },
@@ -1474,9 +1484,9 @@
       "title": "System/model cards (GPT-4, Claude 3/Opus, Gemini); Papers with Code; Alignment Forum / LessWrong key posts",
       "type": "web",
       "tags": ["model-cards", "documentation", "live-data"],
-      "status": "pending",
+      "status": "flagged",
       "gameUse": "model-release-timeline and documentation layer",
-      "note": "PRIORITY-VERIFY: bundled placeholder from BIBLIOGRAPHY-FULL.md sec.10 (marked verify-individual-URLs, no single URL given). Alignment Forum is captured individually as SRC-ALIGNMENT-FORUM via a clean atomic URL from HANDOVER \u00a711 Live data & community; System/model cards and Papers with Code remain unresolved individual citations."
+      "note": "PRIORITY-VERIFY: bundled placeholder from BIBLIOGRAPHY-FULL.md sec.10 (marked verify-individual-URLs, no single URL given). Alignment Forum is captured individually as SRC-ALIGNMENT-FORUM via a clean atomic URL from HANDOVER \u00a711 Live data & community; System/model cards and Papers with Code remain unresolved individual citations. Bundle entry, no single URL by design."
     },
     {
       "id": "SRC-ALIGNMENT-FORUM",
@@ -1484,7 +1494,7 @@
       "url": "https://www.alignmentforum.org",
       "type": "web",
       "tags": ["community", "live-data", "alignment"],
-      "status": "pending",
+      "status": "verified",
       "note": "From HANDOVER \u00a711 Live data & community; not present as an atomic entry in BIBLIOGRAPHY-FULL.md sec.10 (only bundled, unsourced, as 'LessWrong key posts' in the sec.10 grab-bag \u2014 see SRC-MODEL-DOCS-BUNDLE)."
     },
     {
@@ -1495,7 +1505,7 @@
       "url": "https://arxiv.org/abs/2606.15708",
       "type": "report",
       "tags": ["ai-index", "benchmarks", "live-data", "annual-report"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Best single annual synthesis for capabilities, policy, labor, science, medicine, and AI sovereignty; ideal baseline world-state reference for opening turns",
       "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEWER-THAN-MINE]. possible-dup-of: The 2025 AI Index Report (annual series; BIBLIOGRAPHY-FULL.md sec.10 / HANDOVER \u00a711 'AI Index Report \u2014 Stanford HAI, annual')."
     },
@@ -1507,7 +1517,7 @@
       "url": "https://www.aisi.gov.uk/frontier-ai-trends-report",
       "type": "report",
       "tags": ["benchmarks", "capability-eval", "live-data", "safety"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Strongest recent public source for task-length trends, cyber/CBRN/autonomy curves, safeguard bypass effort, and open-vs-closed gap narrowing; useful for escalation mechanics",
       "note": "gap-audit tag: [NEW]. Related to but distinct from the UK AISI org entry in BIBLIOGRAPHY-FULL.md sec.2 (https://www.aisi.gov.uk/)."
     },
@@ -1519,7 +1529,7 @@
       "url": "https://arxiv.org/abs/2505.11831",
       "type": "paper",
       "tags": ["benchmark", "capability-eval", "reasoning"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Successor benchmark to ARC-AGI; better for reasoning-frontier calibration",
       "note": "gap-audit tag: [NEWER-THAN-MINE]. possible-dup-of: ARC-AGI benchmark (BIBLIOGRAPHY-FULL.md sec.10, see SRC-ARC-AGI)."
     },
@@ -1532,7 +1542,7 @@
       "url": "https://arxiv.org/abs/2411.15114",
       "type": "paper",
       "tags": ["benchmark", "r-and-d-automation", "agents"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Most gameplay-relevant capability benchmark for AI-accelerates-AI; grounds R&D-automation, recursive-acceleration, and lab-race dynamics",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1544,7 +1554,7 @@
       "url": "https://arxiv.org/abs/2504.09702",
       "type": "paper",
       "tags": ["benchmark", "r-and-d-automation", "balance"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Counterweight to hype around autonomous AI science; shows harder limits on novel ML-research performance vs. engineering-heavy tasks",
       "note": "gap-audit tag: [BALANCE]."
     },
@@ -1556,7 +1566,7 @@
       "url": "https://arxiv.org/abs/2602.21012",
       "type": "report",
       "tags": ["ai-safety", "governance", "risk-synthesis"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Most authoritative recent multi-expert survey of capabilities, risks, and safeguards; core anchor document",
       "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEWER-THAN-MINE]. possible-dup-of: International AI Safety Report 2025 (BIBLIOGRAPHY-FULL.md sec.2)."
     },
@@ -1568,7 +1578,7 @@
       "url": "https://arxiv.org/abs/2511.19863",
       "type": "report",
       "tags": ["ai-safety", "governance", "risk-management"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Focuses on operational safeguards and risk-management practice rather than abstract risk alone",
       "note": "gap-audit tag: [NEWER-THAN-MINE]. DUPLICATE: identical arXiv URL (2511.19863) to the source already covered by TAKEN id SRC-IAISR-UPDATE-2 (BIBLIOGRAPHY-FULL.md sec.2 'International AI Safety Report \u2014 Second Key Update: Technical Safeguards & Risk Management'). possible-dup-of: International AI Safety Report \u2014 Second Key Update: Technical Safeguards & Risk Management \u2014 recommend merger drop this entry in favor of SRC-IAISR-UPDATE-2."
     },
@@ -1580,7 +1590,7 @@
       "url": "https://www.anthropic.com/responsible-scaling-policy",
       "type": "web",
       "tags": ["lab-governance", "self-regulation", "safety-policy"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "2026 revisions materially affect how lab self-governance should be represented in-game",
       "note": "gap-audit tag: [NEWER-THAN-MINE]. DUPLICATE: identical URL to TAKEN id SRC-ANTHROPIC-RSP (BIBLIOGRAPHY-FULL.md sec.2 'Anthropic Responsible Scaling Policy'). possible-dup-of: Anthropic Responsible Scaling Policy \u2014 recommend merger drop this entry in favor of SRC-ANTHROPIC-RSP, preserving the 2026-update framing as a version note."
     },
@@ -1592,7 +1602,7 @@
       "url": "https://www.anthropic.com/responsible-scaling-policy/roadmap",
       "type": "web",
       "tags": ["lab-governance", "safety-policy", "milestones"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Turns safety posture into dated milestones across security, safeguards, alignment, and policy; highly gameable",
       "note": "gap-audit tag: [NEW]. Companion page to Anthropic Responsible Scaling Policy (SRC-ANTHROPIC-RSP), distinct /roadmap URL, not an exact duplicate."
     },
@@ -1604,7 +1614,7 @@
       "url": "https://openai.com/index/updating-our-preparedness-framework/",
       "type": "web",
       "tags": ["lab-governance", "self-regulation", "safety-policy"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Clarifies tracked vs. research categories, safeguard reports, and competitive-adjustment logic",
       "note": "gap-audit tag: [NEWER-THAN-MINE]. DUPLICATE: identical URL to TAKEN id SRC-OPENAI-PREPAREDNESS (BIBLIOGRAPHY-FULL.md sec.2 'OpenAI Preparedness Framework (v2)'). possible-dup-of: OpenAI Preparedness Framework (v2) \u2014 recommend merger drop this entry in favor of SRC-OPENAI-PREPAREDNESS."
     },
@@ -1616,7 +1626,7 @@
       "url": "https://deepmind.google/blog/strengthening-our-frontier-safety-framework/",
       "type": "web",
       "tags": ["lab-governance", "safety-policy", "misalignment-risk"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Strong source for harmful-manipulation and misalignment-risk framing, plus tracked capability thresholds",
       "note": "gap-audit tag: [NEWER-THAN-MINE], source says '2025, updated 2026'. DUPLICATE: identical URL to TAKEN id SRC-DEEPMIND-FSF (BIBLIOGRAPHY-FULL.md sec.2 'Google DeepMind Frontier Safety Framework (v3)'). possible-dup-of: Google DeepMind Frontier Safety Framework (v3) \u2014 recommend merger drop this entry in favor of SRC-DEEPMIND-FSF."
     },
@@ -1628,7 +1638,7 @@
       "url": "https://arxiv.org/abs/2510.05179",
       "type": "paper",
       "tags": ["ai-safety", "insider-threat", "sabotage"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Most directly game-relevant recent paper for sabotage / blackmail / insider-threat event chains under high-autonomy deployment",
       "note": "gap-audit tag: [NEW]. MUST-USE id per merge instructions."
     },
@@ -1640,7 +1650,7 @@
       "url": "https://arxiv.org/abs/2605.29601",
       "type": "paper",
       "tags": ["ai-safety", "scheming", "monitoring"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Good for control-stack / monitoring-investment mechanics more concrete than generic alignment spending",
       "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEW]."
     },
@@ -1652,7 +1662,7 @@
       "url": "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
       "type": "web",
       "tags": ["eu-governance", "regulation", "implementation"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Captures the implementation machinery, enforcement structure, and current supporting instruments (better than generic AI Act explainers)",
       "note": "gap-audit tag: [NEWER-THAN-MINE]."
     },
@@ -1664,7 +1674,7 @@
       "url": "https://arxiv.org/abs/2504.15181",
       "type": "paper",
       "tags": ["eu-governance", "regulation", "compliance"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Bridge source between frontier-lab safety frameworks and EU compliance language; grounds regulatory-meets-technical-measures gameplay",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1676,7 +1686,7 @@
       "url": "https://arxiv.org/abs/2508.05464",
       "type": "paper",
       "tags": ["benchmark", "eu-governance", "eval-gaming"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Shows common benchmarks under-measure the systemic risks regulators increasingly care about",
       "note": "gap-audit tag: [NEW]. MUST-USE id per merge instructions."
     },
@@ -1688,7 +1698,7 @@
       "url": "https://arxiv.org/abs/2503.18956",
       "type": "paper",
       "tags": ["governance", "treaty", "verification"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Strong addition for negotiated-slowdown / treaty / verification endings",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1700,7 +1710,7 @@
       "url": "https://arxiv.org/abs/2506.23949",
       "type": "paper",
       "tags": ["governance", "standards", "risk-management"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Standards-oriented complement to high-level governance pieces; helpful for audits/controls/assurance mechanics",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1712,7 +1722,7 @@
       "url": "https://arxiv.org/abs/2411.09786",
       "type": "paper",
       "tags": ["energy", "environment", "data-centers"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Local environmental backlash, carbon intensity, and fossil-fuel dependence around data-center expansion",
       "note": "gap-audit tag: [NEW]. MUST-USE id per merge instructions (hint text: 'grid stress / datacenter backlash, Guidi/Chen'). Two qualifying gap-audit papers exist: this Guidi et al. paper on environmental burden/backlash, and a companion Chen et al. 2026 paper on regional power-grid siting stress (filed separately as SRC-DATACENTER-SITING-STRESS). Assigned this id to the Guidi paper since Guidi is named first in the hint; if the intended target was the Chen paper instead, swap ids at merge time."
     },
@@ -1724,7 +1734,7 @@
       "url": "https://arxiv.org/abs/2604.06198",
       "type": "paper",
       "tags": ["energy", "grid-stress", "data-centers"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Region-specific bottleneck mechanics: not just total TWh, but clustered siting and local grid vulnerability",
       "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEW]. See SRC-GRID-DATACENTER note re: must-use-id ambiguity between this paper and Guidi et al. 2024."
     },
@@ -1736,7 +1746,7 @@
       "url": "https://arxiv.org/abs/2501.12948",
       "type": "paper",
       "tags": ["china", "open-weight", "reasoning"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Grounds reasoning-focused competition, open distillation, and lower-cost catch-up",
       "note": "gap-audit tag: [NEWER-THAN-MINE]. Also listed in HANDOVER \u00a711 'US\u2013China & geopolitics' subsection (outside worker C's assigned HANDOVER subsections)."
     },
@@ -1748,7 +1758,7 @@
       "url": "https://arxiv.org/abs/2505.09343",
       "type": "paper",
       "tags": ["china", "hardware", "compute"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Ties model strategy to interconnects, precision formats, and hardware co-design rather than treating compute as a single scalar",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1760,7 +1770,7 @@
       "url": "https://arxiv.org/abs/2606.15999",
       "type": "paper",
       "tags": ["china", "export-controls", "balance"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Strategic counterpoint: export controls can slow frontier access while strengthening open, adaptive Chinese ecosystems",
       "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [BALANCE]."
     },
@@ -1772,7 +1782,7 @@
       "url": "https://arxiv.org/abs/2511.15080",
       "type": "report",
       "tags": ["labor", "economics", "adoption", "balance"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Best recent empirical corrective to instant-economy-wide-transformation narratives; valuable for adoption-friction and uneven-diffusion mechanics",
       "note": "gap-audit tag: [BALANCE]. possible-dup-of: The Anthropic Economic Index (BIBLIOGRAPHY-FULL.md sec.6/sec.10 live dashboard) \u2014 related initiative but this is a specific dated research report (arXiv), not the live dashboard; merger should decide whether to keep both."
     },
@@ -1784,7 +1794,7 @@
       "url": "https://arxiv.org/abs/2604.18849",
       "type": "paper",
       "tags": ["labor", "economics", "europe", "balance"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Strong EU-specific evidence that exposure does not equal adoption, and firm/worker/country institutions shape actual AI use",
       "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEW]."
     },
@@ -1796,7 +1806,7 @@
       "url": "https://arxiv.org/abs/2602.00139",
       "type": "paper",
       "tags": ["labor", "economics", "automation"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Measures actual spending substitution rather than only occupational exposure; good for labor-market event cards",
       "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEW]."
     },
@@ -1808,7 +1818,7 @@
       "url": "https://arxiv.org/abs/2605.23159",
       "type": "paper",
       "tags": ["labor", "economics", "balance"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Jobs don't just disappear; firms reallocate and redesign tasks \u2014 exactly the nuance worldview presets should expose",
       "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [BALANCE]."
     },
@@ -1820,7 +1830,7 @@
       "url": "https://arxiv.org/abs/2605.04779",
       "type": "paper",
       "tags": ["labor", "education", "meta-analysis"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Evidence-based antidote to both AI-changes-nothing and AI-replaces-programmers-now; useful for education/upskilling mechanics",
       "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [BALANCE]."
     },
@@ -1832,7 +1842,7 @@
       "url": "https://arxiv.org/abs/2504.12476",
       "type": "paper",
       "tags": ["public-opinion", "governance", "moderation"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Public-legitimacy, censorship, and whose-values-count mechanics, comparing U.S. and European political cultures",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1844,7 +1854,7 @@
       "url": "https://arxiv.org/abs/2504.21849",
       "type": "paper",
       "tags": ["public-opinion", "governance", "trust"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Regulation-support mechanics; ties trust/risk perception to policy appetite",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1856,7 +1866,7 @@
       "url": "https://arxiv.org/abs/2505.18371",
       "type": "paper",
       "tags": ["military-ai", "governance", "autonomous-weapons"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Starter source for a dedicated autonomous-weapons / military-AI category",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1868,7 +1878,7 @@
       "url": "https://arxiv.org/abs/2407.07762",
       "type": "paper",
       "tags": ["serious-games", "game-based-learning", "pedagogy"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Useful for delivery-format decisions; shows game-based learning can remain effective outside the classroom",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1880,7 +1890,7 @@
       "url": "https://arxiv.org/abs/1303.3828",
       "type": "paper",
       "tags": ["serious-games", "behavior-training", "simulation"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "Not AI-specific, but a serious-games precedent showing behavior-training value in high-stakes scenarios",
       "note": "gap-audit tag: [NEW]."
     },
@@ -1892,7 +1902,7 @@
       "url": "https://righttowarn.ai",
       "type": "web",
       "tags": ["whistleblower", "labs", "governance"],
-      "status": "pending",
+      "status": "verified",
       "gameUse": "whistleblower event card",
       "note": "Curated addition at Block C1 (grounds event(whistleblower)); not present in the two bibliography files. Verify URL in A4."
     }
