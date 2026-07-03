@@ -1,0 +1,43 @@
+# CI chain per the project constitution: validate -> lint -> typecheck -> test -> build -> smoke.
+# Written at Block A1; dormant until the repo goes public (Block E2). Determinism and
+# data-integrity checks are CI failures by design, not review catches.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate data (schemas, source IDs, string keys)
+        run: pnpm validate
+
+      - name: Lint (includes engine purity boundary)
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Simulation smoke (headless batch)
+        run: pnpm simulate -- --runs 100

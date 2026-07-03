@@ -1,0 +1,57 @@
+:root {
+  color-scheme: light dark;
+  --color-text: #1a1a1a;
+  --color-text-muted: #6b6b6b;
+  --color-bg: #fdfcf9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #ececec;
+    --color-text-muted: #9a9a9a;
+    --color-bg: #16181c;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.scaffold {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.scaffold h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+}
+
+.scaffold-note {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-variant: small-caps;
+}
+
+.scaffold-status {
+  color: var(--color-text-muted);
+}
