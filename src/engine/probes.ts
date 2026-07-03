@@ -1,0 +1,128 @@
+/**
+ * Debrief probes: pure functions over a finished run that find the moments
+ * the debrief screen cites ("the treaty window was open on turn 7").
+ *
+ * Because the engine is a deterministic fold, a probe can replay the save
+ * and inspect EVERY intermediate state exactly. Counterfactuals are exact
+ * here, not heuristic.
+ */
+import type { EngineData } from './data';
+import { initGame } from './init';
+import { step } from './step';
+import type { Action, GameState } from './types';
+
+export interface TurnSnapshot {
+  turn: number;
+  state: GameState;
+}
+
+/** Replay a run and keep the state at the END of each turn (report phase). */
+export function replayTurns(
+  data: EngineData,
+  options: { seed: string; presetId: GameState['presetId'] },
+  actions: Action[],
+): TurnSnapshot[] {
+  let state = initGame(data, options);
+  const snapshots: TurnSnapshot[] = [];
+  let lastTurnRecorded = 0;
+  for (const action of actions) {
+    state = step(data, state, action);
+    const atTurnEnd = state.phase === 'report' || state.phase === 'ended';
+    if (atTurnEnd && state.turn > lastTurnRecorded) {
+      snapshots.push({ turn: state.turn, state });
+      lastTurnRecorded = state.turn;
+    }
+  }
+  return snapshots;
+}
+
+export interface ProbeResult {
+  /** Turns (1-based) where the probe fired. Empty = did not apply to this run. */
+  turns: number[];
+  /** One number per fired turn as supporting evidence (probe-specific meaning). */
+  evidence: number[];
+}
+
+/**
+ * The treaty window: turns where the verified-slowdown path was available
+ * (channel open, rival trust at signing level). Includes the turn it was
+ * taken, if it was; the debrief distinguishes taken from missed by whether
+ * the run ended in negotiatedSlowdown. Empty result = the window never
+ * opened, which is its own honest debrief line.
+ */
+export function treatyWindowOpen(data: EngineData, snapshots: TurnSnapshot[]): ProbeResult {
+  const min = data.parameters.thresholds.treatyTrustMin.value;
+  const turns: number[] = [];
+  const evidence: number[] = [];
+  for (const { turn, state } of snapshots) {
+    if (state.flags.includes('treatyChannel') && state.rival.trust >= min) {
+      turns.push(turn);
+      evidence.push(state.rival.trust);
+    }
+  }
+  return { turns, evidence };
+}
+
+/**
+ * Safety underinvestment: turns where the player pushed capability hard
+ * (allocation >= 60) while the eval band was still wide (> 300): racing
+ * blind, the exact gamble takeaway 2 is about.
+ */
+export function safetyUnderinvestment(_data: EngineData, snapshots: TurnSnapshot[]): ProbeResult {
+  const turns: number[] = [];
+  const evidence: number[] = [];
+  for (const { turn, state } of snapshots) {
+    const report = state.evalHistory[state.evalHistory.length - 1];
+    if (!report) {
+      continue;
+    }
+    const bandWidth = report.bandHigh - report.bandLow;
+    if (state.allocation.capability >= 60 && bandWidth > 300) {
+      turns.push(turn);
+      evidence.push(bandWidth);
+    }
+  }
+  return { turns, evidence };
+}
+
+/**
+ * Society neglect: turns where unrest had risen versus the previous turn
+ * while diffusion allocation stayed under 20: the social clock ticking
+ * while the budget looked away.
+ */
+export function societyNeglect(_data: EngineData, snapshots: TurnSnapshot[]): ProbeResult {
+  const turns: number[] = [];
+  const evidence: number[] = [];
+  for (let i = 1; i < snapshots.length; i += 1) {
+    const prev = snapshots[i - 1]!;
+    const current = snapshots[i]!;
+    if (
+      current.state.society.unrest > prev.state.society.unrest &&
+      current.state.allocation.diffusion < 20
+    ) {
+      turns.push(current.turn);
+      evidence.push(current.state.society.unrest);
+    }
+  }
+  return { turns, evidence };
+}
+
+export interface DebriefProbes {
+  treatyWindowOpen: ProbeResult;
+  safetyUnderinvestment: ProbeResult;
+  societyNeglect: ProbeResult;
+}
+
+/** Everything the debrief needs, from one replay. */
+export function runProbes(
+  data: EngineData,
+  options: { seed: string; presetId: GameState['presetId'] },
+  actions: Action[],
+): DebriefProbes {
+  const snapshots = replayTurns(data, options, actions);
+  return {
+    treatyWindowOpen: treatyWindowOpen(data, snapshots),
+    safetyUnderinvestment: safetyUnderinvestment(data, snapshots),
+    societyNeglect: societyNeglect(data, snapshots),
+  };
+}
