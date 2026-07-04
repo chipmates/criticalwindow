@@ -109,9 +109,9 @@
       "note": "unrest level that ends the run; paper playtests tune"
     },
     "treatyTrustMin": {
-      "value": 800,
+      "value": 850,
       "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-DESIGN-HANDOVER"],
-      "note": "bilateral trust needed to SIGN. Raised 700->800 on 2026-07-04: a verified slowdown is hard-won, not a default. Both seats must also have signaled (played the feeler) at least once."
+      "note": "bilateral trust needed to SIGN. 700->800 (2026-07-04 rebalance), 800->850 (same day, iter2 volume tripwire: mid-tier play banked the treaty at 63%, matching the expert ceiling; the recipe needed to cost more commitment). Both seats must also have signaled."
     },
     "gridSlackBeforeCap": {
       "value": 300,
