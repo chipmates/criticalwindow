@@ -1,6 +1,6 @@
 {
   "name": "golden-4-consensus-chaos",
-  "dataVersion": "0011b35e1f04d3",
+  "dataVersion": "13719abe47dfba",
   "seed": "golden-4",
   "presetId": "consensus",
   "bot": "chaos",
@@ -232,9 +232,9 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 25,
-      "diffusion": 30,
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
       "seat": "china"
     },
     {
@@ -344,16 +344,16 @@
     }
   ],
   "perTurnHashes": [
-    "13ea818cb05b1a",
-    "10a69b21bbb128",
-    "05828021513bf1",
-    "01e1bb0bc1decf",
-    "07d8e4f1146a84",
-    "055ace6139d5bb",
-    "1fe58a2dfa7298",
-    "04020054de7f12",
-    "042fae24850711",
-    "042179d08f22c7"
+    "06aeef604f8ad1",
+    "02c0ef653534a0",
+    "0ecd56a4342bad",
+    "007283266e0c63",
+    "190e1a70dd6e3e",
+    "14840f9d701bed",
+    "080800aac72ffe",
+    "05dc3f12c1747e",
+    "1b2d6a5c635813",
+    "0da4cf55c03d49"
   ],
-  "finalHash": "042179d08f22c7"
+  "finalHash": "0da4cf55c03d49"
 }

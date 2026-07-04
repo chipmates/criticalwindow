@@ -1,11 +1,11 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "0011b35e1f04d3",
+  "dataVersion": "13719abe47dfba",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
   "endingId": "misalignedCatastrophe",
-  "turns": 11,
+  "turns": 6,
   "actions": [
     {
       "type": "allocate",
@@ -144,9 +144,9 @@
     },
     {
       "type": "allocate",
-      "capability": 30,
-      "safety": 40,
-      "diffusion": 30,
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
       "seat": "usa"
     },
     {
@@ -206,182 +206,15 @@
       "eventId": "chip_smuggling",
       "choiceIndex": 0,
       "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "whistleblower",
-      "choiceIndex": 1,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "energy_crunch",
-      "choiceIndex": 0,
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "lab_merger",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "energy_buildout",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "branch_point",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "allied_export_fracture",
-      "choiceIndex": 0,
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 30,
-      "safety": 40,
-      "diffusion": 30,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "superhuman_coder",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "0895da08feb3ca",
-    "195b5daa513b73",
-    "10ee0fb52280ad",
-    "0ce294054cd1e7",
-    "030fe85e15fcba",
-    "0f7e3860e6f7b1",
-    "00f518db41f63b",
-    "1a8ccc1199d131",
-    "0f3f30724e6e73",
-    "191c9b0d625544",
-    "01004d8396dcb1"
+    "170ca77680c53d",
+    "1c610c53a53c67",
+    "0ce4b9bda372c3",
+    "11622b1d59c1e6",
+    "06320cc15c418e",
+    "1447a998708757"
   ],
-  "finalHash": "01004d8396dcb1"
+  "finalHash": "1447a998708757"
 }

@@ -10,9 +10,16 @@ import type { EndingId } from '../engine/types';
 
 const PLAYLIST = ['audio/music-i-walk-with-ghosts.mp3'] as const;
 
+/**
+ * Which generated voice set the app plays. '' is the primary eleven_v3 set;
+ * '-v2' switches every clip to the eleven_multilingual_v2 backup. One line to
+ * flip the whole game's narration between the two models.
+ */
+const VOICE_MODEL_SUFFIX = '';
+
 /** A string key becomes its pre-generated voice file (scripts/generate-audio.ts). */
 function voicePath(stringKey: string): string {
-  return `audio/voice-${stringKey.replace(/\./g, '-')}.mp3`;
+  return `audio/voice-${stringKey.replace(/\./g, '-')}${VOICE_MODEL_SUFFIX}.mp3`;
 }
 
 let musicEl: HTMLAudioElement | null = null;

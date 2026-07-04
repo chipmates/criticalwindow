@@ -1276,9 +1276,17 @@ function seatWorldPass(data: EngineData, state: GameState, seat: PlayableSeatId)
     seatState.allocation.safety,
     100,
   );
-  let alignmentDrift = divRound(safetyPts, 2);
-  if (seatState.allocation.capability >= data.parameters.alignmentModel.crashThresholdShare.value) {
-    alignmentDrift -= data.parameters.alignmentModel.crashPenalty.value;
+  // Safety work EARNS alignment, slowly. Two forces cut against it: racing-
+  // heavy allocation corners it, and the frontier itself erodes it once
+  // capability enters the fog zone. Alignment must be banked before the final
+  // sprint, and even then verification is a gamble (that is the whole game).
+  const alignModel = data.parameters.alignmentModel;
+  let alignmentDrift = divRound(safetyPts, alignModel.safetyDriftDivisor.value);
+  if (seatState.resources.capability >= data.parameters.thresholds.fogZoneStart.value) {
+    alignmentDrift -= alignModel.fogZoneAlignmentErosion.value;
+  }
+  if (seatState.allocation.capability >= alignModel.crashThresholdShare.value) {
+    alignmentDrift -= alignModel.crashPenalty.value;
   }
   seatState.hidden.trueAlignment = clamp(
     seatState.hidden.trueAlignment + alignmentDrift,
@@ -1441,12 +1449,15 @@ function worldUpdate(data: EngineData, state: GameState): void {
     }
   }
 
-  // Treaty: channel open, treaty-grade trust, late enough, and EITHER seat
-  // played the feeler this turn to sign.
+  // Treaty: a BILATERAL act. The channel is open, trust is treaty-grade, it is
+  // late enough that both sides survived the dangerous middle, BOTH seats have
+  // signaled at least once (each played the feeler), and one co-signs this turn.
+  // A treaty you sign alone is not a treaty (takeaway 4: cooperation is hard).
   if (
     state.world.flags.includes('treatyChannel') &&
     state.world.bilateralTrust >= thresholds.treatyTrustMin.value &&
     state.turn >= thresholds.treatySignTurnMin.value &&
+    PLAYABLE_SEAT_IDS.every((seat) => state.seats[seat].flags.includes('treatySignaled')) &&
     PLAYABLE_SEAT_IDS.some(
       (seat) => state.seats[seat].policy.playedThisTurn === 'compute_treaty_feeler',
     )

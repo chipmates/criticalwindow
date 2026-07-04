@@ -390,6 +390,8 @@ export const parametersSchema = z.strictObject({
     startBase: sourcedIntSchema,
     crashThresholdShare: sourcedIntSchema,
     crashPenalty: sourcedIntSchema,
+    safetyDriftDivisor: sourcedIntSchema,
+    fogZoneAlignmentErosion: sourcedIntSchema,
   }),
   thresholds: z.strictObject({
     fogZoneStart: sourcedIntSchema,

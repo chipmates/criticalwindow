@@ -1,11 +1,11 @@
 {
   "name": "golden-5-skeptic-racer",
-  "dataVersion": "0011b35e1f04d3",
+  "dataVersion": "13719abe47dfba",
   "seed": "golden-5",
   "presetId": "skeptic",
   "bot": "racer",
   "endingId": "misalignedCatastrophe",
-  "turns": 9,
+  "turns": 8,
   "actions": [
     {
       "type": "allocate",
@@ -281,49 +281,17 @@
       "eventId": "whistleblower",
       "choiceIndex": 1,
       "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 30,
-      "safety": 40,
-      "diffusion": 30,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "general_strike",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "02fa0c25ea054b",
-    "0e1bc640686c10",
-    "1e6296e6eb41ae",
-    "1e71aa918c7005",
-    "04bc6254f19665",
-    "1ecc950371e11d",
-    "1e841212e2dc5e",
-    "016b0373d476bc",
-    "07e8b56c082f15"
+    "0f756c50b3600b",
+    "1c7db6ef932960",
+    "133acf4666f482",
+    "12a2ffa4c88a6d",
+    "19cfbafdb36a30",
+    "10316258a34c47",
+    "11cbfa15f59704",
+    "048e51f7f3f56f"
   ],
-  "finalHash": "07e8b56c082f15"
+  "finalHash": "048e51f7f3f56f"
 }

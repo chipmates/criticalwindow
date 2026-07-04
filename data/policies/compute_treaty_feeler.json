@@ -7,8 +7,8 @@
     "politicalCapital": 50
   },
   "effects": {
-    "rival.trust": 150,
-    "flags": ["treatyChannel"]
+    "rival.trust": 100,
+    "flags": ["treatyChannel", "treatySignaled"]
   },
   "delayedEffects": [
     {
@@ -18,7 +18,7 @@
       }
     }
   ],
-  "cooldown": 3,
+  "cooldown": 4,
   "sourceIds": ["SRC-MAIM", "SRC-HO-INTL-INSTITUTIONS"],
   "tags": ["diplomacy", "treaty", "verification"]
 }

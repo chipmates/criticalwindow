@@ -18,7 +18,7 @@ import { hashStringHex } from '../src/engine/hash';
 
 interface AudioScript {
   voices: Record<string, { voiceId: string | null; note?: string }>;
-  modelId: string;
+  models: Array<{ id: string; suffix: string; languageCode?: string }>;
   surfaces: Array<{ id: string; key: string; voice: string }>;
 }
 
@@ -44,62 +44,74 @@ let skipped = 0;
 let failed = 0;
 let uncast = 0;
 
-for (const surface of script.surfaces) {
-  const text = strings[surface.key];
-  if (!text) {
-    throw new Error(`audio surface '${surface.id}' points at missing string key '${surface.key}'`);
-  }
-  const voice = script.voices[surface.voice];
-  if (!voice) {
-    throw new Error(`audio surface '${surface.id}' names unknown voice '${surface.voice}'`);
-  }
-  if (!voice.voiceId) {
-    uncast += 1;
-    continue; // voice not cast yet (e.g. advisor pending): narrator-first runs work
-  }
-  const stamp = hashStringHex(`${voice.voiceId}::${script.modelId}::${text}`);
-  const audioPath = join(outDir, `voice-${surface.id}.mp3`);
-  const metaPath = join(outDir, `voice-${surface.id}.timestamps.json`);
+for (const model of script.models) {
+  for (const surface of script.surfaces) {
+    const text = strings[surface.key];
+    if (!text) {
+      throw new Error(
+        `audio surface '${surface.id}' points at missing string key '${surface.key}'`,
+      );
+    }
+    const voice = script.voices[surface.voice];
+    if (!voice) {
+      throw new Error(`audio surface '${surface.id}' names unknown voice '${surface.voice}'`);
+    }
+    if (!voice.voiceId) {
+      uncast += 1;
+      continue; // voice not cast yet: other voices still generate
+    }
+    const lang = model.languageCode ?? '';
+    const stamp = hashStringHex(`${voice.voiceId}::${model.id}::${lang}::${text}`);
+    const audioPath = join(outDir, `voice-${surface.id}${model.suffix}.mp3`);
+    const metaPath = join(outDir, `voice-${surface.id}${model.suffix}.timestamps.json`);
 
-  if (existsSync(metaPath) && existsSync(audioPath)) {
-    const meta = JSON.parse(readFileSync(metaPath, 'utf8')) as { textHash?: string };
-    if (meta.textHash === stamp) {
-      skipped += 1;
+    if (existsSync(metaPath) && existsSync(audioPath)) {
+      const meta = JSON.parse(readFileSync(metaPath, 'utf8')) as { textHash?: string };
+      if (meta.textHash === stamp) {
+        skipped += 1;
+        continue;
+      }
+    }
+
+    const body: Record<string, unknown> = {
+      text,
+      model_id: model.id,
+      voice_settings: { stability: 0.55, similarity_boost: 0.6, style: 0.2 },
+    };
+    // Pin the language only for models that support it (v3 / turbo / flash),
+    // so an expressive voice does not drift toward its native accent. The
+    // multilingual v2 backup auto-detects English from the English copy.
+    if (model.languageCode) {
+      body.language_code = model.languageCode;
+    }
+    const response = await fetch(
+      `https://api.elevenlabs.io/v1/text-to-speech/${voice.voiceId}/with-timestamps`,
+      {
+        method: 'POST',
+        headers: { 'xi-api-key': apiKey, 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+      },
+    );
+    if (!response.ok) {
+      console.error(
+        `FAIL ${surface.id}${model.suffix} (${model.id}): ElevenLabs ${response.status} ${await response.text()}`,
+      );
+      failed += 1;
       continue;
     }
+    const payload = (await response.json()) as {
+      audio_base64: string;
+      alignment: unknown;
+      normalized_alignment?: unknown;
+    };
+    writeFileSync(audioPath, Buffer.from(payload.audio_base64, 'base64'));
+    writeFileSync(
+      metaPath,
+      `${JSON.stringify({ textHash: stamp, key: surface.key, model: model.id, text, alignment: payload.alignment }, null, 2)}\n`,
+    );
+    console.log(`generated voice-${surface.id}${model.suffix}.mp3 (${model.id})`);
+    generated += 1;
   }
-
-  const response = await fetch(
-    `https://api.elevenlabs.io/v1/text-to-speech/${voice.voiceId}/with-timestamps`,
-    {
-      method: 'POST',
-      headers: { 'xi-api-key': apiKey, 'content-type': 'application/json' },
-      body: JSON.stringify({
-        text,
-        model_id: script.modelId,
-        voice_settings: { stability: 0.55, similarity_boost: 0.6, style: 0.2 },
-      }),
-    },
-  );
-  if (!response.ok) {
-    // A model that rejects the timestamps endpoint or a transient error must
-    // not kill the whole batch; report at the end and exit nonzero.
-    console.error(`FAIL ${surface.id}: ElevenLabs ${response.status} ${await response.text()}`);
-    failed += 1;
-    continue;
-  }
-  const payload = (await response.json()) as {
-    audio_base64: string;
-    alignment: unknown;
-    normalized_alignment?: unknown;
-  };
-  writeFileSync(audioPath, Buffer.from(payload.audio_base64, 'base64'));
-  writeFileSync(
-    metaPath,
-    `${JSON.stringify({ textHash: stamp, key: surface.key, text, alignment: payload.alignment }, null, 2)}\n`,
-  );
-  console.log(`generated voice-${surface.id}.mp3`);
-  generated += 1;
 }
 
 console.log(

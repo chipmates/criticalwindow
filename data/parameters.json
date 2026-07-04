@@ -47,10 +47,10 @@
       "label": "strings:preset.skeptic.label",
       "description": "strings:preset.skeptic.description",
       "alignmentDifficulty": {
-        "min": 50,
+        "min": 200,
         "max": 500,
         "sourceIds": ["SRC-NORMAL-TECH", "SRC-SNAKE-OIL"],
-        "note": "normal-technology worldview: control problems mostly engineering, diffusion friction dominates"
+        "note": "normal-technology worldview: control problems mostly engineering, diffusion friction dominates Floor raised 50->200 on 2026-07-04: even the optimistic worldview is not a trivial giveaway; alignment is never free."
       },
       "takeoffSteepness": {
         "min": 100,
@@ -109,9 +109,9 @@
       "note": "unrest level that ends the run; paper playtests tune"
     },
     "treatyTrustMin": {
-      "value": 700,
+      "value": 800,
       "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-DESIGN-HANDOVER"],
-      "note": "verified agreements need institutional trust infrastructure; the exact bar is design-tuned"
+      "note": "bilateral trust needed to SIGN. Raised 700->800 on 2026-07-04: a verified slowdown is hard-won, not a default. Both seats must also have signaled (played the feeler) at least once."
     },
     "gridSlackBeforeCap": {
       "value": 300,
@@ -119,9 +119,9 @@
       "note": "compute outrunning energy decays: IEA base case has datacentre demand rising 415 TWh (2024, ~1.5% of world electricity) to ~945 TWh by 2030; slack width is design-tuned"
     },
     "treatySignTurnMin": {
-      "value": 8,
+      "value": 11,
       "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-DESIGN-HANDOVER"],
-      "note": "verification regimes take time to negotiate: signing is possible from the midterm onward, so trust must SURVIVE events, not just spike once"
+      "note": "earliest signing turn. Raised 8->11 on 2026-07-04: you must survive the dangerous middle before cooperation is real."
     }
   },
   "worldRules": {
@@ -417,6 +417,16 @@
       "value": 25,
       "sourceIds": ["SRC-DESIGN-HANDOVER"],
       "note": "per-turn true-alignment cost of racing-heavy allocation"
+    },
+    "safetyDriftDivisor": {
+      "value": 4,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "note": "safety points -> true-alignment gain divisor. Raised from an implicit 2 on 2026-07-04 (Michel: random play always flourished). Alignment is slow, expensive, and must be sustained."
+    },
+    "fogZoneAlignmentErosion": {
+      "value": 50,
+      "sourceIds": ["SRC-DESIGN-HANDOVER", "SRC-AI2027"],
+      "note": "per-turn true-alignment erosion once capability reaches the fog zone (fogZoneStart). Alignment must be BANKED before the final sprint; the closer to decisive capability, the harder it holds. Added 2026-07-04 to make Flourishing a deliberate achievement, not a default of balanced play."
     }
   }
 }

@@ -1,11 +1,11 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "0011b35e1f04d3",
+  "dataVersion": "13719abe47dfba",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
-  "endingId": "negotiatedSlowdown",
-  "turns": 8,
+  "endingId": "misalignedCatastrophe",
+  "turns": 9,
   "actions": [
     {
       "type": "allocate",
@@ -222,8 +222,7 @@
       "seat": "usa"
     },
     {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler",
+      "type": "skipPolicy",
       "seat": "usa"
     },
     {
@@ -234,9 +233,9 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 25,
-      "diffusion": 30,
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
       "seat": "china"
     },
     {
@@ -265,32 +264,64 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 25,
-      "diffusion": 30,
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
       "seat": "china"
     },
     {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler",
+      "type": "skipPolicy",
       "seat": "china"
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "election_scandal",
+      "eventId": "energy_crunch",
       "choiceIndex": 0,
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25,
+      "seat": "usa"
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "intelligence_explosion",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
       "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "06c8e761fcaece",
-    "0694373f93e864",
-    "016097483f5e11",
-    "0024b049d184b8",
-    "0bde5600c7d0dd",
-    "0baff79eab9faf",
-    "1ed7ccf5674987",
-    "0d24563d2d4147"
+    "1a8c0080c7a46e",
+    "0afab7e1b799c5",
+    "1e67ca4694f0af",
+    "16b506b479fab4",
+    "0ee0969e8330a0",
+    "10d30cd9ccea7e",
+    "1930661965004a",
+    "01dccba7d9a3be",
+    "1fef81ec75212a"
   ],
-  "finalHash": "0d24563d2d4147"
+  "finalHash": "1fef81ec75212a"
 }
