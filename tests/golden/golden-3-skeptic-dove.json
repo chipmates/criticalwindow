@@ -1,6 +1,6 @@
 {
   "name": "golden-3-skeptic-dove",
-  "dataVersion": "052dcc7c38ad35",
+  "dataVersion": "13c7710901da05",
   "seed": "golden-3",
   "presetId": "skeptic",
   "bot": "dove",
@@ -368,17 +368,17 @@
     }
   ],
   "perTurnHashes": [
-    "0a41debd22d485",
-    "1b16e0a20cb68f",
-    "18b53b7f4b5d59",
-    "0659bc3e1fda17",
-    "10f0fc22633af7",
-    "03e9be50872475",
-    "188b9d3bf76628",
-    "1491b07f81c484",
-    "0f1954e4edf10f",
-    "07758830561aef",
-    "0a102a30215a65"
+    "029b3c238d4a71",
+    "07bebf893d4c11",
+    "10ae4e84b6bb65",
+    "07b4fd515c205e",
+    "0ff6fb3c97f5b2",
+    "075bbca1155034",
+    "05e63a6adac04d",
+    "17e384415de7bd",
+    "1b1090d303f64d",
+    "077ecc6c3e6844",
+    "1c786d584cf0dd"
   ],
-  "finalHash": "0a102a30215a65"
+  "finalHash": "1c786d584cf0dd"
 }

@@ -14,7 +14,8 @@
     {
       "inTurns": 4,
       "effects": {
-        "compute": 250
+        "compute": 250,
+        "substitution": 150
       }
     }
   ],

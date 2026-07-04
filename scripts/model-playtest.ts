@@ -27,8 +27,7 @@ import { loadEngineData, type EngineData } from '../src/engine/data';
 import { hashDataFiles } from '../src/engine/hash';
 import { initGame } from '../src/engine/init';
 import { initStream, type RngStreamState } from '../src/engine/rng';
-import { botDecide } from '../src/engine/bots';
-import { chinaDecide } from '../src/engine/china-policy';
+import { scriptedSeatDecide } from '../src/engine/china-policy';
 import {
   eraForTurn,
   legalActions,
@@ -484,22 +483,18 @@ async function runPolicy(
 ): Promise<RunResult> {
   let state = initial;
   let rng = initStream(`${initial.seed}::${policy.name}`, 'bot');
-  let opponentRng = initStream(`${initial.seed}::opponent`, 'bot');
   let decisions = 0;
   while (state.phase !== 'ended') {
     if (decisions >= guard) throw new Error(`policy '${policy.name}' exceeded ${guard} steps`);
     const policyTurn =
       state.phase === 'report' || llmVsLlm || state.actingSeat === state.playerSeat;
     if (!policyTurn) {
-      // The scripted opponent plays its own window: China's shipped policy,
-      // or the hedger bot when the model holds the China seat.
-      if (state.actingSeat === 'china') {
-        state = step(data, state, chinaDecide(data, state));
-      } else {
-        const decision = botDecide('hedger', { data, state, seat: 'usa', rng: opponentRng });
-        opponentRng = decision.rng;
-        state = step(data, state, decision.action);
-      }
+      // The scripted opponent is EXACTLY what ships: the fog-aware, stance-
+      // based seat policy the store drives in production. Anything else
+      // makes the harness measure a game that does not exist (iter2 lesson:
+      // a generic bot opponent burned its own society down in 9 of 20 runs
+      // and the collapse was misread as a China-seat balance problem).
+      state = step(data, state, scriptedSeatDecide(data, state));
       decisions += 1;
       continue;
     }
