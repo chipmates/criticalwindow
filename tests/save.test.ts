@@ -26,7 +26,11 @@ describe('save round-trips (property)', () => {
         (seed, bot, presetId) => {
           const initial = initGame(data, { seed, presetId });
           const run = runBot(data, initial, bot);
-          const save = buildSave(data, { seed, presetId }, run.actions);
+          const save = buildSave(
+            data,
+            { seed, presetId, mode: 'solo', playerSeat: 'usa' },
+            run.actions,
+          );
           const thawed = JSON.parse(JSON.stringify(save)) as unknown;
           const loaded = loadSave(data, thawed);
           return canonicalJson(loaded.state) === canonicalJson(run.finalState);
@@ -40,7 +44,11 @@ describe('save round-trips (property)', () => {
     const seed = 'undo-check';
     const initial = initGame(data, { seed, presetId: 'consensus' });
     const run = runBot(data, initial, 'hedger');
-    const save = buildSave(data, { seed, presetId: 'consensus' }, run.actions);
+    const save = buildSave(
+      data,
+      { seed, presetId: 'consensus', mode: 'solo', playerSeat: 'usa' },
+      run.actions,
+    );
     const undone = undoOnce(data, save);
     expect(undone.actions.length).toBe(run.actions.length - 1);
     expect(undone.state.phase).not.toBe('ended');
@@ -51,7 +59,11 @@ describe('save honesty', () => {
   test('different content is refused, not silently diverged', () => {
     const initial = initGame(data, { seed: 'v-check', presetId: 'consensus' });
     const run = runBot(data, initial, 'dove');
-    const save = buildSave(data, { seed: 'v-check', presetId: 'consensus' }, run.actions);
+    const save = buildSave(
+      data,
+      { seed: 'v-check', presetId: 'consensus', mode: 'solo', playerSeat: 'usa' },
+      run.actions,
+    );
     const tampered = { ...save, dataVersion: 'someone-elses-content' };
     expect(() => loadSave(data, tampered)).toThrowError(SaveError);
     try {
@@ -96,7 +108,11 @@ describe('debrief probes on known histories', () => {
     for (const seed of ['probe-dove-1', 'probe-dove-2', 'probe-dove-3']) {
       const initial = initGame(data, { seed, presetId: 'skeptic' });
       const run = runBot(data, initial, 'dove');
-      const probes = runProbes(data, { seed, presetId: 'skeptic' }, run.actions);
+      const probes = runProbes(
+        data,
+        { seed, presetId: 'skeptic', mode: 'solo', playerSeat: 'usa' },
+        run.actions,
+      );
       if (probes.treatyWindowOpen.turns.length > 0) {
         expect(Math.min(...probes.treatyWindowOpen.turns)).toBeGreaterThanOrEqual(1);
         expect(Math.max(...probes.treatyWindowOpen.turns)).toBeLessThanOrEqual(16);
@@ -110,7 +126,11 @@ describe('debrief probes on known histories', () => {
     const seed = 'probe-racer';
     const initial = initGame(data, { seed, presetId: 'cautious' });
     const run = runBot(data, initial, 'racer');
-    const probes = runProbes(data, { seed, presetId: 'cautious' }, run.actions);
+    const probes = runProbes(
+      data,
+      { seed, presetId: 'cautious', mode: 'solo', playerSeat: 'usa' },
+      run.actions,
+    );
     expect(probes.safetyUnderinvestment.turns.length).toBeGreaterThan(0);
     for (const width of probes.safetyUnderinvestment.evidence) {
       expect(width).toBeGreaterThan(300);
@@ -121,7 +141,11 @@ describe('debrief probes on known histories', () => {
     const seed = 'probe-neglect';
     const initial = initGame(data, { seed, presetId: 'consensus' });
     const run = runBot(data, initial, 'racer');
-    const probes = runProbes(data, { seed, presetId: 'consensus' }, run.actions);
+    const probes = runProbes(
+      data,
+      { seed, presetId: 'consensus', mode: 'solo', playerSeat: 'usa' },
+      run.actions,
+    );
     // The racer allocates diffusion 10 every turn; the probe fires exactly on
     // turns where unrest actually rose. Assert consistency, not fate.
     for (const turn of probes.societyNeglect.turns) {
@@ -134,7 +158,11 @@ describe('debrief probes on known histories', () => {
     const seed = 'probe-bounds';
     const initial = initGame(data, { seed, presetId: 'consensus' });
     const run = runBot(data, initial, 'hedger');
-    const probes = runProbes(data, { seed, presetId: 'consensus' }, run.actions);
+    const probes = runProbes(
+      data,
+      { seed, presetId: 'consensus', mode: 'solo', playerSeat: 'usa' },
+      run.actions,
+    );
     for (const result of [
       probes.treatyWindowOpen,
       probes.safetyUnderinvestment,

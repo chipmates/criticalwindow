@@ -8,7 +8,7 @@
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
-import { BOT_IDS, runBot, type BotId } from '../src/engine/bots';
+import { BOT_IDS, runBot, runMatch, type BotId } from '../src/engine/bots';
 import { loadEngineData } from '../src/engine/data';
 import { hashDataFiles } from '../src/engine/hash';
 import { initGame } from '../src/engine/init';
@@ -21,6 +21,7 @@ function arg(name: string, fallback: string): string {
 }
 
 const runsPerPair = Math.max(1, Number.parseInt(arg('runs', '100'), 10));
+const matchMode = process.argv.includes('--match');
 const presetArg = arg('preset', 'consensus');
 const botArg = arg('bot', 'all');
 const seedPrefix = arg('seed-prefix', 'sim');
@@ -40,6 +41,7 @@ const data = loadEngineData({
   scenario: json('scenarios/scenario_2026.json'),
   incidents: json('incidents.json'),
   mandates: json('mandates.json'),
+  seatsRules: json('seats.json'),
   events: files
     .filter((f) => f.relPath.startsWith('events/'))
     .map((f) => ({ name: f.relPath, json: JSON.parse(f.content) as unknown })),
@@ -62,6 +64,47 @@ interface Row {
   windowStillOpen: boolean;
 }
 
+// Hotseat balance matrix: named bots on BOTH seats (design-note 10.6: the
+// stronger policy should win most of a series, any single game losable).
+if (matchMode) {
+  const matchBots = BOT_IDS.filter((b) => b !== 'chaos');
+  for (const preset of presets) {
+    console.log(`match matrix, preset=${preset} (${runsPerPair} runs per pairing)`);
+    for (const botUsa of matchBots) {
+      for (const botChina of matchBots) {
+        const outcomes: Record<string, number> = {};
+        for (let i = 0; i < runsPerPair; i += 1) {
+          const seed = `${seedPrefix}-m-${preset}-${botUsa}-${botChina}-${i}`;
+          const initial = initGame(data, {
+            seed,
+            presetId: preset,
+            mode: 'hotseat',
+            playerSeat: 'usa',
+          });
+          const result = runMatch(data, initial, botUsa, botChina);
+          const endLog = result.finalState.log.find((e) => e.kind === 'ending');
+          const winner = endLog?.meta?.winnerSeat;
+          const cause = endLog?.meta?.causeSeat ?? endLog?.meta?.seat;
+          const key =
+            result.endingId === 'flourishing' || result.endingId === 'outpaced'
+              ? `${String(winner)} wins`
+              : result.endingId === 'misalignedCatastrophe' ||
+                  result.endingId === 'societalBreakdown'
+                ? `${result.endingId} (${String(cause ?? 'n/a')})`
+                : result.endingId;
+          outcomes[key] = (outcomes[key] ?? 0) + 1;
+        }
+        const text = Object.entries(outcomes)
+          .sort((a, b) => b[1] - a[1])
+          .map(([k, c]) => `${k} ${c}`)
+          .join(' · ');
+        console.log(`  usa=${botUsa.padEnd(7)} china=${botChina.padEnd(7)} | ${text}`);
+      }
+    }
+  }
+  process.exit(0);
+}
+
 const rows: Row[] = [];
 const started = performance.now();
 for (const preset of presets) {
@@ -77,12 +120,12 @@ for (const preset of presets) {
         seed,
         ending: result.endingId,
         turns: result.turns,
-        capability: finalState.resources.capability,
-        rivalCapability: finalState.rival.capability,
-        publicTrust: finalState.resources.publicTrust,
-        unrest: finalState.society.unrest,
-        safetyInsight: finalState.resources.safetyInsight,
-        windowStillOpen: finalState.flags.includes('windowStillOpen'),
+        capability: finalState.seats.usa.resources.capability,
+        rivalCapability: finalState.seats.china.resources.capability,
+        publicTrust: finalState.seats.usa.resources.publicTrust,
+        unrest: finalState.seats.usa.society.unrest,
+        safetyInsight: finalState.seats.usa.resources.safetyInsight,
+        windowStillOpen: finalState.world.flags.includes('windowStillOpen'),
       });
     }
   }

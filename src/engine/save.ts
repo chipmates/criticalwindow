@@ -9,8 +9,15 @@ import type { EngineData } from './data';
 import { initGame } from './init';
 import { saveGameSchema, type SaveGameData } from './schemas';
 import { runActions } from './step';
-import type { Action, GameState, WorldviewPresetId } from './types';
+import type { Action, GameMode, GameState, PlayableSeatId, WorldviewPresetId } from './types';
 import { STATE_SCHEMA_VERSION } from './types';
+
+export interface RunOptions {
+  seed: string;
+  presetId: WorldviewPresetId;
+  mode: GameMode;
+  playerSeat: PlayableSeatId;
+}
 
 export class SaveError extends Error {
   readonly code: 'malformed' | 'dataVersionMismatch' | 'schemaVersionMismatch' | 'replayFailed';
@@ -20,17 +27,14 @@ export class SaveError extends Error {
   }
 }
 
-export function buildSave(
-  data: EngineData,
-  options: { seed: string; presetId: WorldviewPresetId },
-  actions: Action[],
-): SaveGameData {
+export function buildSave(data: EngineData, options: RunOptions, actions: Action[]): SaveGameData {
   return {
     schemaVersion: STATE_SCHEMA_VERSION,
     dataVersion: data.dataVersion,
     seed: options.seed,
     presetId: options.presetId,
-    seatId: data.scenario.seat,
+    mode: options.mode,
+    playerSeat: options.playerSeat,
     scenarioId: data.scenario.id,
     actions,
   };
@@ -61,7 +65,12 @@ export function loadSave(data: EngineData, raw: unknown): LoadedRun {
     );
   }
   try {
-    const initial = initGame(data, { seed: save.seed, presetId: save.presetId });
+    const initial = initGame(data, {
+      seed: save.seed,
+      presetId: save.presetId,
+      mode: save.mode,
+      playerSeat: save.playerSeat,
+    });
     const state = runActions(data, initial, save.actions);
     return { state, actions: save.actions };
   } catch (error) {

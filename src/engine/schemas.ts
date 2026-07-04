@@ -14,9 +14,10 @@ import {
   EFFECT_TARGETS,
   ERA_IDS,
   EXPOSURE_KEYS,
+  GAME_MODES,
+  PLAYABLE_SEAT_IDS,
   RESOURCE_KEYS,
   RIVAL_POSTURES,
-  SEAT_IDS,
   SOCIETY_KEYS,
   WORLDVIEW_PRESET_IDS,
 } from './types';
@@ -471,27 +472,14 @@ export const parametersSchema = z.strictObject({
 // Scenario (start state; annual refresh target)
 // ---------------------------------------------------------------------------
 
-export const scenarioSchema = z.strictObject({
-  $schema: z.string().optional(),
-  id: z.string().regex(CARD_ID_PATTERN),
-  seat: z.enum(SEAT_IDS),
-  label: stringsRefSchema,
-  startTime: z.strictObject({
-    year: z.number().int().min(2020).max(2100),
-    quarter: z.number().int().min(1).max(4),
-  }),
-  startResources: z.strictObject(requiredKeys(RESOURCE_KEYS, sourcedIntSchema)),
-  startSociety: z.strictObject({
+const seatStartSchema = z.strictObject({
+  resources: z.strictObject(requiredKeys(RESOURCE_KEYS, sourcedIntSchema)),
+  society: z.strictObject({
     jobDisplacement: sourcedIntSchema,
     unrest: sourcedIntSchema,
   }),
-  startRival: z.strictObject({
-    posture: z.enum(RIVAL_POSTURES),
-    capability: sourcedIntSchema,
-    trust: sourcedIntSchema,
-    substitution: sourcedIntSchema,
-  }),
-  startAllocation: z
+  substitution: sourcedIntSchema,
+  allocation: z
     .strictObject({
       capability: shareInt,
       safety: shareInt,
@@ -502,7 +490,24 @@ export const scenarioSchema = z.strictObject({
     .refine((a) => a.capability + a.safety + a.diffusion === 100, {
       message: 'allocation shares must sum to 100',
     }),
-  startingHand: z.array(z.string().regex(CARD_ID_PATTERN)).optional(),
+  hand: z.array(z.string().regex(CARD_ID_PATTERN)).optional(),
+});
+
+export const scenarioSchema = z.strictObject({
+  $schema: z.string().optional(),
+  id: z.string().regex(CARD_ID_PATTERN),
+  label: stringsRefSchema,
+  startTime: z.strictObject({
+    year: z.number().int().min(2020).max(2100),
+    quarter: z.number().int().min(1).max(4),
+  }),
+  world: z.strictObject({
+    bilateralTrust: sourcedIntSchema,
+  }),
+  seats: z.strictObject({
+    usa: seatStartSchema,
+    china: seatStartSchema,
+  }),
 });
 
 // ---------------------------------------------------------------------------
@@ -570,6 +575,8 @@ export const mandateSchema = z.strictObject({
     }),
   rewardPoliticalCapital: z.number().int().min(0).max(1000),
   penaltyOnLapse: effectSetSchema.optional(),
+  /** Which seats can draw this mandate. Absent = both. */
+  seats: z.array(z.enum(PLAYABLE_SEAT_IDS)).min(1).optional(),
   sourceIds: sourceIdsSchema,
   claimIds: claimIdsSchema,
 });
@@ -642,6 +649,54 @@ export const prologueSchema = z
   });
 
 // ---------------------------------------------------------------------------
+// Seat rules (data/seats.json) — the asymmetry lives in DATA (S7).
+// Symmetric uncertainty: same decks, same dice ranges; the seats differ in
+// institutions (elections vs legitimacy), chokepoint exposure and card access.
+// ---------------------------------------------------------------------------
+
+export const seatRulesSchema = z.strictObject({
+  id: z.enum(PLAYABLE_SEAT_IDS),
+  labelKey: stringsRefSchema,
+  /** Track relabeling (e.g. China's publicTrust reads as Legitimacy). */
+  trackLabelOverrides: z.record(z.string(), stringsRefSchema).optional(),
+  /** Turn-8 midterms (USA institutional rhythm). */
+  elections: z.boolean(),
+  /**
+   * Era-cadence legitimacy verdicts instead of one midterm (China).
+   * Checked at each era start after the first.
+   */
+  legitimacyCheck: z
+    .strictObject({
+      trustMin: sourcedIntSchema,
+      swing: sourcedIntSchema,
+    })
+    .optional(),
+  /** Compute GAINS scale by substitution/1000 while the export crackdown holds. */
+  computeGatedBySubstitution: z.boolean(),
+  /** Policy ids this seat cannot play. */
+  policyUnavailable: z.array(z.string().regex(CARD_ID_PATTERN)).optional(),
+  /** Per-policy cost deltas (state coordination makes some moves cheaper). */
+  costModifiers: z
+    .record(
+      z.string().regex(CARD_ID_PATTERN),
+      z.strictObject({
+        politicalCapital: z.number().int().min(-1000).max(1000).optional(),
+        capital: z.number().int().min(-1000).max(1000).optional(),
+      }),
+    )
+    .optional(),
+  sourceIds: sourceIdsSchema,
+  claimIds: claimIdsSchema,
+});
+
+export const seatsSchema = z.strictObject({
+  $schema: z.string().optional(),
+  usa: seatRulesSchema,
+  china: seatRulesSchema,
+  sourceIds: sourceIdsSchema,
+});
+
+// ---------------------------------------------------------------------------
 // Sources registry
 // ---------------------------------------------------------------------------
 
@@ -682,6 +737,8 @@ export const stringsFileSchema = z.record(
 // Save format (Block B5 implements load/save; the shape is contract now)
 // ---------------------------------------------------------------------------
 
+const seatField = z.enum(PLAYABLE_SEAT_IDS).optional();
+
 export const actionSchema = z.discriminatedUnion('type', [
   z
     .strictObject({
@@ -689,18 +746,24 @@ export const actionSchema = z.discriminatedUnion('type', [
       capability: shareInt,
       safety: shareInt,
       diffusion: shareInt,
+      seat: seatField,
     })
     .refine((a) => a.capability + a.safety + a.diffusion === 100, {
       message: 'allocation shares must sum to 100',
     }),
-  z.strictObject({ type: z.literal('playPolicy'), policyId: z.string().regex(CARD_ID_PATTERN) }),
-  z.strictObject({ type: z.literal('skipPolicy') }),
+  z.strictObject({
+    type: z.literal('playPolicy'),
+    policyId: z.string().regex(CARD_ID_PATTERN),
+    seat: seatField,
+  }),
+  z.strictObject({ type: z.literal('skipPolicy'), seat: seatField }),
   z.strictObject({
     type: z.literal('resolveEventChoice'),
     eventId: z.string().regex(CARD_ID_PATTERN),
     choiceIndex: z.number().int().min(0).max(3),
+    seat: seatField,
   }),
-  z.strictObject({ type: z.literal('advance') }),
+  z.strictObject({ type: z.literal('advance'), seat: seatField }),
 ]);
 
 export const saveGameSchema = z.strictObject({
@@ -708,7 +771,8 @@ export const saveGameSchema = z.strictObject({
   dataVersion: z.string().min(1),
   seed: z.string().min(1).max(64),
   presetId: z.enum(WORLDVIEW_PRESET_IDS),
-  seatId: z.enum(SEAT_IDS),
+  mode: z.enum(GAME_MODES),
+  playerSeat: z.enum(PLAYABLE_SEAT_IDS),
   scenarioId: z.string().regex(CARD_ID_PATTERN),
   actions: z.array(actionSchema),
 });
@@ -731,6 +795,8 @@ export type IncidentRungData = z.infer<typeof incidentRungSchema>;
 export type IncidentsData = z.infer<typeof incidentsSchema>;
 export type MandateData = z.infer<typeof mandateSchema>;
 export type MandatesData = z.infer<typeof mandatesSchema>;
+export type SeatRulesData = z.infer<typeof seatRulesSchema>;
+export type SeatsData = z.infer<typeof seatsSchema>;
 export type PrologueData = z.infer<typeof prologueSchema>;
 export type PrologueChapterData = PrologueData['chapters'][number];
 export type WorldviewPresetData = z.infer<typeof worldviewPresetSchema>;

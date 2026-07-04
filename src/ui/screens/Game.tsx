@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { divRound, evalCurve, mulDiv } from '../../engine/math';
 import { eraForTurn } from '../../engine/step';
 import { hashString } from '../../engine/hash';
-import type { GameState } from '../../engine/types';
+import type { GameState, PlayableSeatId } from '../../engine/types';
+import { otherSeat } from '../../engine/types';
 import { AllocationControl } from '../components/AllocationControl';
 import { EvalBand } from '../components/EvalBand';
 import { EventMemo } from '../components/EventMemo';
@@ -14,7 +15,7 @@ import { SettingsDialog } from '../components/SettingsDialog';
 import { ShockOverlay } from '../components/ShockOverlay';
 import { TurnReport } from '../components/TurnReport';
 import { eraLabelKey, turnDate } from '../format';
-import { t, tickerPool, type StringKey } from '../i18n';
+import { t, tRef, tickerPool, type StringKey } from '../i18n';
 import { gameData, useStore } from '../store';
 
 /** Deterministic, replay-stable ticker line: hash(seed, turn) over the era pool. */
@@ -50,12 +51,15 @@ const DISCLOSE_TOAST: Record<Disclosable, StringKey> = {
   eval: 'disclose.eval',
 };
 
-function revealedTracks(run: GameState): Set<Disclosable> {
+function revealedTracks(run: GameState, seat: PlayableSeatId): Set<Disclosable> {
   const revealed = new Set<Disclosable>();
-  if (run.evalHistory.length > 0) {
+  if (run.seats[seat].evalHistory.length > 0) {
     revealed.add('eval');
   }
   for (const entry of run.log) {
+    if (entry.seat !== null && entry.seat !== seat) {
+      continue;
+    }
     for (const [target, delta] of Object.entries(entry.deltas ?? {})) {
       if (delta === 0) {
         continue;
@@ -83,6 +87,7 @@ export function Game() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const shockAck = useStore((s) => s.shockAck);
   const ackShocks = useStore((s) => s.ackShocks);
+  const [handoffAck, setHandoffAck] = useState('');
   const [toasts, setToasts] = useState<Disclosable[]>([]);
   const knownTracks = useRef<Set<Disclosable> | null>(null);
   const knownSeed = useRef<string | null>(null);
@@ -101,7 +106,12 @@ export function Game() {
     if (!run) {
       return;
     }
-    const revealed = revealedTracks(run);
+    const revealed = revealedTracks(
+      run,
+      run.mode === 'hotseat' && run.phase !== 'report' && run.phase !== 'ended'
+        ? run.actingSeat
+        : run.playerSeat,
+    );
     if (knownTracks.current === null || knownSeed.current !== run.seed) {
       // First render of a run (fresh or loaded): no back-announcements.
       knownTracks.current = revealed;
@@ -121,22 +131,39 @@ export function Game() {
   if (!run) {
     return null;
   }
-  const revealed = revealedTracks(run);
+  // The view seat: in hotseat, whoever is acting; otherwise the player.
+  const viewSeat: PlayableSeatId =
+    run.mode === 'hotseat' && run.phase !== 'report' && run.phase !== 'ended'
+      ? run.actingSeat
+      : run.playerSeat;
+  const me = run.seats[viewSeat];
+  const them = run.seats[otherSeat(viewSeat)];
+  const revealed = revealedTracks(run, viewSeat);
   const shocks = run.log.filter(
-    (entry) => entry.turn === run.turn && (entry.kind === 'incident' || entry.kind === 'wildcard'),
+    (entry) =>
+      entry.turn === run.turn &&
+      (entry.kind === 'incident' || entry.kind === 'wildcard') &&
+      (entry.seat === viewSeat || entry.seat === null),
   );
   const shockKey = `${run.seed}:${run.turn}`;
   const showShocks =
     (run.phase === 'report' || run.phase === 'ended') && shocks.length > 0 && shockAck !== shockKey;
+  // Hotseat: a handoff screen guards the start of each seat's window, so the
+  // outgoing player's eval band and hand are never on screen for the next one.
+  const handoffKey = `${run.seed}:${run.turn}:${run.actingSeat}`;
+  const showHandoff =
+    run.mode === 'hotseat' && run.phase === 'allocate' && handoffAck !== handoffKey;
+  const seatLabel = tRef(data.seatsRules[viewSeat].labelKey);
+  const trustLabelOverride = data.seatsRules[viewSeat].trackLabelOverrides?.['publicTrust'];
 
   const era = eraForTurn(data.parameters, run.turn);
   const date = turnDate(data.scenario.startTime, run.turn);
   const maxTurns = data.parameters.turnStructure.maxTurns.value;
-  const report = run.evalHistory[run.evalHistory.length - 1];
+  const report = me.evalHistory[me.evalHistory.length - 1];
   const bandWidth = report ? report.bandHigh - report.bandLow : 400;
   const rndPoints = evalCurve(
     data.parameters.curves['rndCapacity']!,
-    run.resources.compute + run.resources.talent,
+    me.resources.compute + me.resources.talent,
   );
   const prev = (target: string): number => {
     for (let i = run.log.length - 1; i >= 0; i -= 1) {
@@ -144,7 +171,12 @@ export function Game() {
       if (entry.turn < run.turn - 1) {
         break; // trend means LAST quarter, not the last time it ever moved
       }
-      if (entry.turn === run.turn - 1 && entry.deltas && target in entry.deltas) {
+      if (
+        entry.turn === run.turn - 1 &&
+        (entry.seat === viewSeat || entry.seat === null) &&
+        entry.deltas &&
+        target in entry.deltas
+      ) {
         return entry.deltas[target as keyof typeof entry.deltas] ?? 0;
       }
     }
@@ -162,6 +194,9 @@ export function Game() {
           {t('hud.date', { quarter: date.quarter, year: date.year })}
         </span>
         <span className="game-era">{t(eraLabelKey(era))}</span>
+        {(run.mode === 'hotseat' || run.playerSeat !== 'usa') && (
+          <span className="game-seat">{seatLabel}</span>
+        )}
         <button
           type="button"
           className="btn"
@@ -186,8 +221,8 @@ export function Game() {
       </div>
 
       <RaceTrack
-        you={run.resources.capability}
-        rival={run.rival.capability}
+        you={me.resources.capability}
+        rival={them.resources.capability}
         fogFrom={data.parameters.thresholds.fogZoneStart.value}
         threshold={data.parameters.thresholds.capabilityThreshold.value}
         bandWidth={bandWidth}
@@ -197,8 +232,9 @@ export function Game() {
         <div className="game-main">
           {run.phase === 'allocate' && (
             <AllocationControl
-              initial={run.allocation}
-              paused={run.flags.includes('forcedPause')}
+              key={`${run.turn}:${viewSeat}`}
+              initial={me.allocation}
+              paused={me.flags.includes('forcedPause')}
               points={rndPoints}
               preview={(shares) => ({
                 capabilityGain: evalCurve(
@@ -227,27 +263,28 @@ export function Game() {
             <TurnReport
               data={data}
               run={run}
+              seat={viewSeat}
               onAdvance={() =>
                 run.phase === 'ended' ? goTo('debrief') : dispatch({ type: 'advance' })
               }
             />
           )}
-          {revealed.has('eval') && <EvalBand run={run} />}
+          {revealed.has('eval') && <EvalBand run={run} seat={viewSeat} />}
         </div>
 
         <aside className="game-side" aria-label={t('dash.heading')}>
-          <MandatesPanel data={data} run={run} />
+          <MandatesPanel data={data} run={run} seat={viewSeat} />
           <h2 className="panel-heading">{t('dash.heading')}</h2>
           <Meter
             label={t('resource.compute.label')}
-            value={run.resources.compute}
+            value={me.resources.compute}
             token="--m-capital"
             trend={prev('compute')}
           />
           {revealed.has('energy') && (
             <Meter
               label={t('resource.energy.label')}
-              value={run.resources.energy}
+              value={me.resources.energy}
               token="--m-energy"
               trend={prev('energy')}
             />
@@ -255,7 +292,7 @@ export function Game() {
           {revealed.has('talent') && (
             <Meter
               label={t('resource.talent.label')}
-              value={run.resources.talent}
+              value={me.resources.talent}
               token="--m-capital"
               trend={prev('talent')}
             />
@@ -263,15 +300,17 @@ export function Game() {
           {revealed.has('capital') && (
             <Meter
               label={t('resource.capital.label')}
-              value={run.resources.capital}
+              value={me.resources.capital}
               token="--m-capital"
               trend={prev('capital')}
             />
           )}
           {revealed.has('publicTrust') && (
             <Meter
-              label={t('resource.publicTrust.label')}
-              value={run.resources.publicTrust}
+              label={
+                trustLabelOverride ? tRef(trustLabelOverride) : t('resource.publicTrust.label')
+              }
+              value={me.resources.publicTrust}
               token="--m-trust"
               trend={prev('publicTrust')}
             />
@@ -279,20 +318,20 @@ export function Game() {
           {revealed.has('politicalCapital') && (
             <Meter
               label={t('resource.politicalCapital.label')}
-              value={run.resources.politicalCapital}
+              value={me.resources.politicalCapital}
               token="--m-trust"
               trend={prev('politicalCapital')}
             />
           )}
           <Meter
             label={t('resource.capability.label')}
-            value={run.resources.capability}
+            value={me.resources.capability}
             token="--m-capability"
             trend={prev('capability')}
           />
           <Meter
             label={t('resource.safetyInsight.label')}
-            value={run.resources.safetyInsight}
+            value={me.resources.safetyInsight}
             token="--m-safety"
             trend={prev('safetyInsight')}
           />
@@ -301,13 +340,13 @@ export function Game() {
               <h2 className="panel-heading side-sub">{t('society.jobDisplacement.label')}</h2>
               <Meter
                 label={t('society.jobDisplacement.label')}
-                value={run.society.jobDisplacement}
+                value={me.society.jobDisplacement}
                 token="--m-unrest"
                 trend={prev('society.jobDisplacement')}
               />
               <Meter
                 label={t('society.unrest.label')}
-                value={run.society.unrest}
+                value={me.society.unrest}
                 token="--m-unrest"
                 trend={prev('society.unrest')}
               />
@@ -318,19 +357,19 @@ export function Game() {
               <h2 className="panel-heading side-sub">{t('race.rival')}</h2>
               <Meter
                 label={t('rival.capability.label')}
-                value={run.rival.capability}
+                value={them.resources.capability}
                 token="--m-rival"
                 trend={prev('rival.capability')}
               />
               <Meter
                 label={t('rival.trust.label')}
-                value={run.rival.trust}
+                value={run.world.bilateralTrust}
                 token="--m-trust"
                 trend={prev('rival.trust')}
               />
               <Meter
                 label={t('rival.substitution.label')}
-                value={run.rival.substitution}
+                value={them.substitution}
                 token="--m-rival"
                 trend={prev('rival.substitution')}
               />
@@ -366,6 +405,30 @@ export function Game() {
           shocks={shocks}
           onContinue={() => ackShocks(shockKey)}
         />
+      )}
+      {showHandoff && !showShocks && (
+        <div className="memo-backdrop">
+          <section
+            className="memo memo-handoff"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="handoff-title"
+          >
+            <h2 id="handoff-title" className="memo-title">
+              {t('handoff.heading')}
+            </h2>
+            <p className="memo-body">{t('handoff.body', { seat: seatLabel })}</p>
+            <div className="panel-actions">
+              <button
+                type="button"
+                className="btn btn-primary btn-big"
+                onClick={() => setHandoffAck(handoffKey)}
+              >
+                {t('handoff.continue', { seat: seatLabel })}
+              </button>
+            </div>
+          </section>
+        </div>
       )}
     </main>
   );

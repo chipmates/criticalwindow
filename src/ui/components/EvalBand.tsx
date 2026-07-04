@@ -1,8 +1,9 @@
-import type { GameState } from '../../engine/types';
+import type { GameState, PlayableSeatId } from '../../engine/types';
 import { t } from '../i18n';
 
-export function EvalBand({ run }: { run: GameState }) {
-  const report = run.evalHistory[run.evalHistory.length - 1];
+export function EvalBand({ run, seat }: { run: GameState; seat: PlayableSeatId }) {
+  const history = run.seats[seat].evalHistory;
+  const report = history[history.length - 1];
   if (!report) {
     return null;
   }

@@ -48,6 +48,7 @@ export function loadGameData(): EngineData {
       scenario: parse('scenarios/scenario_2026.json'),
       incidents: parse('incidents.json'),
       mandates: parse('mandates.json'),
+      seatsRules: parse('seats.json'),
       events: files
         .filter((f) => f.path.startsWith('events/'))
         .map((f) => ({ name: f.path, json: JSON.parse(f.content) as unknown })),

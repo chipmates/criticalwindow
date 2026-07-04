@@ -40,12 +40,13 @@ export function Prologue() {
   const chapter: PrologueChapterData | null =
     stepIndex >= 1 && stepIndex <= chapterCount ? prologue.chapters[stepIndex - 1]! : null;
 
+  const usaStart = data.scenario.seats.usa;
   const rndPoints = evalCurve(
     data.parameters.curves['rndCapacity']!,
-    data.scenario.startResources.compute.value + data.scenario.startResources.talent.value,
+    usaStart.resources.compute.value + usaStart.resources.talent.value,
   );
 
-  const startStateRows = Object.entries(data.scenario.startResources).map(([key, sourced]) => ({
+  const startStateRows = Object.entries(usaStart.resources).map(([key, sourced]) => ({
     label: targetLabel(key),
     value: sourced.value,
   }));
@@ -94,9 +95,9 @@ export function Prologue() {
           {chapter.teach === 'allocate' && (
             <AllocationControl
               initial={{
-                capability: data.scenario.startAllocation.capability,
-                safety: data.scenario.startAllocation.safety,
-                diffusion: data.scenario.startAllocation.diffusion,
+                capability: usaStart.allocation.capability,
+                safety: usaStart.allocation.safety,
+                diffusion: usaStart.allocation.diffusion,
               }}
               points={rndPoints}
               preview={(shares) => ({

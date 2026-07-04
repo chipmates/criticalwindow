@@ -1,11 +1,13 @@
 import type { EngineData } from '../../engine/data';
-import type { GameState, LogEntry } from '../../engine/types';
+import { postureFromTrust } from '../../engine/step';
+import type { GameState, LogEntry, PlayableSeatId } from '../../engine/types';
 import { reportEntries, signed, targetLabel } from '../format';
 import { t, tRef, type StringKey } from '../i18n';
 
 interface TurnReportProps {
   data: EngineData;
   run: GameState;
+  seat: PlayableSeatId;
   onAdvance: () => void;
 }
 
@@ -56,17 +58,20 @@ function kindLine(data: EngineData, entry: LogEntry): string {
   }
 }
 
-export function TurnReport({ data, run, onAdvance }: TurnReportProps) {
-  const entries = reportEntries(run);
+export function TurnReport({ data, run, seat, onAdvance }: TurnReportProps) {
+  const entries = reportEntries(run, seat);
   const ended = run.phase === 'ended';
-  const election = run.log.find((e) => e.turn === run.turn && e.kind === 'election');
+  const election = run.log.find(
+    (e) => e.turn === run.turn && e.kind === 'election' && e.seat === seat,
+  );
+  const posture = postureFromTrust(data.parameters, run.world.bilateralTrust);
 
   return (
     <section className="panel" aria-labelledby="report-heading">
       <h2 id="report-heading" className="panel-heading">
         {t('phase.report.heading')}
       </h2>
-      <p className="panel-explain">{t(`report.rival.${run.rival.posture}` as StringKey)}</p>
+      <p className="panel-explain">{t(`report.rival.${posture}` as StringKey)}</p>
       {election && (
         <p className="report-election">
           {t(election.meta?.renewed ? 'report.election.renewed' : 'report.election.rebuked')}

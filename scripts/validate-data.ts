@@ -20,6 +20,7 @@ import {
   mandatesSchema,
   parametersSchema,
   prologueSchema,
+  seatsSchema,
   policyCardSchema,
   scenarioSchema,
   sourcesRegistrySchema,
@@ -29,6 +30,7 @@ import {
   type MandatesData,
   type ParametersData,
   type PrologueData,
+  type SeatsData,
   type PolicyCardData,
   type ScenarioData,
   type SourcesRegistryData,
@@ -149,6 +151,13 @@ if (!parsed.has('prologue.json')) {
   errors.push('data/prologue.json is missing (tutorial prologue, v0.2 wave 2)');
 }
 
+const seatsRules = parsed.has('seats.json')
+  ? validateFile<SeatsData>('seats.json', seatsSchema)
+  : null;
+if (!parsed.has('seats.json')) {
+  errors.push('data/seats.json is missing (seat rules, v0.2 wave 3)');
+}
+
 const scenarios: ScenarioData[] = [];
 for (const file of byDir('scenarios')) {
   const scenario = validateFile<ScenarioData>(file.relPath, scenarioSchema);
@@ -181,7 +190,7 @@ for (const file of byDir('policies')) {
 
 // -- 3. cross-file integrity ------------------------------------------------
 let draftValues: string[] = [];
-if (parameters && incidents && mandates && scenarios.length > 0) {
+if (parameters && incidents && mandates && seatsRules && scenarios.length > 0) {
   for (const scenario of scenarios) {
     const report = checkIntegrity({
       parameters,
@@ -190,6 +199,7 @@ if (parameters && incidents && mandates && scenarios.length > 0) {
       policies,
       incidents,
       mandates,
+      seatsRules,
       strings,
       sources,
     });
@@ -240,13 +250,15 @@ if (prologue) {
         finalTo.set(motion.target, motion.to);
       }
     }
+    const usa = scenario.seats.usa;
+    const china = scenario.seats.china;
     const startFor = (target: string): number | null => {
-      if (target === 'society.jobDisplacement') return scenario.startSociety.jobDisplacement.value;
-      if (target === 'society.unrest') return scenario.startSociety.unrest.value;
-      if (target === 'rival.capability') return scenario.startRival.capability.value;
-      if (target === 'rival.trust') return scenario.startRival.trust.value;
-      if (target === 'rival.substitution') return scenario.startRival.substitution.value;
-      const resources = scenario.startResources as Record<string, { value: number } | undefined>;
+      if (target === 'society.jobDisplacement') return usa.society.jobDisplacement.value;
+      if (target === 'society.unrest') return usa.society.unrest.value;
+      if (target === 'rival.capability') return china.resources.capability.value;
+      if (target === 'rival.trust') return scenario.world.bilateralTrust.value;
+      if (target === 'rival.substitution') return china.substitution.value;
+      const resources = usa.resources as Record<string, { value: number } | undefined>;
       return resources[target]?.value ?? null;
     };
     for (const [target, to] of finalTo) {

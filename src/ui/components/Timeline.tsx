@@ -29,33 +29,44 @@ export function Timeline({ data, snapshots }: { data: EngineData; snapshots: Tur
 
   const { series, band, turns, electionTurn, incidentTurns } = useMemo(() => {
     const turnsList = snapshots.map((s) => s.turn);
+    const seatOf = (s: TurnSnapshot) => s.state.seats[s.state.playerSeat];
     const mk = (pick: (s: TurnSnapshot) => number): number[] => snapshots.map(pick);
-    const finalLog = snapshots[snapshots.length - 1]?.state.log ?? [];
+    const last = snapshots[snapshots.length - 1];
+    const finalLog = last?.state.log ?? [];
+    const playerSeat = last?.state.playerSeat ?? 'usa';
     return {
       turns: turnsList,
       electionTurn: data.parameters.turnStructure.electionTurn.value,
-      incidentTurns: [...new Set(finalLog.filter((e) => e.kind === 'incident').map((e) => e.turn))],
+      incidentTurns: [
+        ...new Set(
+          finalLog.filter((e) => e.kind === 'incident' && e.seat === playerSeat).map((e) => e.turn),
+        ),
+      ],
       series: [
-        { id: 'you', labelKey: 'race.you', values: mk((s) => s.state.resources.capability) },
+        { id: 'you', labelKey: 'race.you', values: mk((s) => seatOf(s).resources.capability) },
         {
           id: 'rival',
           labelKey: 'race.rival',
-          values: mk((s) => s.state.rival.capability),
+          values: mk(
+            (s) =>
+              s.state.seats[s.state.playerSeat === 'usa' ? 'china' : 'usa'].resources.capability,
+          ),
           dashed: true,
         },
         {
           id: 'trust',
           labelKey: 'resource.publicTrust.label',
-          values: mk((s) => s.state.resources.publicTrust),
+          values: mk((s) => seatOf(s).resources.publicTrust),
         },
         {
           id: 'unrest',
           labelKey: 'society.unrest.label',
-          values: mk((s) => s.state.society.unrest),
+          values: mk((s) => seatOf(s).society.unrest),
         },
       ] satisfies Series[],
       band: snapshots.map((s) => {
-        const report = s.state.evalHistory[s.state.evalHistory.length - 1];
+        const history = seatOf(s).evalHistory;
+        const report = history[history.length - 1];
         return report ? { low: report.bandLow, high: report.bandHigh } : { low: 0, high: 0 };
       }),
     };

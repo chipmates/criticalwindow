@@ -1,0 +1,27 @@
+{
+  "usa": {
+    "id": "usa",
+    "labelKey": "strings:seat.usa.label",
+    "elections": true,
+    "computeGatedBySubstitution": false,
+    "sourceIds": ["SRC-DESIGN-HANDOVER"]
+  },
+  "china": {
+    "id": "china",
+    "labelKey": "strings:seat.china.label",
+    "elections": false,
+    "legitimacyCheck": {
+      "trustMin": {
+        "value": 400,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      },
+      "swing": {
+        "value": 100,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      }
+    },
+    "computeGatedBySubstitution": true,
+    "sourceIds": ["SRC-DESIGN-HANDOVER"]
+  },
+  "sourceIds": ["SRC-DESIGN-HANDOVER"]
+}

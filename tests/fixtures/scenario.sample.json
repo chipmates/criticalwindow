@@ -1,33 +1,130 @@
 {
-  "id": "scenario_2026",
-  "seat": "usa",
+  "id": "scenario_sample",
   "label": "strings:scenario.usa2026.label",
-  "startTime": { "year": 2026, "quarter": 3 },
-  "startResources": {
-    "compute": { "value": 700, "sourceIds": ["SRC-EPOCH-COMPUTE"] },
-    "energy": { "value": 450, "sourceIds": ["SRC-IEA-ENERGY-AI"] },
-    "talent": { "value": 650, "sourceIds": ["TODO-SOURCE"] },
-    "capital": { "value": 750, "sourceIds": ["TODO-SOURCE"] },
-    "publicTrust": { "value": 400, "sourceIds": ["TODO-SOURCE"] },
-    "politicalCapital": { "value": 500, "sourceIds": ["SRC-DESIGN-HANDOVER"] },
-    "capability": { "value": 350, "sourceIds": ["SRC-METR-HORIZON"] },
-    "safetyInsight": { "value": 200, "sourceIds": ["TODO-SOURCE"] }
+  "startTime": {
+    "year": 2026,
+    "quarter": 3
   },
-  "startSociety": {
-    "jobDisplacement": { "value": 100, "sourceIds": ["SRC-IMF-GENAI"] },
-    "unrest": { "value": 150, "sourceIds": ["TODO-SOURCE"] }
+  "world": {
+    "bilateralTrust": {
+      "value": 350,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    }
   },
-  "startRival": {
-    "posture": "mirror",
-    "capability": { "value": 300, "sourceIds": ["TODO-SOURCE"] },
-    "trust": { "value": 350, "sourceIds": ["TODO-SOURCE"] },
-    "substitution": { "value": 250, "sourceIds": ["SRC-CSIS-EXPORT"] }
-  },
-  "startAllocation": {
-    "capability": 60,
-    "safety": 15,
-    "diffusion": 25,
-    "sourceIds": ["SRC-DESIGN-HANDOVER"]
-  },
-  "startingHand": ["export_controls"]
+  "seats": {
+    "usa": {
+      "resources": {
+        "compute": {
+          "value": 500,
+          "sourceIds": ["SRC-EPOCH-COMPUTE"]
+        },
+        "energy": {
+          "value": 400,
+          "sourceIds": ["SRC-IEA-ENERGY-AI"]
+        },
+        "talent": {
+          "value": 500,
+          "sourceIds": ["TODO-SOURCE"]
+        },
+        "capital": {
+          "value": 500,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        },
+        "publicTrust": {
+          "value": 400,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        },
+        "politicalCapital": {
+          "value": 500,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        },
+        "capability": {
+          "value": 350,
+          "sourceIds": ["SRC-METR-HORIZON"]
+        },
+        "safetyInsight": {
+          "value": 200,
+          "sourceIds": ["SRC-SLEEPER"]
+        }
+      },
+      "society": {
+        "jobDisplacement": {
+          "value": 100,
+          "sourceIds": ["SRC-IMF-GENAI"]
+        },
+        "unrest": {
+          "value": 150,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        }
+      },
+      "substitution": {
+        "value": 0,
+        "sourceIds": ["SRC-CSIS-EXPORT"]
+      },
+      "allocation": {
+        "capability": 60,
+        "safety": 15,
+        "diffusion": 25,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      },
+      "hand": ["export_controls"]
+    },
+    "china": {
+      "resources": {
+        "compute": {
+          "value": 500,
+          "sourceIds": ["SRC-EPOCH-COMPUTE"]
+        },
+        "energy": {
+          "value": 400,
+          "sourceIds": ["SRC-IEA-ENERGY-AI"]
+        },
+        "talent": {
+          "value": 500,
+          "sourceIds": ["TODO-SOURCE"]
+        },
+        "capital": {
+          "value": 500,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        },
+        "publicTrust": {
+          "value": 400,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        },
+        "politicalCapital": {
+          "value": 500,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        },
+        "capability": {
+          "value": 300,
+          "sourceIds": ["SRC-METR-HORIZON"]
+        },
+        "safetyInsight": {
+          "value": 200,
+          "sourceIds": ["SRC-SLEEPER"]
+        }
+      },
+      "society": {
+        "jobDisplacement": {
+          "value": 100,
+          "sourceIds": ["SRC-IMF-GENAI"]
+        },
+        "unrest": {
+          "value": 150,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"]
+        }
+      },
+      "substitution": {
+        "value": 250,
+        "sourceIds": ["SRC-CSIS-EXPORT"]
+      },
+      "allocation": {
+        "capability": 60,
+        "safety": 15,
+        "diffusion": 25,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"]
+      },
+      "hand": ["export_controls"]
+    }
+  }
 }

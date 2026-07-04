@@ -16,7 +16,7 @@ interface EventMemoProps {
  * choice is made.
  */
 export function EventMemo({ data, run, onChoose }: EventMemoProps) {
-  const pending = run.pendingEvents[0];
+  const pending = run.seats[run.actingSeat].pendingEvents[0];
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {

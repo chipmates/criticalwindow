@@ -1,26 +1,47 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "08f8b60494ff18",
+  "dataVersion": "0b5bbec96786a4",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
-  "endingId": "misalignedCatastrophe",
-  "turns": 6,
+  "endingId": "societalBreakdown",
+  "turns": 13,
   "actions": [
     {
       "type": "allocate",
       "capability": 80,
       "safety": 10,
-      "diffusion": 10
+      "diffusion": 10,
+      "seat": "usa"
     },
     {
       "type": "playPolicy",
-      "policyId": "export_controls"
+      "policyId": "export_controls",
+      "seat": "usa"
     },
     {
       "type": "resolveEventChoice",
       "eventId": "eu_ai_act_full_force",
-      "choiceIndex": 0
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "chip_subsidies",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "eu_ai_act_full_force",
+      "choiceIndex": 0,
+      "seat": "china"
     },
     {
       "type": "advance"
@@ -29,16 +50,31 @@
       "type": "allocate",
       "capability": 80,
       "safety": 10,
-      "diffusion": 10
+      "diffusion": 10,
+      "seat": "usa"
     },
     {
       "type": "playPolicy",
-      "policyId": "energy_buildout"
+      "policyId": "energy_buildout",
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "energy_buildout",
+      "seat": "china"
     },
     {
       "type": "resolveEventChoice",
       "eventId": "viral_job_loss",
-      "choiceIndex": 0
+      "choiceIndex": 0,
+      "seat": "china"
     },
     {
       "type": "advance"
@@ -47,16 +83,30 @@
       "type": "allocate",
       "capability": 80,
       "safety": 10,
-      "diffusion": 10
+      "diffusion": 10,
+      "seat": "usa"
     },
     {
       "type": "playPolicy",
-      "policyId": "chip_subsidies"
+      "policyId": "chip_subsidies",
+      "seat": "usa"
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "open_weights_shock",
-      "choiceIndex": 0
+      "eventId": "viral_job_loss",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
     },
     {
       "type": "advance"
@@ -65,32 +115,66 @@
       "type": "allocate",
       "capability": 80,
       "safety": 10,
-      "diffusion": 10
+      "diffusion": 10,
+      "seat": "usa"
     },
     {
-      "type": "skipPolicy"
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
     },
     {
       "type": "resolveEventChoice",
       "eventId": "eval_breakthrough",
-      "choiceIndex": 1
+      "choiceIndex": 1,
+      "seat": "china"
     },
     {
       "type": "advance"
     },
     {
       "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
+      "capability": 30,
+      "safety": 40,
+      "diffusion": 30,
+      "seat": "usa"
     },
     {
-      "type": "skipPolicy"
+      "type": "skipPolicy",
+      "seat": "usa"
     },
     {
       "type": "resolveEventChoice",
       "eventId": "eu_ai_act_high_risk",
-      "choiceIndex": 0
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "eu_ai_act_high_risk",
+      "choiceIndex": 0,
+      "seat": "china"
     },
     {
       "type": "advance"
@@ -99,24 +183,275 @@
       "type": "allocate",
       "capability": 80,
       "safety": 10,
-      "diffusion": 10
+      "diffusion": 10,
+      "seat": "usa"
     },
     {
-      "type": "skipPolicy"
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "chip_smuggling",
+      "choiceIndex": 0,
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "whistleblower",
+      "choiceIndex": 1,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "energy_crunch",
+      "choiceIndex": 0,
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "lab_merger",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "usa"
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "energy_buildout",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "branch_point",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "allied_export_fracture",
+      "choiceIndex": 0,
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 30,
+      "safety": 40,
+      "diffusion": 30,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
     },
     {
       "type": "resolveEventChoice",
       "eventId": "superhuman_coder",
-      "choiceIndex": 0
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 30,
+      "safety": 40,
+      "diffusion": 30,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "the_project",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "benchmark_gaming",
+      "choiceIndex": 1,
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "intelligence_explosion",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "01ccfc6b7d9400",
-    "1837965c4ab7ab",
-    "011568c8400a12",
-    "1496530b560c4f",
-    "0b63ae79ab8217",
-    "09ce43a85a49e4"
+    "0efe2bf2342767",
+    "15994fe9f78277",
+    "041cf29207d6cf",
+    "054c0d152f6164",
+    "0226cef8792cce",
+    "089ffdcca01422",
+    "1329b0bcddda20",
+    "003131b5520ee9",
+    "08c951a55eec77",
+    "061dc9ba9ca994",
+    "19436d034a07dc",
+    "1e316019c3cf32",
+    "16148b35396559"
   ],
-  "finalHash": "09ce43a85a49e4"
+  "finalHash": "16148b35396559"
 }

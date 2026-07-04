@@ -1050,3 +1050,62 @@
   border: var(--hairline) solid var(--rule);
   background: var(--surface);
 }
+
+/* ---- v0.2 wave 3: seats and hotseat ---- */
+
+.game-seat {
+  font-family: var(--font-data);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px var(--space-2);
+  border: var(--hairline) solid var(--rule-strong);
+}
+
+.setup-mode {
+  border: var(--hairline) solid var(--rule);
+  padding: var(--space-3);
+  margin: var(--space-3) 0;
+}
+
+.setup-mode-options {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.mode-option {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  padding: var(--space-2) var(--space-3);
+  border: var(--hairline) solid var(--rule);
+  cursor: pointer;
+  flex: 1 1 240px;
+}
+
+.mode-option small {
+  display: block;
+  color: var(--ink-muted);
+}
+
+.mode-selected {
+  border-color: var(--accent);
+}
+
+.setup-seat {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  margin-top: var(--space-3);
+}
+
+.btn-seat-selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.memo-handoff {
+  border-top-color: var(--rule-strong);
+}

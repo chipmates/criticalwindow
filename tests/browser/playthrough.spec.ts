@@ -84,3 +84,27 @@ test('mobile portrait: setup renders without horizontal scroll', async ({ page }
   expect(gameOverflow).toBe(false);
   await page.screenshot({ path: 'test-results/mobile-game.png', fullPage: true });
 });
+
+test('hotseat: the handoff guards each seat window', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'New run' }).click();
+  await page.getByLabel('Seed').fill('e2e-hotseat-1');
+  await page.getByText('Two players, one device').click();
+  await page.getByRole('button', { name: 'Take office' }).click();
+  await page.getByRole('button', { name: 'Skip the history' }).click();
+
+  // USA's window opens behind a handoff screen.
+  await expect(page.getByRole('heading', { name: 'Hand the device over' })).toBeVisible();
+  await page.getByRole('button', { name: 'I am United States. Begin.' }).click();
+  await page.getByRole('button', { name: 'Commit allocation' }).click();
+  await page.getByRole('button', { name: 'Pass this quarter' }).click();
+  const memo = page.locator('.memo-choice').first();
+  if (await memo.isVisible()) {
+    await memo.click();
+  }
+
+  // China's window: another handoff, then its own controls.
+  await expect(page.getByRole('heading', { name: 'Hand the device over' })).toBeVisible();
+  await page.getByRole('button', { name: 'I am China. Begin.' }).click();
+  await expect(page.getByRole('button', { name: 'Commit allocation' })).toBeVisible();
+});

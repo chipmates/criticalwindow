@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { WorldviewPresetId } from '../../engine/types';
-import { WORLDVIEW_PRESET_IDS } from '../../engine/types';
+import type { GameMode, PlayableSeatId, WorldviewPresetId } from '../../engine/types';
+import { PLAYABLE_SEAT_IDS, WORLDVIEW_PRESET_IDS } from '../../engine/types';
 import { t, tRef } from '../i18n';
 import { gameData, useStore } from '../store';
 
@@ -17,6 +17,8 @@ export function Setup() {
   const goTo = useStore((s) => s.goTo);
   const [presetId, setPresetId] = useState<WorldviewPresetId>('consensus');
   const [seed, setSeed] = useState(rollSeed());
+  const [mode, setMode] = useState<GameMode>('solo');
+  const [playerSeat, setPlayerSeat] = useState<PlayableSeatId>('usa');
   const data = gameData();
 
   return (
@@ -55,6 +57,53 @@ export function Setup() {
       </div>
       <p className="setup-sources-note">{t('setup.sourcesNote')}</p>
 
+      <fieldset className="setup-mode">
+        <legend className="panel-heading">{t('setup.mode.heading')}</legend>
+        <div className="setup-mode-options">
+          <label className={mode === 'solo' ? 'mode-option mode-selected' : 'mode-option'}>
+            <input
+              type="radio"
+              name="mode"
+              checked={mode === 'solo'}
+              onChange={() => setMode('solo')}
+            />
+            <span>
+              <strong>{t('setup.mode.solo')}</strong>
+              <small>{t('setup.mode.soloHint')}</small>
+            </span>
+          </label>
+          <label className={mode === 'hotseat' ? 'mode-option mode-selected' : 'mode-option'}>
+            <input
+              type="radio"
+              name="mode"
+              checked={mode === 'hotseat'}
+              onChange={() => setMode('hotseat')}
+            />
+            <span>
+              <strong>{t('setup.mode.hotseat')}</strong>
+              <small>{t('setup.mode.hotseatHint')}</small>
+            </span>
+          </label>
+        </div>
+        {mode === 'solo' && (
+          <div className="setup-seat" role="radiogroup" aria-label={t('setup.seat.heading')}>
+            <span className="seed-label">{t('setup.seat.heading')}</span>
+            {PLAYABLE_SEAT_IDS.map((seat) => (
+              <button
+                key={seat}
+                type="button"
+                role="radio"
+                aria-checked={playerSeat === seat}
+                className={playerSeat === seat ? 'btn btn-seat btn-seat-selected' : 'btn btn-seat'}
+                onClick={() => setPlayerSeat(seat)}
+              >
+                {tRef(data.seatsRules[seat].labelKey)}
+              </button>
+            ))}
+          </div>
+        )}
+      </fieldset>
+
       <div className="seed-row">
         <label htmlFor="seed-input" className="seed-label">
           {t('setup.seedLabel')}
@@ -80,7 +129,9 @@ export function Setup() {
           type="button"
           className="btn btn-primary btn-big"
           disabled={seed.trim().length === 0}
-          onClick={() => startRun(seed.trim(), presetId)}
+          onClick={() =>
+            startRun(seed.trim(), presetId, mode, mode === 'solo' ? playerSeat : 'usa')
+          }
         >
           {t('setup.begin')}
         </button>

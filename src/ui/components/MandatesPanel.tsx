@@ -1,5 +1,5 @@
 import type { EngineData } from '../../engine/data';
-import type { GameState } from '../../engine/types';
+import type { GameState, PlayableSeatId } from '../../engine/types';
 import { targetLabel } from '../format';
 import { t, tRef } from '../i18n';
 
@@ -7,11 +7,20 @@ import { t, tRef } from '../i18n';
  * Cabinet mandates: the near-term objectives that give the mid-game a pulse.
  * Delivered and lapsed mandates stay visible: the record IS the pressure.
  */
-export function MandatesPanel({ data, run }: { data: EngineData; run: GameState }) {
-  if (run.mandates.length === 0) {
+export function MandatesPanel({
+  data,
+  run,
+  seat,
+}: {
+  data: EngineData;
+  run: GameState;
+  seat: PlayableSeatId;
+}) {
+  const seatMandates = run.seats[seat].mandates;
+  if (seatMandates.length === 0) {
     return null;
   }
-  const items = run.mandates.map((mandate) => ({
+  const items = seatMandates.map((mandate) => ({
     mandate,
     def: data.mandates.mandates.find((d) => d.id === mandate.id)!,
   }));

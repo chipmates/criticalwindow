@@ -23,6 +23,7 @@ export function loadRealData(): EngineData {
     scenario: json('scenarios/scenario_2026.json'),
     incidents: json('incidents.json'),
     mandates: json('mandates.json'),
+    seatsRules: json('seats.json'),
     events: files
       .filter((f) => f.relPath.startsWith('events/'))
       .map((f) => ({

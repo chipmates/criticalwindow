@@ -524,5 +524,21 @@
   "prologue.ch3.responseComply": "Your predecessor did, mostly. It bought goodwill and cost margin. Both bills are in your inbox now.",
   "prologue.ch3.responseShrug": "Your predecessor tried that too. The fines arrived anyway, with interest and headlines.",
   "prologue.startState": "Where you take office",
-  "prologue.replay": "How we got here (3 min)"
+  "prologue.replay": "How we got here (3 min)",
+  "seat.usa.label": "United States",
+  "seat.china.label": "China",
+  "seat.china.legitimacyLabel": "Legitimacy",
+  "mandate.legitimacyHolds.title": "Legitimacy Holds",
+  "mandate.legitimacyHolds.body": "The bargain is simple: stability and progress, delivered visibly. Keep Legitimacy at 450 or the center starts asking who is responsible.",
+  "mandate.breakTheChokepoint.title": "Break the Chokepoint",
+  "mandate.breakTheChokepoint.body": "The controls will not be argued away. Build Compute to 600 with what can be made at home.",
+  "setup.mode.heading": "How many players?",
+  "setup.mode.solo": "Solo",
+  "setup.mode.soloHint": "You govern one seat. The other plays itself, in character.",
+  "setup.mode.hotseat": "Two players, one device",
+  "setup.mode.hotseatHint": "US and China alternate on this screen, Twilight Struggle style. Pass the device between windows.",
+  "setup.seat.heading": "Your seat",
+  "handoff.heading": "Hand the device over",
+  "handoff.body": "{seat} is up next. The eval band and hand you just saw belong to the other seat. No peeking is the whole game.",
+  "handoff.continue": "I am {seat}. Begin."
 }

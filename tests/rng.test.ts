@@ -48,7 +48,7 @@ describe('determinism (the constitution)', () => {
   });
 
   test('all four uint32 words stay in range across many draws', () => {
-    let state = initStream('range-check', 'rival');
+    let state = initStream('range-check', 'wildcards');
     for (let i = 0; i < 1000; i += 1) {
       const [value, next] = nextU32(state);
       expect(value).toBeGreaterThanOrEqual(0);
@@ -72,22 +72,22 @@ describe('named streams', () => {
 
   test('drawing from one stream never shifts another', () => {
     const rng = initRngState('prototype-1');
-    const rivalBefore = [...rng.rival];
+    const rivalBefore = [...rng.wildcards];
     let current = rng;
     for (let i = 0; i < 50; i += 1) {
-      const [, next] = drawFromStream(current, 'events', 6);
+      const [, next] = drawFromStream(current, 'eventsUsa', 6);
       current = next;
     }
-    expect([...current.rival]).toEqual(rivalBefore);
+    expect([...current.wildcards]).toEqual(rivalBefore);
     // And the untouched stream continues exactly as if nothing happened.
-    const fromOriginal = drawMany(rng.rival, 10);
-    const fromAfter = drawMany(current.rival, 10);
+    const fromOriginal = drawMany(rng.wildcards, 10);
+    const fromAfter = drawMany(current.wildcards, 10);
     expect(fromAfter.values).toEqual(fromOriginal.values);
   });
 
   test('different master seeds diverge', () => {
-    const a = drawMany(initRngState('seed-a').events, 8);
-    const b = drawMany(initRngState('seed-b').events, 8);
+    const a = drawMany(initRngState('seed-a').eventsUsa, 8);
+    const b = drawMany(initRngState('seed-b').eventsUsa, 8);
     expect(a.values).not.toEqual(b.values);
   });
 });

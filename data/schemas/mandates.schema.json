@@ -187,6 +187,17 @@
             },
             "additionalProperties": false
           },
+          "seats": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "usa",
+                "china"
+              ]
+            }
+          },
           "sourceIds": {
             "minItems": 1,
             "type": "array",

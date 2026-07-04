@@ -475,7 +475,9 @@ function renderTrack(spec: TrackSpec): string {
 }
 
 function renderBoard(): string {
-  const r = scenario.startResources;
+  const usaSeat = scenario.seats.usa;
+  const chinaSeat = scenario.seats.china;
+  const r = usaSeat.resources;
   const tracks: TrackSpec[] = [
     { label: t('resource.compute.label'), start: paperRound(r.compute.value) },
     { label: t('resource.energy.label'), start: paperRound(r.energy.value) },
@@ -486,13 +488,13 @@ function renderBoard(): string {
     { label: t('resource.safetyInsight.label'), start: paperRound(r.safetyInsight.value) },
     {
       label: t('society.jobDisplacement.label'),
-      start: paperRound(scenario.startSociety.jobDisplacement.value),
+      start: paperRound(usaSeat.society.jobDisplacement.value),
     },
-    { label: t('society.unrest.label'), start: paperRound(scenario.startSociety.unrest.value) },
-    { label: t('rival.trust.label'), start: paperRound(scenario.startRival.trust.value) },
+    { label: t('society.unrest.label'), start: paperRound(usaSeat.society.unrest.value) },
+    { label: t('rival.trust.label'), start: paperRound(scenario.world.bilateralTrust.value) },
     {
       label: t('rival.substitution.label'),
-      start: paperRound(scenario.startRival.substitution.value),
+      start: paperRound(chinaSeat.substitution.value),
     },
   ];
 
@@ -504,7 +506,7 @@ function renderBoard(): string {
     },
     {
       label: `RIVAL · ${t('resource.capability.label')}`,
-      start: paperRound(scenario.startRival.capability.value),
+      start: paperRound(chinaSeat.resources.capability.value),
       fogFrom: 16,
     },
   ];

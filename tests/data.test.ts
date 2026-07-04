@@ -4,6 +4,7 @@ import {
   eventCardSchema,
   incidentsSchema,
   mandatesSchema,
+  seatsSchema,
   parametersSchema,
   policyCardSchema,
   scenarioSchema,
@@ -12,6 +13,7 @@ import {
 import eventFixture from './fixtures/event.sample.json';
 import incidentsFixture from './fixtures/incidents.sample.json';
 import mandatesFixture from './fixtures/mandates.sample.json';
+import seatsFixture from './fixtures/seats.sample.json';
 import parametersFixture from './fixtures/parameters.sample.json';
 import policyFixture from './fixtures/policy.sample.json';
 import scenarioFixture from './fixtures/scenario.sample.json';
@@ -24,6 +26,7 @@ const parsed = {
   policies: [policyCardSchema.parse(policyFixture)],
   incidents: incidentsSchema.parse(incidentsFixture),
   mandates: mandatesSchema.parse(mandatesFixture),
+  seatsRules: seatsSchema.parse(seatsFixture),
   sources: sourcesRegistrySchema.parse(sourcesFixture),
 };
 
@@ -51,6 +54,8 @@ const fixtureStrings = Object.fromEntries(
     'mandate.keepLightsOn.body',
     'mandate.calmTheStreets.title',
     'mandate.calmTheStreets.body',
+    'seat.usa.label',
+    'seat.china.label',
   ].map((key) => [key, 'placeholder text']),
 );
 
@@ -64,6 +69,7 @@ describe('loadEngineData', () => {
       policies: [{ name: 'policy.sample.json', json: policyFixture }],
       incidents: incidentsFixture,
       mandates: mandatesFixture,
+      seatsRules: seatsFixture,
     });
     expect(data.events).toHaveLength(1);
     expect(data.policies).toHaveLength(1);
@@ -80,6 +86,7 @@ describe('loadEngineData', () => {
         policies: [],
         incidents: incidentsFixture,
         mandates: mandatesFixture,
+        seatsRules: seatsFixture,
       }),
     ).toThrow(DataLoadError);
     try {
@@ -91,6 +98,7 @@ describe('loadEngineData', () => {
         policies: [],
         incidents: incidentsFixture,
         mandates: mandatesFixture,
+        seatsRules: seatsFixture,
       });
     } catch (error) {
       const issues = (error as DataLoadError).issues;
@@ -107,7 +115,9 @@ describe('checkIntegrity', () => {
     expect(report.errors).toEqual([]);
     // The fixtures deliberately carry TODO-SOURCE drafts (C1 will too).
     expect(report.draftValues.length).toBeGreaterThan(0);
-    expect(report.draftValues.some((path) => path.includes('startResources.talent'))).toBe(true);
+    expect(report.draftValues.some((path) => path.includes('seats.usa.resources.talent'))).toBe(
+      true,
+    );
   });
 
   test('unknown source ids are caught with their path', () => {
@@ -147,7 +157,7 @@ describe('checkIntegrity', () => {
 
   test('startingHand must reference real policies', () => {
     const brokenScenario = structuredClone(parsed.scenario);
-    brokenScenario.startingHand = ['no_such_policy'];
+    brokenScenario.seats.usa.hand = ['no_such_policy'];
     const report = checkIntegrity({
       ...parsed,
       scenario: brokenScenario,

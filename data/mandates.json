@@ -68,7 +68,8 @@
       "penaltyOnLapse": {
         "politicalCapital": -50
       },
-      "sourceIds": ["SRC-OECD-EMPLOYMENT", "SRC-DESIGN-HANDOVER"]
+      "sourceIds": ["SRC-OECD-EMPLOYMENT", "SRC-DESIGN-HANDOVER"],
+      "seats": ["usa"]
     },
     {
       "id": "safety_before_frontier",
@@ -139,6 +140,44 @@
       },
       "sourceIds": ["SRC-SLEEPER", "SRC-SCHEMING"],
       "claimIds": ["SRC-SLEEPER#5"]
+    },
+    {
+      "id": "legitimacy_holds",
+      "title": "strings:mandate.legitimacyHolds.title",
+      "body": "strings:mandate.legitimacyHolds.body",
+      "era": "mid",
+      "goal": {
+        "target": "publicTrust",
+        "comparator": ">=",
+        "value": 450,
+        "byTurnOffset": 4
+      },
+      "rewardPoliticalCapital": 100,
+      "penaltyOnLapse": {
+        "politicalCapital": -100
+      },
+      "seats": ["china"],
+      "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-DESIGN-HANDOVER"],
+      "claimIds": ["SRC-SIM-GAMING-INSIGHTS#6"]
+    },
+    {
+      "id": "break_the_chokepoint",
+      "title": "strings:mandate.breakTheChokepoint.title",
+      "body": "strings:mandate.breakTheChokepoint.body",
+      "era": "late",
+      "goal": {
+        "target": "compute",
+        "comparator": ">=",
+        "value": 600,
+        "byTurnOffset": 3
+      },
+      "rewardPoliticalCapital": 150,
+      "penaltyOnLapse": {
+        "publicTrust": -50
+      },
+      "seats": ["china"],
+      "sourceIds": ["SRC-CSIS-EXPORT", "SRC-SIM-GAMING-INSIGHTS"],
+      "claimIds": ["SRC-SIM-GAMING-INSIGHTS#5"]
     }
   ],
   "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-DESIGN-HANDOVER"]

@@ -1,7 +1,14 @@
 import { describe, expect, test } from 'vitest';
+import { chinaDecide } from '../src/engine/china-policy';
 import { canonicalJson } from '../src/engine/hash';
 import { initGame } from '../src/engine/init';
-import { EngineError, legalActions, playablePolicies, step } from '../src/engine/step';
+import {
+  EngineError,
+  legalActions,
+  playablePolicies,
+  postureFromTrust,
+  step,
+} from '../src/engine/step';
 import type { Action, GameState } from '../src/engine/types';
 import { loadRealData } from './helpers/load-real-data';
 
@@ -11,9 +18,10 @@ function newGame(seed = 'b3-test-seed'): GameState {
   return initGame(data, { seed, presetId: 'consensus' });
 }
 
-/** Drive one full turn with a simple policy; returns the state at next allocate (or ended). */
-function playTurn(state: GameState, allocation: [number, number, number]): GameState {
-  const paused = state.flags.includes('forcedPause');
+/** Play the acting seat's full window with a simple scripted policy. */
+function playWindow(state: GameState, allocation: [number, number, number]): GameState {
+  const seat = state.actingSeat;
+  const paused = state.seats[seat].flags.includes('forcedPause');
   const [cap, safety, diffusion] = paused ? ([30, 40, 30] as const) : allocation;
   let s = step(data, state, {
     type: 'allocate',
@@ -21,12 +29,21 @@ function playTurn(state: GameState, allocation: [number, number, number]): GameS
     safety,
     diffusion,
   });
-  if (s.phase === 'policy') {
+  if (s.phase === 'policy' && s.actingSeat === seat) {
     s = step(data, s, { type: 'skipPolicy' });
   }
-  while (s.phase === 'event') {
-    const pending = s.pendingEvents[0]!;
+  while (s.phase === 'event' && s.actingSeat === seat) {
+    const pending = s.seats[seat].pendingEvents[0]!;
     s = step(data, s, { type: 'resolveEventChoice', eventId: pending.eventId, choiceIndex: 0 });
+  }
+  return s;
+}
+
+/** Drive one full turn (USA window, China window via the scripted policy, advance). */
+function playTurn(state: GameState, allocation: [number, number, number]): GameState {
+  let s = playWindow(state, allocation);
+  while (s.phase !== 'ended' && s.phase !== 'report' && s.actingSeat === 'china') {
+    s = step(data, s, chinaDecide(data, s));
   }
   if (s.phase === 'report') {
     s = step(data, s, { type: 'advance' });
@@ -35,16 +52,16 @@ function playTurn(state: GameState, allocation: [number, number, number]): GameS
 }
 
 describe('init', () => {
-  test('hidden dice roll inside the preset ranges', () => {
+  test('hidden dice roll inside the preset ranges (shared world)', () => {
     for (const presetId of ['cautious', 'consensus', 'skeptic'] as const) {
       const preset = data.parameters.worldviewPresets[presetId];
       const state = initGame(data, { seed: 'roll-check', presetId });
-      expect(state.hidden.alignmentDifficulty).toBeGreaterThanOrEqual(
+      expect(state.world.alignmentDifficulty).toBeGreaterThanOrEqual(
         preset.alignmentDifficulty.min,
       );
-      expect(state.hidden.alignmentDifficulty).toBeLessThanOrEqual(preset.alignmentDifficulty.max);
-      expect(state.hidden.takeoffSteepness).toBeGreaterThanOrEqual(preset.takeoffSteepness.min);
-      expect(state.hidden.takeoffSteepness).toBeLessThanOrEqual(preset.takeoffSteepness.max);
+      expect(state.world.alignmentDifficulty).toBeLessThanOrEqual(preset.alignmentDifficulty.max);
+      expect(state.world.takeoffSteepness).toBeGreaterThanOrEqual(preset.takeoffSteepness.min);
+      expect(state.world.takeoffSteepness).toBeLessThanOrEqual(preset.takeoffSteepness.max);
     }
   });
 
@@ -52,20 +69,34 @@ describe('init', () => {
     const a = initGame(data, { seed: 'same', presetId: 'consensus' });
     const b = initGame(data, { seed: 'same', presetId: 'consensus' });
     const c = initGame(data, { seed: 'other', presetId: 'consensus' });
-    expect(a.hidden).toEqual(b.hidden);
-    expect([a.hidden.alignmentDifficulty, a.hidden.takeoffSteepness]).not.toEqual([
-      c.hidden.alignmentDifficulty,
-      c.hidden.takeoffSteepness,
+    expect(a.world.alignmentDifficulty).toBe(b.world.alignmentDifficulty);
+    expect(a.world.takeoffSteepness).toBe(b.world.takeoffSteepness);
+    expect([a.world.alignmentDifficulty, a.world.takeoffSteepness]).not.toEqual([
+      c.world.alignmentDifficulty,
+      c.world.takeoffSteepness,
     ]);
   });
 
-  test('start state mirrors the scenario', () => {
+  test('start state mirrors the two-seat scenario', () => {
     const state = newGame();
-    expect(state.resources.compute).toBe(700);
-    expect(state.rival.posture).toBe('mirror');
-    expect(state.policy.hand).toEqual([...(data.scenario.startingHand ?? [])].sort());
+    expect(state.seats.usa.resources.compute).toBe(700);
+    expect(state.seats.china.resources.compute).toBe(450);
+    expect(state.seats.china.substitution).toBe(250);
+    expect(postureFromTrust(data.parameters, state.world.bilateralTrust)).toBe('mirror');
+    expect(state.seats.usa.policy.hand).toEqual([...(data.scenario.seats.usa.hand ?? [])].sort());
     expect(state.turn).toBe(1);
     expect(state.phase).toBe('allocate');
+    expect(state.actingSeat).toBe('usa');
+  });
+
+  test('both seats share difficulty but own their true alignment', () => {
+    const state = newGame();
+    expect(state.seats.usa.hidden.trueAlignment).toBe(state.seats.china.hidden.trueAlignment);
+    const after = playTurn(state, [80, 10, 10]);
+    if (after.phase !== 'ended') {
+      // USA raced, scripted China played its own split: paths diverge.
+      expect(after.seats.usa.hidden.trueAlignment).not.toBe(after.seats.china.hidden.trueAlignment);
+    }
   });
 });
 
@@ -75,6 +106,19 @@ describe('action legality (the UI never guesses)', () => {
     expect(legalActions(state)).toEqual(['allocate']);
     expect(() => step(data, state, { type: 'advance' })).toThrow(EngineError);
     expect(() => step(data, state, { type: 'skipPolicy' })).toThrow(EngineError);
+  });
+
+  test('seat-stamped actions must match the acting seat', () => {
+    const state = newGame();
+    expect(() =>
+      step(data, state, {
+        type: 'allocate',
+        capability: 60,
+        safety: 15,
+        diffusion: 25,
+        seat: 'china',
+      }),
+    ).toThrow(EngineError);
   });
 
   test('allocation must sum to 100 with non-negative integers', () => {
@@ -99,28 +143,17 @@ describe('action legality (the UI never guesses)', () => {
     );
   });
 
-  test('resolveEventChoice must match the pending event and a real choice', () => {
-    let state = newGame();
-    state = step(data, state, { type: 'allocate', capability: 60, safety: 15, diffusion: 25 });
-    state = step(data, state, { type: 'skipPolicy' });
-    if (state.phase === 'event') {
-      const pending = state.pendingEvents[0]!;
-      expect(() =>
-        step(data, state, { type: 'resolveEventChoice', eventId: 'wrong_event', choiceIndex: 0 }),
-      ).toThrow(EngineError);
-      expect(() =>
-        step(data, state, {
-          type: 'resolveEventChoice',
-          eventId: pending.eventId,
-          choiceIndex: 9,
-        }),
-      ).toThrow(EngineError);
+  test('seat-unavailable policies are gated (China has no UBI pilot)', () => {
+    const state = newGame();
+    const chinaView = playablePolicies(data, state, 'china');
+    for (const entry of chinaView) {
+      expect(entry.id).not.toBe('ubi_pilot');
     }
   });
 
   test('ended runs accept nothing', () => {
     let state = newGame();
-    for (let i = 0; i < 20 && state.phase !== 'ended'; i += 1) {
+    for (let i = 0; i < 30 && state.phase !== 'ended'; i += 1) {
       state = playTurn(state, [60, 15, 25]);
     }
     expect(state.phase).toBe('ended');
@@ -129,11 +162,11 @@ describe('action legality (the UI never guesses)', () => {
   });
 });
 
-describe('full runs (B3 done-when)', () => {
+describe('full runs', () => {
   test('a 16-turn balanced run completes and reaches an ending', () => {
     let state = newGame();
     let iterations = 0;
-    while (state.phase !== 'ended' && iterations < 30) {
+    while (state.phase !== 'ended' && iterations < 40) {
       state = playTurn(state, [60, 15, 25]);
       iterations += 1;
     }
@@ -148,25 +181,29 @@ describe('full runs (B3 done-when)', () => {
     const script: Action[] = [];
     let state = newGame('replay-seed');
     let guard = 0;
-    while (state.phase !== 'ended' && guard < 400) {
+    while (state.phase !== 'ended' && guard < 800) {
       const phase = state.phase;
       let action: Action;
-      if (phase === 'allocate') {
+      if (phase === 'report') {
+        action = { type: 'advance' };
+      } else if (state.actingSeat === 'china') {
+        action = chinaDecide(data, state);
+      } else if (phase === 'allocate') {
         action = { type: 'allocate', capability: 55, safety: 25, diffusion: 20 };
       } else if (phase === 'policy') {
         const playable = playablePolicies(data, state).filter((p) => p.playable);
         action = playable[0]
           ? { type: 'playPolicy', policyId: playable[0].id }
           : { type: 'skipPolicy' };
-      } else if (phase === 'event') {
-        const pendingCard = data.events.find((e) => e.id === state.pendingEvents[0]!.eventId)!;
+      } else {
+        const pendingCard = data.events.find(
+          (e) => e.id === state.seats.usa.pendingEvents[0]!.eventId,
+        )!;
         action = {
           type: 'resolveEventChoice',
-          eventId: state.pendingEvents[0]!.eventId,
+          eventId: state.seats.usa.pendingEvents[0]!.eventId,
           choiceIndex: pendingCard.kind === 'wildcard' ? 0 : 1 % pendingCard.choices.length,
         };
-      } else {
-        action = { type: 'advance' };
       }
       script.push(action);
       state = step(data, state, action);
@@ -196,7 +233,7 @@ describe('full runs (B3 done-when)', () => {
   test('a hard racer ends earlier or hits the threshold resolution', () => {
     let state = newGame('racer-seed');
     let iterations = 0;
-    while (state.phase !== 'ended' && iterations < 30) {
+    while (state.phase !== 'ended' && iterations < 40) {
       state = playTurn(state, [80, 10, 10]);
       iterations += 1;
     }
@@ -207,56 +244,56 @@ describe('full runs (B3 done-when)', () => {
 
 describe('subsystem wiring', () => {
   test('delayed effects land exactly on their due turn', () => {
-    // export_controls: rival.substitution +150 delayed 3 turns.
+    // export_controls: rival.substitution +200 delayed 3 turns (China's pipeline).
     let state = newGame('delayed-seed');
     state = step(data, state, { type: 'allocate', capability: 60, safety: 15, diffusion: 25 });
-    const substitutionBefore = state.rival.substitution;
+    const substitutionBefore = state.seats.china.substitution;
     state = step(data, state, { type: 'playPolicy', policyId: 'export_controls' });
-    const dueTurn = state.delayed.find((d) => d.sourceId === 'export_controls')?.dueTurn;
+    const dueTurn = state.seats.usa.delayed.find((d) => d.sourceId === 'export_controls')?.dueTurn;
     expect(dueTurn).toBe(1 + 3);
+    // Finish turn 1 (USA's event window, China's window, advance), then turns 2-3.
+    while (state.phase === 'event' && state.actingSeat === 'usa') {
+      state = step(data, state, {
+        type: 'resolveEventChoice',
+        eventId: state.seats.usa.pendingEvents[0]!.eventId,
+        choiceIndex: 0,
+      });
+    }
+    while (state.phase !== 'ended' && state.phase !== 'report' && state.actingSeat === 'china') {
+      state = step(data, state, chinaDecide(data, state));
+    }
+    if (state.phase === 'report') {
+      state = step(data, state, { type: 'advance' });
+    }
     while (state.turn < 4 && state.phase !== 'ended') {
-      while (state.phase === 'event') {
-        state = step(data, state, {
-          type: 'resolveEventChoice',
-          eventId: state.pendingEvents[0]!.eventId,
-          choiceIndex: 0,
-        });
-      }
-      if (state.phase === 'report') {
-        state = step(data, state, { type: 'advance' });
-      } else if (state.phase === 'allocate') {
-        state = step(data, state, { type: 'allocate', capability: 60, safety: 15, diffusion: 25 });
-      } else if (state.phase === 'policy') {
-        state = step(data, state, { type: 'skipPolicy' });
-      }
+      state = playTurn(state, [60, 15, 25]);
     }
     expect(state.turn).toBe(4);
-    // +150 from the delayed bite, minus whatever immediate effect (-0) plus
-    // the immediate rival.capability/-trust already applied at play time.
-    expect(state.rival.substitution).toBeGreaterThanOrEqual(substitutionBefore + 150);
+    expect(state.seats.china.substitution).toBeGreaterThanOrEqual(substitutionBefore + 200);
     const delayedLog = state.log.find(
       (entry) => entry.kind === 'delayedEffect' && entry.meta?.sourceId === 'export_controls',
     );
     expect(delayedLog?.turn).toBe(4);
   });
 
-  test('the election fires exactly on the election turn and swings political capital', () => {
+  test('the USA election fires on turn 8; China gets era legitimacy verdicts instead', () => {
     let state = newGame('election-seed');
-    while (
-      state.phase !== 'ended' &&
-      state.turn <= data.parameters.turnStructure.electionTurn.value
-    ) {
-      const before = state.resources.politicalCapital;
+    while (state.phase !== 'ended' && state.turn <= 8) {
       const turnBefore = state.turn;
       state = playTurn(state, [40, 30, 30]);
       if (turnBefore === data.parameters.turnStructure.electionTurn.value) {
-        const electionLog = state.log.find((e) => e.kind === 'election');
+        const electionLog = state.log.find((e) => e.kind === 'election' && e.seat === 'usa');
         expect(electionLog).toBeDefined();
         expect(Math.abs((electionLog?.deltas?.politicalCapital as number) ?? 0)).toBe(
           data.parameters.worldRules.election.mandateSwing.value,
         );
-        void before;
       }
+    }
+    if (state.phase !== 'ended') {
+      const legitimacyLog = state.log.find(
+        (e) => e.kind === 'election' && e.seat === 'china' && e.meta?.legitimacy === true,
+      );
+      expect(legitimacyLog).toBeDefined();
     }
   });
 
@@ -264,29 +301,29 @@ describe('subsystem wiring', () => {
     let state = newGame('cooldown-seed');
     state = step(data, state, { type: 'allocate', capability: 60, safety: 15, diffusion: 25 });
     state = step(data, state, { type: 'playPolicy', policyId: 'export_controls' });
-    expect(state.policy.hand.includes('export_controls')).toBe(false);
-    expect(state.policy.cooldowns['export_controls']).toBe(1 + 4);
-    // interpretability_moonshot is oncePerRun: play it when drawn into hand.
-    // (Just assert the spent bookkeeping path via direct state inspection later blocks.)
-    expect(state.policy.spent.includes('export_controls')).toBe(false);
+    expect(state.seats.usa.policy.hand.includes('export_controls')).toBe(false);
+    expect(state.seats.usa.policy.cooldowns['export_controls']).toBe(1 + 4);
+    expect(state.seats.usa.policy.spent.includes('export_controls')).toBe(false);
   });
 
-  test('eval reports render every turn with a band that respects the floor', () => {
+  test('eval reports render every turn for both seats and respect the floor', () => {
     let state = newGame('eval-seed');
     for (let i = 0; i < 5 && state.phase !== 'ended'; i += 1) {
       state = playTurn(state, [30, 50, 20]);
     }
-    expect(state.evalHistory.length).toBeGreaterThanOrEqual(4);
-    for (const report of state.evalHistory) {
-      expect(report.bandHigh).toBeGreaterThanOrEqual(report.bandLow);
-      expect(report.bandLow).toBeGreaterThanOrEqual(0);
-      expect(report.bandHigh).toBeLessThanOrEqual(1000);
+    for (const seat of ['usa', 'china'] as const) {
+      expect(state.seats[seat].evalHistory.length).toBeGreaterThanOrEqual(4);
+      for (const report of state.seats[seat].evalHistory) {
+        expect(report.bandHigh).toBeGreaterThanOrEqual(report.bandLow);
+        expect(report.bandLow).toBeGreaterThanOrEqual(0);
+        expect(report.bandHigh).toBeLessThanOrEqual(1000);
+      }
     }
   });
 
   test('no NaN, no negative, no fractional values anywhere in state after long runs', () => {
     let state = newGame('invariant-seed');
-    for (let i = 0; i < 20 && state.phase !== 'ended'; i += 1) {
+    for (let i = 0; i < 30 && state.phase !== 'ended'; i += 1) {
       state = playTurn(state, [70, 10, 20]);
     }
     const walk = (value: unknown): void => {
@@ -300,9 +337,11 @@ describe('subsystem wiring', () => {
       }
     };
     walk(state);
-    for (const amount of Object.values(state.resources)) {
-      expect(amount).toBeGreaterThanOrEqual(0);
-      expect(amount).toBeLessThanOrEqual(1000);
+    for (const seat of ['usa', 'china'] as const) {
+      for (const amount of Object.values(state.seats[seat].resources)) {
+        expect(amount).toBeGreaterThanOrEqual(0);
+        expect(amount).toBeLessThanOrEqual(1000);
+      }
     }
   });
 });

@@ -9,7 +9,14 @@
 import type { EngineData } from './data';
 import { initGame } from './init';
 import { step } from './step';
-import type { Action, GameState } from './types';
+import type { Action, GameMode, GameState, PlayableSeatId } from './types';
+
+export interface ReplayOptions {
+  seed: string;
+  presetId: GameState['presetId'];
+  mode: GameMode;
+  playerSeat: PlayableSeatId;
+}
 
 export interface TurnSnapshot {
   turn: number;
@@ -19,7 +26,7 @@ export interface TurnSnapshot {
 /** Replay a run and keep the state at the END of each turn (report phase). */
 export function replayTurns(
   data: EngineData,
-  options: { seed: string; presetId: GameState['presetId'] },
+  options: ReplayOptions,
   actions: Action[],
 ): TurnSnapshot[] {
   let state = initGame(data, options);
@@ -55,9 +62,9 @@ export function treatyWindowOpen(data: EngineData, snapshots: TurnSnapshot[]): P
   const turns: number[] = [];
   const evidence: number[] = [];
   for (const { turn, state } of snapshots) {
-    if (state.flags.includes('treatyChannel') && state.rival.trust >= min) {
+    if (state.world.flags.includes('treatyChannel') && state.world.bilateralTrust >= min) {
       turns.push(turn);
-      evidence.push(state.rival.trust);
+      evidence.push(state.world.bilateralTrust);
     }
   }
   return { turns, evidence };
@@ -72,12 +79,13 @@ export function safetyUnderinvestment(_data: EngineData, snapshots: TurnSnapshot
   const turns: number[] = [];
   const evidence: number[] = [];
   for (const { turn, state } of snapshots) {
-    const report = state.evalHistory[state.evalHistory.length - 1];
+    const player = state.seats[state.playerSeat];
+    const report = player.evalHistory[player.evalHistory.length - 1];
     if (!report) {
       continue;
     }
     const bandWidth = report.bandHigh - report.bandLow;
-    if (state.allocation.capability >= 60 && bandWidth > 300) {
+    if (player.allocation.capability >= 60 && bandWidth > 300) {
       turns.push(turn);
       evidence.push(bandWidth);
     }
@@ -96,12 +104,14 @@ export function societyNeglect(_data: EngineData, snapshots: TurnSnapshot[]): Pr
   for (let i = 1; i < snapshots.length; i += 1) {
     const prev = snapshots[i - 1]!;
     const current = snapshots[i]!;
+    const prevPlayer = prev.state.seats[prev.state.playerSeat];
+    const currentPlayer = current.state.seats[current.state.playerSeat];
     if (
-      current.state.society.unrest > prev.state.society.unrest &&
-      current.state.allocation.diffusion < 20
+      currentPlayer.society.unrest > prevPlayer.society.unrest &&
+      currentPlayer.allocation.diffusion < 20
     ) {
       turns.push(current.turn);
-      evidence.push(current.state.society.unrest);
+      evidence.push(currentPlayer.society.unrest);
     }
   }
   return { turns, evidence };
@@ -120,13 +130,14 @@ export function warningShots(_data: EngineData, snapshots: TurnSnapshot[]): Prob
   }
   const turns: number[] = [];
   const evidence: number[] = [];
+  const playerSeat = last.state.playerSeat;
   for (const entry of last.state.log) {
-    if (entry.kind !== 'incident') {
+    if (entry.kind !== 'incident' || entry.seat !== playerSeat) {
       continue;
     }
     const after = snapshots.find((s) => s.turn === entry.turn + 1);
     turns.push(entry.turn);
-    evidence.push(after && after.state.allocation.capability >= 60 ? 1 : 0);
+    evidence.push(after && after.state.seats[playerSeat].allocation.capability >= 60 ? 1 : 0);
   }
   return { turns, evidence };
 }
@@ -141,7 +152,7 @@ export interface DebriefProbes {
 /** Everything the debrief needs, from one replay. */
 export function runProbes(
   data: EngineData,
-  options: { seed: string; presetId: GameState['presetId'] },
+  options: ReplayOptions,
   actions: Action[],
 ): DebriefProbes {
   const snapshots = replayTurns(data, options, actions);

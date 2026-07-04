@@ -1,90 +1,156 @@
 {
-  "$schema": "../schemas/scenario.schema.json",
+  "$schema": "./schemas/scenario.schema.json",
   "id": "scenario_2026",
-  "seat": "usa",
   "label": "strings:scenario.usa2026.label",
   "startTime": {
     "year": 2026,
     "quarter": 3
   },
-  "startResources": {
-    "compute": {
-      "value": 700,
-      "sourceIds": ["SRC-EPOCH-COMPUTE"],
-      "note": "US holds the large majority of frontier training compute; 700/1000 maps that dominance with room to grow or lose it"
-    },
-    "energy": {
-      "value": 450,
-      "sourceIds": ["SRC-IEA-ENERGY-AI"],
-      "note": "grid adequate today, tightening: IEA has datacentre demand at 415 TWh in 2024 rising to ~945 TWh by 2030 (base case)"
-    },
-    "talent": {
-      "value": 650,
-      "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
-      "note": "strong but contested US lead in frontier researchers per the AI Index workforce chapters; index mapping is design judgment"
-    },
-    "capital": {
-      "value": 750,
-      "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
-      "note": "record private AI investment through 2025-26 per the AI Index; index mapping is design judgment"
-    },
-    "publicTrust": {
-      "value": 400,
-      "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
-      "note": "public-opinion surveys show majority unease about AI; below midpoint by design"
-    },
-    "politicalCapital": {
-      "value": 500,
-      "sourceIds": ["SRC-DESIGN-HANDOVER"],
-      "note": "neutral starting mandate"
-    },
-    "capability": {
-      "value": 350,
-      "sourceIds": ["SRC-METR-HORIZON"],
-      "note": "frontier systems handle hour-scale tasks reliably; the fog zone starts far above"
-    },
-    "safetyInsight": {
-      "value": 200,
-      "sourceIds": ["SRC-SCALING-MONOSEMANTICITY", "SRC-IAISR-UPDATE-2"],
-      "note": "interpretability real but young; technical safeguards immature per the 2025 IAISR second update"
-    }
-  },
-  "startSociety": {
-    "jobDisplacement": {
-      "value": 100,
-      "sourceIds": ["SRC-IMF-GENAI"],
-      "note": "measurable early displacement in exposed occupations, not yet macro-visible"
-    },
-    "unrest": {
-      "value": 150,
-      "sourceIds": ["SRC-DESIGN-HANDOVER"],
-      "note": "background political tension, no AI-specific movement yet"
-    }
-  },
-  "startRival": {
-    "posture": "mirror",
-    "capability": {
-      "value": 300,
-      "sourceIds": ["SRC-DEEPSEEK-COST"],
-      "note": "months behind the frontier, not years: DeepSeek-class efficiency closed much of the gap"
-    },
-    "trust": {
+  "world": {
+    "bilateralTrust": {
       "value": 350,
       "sourceIds": ["SRC-DESIGN-HANDOVER"],
       "note": "wary engagement: dialogue channels exist, verification does not"
-    },
-    "substitution": {
-      "value": 250,
-      "sourceIds": ["SRC-CSIS-EXPORT"],
-      "note": "domestic chip substitution underway (Huawei/SMIC), progress real but constrained"
     }
   },
-  "startAllocation": {
-    "capability": 60,
-    "safety": 15,
-    "diffusion": 25,
-    "sourceIds": ["SRC-DESIGN-HANDOVER"],
-    "note": "mirrors the current revealed preference of the ecosystem: capability-heavy"
-  },
-  "startingHand": ["export_controls", "energy_buildout", "interpretability_moonshot"]
+  "seats": {
+    "usa": {
+      "resources": {
+        "compute": {
+          "value": 700,
+          "sourceIds": ["SRC-EPOCH-COMPUTE"],
+          "note": "US holds the large majority of frontier training compute; 700/1000 maps that dominance with room to grow or lose it"
+        },
+        "energy": {
+          "value": 450,
+          "sourceIds": ["SRC-IEA-ENERGY-AI"],
+          "note": "grid adequate today, tightening: IEA has datacentre demand at 415 TWh in 2024 rising to ~945 TWh by 2030 (base case)"
+        },
+        "talent": {
+          "value": 650,
+          "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
+          "note": "strong but contested US lead in frontier researchers per the AI Index workforce chapters; index mapping is design judgment"
+        },
+        "capital": {
+          "value": 750,
+          "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
+          "note": "record private AI investment through 2025-26 per the AI Index; index mapping is design judgment"
+        },
+        "publicTrust": {
+          "value": 400,
+          "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
+          "note": "public-opinion surveys show majority unease about AI; below midpoint by design"
+        },
+        "politicalCapital": {
+          "value": 500,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"],
+          "note": "neutral starting mandate"
+        },
+        "capability": {
+          "value": 350,
+          "sourceIds": ["SRC-METR-HORIZON"],
+          "note": "frontier systems handle hour-scale tasks reliably; the fog zone starts far above"
+        },
+        "safetyInsight": {
+          "value": 200,
+          "sourceIds": ["SRC-SCALING-MONOSEMANTICITY", "SRC-IAISR-UPDATE-2"],
+          "note": "interpretability real but young; technical safeguards immature per the 2025 IAISR second update"
+        }
+      },
+      "society": {
+        "jobDisplacement": {
+          "value": 100,
+          "sourceIds": ["SRC-IMF-GENAI"],
+          "note": "measurable early displacement in exposed occupations, not yet macro-visible"
+        },
+        "unrest": {
+          "value": 150,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"],
+          "note": "background political tension, no AI-specific movement yet"
+        }
+      },
+      "substitution": {
+        "value": 0,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
+        "note": "the US is not the export-controlled party; substitution is rules-inert for this seat"
+      },
+      "allocation": {
+        "capability": 60,
+        "safety": 15,
+        "diffusion": 25,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
+        "note": "mirrors the current revealed preference of the ecosystem: capability-heavy"
+      },
+      "hand": ["export_controls", "energy_buildout", "interpretability_moonshot"]
+    },
+    "china": {
+      "resources": {
+        "compute": {
+          "value": 450,
+          "sourceIds": ["SRC-CSIS-EXPORT", "SRC-DEEPSEEK-COST"],
+          "note": "export controls bite, but domestic accelerators plus DeepSeek-class efficiency keep real training capacity on the board"
+        },
+        "energy": {
+          "value": 700,
+          "sourceIds": ["SRC-IEA-ENERGY-AI"],
+          "note": "grid buildout capacity is the seat's structural strength: generation added at a pace the US grid does not match"
+        },
+        "talent": {
+          "value": 600,
+          "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
+          "note": "research workforce at near-parity trends in the AI Index chapters; index mapping is design judgment"
+        },
+        "capital": {
+          "value": 550,
+          "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
+          "note": "state-directed funding deep but private-capital depth thinner than the US ecosystem"
+        },
+        "publicTrust": {
+          "value": 600,
+          "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-DESIGN-HANDOVER"],
+          "note": "legitimacy, not polling: higher baseline, and the regime pays more when it slips (wargame observation: consistency advantage)"
+        },
+        "politicalCapital": {
+          "value": 600,
+          "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-DESIGN-HANDOVER"],
+          "note": "top-down coordination moves faster: nationalization-style moves are cheaper and more available"
+        },
+        "capability": {
+          "value": 300,
+          "sourceIds": ["SRC-DEEPSEEK-COST"],
+          "note": "months behind the frontier, not years: DeepSeek-class efficiency closed much of the gap"
+        },
+        "safetyInsight": {
+          "value": 150,
+          "sourceIds": ["SRC-IAISR", "SRC-DESIGN-HANDOVER"],
+          "note": "safety-institute capacity thinner; interpretability work younger"
+        }
+      },
+      "society": {
+        "jobDisplacement": {
+          "value": 50,
+          "sourceIds": ["SRC-IMF-GENAI"],
+          "note": "lower measured exposure in the IMF advanced-vs-emerging split at the start window"
+        },
+        "unrest": {
+          "value": 100,
+          "sourceIds": ["SRC-DESIGN-HANDOVER"],
+          "note": "tighter information environment reads lower unrest at start; the ceiling is the same"
+        }
+      },
+      "substitution": {
+        "value": 250,
+        "sourceIds": ["SRC-CSIS-EXPORT"],
+        "note": "domestic chip substitution underway (Huawei/SMIC), progress real but constrained"
+      },
+      "allocation": {
+        "capability": 70,
+        "safety": 10,
+        "diffusion": 20,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
+        "note": "state-led capability push, thinner safety allocation at start"
+      },
+      "hand": ["energy_buildout", "chip_subsidies", "compute_treaty_feeler"]
+    }
+  }
 }

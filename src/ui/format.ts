@@ -71,11 +71,12 @@ export function eraLabelKey(era: string): StringKey {
   )[era]!;
 }
 
-/** Last-turn log entries relevant for the quarter report. */
-export function reportEntries(run: GameState) {
+/** Last-turn log entries relevant for one seat's quarter report. */
+export function reportEntries(run: GameState, seat: string) {
   return run.log.filter(
     (entry) =>
       entry.turn === run.turn &&
+      (entry.seat === seat || entry.seat === null) &&
       entry.deltas !== null &&
       Object.keys(entry.deltas).length > 0 &&
       entry.kind !== 'allocation',

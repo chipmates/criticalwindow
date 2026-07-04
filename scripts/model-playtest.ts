@@ -27,7 +27,14 @@ import { loadEngineData, type EngineData } from '../src/engine/data';
 import { hashDataFiles } from '../src/engine/hash';
 import { initGame } from '../src/engine/init';
 import { initStream, type RngStreamState } from '../src/engine/rng';
-import { eraForTurn, legalActions, playablePolicies, step } from '../src/engine/step';
+import { chinaDecide } from '../src/engine/china-policy';
+import {
+  eraForTurn,
+  legalActions,
+  playablePolicies,
+  postureFromTrust,
+  step,
+} from '../src/engine/step';
 import {
   WORLDVIEW_PRESET_IDS,
   type Action,
@@ -68,6 +75,7 @@ function loadData(): EngineData {
     scenario: json('scenarios/scenario_2026.json'),
     incidents: json('incidents.json'),
     mandates: json('mandates.json'),
+    seatsRules: json('seats.json'),
     events: files
       .filter((f) => f.relPath.startsWith('events/'))
       .map((f) => ({ name: f.relPath, json: JSON.parse(f.content) as unknown })),
@@ -99,19 +107,25 @@ interface CompactView {
 }
 
 function serializeView(data: EngineData, state: GameState): CompactView {
-  const lastEval = state.evalHistory[state.evalHistory.length - 1] ?? null;
+  const seat = state.playerSeat;
+  const me = state.seats[seat];
+  const them = state.seats[seat === 'usa' ? 'china' : 'usa'];
+  const lastEval = me.evalHistory[me.evalHistory.length - 1] ?? null;
   return {
     turn: state.turn,
     era: eraForTurn(data.parameters, state.turn),
     phase: state.phase,
-    seat: state.seatId,
+    seat,
     preset: state.presetId,
-    resources: { ...state.resources },
-    society: { ...state.society },
-    rival: { posture: state.rival.posture, capability: state.rival.capability },
+    resources: { ...me.resources },
+    society: { ...me.society },
+    rival: {
+      posture: postureFromTrust(data.parameters, state.world.bilateralTrust),
+      capability: them.resources.capability,
+    },
     evalBand: lastEval ? { low: lastEval.bandLow, high: lastEval.bandHigh } : null,
-    allocation: { ...state.allocation },
-    flags: [...state.flags],
+    allocation: { ...me.allocation },
+    flags: [...state.world.flags, ...me.flags].sort(),
   };
 }
 
@@ -144,7 +158,7 @@ function legalMoves(data: EngineData, state: GameState): LegalMoves {
     };
   }
   if (state.phase === 'event') {
-    const pending = state.pendingEvents[0]!;
+    const pending = state.seats[state.playerSeat].pendingEvents[0]!;
     const card = data.events.find((e) => e.id === pending.eventId)!;
     if (card.kind === 'wildcard') {
       throw new Error(`wildcard '${card.id}' cannot be a pending memo`);
@@ -384,6 +398,13 @@ async function runPolicy(
   let decisions = 0;
   while (state.phase !== 'ended') {
     if (decisions >= guard) throw new Error(`policy '${policy.name}' exceeded ${guard} steps`);
+    // The scripted seat plays its own window; the policy under test plays
+    // the player seat (and advances through reports).
+    if (state.phase !== 'report' && state.actingSeat !== state.playerSeat) {
+      state = step(data, state, chinaDecide(data, state));
+      decisions += 1;
+      continue;
+    }
     const view = serializeView(data, state);
     const moves = legalMoves(data, state);
     const out = await policy.decide(view, moves, { data, state, rng });
@@ -437,12 +458,12 @@ async function main(): Promise<void> {
         seed,
         ending: r.endingId,
         turns: r.turns,
-        capability: s.resources.capability,
-        rivalCapability: s.rival.capability,
-        publicTrust: s.resources.publicTrust,
-        unrest: s.society.unrest,
-        safetyInsight: s.resources.safetyInsight,
-        windowStillOpen: s.flags.includes('windowStillOpen'),
+        capability: s.seats.usa.resources.capability,
+        rivalCapability: s.seats.china.resources.capability,
+        publicTrust: s.seats.usa.resources.publicTrust,
+        unrest: s.seats.usa.society.unrest,
+        safetyInsight: s.seats.usa.resources.safetyInsight,
+        windowStillOpen: s.world.flags.includes('windowStillOpen'),
       });
     }
   }

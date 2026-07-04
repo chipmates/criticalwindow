@@ -79,10 +79,10 @@ describe('structural guards', () => {
   });
 
   test('allocation shares must sum to 100', () => {
-    const broken = structuredClone(scenarioFixture) as {
-      startAllocation: { capability: number };
+    const broken = structuredClone(scenarioFixture) as unknown as {
+      seats: { usa: { allocation: { capability: number } } };
     };
-    broken.startAllocation.capability = 61;
+    broken.seats.usa.allocation.capability = 61;
     expect(scenarioSchema.safeParse(broken).success).toBe(false);
     expect(
       actionSchema.safeParse({ type: 'allocate', capability: 50, safety: 30, diffusion: 21 })

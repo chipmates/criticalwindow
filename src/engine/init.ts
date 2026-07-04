@@ -1,22 +1,76 @@
 /**
  * Run initialization: scenario + preset + seed -> turn-1 GameState.
- * The hidden dice roll here, once, from the chosen preset's sourced ranges,
- * and are never exposed until the debrief.
+ * The hidden dice roll here, once, from the chosen preset's sourced ranges:
+ * alignment DIFFICULTY and takeoff STEEPNESS are properties of reality,
+ * shared by both seats. Each seat's true alignment then walks its own path.
  */
 import type { EngineData } from './data';
 import { initRngState, nextIntInRange } from './rng';
 import { assignEraMandates } from './step';
-import type { GameState, WorldviewPresetId } from './types';
-import { STATE_SCHEMA_VERSION } from './types';
+import type { GameMode, GameState, PlayableSeatId, SeatState, WorldviewPresetId } from './types';
+import { PLAYABLE_SEAT_IDS, STATE_SCHEMA_VERSION } from './types';
 
 export interface InitOptions {
   seed: string;
   presetId: WorldviewPresetId;
+  mode?: GameMode;
+  playerSeat?: PlayableSeatId;
+}
+
+function buildSeat(data: EngineData, seat: PlayableSeatId, difficulty: number): SeatState {
+  const start = data.scenario.seats[seat];
+  return {
+    resources: {
+      compute: start.resources.compute.value,
+      energy: start.resources.energy.value,
+      talent: start.resources.talent.value,
+      capital: start.resources.capital.value,
+      publicTrust: start.resources.publicTrust.value,
+      politicalCapital: start.resources.politicalCapital.value,
+      capability: start.resources.capability.value,
+      safetyInsight: start.resources.safetyInsight.value,
+    },
+    society: {
+      jobDisplacement: start.society.jobDisplacement.value,
+      unrest: start.society.unrest.value,
+    },
+    substitution: start.substitution.value,
+    hidden: {
+      // Alignment is an achievement, not a default: a low start that only
+      // safety work raises. Harder worlds start lower still, for BOTH seats.
+      trueAlignment: Math.max(
+        0,
+        data.parameters.alignmentModel.startBase.value - Math.trunc(difficulty / 2),
+      ),
+      agencyErosion: 0,
+    },
+    evalHistory: [],
+    allocation: {
+      capability: start.allocation.capability,
+      safety: start.allocation.safety,
+      diffusion: start.allocation.diffusion,
+    },
+    policy: {
+      hand: [...(start.hand ?? [])].sort(),
+      spent: [],
+      cooldowns: {},
+      playedThisTurn: null,
+    },
+    firedEvents: [],
+    pendingEvents: [],
+    mandates: [],
+    incidentCooldowns: {},
+    delayed: [],
+    flags: [],
+    turnScratch: { capabilityGained: 0, diffusionPts: 0, playedDiplomacy: false },
+  };
 }
 
 export function initGame(data: EngineData, options: InitOptions): GameState {
   const rng = initRngState(options.seed);
   const preset = data.parameters.worldviewPresets[options.presetId];
+  const mode = options.mode ?? 'solo';
+  const playerSeat = options.playerSeat ?? 'usa';
 
   // Hidden dice: one roll each from the preset ranges, hiddenDice stream.
   const [difficulty, afterFirst] = nextIntInRange(
@@ -31,85 +85,47 @@ export function initGame(data: EngineData, options: InitOptions): GameState {
   );
   rng.hiddenDice = [...afterSecond] as [number, number, number, number];
 
-  const scenario = data.scenario;
-  const resources = {
-    compute: scenario.startResources.compute.value,
-    energy: scenario.startResources.energy.value,
-    talent: scenario.startResources.talent.value,
-    capital: scenario.startResources.capital.value,
-    publicTrust: scenario.startResources.publicTrust.value,
-    politicalCapital: scenario.startResources.politicalCapital.value,
-    capability: scenario.startResources.capability.value,
-    safetyInsight: scenario.startResources.safetyInsight.value,
-  };
-
   const state: GameState = {
     schemaVersion: STATE_SCHEMA_VERSION,
     dataVersion: data.dataVersion,
     seed: options.seed,
     presetId: options.presetId,
-    seatId: scenario.seat,
-    scenarioId: scenario.id,
+    scenarioId: data.scenario.id,
+    mode,
+    playerSeat,
     turn: 1,
     phase: 'allocate',
-    resources,
-    society: {
-      jobDisplacement: scenario.startSociety.jobDisplacement.value,
-      unrest: scenario.startSociety.unrest.value,
+    actingSeat: 'usa',
+    seats: {
+      usa: buildSeat(data, 'usa', difficulty),
+      china: buildSeat(data, 'china', difficulty),
     },
-    rival: {
-      posture: scenario.startRival.posture,
-      capability: scenario.startRival.capability.value,
-      trust: scenario.startRival.trust.value,
-      substitution: scenario.startRival.substitution.value,
-    },
-    hidden: {
+    world: {
       alignmentDifficulty: difficulty,
       takeoffSteepness: steepness,
-      // Alignment is an achievement, not a default: a low start that only
-      // safety work raises. Harder worlds start lower still.
-      trueAlignment: Math.max(
-        0,
-        data.parameters.alignmentModel.startBase.value - Math.trunc(difficulty / 2),
-      ),
-      agencyErosion: 0,
+      bilateralTrust: data.scenario.world.bilateralTrust.value,
+      flags: [],
+      wildcardCooldowns: {},
+      wildcardGlobalUntil: 0,
     },
-    evalHistory: [],
-    allocation: {
-      capability: scenario.startAllocation.capability,
-      safety: scenario.startAllocation.safety,
-      diffusion: scenario.startAllocation.diffusion,
-    },
-    policy: {
-      hand: [...(scenario.startingHand ?? [])].sort(),
-      spent: [],
-      cooldowns: {},
-      playedThisTurn: null,
-    },
-    firedEvents: [],
-    pendingEvents: [],
-    mandates: [],
-    incidentCooldowns: {},
-    wildcardCooldowns: {},
-    wildcardGlobalUntil: 0,
-    delayed: [],
-    flags: [],
-    turnScratch: { capabilityGained: 0, diffusionPts: 0, playedDiplomacy: false },
     log: [
       {
         turn: 1,
+        seat: null,
         kind: 'turnStart',
         stringKey: null,
         deltas: null,
-        meta: { seat: scenario.seat, preset: options.presetId },
+        meta: { mode, playerSeat, preset: options.presetId },
       },
     ],
     rng,
     endingId: null,
   };
   // Turn 1 is the first era's first turn but has no upkeep: the opening
-  // mandates are assigned here, from the same stream the later eras use.
+  // mandates are assigned here, from the same streams the later eras use.
   const firstEra = data.parameters.turnStructure.eras[0]!.id;
-  assignEraMandates(data, state, firstEra);
+  for (const seat of PLAYABLE_SEAT_IDS) {
+    assignEraMandates(data, state, seat, firstEra);
+  }
   return state;
 }

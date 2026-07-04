@@ -11,12 +11,14 @@ import {
   policyCardSchema,
   parametersSchema,
   scenarioSchema,
+  seatsSchema,
   type EventCardData,
   type IncidentsData,
   type MandatesData,
   type ParametersData,
   type PolicyCardData,
   type ScenarioData,
+  type SeatsData,
   type SourcesRegistryData,
   type StringsData,
 } from './schemas';
@@ -29,6 +31,7 @@ export interface EngineData {
   policies: PolicyCardData[];
   incidents: IncidentsData;
   mandates: MandatesData;
+  seatsRules: SeatsData;
 }
 
 export interface RawEngineData {
@@ -39,6 +42,7 @@ export interface RawEngineData {
   policies: Array<{ name: string; json: unknown }>;
   incidents: unknown;
   mandates: unknown;
+  seatsRules: unknown;
 }
 
 export class DataLoadError extends Error {
@@ -68,6 +72,10 @@ export function loadEngineData(raw: RawEngineData): EngineData {
   const mandates = mandatesSchema.safeParse(raw.mandates);
   if (!mandates.success) {
     issues.push(...formatZodIssues('mandates.json', mandates.error));
+  }
+  const seatsRules = seatsSchema.safeParse(raw.seatsRules);
+  if (!seatsRules.success) {
+    issues.push(...formatZodIssues('seats.json', seatsRules.error));
   }
 
   const events: EventCardData[] = [];
@@ -102,6 +110,7 @@ export function loadEngineData(raw: RawEngineData): EngineData {
     policies,
     incidents: incidents.data!,
     mandates: mandates.data!,
+    seatsRules: seatsRules.data!,
   };
 }
 
@@ -181,6 +190,7 @@ export function checkIntegrity(input: {
   policies: PolicyCardData[];
   incidents: IncidentsData;
   mandates: MandatesData;
+  seatsRules: SeatsData;
   strings: StringsData | null;
   sources: SourcesRegistryData | null;
 }): IntegrityReport {
@@ -209,9 +219,18 @@ export function checkIntegrity(input: {
     }
   }
 
-  for (const handId of input.scenario.startingHand ?? []) {
-    if (!policyIds.has(handId)) {
-      errors.push(`scenario startingHand references unknown policy: ${handId}`);
+  for (const seatId of ['usa', 'china'] as const) {
+    for (const handId of input.scenario.seats[seatId].hand ?? []) {
+      if (!policyIds.has(handId)) {
+        errors.push(`scenario ${seatId} hand references unknown policy: ${handId}`);
+      }
+    }
+    for (const policyId of input.seatsRules[seatId].policyUnavailable ?? []) {
+      if (!policyIds.has(policyId)) {
+        errors.push(
+          `seats.json ${seatId} policyUnavailable references unknown policy: ${policyId}`,
+        );
+      }
     }
   }
 
@@ -220,6 +239,7 @@ export function checkIntegrity(input: {
     [`scenario(${input.scenario.id})`, input.scenario],
     ['incidents', input.incidents],
     ['mandates', input.mandates],
+    ['seats', input.seatsRules],
     ...input.events.map((e): [string, unknown] => [`event(${e.id})`, e]),
     ...input.policies.map((p): [string, unknown] => [`policy(${p.id})`, p]),
   ];

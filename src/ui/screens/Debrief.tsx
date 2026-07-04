@@ -40,7 +40,9 @@ export function Debrief() {
   }
 
   const ending = run.endingId;
-  const windowOpen = run.flags.includes('windowStillOpen');
+  const player = run.seats[run.playerSeat];
+  const rivalSeat = run.seats[run.playerSeat === 'usa' ? 'china' : 'usa'];
+  const windowOpen = run.world.flags.includes('windowStillOpen');
   const epilogueKey =
     windowOpen && has(`debrief.ending.${ending}.epilogueOpen`)
       ? `debrief.ending.${ending}.epilogueOpen`
@@ -60,9 +62,9 @@ export function Debrief() {
     {
       key: 't3',
       fired:
-        run.flags.includes('exportCrackdown') ||
-        run.resources.energy < 300 ||
-        run.rival.substitution >= 700,
+        run.world.flags.includes('exportCrackdown') ||
+        player.resources.energy < 300 ||
+        rivalSeat.substitution >= 700,
     },
     {
       key: 't4',
@@ -142,15 +144,15 @@ export function Debrief() {
         <dl className="debrief-hidden">
           <div>
             <dt>{t('debrief.hidden.difficulty')}</dt>
-            <dd>{run.hidden.alignmentDifficulty}</dd>
+            <dd>{run.world.alignmentDifficulty}</dd>
           </div>
           <div>
             <dt>{t('debrief.hidden.steepness')}</dt>
-            <dd>{run.hidden.takeoffSteepness}</dd>
+            <dd>{run.world.takeoffSteepness}</dd>
           </div>
           <div>
             <dt>{t('debrief.hidden.trueAlignment')}</dt>
-            <dd>{run.hidden.trueAlignment}</dd>
+            <dd>{player.hidden.trueAlignment}</dd>
           </div>
         </dl>
         <p className="panel-explain">{t('debrief.hidden.explain')}</p>

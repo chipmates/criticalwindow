@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { BOT_IDS, runBot } from '../src/engine/bots';
+import { chinaDecide } from '../src/engine/china-policy';
 import { initGame } from '../src/engine/init';
 import { step } from '../src/engine/step';
 import type { GameState } from '../src/engine/types';
@@ -7,9 +8,10 @@ import { loadRealData } from './helpers/load-real-data';
 
 const data = loadRealData();
 
+/** One full turn: USA plays `allocation`, China plays its scripted window. */
 function turnTo(state: GameState, allocation: [number, number, number]): GameState {
   let s = state;
-  if (s.phase === 'allocate') {
+  if (s.phase === 'allocate' && s.actingSeat === 'usa') {
     s = step(data, s, {
       type: 'allocate',
       capability: allocation[0],
@@ -17,15 +19,18 @@ function turnTo(state: GameState, allocation: [number, number, number]): GameSta
       diffusion: allocation[2],
     });
   }
-  if (s.phase === 'policy') {
+  if (s.phase === 'policy' && s.actingSeat === 'usa') {
     s = step(data, s, { type: 'skipPolicy' });
   }
-  while (s.phase === 'event') {
+  while (s.phase === 'event' && s.actingSeat === 'usa') {
     s = step(data, s, {
       type: 'resolveEventChoice',
-      eventId: s.pendingEvents[0]!.eventId,
+      eventId: s.seats.usa.pendingEvents[0]!.eventId,
       choiceIndex: 0,
     });
+  }
+  while (s.phase !== 'ended' && s.phase !== 'report' && s.actingSeat === 'china') {
+    s = step(data, s, chinaDecide(data, s));
   }
   if (s.phase === 'report') {
     s = step(data, s, { type: 'advance' });
@@ -38,24 +43,27 @@ describe('deceptive pass (takeaway 2, mechanically)', () => {
   // seeded jitter deterministically (jitter is bounded by band/4).
   function withHidden(seed: string, trueAlignment: number, insight: number) {
     const state = initGame(data, { seed, presetId: 'cautious' });
-    state.hidden.trueAlignment = trueAlignment;
-    state.resources.safetyInsight = insight;
+    state.seats.usa.hidden.trueAlignment = trueAlignment;
+    state.seats.usa.resources.safetyInsight = insight;
     return state;
   }
 
   test('a badly aligned world reads better than it is when insight is low', () => {
     // truth 100, insight 0: rawLift = 200, counter = 0, jitter >= -100.
     const state = turnTo(withHidden('deception-check', 100, 0), [34, 33, 33]);
-    const report = state.evalHistory[state.evalHistory.length - 1]!;
+    const usa = state.seats.usa;
+    const report = usa.evalHistory[usa.evalHistory.length - 1]!;
     // Truth drifted during the turn; compare against the recorded final truth.
-    expect(divCenter(report)).toBeGreaterThan(state.hidden.trueAlignment);
+    expect(divCenter(report)).toBeGreaterThan(usa.hidden.trueAlignment);
   });
 
   test('safety insight shrinks the lie', () => {
     const blind = turnTo(withHidden('deception-insight', 100, 0), [34, 33, 33]);
     const probed = turnTo(withHidden('deception-insight', 100, 1000), [34, 33, 33]);
-    const liftBlind = divCenter(blind.evalHistory[0]!) - blind.hidden.trueAlignment;
-    const liftProbed = divCenter(probed.evalHistory[0]!) - probed.hidden.trueAlignment;
+    const liftBlind =
+      divCenter(blind.seats.usa.evalHistory[0]!) - blind.seats.usa.hidden.trueAlignment;
+    const liftProbed =
+      divCenter(probed.seats.usa.evalHistory[0]!) - probed.seats.usa.hidden.trueAlignment;
     // insight 1000: counter (400) kills the max lift (250) entirely; band is
     // at the floor so jitter is tiny. insight 0: lift ~200 with jitter >= -100.
     expect(liftBlind).toBeGreaterThan(50);
@@ -67,32 +75,36 @@ function divCenter(report: { bandLow: number; bandHigh: number }): number {
   return Math.round((report.bandLow + report.bandHigh) / 2);
 }
 
-describe('rival depth', () => {
-  test('matured substitution pays a capability bonus', () => {
-    const state = initGame(data, { seed: 'subst-check', presetId: 'consensus' });
-    const boosted = structuredClone(state);
-    boosted.rival.substitution = 900;
-    const normalAfter = turnTo(structuredClone(state), [50, 25, 25]);
-    const boostedAfter = turnTo(boosted, [50, 25, 25]);
-    // Same seed, same draws: the only difference is the substitution bonus.
-    expect(boostedAfter.rival.capability - state.rival.capability).toBeGreaterThan(
-      normalAfter.rival.capability - state.rival.capability,
+describe('the chokepoint with teeth (substitution gate)', () => {
+  test('under the export crackdown, low substitution slows China more than high', () => {
+    const base = initGame(data, { seed: 'subst-check', presetId: 'consensus' });
+    base.world.flags = ['exportCrackdown'];
+    const low = structuredClone(base);
+    low.seats.china.substitution = 250;
+    const high = structuredClone(base);
+    high.seats.china.substitution = 900;
+    const lowAfter = turnTo(low, [50, 25, 25]);
+    const highAfter = turnTo(high, [50, 25, 25]);
+    expect(
+      highAfter.seats.china.resources.capability - base.seats.china.resources.capability,
+    ).toBeGreaterThan(
+      lowAfter.seats.china.resources.capability - base.seats.china.resources.capability,
     );
   });
 
-  test('rival progress varies per seed but is identical for the same seed', () => {
+  test('china progress is identical for the same seed', () => {
     const a = turnTo(initGame(data, { seed: 'wobble-a', presetId: 'consensus' }), [50, 25, 25]);
     const b = turnTo(initGame(data, { seed: 'wobble-a', presetId: 'consensus' }), [50, 25, 25]);
-    expect(a.rival.capability).toBe(b.rival.capability);
+    expect(a.seats.china.resources.capability).toBe(b.seats.china.resources.capability);
   });
 });
 
 describe('society equilibrium', () => {
   test('displacement drifts toward the curve level, not instantly', () => {
     let state = initGame(data, { seed: 'society-drift', presetId: 'skeptic' });
-    const start = state.society.jobDisplacement;
+    const start = state.seats.usa.society.jobDisplacement;
     state = turnTo(state, [70, 10, 20]);
-    const afterOne = state.society.jobDisplacement;
+    const afterOne = state.seats.usa.society.jobDisplacement;
     // Capability 350+ growth: curve target is low but nonzero; drift is bounded.
     expect(Math.abs(afterOne - start)).toBeLessThanOrEqual(200);
   });
@@ -102,14 +114,16 @@ describe('agency erosion (hidden ending hook)', () => {
   test('accrues only at high capability, halved by diffusion, never logged', () => {
     const state = initGame(data, { seed: 'erosion-check', presetId: 'skeptic' });
     const low = turnTo(structuredClone(state), [50, 25, 25]);
-    expect(low.hidden.agencyErosion).toBe(0);
+    expect(low.seats.usa.hidden.agencyErosion).toBe(0);
 
     const high = structuredClone(state);
-    high.resources.capability = 850;
+    high.seats.usa.resources.capability = 850;
     const noDiffusion = turnTo(structuredClone(high), [80, 10, 10]);
     const withDiffusion = turnTo(structuredClone(high), [40, 10, 50]);
-    expect(noDiffusion.hidden.agencyErosion).toBeGreaterThan(0);
-    expect(withDiffusion.hidden.agencyErosion).toBeLessThan(noDiffusion.hidden.agencyErosion);
+    expect(noDiffusion.seats.usa.hidden.agencyErosion).toBeGreaterThan(0);
+    expect(withDiffusion.seats.usa.hidden.agencyErosion).toBeLessThan(
+      noDiffusion.seats.usa.hidden.agencyErosion,
+    );
     expect(noDiffusion.log.some((e) => JSON.stringify(e).includes('agencyErosion'))).toBe(false);
   });
 });

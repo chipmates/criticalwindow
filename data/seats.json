@@ -1,0 +1,41 @@
+{
+  "$schema": "./schemas/seats.schema.json",
+  "usa": {
+    "id": "usa",
+    "labelKey": "strings:seat.usa.label",
+    "elections": true,
+    "computeGatedBySubstitution": false,
+    "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-DESIGN-HANDOVER"],
+    "claimIds": ["SRC-SIM-GAMING-INSIGHTS#6"]
+  },
+  "china": {
+    "id": "china",
+    "labelKey": "strings:seat.china.label",
+    "trackLabelOverrides": {
+      "publicTrust": "strings:seat.china.legitimacyLabel"
+    },
+    "elections": false,
+    "legitimacyCheck": {
+      "trustMin": {
+        "value": 400,
+        "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-DESIGN-HANDOVER"],
+        "note": "legitimacy pressure replaces the midterm: verdicts at each era turn instead of one election"
+      },
+      "swing": {
+        "value": 100,
+        "sourceIds": ["SRC-DESIGN-HANDOVER"],
+        "note": "political capital gained per era while legitimacy holds, lost while it does not"
+      }
+    },
+    "computeGatedBySubstitution": true,
+    "policyUnavailable": ["ubi_pilot"],
+    "costModifiers": {
+      "natsec_merge": {
+        "politicalCapital": -50
+      }
+    },
+    "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-CSIS-EXPORT", "SRC-DESIGN-HANDOVER"],
+    "claimIds": ["SRC-SIM-GAMING-INSIGHTS#5", "SRC-SIM-GAMING-INSIGHTS#6"]
+  },
+  "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-CSIS-EXPORT"]
+}

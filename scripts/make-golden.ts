@@ -35,6 +35,7 @@ const data = loadEngineData({
   scenario: json('scenarios/scenario_2026.json'),
   incidents: json('incidents.json'),
   mandates: json('mandates.json'),
+  seatsRules: json('seats.json'),
   events: files
     .filter((f) => f.relPath.startsWith('events/'))
     .map((f) => ({ name: f.relPath, json: JSON.parse(f.content) as unknown })),

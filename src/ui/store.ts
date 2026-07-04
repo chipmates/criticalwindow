@@ -4,10 +4,17 @@
  * saves/probes, autosaves each step, and never mutates engine state.
  */
 import { create } from 'zustand';
+import { chinaDecide } from '../engine/china-policy';
 import { initGame } from '../engine/init';
 import { buildSave, loadSave, SaveError } from '../engine/save';
 import { step } from '../engine/step';
-import type { Action, GameState, WorldviewPresetId } from '../engine/types';
+import type {
+  Action,
+  GameMode,
+  GameState,
+  PlayableSeatId,
+  WorldviewPresetId,
+} from '../engine/types';
 import { setMusic } from './audio';
 import { loadGameData } from './load-data';
 import {
@@ -27,6 +34,8 @@ export type Screen = 'title' | 'setup' | 'prologue' | 'game' | 'debrief' | 'help
 interface RunMeta {
   seed: string;
   presetId: WorldviewPresetId;
+  mode: GameMode;
+  playerSeat: PlayableSeatId;
 }
 
 interface UiStore {
@@ -41,7 +50,12 @@ interface UiStore {
   shockAck: string;
 
   goTo: (screen: Screen) => void;
-  startRun: (seed: string, presetId: WorldviewPresetId) => void;
+  startRun: (
+    seed: string,
+    presetId: WorldviewPresetId,
+    mode?: GameMode,
+    playerSeat?: PlayableSeatId,
+  ) => void;
   dispatch: (action: Action) => void;
   saveTo: (slot: SaveSlot) => boolean;
   loadFrom: (slot: SaveSlot) => string | null;
@@ -91,11 +105,11 @@ export const useStore = create<UiStore>((set, get) => ({
     set({ screen });
   },
 
-  startRun(seed, presetId) {
-    const run = initGame(data, { seed, presetId });
+  startRun(seed, presetId, mode = 'solo', playerSeat = 'usa') {
+    const run = initGame(data, { seed, presetId, mode, playerSeat });
     set({
       run,
-      runMeta: { seed, presetId },
+      runMeta: { seed, presetId, mode, playerSeat },
       actionsLog: [],
       // First run ever: the prologue plays first (skippable). It is the
       // tutorial AND the backstory; after one viewing it stays optional.
@@ -110,8 +124,24 @@ export const useStore = create<UiStore>((set, get) => ({
     if (!run || !runMeta) {
       return;
     }
-    const next = step(data, run, action);
+    let next = step(data, run, action);
     const log = [...actionsLog, action];
+    // Solo mode: the scripted seat plays its whole window immediately, and
+    // every scripted action is RECORDED, so the save replays as one fold.
+    if (next.mode === 'solo') {
+      let guard = 0;
+      while (
+        next.phase !== 'ended' &&
+        next.phase !== 'report' &&
+        next.actingSeat !== next.playerSeat &&
+        guard < 20
+      ) {
+        const scripted = chinaDecide(data, next);
+        next = step(data, next, scripted);
+        log.push(scripted);
+        guard += 1;
+      }
+    }
     set({ run: next, actionsLog: log });
     writeSlot('auto', buildSave(data, runMeta, log));
   },
@@ -131,10 +161,20 @@ export const useStore = create<UiStore>((set, get) => ({
     }
     try {
       const loaded = loadSave(data, raw);
-      const save = raw as { seed: string; presetId: WorldviewPresetId };
+      const save = raw as {
+        seed: string;
+        presetId: WorldviewPresetId;
+        mode: GameMode;
+        playerSeat: PlayableSeatId;
+      };
       set({
         run: loaded.state,
-        runMeta: { seed: save.seed, presetId: save.presetId },
+        runMeta: {
+          seed: save.seed,
+          presetId: save.presetId,
+          mode: save.mode,
+          playerSeat: save.playerSeat,
+        },
         actionsLog: loaded.actions,
         screen: loaded.state.phase === 'ended' ? 'debrief' : 'game',
         lastError: null,

@@ -1,13 +1,18 @@
 /**
  * Policy bots: tiny scripted strategies that drive full runs headlessly.
  * Used by the balance harness (scripts/simulate.ts), the ending-reachability
- * batches, and tests. Bots are DRIVERS, not part of the sim: the chaos bot
- * gets its own seeded stream derived from (seed, 'bot'), never state.rng.
+ * batches, and tests. Bots are DRIVERS, not part of the sim: each gets its
+ * own seeded stream derived from (seed, name), never state.rng.
+ *
+ * Wave 3: a bot drives ONE seat. runBot drives the player seat with a bot
+ * and the other seat with the scripted china policy (the shipped solo mode);
+ * runMatch drives both seats with named bots (the hotseat balance grid).
  */
+import { chinaDecide } from './china-policy';
 import type { EngineData } from './data';
 import { initStream, nextInt, type RngStreamState } from './rng';
 import { playablePolicies, step } from './step';
-import type { Action, GameState } from './types';
+import type { Action, GameState, PlayableSeatId } from './types';
 
 export const BOT_IDS = ['racer', 'steward', 'dove', 'hedger', 'chaos'] as const;
 export type BotId = (typeof BOT_IDS)[number];
@@ -15,6 +20,7 @@ export type BotId = (typeof BOT_IDS)[number];
 interface BotContext {
   data: EngineData;
   state: GameState;
+  seat: PlayableSeatId;
   rng: RngStreamState;
 }
 
@@ -60,44 +66,48 @@ function bestChoice(
 }
 
 function preferPolicy(context: BotContext, preferences: string[]): Action {
-  const playable = playablePolicies(context.data, context.state)
+  const playable = playablePolicies(context.data, context.state, context.seat)
     .filter((p) => p.playable)
     .map((p) => p.id);
   for (const id of preferences) {
     if (playable.includes(id)) {
-      return { type: 'playPolicy', policyId: id };
+      return { type: 'playPolicy', policyId: id, seat: context.seat };
     }
   }
-  return { type: 'skipPolicy' };
+  return { type: 'skipPolicy', seat: context.seat };
 }
 
 function decide(bot: BotId, context: BotContext): BotDecision {
-  const { state, rng } = context;
+  const { state, seat, rng } = context;
+  const seatState = state.seats[seat];
   switch (state.phase) {
     case 'allocate': {
       // A forced pause (incident fallout) caps the capability share; every
       // bot complies rather than crashing into the engine guard.
-      const paused = state.flags.includes('forcedPause');
+      const paused = seatState.flags.includes('forcedPause');
       if (bot === 'racer') {
         const action: Action = paused
-          ? { type: 'allocate', capability: 30, safety: 40, diffusion: 30 }
-          : { type: 'allocate', capability: 80, safety: 10, diffusion: 10 };
+          ? { type: 'allocate', capability: 30, safety: 40, diffusion: 30, seat }
+          : { type: 'allocate', capability: 80, safety: 10, diffusion: 10, seat };
         return { action, rng };
       }
       if (bot === 'steward') {
         // The taught strategy: push the frontier AND pay for alignment.
         const action: Action = paused
-          ? { type: 'allocate', capability: 30, safety: 45, diffusion: 25 }
-          : { type: 'allocate', capability: 65, safety: 25, diffusion: 10 };
+          ? { type: 'allocate', capability: 30, safety: 45, diffusion: 25, seat }
+          : { type: 'allocate', capability: 65, safety: 25, diffusion: 10, seat };
         return { action, rng };
       }
       if (bot === 'dove') {
-        return { action: { type: 'allocate', capability: 20, safety: 50, diffusion: 30 }, rng };
+        return {
+          action: { type: 'allocate', capability: 20, safety: 50, diffusion: 30, seat },
+          rng,
+        };
       }
       if (bot === 'hedger') {
         const action: Action = paused
-          ? { type: 'allocate', capability: 30, safety: 35, diffusion: 35 }
-          : { type: 'allocate', capability: 50, safety: 25, diffusion: 25 };
+          ? { type: 'allocate', capability: 30, safety: 35, diffusion: 35, seat }
+          : { type: 'allocate', capability: 50, safety: 25, diffusion: 25, seat };
         return { action, rng };
       }
       const bound = paused ? 4 : 11;
@@ -106,7 +116,13 @@ function decide(bot: BotId, context: BotContext): BotDecision {
       const capability = a * 10;
       const safety = b * 10;
       return {
-        action: { type: 'allocate', capability, safety, diffusion: 100 - capability - safety },
+        action: {
+          type: 'allocate',
+          capability,
+          safety,
+          diffusion: 100 - capability - safety,
+          seat,
+        },
         rng: r2,
       };
     }
@@ -155,19 +171,21 @@ function decide(bot: BotId, context: BotContext): BotDecision {
           rng,
         };
       }
-      const playable = playablePolicies(context.data, context.state).filter((p) => p.playable);
+      const playable = playablePolicies(context.data, state, seat).filter((p) => p.playable);
       if (playable.length === 0) {
-        return { action: { type: 'skipPolicy' }, rng };
+        return { action: { type: 'skipPolicy', seat }, rng };
       }
       const [index, r1] = nextInt(rng, playable.length + 1);
       const chosen = playable[index];
       return {
-        action: chosen ? { type: 'playPolicy', policyId: chosen.id } : { type: 'skipPolicy' },
+        action: chosen
+          ? { type: 'playPolicy', policyId: chosen.id, seat }
+          : { type: 'skipPolicy', seat },
         rng: r1,
       };
     }
     case 'event': {
-      const pending = state.pendingEvents[0]!;
+      const pending = seatState.pendingEvents[0]!;
       const card = context.data.events.find((e) => e.id === pending.eventId)!;
       if (card.kind === 'wildcard') {
         throw new Error(`wildcard '${card.id}' cannot be a pending memo`);
@@ -198,7 +216,7 @@ function decide(bot: BotId, context: BotContext): BotDecision {
         nextRng = r1;
       }
       return {
-        action: { type: 'resolveEventChoice', eventId: pending.eventId, choiceIndex },
+        action: { type: 'resolveEventChoice', eventId: pending.eventId, choiceIndex, seat },
         rng: nextRng,
       };
     }
@@ -216,25 +234,72 @@ export interface BotRunResult {
   finalState: GameState;
 }
 
-/** Drive a run to its ending. Deterministic per (initial state, bot, seed). */
+/**
+ * Solo: the bot drives the player seat, the scripted china policy drives the
+ * other seat (exactly what ships). Deterministic per (initial state, bot).
+ */
 export function runBot(
   data: EngineData,
   initial: GameState,
   bot: BotId,
-  guard = 600,
+  guard = 1200,
 ): BotRunResult {
   let state = initial;
-  let rng = initStream(`${initial.seed}::${bot}`, 'bot');
+  let botRng = initStream(`${initial.seed}::${bot}`, 'bot');
   const actions: Action[] = [];
   let steps = 0;
   while (state.phase !== 'ended') {
     if (steps >= guard) {
       throw new Error(`bot '${bot}' exceeded ${guard} steps without an ending`);
     }
-    const decision = decide(bot, { data, state, rng });
-    rng = decision.rng;
-    actions.push(decision.action);
-    state = step(data, state, decision.action);
+    let action: Action;
+    if (state.phase === 'report') {
+      action = { type: 'advance' };
+    } else if (state.actingSeat === state.playerSeat) {
+      const decision = decide(bot, { data, state, seat: state.playerSeat, rng: botRng });
+      botRng = decision.rng;
+      action = decision.action;
+    } else {
+      action = chinaDecide(data, state);
+    }
+    actions.push(action);
+    state = step(data, state, action);
+    steps += 1;
+  }
+  return { endingId: state.endingId!, turns: state.turn, actions, finalState: state };
+}
+
+/** Hotseat balance: named bots on BOTH seats (the bot-vs-bot matrix). */
+export function runMatch(
+  data: EngineData,
+  initial: GameState,
+  botUsa: BotId,
+  botChina: BotId,
+  guard = 1200,
+): BotRunResult {
+  let state = initial;
+  let usaRng = initStream(`${initial.seed}::usa::${botUsa}`, 'bot');
+  let chinaRng = initStream(`${initial.seed}::china::${botChina}`, 'bot');
+  const actions: Action[] = [];
+  let steps = 0;
+  while (state.phase !== 'ended') {
+    if (steps >= guard) {
+      throw new Error(`match ${botUsa}/${botChina} exceeded ${guard} steps`);
+    }
+    let action: Action;
+    if (state.phase === 'report') {
+      action = { type: 'advance' };
+    } else if (state.actingSeat === 'usa') {
+      const decision = decide(botUsa, { data, state, seat: 'usa', rng: usaRng });
+      usaRng = decision.rng;
+      action = decision.action;
+    } else {
+      const decision = decide(botChina, { data, state, seat: 'china', rng: chinaRng });
+      chinaRng = decision.rng;
+      action = decision.action;
+    }
+    actions.push(action);
+    state = step(data, state, action);
     steps += 1;
   }
   return { endingId: state.endingId!, turns: state.turn, actions, finalState: state };

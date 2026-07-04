@@ -7,6 +7,13 @@
  * (absent-vs-undefined breaks canonical hashing; use null or omit the field
  * from the type entirely). All quantities are scaled integers so replay
  * comparisons are exact across JS engines.
+ *
+ * v0.2 wave 3: TWO SEATS, ONE WORLD. Each turn the USA seat acts, then the
+ * China seat acts, then the world updates once. In solo mode the other seat's
+ * actions come from a scripted policy at the DRIVER level and are recorded in
+ * the save like any other actions, so solo and hotseat replay as the same
+ * pure fold. Card data stays seat-agnostic: 'rival.*' effect targets resolve
+ * relative to the acting seat; 'rival.trust' is the shared bilateral trust.
  */
 
 // ---------------------------------------------------------------------------
@@ -21,7 +28,7 @@ export const SCALE_MIN = 0;
 export const ALLOCATION_TOTAL = 100;
 
 /** Bumped when the shape of GameState / SaveGame changes incompatibly. */
-export const STATE_SCHEMA_VERSION = 3;
+export const STATE_SCHEMA_VERSION = 4;
 
 // ---------------------------------------------------------------------------
 // Identifiers
@@ -42,11 +49,23 @@ export type ResourceKey = (typeof RESOURCE_KEYS)[number];
 export const SOCIETY_KEYS = ['jobDisplacement', 'unrest'] as const;
 export type SocietyKey = (typeof SOCIETY_KEYS)[number];
 
+/** Postures survive as the scripted china policy's stances, not engine state. */
 export const RIVAL_POSTURES = ['race', 'mirror', 'cautious'] as const;
 export type RivalPosture = (typeof RIVAL_POSTURES)[number];
 
 export const SEAT_IDS = ['usa', 'china', 'eu'] as const;
 export type SeatId = (typeof SEAT_IDS)[number];
+
+/** The two seats that exist as playable state (EU is a force, ADR-002). */
+export const PLAYABLE_SEAT_IDS = ['usa', 'china'] as const;
+export type PlayableSeatId = (typeof PLAYABLE_SEAT_IDS)[number];
+
+export function otherSeat(seat: PlayableSeatId): PlayableSeatId {
+  return seat === 'usa' ? 'china' : 'usa';
+}
+
+export const GAME_MODES = ['solo', 'hotseat'] as const;
+export type GameMode = (typeof GAME_MODES)[number];
 
 export const WORLDVIEW_PRESET_IDS = ['cautious', 'consensus', 'skeptic'] as const;
 export type WorldviewPresetId = (typeof WORLDVIEW_PRESET_IDS)[number];
@@ -69,14 +88,20 @@ export const ENDING_IDS = [
 ] as const;
 export type EndingId = (typeof ENDING_IDS)[number];
 
+/**
+ * Named rng streams. Per-seat streams keep the two seats' draws independent
+ * (symmetric uncertainty: same pools, own dice); world streams are shared.
+ */
 export const RNG_STREAM_NAMES = [
-  'events',
+  'eventsUsa',
+  'eventsChina',
   'hiddenDice',
-  'rival',
   'ticker',
   'wildcards',
-  'incidents',
-  'mandates',
+  'incidentsUsa',
+  'incidentsChina',
+  'mandatesUsa',
+  'mandatesChina',
 ] as const;
 export type RngStreamName = (typeof RNG_STREAM_NAMES)[number];
 
@@ -84,15 +109,36 @@ export type RngStreamName = (typeof RNG_STREAM_NAMES)[number];
 export const EVENT_KINDS = ['choice', 'wildcard', 'fixed'] as const;
 export type EventKind = (typeof EVENT_KINDS)[number];
 
-/** What a wildcard's exposure-scaled damage reads from. */
+/** What a wildcard's exposure-scaled damage reads from (per seat, at fire). */
 export const EXPOSURE_KEYS = ['capability', 'compute', 'computeMinusEnergy'] as const;
 export type ExposureKey = (typeof EXPOSURE_KEYS)[number];
+
+/**
+ * Flags that describe the SHARED world (diplomacy, proliferation, escalation)
+ * rather than one seat's own programs. setFlag routes on this list; everything
+ * not named here is seat-scoped (natsecMerged, weightsSecured, forcedPause...).
+ */
+export const WORLD_FLAGS = [
+  'treatyChannel',
+  'openWeightsWorld',
+  'exportCrackdown',
+  'escalation',
+  'moratoriumPush',
+  'verificationPilot',
+  'evalsPublic',
+  'deepfakePolitics',
+  'windowStillOpen',
+] as const;
 
 // ---------------------------------------------------------------------------
 // Effects (shared vocabulary of events, policies, subsystems)
 // ---------------------------------------------------------------------------
 
-/** Everything a card effect may move, as flat target keys. */
+/**
+ * Everything a card effect may move, as flat target keys. SEAT-RELATIVE:
+ * plain keys hit the acting seat; 'rival.capability' / 'rival.substitution'
+ * hit the other seat; 'rival.trust' hits the shared bilateral trust.
+ */
 export const EFFECT_TARGETS = [
   ...RESOURCE_KEYS,
   'society.jobDisplacement',
@@ -126,19 +172,30 @@ export interface DelayedEffect {
 // ---------------------------------------------------------------------------
 
 /**
- * Strict phase order inside a turn, mirroring the core loop:
- * briefing (log) -> allocate -> policy -> event(s) -> report -> next turn.
- * `legalActions(state)` is derived from this; the UI never guesses.
+ * Strict phase order inside a turn: the USA seat walks allocate -> policy ->
+ * event, then the China seat does, then ONE world update runs and the report
+ * shows. `legalActions(state)` is derived from phase + actingSeat.
  */
 export const PHASES = ['allocate', 'policy', 'event', 'report', 'ended'] as const;
 export type Phase = (typeof PHASES)[number];
 
 export type Action =
-  | { type: 'allocate'; capability: number; safety: number; diffusion: number }
-  | { type: 'playPolicy'; policyId: string }
-  | { type: 'skipPolicy' }
-  | { type: 'resolveEventChoice'; eventId: string; choiceIndex: number }
-  | { type: 'advance' };
+  | {
+      type: 'allocate';
+      capability: number;
+      safety: number;
+      diffusion: number;
+      seat?: PlayableSeatId | undefined;
+    }
+  | { type: 'playPolicy'; policyId: string; seat?: PlayableSeatId | undefined }
+  | { type: 'skipPolicy'; seat?: PlayableSeatId | undefined }
+  | {
+      type: 'resolveEventChoice';
+      eventId: string;
+      choiceIndex: number;
+      seat?: PlayableSeatId | undefined;
+    }
+  | { type: 'advance'; seat?: PlayableSeatId | undefined };
 
 export type ActionType = Action['type'];
 
@@ -155,8 +212,8 @@ export interface EvalReport {
 
 /**
  * One xoshiro128** state per named stream (4 x uint32). Independent streams
- * keep subsystems decoupled: an added ticker draw must never shift event
- * draws, or content patches would break replays within a dataVersion.
+ * keep subsystems decoupled: an added ticker draw must never shift an event
+ * draw, or content patches would break replays within a dataVersion.
  */
 export type RngState = Record<RngStreamName, [number, number, number, number]>;
 
@@ -164,9 +221,11 @@ export type RngState = Record<RngStreamName, [number, number, number, number]>;
  * Structured, translatable log. `stringKey` references data/strings; the
  * engine never contains English. The debrief and turn report render from
  * this, so anything a player should later understand must be logged.
+ * `seat` names whose ledger an entry belongs to; null = world-level.
  */
 export interface LogEntry {
   turn: number;
+  seat: PlayableSeatId | null;
   kind:
     | 'turnStart'
     | 'upkeep'
@@ -195,42 +254,20 @@ export interface PendingEvent {
   drawnOnTurn: number;
 }
 
-export interface GameState {
-  schemaVersion: number;
-  dataVersion: string;
-  seed: string;
-  presetId: WorldviewPresetId;
-  seatId: SeatId;
-  scenarioId: string;
-
-  /** 1-based; one turn is one quarter. */
-  turn: number;
-  phase: Phase;
-
+/** Everything one seat owns. Symmetric shape; asymmetry lives in data/seats.json. */
+export interface SeatState {
   resources: Record<ResourceKey, number>;
   society: Record<SocietyKey, number>;
 
-  rival: {
-    posture: RivalPosture;
-    capability: number;
-    /** Rival trust toward the player, 0..1000. Gates treaty paths. */
-    trust: number;
-    /** Chip-substitution progress (Huawei/SMIC path), 0..1000. */
-    substitution: number;
-  };
+  /** Chip-substitution progress (Huawei/SMIC path). Rules-relevant for China. */
+  substitution: number;
 
   /**
-   * HIDDEN INFORMATION. The UI must never render anything below.
-   * Exposed only through eval reports (banded) and the post-run debrief.
+   * HIDDEN per-seat information: each seat builds its own systems, so true
+   * alignment and agency erosion are per seat. Never rendered before debrief.
    */
   hidden: {
-    /** Rolled once per run from the preset range. 0..1000. */
-    alignmentDifficulty: number;
-    /** Rolled once per run from the preset range. 0..1000. */
-    takeoffSteepness: number;
-    /** Evolving true alignment level, 0..1000. Eval reports band around it. */
     trueAlignment: number;
-    /** Hidden-ending hook (Gradual Disempowerment). Accumulates; no P1 ending. */
     agencyErosion: number;
   };
 
@@ -241,21 +278,14 @@ export interface GameState {
 
   policy: {
     hand: string[];
-    /** Ids no longer available (played, oncePerRun). */
     spent: string[];
-    /** Policy id -> turn it becomes playable again. */
     cooldowns: Record<string, number>;
     playedThisTurn: string | null;
   };
 
-  /** Events already fired this run (non-repeatable ones never redraw). */
   firedEvents: string[];
   pendingEvents: PendingEvent[];
 
-  /**
-   * Cabinet mandates: near-term visible objectives with Political Capital
-   * stakes. Assigned at each era's first turn from the mandates stream.
-   */
   mandates: Array<{
     id: string;
     assignedTurn: number;
@@ -263,27 +293,51 @@ export interface GameState {
     status: 'active' | 'met' | 'lapsed';
   }>;
 
-  /** Incident rung id -> turn it may fire again (misalignment-incident system). */
   incidentCooldowns: Record<string, number>;
-  /** Wildcard card id -> turn it may fire again. */
-  wildcardCooldowns: Record<string, number>;
-  /** No wildcard fires before this turn (global spacing between shocks). */
-  wildcardGlobalUntil: number;
 
   delayed: DelayedEffect[];
 
-  /** Sorted string set. */
+  /** Seat-scoped flags (sorted). World-scoped flags live in world.flags. */
   flags: string[];
 
-  /**
-   * Per-turn scratch, reset each upkeep. Lets world-update rules react to
-   * what happened THIS turn (tit-for-tat, diffusion conversion) without
-   * re-deriving it from the log.
-   */
   turnScratch: {
     capabilityGained: number;
     diffusionPts: number;
     playedDiplomacy: boolean;
+  };
+}
+
+export interface GameState {
+  schemaVersion: number;
+  dataVersion: string;
+  seed: string;
+  presetId: WorldviewPresetId;
+  scenarioId: string;
+
+  mode: GameMode;
+  /** Solo: the human's seat. Hotseat: player one's seat (display framing). */
+  playerSeat: PlayableSeatId;
+
+  /** 1-based; one turn is one quarter. */
+  turn: number;
+  phase: Phase;
+  /** Whose action window is open (meaningless in report/ended phases). */
+  actingSeat: PlayableSeatId;
+
+  seats: Record<PlayableSeatId, SeatState>;
+
+  /** ONE shared world: reality's dice, the relationship, global shocks. */
+  world: {
+    /** Rolled once per run from the preset range. 0..1000. Shared. */
+    alignmentDifficulty: number;
+    /** Rolled once per run from the preset range. 0..1000. Shared. */
+    takeoffSteepness: number;
+    /** The bilateral relationship, 0..1000. Gates treaty paths. */
+    bilateralTrust: number;
+    /** World-scoped flags (sorted). */
+    flags: string[];
+    wildcardCooldowns: Record<string, number>;
+    wildcardGlobalUntil: number;
   };
 
   log: LogEntry[];
@@ -293,7 +347,7 @@ export interface GameState {
 }
 
 // ---------------------------------------------------------------------------
-// Save format (implemented in Block B5; typed here as part of the contract)
+// Save format
 // ---------------------------------------------------------------------------
 
 export interface SaveGame {
@@ -301,7 +355,9 @@ export interface SaveGame {
   dataVersion: string;
   seed: string;
   presetId: WorldviewPresetId;
-  seatId: SeatId;
+  mode: GameMode;
+  playerSeat: PlayableSeatId;
   scenarioId: string;
+  /** BOTH seats' actions, in fold order (solo records the scripted seat too). */
   actions: Action[];
 }
