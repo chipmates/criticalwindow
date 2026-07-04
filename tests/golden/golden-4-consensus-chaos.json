@@ -296,8 +296,8 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 40,
+      "capability": 60,
+      "safety": 25,
       "diffusion": 15,
       "seat": "china"
     },
@@ -327,8 +327,8 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 40,
+      "capability": 60,
+      "safety": 25,
       "diffusion": 15,
       "seat": "china"
     },
@@ -338,7 +338,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "superhuman_coder",
+      "eventId": "branch_point",
       "choiceIndex": 1,
       "seat": "china"
     }
@@ -352,8 +352,8 @@
     "0016cab1f04399",
     "06bb58a70c3217",
     "17a0e4262dc2ea",
-    "06fcc946b204de",
-    "0fee3e59162478"
+    "12eda75cefa00c",
+    "12dde79bcabffa"
   ],
-  "finalHash": "0fee3e59162478"
+  "finalHash": "12dde79bcabffa"
 }

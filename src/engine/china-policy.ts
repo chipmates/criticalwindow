@@ -118,6 +118,11 @@ export function usaDecide(data: EngineData, state: GameState): Action {
       }
       const nearFog =
         seatState.resources.capability >= data.parameters.thresholds.fogZoneStart.value - 200;
+      const homeworkDone = seatState.resources.safetyInsight >= 300;
+      if (nearFog && current !== 'race' && homeworkDone) {
+        // Confident push: alignment banked, sprint the window.
+        return { type: 'allocate', capability: 60, safety: 25, diffusion: 15, seat: 'usa' };
+      }
       if (nearFog && current !== 'race') {
         return { type: 'allocate', capability: 45, safety: 40, diffusion: 15, seat: 'usa' };
       }
@@ -197,6 +202,11 @@ export function chinaDecide(data: EngineData, state: GameState): Action {
       // (rock-bottom trust or a big gap keeps the trap reachable).
       const nearFog =
         seatState.resources.capability >= data.parameters.thresholds.fogZoneStart.value - 200;
+      const homeworkDone = seatState.resources.safetyInsight >= 300;
+      if (nearFog && current !== 'race' && homeworkDone) {
+        // Confident push: alignment banked, sprint the window.
+        return { type: 'allocate', capability: 60, safety: 25, diffusion: 15, seat: 'china' };
+      }
       if (nearFog && current !== 'race') {
         return { type: 'allocate', capability: 45, safety: 40, diffusion: 15, seat: 'china' };
       }

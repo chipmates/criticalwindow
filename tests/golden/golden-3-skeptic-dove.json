@@ -230,8 +230,8 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 40,
+      "capability": 60,
+      "safety": 25,
       "diffusion": 15,
       "seat": "china"
     },
@@ -257,8 +257,8 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 40,
+      "capability": 60,
+      "safety": 25,
       "diffusion": 15,
       "seat": "china"
     },
@@ -268,8 +268,8 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "whistleblower",
-      "choiceIndex": 0,
+      "eventId": "superhuman_coder",
+      "choiceIndex": 1,
       "seat": "china"
     },
     {
@@ -294,13 +294,19 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
+      "capability": 60,
       "safety": 25,
-      "diffusion": 30,
+      "diffusion": 15,
       "seat": "china"
     },
     {
       "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "the_project",
+      "choiceIndex": 1,
       "seat": "china"
     },
     {
@@ -319,8 +325,8 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 40,
+      "capability": 60,
+      "safety": 25,
       "diffusion": 15,
       "seat": "china"
     },
@@ -330,8 +336,8 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "lab_merger",
-      "choiceIndex": 0,
+      "eventId": "branch_point",
+      "choiceIndex": 1,
       "seat": "china"
     },
     {
@@ -356,20 +362,14 @@
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 40,
+      "capability": 60,
+      "safety": 25,
       "diffusion": 15,
       "seat": "china"
     },
     {
       "type": "playPolicy",
       "policyId": "compute_treaty_feeler",
-      "seat": "china"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "superhuman_coder",
-      "choiceIndex": 1,
       "seat": "china"
     }
   ],
@@ -380,11 +380,11 @@
     "1177bc3673b005",
     "1ef68b102f66c9",
     "121ce4f79defe0",
-    "1c841c11974bfe",
-    "119c6babbb1b2b",
-    "0aa777743a88aa",
-    "11858e61e6fe87",
-    "0b854050ab1dd4"
+    "05598d6e1faa8b",
+    "034d80a2fac115",
+    "096c34ec526a62",
+    "0fe32260a7350d",
+    "1cc4ec8b69c07f"
   ],
-  "finalHash": "0b854050ab1dd4"
+  "finalHash": "1cc4ec8b69c07f"
 }
