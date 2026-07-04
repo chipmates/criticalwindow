@@ -27,12 +27,14 @@ interface Series {
 export function Timeline({ data, snapshots }: { data: EngineData; snapshots: TurnSnapshot[] }) {
   const [hover, setHover] = useState<number | null>(null);
 
-  const { series, band, turns, electionTurn } = useMemo(() => {
+  const { series, band, turns, electionTurn, incidentTurns } = useMemo(() => {
     const turnsList = snapshots.map((s) => s.turn);
     const mk = (pick: (s: TurnSnapshot) => number): number[] => snapshots.map(pick);
+    const finalLog = snapshots[snapshots.length - 1]?.state.log ?? [];
     return {
       turns: turnsList,
       electionTurn: data.parameters.turnStructure.electionTurn.value,
+      incidentTurns: [...new Set(finalLog.filter((e) => e.kind === 'incident').map((e) => e.turn))],
       series: [
         { id: 'you', labelKey: 'race.you', values: mk((s) => s.state.resources.capability) },
         {
@@ -136,6 +138,24 @@ export function Timeline({ data, snapshots }: { data: EngineData; snapshots: Tur
           </g>
         )}
 
+        {/* incident markers: the warning shots, where they landed */}
+        {incidentTurns
+          .filter((turn) => turn <= lastTurn)
+          .map((turn) => (
+            <g key={`incident-${turn}`}>
+              <line
+                className="tl-incident"
+                x1={x(turn)}
+                x2={x(turn)}
+                y1={PAD.top}
+                y2={H - PAD.bottom}
+              />
+              <text className="tl-incident-mark" x={x(turn)} y={PAD.top + 10} textAnchor="middle">
+                !
+              </text>
+            </g>
+          ))}
+
         {/* series */}
         {series.map((s) => (
           <g key={s.id}>
@@ -206,6 +226,12 @@ export function Timeline({ data, snapshots }: { data: EngineData; snapshots: Tur
           <span className="tl-swatch tl-bg-band" aria-hidden="true" />
           {t('eval.heading')}
         </span>
+        {incidentTurns.length > 0 && (
+          <span className="tl-legend-item">
+            <span className="tl-swatch tl-bg-incident" aria-hidden="true" />
+            {t('report.kind.incident')}
+          </span>
+        )}
       </figcaption>
 
       <details className="tl-table">

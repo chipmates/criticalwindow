@@ -27,6 +27,9 @@ export function EventMemo({ data, run, onChoose }: EventMemoProps) {
     return null;
   }
   const card = data.events.find((e) => e.id === pending.eventId)!;
+  if (card.kind === 'wildcard') {
+    return null; // wildcards never enter pendingEvents; they land in the report
+  }
   const date = turnDate(data.scenario.startTime, run.turn);
 
   return (

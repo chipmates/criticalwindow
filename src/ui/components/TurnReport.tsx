@@ -37,6 +37,10 @@ function kindLine(data: EngineData, entry: LogEntry): string {
       return t('report.kind.rivalAction');
     case 'election':
       return t('report.kind.election');
+    case 'incident':
+      return `${t('report.kind.incident')}: ${entry.stringKey ? tRef(entry.stringKey) : ''}`;
+    case 'wildcard':
+      return `${t('report.kind.wildcard')}: ${entry.stringKey ? tRef(entry.stringKey) : ''}`;
     default:
       return t('report.kind.upkeep');
   }
@@ -60,7 +64,14 @@ export function TurnReport({ data, run, onAdvance }: TurnReportProps) {
       )}
       <ul className="report-list">
         {entries.map((entry, i) => (
-          <li key={i} className="report-line">
+          <li
+            key={i}
+            className={
+              entry.kind === 'incident' || entry.kind === 'wildcard'
+                ? 'report-line report-line-shock'
+                : 'report-line'
+            }
+          >
             <span className="report-kind">{kindLine(data, entry)}</span>
             <span className="report-deltas">
               {Object.entries(entry.deltas ?? {})

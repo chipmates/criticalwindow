@@ -4,13 +4,14 @@
  * attribution in settings, credits and README. Narrations: generated at
  * build time (scripts/generate-audio.ts); everything degrades silently
  * when a file is absent.
+ *
+ * v0.2: one sequential playlist everywhere (The Long Dark -> I Walk With
+ * Ghosts -> loop). Two calm tracks give ~14 minutes of variety under a
+ * 20-40 minute session, which beats looping one of them.
  */
 import type { EndingId } from '../engine/types';
 
-const MUSIC = {
-  ambient: 'audio/music-simulacra.mp3',
-  reflective: 'audio/music-aphelion.mp3',
-} as const;
+const PLAYLIST = ['audio/music-the-long-dark.mp3', 'audio/music-i-walk-with-ghosts.mp3'] as const;
 
 const NARRATION: Record<Exclude<EndingId, 'gradualDisempowerment'>, string> = {
   flourishing: 'audio/ending-flourishing.mp3',
@@ -21,6 +22,7 @@ const NARRATION: Record<Exclude<EndingId, 'gradualDisempowerment'>, string> = {
 };
 
 let musicEl: HTMLAudioElement | null = null;
+let trackIndex = 0;
 let narrationEl: HTMLAudioElement | null = null;
 
 function base(): string {
@@ -28,21 +30,34 @@ function base(): string {
   return new URL('.', document.baseURI).href;
 }
 
-export function setMusic(on: boolean, mood: keyof typeof MUSIC = 'ambient'): void {
+function playTrack(index: number): void {
+  trackIndex = index % PLAYLIST.length;
+  musicEl?.pause();
+  musicEl = new Audio(`${base()}${PLAYLIST[trackIndex]}`);
+  musicEl.volume = 0.25;
+  // Sequential playlist: when one track ends, the next plays; wraps around.
+  musicEl.addEventListener('ended', () => {
+    playTrack(trackIndex + 1);
+  });
+  musicEl.play().catch(() => {
+    // Autoplay refused or file missing: stay silent, never break play.
+  });
+}
+
+export function setMusic(on: boolean): void {
   if (!on) {
     musicEl?.pause();
     return;
   }
-  const src = `${base()}${MUSIC[mood]}`;
-  if (!musicEl || !musicEl.src.endsWith(MUSIC[mood])) {
-    musicEl?.pause();
-    musicEl = new Audio(src);
-    musicEl.loop = true;
-    musicEl.volume = 0.25;
+  if (musicEl && musicEl.paused && !musicEl.ended) {
+    musicEl.play().catch(() => {
+      // Resume refused: stay silent.
+    });
+    return;
   }
-  musicEl.play().catch(() => {
-    // Autoplay refused or file missing: stay silent, never break play.
-  });
+  if (!musicEl) {
+    playTrack(0);
+  }
 }
 
 export function playNarration(ending: EndingId, on: boolean): void {

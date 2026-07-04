@@ -81,6 +81,28 @@ export function Help({ onBack }: { onBack: () => void }) {
       </section>
 
       <section className="panel">
+        <h2 className="panel-heading">{t('help.beats.heading')}</h2>
+        <p className="panel-explain">{t('help.beats.intro')}</p>
+      </section>
+
+      <section className="panel">
+        <h2 className="panel-heading">{t('help.wildcards.heading')}</h2>
+        <p className="panel-explain">{t('help.wildcards.intro')}</p>
+        <ul className="help-wildcards">
+          <li>{t('help.wildcard.weightTheft')}</li>
+          <li>{t('help.wildcard.taiwanStraitCrisis')}</li>
+          <li>{t('help.wildcard.asmlExportSqueeze')}</li>
+          <li>{t('help.wildcard.gridCrunch')}</li>
+        </ul>
+      </section>
+
+      <section className="panel">
+        <h2 className="panel-heading">{t('help.incidents.heading')}</h2>
+        <p className="panel-explain">{t('help.incidents.intro')}</p>
+        <p className="panel-explain">{t('help.incidents.rungs')}</p>
+      </section>
+
+      <section className="panel">
         <h2 className="panel-heading">{t('help.terms.heading')}</h2>
         <div className="help-terms">
           {TERMS.map((term) => (

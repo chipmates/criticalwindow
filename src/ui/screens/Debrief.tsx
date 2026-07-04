@@ -122,6 +122,18 @@ export function Debrief() {
               })}
             </li>
           )}
+          <li>
+            {probes.warningShots.turns.length === 0
+              ? t('debrief.probe.noIncidents')
+              : probes.warningShots.evidence.some((kept) => kept === 1)
+                ? t('debrief.probe.warningShots', {
+                    count: probes.warningShots.turns.length,
+                    turns: probes.warningShots.turns.join(', '),
+                  })
+                : t('debrief.probe.warningShotsHeeded', {
+                    count: probes.warningShots.turns.length,
+                  })}
+          </li>
         </ul>
       </section>
 

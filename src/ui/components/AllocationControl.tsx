@@ -4,6 +4,8 @@ import { t } from '../i18n';
 interface AllocationControlProps {
   initial: { capability: number; safety: number; diffusion: number };
   points: number;
+  /** Incident fallout: capability share is capped this quarter. */
+  paused?: boolean;
   /** Pure preview of this allocation's direct yields (engine curves). */
   preview: (shares: { capability: number; safety: number; diffusion: number }) => {
     capabilityGain: number;
@@ -14,6 +16,7 @@ interface AllocationControlProps {
 }
 
 const STEP = 5;
+const PAUSE_CAP = 30;
 
 const ROWS = [
   {
@@ -36,8 +39,22 @@ const ROWS = [
   },
 ] as const;
 
-export function AllocationControl({ initial, points, preview, onCommit }: AllocationControlProps) {
-  const [shares, setShares] = useState(initial);
+export function AllocationControl({
+  initial,
+  points,
+  paused = false,
+  preview,
+  onCommit,
+}: AllocationControlProps) {
+  const [shares, setShares] = useState(() =>
+    paused && initial.capability > PAUSE_CAP
+      ? {
+          capability: PAUSE_CAP,
+          safety: initial.safety + (initial.capability - PAUSE_CAP),
+          diffusion: initial.diffusion,
+        }
+      : initial,
+  );
   const total = shares.capability + shares.safety + shares.diffusion;
   const remaining = 100 - total;
   const yields = preview(shares);
@@ -49,7 +66,8 @@ export function AllocationControl({ initial, points, preview, onCommit }: Alloca
 
   function bump(key: (typeof ROWS)[number]['key'], delta: number): void {
     setShares((current) => {
-      const next = Math.min(100, Math.max(0, current[key] + delta));
+      const cap = paused && key === 'capability' ? PAUSE_CAP : 100;
+      const next = Math.min(cap, Math.max(0, current[key] + delta));
       return { ...current, [key]: next };
     });
   }
@@ -60,6 +78,7 @@ export function AllocationControl({ initial, points, preview, onCommit }: Alloca
         {t('phase.allocate.heading')}
       </h2>
       <p className="panel-explain">{t('phase.allocate.explain', { points })}</p>
+      {paused && <p className="alloc-paused">{t('game.forcedPause.notice')}</p>}
       <div className="alloc-rows">
         {ROWS.map((row) => (
           <div key={row.key} className="alloc-row">

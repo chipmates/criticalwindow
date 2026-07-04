@@ -50,6 +50,7 @@ const data = loadEngineData({
   dataVersion: hashDataFiles(allFiles),
   parameters: parse('parameters.json'),
   scenario: parse('scenarios/scenario_2026.json'),
+  incidents: parse('incidents.json'),
   events: files
     .filter((f) => f.path.startsWith('events/'))
     .map((f) => ({ name: f.path, json: JSON.parse(f.content) as unknown })),

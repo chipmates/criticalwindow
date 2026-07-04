@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { divRound, evalCurve, mulDiv } from '../../engine/math';
 import { eraForTurn } from '../../engine/step';
 import { hashString } from '../../engine/hash';
+import type { GameState } from '../../engine/types';
 import { AllocationControl } from '../components/AllocationControl';
 import { EvalBand } from '../components/EvalBand';
 import { EventMemo } from '../components/EventMemo';
@@ -9,15 +10,64 @@ import { Meter } from '../components/Meter';
 import { PolicyHand } from '../components/PolicyHand';
 import { RaceTrack } from '../components/RaceTrack';
 import { SettingsDialog } from '../components/SettingsDialog';
+import { ShockOverlay } from '../components/ShockOverlay';
 import { TurnReport } from '../components/TurnReport';
 import { eraLabelKey, turnDate } from '../format';
-import { t, tickerPool } from '../i18n';
+import { t, tickerPool, type StringKey } from '../i18n';
 import { gameData, useStore } from '../store';
 
 /** Deterministic, replay-stable ticker line: hash(seed, turn) over the era pool. */
 function tickerLine(seed: string, turn: number, era: 'early' | 'mid' | 'late'): string {
   const pool = tickerPool(era);
   return pool[hashString(`${seed}::ticker::${turn}`) % pool.length]!;
+}
+
+/**
+ * Progressive disclosure (founding decision #5): turn one shows the race
+ * track, the R&D loop and its two products. Every other meter surfaces the
+ * first time it MOVES. Derived from the log, so it is deterministic and
+ * replay-stable, and never touches the engine.
+ */
+type Disclosable =
+  | 'energy'
+  | 'talent'
+  | 'capital'
+  | 'publicTrust'
+  | 'politicalCapital'
+  | 'society'
+  | 'rival'
+  | 'eval';
+
+const DISCLOSE_TOAST: Record<Disclosable, StringKey> = {
+  energy: 'disclose.energy',
+  talent: 'disclose.talent',
+  capital: 'disclose.capital',
+  publicTrust: 'disclose.publicTrust',
+  politicalCapital: 'disclose.politicalCapital',
+  society: 'disclose.society',
+  rival: 'disclose.rival',
+  eval: 'disclose.eval',
+};
+
+function revealedTracks(run: GameState): Set<Disclosable> {
+  const revealed = new Set<Disclosable>();
+  if (run.evalHistory.length > 0) {
+    revealed.add('eval');
+  }
+  for (const entry of run.log) {
+    for (const target of Object.keys(entry.deltas ?? {})) {
+      if (target === 'energy' || target === 'talent' || target === 'capital') {
+        revealed.add(target);
+      } else if (target === 'publicTrust' || target === 'politicalCapital') {
+        revealed.add(target);
+      } else if (target.startsWith('society.')) {
+        revealed.add('society');
+      } else if (target.startsWith('rival.')) {
+        revealed.add('rival');
+      }
+    }
+  }
+  return revealed;
 }
 
 export function Game() {
@@ -27,6 +77,10 @@ export function Game() {
   const data = gameData();
   const liveRef = useRef<HTMLParagraphElement>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [shockAck, setShockAck] = useState('');
+  const [toasts, setToasts] = useState<Disclosable[]>([]);
+  const knownTracks = useRef<Set<Disclosable> | null>(null);
+  const knownSeed = useRef<string | null>(null);
 
   useEffect(() => {
     if (run && liveRef.current) {
@@ -37,9 +91,38 @@ export function Game() {
     }
   }, [run]);
 
+  // Disclosure toasts: announce each track the first time it surfaces.
+  useEffect(() => {
+    if (!run) {
+      return;
+    }
+    const revealed = revealedTracks(run);
+    if (knownTracks.current === null || knownSeed.current !== run.seed) {
+      // First render of a run (fresh or loaded): no back-announcements.
+      knownTracks.current = revealed;
+      knownSeed.current = run.seed;
+      return;
+    }
+    const fresh = [...revealed].filter((track) => !knownTracks.current!.has(track));
+    if (fresh.length > 0) {
+      knownTracks.current = revealed;
+      setToasts((current) => [...current, ...fresh]);
+      window.setTimeout(() => {
+        setToasts((current) => current.slice(fresh.length));
+      }, 7000);
+    }
+  }, [run]);
+
   if (!run) {
     return null;
   }
+  const revealed = revealedTracks(run);
+  const shocks = run.log.filter(
+    (entry) => entry.turn === run.turn && (entry.kind === 'incident' || entry.kind === 'wildcard'),
+  );
+  const shockKey = `${run.seed}:${run.turn}`;
+  const showShocks =
+    (run.phase === 'report' || run.phase === 'ended') && shocks.length > 0 && shockAck !== shockKey;
 
   const era = eraForTurn(data.parameters, run.turn);
   const date = turnDate(data.scenario.startTime, run.turn);
@@ -107,6 +190,7 @@ export function Game() {
           {run.phase === 'allocate' && (
             <AllocationControl
               initial={run.allocation}
+              paused={run.flags.includes('forcedPause')}
               points={rndPoints}
               preview={(shares) => ({
                 capabilityGain: evalCurve(
@@ -140,7 +224,7 @@ export function Game() {
               }
             />
           )}
-          <EvalBand run={run} />
+          {revealed.has('eval') && <EvalBand run={run} />}
         </div>
 
         <aside className="game-side" aria-label={t('dash.heading')}>
@@ -151,36 +235,46 @@ export function Game() {
             token="--m-capital"
             trend={prev('compute')}
           />
-          <Meter
-            label={t('resource.energy.label')}
-            value={run.resources.energy}
-            token="--m-energy"
-            trend={prev('energy')}
-          />
-          <Meter
-            label={t('resource.talent.label')}
-            value={run.resources.talent}
-            token="--m-capital"
-            trend={prev('talent')}
-          />
-          <Meter
-            label={t('resource.capital.label')}
-            value={run.resources.capital}
-            token="--m-capital"
-            trend={prev('capital')}
-          />
-          <Meter
-            label={t('resource.publicTrust.label')}
-            value={run.resources.publicTrust}
-            token="--m-trust"
-            trend={prev('publicTrust')}
-          />
-          <Meter
-            label={t('resource.politicalCapital.label')}
-            value={run.resources.politicalCapital}
-            token="--m-trust"
-            trend={prev('politicalCapital')}
-          />
+          {revealed.has('energy') && (
+            <Meter
+              label={t('resource.energy.label')}
+              value={run.resources.energy}
+              token="--m-energy"
+              trend={prev('energy')}
+            />
+          )}
+          {revealed.has('talent') && (
+            <Meter
+              label={t('resource.talent.label')}
+              value={run.resources.talent}
+              token="--m-capital"
+              trend={prev('talent')}
+            />
+          )}
+          {revealed.has('capital') && (
+            <Meter
+              label={t('resource.capital.label')}
+              value={run.resources.capital}
+              token="--m-capital"
+              trend={prev('capital')}
+            />
+          )}
+          {revealed.has('publicTrust') && (
+            <Meter
+              label={t('resource.publicTrust.label')}
+              value={run.resources.publicTrust}
+              token="--m-trust"
+              trend={prev('publicTrust')}
+            />
+          )}
+          {revealed.has('politicalCapital') && (
+            <Meter
+              label={t('resource.politicalCapital.label')}
+              value={run.resources.politicalCapital}
+              token="--m-trust"
+              trend={prev('politicalCapital')}
+            />
+          )}
           <Meter
             label={t('resource.capability.label')}
             value={run.resources.capability}
@@ -193,40 +287,58 @@ export function Game() {
             token="--m-safety"
             trend={prev('safetyInsight')}
           />
-          <h2 className="panel-heading side-sub">{t('society.jobDisplacement.label')}</h2>
-          <Meter
-            label={t('society.jobDisplacement.label')}
-            value={run.society.jobDisplacement}
-            token="--m-unrest"
-            trend={prev('society.jobDisplacement')}
-          />
-          <Meter
-            label={t('society.unrest.label')}
-            value={run.society.unrest}
-            token="--m-unrest"
-            trend={prev('society.unrest')}
-          />
-          <h2 className="panel-heading side-sub">{t('race.rival')}</h2>
-          <Meter
-            label={t('rival.capability.label')}
-            value={run.rival.capability}
-            token="--m-rival"
-            trend={prev('rival.capability')}
-          />
-          <Meter
-            label={t('rival.trust.label')}
-            value={run.rival.trust}
-            token="--m-trust"
-            trend={prev('rival.trust')}
-          />
-          <Meter
-            label={t('rival.substitution.label')}
-            value={run.rival.substitution}
-            token="--m-rival"
-            trend={prev('rival.substitution')}
-          />
+          {revealed.has('society') && (
+            <>
+              <h2 className="panel-heading side-sub">{t('society.jobDisplacement.label')}</h2>
+              <Meter
+                label={t('society.jobDisplacement.label')}
+                value={run.society.jobDisplacement}
+                token="--m-unrest"
+                trend={prev('society.jobDisplacement')}
+              />
+              <Meter
+                label={t('society.unrest.label')}
+                value={run.society.unrest}
+                token="--m-unrest"
+                trend={prev('society.unrest')}
+              />
+            </>
+          )}
+          {revealed.has('rival') && (
+            <>
+              <h2 className="panel-heading side-sub">{t('race.rival')}</h2>
+              <Meter
+                label={t('rival.capability.label')}
+                value={run.rival.capability}
+                token="--m-rival"
+                trend={prev('rival.capability')}
+              />
+              <Meter
+                label={t('rival.trust.label')}
+                value={run.rival.trust}
+                token="--m-trust"
+                trend={prev('rival.trust')}
+              />
+              <Meter
+                label={t('rival.substitution.label')}
+                value={run.rival.substitution}
+                token="--m-rival"
+                trend={prev('rival.substitution')}
+              />
+            </>
+          )}
         </aside>
       </div>
+
+      {toasts.length > 0 && (
+        <div className="disclose-toasts" role="status" aria-live="polite">
+          {toasts.map((track, i) => (
+            <p key={`${track}-${i}`} className="disclose-toast">
+              {t(DISCLOSE_TOAST[track])}
+            </p>
+          ))}
+        </div>
+      )}
 
       {settingsOpen && <SettingsDialog onClose={() => setSettingsOpen(false)} />}
       {run.phase === 'event' && (
@@ -236,6 +348,14 @@ export function Game() {
           onChoose={(eventId, choiceIndex) =>
             dispatch({ type: 'resolveEventChoice', eventId, choiceIndex })
           }
+        />
+      )}
+      {showShocks && (
+        <ShockOverlay
+          data={data}
+          run={run}
+          shocks={shocks}
+          onContinue={() => setShockAck(shockKey)}
         />
       )}
     </main>

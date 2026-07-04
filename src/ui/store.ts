@@ -79,7 +79,7 @@ export const useStore = create<UiStore>((set, get) => ({
       set({ helpReturn: get().screen });
     }
     if (settings.musicOn) {
-      setMusic(true, screen === 'game' ? 'ambient' : 'reflective');
+      setMusic(true);
     }
     set({ screen });
   },
@@ -141,7 +141,7 @@ export const useStore = create<UiStore>((set, get) => ({
     writeSettings(settings);
     applyDocumentSettings(settings);
     if ('musicOn' in patch) {
-      setMusic(settings.musicOn, get().screen === 'game' ? 'ambient' : 'reflective');
+      setMusic(settings.musicOn);
     }
     set({ settings });
   },
