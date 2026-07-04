@@ -735,5 +735,6 @@
   "event.autonomousTargetingDemo.title": "No Human in the Loop",
   "event.autonomousTargetingDemo.body": "A defense contractor just demoed a targeting system that needs no human sign-off. The general in the room called the accuracy numbers the best he has ever seen. Your ethics board says the system violates every autonomous weapons guideline on record. The Pentagon wants a procurement decision within the month.",
   "event.autonomousTargetingDemo.approve": "Approve the contract and keep the edge.",
-  "event.autonomousTargetingDemo.reject": "Reject it and mandate human sign-off."
+  "event.autonomousTargetingDemo.reject": "Reject it and mandate human sign-off.",
+  "flag.treatySignaled.label": "Treaty Signal Sent"
 }
