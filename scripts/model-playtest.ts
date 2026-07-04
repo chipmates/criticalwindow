@@ -28,6 +28,7 @@ import { hashDataFiles } from '../src/engine/hash';
 import { initGame } from '../src/engine/init';
 import { initStream, type RngStreamState } from '../src/engine/rng';
 import { scriptedSeatDecide } from '../src/engine/china-policy';
+import { replayTurns, runProbes } from '../src/engine/probes';
 import {
   eraForTurn,
   legalActions,
@@ -37,6 +38,7 @@ import {
 } from '../src/engine/step';
 import {
   WORLDVIEW_PRESET_IDS,
+  type PlayableSeatId,
   type Action,
   type GameState,
   type WorldviewPresetId,
@@ -62,7 +64,7 @@ const playerSeatArg = arg('seat', 'usa');
 if (playerSeatArg !== 'usa' && playerSeatArg !== 'china') {
   throw new Error(`--seat must be usa or china, got '${playerSeatArg}'`);
 }
-const playerSeat = playerSeatArg;
+const playerSeat: PlayableSeatId = playerSeatArg;
 /** Both seats driven by the model policy (the hotseat skill-curve probe). */
 const llmVsLlm = process.argv.includes('--llm-vs-llm');
 /** Mechanics-only rulebook: no strategy sentences. Measures DISCOVERY, not obedience. */
@@ -538,6 +540,7 @@ interface RunResult {
   turns: number;
   finalState: GameState;
   decisions: number;
+  actions: Action[];
 }
 
 interface TranscriptLine {
@@ -559,6 +562,7 @@ async function runPolicy(
   let state = initial;
   let rng = initStream(`${initial.seed}::${policy.name}`, 'bot');
   let decisions = 0;
+  const allActions: Action[] = [];
   while (state.phase !== 'ended') {
     if (decisions >= guard) throw new Error(`policy '${policy.name}' exceeded ${guard} steps`);
     const policyTurn =
@@ -569,7 +573,9 @@ async function runPolicy(
       // makes the harness measure a game that does not exist (iter2 lesson:
       // a generic bot opponent burned its own society down in 9 of 20 runs
       // and the collapse was misread as a China-seat balance problem).
-      state = step(data, state, scriptedSeatDecide(data, state));
+      const scripted = scriptedSeatDecide(data, state);
+      allActions.push(scripted);
+      state = step(data, state, scripted);
       decisions += 1;
       continue;
     }
@@ -586,10 +592,17 @@ async function runPolicy(
       action: out.action,
       ...(out.modelText !== undefined ? { modelText: out.modelText } : {}),
     });
+    allActions.push(out.action);
     state = step(data, state, out.action);
     decisions += 1;
   }
-  return { endingId: state.endingId!, turns: state.turn, finalState: state, decisions };
+  return {
+    endingId: state.endingId!,
+    turns: state.turn,
+    finalState: state,
+    decisions,
+    actions: allActions,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -651,15 +664,45 @@ async function main(): Promise<void> {
         });
         if (seriesLength > 1 && g < seriesLength - 1) {
           const player = s.seats[playerSeat];
+          // The FULL debrief a human gets: not just the stats, the lessons.
+          const replayOpts = { seed, presetId: preset, mode: 'solo' as const, playerSeat };
+          const probes = runProbes(data, replayOpts, r.actions);
+          const snapshots = replayTurns(data, replayOpts, r.actions);
+          const fogStart = data.parameters.thresholds.fogZoneStart.value;
+          const fogEntry = snapshots.find(
+            (snap) => snap.state.seats[playerSeat].resources.capability >= fogStart,
+          );
+          const evalVsTruth = snapshots
+            .filter((_, idx) => idx % 3 === 0 || idx === snapshots.length - 1)
+            .map((snap) => {
+              const p = snap.state.seats[playerSeat];
+              const rep = p.evalHistory[p.evalHistory.length - 1];
+              return rep
+                ? `turn ${snap.turn}: eval said ${rep.bandLow}-${rep.bandHigh}, truth was ${p.hidden.trueAlignment}`
+                : '';
+            })
+            .filter(Boolean)
+            .join('; ');
           const debrief = [
             `Ending: ${r.endingId} on turn ${r.turns}.`,
-            `The hidden dice, revealed: alignment difficulty ${s.world.alignmentDifficulty},`,
-            `takeoff steepness ${s.world.takeoffSteepness}.`,
-            `Your hidden true alignment finished at ${player.hidden.trueAlignment}.`,
-            `Final capability ${player.resources.capability}, rival ${s.seats[playerSeat === 'usa' ? 'china' : 'usa'].resources.capability}.`,
-            `Public trust ${player.resources.publicTrust}, unrest ${player.society.unrest},`,
-            `political capital ${player.resources.politicalCapital}, bilateral trust ${s.world.bilateralTrust}.`,
-          ].join(' ');
+            `The hidden dice, revealed: alignment difficulty ${s.world.alignmentDifficulty}, takeoff steepness ${s.world.takeoffSteepness}.`,
+            `What your evals said vs what was true: ${evalVsTruth}.`,
+            fogEntry
+              ? `You entered the fog zone banking ${fogEntry.state.seats[playerSeat].hidden.trueAlignment} alignment and finished at ${player.hidden.trueAlignment}: the frontier erodes alignment every turn past capability ${fogStart}.`
+              : `You never entered the fog zone (capability ${fogStart}+), so frontier erosion never touched you.`,
+            probes.treatyWindowOpen.turns.length > 0
+              ? `The treaty window (channel open, trust at signing level) stood open on turns ${probes.treatyWindowOpen.turns.join(', ')}.`
+              : 'The treaty window never opened: the channel plus signing-level trust never coincided.',
+            probes.warningShots.turns.length > 0
+              ? `Incidents fired on turns ${probes.warningShots.turns.join(', ')}; ${probes.warningShots.evidence.some((k) => k === 1) ? 'you kept racing right after at least one of them' : 'you eased off after each one'}. Incidents are the hidden dice leaking: they are alignment data.`
+              : 'No incidents fired this run.',
+            probes.safetyUnderinvestment.turns.length > 0
+              ? `On turns ${probes.safetyUnderinvestment.turns.join(', ')} you pushed capability hard while your eval band was still wide: racing blind.`
+              : '',
+            `Final position: capability ${player.resources.capability} vs rival ${s.seats[playerSeat === 'usa' ? 'china' : 'usa'].resources.capability}; trust ${player.resources.publicTrust}, unrest ${player.society.unrest}, political capital ${player.resources.politicalCapital}, bilateral trust ${s.world.bilateralTrust}.`,
+          ]
+            .filter(Boolean)
+            .join(' ');
           const key = process.env.ANTHROPIC_API_KEY;
           if (key) {
             seriesNotes = await reviseNotes(modelId, key, debrief);
