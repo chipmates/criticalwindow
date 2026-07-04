@@ -31,12 +31,14 @@ The first real launch. In rough order: the hosted game at criticalwindow.org, re
 
 ### Phase 4: 1.0, the Europe Update
 
-A playable EU seat with its own win conditions, and winning the race is not one of them. Classroom kit, at least three languages, a proper teacher's guide.
+A playable EU seat with its own win conditions, and winning the race is not one of them. Classroom kit with hotseat tournaments and printable debrief worksheets, at least three languages, a proper teacher's guide, captions and a screen-reader narrative mode (the voice files already ship with word timestamps, so this is finishing, not starting).
+
+Because the engine is a deterministic fold and every save is a tiny action log, three features cost us almost nothing that would cost other games a server: what-if forking from the debrief (replay from turn 9, choose differently), a replay theater (any run shareable as a link, stepped through with the truth chart growing), and async two-player by link, correspondence-chess style, no server ever. These land across Phases 3 and 4 as they mature.
 **Gate:** steady play, ten classrooms using it, press coverage.
 
 ### Phase 5: Flywheel
 
-Annual scenario refresh so the game stays current. Mod support, since everything is already data. Research partnerships.
+Annual scenario refresh so the game stays current. Mod support, since everything is already data. Research partnerships. Ideas we are watching, promised to nobody: a seeded temperament for the rival so no recipe survives contact, a worldview sandbox where players set the dice ranges themselves with cited sources, and a three-seat coalition mode, because the real coordination problem was never bilateral.
 **Gate:** at least 30% of new content comes from the community.
 
 ## How to help
