@@ -8,6 +8,7 @@ export function Title() {
   const loadFrom = useStore((s) => s.loadFrom);
   const hasAutosave = useStore((s) => s.hasAutosave)();
   const musicOn = useStore((s) => s.settings.musicOn);
+  const voiceOn = useStore((s) => s.settings.voiceOn);
   const updateSettings = useStore((s) => s.updateSettings);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -51,9 +52,17 @@ export function Title() {
             type="button"
             className="btn"
             aria-pressed={musicOn}
-            onClick={() => updateSettings({ musicOn: !musicOn, voiceOn: !musicOn })}
+            onClick={() => updateSettings({ musicOn: !musicOn })}
           >
-            {musicOn ? t('title.soundOn') : t('title.soundOff')}
+            {musicOn ? t('title.music.on') : t('title.music.off')}
+          </button>
+          <button
+            type="button"
+            className="btn"
+            aria-pressed={voiceOn}
+            onClick={() => updateSettings({ voiceOn: !voiceOn })}
+          >
+            {voiceOn ? t('title.voice.on') : t('title.voice.off')}
           </button>
           <button
             type="button"
