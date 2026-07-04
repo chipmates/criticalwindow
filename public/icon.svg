@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- Critical Window: the gap narrows as time runs down. Ink masses on
-       paper, one amber wedge of remaining room. -->
+  <!-- Critical Window. Two ink masses are the frame; the amber gap is the
+       remaining room, narrowing as time runs down. -->
   <rect width="512" height="512" rx="96" fill="#f4f1e8"/>
-  <rect x="42" y="42" width="428" height="428" rx="58" fill="none" stroke="#1c1e21" stroke-width="20"/>
-  <path d="M100 100 H 230 L 290 412 H 100 Z" fill="#1c1e21"/>
-  <path d="M412 100 H 282 L 306 412 H 412 Z" fill="#1c1e21"/>
-  <path d="M230 100 H 282 L 306 412 H 290 Z" fill="#8a4d00"/>
+  <path d="M72 72 H 226 L 302 440 H 72 Z" fill="#1c1e21"/>
+  <path d="M440 72 H 306 L 330 440 H 440 Z" fill="#1c1e21"/>
+  <path d="M226 72 H 306 L 330 440 H 302 Z" fill="#8a4d00"/>
 </svg>
