@@ -110,7 +110,7 @@ body {
 .title-card {
   text-align: center;
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-3);
   width: 100%;
   max-width: 34rem;
   /* In the centering grid a child sizes to its widest content; without this
@@ -1566,6 +1566,9 @@ body {
 
 .title-mark {
   justify-self: center;
-  width: 72px;
-  height: 72px;
+}
+
+.title-privacy a,
+.title-privacy a:visited {
+  color: var(--accent);
 }
