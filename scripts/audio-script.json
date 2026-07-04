@@ -6,8 +6,8 @@
       "note": "Michel-supplied 2026-07-04, female, proven in the story project."
     },
     "advisor": {
-      "voiceId": null,
-      "note": "The briefing register (memos, incidents, wildcards): contrasting timbre wanted; Michel picks from the ElevenLabs library. King's Dilemma steal, design-note 2026-07-03."
+      "voiceId": "PZDaEGofJmmmazpkVBLT",
+      "note": "Michel-supplied 2026-07-04, male briefing register (memos, incidents, wildcards). King's Dilemma advisor-memo steal."
     }
   },
   "modelId": "eleven_v3",
