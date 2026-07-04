@@ -1091,9 +1091,9 @@
       "url": "https://openai.com/index/planning-for-agi-and-beyond/",
       "type": "web",
       "tags": ["worldview-optimistic", "agi-governance"],
-      "status": "flagged",
+      "status": "verified",
       "note": "Verification 2026-07-03: unclear. openai.com returned HTTP 403 to WebFetch twice (bot-blocking). WebSearch confirms the page exists at this exact URL with matching title and content.",
-      "flagReason": "openai.com blocks automated fetching; independent search confirms the page exists at this exact address."
+      "gameUse": "lab worldview and gradual-deployment doctrine behind capability-push memo framing; human-verified 2026-07-04 after the auditor bot was blocked (page live, principles content unchanged behind a 2025 structure-update banner)"
     },
     {
       "id": "SRC-PAUSE-LETTER",

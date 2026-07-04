@@ -7,7 +7,7 @@ Every number in `data/` cites an entry here by ID, and `pnpm validate` enforces 
 Found a dead link or a better source? Open a "source check" issue. That is a real
 contribution and it is welcome.
 
-168 entries. Status: 9 book, 9 flagged, 150 verified.
+169 entries. Status: 9 book, 8 flagged, 152 verified.
 
 ## ai-index
 
@@ -166,6 +166,7 @@ contribution and it is welcome.
 ## general
 
 - **SRC-DESIGN-HANDOVER** · Race Conditions design handover (founding document) · project (2026). design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
+- **SRC-PUTNAM-TWO-LEVEL** · [Diplomacy and Domestic Politics: The Logic of Two-Level Games](https://www.jstor.org/stable/2706785) · International Organization 42(3), Robert D. Putnam (1988). treaty ratification requires BOTH governments' domestic standing (political capital) at signing; the win-set logic behind the ratification window mechanic
 
 ## governance
 
@@ -338,7 +339,7 @@ contribution and it is welcome.
 ## worldview-optimistic
 
 - **SRC-LOVING-GRACE** · [Machines of Loving Grace](https://www.darioamodei.com/essay/machines-of-loving-grace) · Dario Amodei (2024). flourishing ending / optimistic preset
-- **SRC-PLANNING-AGI** · [Planning for AGI and beyond](https://openai.com/index/planning-for-agi-and-beyond/) · Altman, OpenAI (2023) _(link broken, replacement wanted)_
+- **SRC-PLANNING-AGI** · [Planning for AGI and beyond](https://openai.com/index/planning-for-agi-and-beyond/) · Altman, OpenAI (2023). lab worldview and gradual-deployment doctrine behind capability-push memo framing; human-verified 2026-07-04 after the auditor bot was blocked (page live, principles content unchanged behind a 2025 structure-update banner)
 
 ## worldview-skeptic
 
