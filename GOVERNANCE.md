@@ -8,11 +8,14 @@ Small and explicit, sized for the project we are, revisited when we outgrow it.
 about scope, design, releases, and moderation rest there. As regular contributors emerge,
 core membership grows by invitation of the existing core, and this file records each change.
 
-**The advisory board arbitrates realism.** Being formed during the public alpha: five to
-eight researchers and practitioners across the worldview spectrum, named publicly in this
-file when they join. When contributors disagree about what is realistic (a parameter range,
-a rival behavior, an event's plausibility) and sources alone do not settle it, the board's
-reading wins. The board advises on realism. It does not run the project.
+**Realism disputes resolve toward honesty, not authority.** When contributors disagree
+about what is realistic (a parameter range, a rival behavior, an event's plausibility),
+the ladder is: a better source wins; failing that, the disagreement becomes a wider
+uncertainty range or a worldview-preset difference, so the game carries the dispute
+honestly instead of picking a victor; failing even that, the maintainers decide and
+record the dissent in the decision log. If the project earns reviewers worth naming,
+they will be named in this file, recruited from the people whose sources and arguments
+already improved the game.
 
 **Players decide with their feet.** Gates in ROADMAP.md are measured against real behavior,
 not against our opinions of our own work.
