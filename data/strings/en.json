@@ -757,5 +757,21 @@
   "unit.capability.days": "{n}-day",
   "unit.capability.weeks": "{n}-week",
   "unit.capability.months": "{n}-month",
-  "unit.capability.years": "{n}-year"
+  "unit.capability.years": "{n}-year",
+  "debrief.score.heading": "The Reckoning",
+  "debrief.score.grade": "Grade: {grade}",
+  "debrief.score.total": "{total} points",
+  "debrief.score.line.ending.flourishing": "Crossed the threshold with systems that held",
+  "debrief.score.line.ending.negotiatedSlowdown": "Signed the verified slowdown",
+  "debrief.score.line.ending.gradualDisempowerment": "Reached 2030 with the window open",
+  "debrief.score.line.ending.outpaced": "Outpaced in a world someone else designed",
+  "debrief.score.line.ending.societalBreakdown": "The country stopped caring who wins",
+  "debrief.score.line.ending.misalignedCatastrophe": "Crossed blind, and the gap did the rest",
+  "debrief.score.line.society": "Society held together",
+  "debrief.score.line.trust": "The public stayed with you",
+  "debrief.score.line.alignment": "Alignment banked against the wall",
+  "debrief.score.line.warnings": "Every warning shot heeded",
+  "debrief.score.line.capital": "Governing room to spare",
+  "debrief.score.challenge": "Same world, same dice. Your {total} stands until someone reads the fog better.",
+  "debrief.score.challengeBeaten": "The seed's holder scored {target}. You scored {total}."
 }

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { replayTurns, runProbes } from '../../engine/probes';
 import { encodeShare } from '../../engine/save';
+import { scoreRun } from '../../engine/score';
 import { playNarration } from '../audio';
 import { Timeline } from '../components/Timeline';
 import { TruthChart } from '../components/TruthChart';
@@ -85,6 +86,11 @@ export function Debrief() {
     },
     { key: 't5', fired: probes.societyNeglect.turns.length > 0 || ending === 'societalBreakdown' },
   ];
+
+  const heeded =
+    probes.warningShots.turns.length === 0 ||
+    probes.warningShots.evidence.every((kept) => kept === 0);
+  const score = scoreRun(run, heeded);
 
   const share = encodeShare({
     seed: runMeta.seed,
@@ -199,6 +205,25 @@ export function Debrief() {
           </p>
         )}
         <p className="panel-explain">{t('debrief.hidden.explain')}</p>
+      </section>
+
+      <section className="panel">
+        <h2 className="panel-heading">{t('debrief.score.heading')}</h2>
+        <p className="score-grade">
+          {t('debrief.score.grade', { grade: score.grade })}
+          <span className="score-total"> · {t('debrief.score.total', { total: score.total })}</span>
+        </p>
+        <dl className="score-lines">
+          {score.lines
+            .filter((line) => line.points > 0)
+            .map((line) => (
+              <div key={line.key}>
+                <dt>{t(`debrief.score.line.${line.key}` as StringKey)}</dt>
+                <dd>+{line.points}</dd>
+              </div>
+            ))}
+        </dl>
+        <p className="panel-explain">{t('debrief.score.challenge', { total: score.total })}</p>
       </section>
 
       <section className="panel">

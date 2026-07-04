@@ -1,6 +1,8 @@
 import { describe, expect, test } from 'vitest';
 import { BOT_IDS, runBot } from '../src/engine/bots';
 import { chinaDecide } from '../src/engine/china-policy';
+import { scoreRun } from '../src/engine/score';
+import type { Action } from '../src/engine/types';
 import { initGame } from '../src/engine/init';
 import { step } from '../src/engine/step';
 import type { GameState } from '../src/engine/types';
@@ -168,5 +170,45 @@ describe('ending reachability batch (B4 verify; the full 10k batch is B6)', () =
       const result = runBot(data, initial, 'hedger');
       expect(result.endingId).toBeTruthy();
     }
+  });
+});
+
+describe('the reckoning (run score)', () => {
+  test('deterministic, ending-dominated, catastrophe grade-capped', () => {
+    let state = initGame(data, { seed: 'score-seed', presetId: 'consensus' });
+    let guard = 0;
+    while (state.phase !== 'ended' && guard < 800) {
+      let action: Action;
+      if (state.phase === 'report') {
+        action = { type: 'advance' };
+      } else if (state.actingSeat === 'china') {
+        action = chinaDecide(data, state);
+      } else if (state.phase === 'allocate') {
+        action = state.seats.usa.flags.includes('forcedPause')
+          ? { type: 'allocate', capability: 30, safety: 40, diffusion: 30 }
+          : { type: 'allocate', capability: 80, safety: 10, diffusion: 10 };
+      } else if (state.phase === 'policy') {
+        action = { type: 'skipPolicy' };
+      } else {
+        action = {
+          type: 'resolveEventChoice',
+          eventId: state.seats.usa.pendingEvents[0]!.eventId,
+          choiceIndex: 0,
+        };
+      }
+      state = step(data, state, action);
+      guard += 1;
+    }
+    expect(state.endingId).not.toBeNull();
+    const a = scoreRun(state, true);
+    const b = scoreRun(state, true);
+    expect(a.total).toBe(b.total);
+    expect(a.total).toBeGreaterThan(0);
+    if (state.endingId === 'misalignedCatastrophe' || state.endingId === 'societalBreakdown') {
+      expect(['D', 'F']).toContain(a.grade);
+    }
+    // warning-shot honesty moves the score
+    const c = scoreRun(state, false);
+    expect(c.total).toBeLessThanOrEqual(a.total);
   });
 });
