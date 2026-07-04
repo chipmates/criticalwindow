@@ -49,4 +49,4 @@ Off by default, everything works silent. Music by Scott Buckley (CC BY 4.0), see
 
 ## License
 
-Code: [AGPL-3.0](LICENSE). Game content (data, text, later art): [CC BY-SA 4.0](LICENSE-CONTENT). The privacy claims are verifiable in this repository: there is no tracking code to find.
+Code: [AGPL-3.0](LICENSE). Game content (data, text, art): [CC BY-SA 4.0](LICENSE-CONTENT). The name stays ours so forks stay honest ([TRADEMARKS.md](TRADEMARKS.md)). The privacy claims are verifiable in this repository: there is no tracking code to find.
