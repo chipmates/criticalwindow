@@ -2,7 +2,7 @@
 
 ## What we are building
 
-Race Conditions (working title) is an open source strategy game about the AI race. You lead a major power through the critical years, starting in 2026. You decide how fast to push, how much to spend on making AI safe and useful, and what to tell the public. Your rival decides too. Nobody can see the whole truth, and that is the point.
+Critical Window is an open source strategy game about the AI race. You lead the United States or China through the critical years, starting in 2026. You decide how fast to push, how much to spend on making AI safe and useful, and what to tell the public. Your rival decides too. Nobody can see the whole truth, and that is the point.
 
 The project is nonprofit. No ads, no tracking, no accounts, ever. Code is AGPL-3.0. Content is CC BY-SA 4.0. Every number in the game cites a source you can check.
 
