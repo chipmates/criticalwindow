@@ -216,6 +216,81 @@
       "id": "event-whistleblower-body",
       "key": "event.whistleblower.body",
       "voice": "advisor"
+    },
+    {
+      "id": "event-liabilityShieldAsk-body",
+      "key": "event.liabilityShieldAsk.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-openSourceReplication-body",
+      "key": "event.openSourceReplication.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-unionMoratoriumDemand-body",
+      "key": "event.unionMoratoriumDemand.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-flashCrashAgent-body",
+      "key": "event.flashCrashAgent.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-cityPowerDeal-body",
+      "key": "event.cityPowerDeal.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-allyEvalRequest-body",
+      "key": "event.allyEvalRequest.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-insuranceRepricing-body",
+      "key": "event.insuranceRepricing.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-companionAppBoom-body",
+      "key": "event.companionAppBoom.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-autonomousTargetingDemo-body",
+      "key": "event.autonomousTargetingDemo.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-fabYieldBreakthrough-body",
+      "key": "event.fabYieldBreakthrough.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-provincialGrowthMirage-body",
+      "key": "event.provincialGrowthMirage.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-civilServiceFlood-body",
+      "key": "event.civilServiceFlood.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-civilMilitaryFusion-body",
+      "key": "event.civilMilitaryFusion.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-coalProvinceDatacenterBid-body",
+      "key": "event.coalProvinceDatacenterBid.body",
+      "voice": "advisor"
+    },
+    {
+      "id": "event-shutteredFactoryCensus-body",
+      "key": "event.shutteredFactoryCensus.body",
+      "voice": "advisor"
     }
   ]
 }
