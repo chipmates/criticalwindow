@@ -27,9 +27,9 @@ A print-and-play kit, generated from the same data files the digital game uses. 
 The game in your browser. US seat against a scripted rival, 12 to 16 turns, 2026 to about 2030. Text and CSS only, no art yet. Hidden alignment dice, eval reports with an uncertainty band, a society that reacts, five endings, and a debrief screen that shows what your run actually argued.
 **Gate:** median session at least 15 minutes. At least half of testers start a second run unprompted. Testers name at least 2 of the game's 5 takeaways in the exit survey.
 
-### Phase 3: Public Alpha
+### Phase 3: Public Alpha (you are here)
 
-Art and audio (generated at build time, never at runtime), the China seat, 40+ events, and the first real launch.
+The first real launch. Art beyond the stamp glyphs, more events, and balance shaped by real players instead of simulated ones.
 **Gate:** a thousand organic plays and five outside contributors.
 
 ### Phase 4: 1.0, the Europe Update
@@ -44,7 +44,7 @@ Annual scenario refresh so the game stays current. Mod support. Research partner
 
 ## Where we are now
 
-Phase 0. The engine and the paper kit are in progress. Nothing is public yet.
+Entering Phase 3. Phases 0 to 2 are behind us: the repo, licenses and registry stand; the paper kit generates from the live data; and the browser game is playable today with both the US and China seats, hotseat on one device, voice narration, and a debrief that opens the sealed envelope. Balance was tuned by an adversarial campaign of several hundred model-played games before any stranger touched it; the campaign's methods and mistakes are documented in the repo history. The Phase 2 gate (session length, replays, takeaways named) still gets measured with real players during the alpha, because models cannot feel whether losing is fun.
 
 ## How to help
 
