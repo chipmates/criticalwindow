@@ -1,0 +1,52 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "city_power_deal",
+  "kind": "choice",
+  "title": "strings:event.cityPowerDeal.title",
+  "body": "strings:event.cityPowerDeal.body",
+  "trigger": {
+    "era": "early",
+    "turnMin": 2,
+    "turnMax": 10,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.cityPowerDeal.sign",
+      "effects": {
+        "energy": 200,
+        "capital": 100,
+        "publicTrust": -100,
+        "politicalCapital": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 5,
+          "effects": {
+            "publicTrust": -150,
+            "society.unrest": 100
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.cityPowerDeal.negotiate",
+      "effects": {
+        "energy": 100,
+        "capital": -100,
+        "publicTrust": 150,
+        "society.jobDisplacement": -100
+      }
+    },
+    {
+      "label": "strings:event.cityPowerDeal.decline",
+      "effects": {
+        "capital": -150,
+        "politicalCapital": 100,
+        "publicTrust": 50
+      }
+    }
+  ],
+  "sourceIds": ["SRC-IEA-ENERGY-AI", "SRC-GATE"],
+  "tags": ["energy", "jobs", "local"]
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "companion_app_boom",
+  "kind": "choice",
+  "title": "strings:event.companionAppBoom.title",
+  "body": "strings:event.companionAppBoom.body",
+  "trigger": {
+    "era": "early",
+    "turnMin": 2,
+    "turnMax": 10,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.companionAppBoom.expand",
+      "effects": {
+        "capital": 200,
+        "publicTrust": 50,
+        "hidden.agencyErosion": 100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "publicTrust": -150
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.companionAppBoom.safeguard",
+      "effects": {
+        "capital": -150,
+        "publicTrust": 150,
+        "hidden.agencyErosion": -50
+      }
+    }
+  ],
+  "sourceIds": ["SRC-AI-INDEX-2026"],
+  "tags": ["society", "companion-ai", "trust"]
+}

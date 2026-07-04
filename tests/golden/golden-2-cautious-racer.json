@@ -1,11 +1,11 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "189f29ffb2e494",
+  "dataVersion": "1752bda86b3639",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
   "endingId": "misalignedCatastrophe",
-  "turns": 6,
+  "turns": 4,
   "actions": [
     {
       "type": "allocate",
@@ -72,7 +72,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "viral_job_loss",
+      "eventId": "open_weights_shock",
       "choiceIndex": 0,
       "seat": "china"
     },
@@ -93,128 +93,64 @@
     },
     {
       "type": "resolveEventChoice",
+      "eventId": "open_weights_shock",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "superhuman_coder",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
       "eventId": "viral_job_loss",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "coal_province_datacenter_bid",
-      "choiceIndex": 1,
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "eu_ai_act_high_risk",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "eu_ai_act_high_risk",
-      "choiceIndex": 0,
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "chip_smuggling",
       "choiceIndex": 0,
       "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "1cc71ea9fce0d4",
-    "08181eca179252",
-    "1c1c5f888e9d22",
-    "1b2e448fae9af6",
-    "01a68d73e5027b",
-    "0465e6cb9f1d31"
+    "18ba4ee2e9d6dd",
+    "09f56cc214e323",
+    "1be04648b9c735",
+    "05737ff920b917"
   ],
-  "finalHash": "0465e6cb9f1d31"
+  "finalHash": "05737ff920b917"
 }

@@ -1,0 +1,45 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "autonomous_targeting_demo",
+  "kind": "choice",
+  "seats": ["usa"],
+  "title": "strings:event.autonomousTargetingDemo.title",
+  "body": "strings:event.autonomousTargetingDemo.body",
+  "trigger": {
+    "era": "late",
+    "turnMin": 8,
+    "turnMax": 16,
+    "weight": 1
+  },
+  "choices": [
+    {
+      "label": "strings:event.autonomousTargetingDemo.approve",
+      "effects": {
+        "capital": 200,
+        "politicalCapital": 150,
+        "hidden.agencyErosion": 100,
+        "publicTrust": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "society.unrest": 150,
+            "publicTrust": -100
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.autonomousTargetingDemo.reject",
+      "effects": {
+        "publicTrust": 150,
+        "politicalCapital": -150,
+        "capability": -50,
+        "rival.capability": 50
+      }
+    }
+  ],
+  "sourceIds": ["SRC-AI2027", "SRC-SIM-GAMING-INSIGHTS"],
+  "tags": ["military", "autonomy", "defense"]
+}

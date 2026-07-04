@@ -1,0 +1,51 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "flash_crash_agent",
+  "kind": "choice",
+  "title": "strings:event.flashCrashAgent.title",
+  "body": "strings:event.flashCrashAgent.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 5,
+    "turnMax": 14,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.flashCrashAgent.ban",
+      "effects": {
+        "publicTrust": 150,
+        "capital": -200,
+        "politicalCapital": 100,
+        "hidden.agencyErosion": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "capital": -100
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.flashCrashAgent.defend",
+      "effects": {
+        "capital": 200,
+        "publicTrust": -150,
+        "hidden.agencyErosion": 100,
+        "politicalCapital": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "society.unrest": 150
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-METR-HORIZON", "SRC-AI-INDEX-2026"],
+  "tags": ["agents", "markets", "autonomy"]
+}

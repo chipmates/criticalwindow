@@ -1,6 +1,6 @@
 {
   "name": "golden-4-consensus-chaos",
-  "dataVersion": "189f29ffb2e494",
+  "dataVersion": "1752bda86b3639",
   "seed": "golden-4",
   "presetId": "consensus",
   "bot": "chaos",
@@ -70,8 +70,8 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "open_weights_shock",
-      "choiceIndex": 0,
+      "eventId": "companion_app_boom",
+      "choiceIndex": 1,
       "seat": "china"
     },
     {
@@ -91,7 +91,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "viral_job_loss",
+      "eventId": "companion_app_boom",
       "choiceIndex": 1,
       "seat": "usa"
     },
@@ -136,7 +136,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "coal_province_datacenter_bid",
+      "eventId": "open_weights_shock",
       "choiceIndex": 0,
       "seat": "china"
     },
@@ -189,7 +189,8 @@
       "seat": "usa"
     },
     {
-      "type": "skipPolicy",
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler",
       "seat": "usa"
     },
     {
@@ -205,7 +206,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "election_scandal",
+      "eventId": "flash_crash_agent",
       "choiceIndex": 0,
       "seat": "china"
     },
@@ -221,7 +222,7 @@
     },
     {
       "type": "playPolicy",
-      "policyId": "compute_treaty_feeler",
+      "policyId": "export_controls",
       "seat": "usa"
     },
     {
@@ -232,14 +233,13 @@
     },
     {
       "type": "allocate",
-      "capability": 55,
-      "safety": 20,
-      "diffusion": 25,
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
       "seat": "china"
     },
     {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler",
+      "type": "skipPolicy",
       "seat": "china"
     },
     {
@@ -253,15 +253,14 @@
       "seat": "usa"
     },
     {
-      "type": "playPolicy",
-      "policyId": "eval_mandate",
+      "type": "skipPolicy",
       "seat": "usa"
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 25,
-      "diffusion": 30,
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
       "seat": "china"
     },
     {
@@ -270,7 +269,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "shuttered_factory_census",
+      "eventId": "election_scandal",
       "choiceIndex": 0,
       "seat": "china"
     },
@@ -285,20 +284,21 @@
       "seat": "usa"
     },
     {
-      "type": "skipPolicy",
+      "type": "playPolicy",
+      "policyId": "eval_mandate",
       "seat": "usa"
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "election_scandal",
+      "eventId": "open_source_replication",
       "choiceIndex": 0,
       "seat": "usa"
     },
     {
       "type": "allocate",
-      "capability": 45,
-      "safety": 25,
-      "diffusion": 30,
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
       "seat": "china"
     },
     {
@@ -316,14 +316,21 @@
       "seat": "usa"
     },
     {
-      "type": "skipPolicy",
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "branch_point",
+      "choiceIndex": 0,
       "seat": "usa"
     },
     {
       "type": "allocate",
-      "capability": 60,
-      "safety": 25,
-      "diffusion": 15,
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
       "seat": "china"
     },
     {
@@ -332,8 +339,8 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "superhuman_coder",
-      "choiceIndex": 1,
+      "eventId": "liability_shield_ask",
+      "choiceIndex": 0,
       "seat": "china"
     },
     {
@@ -341,52 +348,47 @@
     },
     {
       "type": "allocate",
-      "capability": 50,
-      "safety": 50,
-      "diffusion": 0,
+      "capability": 10,
+      "safety": 40,
+      "diffusion": 50,
       "seat": "usa"
     },
     {
-      "type": "skipPolicy",
+      "type": "playPolicy",
+      "policyId": "global_moratorium",
       "seat": "usa"
     },
     {
       "type": "resolveEventChoice",
       "eventId": "superhuman_coder",
-      "choiceIndex": 0,
+      "choiceIndex": 1,
       "seat": "usa"
     },
     {
       "type": "allocate",
-      "capability": 60,
+      "capability": 45,
       "safety": 25,
-      "diffusion": 15,
+      "diffusion": 30,
       "seat": "china"
     },
     {
       "type": "playPolicy",
       "policyId": "compute_treaty_feeler",
       "seat": "china"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "branch_point",
-      "choiceIndex": 1,
-      "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "1dd8fbe842026e",
-    "105e432f8decec",
-    "100bc43678aa69",
-    "059be27f6498c3",
-    "065d7d8e238759",
-    "1cfe188f169213",
-    "1e08a78dadda43",
-    "0a021c00ebaa68",
-    "1ced9166233753",
-    "13426d682f1b8a",
-    "07d00adaf796d0"
+    "02474bd57c448c",
+    "061e842386e936",
+    "10341f9b7153c6",
+    "14979fb5b1a023",
+    "1513447fff4bb5",
+    "109fd96b3f7b20",
+    "16c57c66789d77",
+    "149b9822574e91",
+    "140bbc2b6d8163",
+    "088e557a3c9073",
+    "1e7257b2131e19"
   ],
-  "finalHash": "07d00adaf796d0"
+  "finalHash": "1e7257b2131e19"
 }

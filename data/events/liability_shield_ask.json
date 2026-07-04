@@ -1,0 +1,51 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "liability_shield_ask",
+  "kind": "choice",
+  "title": "strings:event.liabilityShieldAsk.title",
+  "body": "strings:event.liabilityShieldAsk.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 4,
+    "turnMax": 10,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.liabilityShieldAsk.sign",
+      "effects": {
+        "capital": 200,
+        "capability": 50,
+        "publicTrust": -100,
+        "hidden.trueAlignment": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "society.unrest": 100
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.liabilityShieldAsk.veto",
+      "effects": {
+        "publicTrust": 150,
+        "politicalCapital": 100,
+        "capital": -150,
+        "capability": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "rival.capability": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-SIM-GAMING-INSIGHTS"],
+  "tags": ["labs", "liability", "governance"]
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "union_moratorium_demand",
+  "kind": "choice",
+  "title": "strings:event.unionMoratoriumDemand.title",
+  "body": "strings:event.unionMoratoriumDemand.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 3,
+    "turnMax": 14,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.unionMoratoriumDemand.freeze",
+      "effects": {
+        "society.unrest": -150,
+        "publicTrust": 100,
+        "capital": -100,
+        "capability": -50
+      }
+    },
+    {
+      "label": "strings:event.unionMoratoriumDemand.refuse",
+      "effects": {
+        "capital": 150,
+        "society.unrest": 200,
+        "publicTrust": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "society.jobDisplacement": 150
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.unionMoratoriumDemand.phase",
+      "effects": {
+        "capital": -150,
+        "society.unrest": -50,
+        "publicTrust": 50,
+        "talent": 100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 5,
+          "effects": {
+            "society.jobDisplacement": -50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-IMF-GENAI", "SRC-OECD-EMPLOYMENT"],
+  "tags": ["labor", "unrest", "automation"]
+}

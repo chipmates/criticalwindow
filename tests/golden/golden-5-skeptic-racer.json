@@ -1,6 +1,6 @@
 {
   "name": "golden-5-skeptic-racer",
-  "dataVersion": "189f29ffb2e494",
+  "dataVersion": "1752bda86b3639",
   "seed": "golden-5",
   "presetId": "skeptic",
   "bot": "racer",
@@ -93,8 +93,8 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "eval_breakthrough",
-      "choiceIndex": 1,
+      "eventId": "city_power_deal",
+      "choiceIndex": 0,
       "seat": "usa"
     },
     {
@@ -135,7 +135,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "open_weights_shock",
+      "eventId": "city_power_deal",
       "choiceIndex": 0,
       "seat": "china"
     },
@@ -191,6 +191,68 @@
       "seat": "usa"
     },
     {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "open_source_replication",
+      "choiceIndex": 0,
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "flash_crash_agent",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
       "type": "resolveEventChoice",
       "eventId": "superhuman_coder",
       "choiceIndex": 0,
@@ -209,89 +271,20 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "energy_crunch",
+      "eventId": "allied_export_fracture",
       "choiceIndex": 0,
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "branch_point",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "energy_buildout",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "the_project",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "civil_service_flood",
-      "choiceIndex": 1,
       "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "00d711f93807d9",
-    "04d846bc102b7a",
-    "03f8a574275724",
-    "1e16bf482366ab",
-    "1f1710d0cad5f4",
-    "1114056dd5aed5",
-    "0fe1ab191f8412",
-    "17195972710bef"
+    "17d21bd81b5ce5",
+    "057395bbf8163f",
+    "07bbf042753e3a",
+    "0ec60945d435e8",
+    "117f5a6c743796",
+    "198c99170190c8",
+    "1f58d00ac73305",
+    "03486cd7b268a0"
   ],
-  "finalHash": "17195972710bef"
+  "finalHash": "03486cd7b268a0"
 }

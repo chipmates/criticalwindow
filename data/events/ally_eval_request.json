@@ -1,0 +1,56 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "ally_eval_request",
+  "kind": "choice",
+  "title": "strings:event.allyEvalRequest.title",
+  "body": "strings:event.allyEvalRequest.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 4,
+    "turnMax": 14,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.allyEvalRequest.grant",
+      "effects": {
+        "politicalCapital": 200,
+        "capital": 100,
+        "safetyInsight": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 5,
+          "effects": {
+            "capability": -50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.allyEvalRequest.limit",
+      "effects": {
+        "politicalCapital": 100,
+        "safetyInsight": -50,
+        "capital": 50
+      }
+    },
+    {
+      "label": "strings:event.allyEvalRequest.refuse",
+      "effects": {
+        "politicalCapital": -200,
+        "publicTrust": 100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "politicalCapital": -100
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-CSIS-EXPORT"],
+  "tags": ["alliance", "verification", "diplomacy"]
+}

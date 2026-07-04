@@ -1,0 +1,49 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "open_source_replication",
+  "kind": "choice",
+  "title": "strings:event.openSourceReplication.title",
+  "body": "strings:event.openSourceReplication.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 5,
+    "turnMax": 13,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.openSourceReplication.outspend",
+      "effects": {
+        "capability": 100,
+        "capital": -200,
+        "publicTrust": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "safetyInsight": -100
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.openSourceReplication.publish",
+      "effects": {
+        "publicTrust": 150,
+        "safetyInsight": 100,
+        "politicalCapital": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "rival.capability": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-EPOCH-COMPUTE", "SRC-AI-INDEX-2026"],
+  "tags": ["open-weights", "capability", "diffusion"]
+}

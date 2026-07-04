@@ -1,0 +1,50 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "insurance_repricing",
+  "kind": "choice",
+  "title": "strings:event.insuranceRepricing.title",
+  "body": "strings:event.insuranceRepricing.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 5,
+    "turnMax": 15,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.insuranceRepricing.audit",
+      "effects": {
+        "capital": -200,
+        "safetyInsight": 150,
+        "publicTrust": 100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "capital": 100
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.insuranceRepricing.selfInsure",
+      "effects": {
+        "capital": 150,
+        "safetyInsight": -50,
+        "publicTrust": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "capital": -250,
+            "publicTrust": -100
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-AI-INDEX-2026", "SRC-SLEEPER-PROBES"],
+  "tags": ["insurance", "risk", "economy"]
+}
