@@ -1214,3 +1214,12 @@ body {
 :root[data-motion='reduced'] .title-race-bar::after {
   animation: none;
 }
+
+.eval-fog-warning {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-data);
+  font-size: var(--text-xs);
+  color: var(--danger, #a33);
+  border-left: 3px solid var(--danger, #a33);
+  padding-left: var(--space-2);
+}

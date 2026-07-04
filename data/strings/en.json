@@ -551,5 +551,6 @@
   "title.feature.seed": "Deterministic seeds: share a world, compare runs",
   "title.feature.offline": "Plays in your browser, offline after first load",
   "title.sound.on": "Sound: on",
-  "title.sound.off": "Sound: off"
+  "title.sound.off": "Sound: off",
+  "eval.fogWarning": "Frontier instability: past the fog line, alignment slips every quarter unless safety work outpaces it. What you banked is eroding."
 }

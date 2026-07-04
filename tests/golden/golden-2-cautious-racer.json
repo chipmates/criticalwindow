@@ -1,6 +1,6 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "13719abe47dfba",
+  "dataVersion": "162940e586b705",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
@@ -209,12 +209,12 @@
     }
   ],
   "perTurnHashes": [
-    "170ca77680c53d",
-    "1c610c53a53c67",
-    "0ce4b9bda372c3",
-    "11622b1d59c1e6",
-    "06320cc15c418e",
-    "1447a998708757"
+    "1a8c71cfcf5551",
+    "12dc181f3aecad",
+    "06ff30483a86fd",
+    "05aaea71d09848",
+    "06fce1523a5c72",
+    "030c0b34fbe0b8"
   ],
-  "finalHash": "1447a998708757"
+  "finalHash": "030c0b34fbe0b8"
 }

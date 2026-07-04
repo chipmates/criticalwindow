@@ -296,7 +296,7 @@ export function Game() {
               }
             />
           )}
-          {revealed.has('eval') && <EvalBand run={run} seat={viewSeat} />}
+          {revealed.has('eval') && <EvalBand data={data} run={run} seat={viewSeat} />}
         </div>
 
         <aside className="game-side" aria-label={t('dash.heading')}>

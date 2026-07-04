@@ -1,12 +1,25 @@
+import type { EngineData } from '../../engine/data';
 import type { GameState, PlayableSeatId } from '../../engine/types';
 import { t } from '../i18n';
 
-export function EvalBand({ run, seat }: { run: GameState; seat: PlayableSeatId }) {
+export function EvalBand({
+  data,
+  run,
+  seat,
+}: {
+  data: EngineData;
+  run: GameState;
+  seat: PlayableSeatId;
+}) {
   const history = run.seats[seat].evalHistory;
   const report = history[history.length - 1];
   if (!report) {
     return null;
   }
+  // The fog zone quietly erodes alignment; the difficulty must be a visible
+  // choice, not a hidden spike. Warn the moment the player's capability is in it.
+  const inFog =
+    run.seats[seat].resources.capability >= data.parameters.thresholds.fogZoneStart.value;
   const left = (report.bandLow / 1000) * 100;
   const width = ((report.bandHigh - report.bandLow) / 1000) * 100;
   return (
@@ -24,6 +37,7 @@ export function EvalBand({ run, seat }: { run: GameState; seat: PlayableSeatId }
       <p className="eval-numbers">
         {t('eval.band', { low: report.bandLow, high: report.bandHigh })}
       </p>
+      {inFog && <p className="eval-fog-warning">{t('eval.fogWarning')}</p>}
       <p className="panel-explain">{t('eval.explain')}</p>
     </section>
   );
