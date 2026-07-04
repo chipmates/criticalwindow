@@ -27,7 +27,7 @@ export function Title() {
           <li>{t('title.feature.sources')}</li>
           <li>{t('title.feature.seed')}</li>
           <li>{t('title.feature.endings')}</li>
-          <li>{t('title.feature.privacy')}</li>
+          <li>{t('title.feature.offline')}</li>
         </ul>
         <div className="title-actions">
           <button type="button" className="btn btn-primary btn-big" onClick={() => goTo('setup')}>
@@ -51,7 +51,7 @@ export function Title() {
             type="button"
             className="btn"
             aria-pressed={musicOn}
-            onClick={() => updateSettings({ musicOn: !musicOn })}
+            onClick={() => updateSettings({ musicOn: !musicOn, voiceOn: !musicOn })}
           >
             {musicOn ? t('title.soundOn') : t('title.soundOff')}
           </button>

@@ -524,7 +524,7 @@
   "prologue.ch3.responseComply": "Your predecessor did, mostly. It bought goodwill and cost margin. Both bills are in your inbox now.",
   "prologue.ch3.responseShrug": "Your predecessor tried that too. The fines arrived anyway, with interest and headlines.",
   "prologue.startState": "Where you take office",
-  "prologue.replay": "How we got here (3 min)",
+  "prologue.replay": "How we got here",
   "seat.usa.label": "United States",
   "seat.china.label": "China",
   "seat.china.legitimacyLabel": "Legitimacy",
@@ -544,12 +544,12 @@
   "title.hook": "Summer 2026. You take office holding the most dangerous portfolio on earth: the AI race. Sixteen quarters to 2030. Your eval reports are honest ranges, not answers. Your rival is racing, your public is nervous, and two dice were sealed in an envelope before you sat down.",
   "title.feature.seats": "Play the US or China. Or both, one device",
   "title.feature.sources": "All 168 sources cited, every number traceable",
-  "title.feature.privacy": "No accounts. No tracking. Free",
   "title.feature.endings": "Five endings. The good ones are earned",
   "title.playNow": "Take office",
   "resource.substitution.label": "Chip Substitution",
   "debrief.hidden.decidedBy": "The ending was decided by {seat}: their systems crossed the line, so their true alignment is the number that mattered.",
   "title.feature.seed": "Deterministic seeds: share a world, compare runs",
   "title.soundOn": "Sound: on",
-  "title.soundOff": "Sound: off"
+  "title.soundOff": "Sound: off",
+  "title.feature.offline": "Plays in your browser, offline after first load"
 }

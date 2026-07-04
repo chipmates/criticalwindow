@@ -1,6 +1,6 @@
 {
   "name": "golden-4-consensus-chaos",
-  "dataVersion": "0e027eef6434ca",
+  "dataVersion": "06e079ad244c3c",
   "seed": "golden-4",
   "presetId": "consensus",
   "bot": "chaos",
@@ -344,16 +344,16 @@
     }
   ],
   "perTurnHashes": [
-    "0aa9f39513975d",
-    "1ac3169e858980",
-    "10c6847a04816a",
-    "0bae3d2d07bd5a",
-    "05056367d9e06d",
-    "1f3132ee1721ad",
-    "0a9c00d25259f6",
-    "0ecdc5146912fb",
-    "1ae39de215d9ab",
-    "0584d09ec0e95f"
+    "0e11a6737f102e",
+    "150194842c5009",
+    "1f660ba16f4c0e",
+    "18d01802a76837",
+    "08e4a765c8b050",
+    "16ef3b33fde501",
+    "17d37c6ef245ab",
+    "12c06c21bebbed",
+    "1b4072d146efb1",
+    "16eedf2e202ef6"
   ],
-  "finalHash": "0584d09ec0e95f"
+  "finalHash": "16eedf2e202ef6"
 }
