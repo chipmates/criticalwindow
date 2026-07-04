@@ -7,7 +7,7 @@
 
 An open source strategy game about the AI race. You govern the United States or China from summer 2026 through the four years where it all gets decided. You choose how hard to push AI capability, how much to spend on safety you cannot verify, and how to handle a rival power doing the same math with the same doubts. Two dice are sealed in an envelope before you sit down: how hard alignment really is, and how fast the takeoff runs. You will not see either until the end. That is not a gap in the game. It is the game. **You do not need to code to contribute:** every card, parameter, and line of text is a JSON file anyone can edit, every number cites a source anyone can check, and playtesting helps more than anything. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-![A turn in Critical Window: the race track with its fog, the quarterly allocation, cabinet mandates, and every number wearing its real-world anchor](docs/media/game.png)
+![One run of Critical Window, from taking office to the envelope opening](docs/media/playthrough.gif)
 
 ## Play
 
@@ -22,6 +22,8 @@ A hosted version arrives with the public alpha, and this line becomes a link whe
 Three ways to play. Solo as the United States. Solo as China, where the chips are scarce but the power is not. Hotseat: two people, one device, one shared world, two private screens of doubt.
 
 ## What a run feels like
+
+![A turn in play: the race track with its fog, the quarterly allocation, and every number wearing its real-world anchor](docs/media/game.png)
 
 Sixteen quarterly turns. Each one, you split your effort between capability, safety, and diffusion, then the world answers: memos with no clean options, incidents that leak the truth your eval reports smoothed over, a rival whose posture you can read but whose progress you can only watch. Five endings, and the good ones are earned. Losing tells you exactly why: the debrief opens the envelope and draws what your evals said each quarter against what was actually true.
 
