@@ -1,13 +1,19 @@
-<p align="center"><img src="public/icon.svg" width="104" alt="Critical Window mark: two dark masses closing on a narrow wedge of amber light"></p>
+<p align="center"><img src="public/icon.svg" width="112" alt="Critical Window mark: two dark masses closing on a narrow wedge of amber light"></p>
 
-# Critical Window
+<h1 align="center">Critical Window</h1>
 
-[![CI](https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml/badge.svg)](https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml)
-[![Code: AGPL-3.0](https://img.shields.io/badge/code-AGPL--3.0-8a4d00)](LICENSE)
-[![Content: CC BY-SA 4.0](https://img.shields.io/badge/content-CC_BY--SA_4.0-8a4d00)](LICENSE-CONTENT)
-[![No tracking](https://img.shields.io/badge/tracking-none%2C_ever-1c1e21)](SECURITY.md)
+<p align="center"><b>An open source strategy game about the AI race.</b></p>
 
-An open source strategy game about the AI race. You govern the United States or China from summer 2026 through the four years where it all gets decided. You choose how hard to push AI capability, how much to spend on safety you cannot verify, and how to handle a rival power doing the same math with the same doubts. Two dice are sealed in an envelope before you sit down: how hard alignment really is, and how fast the takeoff runs. You will not see either until the end. That is not a gap in the game. It is the game. **You do not need to code to contribute:** every card, parameter, and line of text is a JSON file anyone can edit, every number cites a source anyone can check, and playtesting helps more than anything. See [CONTRIBUTING.md](CONTRIBUTING.md); the ground rules live in the [code of conduct](CODE_OF_CONDUCT.md).
+<p align="center">Nonprofit · No accounts, no tracking, ever · Works offline · Every number cites a source</p>
+
+<p align="center">
+<a href="https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml"><img src="https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/code-AGPL--3.0-8a4d00" alt="Code: AGPL-3.0"></a>
+<a href="LICENSE-CONTENT"><img src="https://img.shields.io/badge/content-CC_BY--SA_4.0-8a4d00" alt="Content: CC BY-SA 4.0"></a>
+<a href="SECURITY.md"><img src="https://img.shields.io/badge/tracking-none%2C_ever-1c1e21" alt="No tracking"></a>
+</p>
+
+<p align="center"><a href="#play">Play</a> · <a href="SOURCES.md">Sources</a> · <a href="ROADMAP.md">Roadmap</a> · <a href="CONTRIBUTING.md">Contribute</a> · <a href="GOVERNANCE.md">Governance</a></p>
 
 ![One run of Critical Window, from taking office to the envelope opening](docs/media/playthrough.gif)
 
