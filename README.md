@@ -1,3 +1,5 @@
+<p align="center"><img src="public/icon.svg" width="104" alt="Critical Window mark: two dark masses closing on a narrow wedge of amber light"></p>
+
 # Critical Window
 
 [![CI](https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml/badge.svg)](https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml)
