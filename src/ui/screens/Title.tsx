@@ -15,6 +15,19 @@ export function Title() {
         <p className="title-kicker">{t('app.workingTitleNote')}</p>
         <h1 className="title-name">{t('app.title')}</h1>
         <p className="title-tagline">{t('app.tagline')}</p>
+        <div className="title-race" aria-hidden="true">
+          <span className="title-race-bar title-race-you" />
+          <span className="title-race-bar title-race-rival" />
+        </div>
+        <p className="title-hook">{t('title.hook')}</p>
+        <p className="title-hook title-hook-second">{t('title.hookEndings')}</p>
+        <ul className="title-features">
+          <li>{t('title.feature.window')}</li>
+          <li>{t('title.feature.seats')}</li>
+          <li>{t('title.feature.sources')}</li>
+          <li>{t('title.feature.endings')}</li>
+          <li>{t('title.feature.privacy')}</li>
+        </ul>
         <div className="title-actions">
           <button type="button" className="btn btn-primary btn-big" onClick={() => goTo('setup')}>
             {t('setup.newRun')}

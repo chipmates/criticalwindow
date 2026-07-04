@@ -540,5 +540,13 @@
   "setup.seat.heading": "Your seat",
   "handoff.heading": "Hand the device over",
   "handoff.body": "{seat} is up next. The eval band and hand you just saw belong to the other seat. No peeking is the whole game.",
-  "handoff.continue": "I am {seat}. Begin."
+  "handoff.continue": "I am {seat}. Begin.",
+  "title.hook": "Summer 2026. You take office holding the most dangerous portfolio on earth: the AI race. Sixteen quarters to 2030. Your eval reports are honest ranges, not answers. Your rival is racing, your public is nervous, and two dice were sealed in an envelope before you sat down.",
+  "title.feature.window": "16 quarters to 2030",
+  "title.feature.seats": "Play the US or China. Or both, one device",
+  "title.feature.sources": "Every number cites a source",
+  "title.feature.privacy": "No accounts. No tracking. Free forever",
+  "title.feature.endings": "Five endings. The good ones are earned",
+  "title.playNow": "Take office",
+  "title.hookEndings": "Racing feels rational every single turn. That is the trap. Can you cross the threshold with systems that hold, sign the treaty nobody thanks you for, or hold a country together while the dashboards go vertical?"
 }
