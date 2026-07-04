@@ -1,4 +1,5 @@
 import strings from '../../../data/strings/en.json';
+import { anchorFor } from '../anchors';
 import './race-track.css';
 
 interface RaceTrackProps {
@@ -52,6 +53,15 @@ export function RaceTrack({ you, rival, fogFrom, threshold, bandWidth }: RaceTra
           ))}
         </div>
       </div>
+      {/* The capability scale in human terms: the METR task-horizon ladder. */}
+      <div className="race-horizon" aria-hidden="true">
+        {[350, 500, 700, 900].map((at) => (
+          <span key={at} className="race-horizon-tick" style={{ left: pct(at) }}>
+            {anchorFor('capability', at)}
+          </span>
+        ))}
+      </div>
+      <p className="race-horizon-now">{anchorFor('capability', you)}</p>
     </figure>
   );
 }

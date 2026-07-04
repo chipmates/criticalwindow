@@ -1,6 +1,6 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "1ba24fe5b6d6c2",
+  "dataVersion": "19cd5ad44f9e63",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
@@ -313,15 +313,15 @@
     }
   ],
   "perTurnHashes": [
-    "09ce752b9efedf",
-    "0a5d2e5a3b3b1b",
-    "1cd98e837e809e",
-    "0ea33d2147489c",
-    "1399311634d483",
-    "18ad6a8576761e",
-    "1a7a959b13be3f",
-    "1eced496e49820",
-    "10a27b71567f2a"
+    "113b7b1be58985",
+    "18fee6e1e4d448",
+    "0a23960976e81c",
+    "033d5f2a096845",
+    "046879182b47ed",
+    "124dca9b299a8b",
+    "0e72a6068f37d4",
+    "11b509fbb698ab",
+    "0e619216c8639c"
   ],
-  "finalHash": "10a27b71567f2a"
+  "finalHash": "0e619216c8639c"
 }

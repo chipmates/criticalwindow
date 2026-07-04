@@ -1,0 +1,289 @@
+{
+  "comment": "Descriptive UI anchors: each index translated back to the sourced reality it came from. NEVER read by the engine; zero balance impact. Nearest anchor at or below the value shows under the meter.",
+  "tracks": {
+    "capability": {
+      "sourceIds": ["SRC-METR-HORIZON", "SRC-AI2027"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.capability.0"
+        },
+        {
+          "at": 150,
+          "label": "strings:anchor.capability.150"
+        },
+        {
+          "at": 350,
+          "label": "strings:anchor.capability.350"
+        },
+        {
+          "at": 500,
+          "label": "strings:anchor.capability.500"
+        },
+        {
+          "at": 700,
+          "label": "strings:anchor.capability.700"
+        },
+        {
+          "at": 800,
+          "label": "strings:anchor.capability.800"
+        },
+        {
+          "at": 900,
+          "label": "strings:anchor.capability.900"
+        }
+      ]
+    },
+    "compute": {
+      "sourceIds": ["SRC-EPOCH-COMPUTE"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.compute.0"
+        },
+        {
+          "at": 250,
+          "label": "strings:anchor.compute.250"
+        },
+        {
+          "at": 450,
+          "label": "strings:anchor.compute.450"
+        },
+        {
+          "at": 700,
+          "label": "strings:anchor.compute.700"
+        },
+        {
+          "at": 900,
+          "label": "strings:anchor.compute.900"
+        }
+      ]
+    },
+    "energy": {
+      "sourceIds": ["SRC-IEA-ENERGY-AI"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.energy.0"
+        },
+        {
+          "at": 300,
+          "label": "strings:anchor.energy.300"
+        },
+        {
+          "at": 450,
+          "label": "strings:anchor.energy.450"
+        },
+        {
+          "at": 700,
+          "label": "strings:anchor.energy.700"
+        },
+        {
+          "at": 900,
+          "label": "strings:anchor.energy.900"
+        }
+      ]
+    },
+    "talent": {
+      "sourceIds": ["SRC-AI-INDEX-2026"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.talent.0"
+        },
+        {
+          "at": 300,
+          "label": "strings:anchor.talent.300"
+        },
+        {
+          "at": 650,
+          "label": "strings:anchor.talent.650"
+        },
+        {
+          "at": 900,
+          "label": "strings:anchor.talent.900"
+        }
+      ]
+    },
+    "capital": {
+      "sourceIds": ["SRC-AI-INDEX-2026"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.capital.0"
+        },
+        {
+          "at": 250,
+          "label": "strings:anchor.capital.250"
+        },
+        {
+          "at": 550,
+          "label": "strings:anchor.capital.550"
+        },
+        {
+          "at": 750,
+          "label": "strings:anchor.capital.750"
+        }
+      ]
+    },
+    "publicTrust": {
+      "sourceIds": ["SRC-AI-INDEX-2026"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.publicTrust.0"
+        },
+        {
+          "at": 200,
+          "label": "strings:anchor.publicTrust.200"
+        },
+        {
+          "at": 400,
+          "label": "strings:anchor.publicTrust.400"
+        },
+        {
+          "at": 600,
+          "label": "strings:anchor.publicTrust.600"
+        },
+        {
+          "at": 800,
+          "label": "strings:anchor.publicTrust.800"
+        }
+      ]
+    },
+    "politicalCapital": {
+      "sourceIds": ["SRC-DESIGN-HANDOVER"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.politicalCapital.0"
+        },
+        {
+          "at": 200,
+          "label": "strings:anchor.politicalCapital.200"
+        },
+        {
+          "at": 500,
+          "label": "strings:anchor.politicalCapital.500"
+        },
+        {
+          "at": 800,
+          "label": "strings:anchor.politicalCapital.800"
+        }
+      ]
+    },
+    "safetyInsight": {
+      "sourceIds": ["SRC-SCALING-MONOSEMANTICITY", "SRC-SLEEPER-PROBES"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.safetyInsight.0"
+        },
+        {
+          "at": 200,
+          "label": "strings:anchor.safetyInsight.200"
+        },
+        {
+          "at": 400,
+          "label": "strings:anchor.safetyInsight.400"
+        },
+        {
+          "at": 600,
+          "label": "strings:anchor.safetyInsight.600"
+        },
+        {
+          "at": 800,
+          "label": "strings:anchor.safetyInsight.800"
+        }
+      ]
+    },
+    "jobDisplacement": {
+      "sourceIds": ["SRC-IMF-GENAI"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.jobDisplacement.0"
+        },
+        {
+          "at": 200,
+          "label": "strings:anchor.jobDisplacement.200"
+        },
+        {
+          "at": 400,
+          "label": "strings:anchor.jobDisplacement.400"
+        },
+        {
+          "at": 600,
+          "label": "strings:anchor.jobDisplacement.600"
+        }
+      ]
+    },
+    "unrest": {
+      "sourceIds": ["SRC-OECD-EMPLOYMENT", "SRC-DESIGN-HANDOVER"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.unrest.0"
+        },
+        {
+          "at": 150,
+          "label": "strings:anchor.unrest.150"
+        },
+        {
+          "at": 400,
+          "label": "strings:anchor.unrest.400"
+        },
+        {
+          "at": 600,
+          "label": "strings:anchor.unrest.600"
+        },
+        {
+          "at": 800,
+          "label": "strings:anchor.unrest.800"
+        }
+      ]
+    },
+    "bilateralTrust": {
+      "sourceIds": ["SRC-HO-INTL-INSTITUTIONS"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.bilateralTrust.0"
+        },
+        {
+          "at": 250,
+          "label": "strings:anchor.bilateralTrust.250"
+        },
+        {
+          "at": 500,
+          "label": "strings:anchor.bilateralTrust.500"
+        },
+        {
+          "at": 700,
+          "label": "strings:anchor.bilateralTrust.700"
+        }
+      ]
+    },
+    "substitution": {
+      "sourceIds": ["SRC-CSIS-EXPORT"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.substitution.0"
+        },
+        {
+          "at": 250,
+          "label": "strings:anchor.substitution.250"
+        },
+        {
+          "at": 500,
+          "label": "strings:anchor.substitution.500"
+        },
+        {
+          "at": 700,
+          "label": "strings:anchor.substitution.700"
+        }
+      ]
+    }
+  }
+}

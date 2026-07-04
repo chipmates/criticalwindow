@@ -645,6 +645,24 @@ const prologueChapterSchema = z.strictObject({
   sourceIds: sourceIdsSchema,
 });
 
+/**
+ * Anchor labels (data/anchors.json): descriptive UI translations of the
+ * 0-1000 indices back to sourced real-world equivalents. Never engine-read.
+ */
+export const anchorsSchema = z.strictObject({
+  comment: z.string().optional(),
+  tracks: z.record(
+    z.string(),
+    z.strictObject({
+      sourceIds: z.array(z.string()).min(1),
+      anchors: z
+        .array(z.strictObject({ at: z.number().int().min(0).max(1000), label: stringsRefSchema }))
+        .min(2),
+    }),
+  ),
+});
+export type AnchorsData = z.infer<typeof anchorsSchema>;
+
 export const prologueSchema = z
   .strictObject({
     $schema: z.string().optional(),

@@ -1,4 +1,20 @@
+import { anchorSources, anchorTable, anchorTrackIds } from '../anchors';
 import { t, type StringKey } from '../i18n';
+
+const ANCHOR_TRACK_LABEL: Record<string, StringKey> = {
+  capability: 'resource.capability.label',
+  compute: 'resource.compute.label',
+  energy: 'resource.energy.label',
+  talent: 'resource.talent.label',
+  capital: 'resource.capital.label',
+  publicTrust: 'resource.publicTrust.label',
+  politicalCapital: 'resource.politicalCapital.label',
+  safetyInsight: 'resource.safetyInsight.label',
+  jobDisplacement: 'society.jobDisplacement.label',
+  unrest: 'society.unrest.label',
+  bilateralTrust: 'rival.trust.label',
+  substitution: 'rival.substitution.label',
+};
 
 const TERMS = [
   'compute',
@@ -100,6 +116,31 @@ export function Help({ onBack }: { onBack: () => void }) {
         <h2 className="panel-heading">{t('help.incidents.heading')}</h2>
         <p className="panel-explain">{t('help.incidents.intro')}</p>
         <p className="panel-explain">{t('help.incidents.rungs')}</p>
+      </section>
+
+      <section className="panel">
+        <h2 className="panel-heading">{t('help.anchors.heading')}</h2>
+        <p className="panel-explain">{t('help.anchors.body')}</p>
+        <div className="help-anchors">
+          {anchorTrackIds().map((track) => (
+            <details key={track} className="help-anchor-track">
+              <summary>
+                {t(ANCHOR_TRACK_LABEL[track] ?? ('resource.capability.label' as StringKey))}
+              </summary>
+              <table className="help-anchor-table">
+                <tbody>
+                  {anchorTable(track).map((row) => (
+                    <tr key={row.at}>
+                      <td className="help-anchor-at">{row.at}</td>
+                      <td>{row.text}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="help-anchor-sources">{anchorSources(track).join(' · ')}</p>
+            </details>
+          ))}
+        </div>
       </section>
 
       <section className="panel">

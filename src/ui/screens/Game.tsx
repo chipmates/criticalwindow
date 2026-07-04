@@ -5,6 +5,7 @@ import { hashString } from '../../engine/hash';
 import type { GameState, PlayableSeatId } from '../../engine/types';
 import { otherSeat } from '../../engine/types';
 import { AllocationControl } from '../components/AllocationControl';
+import { anchorFor } from '../anchors';
 import { EvalBand } from '../components/EvalBand';
 import { EventMemo } from '../components/EventMemo';
 import { Meter } from '../components/Meter';
@@ -305,6 +306,7 @@ export function Game() {
           <Meter
             label={t('resource.compute.label')}
             value={me.resources.compute}
+            anchor={anchorFor('compute', me.resources.compute)}
             token="--m-capital"
             trend={prev('compute')}
           />
@@ -312,6 +314,7 @@ export function Game() {
             <Meter
               label={t('resource.energy.label')}
               value={me.resources.energy}
+              anchor={anchorFor('energy', me.resources.energy)}
               token="--m-energy"
               trend={prev('energy')}
             />
@@ -320,6 +323,7 @@ export function Game() {
             <Meter
               label={t('resource.talent.label')}
               value={me.resources.talent}
+              anchor={anchorFor('talent', me.resources.talent)}
               token="--m-capital"
               trend={prev('talent')}
             />
@@ -328,6 +332,7 @@ export function Game() {
             <Meter
               label={t('resource.capital.label')}
               value={me.resources.capital}
+              anchor={anchorFor('capital', me.resources.capital)}
               token="--m-capital"
               trend={prev('capital')}
             />
@@ -338,6 +343,7 @@ export function Game() {
                 trustLabelOverride ? tRef(trustLabelOverride) : t('resource.publicTrust.label')
               }
               value={me.resources.publicTrust}
+              anchor={anchorFor('publicTrust', me.resources.publicTrust)}
               token="--m-trust"
               trend={prev('publicTrust')}
             />
@@ -346,6 +352,7 @@ export function Game() {
             <Meter
               label={t('resource.politicalCapital.label')}
               value={me.resources.politicalCapital}
+              anchor={anchorFor('politicalCapital', me.resources.politicalCapital)}
               token="--m-trust"
               trend={prev('politicalCapital')}
             />
@@ -353,12 +360,14 @@ export function Game() {
           <Meter
             label={t('resource.capability.label')}
             value={me.resources.capability}
+            anchor={anchorFor('capability', me.resources.capability)}
             token="--m-capability"
             trend={prev('capability')}
           />
           <Meter
             label={t('resource.safetyInsight.label')}
             value={me.resources.safetyInsight}
+            anchor={anchorFor('safetyInsight', me.resources.safetyInsight)}
             token="--m-safety"
             trend={prev('safetyInsight')}
           />
@@ -368,12 +377,14 @@ export function Game() {
               <Meter
                 label={t('society.jobDisplacement.label')}
                 value={me.society.jobDisplacement}
+                anchor={anchorFor('jobDisplacement', me.society.jobDisplacement)}
                 token="--m-unrest"
                 trend={prev('society.jobDisplacement')}
               />
               <Meter
                 label={t('society.unrest.label')}
                 value={me.society.unrest}
+                anchor={anchorFor('unrest', me.society.unrest)}
                 token="--m-unrest"
                 trend={prev('society.unrest')}
               />
@@ -385,18 +396,21 @@ export function Game() {
               <Meter
                 label={t('rival.capability.label')}
                 value={them.resources.capability}
+                anchor={anchorFor('capability', them.resources.capability)}
                 token="--m-rival"
                 trend={prev('rival.capability')}
               />
               <Meter
                 label={t('rival.trust.label')}
                 value={run.world.bilateralTrust}
+                anchor={anchorFor('bilateralTrust', run.world.bilateralTrust)}
                 token="--m-trust"
                 trend={prev('rival.trust')}
               />
               <Meter
                 label={t('rival.substitution.label')}
                 value={them.substitution}
+                anchor={anchorFor('substitution', them.substitution)}
                 token="--m-rival"
                 trend={prev('rival.substitution')}
               />

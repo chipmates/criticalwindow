@@ -19,6 +19,8 @@ import {
   incidentsSchema,
   mandatesSchema,
   parametersSchema,
+  anchorsSchema,
+  type AnchorsData,
   prologueSchema,
   seatsSchema,
   policyCardSchema,
@@ -151,6 +153,13 @@ if (!parsed.has('prologue.json')) {
   errors.push('data/prologue.json is missing (tutorial prologue, v0.2 wave 2)');
 }
 
+const anchors = parsed.has('anchors.json')
+  ? validateFile<AnchorsData>('anchors.json', anchorsSchema)
+  : null;
+if (!parsed.has('anchors.json')) {
+  errors.push('data/anchors.json is missing (anchor labels, v0.3 wave A)');
+}
+
 const seatsRules = parsed.has('seats.json')
   ? validateFile<SeatsData>('seats.json', seatsSchema)
   : null;
@@ -208,6 +217,32 @@ if (parameters && incidents && mandates && seatsRules && scenarios.length > 0) {
   }
 } else if (events.length > 0 || policies.length > 0) {
   warnings.push('cards exist but parameters/scenario missing; integrity check skipped');
+}
+
+// Anchors are UI data with the same honesty rules: sources exist, strings
+// resolve, anchor positions strictly increase per track.
+if (anchors) {
+  const knownSourceIds = sources ? new Set(sources.sources.map((s) => s.id)) : null;
+  for (const [trackId, trackDef] of Object.entries(anchors.tracks)) {
+    for (const id of trackDef.sourceIds) {
+      if (knownSourceIds && !knownSourceIds.has(id)) {
+        errors.push(`anchors.${trackId}: unknown source id '${id}'`);
+      }
+    }
+    let lastAt = -1;
+    for (const anchor of trackDef.anchors) {
+      if (anchor.at <= lastAt) {
+        errors.push(`anchors.${trackId}: anchor positions must strictly increase`);
+      }
+      lastAt = anchor.at;
+      if (strings) {
+        const key = anchor.label.slice('strings:'.length);
+        if (!(key in strings)) {
+          errors.push(`anchors.${trackId}: unresolved string key '${key}'`);
+        }
+      }
+    }
+  }
 }
 
 // Prologue is UI data, not engine data, but the same honesty rules apply:

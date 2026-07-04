@@ -4,9 +4,11 @@ interface MeterProps {
   max?: number;
   token: string;
   trend?: number;
+  /** Sourced real-world equivalent of the current value (see src/ui/anchors.ts). */
+  anchor?: string | null;
 }
 
-export function Meter({ label, value, max = 1000, token, trend = 0 }: MeterProps) {
+export function Meter({ label, value, max = 1000, token, trend = 0, anchor = null }: MeterProps) {
   const arrow = trend > 0 ? '▲' : trend < 0 ? '▼' : '–';
   const trendClass = trend > 0 ? 'meter-up' : trend < 0 ? 'meter-down' : 'meter-flat';
   return (
@@ -29,6 +31,7 @@ export function Meter({ label, value, max = 1000, token, trend = 0 }: MeterProps
       <span className={`meter-trend ${trendClass}`} aria-hidden="true">
         {arrow}
       </span>
+      {anchor && <span className="meter-anchor">{anchor}</span>}
     </div>
   );
 }

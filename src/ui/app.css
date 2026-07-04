@@ -1309,3 +1309,63 @@ body {
   margin-right: 4px;
   vertical-align: middle;
 }
+
+/* ---------- anchor labels ---------- */
+
+.meter-anchor {
+  grid-column: 1 / -1;
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+  font-style: italic;
+  margin-top: -2px;
+}
+
+.race-horizon {
+  position: relative;
+  height: 1.4rem;
+  margin-top: 2px;
+}
+
+.race-horizon-tick {
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: var(--font-data);
+  font-size: 0.62rem;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.race-horizon-now {
+  margin: 0;
+  text-align: center;
+  font-size: var(--text-xs);
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+.help-anchors {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.help-anchor-table {
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.help-anchor-table td {
+  padding: 2px var(--space-3) 2px 0;
+  vertical-align: top;
+}
+
+.help-anchor-at {
+  font-family: var(--font-data);
+  color: var(--ink-muted);
+}
+
+.help-anchor-sources {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-data);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
