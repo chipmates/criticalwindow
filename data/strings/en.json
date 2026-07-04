@@ -628,5 +628,9 @@
   "sources.none": "No source matches that search.",
   "title.sources": "Sources",
   "help.sourcesLink": "Browse the full source registry",
-  "debrief.sources.browse": "Browse all sources"
+  "debrief.sources.browse": "Browse all sources",
+  "hint.allocate": "Your whole quarter is this one split. Capability wins the race, safety earns the alignment you cannot see, diffusion keeps society standing. There is no safe answer, only a chosen risk.",
+  "hint.memo": "Memos are the world asking questions with no clean answer. Read the numbers under each option; the delayed ones matter as much as the instant ones.",
+  "hint.incident": "An incident is the hidden dice leaking. Your eval band did not predict this, but it just told you something true. Racing past warning shots is how runs end.",
+  "hint.dismiss": "Got it"
 }

@@ -1432,3 +1432,21 @@ body {
   font-size: var(--text-sm);
   color: var(--ink-muted);
 }
+
+/* ---------- first-run hints ---------- */
+
+.hint {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+
+.hint p {
+  margin: 0;
+}

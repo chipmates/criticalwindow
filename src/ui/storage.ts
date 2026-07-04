@@ -76,6 +76,23 @@ export const DEFAULT_SETTINGS: Settings = {
   voiceOn: false,
 };
 
+/** First-run hints: shown once each, then never again. */
+export function hintSeen(id: string): boolean {
+  try {
+    return localStorage.getItem(`${PREFIX}.hint.${id}`) === '1';
+  } catch {
+    return true; // storage unavailable: stay quiet rather than nag
+  }
+}
+
+export function markHint(id: string): void {
+  try {
+    localStorage.setItem(`${PREFIX}.hint.${id}`, '1');
+  } catch {
+    // ignore
+  }
+}
+
 export function readSettings(): Settings {
   try {
     const raw = localStorage.getItem(`${PREFIX}.settings`);

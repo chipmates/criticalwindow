@@ -7,6 +7,7 @@ import { otherSeat } from '../../engine/types';
 import { AllocationControl } from '../components/AllocationControl';
 import { anchorFor } from '../anchors';
 import { EvalBand } from '../components/EvalBand';
+import { Hint } from '../components/Hint';
 import { EventMemo } from '../components/EventMemo';
 import { Meter } from '../components/Meter';
 import { PolicyHand } from '../components/PolicyHand';
@@ -258,6 +259,9 @@ export function Game() {
 
       <div className="game-grid">
         <div className="game-main">
+          {run.phase === 'allocate' && run.turn === 1 && run.mode === 'solo' && (
+            <Hint id="allocate" />
+          )}
           {run.phase === 'allocate' && (
             <AllocationControl
               key={`${run.turn}:${viewSeat}`}

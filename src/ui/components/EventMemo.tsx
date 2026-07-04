@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import type { EngineData } from '../../engine/data';
 import type { GameState } from '../../engine/types';
 import { playVoice, stopVoice } from '../audio';
+import { Hint } from './Hint';
 import { delayedSummary, effectSummary, turnDate } from '../format';
 import { t, tRef } from '../i18n';
 import { useStore } from '../store';
@@ -50,6 +51,7 @@ export function EventMemo({ data, run, onChoose }: EventMemoProps) {
           {tRef(card.title)}
         </h2>
         <p className="memo-body">{tRef(card.body)}</p>
+        <Hint id="memo" />
         <div className="memo-choices">
           {card.choices.map((choice, index) => (
             <button

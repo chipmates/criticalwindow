@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import type { EngineData } from '../../engine/data';
 import type { GameState, LogEntry } from '../../engine/types';
 import { playVoice, stopVoice } from '../audio';
+import { Hint } from './Hint';
 import { signed, targetLabel } from '../format';
 import { t, tRef } from '../i18n';
 import { useStore } from '../store';
@@ -61,6 +62,7 @@ export function ShockOverlay({ data, run, shocks, onContinue }: ShockOverlayProp
             ? t('report.kind.incident')
             : t('report.kind.wildcard')}
         </div>
+        {shocks.some((s) => s.kind === 'incident') && <Hint id="incident" />}
         {shocks.map((entry, i) => (
           <div key={i} className="shock-block">
             <h2
