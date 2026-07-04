@@ -311,9 +311,9 @@
   "settings.textSize.normal": "Normal",
   "settings.textSize.large": "Large",
   "settings.audio": "Sound",
-  "settings.audio.explain": "Off by default. Everything works silent.",
+  "settings.audio.explain": "Off by default. Everything works silent. Music and voice switch on their own.",
   "settings.audio.music": "Music",
-  "settings.audio.voice": "Voice narration",
+  "settings.audio.voice": "Voice",
   "settings.audio.credit": "Music: 'I Walk With Ghosts' by Scott Buckley, CC BY 4.0",
   "saves.heading": "Saves",
   "saves.auto": "Autosave",
@@ -550,8 +550,6 @@
   "debrief.hidden.decidedBy": "The ending was decided by {seat}: their systems crossed the line, so their true alignment is the number that mattered.",
   "title.feature.seed": "Deterministic seeds: share a world, compare runs",
   "title.feature.offline": "Plays in your browser, offline after first load",
-  "title.music.on": "Music: on",
-  "title.music.off": "Music: off",
-  "title.voice.on": "Voice: on",
-  "title.voice.off": "Voice: off"
+  "title.sound.on": "Sound: on",
+  "title.sound.off": "Sound: off"
 }

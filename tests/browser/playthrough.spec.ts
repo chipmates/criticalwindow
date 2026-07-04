@@ -60,6 +60,15 @@ test('a full run plays through the UI to the debrief', async ({ page }) => {
 test('mobile portrait: setup renders without horizontal scroll', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 720 });
   await page.goto('/');
+  const titleOverflow = await page.evaluate(() => {
+    const el = (
+      globalThis as unknown as {
+        document: { documentElement: { scrollWidth: number; clientWidth: number } };
+      }
+    ).document.documentElement;
+    return el.scrollWidth > el.clientWidth;
+  });
+  expect(titleOverflow).toBe(false);
   await page.getByRole('button', { name: 'New run' }).click();
   const overflow = await page.evaluate(() => {
     const el = (

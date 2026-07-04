@@ -1,6 +1,14 @@
 /* Layout + component styles. Tokens live in theme.css; nothing here
    names a raw color. Mobile-first; the desktop grid arrives at 60rem. */
 
+/* The page never scrolls sideways (constitution). A single overflowing
+   child on a narrow screen must not drag the whole document with it. */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -103,7 +111,12 @@
   text-align: center;
   display: grid;
   gap: var(--space-4);
+  width: 100%;
   max-width: 34rem;
+  /* In the centering grid a child sizes to its widest content; without this
+     the monospace feature chips would push the card past a phone's width and
+     scroll the whole page sideways. */
+  min-width: 0;
 }
 
 .title-kicker {
@@ -1140,6 +1153,10 @@
   padding: 4px var(--space-3);
   border: var(--hairline) solid var(--rule);
   background: var(--surface);
+  /* Let a long chip wrap instead of overflowing on a narrow screen. */
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .title-race {

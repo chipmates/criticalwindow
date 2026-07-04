@@ -10,6 +10,9 @@ export function Title() {
   const musicOn = useStore((s) => s.settings.musicOn);
   const voiceOn = useStore((s) => s.settings.voiceOn);
   const updateSettings = useStore((s) => s.updateSettings);
+  // The landing keeps ONE plain switch: sound or silence. Players who want
+  // just the narrator or just the bed split them apart in Settings.
+  const soundOn = musicOn || voiceOn;
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
@@ -51,18 +54,10 @@ export function Title() {
           <button
             type="button"
             className="btn"
-            aria-pressed={musicOn}
-            onClick={() => updateSettings({ musicOn: !musicOn })}
+            aria-pressed={soundOn}
+            onClick={() => updateSettings({ musicOn: !soundOn, voiceOn: !soundOn })}
           >
-            {musicOn ? t('title.music.on') : t('title.music.off')}
-          </button>
-          <button
-            type="button"
-            className="btn"
-            aria-pressed={voiceOn}
-            onClick={() => updateSettings({ voiceOn: !voiceOn })}
-          >
-            {voiceOn ? t('title.voice.on') : t('title.voice.off')}
+            {soundOn ? t('title.sound.on') : t('title.sound.off')}
           </button>
           <button
             type="button"

@@ -133,6 +133,15 @@ export function SettingsDialog({ onClose }: SettingsDialogProps) {
             >
               {t('settings.audio.music')}
             </button>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.voiceOn}
+              className={settings.voiceOn ? 'btn settings-on' : 'btn'}
+              onClick={() => patch({ voiceOn: !settings.voiceOn })}
+            >
+              {t('settings.audio.voice')}
+            </button>
           </div>
         </div>
 

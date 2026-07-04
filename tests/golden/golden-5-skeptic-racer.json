@@ -1,6 +1,6 @@
 {
   "name": "golden-5-skeptic-racer",
-  "dataVersion": "1183e3930515c8",
+  "dataVersion": "0011b35e1f04d3",
   "seed": "golden-5",
   "presetId": "skeptic",
   "bot": "racer",
@@ -315,15 +315,15 @@
     }
   ],
   "perTurnHashes": [
-    "0bd978234287b7",
-    "0e1debe1bff122",
-    "13e04a31965b9d",
-    "00434d65c5b8bd",
-    "0f73e21e9e173e",
-    "1fdf21655b9035",
-    "177db64c657c7e",
-    "03688be20035f6",
-    "1a7b7562256c14"
+    "02fa0c25ea054b",
+    "0e1bc640686c10",
+    "1e6296e6eb41ae",
+    "1e71aa918c7005",
+    "04bc6254f19665",
+    "1ecc950371e11d",
+    "1e841212e2dc5e",
+    "016b0373d476bc",
+    "07e8b56c082f15"
   ],
-  "finalHash": "1a7b7562256c14"
+  "finalHash": "07e8b56c082f15"
 }
