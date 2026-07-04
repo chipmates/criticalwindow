@@ -15,8 +15,11 @@ they were retired in v0.2 for a calmer bed under a thinking-heavy game.
 
 ## Narration
 
-Ending narrations are synthetic voices generated at build time (ElevenLabs), from the
-game's own debrief text. No audio is generated or fetched at runtime.
+The voice layer is generated at build time (ElevenLabs), always from the game's own
+displayed text. Two synthetic voices: a narrator for history (prologue, endings,
+scheduled beats) and an advisor for the room (memos, incidents, wildcards). Timestamp
+files ship beside every clip for future captions. No audio is generated or fetched at
+runtime, and all voice is off by default.
 
 ## Contributors
 
