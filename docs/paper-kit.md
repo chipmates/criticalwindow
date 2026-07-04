@@ -77,7 +77,9 @@ learn the truth. That is takeaway 2, physically.
   three postures act with fixed printed moves per posture.
 - Policies sit in an open rack: all eight visible and playable when their gates allow.
   The digital game rotates a smaller hand instead. Same cards, different access.
-- Incident dice checks are reserved for future cards. Kit v0 uses the d10s only for
+- Incident dice checks are REAL from v0.2: the kit ships an incident table page generated
+  from data/incidents.json (same numbers as the digital game). The line below described kit
+  v0 and stays for history: kit v0 used the d10s only for
   the envelope ritual.
 - The hidden agency counter (Gradual Disempowerment hook) is digital-only. Cards that
   move it print without that line. The paper endgame ignores it by design.
