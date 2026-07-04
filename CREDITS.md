@@ -14,7 +14,9 @@ The voice layer is generated at build time (ElevenLabs), always from the game's 
 displayed text. Two synthetic voices: a narrator for history (prologue, endings,
 scheduled beats) and an advisor for the room (memos, incidents, wildcards). Timestamp
 files ship beside every clip for future captions. No audio is generated or fetched at
-runtime, and all voice is off by default.
+runtime, and all voice is off by default. The project holds full commercial rights to
+the generated audio, so the clips carry the same CC BY-SA 4.0 license as the rest of
+the game's content.
 
 ## Contributors
 
