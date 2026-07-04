@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import type { EngineData } from '../../engine/data';
 import type { GameState, LogEntry } from '../../engine/types';
+import { playVoice, stopVoice } from '../audio';
 import { signed, targetLabel } from '../format';
 import { t, tRef } from '../i18n';
+import { useStore } from '../store';
 
 interface ShockOverlayProps {
   data: EngineData;
@@ -17,19 +19,31 @@ interface ShockOverlayProps {
  * player who reads these has better data than their eval band (design key).
  */
 export function ShockOverlay({ data, run, shocks, onContinue }: ShockOverlayProps) {
+  const voiceOn = useStore((s) => s.settings.voiceOn);
   const headingRef = useRef<HTMLHeadingElement>(null);
+
+  const bodyKeyFor = (entry: LogEntry): string | null => {
+    if (entry.kind === 'incident') {
+      const rung = data.incidents.rungs.find((r) => r.id === entry.meta?.rungId);
+      return rung ? rung.body.replace('strings:', '') : null;
+    }
+    const card = data.events.find((e) => e.id === entry.meta?.eventId);
+    return card ? card.body.replace('strings:', '') : null;
+  };
 
   useEffect(() => {
     headingRef.current?.focus();
+    const firstKey = shocks[0] ? bodyKeyFor(shocks[0]) : null;
+    if (firstKey) {
+      playVoice(firstKey, voiceOn);
+    }
+    return stopVoice;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const bodyFor = (entry: LogEntry): string => {
-    if (entry.kind === 'incident') {
-      const rung = data.incidents.rungs.find((r) => r.id === entry.meta?.rungId);
-      return rung ? tRef(rung.body) : '';
-    }
-    const card = data.events.find((e) => e.id === entry.meta?.eventId);
-    return card ? tRef(card.body) : '';
+    const key = bodyKeyFor(entry);
+    return key ? tRef(`strings:${key}`) : '';
   };
 
   const forcedPause = shocks.some((s) => s.meta?.forcedPause === true);

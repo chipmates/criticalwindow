@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { evalCurve, divRound, mulDiv } from '../../engine/math';
 import type { PrologueChapterData } from '../../engine/schemas';
+import { playVoice, stopVoice } from '../audio';
 import { AllocationControl } from '../components/AllocationControl';
 import { targetLabel } from '../format';
 import { t, tRef } from '../i18n';
@@ -23,9 +24,18 @@ export function Prologue() {
   const [pickedChoice, setPickedChoice] = useState<number | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
+  const voiceOn = useStore((s) => s.settings.voiceOn);
   useEffect(() => {
     headingRef.current?.focus();
-  }, [stepIndex]);
+    const key =
+      stepIndex === 0
+        ? prologue.intro
+        : stepIndex <= prologue.chapters.length
+          ? prologue.chapters[stepIndex - 1]!.body
+          : prologue.outro;
+    playVoice(key.replace('strings:', ''), voiceOn);
+    return stopVoice;
+  }, [stepIndex, prologue, voiceOn]);
 
   const finish = (): void => {
     markPrologueSeen();

@@ -1,28 +1,164 @@
 {
-  "comment": "Build-time narration inputs (NOT in data/: presentation assets never churn the sim dataVersion). House rule: every generation uses the with-timestamps endpoint and stores alignment beside the audio. Voice: calm documentary read, no drama.",
+  "comment": "Voice surfaces resolve against data/strings/en.json at generation time: one source of truth, rename-proof, i18n-ready. Generation is build-time only (constitution). Playback is governed by the off-by-default sound setting.",
   "voiceId": "nbhuZvGPlMc3SacWr72m",
-  "modelId": "eleven_multilingual_v2",
-  "lines": [
+  "voiceNote": "Michel-supplied narrator (2026-07-04), female, proven in the story project.",
+  "modelId": "eleven_v3",
+  "surfaces": [
     {
-      "id": "ending-flourishing",
-      "text": "You crossed the threshold, and the systems held. Enough understanding was in place when it counted. Be suspicious of how you got here. The numbers will tell you."
+      "id": "debrief-ending-flourishing-body",
+      "key": "debrief.ending.flourishing.body"
     },
     {
-      "id": "ending-misaligned-catastrophe",
-      "text": "You crossed the threshold with systems you did not understand. There was no single dramatic moment. There was a Tuesday, and then a different kind of world. The reports looked fine. That was the problem."
+      "id": "debrief-ending-misalignedCatastrophe-body",
+      "key": "debrief.ending.misalignedCatastrophe.body"
     },
     {
-      "id": "ending-outpaced",
-      "text": "The rival reached decisive capability first. The race you were running ended in a world someone else designed. Some of your choices still mattered. Fewer than you hoped."
+      "id": "debrief-ending-outpaced-body",
+      "key": "debrief.ending.outpaced.body"
     },
     {
-      "id": "ending-negotiated-slowdown",
-      "text": "You signed the verified slowdown. It cost you politically, it cost speed, and nobody throws parades for the disaster that did not happen. Maintenance is underrated."
+      "id": "debrief-ending-negotiatedSlowdown-body",
+      "key": "debrief.ending.negotiatedSlowdown.body"
     },
     {
-      "id": "ending-societal-breakdown",
-      "text": "The country broke before the question resolved. The machines were never the immediate problem. The bill for ignoring the humans was."
+      "id": "debrief-ending-societalBreakdown-body",
+      "key": "debrief.ending.societalBreakdown.body"
+    },
+    {
+      "id": "prologue-intro",
+      "key": "prologue.intro"
+    },
+    {
+      "id": "prologue-ch1-body",
+      "key": "prologue.ch1.body"
+    },
+    {
+      "id": "prologue-ch2-body",
+      "key": "prologue.ch2.body"
+    },
+    {
+      "id": "prologue-ch3-body",
+      "key": "prologue.ch3.body"
+    },
+    {
+      "id": "prologue-outro",
+      "key": "prologue.outro"
+    },
+    {
+      "id": "incident-breakoutAttempt-body",
+      "key": "incident.breakoutAttempt.body"
+    },
+    {
+      "id": "incident-deploymentFailure-body",
+      "key": "incident.deploymentFailure.body"
+    },
+    {
+      "id": "incident-labAccident-body",
+      "key": "incident.labAccident.body"
+    },
+    {
+      "id": "incident-nearMiss-body",
+      "key": "incident.nearMiss.body"
+    },
+    {
+      "id": "event-alliedExportFracture-body",
+      "key": "event.alliedExportFracture.body"
+    },
+    {
+      "id": "event-asmlExportSqueeze-body",
+      "key": "event.asmlExportSqueeze.body"
+    },
+    {
+      "id": "event-benchmarkGaming-body",
+      "key": "event.benchmarkGaming.body"
+    },
+    {
+      "id": "event-branchPoint-body",
+      "key": "event.branchPoint.body"
+    },
+    {
+      "id": "event-chipSmuggling-body",
+      "key": "event.chipSmuggling.body"
+    },
+    {
+      "id": "event-electionScandal-body",
+      "key": "event.electionScandal.body"
+    },
+    {
+      "id": "event-energyCrunch-body",
+      "key": "event.energyCrunch.body"
+    },
+    {
+      "id": "event-euAiActFullForce-body",
+      "key": "event.euAiActFullForce.body"
+    },
+    {
+      "id": "event-euAiActHighRisk-body",
+      "key": "event.euAiActHighRisk.body"
+    },
+    {
+      "id": "event-evalBreakthrough-body",
+      "key": "event.evalBreakthrough.body"
+    },
+    {
+      "id": "event-generalStrike-body",
+      "key": "event.generalStrike.body"
+    },
+    {
+      "id": "event-gridCrunch-body",
+      "key": "event.gridCrunch.body"
+    },
+    {
+      "id": "event-intelligenceExplosion-body",
+      "key": "event.intelligenceExplosion.body"
+    },
+    {
+      "id": "event-labMerger-body",
+      "key": "event.labMerger.body"
+    },
+    {
+      "id": "event-openWeightsShock-body",
+      "key": "event.openWeightsShock.body"
+    },
+    {
+      "id": "event-publicOpinionSwing-body",
+      "key": "event.publicOpinionSwing.body"
+    },
+    {
+      "id": "event-rivalBreakthrough-body",
+      "key": "event.rivalBreakthrough.body"
+    },
+    {
+      "id": "event-superhumanCoder-body",
+      "key": "event.superhumanCoder.body"
+    },
+    {
+      "id": "event-taiwanStraitCrisis-body",
+      "key": "event.taiwanStraitCrisis.body"
+    },
+    {
+      "id": "event-theProject-body",
+      "key": "event.theProject.body"
+    },
+    {
+      "id": "event-treatyFeeler-body",
+      "key": "event.treatyFeeler.body"
+    },
+    {
+      "id": "event-verificationOffer-body",
+      "key": "event.verificationOffer.body"
+    },
+    {
+      "id": "event-viralJobLoss-body",
+      "key": "event.viralJobLoss.body"
+    },
+    {
+      "id": "event-weightTheft-body",
+      "key": "event.weightTheft.body"
+    },
+    {
+      "id": "event-whistleblower-body",
+      "key": "event.whistleblower.body"
     }
-  ],
-  "voiceNote": "Michel-supplied narrator (2026-07-04), female, proven in the story project; replaces the placeholder. Generation stays held until the Phase-3 gate."
+  ]
 }

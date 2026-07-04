@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import type { EngineData } from '../../engine/data';
 import type { GameState } from '../../engine/types';
+import { playVoice, stopVoice } from '../audio';
 import { delayedSummary, effectSummary, turnDate } from '../format';
 import { t, tRef } from '../i18n';
+import { useStore } from '../store';
 
 interface EventMemoProps {
   data: EngineData;
@@ -17,11 +19,17 @@ interface EventMemoProps {
  */
 export function EventMemo({ data, run, onChoose }: EventMemoProps) {
   const pending = run.seats[run.actingSeat].pendingEvents[0];
+  const voiceOn = useStore((s) => s.settings.voiceOn);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     headingRef.current?.focus();
-  }, [pending?.eventId]);
+    const card = pending ? data.events.find((e) => e.id === pending.eventId) : null;
+    if (card) {
+      playVoice(card.body.replace('strings:', ''), voiceOn);
+    }
+    return stopVoice;
+  }, [pending?.eventId, pending, data, voiceOn]);
 
   if (!pending) {
     return null;

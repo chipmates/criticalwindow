@@ -13,13 +13,10 @@ import type { EndingId } from '../engine/types';
 
 const PLAYLIST = ['audio/music-the-long-dark.mp3', 'audio/music-i-walk-with-ghosts.mp3'] as const;
 
-const NARRATION: Record<Exclude<EndingId, 'gradualDisempowerment'>, string> = {
-  flourishing: 'audio/ending-flourishing.mp3',
-  misalignedCatastrophe: 'audio/ending-misaligned-catastrophe.mp3',
-  outpaced: 'audio/ending-outpaced.mp3',
-  negotiatedSlowdown: 'audio/ending-negotiated-slowdown.mp3',
-  societalBreakdown: 'audio/ending-societal-breakdown.mp3',
-};
+/** A string key becomes its pre-generated voice file (scripts/generate-audio.ts). */
+function voicePath(stringKey: string): string {
+  return `audio/voice-${stringKey.replace(/\./g, '-')}.mp3`;
+}
 
 let musicEl: HTMLAudioElement | null = null;
 let trackIndex = 0;
@@ -60,16 +57,32 @@ export function setMusic(on: boolean): void {
   }
 }
 
-export function playNarration(ending: EndingId, on: boolean): void {
+/**
+ * Speak one displayed text surface (memo, shock, prologue chapter, ending).
+ * Pre-generated at build time; a missing file degrades to silence. Only one
+ * voice at a time: opening a new surface stops the previous one.
+ */
+export function playVoice(stringKey: string, on: boolean): void {
   narrationEl?.pause();
-  if (!on || ending === 'gradualDisempowerment') {
+  if (!on) {
     return;
   }
-  narrationEl = new Audio(`${base()}${NARRATION[ending]}`);
+  narrationEl = new Audio(`${base()}${voicePath(stringKey)}`);
   narrationEl.volume = 0.9;
   narrationEl.play().catch(() => {
-    // Missing narration (e.g. key not yet refreshed): silence, not errors.
+    // Missing voice file (not yet generated): silence, never an error.
   });
+}
+
+export function stopVoice(): void {
+  narrationEl?.pause();
+}
+
+export function playNarration(ending: EndingId, on: boolean): void {
+  if (ending === 'gradualDisempowerment') {
+    return;
+  }
+  playVoice(`debrief.ending.${ending}.body`, on);
 }
 
 export function stopAllAudio(): void {
