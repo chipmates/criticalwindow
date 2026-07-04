@@ -51,10 +51,36 @@ const DISCLOSE_TOAST: Record<Disclosable, StringKey> = {
   eval: 'disclose.eval',
 };
 
-function revealedTracks(run: GameState, seat: PlayableSeatId): Set<Disclosable> {
+const TARGET_TO_DISCLOSABLE: Record<string, Disclosable> = {
+  energy: 'energy',
+  talent: 'talent',
+  capital: 'capital',
+  publicTrust: 'publicTrust',
+  politicalCapital: 'politicalCapital',
+  'society.jobDisplacement': 'society',
+  'society.unrest': 'society',
+  'rival.trust': 'rival',
+  'rival.capability': 'rival',
+  'rival.substitution': 'rival',
+};
+
+function revealedTracks(
+  data: ReturnType<typeof gameData>,
+  run: GameState,
+  seat: PlayableSeatId,
+): Set<Disclosable> {
   const revealed = new Set<Disclosable>();
   if (run.seats[seat].evalHistory.length > 0) {
     revealed.add('eval');
+  }
+  // A mandate may name a track before it ever moves ("get Energy to 500"):
+  // anything the cabinet asks you to steer must be on the dashboard.
+  for (const mandate of run.seats[seat].mandates) {
+    const def = data.mandates.mandates.find((m) => m.id === mandate.id);
+    const disclosable = def ? TARGET_TO_DISCLOSABLE[def.goal.target] : undefined;
+    if (disclosable) {
+      revealed.add(disclosable);
+    }
   }
   for (const entry of run.log) {
     if (entry.seat !== null && entry.seat !== seat) {
@@ -107,6 +133,7 @@ export function Game() {
       return;
     }
     const revealed = revealedTracks(
+      gameData(),
       run,
       run.mode === 'hotseat' && run.phase !== 'report' && run.phase !== 'ended'
         ? run.actingSeat
@@ -138,7 +165,7 @@ export function Game() {
       : run.playerSeat;
   const me = run.seats[viewSeat];
   const them = run.seats[otherSeat(viewSeat)];
-  const revealed = revealedTracks(run, viewSeat);
+  const revealed = revealedTracks(data, run, viewSeat);
   const shocks = run.log.filter(
     (entry) =>
       entry.turn === run.turn &&
