@@ -218,6 +218,9 @@ export function Debrief() {
       <section className="panel">
         <h2 className="panel-heading">{t('debrief.sources.heading')}</h2>
         <p className="panel-explain">{t('debrief.sources.body')}</p>
+        <button type="button" className="btn" onClick={() => goTo('sources')}>
+          {t('debrief.sources.browse')}
+        </button>
         <details>
           <summary>{t('debrief.sources.link')}</summary>
           <p className="debrief-sources-list">

@@ -29,7 +29,7 @@ import {
   type Settings,
 } from './storage';
 
-export type Screen = 'title' | 'setup' | 'prologue' | 'game' | 'debrief' | 'help';
+export type Screen = 'title' | 'setup' | 'prologue' | 'game' | 'debrief' | 'help' | 'sources';
 
 interface RunMeta {
   seed: string;

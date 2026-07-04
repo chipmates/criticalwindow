@@ -1,5 +1,6 @@
 import { anchorSources, anchorTable, anchorTrackIds } from '../anchors';
 import { t, type StringKey } from '../i18n';
+import { useStore } from '../store';
 
 const ANCHOR_TRACK_LABEL: Record<string, StringKey> = {
   capability: 'resource.capability.label',
@@ -121,12 +122,13 @@ export function Help({ onBack }: { onBack: () => void }) {
       <section className="panel">
         <h2 className="panel-heading">{t('help.anchors.heading')}</h2>
         <p className="panel-explain">{t('help.anchors.body')}</p>
+        <button type="button" className="btn" onClick={() => useStore.getState().goTo('sources')}>
+          {t('help.sourcesLink')}
+        </button>
         <div className="help-anchors">
           {anchorTrackIds().map((track) => (
             <details key={track} className="help-anchor-track">
-              <summary>
-                {t(ANCHOR_TRACK_LABEL[track] ?? ('resource.capability.label'))}
-              </summary>
+              <summary>{t(ANCHOR_TRACK_LABEL[track] ?? 'resource.capability.label')}</summary>
               <table className="help-anchor-table">
                 <tbody>
                   {anchorTable(track).map((row) => (

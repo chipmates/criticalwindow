@@ -6,6 +6,7 @@ import { Help } from './screens/Help';
 import { Game } from './screens/Game';
 import { Prologue } from './screens/Prologue';
 import { Setup } from './screens/Setup';
+import { Sources } from './screens/Sources';
 import { Title } from './screens/Title';
 import { gameData, useStore } from './store';
 
@@ -40,5 +41,7 @@ export function App() {
       return <Game />;
     case 'debrief':
       return <Debrief />;
+    case 'sources':
+      return <Sources />;
   }
 }

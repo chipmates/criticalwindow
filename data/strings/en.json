@@ -620,5 +620,13 @@
   "anchor.substitution.500": "workable domestic chips",
   "anchor.substitution.700": "the chokepoint is broken",
   "help.anchors.heading": "What the numbers mean",
-  "help.anchors.body": "Every track runs 0 to 1000, and every step is pinned to something real. The anchors below come from the same sources the parameters do."
+  "help.anchors.body": "Every track runs 0 to 1000, and every step is pinned to something real. The anchors below come from the same sources the parameters do.",
+  "sources.kicker": "the registry",
+  "sources.heading": "Every number cites a source",
+  "sources.body": "All {count} sources behind the game's parameters, events and worldviews. Click any title to read the original. Flagged entries are ones we could not fully verify; we say so instead of hiding them.",
+  "sources.search": "Search",
+  "sources.none": "No source matches that search.",
+  "title.sources": "Sources",
+  "help.sourcesLink": "Browse the full source registry",
+  "debrief.sources.browse": "Browse all sources"
 }
