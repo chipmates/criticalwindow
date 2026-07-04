@@ -1,6 +1,13 @@
 # Critical Window
 
+[![CI](https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml/badge.svg)](https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml)
+[![Code: AGPL-3.0](https://img.shields.io/badge/code-AGPL--3.0-8a4d00)](LICENSE)
+[![Content: CC BY-SA 4.0](https://img.shields.io/badge/content-CC_BY--SA_4.0-8a4d00)](LICENSE-CONTENT)
+[![No tracking](https://img.shields.io/badge/tracking-none%2C_ever-1c1e21)](SECURITY.md)
+
 An open source strategy game about the AI race. You govern the United States or China from summer 2026 through the four years where it all gets decided. You choose how hard to push AI capability, how much to spend on safety you cannot verify, and how to handle a rival power doing the same math with the same doubts. Two dice are sealed in an envelope before you sit down: how hard alignment really is, and how fast the takeoff runs. You will not see either until the end. That is not a gap in the game. It is the game. **You do not need to code to contribute:** every card, parameter, and line of text is a JSON file anyone can edit, every number cites a source anyone can check, and playtesting helps more than anything. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+![A turn in Critical Window: the race track with its fog, the quarterly allocation, cabinet mandates, and every number wearing its real-world anchor](docs/media/game.png)
 
 ## Play
 

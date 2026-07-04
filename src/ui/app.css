@@ -1333,6 +1333,9 @@ body {
   font-size: 0.62rem;
   color: var(--ink-muted);
   white-space: nowrap;
+  max-width: 9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .race-horizon-now {

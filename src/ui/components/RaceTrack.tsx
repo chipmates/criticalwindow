@@ -55,7 +55,7 @@ export function RaceTrack({ you, rival, fogFrom, threshold, bandWidth }: RaceTra
       </div>
       {/* The capability scale in human terms: the METR task-horizon ladder. */}
       <div className="race-horizon" aria-hidden="true">
-        {[350, 500, 700, 900].map((at) => (
+        {[500, 700, 900].map((at) => (
           <span key={at} className="race-horizon-tick" style={{ left: pct(at) }}>
             {anchorFor('capability', at)}
           </span>
