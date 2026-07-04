@@ -20,9 +20,9 @@ The repo you are looking at. Licenses, governance, the source registry, contribu
 
 A print-and-play kit generated from the same data files the digital game uses. It still regenerates with every content change: `pnpm print-kit`.
 
-### Phase 2: Prototype — done, with one honest asterisk
+### Phase 2: Prototype — built, gate in measurement
 
-The game in your browser: both the US and China seats, hotseat on one device, hidden alignment dice, eval reports that flatter you exactly when it matters, a society with its own clock, five endings, voice narration, and a debrief that opens the sealed envelope and shows what your run argued. Balance was tuned by an adversarial campaign of several hundred model-played games; its methods, and the three times it caught its own instruments lying, are in the commit history. The asterisk: the human gate (15-minute median sessions, unprompted replays, takeaways named unaided) still gets measured with real players during the alpha, because models cannot feel whether losing is fun.
+The game in your browser: both the US and China seats, hotseat on one device, hidden alignment dice, eval reports that flatter you exactly when it matters, a society with its own clock, five endings, voice narration, and a debrief that opens the sealed envelope and shows what your run argued. Balance was tuned by an adversarial campaign of several hundred model-played games; its methods, and the three times it caught its own instruments lying, are in the commit history. But this phase's gate is human by definition (15-minute median sessions, unprompted replays, takeaways named unaided), models cannot feel whether losing is fun, and we do not mark our own gates passed. It gets measured with real players during the alpha, and this line changes when it does.
 
 ### Phase 3: Public Alpha — you are here
 
