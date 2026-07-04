@@ -17,9 +17,9 @@ import { join } from 'node:path';
 import { hashStringHex } from '../src/engine/hash';
 
 interface AudioScript {
-  voiceId: string;
+  voices: Record<string, { voiceId: string | null; note?: string }>;
   modelId: string;
-  surfaces: Array<{ id: string; key: string }>;
+  surfaces: Array<{ id: string; key: string; voice: string }>;
 }
 
 function resolveKey(): string {
@@ -42,13 +42,22 @@ const apiKey = resolveKey();
 let generated = 0;
 let skipped = 0;
 let failed = 0;
+let uncast = 0;
 
 for (const surface of script.surfaces) {
   const text = strings[surface.key];
   if (!text) {
     throw new Error(`audio surface '${surface.id}' points at missing string key '${surface.key}'`);
   }
-  const stamp = hashStringHex(`${script.voiceId}::${script.modelId}::${text}`);
+  const voice = script.voices[surface.voice];
+  if (!voice) {
+    throw new Error(`audio surface '${surface.id}' names unknown voice '${surface.voice}'`);
+  }
+  if (!voice.voiceId) {
+    uncast += 1;
+    continue; // voice not cast yet (e.g. advisor pending): narrator-first runs work
+  }
+  const stamp = hashStringHex(`${voice.voiceId}::${script.modelId}::${text}`);
   const audioPath = join(outDir, `voice-${surface.id}.mp3`);
   const metaPath = join(outDir, `voice-${surface.id}.timestamps.json`);
 
@@ -61,7 +70,7 @@ for (const surface of script.surfaces) {
   }
 
   const response = await fetch(
-    `https://api.elevenlabs.io/v1/text-to-speech/${script.voiceId}/with-timestamps`,
+    `https://api.elevenlabs.io/v1/text-to-speech/${voice.voiceId}/with-timestamps`,
     {
       method: 'POST',
       headers: { 'xi-api-key': apiKey, 'content-type': 'application/json' },
@@ -93,7 +102,9 @@ for (const surface of script.surfaces) {
   generated += 1;
 }
 
-console.log(`audio: ${generated} generated, ${skipped} cached, ${failed} failed`);
+console.log(
+  `audio: ${generated} generated, ${skipped} cached, ${failed} failed, ${uncast} awaiting a cast voice`,
+);
 if (failed > 0) {
   process.exit(1);
 }

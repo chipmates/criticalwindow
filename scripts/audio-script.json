@@ -1,164 +1,211 @@
 {
-  "comment": "Voice surfaces resolve against data/strings/en.json at generation time: one source of truth, rename-proof, i18n-ready. Generation is build-time only (constitution). Playback is governed by the off-by-default sound setting.",
-  "voiceId": "nbhuZvGPlMc3SacWr72m",
-  "voiceNote": "Michel-supplied narrator (2026-07-04), female, proven in the story project.",
+  "comment": "Voice surfaces resolve against data/strings/en.json at generation time: one source of truth, rename-proof, i18n-ready. Generation is build-time only (constitution). Playback is governed by the off-by-default sound setting. Two registers: the NARRATOR speaks history (prologue, endings, scheduled beats), the ADVISOR speaks the room (memos, incidents, wildcards). Advisor voice id pending Michel's pick; surfaces without a cast voice are skipped with a report, so generation can run narrator-first.",
+  "voices": {
+    "narrator": {
+      "voiceId": "nbhuZvGPlMc3SacWr72m",
+      "note": "Michel-supplied 2026-07-04, female, proven in the story project."
+    },
+    "advisor": {
+      "voiceId": null,
+      "note": "The briefing register (memos, incidents, wildcards): contrasting timbre wanted; Michel picks from the ElevenLabs library. King's Dilemma steal, design-note 2026-07-03."
+    }
+  },
   "modelId": "eleven_v3",
   "surfaces": [
     {
       "id": "debrief-ending-flourishing-body",
-      "key": "debrief.ending.flourishing.body"
+      "key": "debrief.ending.flourishing.body",
+      "voice": "narrator"
     },
     {
       "id": "debrief-ending-misalignedCatastrophe-body",
-      "key": "debrief.ending.misalignedCatastrophe.body"
+      "key": "debrief.ending.misalignedCatastrophe.body",
+      "voice": "narrator"
     },
     {
       "id": "debrief-ending-outpaced-body",
-      "key": "debrief.ending.outpaced.body"
+      "key": "debrief.ending.outpaced.body",
+      "voice": "narrator"
     },
     {
       "id": "debrief-ending-negotiatedSlowdown-body",
-      "key": "debrief.ending.negotiatedSlowdown.body"
+      "key": "debrief.ending.negotiatedSlowdown.body",
+      "voice": "narrator"
     },
     {
       "id": "debrief-ending-societalBreakdown-body",
-      "key": "debrief.ending.societalBreakdown.body"
+      "key": "debrief.ending.societalBreakdown.body",
+      "voice": "narrator"
     },
     {
       "id": "prologue-intro",
-      "key": "prologue.intro"
+      "key": "prologue.intro",
+      "voice": "narrator"
     },
     {
       "id": "prologue-ch1-body",
-      "key": "prologue.ch1.body"
+      "key": "prologue.ch1.body",
+      "voice": "narrator"
     },
     {
       "id": "prologue-ch2-body",
-      "key": "prologue.ch2.body"
+      "key": "prologue.ch2.body",
+      "voice": "narrator"
     },
     {
       "id": "prologue-ch3-body",
-      "key": "prologue.ch3.body"
+      "key": "prologue.ch3.body",
+      "voice": "narrator"
     },
     {
       "id": "prologue-outro",
-      "key": "prologue.outro"
+      "key": "prologue.outro",
+      "voice": "narrator"
     },
     {
       "id": "incident-breakoutAttempt-body",
-      "key": "incident.breakoutAttempt.body"
+      "key": "incident.breakoutAttempt.body",
+      "voice": "advisor"
     },
     {
       "id": "incident-deploymentFailure-body",
-      "key": "incident.deploymentFailure.body"
+      "key": "incident.deploymentFailure.body",
+      "voice": "advisor"
     },
     {
       "id": "incident-labAccident-body",
-      "key": "incident.labAccident.body"
+      "key": "incident.labAccident.body",
+      "voice": "advisor"
     },
     {
       "id": "incident-nearMiss-body",
-      "key": "incident.nearMiss.body"
+      "key": "incident.nearMiss.body",
+      "voice": "advisor"
     },
     {
       "id": "event-alliedExportFracture-body",
-      "key": "event.alliedExportFracture.body"
+      "key": "event.alliedExportFracture.body",
+      "voice": "advisor"
     },
     {
       "id": "event-asmlExportSqueeze-body",
-      "key": "event.asmlExportSqueeze.body"
+      "key": "event.asmlExportSqueeze.body",
+      "voice": "advisor"
     },
     {
       "id": "event-benchmarkGaming-body",
-      "key": "event.benchmarkGaming.body"
+      "key": "event.benchmarkGaming.body",
+      "voice": "advisor"
     },
     {
       "id": "event-branchPoint-body",
-      "key": "event.branchPoint.body"
+      "key": "event.branchPoint.body",
+      "voice": "narrator"
     },
     {
       "id": "event-chipSmuggling-body",
-      "key": "event.chipSmuggling.body"
+      "key": "event.chipSmuggling.body",
+      "voice": "advisor"
     },
     {
       "id": "event-electionScandal-body",
-      "key": "event.electionScandal.body"
+      "key": "event.electionScandal.body",
+      "voice": "advisor"
     },
     {
       "id": "event-energyCrunch-body",
-      "key": "event.energyCrunch.body"
+      "key": "event.energyCrunch.body",
+      "voice": "advisor"
     },
     {
       "id": "event-euAiActFullForce-body",
-      "key": "event.euAiActFullForce.body"
+      "key": "event.euAiActFullForce.body",
+      "voice": "narrator"
     },
     {
       "id": "event-euAiActHighRisk-body",
-      "key": "event.euAiActHighRisk.body"
+      "key": "event.euAiActHighRisk.body",
+      "voice": "narrator"
     },
     {
       "id": "event-evalBreakthrough-body",
-      "key": "event.evalBreakthrough.body"
+      "key": "event.evalBreakthrough.body",
+      "voice": "advisor"
     },
     {
       "id": "event-generalStrike-body",
-      "key": "event.generalStrike.body"
+      "key": "event.generalStrike.body",
+      "voice": "advisor"
     },
     {
       "id": "event-gridCrunch-body",
-      "key": "event.gridCrunch.body"
+      "key": "event.gridCrunch.body",
+      "voice": "advisor"
     },
     {
       "id": "event-intelligenceExplosion-body",
-      "key": "event.intelligenceExplosion.body"
+      "key": "event.intelligenceExplosion.body",
+      "voice": "narrator"
     },
     {
       "id": "event-labMerger-body",
-      "key": "event.labMerger.body"
+      "key": "event.labMerger.body",
+      "voice": "advisor"
     },
     {
       "id": "event-openWeightsShock-body",
-      "key": "event.openWeightsShock.body"
+      "key": "event.openWeightsShock.body",
+      "voice": "advisor"
     },
     {
       "id": "event-publicOpinionSwing-body",
-      "key": "event.publicOpinionSwing.body"
+      "key": "event.publicOpinionSwing.body",
+      "voice": "advisor"
     },
     {
       "id": "event-rivalBreakthrough-body",
-      "key": "event.rivalBreakthrough.body"
+      "key": "event.rivalBreakthrough.body",
+      "voice": "advisor"
     },
     {
       "id": "event-superhumanCoder-body",
-      "key": "event.superhumanCoder.body"
+      "key": "event.superhumanCoder.body",
+      "voice": "narrator"
     },
     {
       "id": "event-taiwanStraitCrisis-body",
-      "key": "event.taiwanStraitCrisis.body"
+      "key": "event.taiwanStraitCrisis.body",
+      "voice": "advisor"
     },
     {
       "id": "event-theProject-body",
-      "key": "event.theProject.body"
+      "key": "event.theProject.body",
+      "voice": "narrator"
     },
     {
       "id": "event-treatyFeeler-body",
-      "key": "event.treatyFeeler.body"
+      "key": "event.treatyFeeler.body",
+      "voice": "advisor"
     },
     {
       "id": "event-verificationOffer-body",
-      "key": "event.verificationOffer.body"
+      "key": "event.verificationOffer.body",
+      "voice": "advisor"
     },
     {
       "id": "event-viralJobLoss-body",
-      "key": "event.viralJobLoss.body"
+      "key": "event.viralJobLoss.body",
+      "voice": "advisor"
     },
     {
       "id": "event-weightTheft-body",
-      "key": "event.weightTheft.body"
+      "key": "event.weightTheft.body",
+      "voice": "advisor"
     },
     {
       "id": "event-whistleblower-body",
-      "key": "event.whistleblower.body"
+      "key": "event.whistleblower.body",
+      "voice": "advisor"
     }
   ]
 }
