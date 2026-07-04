@@ -885,10 +885,35 @@ body {
   color: var(--accent);
 }
 
-.title-secondary {
+.title-links {
   display: flex;
-  gap: var(--space-2);
+  flex-wrap: wrap;
+  gap: 0 var(--space-2);
   justify-content: center;
+  align-items: center;
+}
+
+/* Quiet text links with full touch targets; separated by middle dots. */
+.btn-link {
+  border: 0;
+  background: none;
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  min-height: var(--target);
+  padding: 0 var(--space-1);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--rule);
+}
+
+.btn-link:hover {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+}
+
+.title-links {
+  gap: 0 var(--space-3);
 }
 
 .alloc-preview {
@@ -1521,4 +1546,19 @@ body {
 .score-lines dd {
   margin: 0;
   font-family: var(--font-data);
+}
+
+.sources-legend {
+  margin: 0;
+  font-family: var(--font-data);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+
+.source-flag-reason {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--danger, #a33);
+  border-left: 3px solid var(--danger, #a33);
+  padding-left: var(--space-2);
 }

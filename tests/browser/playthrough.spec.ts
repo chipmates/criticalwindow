@@ -69,6 +69,24 @@ test('mobile portrait: setup renders without horizontal scroll', async ({ page }
     return el.scrollWidth > el.clientWidth;
   });
   expect(titleOverflow).toBe(false);
+  // No element may poke past the viewport either: clipping is not wrapping.
+  const worstRight = await page.evaluate(() => {
+    const doc = (
+      globalThis as unknown as {
+        document: {
+          querySelectorAll: (q: string) => Iterable<{
+            getBoundingClientRect: () => { right: number };
+          }>;
+        };
+      }
+    ).document;
+    let worst = 0;
+    for (const el of Array.from(doc.querySelectorAll('button, a, li, p, h1'))) {
+      worst = Math.max(worst, el.getBoundingClientRect().right);
+    }
+    return worst;
+  });
+  expect(worstRight).toBeLessThanOrEqual(376);
   await page.getByRole('button', { name: 'New run' }).click();
   const overflow = await page.evaluate(() => {
     const el = (

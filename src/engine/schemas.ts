@@ -758,6 +758,8 @@ export const sourceEntrySchema = z.strictObject({
   tags: z.array(z.string().regex(TAG_PATTERN)).optional(),
   status: z.enum(['verified', 'flagged', 'book', 'pending']),
   gameUse: z.string().optional(),
+  /** Why a flagged entry is flagged: honesty lives on the entry itself. */
+  flagReason: z.string().optional(),
   note: z.string().optional(),
 });
 

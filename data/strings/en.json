@@ -543,7 +543,7 @@
   "handoff.continue": "I am {seat}. Begin.",
   "title.hook": "Summer 2026. You take office holding the most dangerous portfolio on earth: the AI race. Sixteen quarters to 2030. Your eval reports are honest ranges, not answers. Your rival is racing, your public is nervous, and two dice were sealed in an envelope before you sat down.",
   "title.feature.seats": "Play the US or China. Or both, one device",
-  "title.feature.sources": "All 168 sources cited, every number traceable",
+  "title.feature.sources": "Every number cites a source you can check",
   "title.feature.endings": "Five endings. The good ones are earned",
   "title.playNow": "Take office",
   "resource.substitution.label": "Chip Substitution",
@@ -623,7 +623,7 @@
   "help.anchors.body": "Every track runs 0 to 1000, and every step is pinned to something real. The anchors below come from the same sources the parameters do.",
   "sources.kicker": "the registry",
   "sources.heading": "Every number cites a source",
-  "sources.body": "All {count} sources behind the game's parameters, events and worldviews. Click any title to read the original. Flagged entries are ones we could not fully verify; we say so instead of hiding them.",
+  "sources.body": "All {count} sources behind the game's parameters, events and worldviews. Click any title to read the original.",
   "sources.search": "Search",
   "sources.none": "No source matches that search.",
   "title.sources": "Sources",
@@ -773,5 +773,6 @@
   "debrief.score.line.warnings": "Every warning shot heeded",
   "debrief.score.line.capital": "Governing room to spare",
   "debrief.score.challenge": "Same world, same dice. Your {total} stands until someone reads the fog better.",
-  "debrief.score.challengeBeaten": "The seed's holder scored {target}. You scored {total}."
+  "debrief.score.challengeBeaten": "The seed's holder scored {target}. You scored {total}.",
+  "sources.legend": "verified: a human audit confirmed the link resolves, the work matches the citation, and it supports the exact claim the game uses. flagged: one of those checks failed or could not run; the reason sits on the entry itself. book: print, confirmed to exist, nothing to click."
 }

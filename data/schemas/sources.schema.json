@@ -64,6 +64,9 @@
           "gameUse": {
             "type": "string"
           },
+          "flagReason": {
+            "type": "string"
+          },
           "note": {
             "type": "string"
           }

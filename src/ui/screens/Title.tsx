@@ -49,33 +49,28 @@ export function Title() {
             {t('title.github')}
           </a>
         </p>
-        <div className="title-secondary">
-          <button type="button" className="btn" onClick={() => goTo('help')}>
+        <nav className="title-links" aria-label="More">
+          <button type="button" className="btn-link" onClick={() => goTo('help')}>
             {t('help.title.button')}
           </button>
-          <button type="button" className="btn" onClick={() => goTo('prologue')}>
+          <button type="button" className="btn-link" onClick={() => goTo('prologue')}>
             {t('prologue.replay')}
           </button>
-          <button type="button" className="btn" onClick={() => goTo('sources')}>
+          <button type="button" className="btn-link" onClick={() => goTo('sources')}>
             {t('title.sources')}
           </button>
           <button
             type="button"
-            className="btn"
+            className="btn-link"
             aria-pressed={soundOn}
             onClick={() => updateSettings({ musicOn: !soundOn, voiceOn: !soundOn })}
           >
             {soundOn ? t('title.sound.on') : t('title.sound.off')}
           </button>
-          <button
-            type="button"
-            className="btn"
-            aria-label={t('settings.heading')}
-            onClick={() => setSettingsOpen(true)}
-          >
+          <button type="button" className="btn-link" onClick={() => setSettingsOpen(true)}>
             {t('settings.heading')}
           </button>
-        </div>
+        </nav>
       </div>
       {settingsOpen && <SettingsDialog onClose={() => setSettingsOpen(false)} />}
     </main>

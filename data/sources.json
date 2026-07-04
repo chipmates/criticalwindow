@@ -185,7 +185,8 @@
       "tags": ["forecasting", "timelines", "compute"],
       "status": "flagged",
       "gameUse": "bio-anchors timeline model",
-      "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL flags exact URLs for the Cotra/Davidson/Christiano bio-anchors cluster as unverified (Open Philanthropy site). HANDOVER hint: search openphilanthropy.org. Verification 2026-07-03: unclear. No fetchable canonical page under the exact title. The report itself lives in an unlisted Google Drive folder per Cotra's own LessWrong announcement post, which is titled differently ('Draft report on AI timelines', not 'Forecasting TAI with Biological Anchors'). openphilanthropy.org/coefficientgiving.org has no confirmed page for it either (its 'key writings' page 403'd). All other search results are third-party commentary about the report, not the report itself."
+      "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL flags exact URLs for the Cotra/Davidson/Christiano bio-anchors cluster as unverified (Open Philanthropy site). HANDOVER hint: search openphilanthropy.org. Verification 2026-07-03: unclear. No fetchable canonical page under the exact title. The report itself lives in an unlisted Google Drive folder per Cotra's own LessWrong announcement post, which is titled differently ('Draft report on AI timelines', not 'Forecasting TAI with Biological Anchors'). openphilanthropy.org/coefficientgiving.org has no confirmed page for it either (its 'key writings' page 403'd). All other search results are third-party commentary about the report, not the report itself.",
+      "flagReason": "The report has no canonical page: it lives in an unlisted folder linked from the author's announcement post. We cite the work; the link situation is genuinely messy."
     },
     {
       "id": "SRC-DAVIDSON-TAKEOFF",
@@ -698,7 +699,8 @@
       "type": "report",
       "tags": ["us-policy", "national-security", "ai-strategy", "geopolitics"],
       "status": "flagged",
-      "note": "Verification 2026-07-03: unclear. DNS failure (ENOTFOUND) from this sandbox on retry, but WebSearch confirms live page with exact matching title '2021 Final Report - NSCAI'. Likely local network/DNS issue, not a dead site."
+      "note": "Verification 2026-07-03: unclear. DNS failure (ENOTFOUND) from this sandbox on retry, but WebSearch confirms live page with exact matching title '2021 Final Report - NSCAI'. Likely local network/DNS issue, not a dead site.",
+      "flagReason": "The publisher's site blocked our automated check; independent search confirms the report is live at this address."
     },
     {
       "id": "SRC-AI-ACTION-PLAN",
@@ -887,7 +889,8 @@
       "type": "web",
       "tags": ["europe", "eu-investment", "ai-infrastructure", "summit"],
       "status": "flagged",
-      "note": "search hint only, no URL given in source: search commission.europa.eu \"InvestAI\". Covers Feb 2025 AI Action Summit outcomes and the EU AI gigafactories initiative Verification 2026-07-03: unclear. This is a compound description (InvestAI + AI gigafactories + AI Action Summit outcomes), not one work. No single EC page covers all three: /ai-gigafactories_en is scoped narrowly to gigafactories only, /ai-factories covers AI Factories with just a brief InvestAI mention, and the press release covers only the InvestAI launch. Picking any one would be a close-but-different-scope match."
+      "note": "search hint only, no URL given in source: search commission.europa.eu \"InvestAI\". Covers Feb 2025 AI Action Summit outcomes and the EU AI gigafactories initiative Verification 2026-07-03: unclear. This is a compound description (InvestAI + AI gigafactories + AI Action Summit outcomes), not one work. No single EC page covers all three: /ai-gigafactories_en is scoped narrowly to gigafactories only, /ai-factories covers AI Factories with just a brief InvestAI mention, and the press release covers only the InvestAI launch. Picking any one would be a close-but-different-scope match.",
+      "flagReason": "An umbrella citation covering InvestAI, the AI gigafactories program and summit outcomes; no single official page covers all three."
     },
     {
       "id": "SRC-BRUSSELS-EFFECT",
@@ -1043,7 +1046,8 @@
       "type": "report",
       "tags": ["labor-market", "policy", "economy"],
       "status": "flagged",
-      "note": "ongoing publication series, no single year given; homepage URL only, per HANDOVER section 11 (absent from FULL section 6) Verification 2026-07-03: unclear. oecd.org returned HTTP 403 to WebFetch twice (bot-blocking, not necessarily dead). WebSearch confirms live OECD Employment Outlook pages with AI chapters exist under oecd.org/en/publications/."
+      "note": "ongoing publication series, no single year given; homepage URL only, per HANDOVER section 11 (absent from FULL section 6) Verification 2026-07-03: unclear. oecd.org returned HTTP 403 to WebFetch twice (bot-blocking, not necessarily dead). WebSearch confirms live OECD Employment Outlook pages with AI chapters exist under oecd.org/en/publications/.",
+      "flagReason": "oecd.org blocks automated fetching; independent search confirms the Employment Outlook chapters exist and are current."
     },
     {
       "id": "SRC-CAIS-STATEMENT",
@@ -1088,7 +1092,8 @@
       "type": "web",
       "tags": ["worldview-optimistic", "agi-governance"],
       "status": "flagged",
-      "note": "Verification 2026-07-03: unclear. openai.com returned HTTP 403 to WebFetch twice (bot-blocking). WebSearch confirms the page exists at this exact URL with matching title and content."
+      "note": "Verification 2026-07-03: unclear. openai.com returned HTTP 403 to WebFetch twice (bot-blocking). WebSearch confirms the page exists at this exact URL with matching title and content.",
+      "flagReason": "openai.com blocks automated fetching; independent search confirms the page exists at this exact address."
     },
     {
       "id": "SRC-PAUSE-LETTER",
@@ -1300,7 +1305,8 @@
       "type": "web",
       "tags": ["serious-games", "ai-race", "wargaming"],
       "status": "flagged",
-      "note": "Official project site per HANDOVER \u00a711 Serious games & learning science: https://www.intelligencerising.org Verification 2026-07-03: unclear. WebFetch got 403 Forbidden twice (bot-blocked, not confirmed dead). WebSearch confirms page exists and is indexed with matching title/content."
+      "note": "Official project site per HANDOVER \u00a711 Serious games & learning science: https://www.intelligencerising.org Verification 2026-07-03: unclear. WebFetch got 403 Forbidden twice (bot-blocked, not confirmed dead). WebSearch confirms page exists and is indexed with matching title/content.",
+      "flagReason": "The site blocked our automated check; independent search confirms the page is live with matching content."
     },
     {
       "id": "SRC-AVIN-AI-FUTURES-SURVEY",
@@ -1321,7 +1327,8 @@
       "tags": ["serious-games", "wargaming", "ttx-methodology", "debrief-design"],
       "status": "flagged",
       "gameUse": "debrief, learning-outcome, and persuasive-game grounding",
-      "note": "PRIORITY-VERIFY: bundled placeholder entry from BIBLIOGRAPHY-FULL.md sec.9 (source explicitly flags verify-individual-URLs, no single URL given). RAND wargaming series, Wouters et al. 2013, Clark et al. 2016, and Bogost's Persuasive Games are also captured individually with cleaner citations from HANDOVER \u00a711 (see SRC-RAND-WARGAMING, SRC-WOUTERS-2013, SRC-CLARK-2016, SRC-BOGOST-PERSUASIVE-GAMES) - merger should dedupe those against this bundle. Schelling on gaming, matrix-games/TTX methodology, and climate-game studies (e.g. Daybreak) remain unresolved individual citations with no source elsewhere in worker C's material. Bundle entry, no single URL by design."
+      "note": "PRIORITY-VERIFY: bundled placeholder entry from BIBLIOGRAPHY-FULL.md sec.9 (source explicitly flags verify-individual-URLs, no single URL given). RAND wargaming series, Wouters et al. 2013, Clark et al. 2016, and Bogost's Persuasive Games are also captured individually with cleaner citations from HANDOVER \u00a711 (see SRC-RAND-WARGAMING, SRC-WOUTERS-2013, SRC-CLARK-2016, SRC-BOGOST-PERSUASIVE-GAMES) - merger should dedupe those against this bundle. Schelling on gaming, matrix-games/TTX methodology, and climate-game studies (e.g. Daybreak) remain unresolved individual citations with no source elsewhere in worker C's material. Bundle entry, no single URL by design.",
+      "flagReason": "An umbrella entry for several works on learning through games; the individual works are listed in the bibliography, but there is no single link to verify."
     },
     {
       "id": "SRC-WOUTERS-2013",
@@ -1367,7 +1374,8 @@
       "tags": ["wargaming", "methodology", "ttx", "serious-games"],
       "status": "flagged",
       "gameUse": "matrix-game / TTX methodology grounding",
-      "note": "From HANDOVER \u00a711 Serious games & learning science. URL is RAND homepage only; source hint: search \"wargaming\" on rand.org for specific reports. possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE). Verification 2026-07-03: unclear. rand.org 403'd WebFetch (bot-blocked). Search confirms rand.org has wargaming methodology pubs (e.g. rand.org/pubs/research_memoranda/RM2413.html) but URL is generic homepage, not a specific report."
+      "note": "From HANDOVER \u00a711 Serious games & learning science. URL is RAND homepage only; source hint: search \"wargaming\" on rand.org for specific reports. possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE). Verification 2026-07-03: unclear. rand.org 403'd WebFetch (bot-blocked). Search confirms rand.org has wargaming methodology pubs (e.g. rand.org/pubs/research_memoranda/RM2413.html) but URL is generic homepage, not a specific report.",
+      "flagReason": "An umbrella entry for RAND's wargaming methodology literature; individual reports verify, the bundle as such has no single link."
     },
     {
       "id": "SRC-AI-INDEX-2025",
@@ -1486,7 +1494,8 @@
       "tags": ["model-cards", "documentation", "live-data"],
       "status": "flagged",
       "gameUse": "model-release-timeline and documentation layer",
-      "note": "PRIORITY-VERIFY: bundled placeholder from BIBLIOGRAPHY-FULL.md sec.10 (marked verify-individual-URLs, no single URL given). Alignment Forum is captured individually as SRC-ALIGNMENT-FORUM via a clean atomic URL from HANDOVER \u00a711 Live data & community; System/model cards and Papers with Code remain unresolved individual citations. Bundle entry, no single URL by design."
+      "note": "PRIORITY-VERIFY: bundled placeholder from BIBLIOGRAPHY-FULL.md sec.10 (marked verify-individual-URLs, no single URL given). Alignment Forum is captured individually as SRC-ALIGNMENT-FORUM via a clean atomic URL from HANDOVER \u00a711 Live data & community; System/model cards and Papers with Code remain unresolved individual citations. Bundle entry, no single URL by design.",
+      "flagReason": "An umbrella entry for model release documentation across several labs; no single link to verify."
     },
     {
       "id": "SRC-ALIGNMENT-FORUM",

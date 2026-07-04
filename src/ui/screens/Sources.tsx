@@ -12,6 +12,7 @@ interface SourceEntry {
   status: string;
   gameUse: string;
   url?: string;
+  flagReason?: string;
 }
 
 const SOURCES = (sourcesJson as { sources: SourceEntry[] }).sources;
@@ -37,6 +38,7 @@ export function Sources() {
         <p className="title-kicker">{t('sources.kicker')}</p>
         <h1>{t('sources.heading')}</h1>
         <p className="panel-explain">{t('sources.body', { count: SOURCES.length })}</p>
+        <p className="sources-legend">{t('sources.legend')}</p>
         <button type="button" className="btn" onClick={() => goTo('title')}>
           ← {t('help.back')}
         </button>
@@ -77,6 +79,7 @@ export function Sources() {
               {source.org} · {source.year} · {source.type}
             </p>
             <p className="source-use">{source.gameUse}</p>
+            {source.flagReason && <p className="source-flag-reason">{source.flagReason}</p>}
           </li>
         ))}
       </ul>
