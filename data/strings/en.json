@@ -552,5 +552,15 @@
   "title.feature.offline": "Plays in your browser, offline after first load",
   "title.sound.on": "Sound: on",
   "title.sound.off": "Sound: off",
-  "eval.fogWarning": "Frontier instability: past the fog line, alignment slips every quarter unless safety work outpaces it. What you banked is eroding."
+  "eval.fogWarning": "Frontier instability: past the fog line, alignment slips every quarter unless safety work outpaces it. What you banked is eroding.",
+  "debrief.chart.heading": "What your evals said, against the truth",
+  "debrief.chart.caption": "The shaded band is every quarterly eval report you received. The solid line is your true alignment, revealed only now. The dashed wall is the hidden difficulty the dice rolled before turn one.",
+  "debrief.chart.aria": "Chart of quarterly eval bands against revealed true alignment. The hidden difficulty wall stood at {wall}. True alignment finished at {truth}.",
+  "debrief.chart.wallLabel": "difficulty {wall}",
+  "debrief.chart.turn": "Q{turn}",
+  "debrief.chart.legendBand": "eval band (what you saw)",
+  "debrief.chart.legendTruth": "true alignment (what was real)",
+  "debrief.chart.legendWall": "the hidden wall",
+  "debrief.fog.none": "You never entered the fog zone, so the frontier never got the chance to erode what you banked.",
+  "debrief.fog.account": "You entered the fog banking {banked} alignment. Frontier erosion took {lost} during the endgame. The wall stood at {wall}; your systems finished at {final}."
 }

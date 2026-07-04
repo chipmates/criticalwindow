@@ -3,6 +3,7 @@ import { replayTurns, runProbes } from '../../engine/probes';
 import { encodeShare } from '../../engine/save';
 import { playNarration } from '../audio';
 import { Timeline } from '../components/Timeline';
+import { TruthChart } from '../components/TruthChart';
 import en from '../../../data/strings/en.json';
 import { t, tRef, type StringKey } from '../i18n';
 import { gameData, useStore } from '../store';
@@ -91,6 +92,23 @@ export function Debrief() {
     dataVersion: data.dataVersion,
   });
 
+  // Fog accounting: what the frontier cost you, in plain numbers.
+  const fogStart = data.parameters.thresholds.fogZoneStart.value;
+  const fogEntry = snapshots.find(
+    (snap) => snap.state.seats[run.playerSeat].resources.capability >= fogStart,
+  );
+  const fogLine = fogEntry
+    ? t('debrief.fog.account', {
+        banked: fogEntry.state.seats[run.playerSeat].hidden.trueAlignment,
+        lost: Math.max(
+          0,
+          fogEntry.state.seats[run.playerSeat].hidden.trueAlignment - player.hidden.trueAlignment,
+        ),
+        wall: run.world.alignmentDifficulty,
+        final: player.hidden.trueAlignment,
+      })
+    : t('debrief.fog.none');
+
   const treatyLine =
     probes.treatyWindowOpen.turns.length === 0
       ? t('debrief.probe.treatyWindowNever')
@@ -110,6 +128,12 @@ export function Debrief() {
         <p className="debrief-body">{t(`debrief.ending.${ending}.body` as StringKey)}</p>
         {windowOpen && <p className="debrief-window">{t('debrief.windowStillOpen')}</p>}
         <p className="debrief-epilogue">{epilogueText}</p>
+      </section>
+
+      <section className="panel">
+        <h2 className="panel-heading">{t('debrief.chart.heading')}</h2>
+        <TruthChart run={run} snapshots={snapshots} />
+        <p className="debrief-window">{fogLine}</p>
       </section>
 
       <section className="panel">
