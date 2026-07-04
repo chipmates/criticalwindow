@@ -1,0 +1,145 @@
+{
+  "$schema": "./schemas/mandates.schema.json",
+  "perEraDraw": 1,
+  "mandates": [
+    {
+      "id": "keep_lights_on",
+      "title": "strings:mandate.keepLightsOn.title",
+      "body": "strings:mandate.keepLightsOn.body",
+      "era": "early",
+      "goal": {
+        "target": "energy",
+        "comparator": ">=",
+        "value": 500,
+        "byTurnOffset": 4
+      },
+      "rewardPoliticalCapital": 100,
+      "penaltyOnLapse": {
+        "publicTrust": -50
+      },
+      "sourceIds": ["SRC-IEA-ENERGY-AI", "SRC-GRID-DATACENTER"]
+    },
+    {
+      "id": "calm_the_streets",
+      "title": "strings:mandate.calmTheStreets.title",
+      "body": "strings:mandate.calmTheStreets.body",
+      "era": "early",
+      "goal": {
+        "target": "society.unrest",
+        "comparator": "<=",
+        "value": 200,
+        "byTurnOffset": 4
+      },
+      "rewardPoliticalCapital": 100,
+      "penaltyOnLapse": {
+        "publicTrust": -50
+      },
+      "sourceIds": ["SRC-IMF-GENAI", "SRC-OECD-EMPLOYMENT"]
+    },
+    {
+      "id": "show_the_work",
+      "title": "strings:mandate.showTheWork.title",
+      "body": "strings:mandate.showTheWork.body",
+      "era": "early",
+      "goal": {
+        "target": "safetyInsight",
+        "comparator": ">=",
+        "value": 300,
+        "byTurnOffset": 4
+      },
+      "rewardPoliticalCapital": 100,
+      "penaltyOnLapse": {
+        "publicTrust": -50
+      },
+      "sourceIds": ["SRC-UK-AISI", "SRC-SLEEPER"]
+    },
+    {
+      "id": "steady_through_midterms",
+      "title": "strings:mandate.steadyThroughMidterms.title",
+      "body": "strings:mandate.steadyThroughMidterms.body",
+      "era": "mid",
+      "goal": {
+        "target": "society.unrest",
+        "comparator": "<=",
+        "value": 400,
+        "byTurnOffset": 2
+      },
+      "rewardPoliticalCapital": 100,
+      "penaltyOnLapse": {
+        "politicalCapital": -50
+      },
+      "sourceIds": ["SRC-OECD-EMPLOYMENT", "SRC-DESIGN-HANDOVER"]
+    },
+    {
+      "id": "safety_before_frontier",
+      "title": "strings:mandate.safetyBeforeFrontier.title",
+      "body": "strings:mandate.safetyBeforeFrontier.body",
+      "era": "mid",
+      "goal": {
+        "target": "safetyInsight",
+        "comparator": ">=",
+        "value": 400,
+        "byTurnOffset": 4
+      },
+      "rewardPoliticalCapital": 150,
+      "penaltyOnLapse": {
+        "publicTrust": -100
+      },
+      "sourceIds": ["SRC-SLEEPER", "SRC-SCHEMING"],
+      "claimIds": ["SRC-SLEEPER#5", "SRC-SCHEMING#6"]
+    },
+    {
+      "id": "rebuild_the_grid",
+      "title": "strings:mandate.rebuildTheGrid.title",
+      "body": "strings:mandate.rebuildTheGrid.body",
+      "era": "mid",
+      "goal": {
+        "target": "energy",
+        "comparator": ">=",
+        "value": 600,
+        "byTurnOffset": 4
+      },
+      "rewardPoliticalCapital": 100,
+      "penaltyOnLapse": {
+        "society.unrest": 50
+      },
+      "sourceIds": ["SRC-IEA-ENERGY-AI"]
+    },
+    {
+      "id": "hold_the_line",
+      "title": "strings:mandate.holdTheLine.title",
+      "body": "strings:mandate.holdTheLine.body",
+      "era": "late",
+      "goal": {
+        "target": "society.unrest",
+        "comparator": "<=",
+        "value": 400,
+        "byTurnOffset": 3
+      },
+      "rewardPoliticalCapital": 150,
+      "penaltyOnLapse": {
+        "publicTrust": -100
+      },
+      "sourceIds": ["SRC-IMF-GENAI", "SRC-OECD-EMPLOYMENT"]
+    },
+    {
+      "id": "eyes_wide_open",
+      "title": "strings:mandate.eyesWideOpen.title",
+      "body": "strings:mandate.eyesWideOpen.body",
+      "era": "late",
+      "goal": {
+        "target": "safetyInsight",
+        "comparator": ">=",
+        "value": 500,
+        "byTurnOffset": 3
+      },
+      "rewardPoliticalCapital": 150,
+      "penaltyOnLapse": {
+        "publicTrust": -50
+      },
+      "sourceIds": ["SRC-SLEEPER", "SRC-SCHEMING"],
+      "claimIds": ["SRC-SLEEPER#5"]
+    }
+  ],
+  "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-DESIGN-HANDOVER"]
+}

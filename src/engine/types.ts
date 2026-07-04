@@ -21,7 +21,7 @@ export const SCALE_MIN = 0;
 export const ALLOCATION_TOTAL = 100;
 
 /** Bumped when the shape of GameState / SaveGame changes incompatibly. */
-export const STATE_SCHEMA_VERSION = 2;
+export const STATE_SCHEMA_VERSION = 3;
 
 // ---------------------------------------------------------------------------
 // Identifiers
@@ -76,6 +76,7 @@ export const RNG_STREAM_NAMES = [
   'ticker',
   'wildcards',
   'incidents',
+  'mandates',
 ] as const;
 export type RngStreamName = (typeof RNG_STREAM_NAMES)[number];
 
@@ -182,6 +183,7 @@ export interface LogEntry {
     | 'ticker'
     | 'incident'
     | 'wildcard'
+    | 'mandate'
     | 'ending';
   stringKey: string | null;
   deltas: Partial<Record<EffectTarget, number>> | null;
@@ -249,6 +251,17 @@ export interface GameState {
   /** Events already fired this run (non-repeatable ones never redraw). */
   firedEvents: string[];
   pendingEvents: PendingEvent[];
+
+  /**
+   * Cabinet mandates: near-term visible objectives with Political Capital
+   * stakes. Assigned at each era's first turn from the mandates stream.
+   */
+  mandates: Array<{
+    id: string;
+    assignedTurn: number;
+    deadlineTurn: number;
+    status: 'active' | 'met' | 'lapsed';
+  }>;
 
   /** Incident rung id -> turn it may fire again (misalignment-incident system). */
   incidentCooldowns: Record<string, number>;

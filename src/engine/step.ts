@@ -186,6 +186,120 @@ function queueDelayed(
 }
 
 // ---------------------------------------------------------------------------
+// Mandates — near-term cabinet objectives (design-note C). Goals read only
+// visible state; the lapse penalty is the attention-decay dynamic.
+// ---------------------------------------------------------------------------
+
+function readVisibleTarget(state: GameState, target: EffectTarget): number {
+  if (RESOURCE_TARGETS.has(target)) {
+    return state.resources[target as keyof GameState['resources']];
+  }
+  switch (target) {
+    case 'society.jobDisplacement':
+      return state.society.jobDisplacement;
+    case 'society.unrest':
+      return state.society.unrest;
+    case 'rival.trust':
+      return state.rival.trust;
+    case 'rival.capability':
+      return state.rival.capability;
+    case 'rival.substitution':
+      return state.rival.substitution;
+    default:
+      throw new EngineError('badChoice', `mandate goal cannot read '${target}'`);
+  }
+}
+
+/** Assign this era's mandates (perEraDraw picks from the era pool, mandates stream). */
+export function assignEraMandates(data: EngineData, state: GameState, era: EraId): void {
+  const assigned = new Set(state.mandates.map((m) => m.id));
+  const pool = data.mandates.mandates
+    .filter((m) => m.era === era && !assigned.has(m.id))
+    .sort((a, b) => (a.id < b.id ? -1 : 1));
+  for (let n = 0; n < data.mandates.perEraDraw && pool.length > 0; n += 1) {
+    const [index, nextRng] = nextInt(state.rng.mandates, pool.length);
+    state.rng = { ...state.rng, mandates: [...nextRng] as [number, number, number, number] };
+    const chosen = pool.splice(index, 1)[0]!;
+    const deadlineTurn = state.turn + chosen.goal.byTurnOffset;
+    state.mandates = [
+      ...state.mandates,
+      { id: chosen.id, assignedTurn: state.turn, deadlineTurn, status: 'active' },
+    ];
+    pushLog(state, {
+      kind: 'mandate',
+      stringKey: chosen.title,
+      deltas: null,
+      meta: { mandateId: chosen.id, outcome: 'assigned', deadlineTurn },
+    });
+  }
+}
+
+/**
+ * Resolve active mandates. '>=' goals count as met the moment they are
+ * reached; '<=' goals must HOLD when the deadline check runs. Checks run at
+ * upkeep, i.e. against the state a turn STARTS with.
+ */
+function checkMandates(data: EngineData, state: GameState): void {
+  for (const mandate of state.mandates) {
+    if (mandate.status !== 'active') {
+      continue;
+    }
+    const def = data.mandates.mandates.find((m) => m.id === mandate.id)!;
+    const current = readVisibleTarget(state, def.goal.target);
+    const holds =
+      def.goal.comparator === '>=' ? current >= def.goal.value : current <= def.goal.value;
+    const atDeadline = state.turn >= mandate.deadlineTurn;
+    if (def.goal.comparator === '>=' && holds) {
+      mandate.status = 'met';
+      const applied = applyDelta(state, 'politicalCapital', def.rewardPoliticalCapital);
+      pushLog(state, {
+        kind: 'mandate',
+        stringKey: def.title,
+        deltas: applied !== 0 ? { politicalCapital: applied } : {},
+        meta: { mandateId: def.id, outcome: 'met', value: current },
+      });
+      continue;
+    }
+    if (!atDeadline) {
+      continue;
+    }
+    if (holds) {
+      mandate.status = 'met';
+      const applied = applyDelta(state, 'politicalCapital', def.rewardPoliticalCapital);
+      pushLog(state, {
+        kind: 'mandate',
+        stringKey: def.title,
+        deltas: applied !== 0 ? { politicalCapital: applied } : {},
+        meta: { mandateId: def.id, outcome: 'met', value: current },
+      });
+    } else {
+      mandate.status = 'lapsed';
+      const deltas: Partial<Record<EffectTarget, number>> = {};
+      for (const [key, value] of Object.entries(def.penaltyOnLapse ?? {})) {
+        if (key === 'flags') {
+          for (const flag of value as string[]) {
+            setFlag(state, flag);
+          }
+          continue;
+        }
+        if (typeof value === 'number') {
+          const applied = applyDelta(state, key as EffectTarget, value);
+          if (applied !== 0) {
+            deltas[key as EffectTarget] = applied;
+          }
+        }
+      }
+      pushLog(state, {
+        kind: 'mandate',
+        stringKey: def.title,
+        deltas,
+        meta: { mandateId: def.id, outcome: 'lapsed', value: current },
+      });
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Era
 // ---------------------------------------------------------------------------
 
@@ -469,10 +583,22 @@ function eventEligible(
  * window; future beats require their R1 state-condition to hold.
  */
 function fixedBeatDue(data: EngineData, state: GameState): FixedEventData | null {
+  // One beat per turn, so priority matters: historical beats (real dates,
+  // often single-turn windows) outrank conditional ones, and closing windows
+  // outrank open ones. Otherwise a milestone beat could permanently starve a
+  // calendar beat out of its only turn. Deterministic tiebreak by id.
   const beats = data.events
     .filter((card): card is FixedEventData => card.kind === 'fixed')
     .filter((card) => !state.firedEvents.includes(card.id))
-    .sort((a, b) => (a.id < b.id ? -1 : 1));
+    .sort((a, b) => {
+      if (a.historical !== b.historical) {
+        return a.historical ? -1 : 1;
+      }
+      if (a.fixedTurn.max !== b.fixedTurn.max) {
+        return a.fixedTurn.max - b.fixedTurn.max;
+      }
+      return a.id < b.id ? -1 : 1;
+    });
   for (const card of beats) {
     if (state.turn < card.fixedTurn.min || state.turn > card.fixedTurn.max) {
       continue;
@@ -850,10 +976,19 @@ function worldUpdate(data: EngineData, state: GameState): void {
 
   state.rival.capability = clamp(state.rival.capability + rivalCapabilityGain, 0, SCALE_MAX);
   state.rival.trust = clamp(state.rival.trust + rivalTrustDelta, 0, SCALE_MAX);
+  // Log only what actually moved: zero-valued deltas would falsely mark a
+  // track as "has moved" for progressive disclosure and clutter the report.
+  const rivalDeltas: Partial<Record<EffectTarget, number>> = {};
+  if (rivalCapabilityGain !== 0) {
+    rivalDeltas['rival.capability'] = rivalCapabilityGain;
+  }
+  if (rivalTrustDelta !== 0) {
+    rivalDeltas['rival.trust'] = rivalTrustDelta;
+  }
   pushLog(state, {
     kind: 'rivalAction',
     stringKey: null,
-    deltas: { 'rival.capability': rivalCapabilityGain, 'rival.trust': rivalTrustDelta },
+    deltas: rivalDeltas,
     meta: { posture },
   });
 
@@ -949,15 +1084,23 @@ function worldUpdate(data: EngineData, state: GameState): void {
       SCALE_MAX,
     );
   }
+  const societyDeltas: Partial<Record<EffectTarget, number>> = {};
+  if (displacementGain - reliefApplied !== 0) {
+    societyDeltas['society.jobDisplacement'] = displacementGain - reliefApplied;
+  }
+  if (unrestGain !== 0) {
+    societyDeltas['society.unrest'] = unrestGain;
+  }
+  if (trustDelta !== 0) {
+    societyDeltas.publicTrust = trustDelta;
+  }
+  if (economicDrag !== 0) {
+    societyDeltas.capital = -economicDrag;
+  }
   pushLog(state, {
     kind: 'societyUpdate',
     stringKey: null,
-    deltas: {
-      'society.jobDisplacement': displacementGain - reliefApplied,
-      'society.unrest': unrestGain,
-      publicTrust: trustDelta,
-      capital: -economicDrag,
-    },
+    deltas: societyDeltas,
     meta: { reliefApplied },
   });
 
@@ -1184,6 +1327,13 @@ function upkeep(data: EngineData, state: GameState): void {
       sourceId: delayed.sourceId,
     });
   }
+
+  // Mandates: assign at each era's first turn, then resolve active ones.
+  const eraStarting = data.parameters.turnStructure.eras.find((e) => e.fromTurn === state.turn);
+  if (eraStarting) {
+    assignEraMandates(data, state, eraStarting.id);
+  }
+  checkMandates(data, state);
 
   // Grid limit: compute cannot outrun energy forever.
   const slack = data.parameters.thresholds.gridSlackBeforeCap.value;

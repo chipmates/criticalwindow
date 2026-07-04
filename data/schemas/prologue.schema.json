@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "string",
+      "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+    },
+    "outro": {
+      "type": "string",
+      "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+    },
+    "chapters": {
+      "minItems": 1,
+      "maxItems": 5,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "dateLabel": {
+            "type": "string",
+            "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+          },
+          "title": {
+            "type": "string",
+            "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+          },
+          "body": {
+            "type": "string",
+            "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+          },
+          "teach": {
+            "type": "string",
+            "enum": [
+              "allocate",
+              "policy",
+              "memo"
+            ]
+          },
+          "explainer": {
+            "type": "string",
+            "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+          },
+          "trackMotion": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string",
+                  "enum": [
+                    "compute",
+                    "energy",
+                    "talent",
+                    "capital",
+                    "publicTrust",
+                    "politicalCapital",
+                    "capability",
+                    "safetyInsight",
+                    "society.jobDisplacement",
+                    "society.unrest",
+                    "rival.trust",
+                    "rival.capability",
+                    "rival.substitution",
+                    "hidden.trueAlignment",
+                    "hidden.agencyErosion"
+                  ]
+                },
+                "from": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "to": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                }
+              },
+              "required": [
+                "target",
+                "from",
+                "to"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "mockChoices": {
+            "minItems": 2,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+                },
+                "response": {
+                  "type": "string",
+                  "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+                }
+              },
+              "required": [
+                "label",
+                "response"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "mockPolicyId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "sourceIds": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+                },
+                {
+                  "type": "string",
+                  "const": "TODO-SOURCE"
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "dateLabel",
+          "title",
+          "body",
+          "teach",
+          "explainer",
+          "trackMotion",
+          "sourceIds"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "intro",
+    "outro",
+    "chapters"
+  ],
+  "additionalProperties": false
+}

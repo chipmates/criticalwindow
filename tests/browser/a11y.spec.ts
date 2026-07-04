@@ -21,6 +21,18 @@ test('axe: title, setup, game and debrief scan clean', async ({ page }) => {
 
   await page.getByLabel('Seed').fill('a11y-run');
   await page.getByRole('button', { name: 'Take office' }).click();
+
+  // The prologue shows first in a fresh context: play it through the real
+  // interactions (scan each teaching step), ending on the take-office step.
+  await expectNoViolations(page);
+  await page.getByRole('button', { name: 'Continue' }).click(); // intro -> ch1
+  await page.getByRole('button', { name: 'Commit allocation' }).click(); // ch1 allocate
+  await expectNoViolations(page);
+  await page.getByRole('button', { name: 'Enact' }).click(); // ch2 policy
+  await page.locator('.memo-choice').first().click(); // ch3 memo choice
+  await page.getByRole('button', { name: 'Continue' }).click(); // response -> outro
+  await expectNoViolations(page);
+  await page.getByRole('button', { name: 'Take office' }).click(); // outro -> game
   await expectNoViolations(page);
 
   // Reach a memo (event dialog) and scan it too.
@@ -87,21 +99,37 @@ test('keyboard only: a turn can be played without a pointer', async ({ page }) =
   }
   await page.keyboard.press('Enter');
 
-  // Allocation: tab to Commit (default allocation already sums to 100).
-  for (let i = 0; i < 30; i += 1) {
-    const focused = await page.evaluate(() =>
-      (
-        globalThis as unknown as {
-          document: { activeElement: { textContent: string | null } | null };
-        }
-      ).document.activeElement?.textContent?.trim(),
-    );
-    if (focused === 'Commit allocation') {
-      break;
+  // The prologue plays first in a fresh context. Play it THROUGH with the
+  // keyboard (focus lands on each step's heading; interactions sit after it
+  // in tab order, so no wrap-around is needed).
+  const walkTo = async (label: string, maxTabs = 30): Promise<void> => {
+    for (let i = 0; i < maxTabs; i += 1) {
+      const focused = await page.evaluate(() =>
+        (
+          globalThis as unknown as {
+            document: { activeElement: { textContent: string | null } | null };
+          }
+        ).document.activeElement?.textContent?.trim(),
+      );
+      if (focused === label) {
+        await page.keyboard.press('Enter');
+        return;
+      }
+      await page.keyboard.press('Tab');
     }
-    await page.keyboard.press('Tab');
-  }
-  await page.keyboard.press('Enter');
+    throw new Error(`keyboard walk never reached '${label}'`);
+  };
+
+  await walkTo('Continue'); // intro -> chapter 1
+  await walkTo('Commit allocation'); // chapter 1 teaches the allocation control
+  await walkTo('Enact'); // chapter 2 teaches a policy card
+  await walkTo('Work with the regulators.'); // chapter 3 memo choice
+  await walkTo('Continue'); // response -> outro
+  await walkTo('Take office'); // outro -> the real game
+  await expect(page.getByRole('button', { name: 'Commit allocation' })).toBeVisible();
+
+  // Allocation: tab to Commit (default allocation already sums to 100).
+  await walkTo('Commit allocation');
 
   // Policy phase reached: the panel heading exists and something is focusable.
   await expect(page.getByRole('heading', { name: 'Policy' })).toBeVisible();

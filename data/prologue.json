@@ -1,0 +1,121 @@
+{
+  "$schema": "./schemas/prologue.schema.json",
+  "intro": "strings:prologue.intro",
+  "outro": "strings:prologue.outro",
+  "chapters": [
+    {
+      "id": "starting_gun",
+      "dateLabel": "strings:prologue.ch1.date",
+      "title": "strings:prologue.ch1.title",
+      "body": "strings:prologue.ch1.body",
+      "teach": "allocate",
+      "explainer": "strings:prologue.ch1.explainer",
+      "trackMotion": [
+        {
+          "target": "capability",
+          "from": 150,
+          "to": 250
+        },
+        {
+          "target": "safetyInsight",
+          "from": 150,
+          "to": 200
+        },
+        {
+          "target": "capital",
+          "from": 400,
+          "to": 600
+        },
+        {
+          "target": "publicTrust",
+          "from": 500,
+          "to": 450
+        }
+      ],
+      "sourceIds": ["SRC-AI-INDEX-2025"]
+    },
+    {
+      "id": "chokepoint_war",
+      "dateLabel": "strings:prologue.ch2.date",
+      "title": "strings:prologue.ch2.title",
+      "body": "strings:prologue.ch2.body",
+      "teach": "policy",
+      "explainer": "strings:prologue.ch2.explainer",
+      "mockPolicyId": "export_controls",
+      "trackMotion": [
+        {
+          "target": "compute",
+          "from": 600,
+          "to": 700
+        },
+        {
+          "target": "capital",
+          "from": 600,
+          "to": 750
+        },
+        {
+          "target": "capability",
+          "from": 250,
+          "to": 330
+        },
+        {
+          "target": "rival.capability",
+          "from": 200,
+          "to": 300
+        },
+        {
+          "target": "rival.substitution",
+          "from": 100,
+          "to": 250
+        }
+      ],
+      "sourceIds": ["SRC-CSIS-EXPORT", "SRC-DEEPSEEK-R1", "SRC-DEEPSEEK-COST"]
+    },
+    {
+      "id": "rules_arrive",
+      "dateLabel": "strings:prologue.ch3.date",
+      "title": "strings:prologue.ch3.title",
+      "body": "strings:prologue.ch3.body",
+      "teach": "memo",
+      "explainer": "strings:prologue.ch3.explainer",
+      "mockChoices": [
+        {
+          "label": "strings:prologue.ch3.choiceComply",
+          "response": "strings:prologue.ch3.responseComply"
+        },
+        {
+          "label": "strings:prologue.ch3.choiceShrug",
+          "response": "strings:prologue.ch3.responseShrug"
+        }
+      ],
+      "trackMotion": [
+        {
+          "target": "capability",
+          "from": 330,
+          "to": 350
+        },
+        {
+          "target": "publicTrust",
+          "from": 450,
+          "to": 400
+        },
+        {
+          "target": "energy",
+          "from": 500,
+          "to": 450
+        },
+        {
+          "target": "society.jobDisplacement",
+          "from": 50,
+          "to": 100
+        },
+        {
+          "target": "society.unrest",
+          "from": 100,
+          "to": 150
+        }
+      ],
+      "sourceIds": ["SRC-EU-AI-ACT-TIMELINE", "SRC-IAISR", "SRC-IEA-ENERGY-AI"]
+    }
+  ]
+}

@@ -39,6 +39,16 @@ function kindLine(data: EngineData, entry: LogEntry): string {
       return t('report.kind.election');
     case 'incident':
       return `${t('report.kind.incident')}: ${entry.stringKey ? tRef(entry.stringKey) : ''}`;
+    case 'mandate': {
+      const outcome = entry.meta?.outcome;
+      const key =
+        outcome === 'met'
+          ? 'report.kind.mandateMet'
+          : outcome === 'lapsed'
+            ? 'report.kind.mandateLapsed'
+            : 'report.kind.mandateAssigned';
+      return `${t(key)}: ${entry.stringKey ? tRef(entry.stringKey) : ''}`;
+    }
     case 'wildcard':
       return `${t('report.kind.wildcard')}: ${entry.stringKey ? tRef(entry.stringKey) : ''}`;
     default:

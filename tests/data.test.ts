@@ -3,6 +3,7 @@ import { DataLoadError, checkIntegrity, loadEngineData } from '../src/engine/dat
 import {
   eventCardSchema,
   incidentsSchema,
+  mandatesSchema,
   parametersSchema,
   policyCardSchema,
   scenarioSchema,
@@ -10,6 +11,7 @@ import {
 } from '../src/engine/schemas';
 import eventFixture from './fixtures/event.sample.json';
 import incidentsFixture from './fixtures/incidents.sample.json';
+import mandatesFixture from './fixtures/mandates.sample.json';
 import parametersFixture from './fixtures/parameters.sample.json';
 import policyFixture from './fixtures/policy.sample.json';
 import scenarioFixture from './fixtures/scenario.sample.json';
@@ -21,6 +23,7 @@ const parsed = {
   events: [eventCardSchema.parse(eventFixture)],
   policies: [policyCardSchema.parse(policyFixture)],
   incidents: incidentsSchema.parse(incidentsFixture),
+  mandates: mandatesSchema.parse(mandatesFixture),
   sources: sourcesRegistrySchema.parse(sourcesFixture),
 };
 
@@ -44,6 +47,10 @@ const fixtureStrings = Object.fromEntries(
     'incident.nearMiss.body',
     'incident.labAccident.title',
     'incident.labAccident.body',
+    'mandate.keepLightsOn.title',
+    'mandate.keepLightsOn.body',
+    'mandate.calmTheStreets.title',
+    'mandate.calmTheStreets.body',
   ].map((key) => [key, 'placeholder text']),
 );
 
@@ -56,6 +63,7 @@ describe('loadEngineData', () => {
       events: [{ name: 'event.sample.json', json: eventFixture }],
       policies: [{ name: 'policy.sample.json', json: policyFixture }],
       incidents: incidentsFixture,
+      mandates: mandatesFixture,
     });
     expect(data.events).toHaveLength(1);
     expect(data.policies).toHaveLength(1);
@@ -71,6 +79,7 @@ describe('loadEngineData', () => {
         events: [{ name: 'bad.json', json: { id: 'bad' } }],
         policies: [],
         incidents: incidentsFixture,
+        mandates: mandatesFixture,
       }),
     ).toThrow(DataLoadError);
     try {
@@ -81,6 +90,7 @@ describe('loadEngineData', () => {
         events: [{ name: 'bad.json', json: { id: 'bad' } }],
         policies: [],
         incidents: incidentsFixture,
+        mandates: mandatesFixture,
       });
     } catch (error) {
       const issues = (error as DataLoadError).issues;

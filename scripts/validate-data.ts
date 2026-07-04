@@ -13,18 +13,22 @@
  */
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { checkIntegrity } from '../src/engine/data';
+import { checkIntegrity, collectSourceIds, collectStringsRefs } from '../src/engine/data';
 import {
   eventCardSchema,
   incidentsSchema,
+  mandatesSchema,
   parametersSchema,
+  prologueSchema,
   policyCardSchema,
   scenarioSchema,
   sourcesRegistrySchema,
   stringsFileSchema,
   type EventCardData,
   type IncidentsData,
+  type MandatesData,
   type ParametersData,
+  type PrologueData,
   type PolicyCardData,
   type ScenarioData,
   type SourcesRegistryData,
@@ -131,6 +135,20 @@ if (!parsed.has('incidents.json')) {
   errors.push('data/incidents.json is missing (misalignment-incident system, v0.2)');
 }
 
+const mandates = parsed.has('mandates.json')
+  ? validateFile<MandatesData>('mandates.json', mandatesSchema)
+  : null;
+if (!parsed.has('mandates.json')) {
+  errors.push('data/mandates.json is missing (cabinet mandates, v0.2 wave 2)');
+}
+
+const prologue = parsed.has('prologue.json')
+  ? validateFile<PrologueData>('prologue.json', prologueSchema)
+  : null;
+if (!parsed.has('prologue.json')) {
+  errors.push('data/prologue.json is missing (tutorial prologue, v0.2 wave 2)');
+}
+
 const scenarios: ScenarioData[] = [];
 for (const file of byDir('scenarios')) {
   const scenario = validateFile<ScenarioData>(file.relPath, scenarioSchema);
@@ -163,7 +181,7 @@ for (const file of byDir('policies')) {
 
 // -- 3. cross-file integrity ------------------------------------------------
 let draftValues: string[] = [];
-if (parameters && incidents && scenarios.length > 0) {
+if (parameters && incidents && mandates && scenarios.length > 0) {
   for (const scenario of scenarios) {
     const report = checkIntegrity({
       parameters,
@@ -171,6 +189,7 @@ if (parameters && incidents && scenarios.length > 0) {
       events,
       policies,
       incidents,
+      mandates,
       strings,
       sources,
     });
@@ -179,6 +198,66 @@ if (parameters && incidents && scenarios.length > 0) {
   }
 } else if (events.length > 0 || policies.length > 0) {
   warnings.push('cards exist but parameters/scenario missing; integrity check skipped');
+}
+
+// Prologue is UI data, not engine data, but the same honesty rules apply:
+// source ids must exist, strings must resolve, mock policy ids must be real,
+// and the history it replays must land EXACTLY on the scenario start state.
+if (prologue) {
+  const sourceRefs: Array<{ id: string; path: string }> = [];
+  const stringsRefs: Array<{ ref: string; path: string }> = [];
+  collectSourceIds(prologue, 'prologue', sourceRefs);
+  collectStringsRefs(prologue, 'prologue', stringsRefs);
+  const knownSourceIds = sources ? new Set(sources.sources.map((s) => s.id)) : null;
+  for (const { id, path } of sourceRefs) {
+    if (id === 'TODO-SOURCE') {
+      draftValues.push(path);
+    } else if (knownSourceIds && !knownSourceIds.has(id)) {
+      errors.push(`unknown source id '${id}' at ${path}`);
+    }
+  }
+  if (strings) {
+    for (const { ref, path } of stringsRefs) {
+      const key = ref.slice('strings:'.length);
+      if (!(key in strings)) {
+        errors.push(`unresolved string key '${key}' at ${path}`);
+      }
+    }
+  }
+  const policyIds = new Set(policies.map((p) => p.id));
+  for (const chapter of prologue.chapters) {
+    if (chapter.mockPolicyId && !policyIds.has(chapter.mockPolicyId)) {
+      errors.push(
+        `prologue chapter '${chapter.id}': unknown mockPolicyId '${chapter.mockPolicyId}'`,
+      );
+    }
+  }
+  const scenario = scenarios.find((s) => s.id === 'scenario_2026');
+  if (scenario) {
+    const finalTo = new Map<string, number>();
+    for (const chapter of prologue.chapters) {
+      for (const motion of chapter.trackMotion) {
+        finalTo.set(motion.target, motion.to);
+      }
+    }
+    const startFor = (target: string): number | null => {
+      if (target === 'society.jobDisplacement') return scenario.startSociety.jobDisplacement.value;
+      if (target === 'society.unrest') return scenario.startSociety.unrest.value;
+      if (target === 'rival.capability') return scenario.startRival.capability.value;
+      if (target === 'rival.trust') return scenario.startRival.trust.value;
+      if (target === 'rival.substitution') return scenario.startRival.substitution.value;
+      const resources = scenario.startResources as Record<string, { value: number } | undefined>;
+      return resources[target]?.value ?? null;
+    };
+    for (const [target, to] of finalTo) {
+      const start = startFor(target);
+      if (start !== null && start !== to) {
+        errors.push(
+          `prologue: '${target}' ends at ${to} but the scenario starts at ${start}; history must land on the start state`,
+        );
+      }
+    }
+  }
 }
 
 // -- 4. committed JSON Schemas in sync --------------------------------------

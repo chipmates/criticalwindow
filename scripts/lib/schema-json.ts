@@ -8,7 +8,9 @@ import { z } from 'zod';
 import {
   eventCardSchema,
   incidentsSchema,
+  mandatesSchema,
   parametersSchema,
+  prologueSchema,
   policyCardSchema,
   scenarioSchema,
   sourcesRegistrySchema,
@@ -22,6 +24,8 @@ export function buildJsonSchemas(): Record<string, string> {
     'scenario.schema.json': scenarioSchema,
     'sources.schema.json': sourcesRegistrySchema,
     'incidents.schema.json': incidentsSchema,
+    'mandates.schema.json': mandatesSchema,
+    'prologue.schema.json': prologueSchema,
   };
   const out: Record<string, string> = {};
   for (const [file, schema] of Object.entries(targets)) {

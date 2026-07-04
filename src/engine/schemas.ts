@@ -546,6 +546,102 @@ export const incidentsSchema = z
   );
 
 // ---------------------------------------------------------------------------
+// Mandates (data/mandates.json) — near-term cabinet objectives. Goals read
+// only VISIBLE state (never hidden dice). A lapsed safety mandate is the
+// attention-decay dynamic made mechanical.
+// ---------------------------------------------------------------------------
+
+export const mandateSchema = z.strictObject({
+  id: z.string().regex(CARD_ID_PATTERN),
+  title: stringsRefSchema,
+  body: stringsRefSchema,
+  era: z.enum(ERA_IDS),
+  goal: z
+    .strictObject({
+      target: z.enum(EFFECT_TARGETS),
+      comparator: z.enum(['<=', '>=']),
+      value: scaledInt,
+      /** Deadline = era start turn + offset. '>=' goals resolve as soon as
+       *  reached; '<=' goals must HOLD at the deadline check. */
+      byTurnOffset: z.number().int().min(1).max(15),
+    })
+    .refine((goal) => !goal.target.startsWith('hidden.'), {
+      message: 'mandate goals read only visible state (no-peeking guard)',
+    }),
+  rewardPoliticalCapital: z.number().int().min(0).max(1000),
+  penaltyOnLapse: effectSetSchema.optional(),
+  sourceIds: sourceIdsSchema,
+  claimIds: claimIdsSchema,
+});
+
+export const mandatesSchema = z
+  .strictObject({
+    $schema: z.string().optional(),
+    perEraDraw: z.number().int().min(1).max(2),
+    mandates: z.array(mandateSchema).min(1),
+    sourceIds: sourceIdsSchema,
+  })
+  .refine((data) => new Set(data.mandates.map((m) => m.id)).size === data.mandates.length, {
+    message: 'mandate ids must be unique',
+  });
+
+// ---------------------------------------------------------------------------
+// Prologue (data/prologue.json) — the 2023->2026 scripted tutorial. Display
+// data only: the engine never reads this file; the UI replays real history
+// and lands exactly on the scenario start state (validate cross-checks).
+// ---------------------------------------------------------------------------
+
+const prologueTrackMotionSchema = z
+  .strictObject({
+    target: z.enum(EFFECT_TARGETS),
+    from: scaledInt,
+    to: scaledInt,
+  })
+  .refine((motion) => !motion.target.startsWith('hidden.'), {
+    message: 'the prologue shows only visible tracks',
+  });
+
+const prologueChapterSchema = z.strictObject({
+  id: z.string().regex(CARD_ID_PATTERN),
+  dateLabel: stringsRefSchema,
+  title: stringsRefSchema,
+  body: stringsRefSchema,
+  teach: z.enum(['allocate', 'policy', 'memo']),
+  explainer: stringsRefSchema,
+  trackMotion: z.array(prologueTrackMotionSchema).min(1),
+  /** memo chapters: mock choices; any pick advances (no failure possible). */
+  mockChoices: z
+    .array(z.strictObject({ label: stringsRefSchema, response: stringsRefSchema }))
+    .min(2)
+    .max(3)
+    .optional(),
+  /** policy chapters: which REAL policy card to show being enacted. */
+  mockPolicyId: z.string().regex(CARD_ID_PATTERN).optional(),
+  sourceIds: sourceIdsSchema,
+});
+
+export const prologueSchema = z
+  .strictObject({
+    $schema: z.string().optional(),
+    intro: stringsRefSchema,
+    outro: stringsRefSchema,
+    chapters: z.array(prologueChapterSchema).min(1).max(5),
+  })
+  .superRefine((data, ctx) => {
+    for (const chapter of data.chapters) {
+      if (chapter.teach === 'memo' && !chapter.mockChoices) {
+        ctx.addIssue({ code: 'custom', message: `memo chapter '${chapter.id}' needs mockChoices` });
+      }
+      if (chapter.teach === 'policy' && !chapter.mockPolicyId) {
+        ctx.addIssue({
+          code: 'custom',
+          message: `policy chapter '${chapter.id}' needs mockPolicyId`,
+        });
+      }
+    }
+  });
+
+// ---------------------------------------------------------------------------
 // Sources registry
 // ---------------------------------------------------------------------------
 
@@ -633,6 +729,10 @@ export type EventChoiceData = z.infer<typeof eventChoiceSchema>;
 export type PolicyCardData = z.infer<typeof policyCardSchema>;
 export type IncidentRungData = z.infer<typeof incidentRungSchema>;
 export type IncidentsData = z.infer<typeof incidentsSchema>;
+export type MandateData = z.infer<typeof mandateSchema>;
+export type MandatesData = z.infer<typeof mandatesSchema>;
+export type PrologueData = z.infer<typeof prologueSchema>;
+export type PrologueChapterData = PrologueData['chapters'][number];
 export type WorldviewPresetData = z.infer<typeof worldviewPresetSchema>;
 export type ParametersData = z.infer<typeof parametersSchema>;
 export type ScenarioData = z.infer<typeof scenarioSchema>;

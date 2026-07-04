@@ -12,15 +12,17 @@ import { setMusic } from './audio';
 import { loadGameData } from './load-data';
 import {
   DEFAULT_SETTINGS,
+  readPrologueSeen,
   readSettings,
   readSlot,
+  writePrologueSeen,
   writeSettings,
   writeSlot,
   type SaveSlot,
   type Settings,
 } from './storage';
 
-export type Screen = 'title' | 'setup' | 'game' | 'debrief' | 'help';
+export type Screen = 'title' | 'setup' | 'prologue' | 'game' | 'debrief' | 'help';
 
 interface RunMeta {
   seed: string;
@@ -35,6 +37,8 @@ interface UiStore {
   actionsLog: Action[];
   settings: Settings;
   lastError: string | null;
+  /** Shock-overlay acknowledgment key (seed:turn); survives screen changes. */
+  shockAck: string;
 
   goTo: (screen: Screen) => void;
   startRun: (seed: string, presetId: WorldviewPresetId) => void;
@@ -43,6 +47,8 @@ interface UiStore {
   loadFrom: (slot: SaveSlot) => string | null;
   hasAutosave: () => boolean;
   updateSettings: (patch: Partial<Settings>) => void;
+  ackShocks: (key: string) => void;
+  markPrologueSeen: () => void;
   clearError: () => void;
 }
 
@@ -72,6 +78,7 @@ export const useStore = create<UiStore>((set, get) => ({
   actionsLog: [],
   settings: readSettings(),
   lastError: null,
+  shockAck: '',
 
   goTo(screen) {
     const { settings } = get();
@@ -86,7 +93,16 @@ export const useStore = create<UiStore>((set, get) => ({
 
   startRun(seed, presetId) {
     const run = initGame(data, { seed, presetId });
-    set({ run, runMeta: { seed, presetId }, actionsLog: [], screen: 'game', lastError: null });
+    set({
+      run,
+      runMeta: { seed, presetId },
+      actionsLog: [],
+      // First run ever: the prologue plays first (skippable). It is the
+      // tutorial AND the backstory; after one viewing it stays optional.
+      screen: readPrologueSeen() ? 'game' : 'prologue',
+      lastError: null,
+      shockAck: '',
+    });
   },
 
   dispatch(action) {
@@ -134,6 +150,14 @@ export const useStore = create<UiStore>((set, get) => ({
 
   hasAutosave() {
     return readSlot('auto') !== null;
+  },
+
+  ackShocks(key) {
+    set({ shockAck: key });
+  },
+
+  markPrologueSeen() {
+    writePrologueSeen();
   },
 
   updateSettings(patch) {

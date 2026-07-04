@@ -1,0 +1,40 @@
+{
+  "perEraDraw": 1,
+  "mandates": [
+    {
+      "id": "keep_lights_on",
+      "title": "strings:mandate.keepLightsOn.title",
+      "body": "strings:mandate.keepLightsOn.body",
+      "era": "early",
+      "goal": {
+        "target": "energy",
+        "comparator": ">=",
+        "value": 500,
+        "byTurnOffset": 4
+      },
+      "rewardPoliticalCapital": 100,
+      "penaltyOnLapse": {
+        "publicTrust": -50
+      },
+      "sourceIds": ["SRC-IEA-ENERGY-AI"]
+    },
+    {
+      "id": "calm_the_streets",
+      "title": "strings:mandate.calmTheStreets.title",
+      "body": "strings:mandate.calmTheStreets.body",
+      "era": "mid",
+      "goal": {
+        "target": "society.unrest",
+        "comparator": "<=",
+        "value": 400,
+        "byTurnOffset": 2
+      },
+      "rewardPoliticalCapital": 100,
+      "penaltyOnLapse": {
+        "publicTrust": -50
+      },
+      "sourceIds": ["SRC-IMF-GENAI"]
+    }
+  ],
+  "sourceIds": ["SRC-DESIGN-HANDOVER"]
+}

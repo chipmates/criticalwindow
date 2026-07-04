@@ -14,6 +14,10 @@ test('a full run plays through the UI to the debrief', async ({ page }) => {
   await page.getByLabel('Seed').fill('e2e-playthrough-1');
   await page.getByRole('button', { name: 'Take office' }).click();
 
+  // Fresh browser context: the prologue plays first. Skip it here; the a11y
+  // spec plays it through.
+  await page.getByRole('button', { name: 'Skip the history' }).click();
+
   // Turn loop: commit the default allocation, pass policy, take the first
   // memo choice, advance. Repeat until the debrief button appears.
   for (let safety = 0; safety < 200; safety += 1) {
@@ -67,6 +71,7 @@ test('mobile portrait: setup renders without horizontal scroll', async ({ page }
   });
   expect(overflow).toBe(false);
   await page.getByRole('button', { name: 'Take office' }).click();
+  await page.getByRole('button', { name: 'Skip the history' }).click();
   await expect(page.getByRole('button', { name: 'Commit allocation' })).toBeVisible();
   const gameOverflow = await page.evaluate(() => {
     const el = (

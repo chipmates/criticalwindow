@@ -9,6 +9,7 @@ import { EventMemo } from '../components/EventMemo';
 import { Meter } from '../components/Meter';
 import { PolicyHand } from '../components/PolicyHand';
 import { RaceTrack } from '../components/RaceTrack';
+import { MandatesPanel } from '../components/MandatesPanel';
 import { SettingsDialog } from '../components/SettingsDialog';
 import { ShockOverlay } from '../components/ShockOverlay';
 import { TurnReport } from '../components/TurnReport';
@@ -55,7 +56,10 @@ function revealedTracks(run: GameState): Set<Disclosable> {
     revealed.add('eval');
   }
   for (const entry of run.log) {
-    for (const target of Object.keys(entry.deltas ?? {})) {
+    for (const [target, delta] of Object.entries(entry.deltas ?? {})) {
+      if (delta === 0) {
+        continue;
+      }
       if (target === 'energy' || target === 'talent' || target === 'capital') {
         revealed.add(target);
       } else if (target === 'publicTrust' || target === 'politicalCapital') {
@@ -77,7 +81,8 @@ export function Game() {
   const data = gameData();
   const liveRef = useRef<HTMLParagraphElement>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [shockAck, setShockAck] = useState('');
+  const shockAck = useStore((s) => s.shockAck);
+  const ackShocks = useStore((s) => s.ackShocks);
   const [toasts, setToasts] = useState<Disclosable[]>([]);
   const knownTracks = useRef<Set<Disclosable> | null>(null);
   const knownSeed = useRef<string | null>(null);
@@ -136,7 +141,10 @@ export function Game() {
   const prev = (target: string): number => {
     for (let i = run.log.length - 1; i >= 0; i -= 1) {
       const entry = run.log[i]!;
-      if (entry.turn < run.turn && entry.deltas && target in entry.deltas) {
+      if (entry.turn < run.turn - 1) {
+        break; // trend means LAST quarter, not the last time it ever moved
+      }
+      if (entry.turn === run.turn - 1 && entry.deltas && target in entry.deltas) {
         return entry.deltas[target as keyof typeof entry.deltas] ?? 0;
       }
     }
@@ -228,6 +236,7 @@ export function Game() {
         </div>
 
         <aside className="game-side" aria-label={t('dash.heading')}>
+          <MandatesPanel data={data} run={run} />
           <h2 className="panel-heading">{t('dash.heading')}</h2>
           <Meter
             label={t('resource.compute.label')}
@@ -355,7 +364,7 @@ export function Game() {
           data={data}
           run={run}
           shocks={shocks}
-          onContinue={() => setShockAck(shockKey)}
+          onContinue={() => ackShocks(shockKey)}
         />
       )}
     </main>

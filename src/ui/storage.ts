@@ -42,6 +42,23 @@ export function clearSlot(slot: SaveSlot): void {
   }
 }
 
+/** Whether the 2023->2026 prologue has been seen (first-run tutorial gate). */
+export function readPrologueSeen(): boolean {
+  try {
+    return localStorage.getItem(`${PREFIX}.prologueSeen`) === '1';
+  } catch {
+    return true; // storage unavailable: do not trap the player in a tutorial
+  }
+}
+
+export function writePrologueSeen(): void {
+  try {
+    localStorage.setItem(`${PREFIX}.prologueSeen`, '1');
+  } catch {
+    // In-memory only for this session; acceptable degradation.
+  }
+}
+
 export interface Settings {
   theme: 'auto' | 'light' | 'dark' | 'contrast';
   reducedMotion: 'auto' | 'on';

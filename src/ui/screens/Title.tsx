@@ -30,6 +30,9 @@ export function Title() {
           <button type="button" className="btn" onClick={() => goTo('help')}>
             {t('help.title.button')}
           </button>
+          <button type="button" className="btn" onClick={() => goTo('prologue')}>
+            {t('prologue.replay')}
+          </button>
           <button
             type="button"
             className="btn"

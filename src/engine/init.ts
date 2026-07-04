@@ -5,6 +5,7 @@
  */
 import type { EngineData } from './data';
 import { initRngState, nextIntInRange } from './rng';
+import { assignEraMandates } from './step';
 import type { GameState, WorldviewPresetId } from './types';
 import { STATE_SCHEMA_VERSION } from './types';
 
@@ -87,6 +88,7 @@ export function initGame(data: EngineData, options: InitOptions): GameState {
     },
     firedEvents: [],
     pendingEvents: [],
+    mandates: [],
     incidentCooldowns: {},
     wildcardCooldowns: {},
     wildcardGlobalUntil: 0,
@@ -105,5 +107,9 @@ export function initGame(data: EngineData, options: InitOptions): GameState {
     rng,
     endingId: null,
   };
+  // Turn 1 is the first era's first turn but has no upkeep: the opening
+  // mandates are assigned here, from the same stream the later eras use.
+  const firstEra = data.parameters.turnStructure.eras[0]!.id;
+  assignEraMandates(data, state, firstEra);
   return state;
 }

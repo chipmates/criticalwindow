@@ -7,11 +7,13 @@
 import {
   eventCardSchema,
   incidentsSchema,
+  mandatesSchema,
   policyCardSchema,
   parametersSchema,
   scenarioSchema,
   type EventCardData,
   type IncidentsData,
+  type MandatesData,
   type ParametersData,
   type PolicyCardData,
   type ScenarioData,
@@ -26,6 +28,7 @@ export interface EngineData {
   events: EventCardData[];
   policies: PolicyCardData[];
   incidents: IncidentsData;
+  mandates: MandatesData;
 }
 
 export interface RawEngineData {
@@ -35,6 +38,7 @@ export interface RawEngineData {
   events: Array<{ name: string; json: unknown }>;
   policies: Array<{ name: string; json: unknown }>;
   incidents: unknown;
+  mandates: unknown;
 }
 
 export class DataLoadError extends Error {
@@ -60,6 +64,10 @@ export function loadEngineData(raw: RawEngineData): EngineData {
   const incidents = incidentsSchema.safeParse(raw.incidents);
   if (!incidents.success) {
     issues.push(...formatZodIssues('incidents.json', incidents.error));
+  }
+  const mandates = mandatesSchema.safeParse(raw.mandates);
+  if (!mandates.success) {
+    issues.push(...formatZodIssues('mandates.json', mandates.error));
   }
 
   const events: EventCardData[] = [];
@@ -93,6 +101,7 @@ export function loadEngineData(raw: RawEngineData): EngineData {
     events,
     policies,
     incidents: incidents.data!,
+    mandates: mandates.data!,
   };
 }
 
@@ -117,7 +126,11 @@ export interface IntegrityReport {
 }
 
 /** Recursively collect values under any `sourceIds` array, with JSON paths. */
-function collectSourceIds(value: unknown, path: string, out: Array<{ id: string; path: string }>) {
+export function collectSourceIds(
+  value: unknown,
+  path: string,
+  out: Array<{ id: string; path: string }>,
+) {
   if (Array.isArray(value)) {
     value.forEach((item, i) => collectSourceIds(item, `${path}[${i}]`, out));
     return;
@@ -139,7 +152,7 @@ function collectSourceIds(value: unknown, path: string, out: Array<{ id: string;
 }
 
 /** Recursively collect every "strings:..." reference, with JSON paths. */
-function collectStringsRefs(
+export function collectStringsRefs(
   value: unknown,
   path: string,
   out: Array<{ ref: string; path: string }>,
@@ -167,6 +180,7 @@ export function checkIntegrity(input: {
   events: EventCardData[];
   policies: PolicyCardData[];
   incidents: IncidentsData;
+  mandates: MandatesData;
   strings: StringsData | null;
   sources: SourcesRegistryData | null;
 }): IntegrityReport {
@@ -205,6 +219,7 @@ export function checkIntegrity(input: {
     ['parameters', input.parameters],
     [`scenario(${input.scenario.id})`, input.scenario],
     ['incidents', input.incidents],
+    ['mandates', input.mandates],
     ...input.events.map((e): [string, unknown] => [`event(${e.id})`, e]),
     ...input.policies.map((p): [string, unknown] => [`policy(${p.id})`, p]),
   ];

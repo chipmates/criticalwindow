@@ -67,6 +67,7 @@ function loadData(): EngineData {
     parameters: json('parameters.json'),
     scenario: json('scenarios/scenario_2026.json'),
     incidents: json('incidents.json'),
+    mandates: json('mandates.json'),
     events: files
       .filter((f) => f.relPath.startsWith('events/'))
       .map((f) => ({ name: f.relPath, json: JSON.parse(f.content) as unknown })),

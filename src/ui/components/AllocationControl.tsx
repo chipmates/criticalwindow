@@ -108,7 +108,11 @@ export function AllocationControl({
                 type="button"
                 className="btn btn-step"
                 onClick={() => bump(row.key, STEP)}
-                disabled={shares[row.key] === 100 || remaining < STEP}
+                disabled={
+                  shares[row.key] === 100 ||
+                  remaining < STEP ||
+                  (paused && row.key === 'capability' && shares.capability >= PAUSE_CAP)
+                }
                 aria-label={`${t(row.label)} plus ${STEP}`}
               >
                 +
