@@ -43,7 +43,12 @@ export function Title() {
             </button>
           )}
         </div>
-        <p className="title-privacy">{t('footer.privacy')}</p>
+        <p className="title-privacy">
+          {t('footer.privacy')}{' '}
+          <a href={t('app.repoUrl')} target="_blank" rel="noopener noreferrer">
+            {t('title.github')}
+          </a>
+        </p>
         <div className="title-secondary">
           <button type="button" className="btn" onClick={() => goTo('help')}>
             {t('help.title.button')}
