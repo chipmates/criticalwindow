@@ -18,6 +18,7 @@ export function Title() {
   return (
     <main className="title-screen">
       <div className="title-card">
+        <img className="title-mark" src="./icon.svg" alt="" width="72" height="72" />
         <p className="title-kicker">{t('app.workingTitleNote')}</p>
         <h1 className="title-name">{t('app.title')}</h1>
         <p className="title-tagline">{t('app.tagline')}</p>

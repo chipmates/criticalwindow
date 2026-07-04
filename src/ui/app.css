@@ -1563,3 +1563,9 @@ body {
   padding-left: var(--space-2);
   font-style: italic;
 }
+
+.title-mark {
+  justify-self: center;
+  width: 72px;
+  height: 72px;
+}
