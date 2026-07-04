@@ -125,7 +125,7 @@ export function Help({ onBack }: { onBack: () => void }) {
           {anchorTrackIds().map((track) => (
             <details key={track} className="help-anchor-track">
               <summary>
-                {t(ANCHOR_TRACK_LABEL[track] ?? ('resource.capability.label' as StringKey))}
+                {t(ANCHOR_TRACK_LABEL[track] ?? ('resource.capability.label'))}
               </summary>
               <table className="help-anchor-table">
                 <tbody>

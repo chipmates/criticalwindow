@@ -15,7 +15,7 @@ interface AnchorTrack {
 
 const TRACKS = (anchorsJson as { tracks: Record<string, AnchorTrack> }).tracks;
 
-export type AnchorTrackId = keyof typeof TRACKS & string;
+export type AnchorTrackId = keyof typeof TRACKS  ;
 
 export function anchorFor(track: string, value: number): string | null {
   const def = TRACKS[track];
