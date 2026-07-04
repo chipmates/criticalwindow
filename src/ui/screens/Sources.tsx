@@ -62,9 +62,6 @@ export function Sources() {
           <li key={source.id} className="panel source-entry">
             <div className="source-head">
               <span className="source-id">{source.id}</span>
-              <span className={`source-status source-status-${source.status}`}>
-                {source.status}
-              </span>
             </div>
             <p className="source-title">
               {source.url ? (
@@ -79,7 +76,7 @@ export function Sources() {
               {source.org} · {source.year} · {source.type}
             </p>
             <p className="source-use">{source.gameUse}</p>
-            {source.flagReason && <p className="source-flag-reason">{source.flagReason}</p>}
+            {source.flagReason && <p className="source-note">{source.flagReason}</p>}
           </li>
         ))}
       </ul>

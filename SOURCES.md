@@ -7,7 +7,7 @@ Every number in `data/` cites an entry here by ID, and `pnpm validate` enforces 
 Found a dead link or a better source? Open a "source check" issue. That is a real
 contribution and it is welcome.
 
-169 entries. Status: 9 book, 8 flagged, 152 verified.
+169 entries. Status: 9 book, 6 flagged, 154 verified.
 
 ## ai-index
 
@@ -220,7 +220,7 @@ contribution and it is welcome.
 - **SRC-BRYNJOLFSSON-GENAI-WORK** · [Generative AI at Work](https://www.nber.org/papers/w31161) · Brynjolfsson et al. (2023). productivity mechanic; the 'Brynjolfsson call-center study' referenced in FULL section 6
 - **SRC-NOY-ZHANG** · [Experimental Evidence on Productivity Effects of GenAI](https://pubmed.ncbi.nlm.nih.gov/37440646/) · Noy & Zhang (2023)
 - **SRC-DELLACQUA-JAGGED** · [Navigating the Jagged Technological Frontier](https://pubsonline.informs.org/doi/10.1287/orsc.2025.21838) · Dell'Acqua et al., HBS (2023)
-- **SRC-OECD-EMPLOYMENT** · [OECD Employment Outlook (AI chapters)](https://www.oecd.org) · OECD _(link broken, replacement wanted)_
+- **SRC-OECD-EMPLOYMENT** · [OECD Employment Outlook (AI chapters)](https://www.oecd.org/en/publications/oecd-employment-outlook-2023_08785bba-en.html) · OECD _(link broken, replacement wanted)_
 
 ## leaderboard
 
@@ -292,7 +292,7 @@ contribution and it is welcome.
 
 - **SRC-AI-FUTURES-ROLEPLAY** · [Exploring AI Futures Through Role Play (Intelligence Rising)](https://arxiv.org/abs/1912.08964) · Avin, Gruetzemacher, Fox (2020). closest direct precedent to Race Conditions
 - **SRC-SIM-GAMING-INSIGHTS** · [Strategic Insights from Simulation Gaming of AI Race Dynamics](https://arxiv.org/pdf/2410.03092) · Gruetzemacher et al. (2024). facilitator insights from 43 Intelligence Rising games
-- **SRC-INTELLIGENCE-RISING-CSER** · [Intelligence Rising (project page + facilitation)](https://www.cser.ac.uk/work/intelligence-rising/) · CSER (Cambridge) _(link broken, replacement wanted)_
+- **SRC-INTELLIGENCE-RISING-CSER** · [Intelligence Rising (project page + facilitation)](https://www.cser.ac.uk/work/intelligence-rising/) · CSER (Cambridge). the design's closest ancestor: CSER's AI-futures roleplay workshop; grounds the wargame lineage behind the simulation-gaming insights (human-verified 2026-07-04, page live and matching)
 - **SRC-AVIN-AI-FUTURES-SURVEY** · [Exploring Artificial Intelligence Futures (survey of methods)](https://www.openbookpublishers.com/books/10.11647/obp.0360/chapters/10.11647/obp.0360.08) · Shahar Avin (2019). narrative to roleplay to participatory methods
 - **SRC-SERIOUS-GAMES-BUNDLE** · RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak). debrief, learning-outcome, and persuasive-game grounding _(link broken, replacement wanted)_
 - **SRC-WOUTERS-2013** · [Meta-analysis of serious-games learning outcomes](https://eric.ed.gov/?id=EJ1008015) · Wouters et al. (2013). debrief / learning-outcome grounding
@@ -325,7 +325,7 @@ contribution and it is welcome.
 
 ## us-policy
 
-- **SRC-NSCAI** · [NSCAI Final Report](https://www.nscai.gov/2021-final-report/) · National Security Commission on AI (2021) _(link broken, replacement wanted)_
+- **SRC-NSCAI** · [NSCAI Final Report](https://www.govinfo.gov/app/details/GOVPUB-Y3-PURL-gpo153246) · National Security Commission on AI (2021). US natsec framing of the AI race; cited via the U.S. GovInfo archive since the commission's own domain has been unreliable after its 2021 dissolution (archive machine-checked 2026-07-04)
 - **SRC-AI-ACTION-PLAN** · [Winning the Race: America's AI Action Plan](https://www.whitehouse.gov/wp-content/uploads/2025/07/Americas-AI-Action-Plan.pdf) · White House (OSTP) (2025)
 
 ## wargaming

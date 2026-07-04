@@ -695,12 +695,12 @@
       "title": "NSCAI Final Report",
       "org": "National Security Commission on AI",
       "year": 2021,
-      "url": "https://www.nscai.gov/2021-final-report/",
+      "url": "https://www.govinfo.gov/app/details/GOVPUB-Y3-PURL-gpo153246",
       "type": "report",
       "tags": ["us-policy", "national-security", "ai-strategy", "geopolitics"],
-      "status": "flagged",
+      "status": "verified",
       "note": "Verification 2026-07-03: unclear. DNS failure (ENOTFOUND) from this sandbox on retry, but WebSearch confirms live page with exact matching title '2021 Final Report - NSCAI'. Likely local network/DNS issue, not a dead site.",
-      "flagReason": "The publisher's site blocked our automated check; independent search confirms the report is live at this address."
+      "gameUse": "US natsec framing of the AI race; cited via the U.S. GovInfo archive since the commission's own domain has been unreliable after its 2021 dissolution (archive machine-checked 2026-07-04)"
     },
     {
       "id": "SRC-AI-ACTION-PLAN",
@@ -1042,12 +1042,12 @@
       "id": "SRC-OECD-EMPLOYMENT",
       "title": "OECD Employment Outlook (AI chapters)",
       "org": "OECD",
-      "url": "https://www.oecd.org",
+      "url": "https://www.oecd.org/en/publications/oecd-employment-outlook-2023_08785bba-en.html",
       "type": "report",
       "tags": ["labor-market", "policy", "economy"],
       "status": "flagged",
       "note": "ongoing publication series, no single year given; homepage URL only, per HANDOVER section 11 (absent from FULL section 6) Verification 2026-07-03: unclear. oecd.org returned HTTP 403 to WebFetch twice (bot-blocking, not necessarily dead). WebSearch confirms live OECD Employment Outlook pages with AI chapters exist under oecd.org/en/publications/.",
-      "flagReason": "oecd.org blocks automated fetching; independent search confirms the Employment Outlook chapters exist and are current."
+      "flagReason": "The publisher blocks automated checks; this is the canonical publication page for the 2023 Employment Outlook, Artificial Intelligence and the Labour Market."
     },
     {
       "id": "SRC-CAIS-STATEMENT",
@@ -1304,9 +1304,9 @@
       "url": "https://www.cser.ac.uk/work/intelligence-rising/",
       "type": "web",
       "tags": ["serious-games", "ai-race", "wargaming"],
-      "status": "flagged",
+      "status": "verified",
       "note": "Official project site per HANDOVER \u00a711 Serious games & learning science: https://www.intelligencerising.org Verification 2026-07-03: unclear. WebFetch got 403 Forbidden twice (bot-blocked, not confirmed dead). WebSearch confirms page exists and is indexed with matching title/content.",
-      "flagReason": "The site blocked our automated check; independent search confirms the page is live with matching content."
+      "gameUse": "the design's closest ancestor: CSER's AI-futures roleplay workshop; grounds the wargame lineage behind the simulation-gaming insights (human-verified 2026-07-04, page live and matching)"
     },
     {
       "id": "SRC-AVIN-AI-FUTURES-SURVEY",

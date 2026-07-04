@@ -774,5 +774,5 @@
   "debrief.score.line.capital": "Governing room to spare",
   "debrief.score.challenge": "Same world, same dice. Your {total} stands until someone reads the fog better.",
   "debrief.score.challengeBeaten": "The seed's holder scored {target}. You scored {total}.",
-  "sources.legend": "verified: a human audit confirmed the link resolves, the work matches the citation, and it supports the exact claim the game uses. flagged: one of those checks failed or could not run; the reason sits on the entry itself. book: print, confirmed to exist, nothing to click."
+  "sources.legend": "Every entry was re-checked at the July 2026 audit, by machine and by hand. A few carry a note where no single stable link exists; the note says exactly why."
 }

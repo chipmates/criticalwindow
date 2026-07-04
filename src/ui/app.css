@@ -1555,10 +1555,11 @@ body {
   color: var(--ink-muted);
 }
 
-.source-flag-reason {
+.source-note {
   margin: 0;
   font-size: var(--text-sm);
-  color: var(--danger, #a33);
-  border-left: 3px solid var(--danger, #a33);
+  color: var(--ink-muted);
+  border-left: 3px solid var(--rule);
   padding-left: var(--space-2);
+  font-style: italic;
 }
