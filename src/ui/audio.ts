@@ -10,16 +10,29 @@ import type { EndingId } from '../engine/types';
 
 const PLAYLIST = ['audio/music-i-walk-with-ghosts.mp3'] as const;
 
+import audioScript from '../../scripts/audio-script.json';
+
 /**
- * Which generated voice set the app plays. '' is the primary eleven_v3 set;
- * '-v2' switches every clip to the eleven_multilingual_v2 backup. One line to
- * flip the whole game's narration between the two models.
+ * Model choice per VOICE, judged by ear (Michel, 2026-07-04): the narrator
+ * reads best in the eleven_v3 rendition (''), the advisor in the
+ * multilingual v2 backup ('-v2'). Both sets ship; this map picks per clip.
  */
-const VOICE_MODEL_SUFFIX = '';
+const MODEL_SUFFIX: Record<string, string> = {
+  narrator: '',
+  advisor: '-v2',
+};
+
+const VOICE_BY_KEY = new Map(
+  (audioScript as { surfaces: Array<{ key: string; voice: string }> }).surfaces.map((s) => [
+    s.key,
+    s.voice,
+  ]),
+);
 
 /** A string key becomes its pre-generated voice file (scripts/generate-audio.ts). */
 function voicePath(stringKey: string): string {
-  return `audio/voice-${stringKey.replace(/\./g, '-')}${VOICE_MODEL_SUFFIX}.mp3`;
+  const suffix = MODEL_SUFFIX[VOICE_BY_KEY.get(stringKey) ?? 'narrator'] ?? '';
+  return `audio/voice-${stringKey.replace(/\./g, '-')}${suffix}.mp3`;
 }
 
 let musicEl: HTMLAudioElement | null = null;
