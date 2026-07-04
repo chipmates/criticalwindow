@@ -140,7 +140,7 @@ interface CompactView {
   preset: string;
   resources: Record<string, number>;
   society: Record<string, number>;
-  rival: { posture: string; capability: number };
+  rival: { posture: string; capability: number; ratification: string | null };
   evalBand: { low: number; high: number } | null;
   allocation: { capability: number; safety: number; diffusion: number };
   flags: string[];
@@ -161,6 +161,14 @@ function serializeView(data: EngineData, state: GameState, seat: 'usa' | 'china'
     rival: {
       posture: postureFromTrust(data.parameters, state.world.bilateralTrust),
       capability: them.resources.capability,
+      // Mirrors the UI's diplomatic weather line: visible only once the
+      // treaty channel is open, never the raw number (test what ships).
+      ratification: state.world.flags.includes('treatyChannel')
+        ? them.resources.politicalCapital >=
+          data.parameters.thresholds.treatySignPoliticalCapitalMin.value
+          ? 'favorable'
+          : 'hostile'
+        : null,
     },
     evalBand: lastEval ? { low: lastEval.bandLow, high: lastEval.bandHigh } : null,
     allocation: { ...me.allocation },
