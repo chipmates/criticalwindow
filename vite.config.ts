@@ -21,8 +21,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg'],
       manifest: {
-        name: 'Race Conditions',
-        short_name: 'Race Conditions',
+        name: 'Critical Window',
+        short_name: 'Critical Window',
         description: 'An open source strategy game about the AI race.',
         start_url: './',
         display: 'standalone',

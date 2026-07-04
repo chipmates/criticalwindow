@@ -1,6 +1,6 @@
 {
-  "app.title": "Race Conditions",
-  "app.workingTitleNote": "working title",
+  "app.title": "Critical Window",
+  "app.workingTitleNote": "crit-i-cal win-dow, noun: the short stretch of time in which action still changes the outcome",
   "app.tagline": "An open source strategy game about the AI race.",
   "app.scaffoldStatus": "Prototype under construction. Nothing playable yet.",
   "ticker.early.0": "Markets rally on news that markets can be automated.",
@@ -313,7 +313,7 @@
   "settings.audio": "Sound",
   "settings.audio.explain": "Off by default. Everything works silent.",
   "settings.audio.music": "Music",
-  "settings.audio.voice": "Ending narration",
+  "settings.audio.voice": "Voice narration",
   "settings.audio.credit": "Music: 'I Walk With Ghosts' by Scott Buckley, CC BY 4.0",
   "saves.heading": "Saves",
   "saves.auto": "Autosave",
@@ -542,13 +542,14 @@
   "handoff.body": "{seat} is up next. The eval band and hand you just saw belong to the other seat. No peeking is the whole game.",
   "handoff.continue": "I am {seat}. Begin.",
   "title.hook": "Summer 2026. You take office holding the most dangerous portfolio on earth: the AI race. Sixteen quarters to 2030. Your eval reports are honest ranges, not answers. Your rival is racing, your public is nervous, and two dice were sealed in an envelope before you sat down.",
-  "title.feature.window": "16 quarters to 2030",
   "title.feature.seats": "Play the US or China. Or both, one device",
-  "title.feature.sources": "Every number cites a source",
-  "title.feature.privacy": "No accounts. No tracking. Free forever",
+  "title.feature.sources": "All 168 sources cited, every number traceable",
+  "title.feature.privacy": "No accounts. No tracking. Free",
   "title.feature.endings": "Five endings. The good ones are earned",
   "title.playNow": "Take office",
-  "title.hookEndings": "Racing feels rational every single turn. That is the trap. Can you cross the threshold with systems that hold, sign the treaty nobody thanks you for, or hold a country together while the dashboards go vertical?",
   "resource.substitution.label": "Chip Substitution",
-  "debrief.hidden.decidedBy": "The ending was decided by {seat}: their systems crossed the line, so their true alignment is the number that mattered."
+  "debrief.hidden.decidedBy": "The ending was decided by {seat}: their systems crossed the line, so their true alignment is the number that mattered.",
+  "title.feature.seed": "Deterministic seeds: share a world, compare runs",
+  "title.soundOn": "Sound: on",
+  "title.soundOff": "Sound: off"
 }

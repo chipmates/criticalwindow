@@ -7,6 +7,8 @@ export function Title() {
   const goTo = useStore((s) => s.goTo);
   const loadFrom = useStore((s) => s.loadFrom);
   const hasAutosave = useStore((s) => s.hasAutosave)();
+  const musicOn = useStore((s) => s.settings.musicOn);
+  const updateSettings = useStore((s) => s.updateSettings);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
@@ -20,11 +22,10 @@ export function Title() {
           <span className="title-race-bar title-race-rival" />
         </div>
         <p className="title-hook">{t('title.hook')}</p>
-        <p className="title-hook title-hook-second">{t('title.hookEndings')}</p>
         <ul className="title-features">
-          <li>{t('title.feature.window')}</li>
           <li>{t('title.feature.seats')}</li>
           <li>{t('title.feature.sources')}</li>
+          <li>{t('title.feature.seed')}</li>
           <li>{t('title.feature.endings')}</li>
           <li>{t('title.feature.privacy')}</li>
         </ul>
@@ -45,6 +46,14 @@ export function Title() {
           </button>
           <button type="button" className="btn" onClick={() => goTo('prologue')}>
             {t('prologue.replay')}
+          </button>
+          <button
+            type="button"
+            className="btn"
+            aria-pressed={musicOn}
+            onClick={() => updateSettings({ musicOn: !musicOn })}
+          >
+            {musicOn ? t('title.soundOn') : t('title.soundOff')}
           </button>
           <button
             type="button"
