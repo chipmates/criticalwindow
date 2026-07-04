@@ -2,6 +2,14 @@
   "name": "race-conditions",
   "private": true,
   "version": "0.1.1",
+  "homepage": "https://criticalwindow.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chipmates/criticalwindow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chipmates/criticalwindow/issues"
+  },
   "type": "module",
   "description": "An open source strategy game about the AI race",
   "license": "AGPL-3.0-only",
