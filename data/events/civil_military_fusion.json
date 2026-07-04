@@ -1,0 +1,52 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "civil_military_fusion",
+  "kind": "choice",
+  "seats": ["china"],
+  "title": "strings:event.civilMilitaryFusion.title",
+  "body": "strings:event.civilMilitaryFusion.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 6,
+    "turnMax": 14,
+    "weight": 1
+  },
+  "choices": [
+    {
+      "label": "strings:event.civilMilitaryFusion.approveFusion",
+      "effects": {
+        "compute": 150,
+        "capability": 50,
+        "rival.trust": -100,
+        "hidden.agencyErosion": 50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "talent": -100,
+            "capital": -50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.civilMilitaryFusion.keepCivilian",
+      "effects": {
+        "politicalCapital": -50,
+        "rival.trust": 50,
+        "safetyInsight": 50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 5,
+          "effects": {
+            "capability": -50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-AI2027", "SRC-HO-INTL-INSTITUTIONS"],
+  "tags": ["military", "governance", "compute"]
+}

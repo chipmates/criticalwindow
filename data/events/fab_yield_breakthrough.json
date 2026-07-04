@@ -1,0 +1,52 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "fab_yield_breakthrough",
+  "kind": "choice",
+  "seats": ["china"],
+  "title": "strings:event.fabYieldBreakthrough.title",
+  "body": "strings:event.fabYieldBreakthrough.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 6,
+    "turnMax": 12,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.fabYieldBreakthrough.fullSubsidy",
+      "effects": {
+        "capital": -300,
+        "substitution": 200,
+        "politicalCapital": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "capability": 50,
+            "energy": -50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.fabYieldBreakthrough.stagedFunding",
+      "effects": {
+        "capital": -100,
+        "substitution": 100,
+        "politicalCapital": 50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 5,
+          "effects": {
+            "capital": -100,
+            "substitution": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-EPOCH-COMPUTE", "SRC-CSIS-EXPORT"],
+  "tags": ["chips", "subsidy", "substitution"]
+}

@@ -1,6 +1,6 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "1189fbd5e4ce32",
+  "dataVersion": "189f29ffb2e494",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
@@ -135,7 +135,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "eval_breakthrough",
+      "eventId": "coal_province_datacenter_bid",
       "choiceIndex": 1,
       "seat": "china"
     },
@@ -209,12 +209,12 @@
     }
   ],
   "perTurnHashes": [
-    "08ad1a814b258a",
-    "143c70583fc782",
-    "00f287833a60d2",
-    "13ba2f31bf8c0a",
-    "05b1be439a10ee",
-    "06281dc643439b"
+    "1cc71ea9fce0d4",
+    "08181eca179252",
+    "1c1c5f888e9d22",
+    "1b2e448fae9af6",
+    "01a68d73e5027b",
+    "0465e6cb9f1d31"
   ],
-  "finalHash": "06281dc643439b"
+  "finalHash": "0465e6cb9f1d31"
 }

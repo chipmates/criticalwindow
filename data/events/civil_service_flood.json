@@ -1,0 +1,50 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "civil_service_flood",
+  "kind": "choice",
+  "seats": ["china"],
+  "title": "strings:event.civilServiceFlood.title",
+  "body": "strings:event.civilServiceFlood.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 5,
+    "turnMax": 12,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.civilServiceFlood.expandCivilService",
+      "effects": {
+        "politicalCapital": 100,
+        "capital": -150,
+        "talent": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "capability": -50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.civilServiceFlood.subsidizeStartups",
+      "effects": {
+        "capital": -100,
+        "talent": 100,
+        "publicTrust": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "capability": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-OECD-EMPLOYMENT", "SRC-IMF-GENAI"],
+  "tags": ["labor", "talent", "society"]
+}

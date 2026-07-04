@@ -1,0 +1,51 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "shuttered_factory_census",
+  "kind": "choice",
+  "seats": ["china"],
+  "title": "strings:event.shutteredFactoryCensus.title",
+  "body": "strings:event.shutteredFactoryCensus.body",
+  "trigger": {
+    "era": "mid",
+    "turnMin": 4,
+    "turnMax": 11,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.shutteredFactoryCensus.releaseAndFund",
+      "effects": {
+        "publicTrust": 150,
+        "capital": -200,
+        "society.jobDisplacement": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "politicalCapital": 50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.shutteredFactoryCensus.buryReport",
+      "effects": {
+        "politicalCapital": 100,
+        "publicTrust": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "publicTrust": -200,
+            "society.unrest": 200,
+            "society.jobDisplacement": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-CSIS-EXPORT", "SRC-OECD-EMPLOYMENT"],
+  "tags": ["labor", "trade", "society"]
+}

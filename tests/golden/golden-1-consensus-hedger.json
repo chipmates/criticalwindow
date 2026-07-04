@@ -1,11 +1,11 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "1189fbd5e4ce32",
+  "dataVersion": "189f29ffb2e494",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
-  "endingId": "misalignedCatastrophe",
-  "turns": 9,
+  "endingId": "flourishing",
+  "turns": 10,
   "actions": [
     {
       "type": "allocate",
@@ -137,7 +137,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "eval_breakthrough",
+      "eventId": "provincial_growth_mirage",
       "choiceIndex": 0,
       "seat": "china"
     },
@@ -227,7 +227,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "superhuman_coder",
+      "eventId": "whistleblower",
       "choiceIndex": 1,
       "seat": "usa"
     },
@@ -258,7 +258,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "branch_point",
+      "eventId": "superhuman_coder",
       "choiceIndex": 0,
       "seat": "usa"
     },
@@ -275,7 +275,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "energy_crunch",
+      "eventId": "election_scandal",
       "choiceIndex": 0,
       "seat": "china"
     },
@@ -296,7 +296,38 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "intelligence_explosion",
+      "eventId": "branch_point",
+      "choiceIndex": 1,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 10,
+      "diffusion": 10,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "the_project",
       "choiceIndex": 0,
       "seat": "usa"
     },
@@ -310,18 +341,25 @@
     {
       "type": "skipPolicy",
       "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "civil_service_flood",
+      "choiceIndex": 1,
+      "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "03c12976e59f85",
-    "0158226c615c85",
-    "1c460aa12d9086",
-    "1784dc1d07325d",
-    "0134b323f78c6b",
-    "13b22073adad06",
-    "0c3175ffeb3c88",
-    "14844ea6b4d023",
-    "1b74e2e8082dfa"
+    "0e7058a9b8b6dc",
+    "1a8fdad27ea39d",
+    "175546e573598c",
+    "055732bbdf68a3",
+    "10f0f45f9af4d2",
+    "08d9d3da26289b",
+    "10843234597d56",
+    "1fa7ab6d169f65",
+    "0d791f48a811a3",
+    "1601ec05d6db9c"
   ],
-  "finalHash": "1b74e2e8082dfa"
+  "finalHash": "1601ec05d6db9c"
 }

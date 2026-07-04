@@ -1,0 +1,52 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "coal_province_datacenter_bid",
+  "kind": "choice",
+  "seats": ["china"],
+  "title": "strings:event.coalProvinceDatacenterBid.title",
+  "body": "strings:event.coalProvinceDatacenterBid.body",
+  "trigger": {
+    "era": "early",
+    "turnMin": 3,
+    "turnMax": 9,
+    "weight": 2
+  },
+  "choices": [
+    {
+      "label": "strings:event.coalProvinceDatacenterBid.siteLocally",
+      "effects": {
+        "energy": 150,
+        "politicalCapital": 100,
+        "capital": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "capital": -100,
+            "publicTrust": -100
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.coalProvinceDatacenterBid.subsidizeElsewhere",
+      "effects": {
+        "capital": -150,
+        "compute": 50,
+        "energy": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "politicalCapital": -100,
+            "society.unrest": 100
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-IEA-ENERGY-AI", "SRC-EPOCH-COMPUTE"],
+  "tags": ["energy", "politics", "chokepoint"]
+}

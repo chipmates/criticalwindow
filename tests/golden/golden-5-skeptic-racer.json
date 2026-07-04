@@ -1,6 +1,6 @@
 {
   "name": "golden-5-skeptic-racer",
-  "dataVersion": "1189fbd5e4ce32",
+  "dataVersion": "189f29ffb2e494",
   "seed": "golden-5",
   "presetId": "skeptic",
   "bot": "racer",
@@ -209,7 +209,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "chip_smuggling",
+      "eventId": "energy_crunch",
       "choiceIndex": 0,
       "seat": "china"
     },
@@ -278,20 +278,20 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "whistleblower",
+      "eventId": "civil_service_flood",
       "choiceIndex": 1,
       "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "1908f32e2c8ec2",
-    "08f72668ea2e13",
-    "144d2ae3022194",
-    "168f1c22f2d2e2",
-    "0a7ce4a14d3d3d",
-    "0eab4304eee275",
-    "0b3feb6e15290b",
-    "038e4b1a3c297a"
+    "00d711f93807d9",
+    "04d846bc102b7a",
+    "03f8a574275724",
+    "1e16bf482366ab",
+    "1f1710d0cad5f4",
+    "1114056dd5aed5",
+    "0fe1ab191f8412",
+    "17195972710bef"
   ],
-  "finalHash": "038e4b1a3c297a"
+  "finalHash": "17195972710bef"
 }

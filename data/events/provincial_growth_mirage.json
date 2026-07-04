@@ -1,0 +1,50 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "provincial_growth_mirage",
+  "kind": "choice",
+  "seats": ["china"],
+  "title": "strings:event.provincialGrowthMirage.title",
+  "body": "strings:event.provincialGrowthMirage.body",
+  "trigger": {
+    "era": "early",
+    "turnMin": 2,
+    "turnMax": 8,
+    "weight": 3
+  },
+  "choices": [
+    {
+      "label": "strings:event.provincialGrowthMirage.auditPublicly",
+      "effects": {
+        "publicTrust": 100,
+        "politicalCapital": -100,
+        "capital": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 5,
+          "effects": {
+            "politicalCapital": 50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.provincialGrowthMirage.manageQuietly",
+      "effects": {
+        "politicalCapital": 100,
+        "publicTrust": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "publicTrust": -150,
+            "society.unrest": 100
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-AI-INDEX-2026"],
+  "tags": ["governance", "legitimacy", "media"]
+}
