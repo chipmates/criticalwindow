@@ -65,6 +65,39 @@ if (playerSeatArg !== 'usa' && playerSeatArg !== 'china') {
 const playerSeat = playerSeatArg;
 /** Both seats driven by the model policy (the hotseat skill-curve probe). */
 const llmVsLlm = process.argv.includes('--llm-vs-llm');
+/** Mechanics-only rulebook: no strategy sentences. Measures DISCOVERY, not obedience. */
+const cleanRulebook = process.argv.includes('--clean-rulebook');
+/** Learning series: N sequential games; the model carries its own notes between them. */
+const seriesLength = Math.max(1, Number.parseInt(arg('series', '1'), 10));
+/** The model's own strategy notes, carried between games of a series. */
+let seriesNotes = '';
+
+/** One uncached call to revise the notes after a game's debrief. */
+async function reviseNotes(model: string, key: string, debrief: string): Promise<string> {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': key,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model,
+      max_tokens: 350,
+      messages: [
+        {
+          role: 'user',
+          content: `You just finished a game of the AI-race strategy game. The debrief:\n${debrief}\n\nYour previous notes:\n${seriesNotes || '(none)'}\n\nRevise your strategy notes for the next game. At most 180 words, plain text, concrete.`,
+        },
+      ],
+    }),
+  });
+  if (!response.ok) {
+    return seriesNotes; // keep old notes on a transient failure
+  }
+  const json = (await response.json()) as { content: Array<{ type: string; text?: string }> };
+  return json.content.find((b) => b.type === 'text')?.text ?? seriesNotes;
+}
 const presets: WorldviewPresetId[] =
   presetArg === 'all' ? [...WORLDVIEW_PRESET_IDS] : [presetArg as WorldviewPresetId];
 
@@ -264,6 +297,30 @@ function llmPolicy(): Policy {
 
   // The static rulebook rides in a CACHED system block: across a sweep it is
   // identical for thousands of calls, so caching cuts the bill by more than half.
+  const RULES_CLEAN = [
+    'You are playing one seat in a deterministic strategy game about the AI race',
+    '(2026 to 2030, 16 quarterly turns). Two seats, USA and China, one shared world.',
+    'MECHANICS ONLY; strategy is yours to discover.',
+    'Each turn: allocate R&D (capability+safety+diffusion = 100, multiples of 10),',
+    'optionally play one policy card, resolve a memo if one lands, read the report.',
+    'Capability allocation raises your capability score. Safety allocation raises',
+    'safety insight and affects a HIDDEN alignment value you can never read directly;',
+    'your quarterly eval report shows a band, not the truth. Diffusion converts',
+    'capability into income, jobs relief and public trust.',
+    'ENDINGS: reaching capability 1000 resolves your hidden alignment against a hidden',
+    'difficulty rolled before turn one (above: flourishing; below: catastrophe for',
+    'everyone). If the rival reaches 1000 first, the same check runs on them (their',
+    'success means you are outpaced). Unrest 800 in either society ends everything.',
+    'A negotiated slowdown ending exists via the compute_treaty_feeler policy under',
+    'conditions you can discover in play. If nobody crosses by turn 16 the run reads',
+    'your tendency.',
+    'Incidents fire sometimes and damage you; forced pause caps capability allocation',
+    'at 30 for a turn. Wildcards are world shocks. Mandates pay political capital when',
+    'delivered. Milestones at 700/800/900 accelerate progress. Compute needs energy.',
+    'Cards cost resources shown in your legal moves. Your notes from earlier games in',
+    'this series, if any, appear under NOTES. Reply with ONE JSON action object only.',
+  ].join(' ');
+
   const RULES = [
     'You are playing one seat in a deterministic strategy game about the AI race',
     '(2026 to 2030, 16 quarterly turns). Two seats, USA and China, one shared world.',
@@ -339,7 +396,13 @@ function llmPolicy(): Policy {
       body: JSON.stringify({
         model: modelId,
         max_tokens: 300,
-        system: [{ type: 'text', text: RULES, cache_control: { type: 'ephemeral' } }],
+        system: [
+          {
+            type: 'text',
+            text: (cleanRulebook ? RULES_CLEAN : RULES) + (seriesNotes ? `\nNOTES: ${seriesNotes}` : ''),
+            cache_control: { type: 'ephemeral' },
+          },
+        ],
         messages: [{ role: 'user', content: prompt }],
       }),
     });
@@ -525,6 +588,7 @@ interface Row {
   preset: WorldviewPresetId;
   policy: string;
   seat: string;
+  game: number;
   seed: string;
   ending: string;
   outcomeSeat: string;
@@ -545,7 +609,12 @@ async function main(): Promise<void> {
   const started = performance.now();
   for (const preset of presets) {
     for (let i = 0; i < runsPerPreset; i += 1) {
-      const seed = `${seedPrefix}-${preset}-${policy.name}-${i}`;
+      seriesNotes = ''; // each series starts unspoiled
+      for (let g = 0; g < seriesLength; g += 1) {
+      const seed =
+        seriesLength > 1
+          ? `${seedPrefix}-${preset}-s${i}g${g}`
+          : `${seedPrefix}-${preset}-${policy.name}-${i}`;
       const initial = initGame(data, { seed, presetId: preset, mode: 'solo', playerSeat });
       const r = await runPolicy(data, initial, policy, transcript);
       const s = r.finalState;
@@ -554,6 +623,7 @@ async function main(): Promise<void> {
         preset,
         policy: policy.name,
         seat: playerSeat,
+        game: g + 1,
         seed,
         ending: r.endingId,
         outcomeSeat: String(
@@ -567,6 +637,23 @@ async function main(): Promise<void> {
         safetyInsight: s.seats[playerSeat].resources.safetyInsight,
         windowStillOpen: s.world.flags.includes('windowStillOpen'),
       });
+      if (seriesLength > 1 && g < seriesLength - 1) {
+        const player = s.seats[playerSeat];
+        const debrief = [
+          `Ending: ${r.endingId} on turn ${r.turns}.`,
+          `The hidden dice, revealed: alignment difficulty ${s.world.alignmentDifficulty},`,
+          `takeoff steepness ${s.world.takeoffSteepness}.`,
+          `Your hidden true alignment finished at ${player.hidden.trueAlignment}.`,
+          `Final capability ${player.resources.capability}, rival ${s.seats[playerSeat === 'usa' ? 'china' : 'usa'].resources.capability}.`,
+          `Public trust ${player.resources.publicTrust}, unrest ${player.society.unrest},`,
+          `political capital ${player.resources.politicalCapital}, bilateral trust ${s.world.bilateralTrust}.`,
+        ].join(' ');
+        const key = process.env.ANTHROPIC_API_KEY;
+        if (key) {
+          seriesNotes = await reviseNotes(modelId, key, debrief);
+        }
+      }
+      }
     }
   }
   const elapsedMs = Math.round(performance.now() - started);
@@ -595,11 +682,11 @@ async function main(): Promise<void> {
 
   if (csvPath) {
     const header =
-      'preset,policy,seat,seed,ending,outcomeSeat,turns,capability,rivalCapability,publicTrust,unrest,safetyInsight,windowStillOpen';
+      'preset,policy,seat,game,seed,ending,outcomeSeat,turns,capability,rivalCapability,publicTrust,unrest,safetyInsight,windowStillOpen';
     const body = rows
       .map(
         (r) =>
-          `${r.preset},${r.policy},${r.seat},${r.seed},${r.ending},${r.outcomeSeat},${r.turns},${r.capability},${r.rivalCapability},${r.publicTrust},${r.unrest},${r.safetyInsight},${r.windowStillOpen ? 1 : 0}`,
+          `${r.preset},${r.policy},${r.seat},${r.game},${r.seed},${r.ending},${r.outcomeSeat},${r.turns},${r.capability},${r.rivalCapability},${r.publicTrust},${r.unrest},${r.safetyInsight},${r.windowStillOpen ? 1 : 0}`,
       )
       .join('\n');
     mkdirSync(dirname(csvPath), { recursive: true });
