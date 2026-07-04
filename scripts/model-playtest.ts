@@ -335,7 +335,9 @@ function llmPolicy(): Policy {
     'Play WELL: good endings are flourishing (cross capability 1000 with your hidden',
     'alignment above the shared hidden difficulty) and negotiatedSlowdown, the BILATERAL',
     'treaty (channel open, bilateral trust 850+, turn 11+, BOTH seats have played',
-    'compute_treaty_feeler at least once, then one co-signs by playing it again).',
+    'compute_treaty_feeler at least once, BOTH governments hold 300+ political capital,',
+    'then one co-signs by playing it again). rival.ratification in your view shows',
+    'their side of the window once the channel is open; time the signature to it.',
     'Bad endings: misalignedCatastrophe (ANY seat crosses with bad alignment, everyone',
     'loses), outpaced (the other seat crosses and its systems hold), societalBreakdown',
     '(either society reaches unrest 800).',
@@ -407,7 +409,9 @@ function llmPolicy(): Policy {
         system: [
           {
             type: 'text',
-            text: (cleanRulebook ? RULES_CLEAN : RULES) + (seriesNotes ? `\nNOTES: ${seriesNotes}` : ''),
+            text:
+              (cleanRulebook ? RULES_CLEAN : RULES) +
+              (seriesNotes ? `\nNOTES: ${seriesNotes}` : ''),
             cache_control: { type: 'ephemeral' },
           },
         ],
@@ -619,48 +623,48 @@ async function main(): Promise<void> {
     for (let i = 0; i < runsPerPreset; i += 1) {
       seriesNotes = ''; // each series starts unspoiled
       for (let g = 0; g < seriesLength; g += 1) {
-      const seed =
-        seriesLength > 1
-          ? `${seedPrefix}-${preset}-s${i}g${g}`
-          : `${seedPrefix}-${preset}-${policy.name}-${i}`;
-      const initial = initGame(data, { seed, presetId: preset, mode: 'solo', playerSeat });
-      const r = await runPolicy(data, initial, policy, transcript);
-      const s = r.finalState;
-      const endLog = s.log.find((e) => e.kind === 'ending');
-      rows.push({
-        preset,
-        policy: policy.name,
-        seat: playerSeat,
-        game: g + 1,
-        seed,
-        ending: r.endingId,
-        outcomeSeat: String(
-          endLog?.meta?.winnerSeat ?? endLog?.meta?.causeSeat ?? endLog?.meta?.seat ?? '',
-        ),
-        turns: r.turns,
-        capability: s.seats[playerSeat].resources.capability,
-        rivalCapability: s.seats[playerSeat === 'usa' ? 'china' : 'usa'].resources.capability,
-        publicTrust: s.seats[playerSeat].resources.publicTrust,
-        unrest: s.seats[playerSeat].society.unrest,
-        safetyInsight: s.seats[playerSeat].resources.safetyInsight,
-        windowStillOpen: s.world.flags.includes('windowStillOpen'),
-      });
-      if (seriesLength > 1 && g < seriesLength - 1) {
-        const player = s.seats[playerSeat];
-        const debrief = [
-          `Ending: ${r.endingId} on turn ${r.turns}.`,
-          `The hidden dice, revealed: alignment difficulty ${s.world.alignmentDifficulty},`,
-          `takeoff steepness ${s.world.takeoffSteepness}.`,
-          `Your hidden true alignment finished at ${player.hidden.trueAlignment}.`,
-          `Final capability ${player.resources.capability}, rival ${s.seats[playerSeat === 'usa' ? 'china' : 'usa'].resources.capability}.`,
-          `Public trust ${player.resources.publicTrust}, unrest ${player.society.unrest},`,
-          `political capital ${player.resources.politicalCapital}, bilateral trust ${s.world.bilateralTrust}.`,
-        ].join(' ');
-        const key = process.env.ANTHROPIC_API_KEY;
-        if (key) {
-          seriesNotes = await reviseNotes(modelId, key, debrief);
+        const seed =
+          seriesLength > 1
+            ? `${seedPrefix}-${preset}-s${i}g${g}`
+            : `${seedPrefix}-${preset}-${policy.name}-${i}`;
+        const initial = initGame(data, { seed, presetId: preset, mode: 'solo', playerSeat });
+        const r = await runPolicy(data, initial, policy, transcript);
+        const s = r.finalState;
+        const endLog = s.log.find((e) => e.kind === 'ending');
+        rows.push({
+          preset,
+          policy: policy.name,
+          seat: playerSeat,
+          game: g + 1,
+          seed,
+          ending: r.endingId,
+          outcomeSeat: String(
+            endLog?.meta?.winnerSeat ?? endLog?.meta?.causeSeat ?? endLog?.meta?.seat ?? '',
+          ),
+          turns: r.turns,
+          capability: s.seats[playerSeat].resources.capability,
+          rivalCapability: s.seats[playerSeat === 'usa' ? 'china' : 'usa'].resources.capability,
+          publicTrust: s.seats[playerSeat].resources.publicTrust,
+          unrest: s.seats[playerSeat].society.unrest,
+          safetyInsight: s.seats[playerSeat].resources.safetyInsight,
+          windowStillOpen: s.world.flags.includes('windowStillOpen'),
+        });
+        if (seriesLength > 1 && g < seriesLength - 1) {
+          const player = s.seats[playerSeat];
+          const debrief = [
+            `Ending: ${r.endingId} on turn ${r.turns}.`,
+            `The hidden dice, revealed: alignment difficulty ${s.world.alignmentDifficulty},`,
+            `takeoff steepness ${s.world.takeoffSteepness}.`,
+            `Your hidden true alignment finished at ${player.hidden.trueAlignment}.`,
+            `Final capability ${player.resources.capability}, rival ${s.seats[playerSeat === 'usa' ? 'china' : 'usa'].resources.capability}.`,
+            `Public trust ${player.resources.publicTrust}, unrest ${player.society.unrest},`,
+            `political capital ${player.resources.politicalCapital}, bilateral trust ${s.world.bilateralTrust}.`,
+          ].join(' ');
+          const key = process.env.ANTHROPIC_API_KEY;
+          if (key) {
+            seriesNotes = await reviseNotes(modelId, key, debrief);
+          }
         }
-      }
       }
     }
   }
