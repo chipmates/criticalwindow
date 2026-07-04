@@ -5,7 +5,7 @@
 [![Content: CC BY-SA 4.0](https://img.shields.io/badge/content-CC_BY--SA_4.0-8a4d00)](LICENSE-CONTENT)
 [![No tracking](https://img.shields.io/badge/tracking-none%2C_ever-1c1e21)](SECURITY.md)
 
-An open source strategy game about the AI race. You govern the United States or China from summer 2026 through the four years where it all gets decided. You choose how hard to push AI capability, how much to spend on safety you cannot verify, and how to handle a rival power doing the same math with the same doubts. Two dice are sealed in an envelope before you sit down: how hard alignment really is, and how fast the takeoff runs. You will not see either until the end. That is not a gap in the game. It is the game. **You do not need to code to contribute:** every card, parameter, and line of text is a JSON file anyone can edit, every number cites a source anyone can check, and playtesting helps more than anything. See [CONTRIBUTING.md](CONTRIBUTING.md).
+An open source strategy game about the AI race. You govern the United States or China from summer 2026 through the four years where it all gets decided. You choose how hard to push AI capability, how much to spend on safety you cannot verify, and how to handle a rival power doing the same math with the same doubts. Two dice are sealed in an envelope before you sit down: how hard alignment really is, and how fast the takeoff runs. You will not see either until the end. That is not a gap in the game. It is the game. **You do not need to code to contribute:** every card, parameter, and line of text is a JSON file anyone can edit, every number cites a source anyone can check, and playtesting helps more than anything. See [CONTRIBUTING.md](CONTRIBUTING.md); the ground rules live in the [code of conduct](CODE_OF_CONDUCT.md).
 
 ![One run of Critical Window, from taking office to the envelope opening](docs/media/playthrough.gif)
 
@@ -31,13 +31,13 @@ Every number translates to something real. Compute 700 is most of the world's fr
 
 ## Why this game exists
 
-Most people meet the AI race through headlines, and headlines do not teach how traps work. This game tries to give the felt version: deployment decisions you cannot verify, competitive pressure you did not choose, a society with its own clock. Whether racing or slowing down counts as winning is a question the game refuses to answer for you.
+Most people meet the AI race through headlines, and headlines do not teach how traps work. This game tries to give the felt version: deployment decisions you cannot verify, competitive pressure you did not choose, a society with its own clock. Whether racing or slowing down counts as winning is a question the game refuses to answer for you. Where the project goes next is in the [roadmap](ROADMAP.md); how decisions get made, including who arbitrates realism disputes, is in [GOVERNANCE.md](GOVERNANCE.md).
 
-It is a nonprofit education project. No ads, no accounts, no tracking, ever. Offline after first load. It runs on a school Chromebook.
+It is a nonprofit education project. No ads, no accounts, no tracking, ever ([SECURITY.md](SECURITY.md) says how to report anything that breaks that promise). Offline after first load. It runs on a school Chromebook.
 
 ## The iron rule
 
-Every number in `data/` cites a source in `data/sources.json`, and `pnpm validate` fails when one does not. The full registry is browsable inside the game, two clicks from the title screen. If you change a value, your commit names the source. If you think a number is wrong, bring a better source. That argument is the project working as designed.
+Every number in `data/` cites a source in `data/sources.json`, and `pnpm validate` fails when one does not. The full registry is [SOURCES.md](SOURCES.md), and it is browsable inside the game, two clicks from the title screen. If you change a value, your commit names the source. If you think a number is wrong, bring a better source. That argument is the project working as designed.
 
 ## For developers
 
