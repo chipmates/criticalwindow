@@ -1,5 +1,5 @@
 {
-  "comment": "Descriptive UI anchors: each index translated back to the sourced reality it came from. NEVER read by the engine; zero balance impact. Nearest anchor at or below the value shows under the meter.",
+  "comment": "Descriptive UI anchors: each index translated back to the sourced reality it came from. NEVER read by the engine; zero balance impact. Nearest anchor at or below the value shows under the meter. Tracks with an honest real-world unit also carry a continuous mapping (unit.points, interpolated; capability log-scale over task-horizon hours); tracks without one keep qualitative rungs and never fake precision.",
   "tracks": {
     "capability": {
       "sourceIds": ["SRC-METR-HORIZON", "SRC-AI2027"],
@@ -32,7 +32,22 @@
           "at": 900,
           "label": "strings:anchor.capability.900"
         }
-      ]
+      ],
+      "unit": {
+        "template": "strings:unit.capability",
+        "points": [
+          [0, 0.08],
+          [150, 0.5],
+          [350, 2],
+          [500, 24],
+          [700, 240],
+          [800, 720],
+          [900, 8760],
+          [1000, 43800]
+        ],
+        "scale": "log",
+        "decimals": 0
+      }
     },
     "compute": {
       "sourceIds": ["SRC-EPOCH-COMPUTE"],
@@ -57,7 +72,20 @@
           "at": 900,
           "label": "strings:anchor.compute.900"
         }
-      ]
+      ],
+      "unit": {
+        "template": "strings:unit.compute",
+        "points": [
+          [0, 0],
+          [250, 15],
+          [450, 35],
+          [700, 65],
+          [900, 85],
+          [1000, 95]
+        ],
+        "scale": "linear",
+        "decimals": 0
+      }
     },
     "energy": {
       "sourceIds": ["SRC-IEA-ENERGY-AI"],
@@ -82,7 +110,20 @@
           "at": 900,
           "label": "strings:anchor.energy.900"
         }
-      ]
+      ],
+      "unit": {
+        "template": "strings:unit.energy",
+        "points": [
+          [0, 0],
+          [300, 25],
+          [450, 40],
+          [700, 80],
+          [900, 110],
+          [1000, 125]
+        ],
+        "scale": "linear",
+        "decimals": 0
+      }
     },
     "talent": {
       "sourceIds": ["SRC-AI-INDEX-2026"],
@@ -103,7 +144,19 @@
           "at": 900,
           "label": "strings:anchor.talent.900"
         }
-      ]
+      ],
+      "unit": {
+        "template": "strings:unit.talent",
+        "points": [
+          [0, 1],
+          [300, 5],
+          [650, 30],
+          [900, 60],
+          [1000, 80]
+        ],
+        "scale": "linear",
+        "decimals": 0
+      }
     },
     "capital": {
       "sourceIds": ["SRC-AI-INDEX-2026"],
@@ -124,7 +177,19 @@
           "at": 750,
           "label": "strings:anchor.capital.750"
         }
-      ]
+      ],
+      "unit": {
+        "template": "strings:unit.capital",
+        "points": [
+          [0, 0],
+          [250, 50],
+          [550, 150],
+          [750, 300],
+          [1000, 480]
+        ],
+        "scale": "linear",
+        "decimals": 0
+      }
     },
     "publicTrust": {
       "sourceIds": ["SRC-AI-INDEX-2026"],
@@ -149,7 +214,16 @@
           "at": 800,
           "label": "strings:anchor.publicTrust.800"
         }
-      ]
+      ],
+      "unit": {
+        "template": "strings:unit.publicTrust",
+        "points": [
+          [0, 0],
+          [1000, 100]
+        ],
+        "scale": "linear",
+        "decimals": 0
+      }
     },
     "politicalCapital": {
       "sourceIds": ["SRC-DESIGN-HANDOVER"],
@@ -216,7 +290,16 @@
           "at": 600,
           "label": "strings:anchor.jobDisplacement.600"
         }
-      ]
+      ],
+      "unit": {
+        "template": "strings:unit.jobDisplacement",
+        "points": [
+          [0, 0],
+          [1000, 10]
+        ],
+        "scale": "linear",
+        "decimals": 1
+      }
     },
     "unrest": {
       "sourceIds": ["SRC-OECD-EMPLOYMENT", "SRC-DESIGN-HANDOVER"],
@@ -283,7 +366,16 @@
           "at": 700,
           "label": "strings:anchor.substitution.700"
         }
-      ]
+      ],
+      "unit": {
+        "template": "strings:unit.substitution",
+        "points": [
+          [0, 0],
+          [1000, 100]
+        ],
+        "scale": "linear",
+        "decimals": 0
+      }
     }
   }
 }

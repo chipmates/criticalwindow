@@ -661,6 +661,14 @@ export const anchorsSchema = z.strictObject({
       anchors: z
         .array(z.strictObject({ at: z.number().int().min(0).max(1000), label: stringsRefSchema }))
         .min(2),
+      unit: z
+        .strictObject({
+          template: stringsRefSchema,
+          points: z.array(z.tuple([z.number(), z.number()])).min(2),
+          scale: z.enum(['linear', 'log']),
+          decimals: z.number().int().min(0).max(2),
+        })
+        .optional(),
     }),
   ),
 });

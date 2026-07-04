@@ -743,5 +743,19 @@
   "debrief.star.body": "This game is free, open source, and made by a tiny nonprofit team. A star on GitHub is how more people find it, and it costs you one click. If a number felt wrong, even better: the repository is where you bring a better source.",
   "debrief.star.link": "Open the repository",
   "race.ratification.favorable": "Their domestic weather: favorable to a deal",
-  "race.ratification.hostile": "Their domestic weather: no appetite for a deal"
+  "race.ratification.hostile": "Their domestic weather: no appetite for a deal",
+  "unit.energy": "≈ {n} GW of grid headroom",
+  "unit.capital": "≈ ${n}B a year to spend",
+  "unit.compute": "≈ {n}% of the world's frontier capacity",
+  "unit.publicTrust": "≈ {n}% trust you on AI",
+  "unit.jobDisplacement": "≈ {n}% displaced faster than rehired",
+  "unit.talent": "≈ {n}k researchers at the frontier",
+  "unit.substitution": "≈ {n}% of chip needs met at home",
+  "unit.capability": "handles ≈ {t} expert tasks",
+  "unit.capability.minutes": "{n}-minute",
+  "unit.capability.hours": "{n}-hour",
+  "unit.capability.days": "{n}-day",
+  "unit.capability.weeks": "{n}-week",
+  "unit.capability.months": "{n}-month",
+  "unit.capability.years": "{n}-year"
 }
