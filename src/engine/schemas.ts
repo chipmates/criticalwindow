@@ -400,6 +400,7 @@ export const parametersSchema = z.strictObject({
     capabilityThreshold: sourcedIntSchema,
     breakdownUnrest: sourcedIntSchema,
     treatyTrustMin: sourcedIntSchema,
+    treatySignPoliticalCapitalMin: sourcedIntSchema,
     treatySignTurnMin: sourcedIntSchema,
     gridSlackBeforeCap: sourcedIntSchema,
   }),

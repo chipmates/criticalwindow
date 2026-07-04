@@ -1457,14 +1457,17 @@ function worldUpdate(data: EngineData, state: GameState): void {
   // late enough that both sides survived the dangerous middle, BOTH seats have
   // signaled at least once (each played the feeler), and one co-signs this turn.
   // A treaty you sign alone is not a treaty (takeaway 4: cooperation is hard).
+  const signer = PLAYABLE_SEAT_IDS.find(
+    (seat) => state.seats[seat].policy.playedThisTurn === 'compute_treaty_feeler',
+  );
   if (
+    signer !== undefined &&
     state.world.flags.includes('treatyChannel') &&
     state.world.bilateralTrust >= thresholds.treatyTrustMin.value &&
     state.turn >= thresholds.treatySignTurnMin.value &&
     PLAYABLE_SEAT_IDS.every((seat) => state.seats[seat].flags.includes('treatySignaled')) &&
-    PLAYABLE_SEAT_IDS.some(
-      (seat) => state.seats[seat].policy.playedThisTurn === 'compute_treaty_feeler',
-    )
+    // Ratification: the signer must be able to sell the slowdown at home.
+    state.seats[signer].resources.politicalCapital >= thresholds.treatySignPoliticalCapitalMin.value
   ) {
     endRun(state, 'negotiatedSlowdown', { trigger: 'treatySigned' });
     return;

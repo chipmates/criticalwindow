@@ -299,7 +299,7 @@ function llmPolicy(): Policy {
     '-> safety insight +150 now +150 in 2. eval_mandate: 100pc -> insight +100 now +100',
     'in 2, trust +100, capability -50. compute_treaty_feeler: 50pc -> bilateral trust',
     '+100, opens the treaty channel and signals your side (cooldown 4; both sides must',
-    'signal, then co-sign at trust 850+ after turn 11 to SIGN). natsec_merge: 150pc, needs capability 500 + mid era -> compute +150,',
+    'signal, then co-sign at trust 850+ after turn 11 with 300+ political capital to SIGN). natsec_merge: 150pc, needs capability 500 + mid era -> compute +150,',
     'capability +100, trust -150, raises espionage exposure. open_weights_release: 50pc',
     '-> trust +150, rival capability +150, own capability -100, kills weight-theft risk.',
     'ubi_pilot (USA only): 100pc+150cap -> unrest -150, trust +100, capital bill later.',

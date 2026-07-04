@@ -122,6 +122,11 @@
       "value": 11,
       "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-DESIGN-HANDOVER"],
       "note": "earliest signing turn. Raised 8->11 on 2026-07-04: you must survive the dangerous middle before cooperation is real."
+    },
+    "treatySignPoliticalCapitalMin": {
+      "value": 300,
+      "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-SIM-GAMING-INSIGHTS"],
+      "note": "the signing seat needs this much standing political capital to ratify: a verified slowdown must be sold at home, not just negotiated abroad. Added 2026-07-04 (iter3: trust-bar notch alone did not separate the skill curve; the treaty lacked a competing COST)."
     }
   },
   "worldRules": {

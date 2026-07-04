@@ -101,6 +101,10 @@
     "treatySignTurnMin": {
       "value": 8,
       "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    },
+    "treatySignPoliticalCapitalMin": {
+      "value": 300,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
     }
   },
   "worldRules": {
