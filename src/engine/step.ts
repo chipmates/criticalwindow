@@ -689,6 +689,10 @@ function eventEligible(
   card: ChoiceEventData,
 ): boolean {
   const seatState = state.seats[seat];
+  // Seat texture: a memo can belong to one desk only (mandates precedent).
+  if (card.seats && !card.seats.includes(seat)) {
+    return false;
+  }
   if (!card.repeatable && seatState.firedEvents.includes(card.id)) {
     return false;
   }

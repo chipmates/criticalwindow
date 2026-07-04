@@ -159,6 +159,8 @@ const eventBaseFields = {
 const choiceEventSchema = z.strictObject({
   ...eventBaseFields,
   kind: z.literal('choice'),
+  /** Optional seat filter: this memo only lands on the named desks. */
+  seats: z.array(z.enum(PLAYABLE_SEAT_IDS)).min(1).optional(),
   trigger: z.strictObject({
     era: z.enum(ERA_IDS).optional(),
     turnMin: turnInt.optional(),

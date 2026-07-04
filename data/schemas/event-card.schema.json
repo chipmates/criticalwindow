@@ -55,6 +55,17 @@
           "type": "string",
           "const": "choice"
         },
+        "seats": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "usa",
+              "china"
+            ]
+          }
+        },
         "trigger": {
           "type": "object",
           "properties": {
