@@ -314,7 +314,7 @@
   "settings.audio.explain": "Off by default. Everything works silent.",
   "settings.audio.music": "Music",
   "settings.audio.voice": "Ending narration",
-  "settings.audio.credit": "Music by Scott Buckley, CC BY 4.0",
+  "settings.audio.credit": "Music: 'I Walk With Ghosts' by Scott Buckley, CC BY 4.0",
   "saves.heading": "Saves",
   "saves.auto": "Autosave",
   "saves.slot": "Slot {n}",

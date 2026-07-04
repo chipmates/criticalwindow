@@ -1,17 +1,14 @@
 /**
  * Audio: build-time static files, lazy-loaded, OFF by default (classrooms,
- * autoplay policies, and respect). Music: Scott Buckley, CC BY 4.0,
- * attribution in settings, credits and README. Narrations: generated at
- * build time (scripts/generate-audio.ts); everything degrades silently
- * when a file is absent.
- *
- * v0.2: one sequential playlist everywhere (The Long Dark -> I Walk With
- * Ghosts -> loop). Two calm tracks give ~14 minutes of variety under a
- * 20-40 minute session, which beats looping one of them.
+ * autoplay policies, and respect). Music: 'I Walk With Ghosts' by Scott
+ * Buckley, CC BY 4.0, named in settings and credits (Michel's pick,
+ * 2026-07-04: one track, looped). Narrations: generated at build time
+ * (scripts/generate-audio.ts); everything degrades silently when a file
+ * is absent.
  */
 import type { EndingId } from '../engine/types';
 
-const PLAYLIST = ['audio/music-the-long-dark.mp3', 'audio/music-i-walk-with-ghosts.mp3'] as const;
+const PLAYLIST = ['audio/music-i-walk-with-ghosts.mp3'] as const;
 
 /** A string key becomes its pre-generated voice file (scripts/generate-audio.ts). */
 function voicePath(stringKey: string): string {
@@ -32,10 +29,13 @@ function playTrack(index: number): void {
   musicEl?.pause();
   musicEl = new Audio(`${base()}${PLAYLIST[trackIndex]}`);
   musicEl.volume = 0.25;
-  // Sequential playlist: when one track ends, the next plays; wraps around.
-  musicEl.addEventListener('ended', () => {
-    playTrack(trackIndex + 1);
-  });
+  if (PLAYLIST.length === 1) {
+    musicEl.loop = true; // one bed, seamless loop
+  } else {
+    musicEl.addEventListener('ended', () => {
+      playTrack(trackIndex + 1);
+    });
+  }
   musicEl.play().catch(() => {
     // Autoplay refused or file missing: stay silent, never break play.
   });
