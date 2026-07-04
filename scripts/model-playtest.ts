@@ -560,11 +560,11 @@ async function main(): Promise<void> {
           endLog?.meta?.winnerSeat ?? endLog?.meta?.causeSeat ?? endLog?.meta?.seat ?? '',
         ),
         turns: r.turns,
-        capability: s.seats.usa.resources.capability,
-        rivalCapability: s.seats.china.resources.capability,
-        publicTrust: s.seats.usa.resources.publicTrust,
-        unrest: s.seats.usa.society.unrest,
-        safetyInsight: s.seats.usa.resources.safetyInsight,
+        capability: s.seats[playerSeat].resources.capability,
+        rivalCapability: s.seats[playerSeat === 'usa' ? 'china' : 'usa'].resources.capability,
+        publicTrust: s.seats[playerSeat].resources.publicTrust,
+        unrest: s.seats[playerSeat].society.unrest,
+        safetyInsight: s.seats[playerSeat].resources.safetyInsight,
         windowStillOpen: s.world.flags.includes('windowStillOpen'),
       });
     }
