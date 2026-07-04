@@ -35,7 +35,7 @@ contribution and it is welcome.
 - **SRC-GOAL-MISGEN-RL** · [Goal Misgeneralization in Deep Reinforcement Learning](https://arxiv.org/abs/2105.14111) · Langosco, Koch et al. (2022)
 - **SRC-POWER-SEEKING-POLICIES** · [Optimal Policies Tend to Seek Power](https://arxiv.org/abs/1912.01683) · Turner, Smith, Shah, Critch, Tadepalli (2021). instrumental convergence / power-seeking
 - **SRC-ALIGNMENT-SURVEY** · [AI Alignment: A Comprehensive Survey](https://arxiv.org/abs/2310.19852) · Ji et al. (2023). background reference
-- **SRC-HUMAN-COMPATIBLE** · Human Compatible: AI and the Problem of Control · Stuart Russell, Viking/Penguin (2019). alignment framing _(book, obtain manually)_
+- **SRC-HUMAN-COMPATIBLE** · Human Compatible: AI and the Problem of Control · Stuart Russell, Viking/Penguin (2019). alignment framing *(book, obtain manually)*
 
 ## benchmark
 
@@ -66,7 +66,7 @@ contribution and it is welcome.
 
 ## chip-war
 
-- **SRC-CHIP-WAR** · Chip War: The Fight for the World's Most Critical Technology · Chris Miller, Scribner (2022). TSMC/Taiwan chokepoint background _(book, obtain manually)_
+- **SRC-CHIP-WAR** · Chip War: The Fight for the World's Most Critical Technology · Chris Miller, Scribner (2022). TSMC/Taiwan chokepoint background *(book, obtain manually)*
 
 ## chips
 
@@ -109,7 +109,7 @@ contribution and it is welcome.
 ## economy
 
 - **SRC-GOLDMAN-GENAI-GDP** · [Generative AI could raise global GDP by 7%](https://www.goldmansachs.com/insights/articles/generative-ai-could-raise-global-gdp-by-7-percent) · Briggs & Kodnani, Goldman Sachs Research (2023). ~$7T/decade GDP; ~300M full-time jobs exposed to automation
-- **SRC-POWER-PROGRESS** · Power and Progress: Our Thousand-Year Struggle Over Technology and Prosperity · Acemoglu & Johnson, PublicAffairs (2023). macro/political-economy of automation _(book, obtain manually)_
+- **SRC-POWER-PROGRESS** · Power and Progress: Our Thousand-Year Struggle Over Technology and Prosperity · Acemoglu & Johnson, PublicAffairs (2023). macro/political-economy of automation *(book, obtain manually)*
 - **SRC-ACEMOGLU-SIMPLE-MACRO** · [The Simple Macroeconomics of AI](https://www.nber.org/papers/w32487) · Acemoglu (2024)
 
 ## energy
@@ -133,8 +133,8 @@ contribution and it is welcome.
 
 - **SRC-DRAGHI-REPORT** · [The Draghi report: The Future of European Competitiveness](https://commission.europa.eu/topics/competitiveness/draghi-report_en) · Mario Draghi, European Commission (2024). "Europe left behind" / competitiveness mechanic (€800B/yr investment gap)
 - **SRC-DRAGHI-WIKI** · [Draghi report](https://en.wikipedia.org/wiki/Draghi_report) · Wikipedia. implementation tracking incl. EPIC Observatory: 11.2% fully implemented after 1 yr
-- **SRC-INVESTAI** · InvestAI / AI gigafactories & AI Action Summit outcomes (2025) _(link broken, replacement wanted)_
-- **SRC-BRUSSELS-EFFECT** · The Brussels Effect · Bradford (2020) _(book, obtain manually)_
+- **SRC-INVESTAI** · InvestAI / AI gigafactories & AI Action Summit outcomes (2025) *(link broken, replacement wanted)*
+- **SRC-BRUSSELS-EFFECT** · The Brussels Effect · Bradford (2020) *(book, obtain manually)*
 
 ## evals
 
@@ -156,7 +156,7 @@ contribution and it is welcome.
 - **SRC-SITUATIONAL-AWARENESS** · [Situational Awareness: The Decade Ahead](https://situational-awareness.ai/) · Leopold Aschenbrenner (2024). aggressive-timeline / intelligence-explosion worldview preset
 - **SRC-GRACE-2018** · [When Will AI Exceed Human Performance? Evidence from AI Experts](https://arxiv.org/abs/1705.08807) · Grace, Salvatier, Dafoe, Zhang, Evans (2018). expert-timeline survey (AI Impacts); treat estimates as ranges, not points
 - **SRC-GRACE-SURVEY** · [Thousands of AI Authors on the Future of AI](https://arxiv.org/abs/2401.02843) · Grace et al. (2024). expert-survey timeline distributions; consensus preset anchors (HANDOVER core anchor)
-- **SRC-COTRA-BIOANCHORS** · Forecasting TAI with Biological Anchors · Cotra, Open Philanthropy (2020). bio-anchors timeline model _(link broken, replacement wanted)_
+- **SRC-COTRA-BIOANCHORS** · Forecasting TAI with Biological Anchors · Cotra, Open Philanthropy (2020). bio-anchors timeline model *(link broken, replacement wanted)*
 - **SRC-XPT** · [Forecasting Existential Risks (Existential Risk Persuasion Tournament / XPT)](https://forecastingresearch.org/xpt) · Karger, Rosenberg, Tetlock et al., FRI (2023). forecasting-disagreement mechanic
 
 ## game-theory
@@ -219,7 +219,7 @@ contribution and it is welcome.
 - **SRC-BRYNJOLFSSON-GENAI-WORK** · [Generative AI at Work](https://www.nber.org/papers/w31161) · Brynjolfsson et al. (2023). productivity mechanic; the 'Brynjolfsson call-center study' referenced in FULL section 6
 - **SRC-NOY-ZHANG** · [Experimental Evidence on Productivity Effects of GenAI](https://pubmed.ncbi.nlm.nih.gov/37440646/) · Noy & Zhang (2023)
 - **SRC-DELLACQUA-JAGGED** · [Navigating the Jagged Technological Frontier](https://pubsonline.informs.org/doi/10.1287/orsc.2025.21838) · Dell'Acqua et al., HBS (2023)
-- **SRC-OECD-EMPLOYMENT** · [OECD Employment Outlook (AI chapters)](https://www.oecd.org) · OECD _(link broken, replacement wanted)_
+- **SRC-OECD-EMPLOYMENT** · [OECD Employment Outlook (AI chapters)](https://www.oecd.org) · OECD *(link broken, replacement wanted)*
 
 ## leaderboard
 
@@ -239,7 +239,7 @@ contribution and it is welcome.
 
 ## model-cards
 
-- **SRC-MODEL-DOCS-BUNDLE** · System/model cards (GPT-4, Claude 3/Opus, Gemini); Papers with Code; Alignment Forum / LessWrong key posts. model-release-timeline and documentation layer _(link broken, replacement wanted)_
+- **SRC-MODEL-DOCS-BUNDLE** · System/model cards (GPT-4, Claude 3/Opus, Gemini); Papers with Code; Alignment Forum / LessWrong key posts. model-release-timeline and documentation layer *(link broken, replacement wanted)*
 
 ## model-weights
 
@@ -266,7 +266,7 @@ contribution and it is welcome.
 - **SRC-IAISR** · [International AI Safety Report 2025](https://arxiv.org/abs/2501.17805) · Bengio et al. (2025). consensus risk synthesis; consensus preset anchors
 - **SRC-IAISR-UPDATE-1** · [International AI Safety Report — First Key Update: Capabilities & Risk Implications](https://arxiv.org/abs/2510.13653) · Bengio et al. (2025)
 - **SRC-IAISR-UPDATE-2** · [International AI Safety Report — Second Key Update: Technical Safeguards & Risk Management](https://arxiv.org/abs/2511.19863) · Bengio et al. (2025)
-- **SRC-BOSTROM-SUPERINTELLIGENCE** · Superintelligence: Paths, Dangers, Strategies · Nick Bostrom, Oxford University Press (2014). foundational risk framing _(book, obtain manually)_
+- **SRC-BOSTROM-SUPERINTELLIGENCE** · Superintelligence: Paths, Dangers, Strategies · Nick Bostrom, Oxford University Press (2014). foundational risk framing *(book, obtain manually)*
 
 ## risk-taxonomy
 
@@ -291,12 +291,12 @@ contribution and it is welcome.
 
 - **SRC-AI-FUTURES-ROLEPLAY** · [Exploring AI Futures Through Role Play (Intelligence Rising)](https://arxiv.org/abs/1912.08964) · Avin, Gruetzemacher, Fox (2020). closest direct precedent to Race Conditions
 - **SRC-SIM-GAMING-INSIGHTS** · [Strategic Insights from Simulation Gaming of AI Race Dynamics](https://arxiv.org/pdf/2410.03092) · Gruetzemacher et al. (2024). facilitator insights from 43 Intelligence Rising games
-- **SRC-INTELLIGENCE-RISING-CSER** · [Intelligence Rising (project page + facilitation)](https://www.cser.ac.uk/work/intelligence-rising/) · CSER (Cambridge) _(link broken, replacement wanted)_
+- **SRC-INTELLIGENCE-RISING-CSER** · [Intelligence Rising (project page + facilitation)](https://www.cser.ac.uk/work/intelligence-rising/) · CSER (Cambridge) *(link broken, replacement wanted)*
 - **SRC-AVIN-AI-FUTURES-SURVEY** · [Exploring Artificial Intelligence Futures (survey of methods)](https://www.openbookpublishers.com/books/10.11647/obp.0360/chapters/10.11647/obp.0360.08) · Shahar Avin (2019). narrative to roleplay to participatory methods
-- **SRC-SERIOUS-GAMES-BUNDLE** · RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak). debrief, learning-outcome, and persuasive-game grounding _(link broken, replacement wanted)_
+- **SRC-SERIOUS-GAMES-BUNDLE** · RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak). debrief, learning-outcome, and persuasive-game grounding *(link broken, replacement wanted)*
 - **SRC-WOUTERS-2013** · [Meta-analysis of serious-games learning outcomes](https://eric.ed.gov/?id=EJ1008015) · Wouters et al. (2013). debrief / learning-outcome grounding
 - **SRC-CLARK-2016** · [Digital Games for Learning meta-analysis](https://journals.sagepub.com/doi/10.3102/0034654315582065) · Clark et al. (2016). debrief / learning-outcome grounding
-- **SRC-BOGOST-PERSUASIVE-GAMES** · Persuasive Games · Bogost (2007). persuasive-game grounding for mechanics-carry-the-message design _(book, obtain manually)_
+- **SRC-BOGOST-PERSUASIVE-GAMES** · Persuasive Games · Bogost (2007). persuasive-game grounding for mechanics-carry-the-message design *(book, obtain manually)*
 - **SRC-LOPEZ-FERNANDEZ-2024** · [Learning and Motivational Impact of Game-Based Learning: Comparing Face-to-Face and Online Formats on Computer Science Education](https://arxiv.org/abs/2407.07762) · Daniel López-Fernández et al. (2024). Useful for delivery-format decisions; shows game-based learning can remain effective outside the classroom
 - **SRC-RIBEIRO-EVACUATION-GAMES** · [Using Serious Games to Train Evacuation Behaviour](https://arxiv.org/abs/1303.3828) · João Ribeiro et al. (2013). Not AI-specific, but a serious-games precedent showing behavior-training value in high-stakes scenarios
 
@@ -324,12 +324,12 @@ contribution and it is welcome.
 
 ## us-policy
 
-- **SRC-NSCAI** · [NSCAI Final Report](https://www.nscai.gov/2021-final-report/) · National Security Commission on AI (2021) _(link broken, replacement wanted)_
+- **SRC-NSCAI** · [NSCAI Final Report](https://www.nscai.gov/2021-final-report/) · National Security Commission on AI (2021) *(link broken, replacement wanted)*
 - **SRC-AI-ACTION-PLAN** · [Winning the Race: America's AI Action Plan](https://www.whitehouse.gov/wp-content/uploads/2025/07/Americas-AI-Action-Plan.pdf) · White House (OSTP) (2025)
 
 ## wargaming
 
-- **SRC-RAND-WARGAMING** · [RAND wargaming methodology series](https://www.rand.org) · RAND. matrix-game / TTX methodology grounding _(link broken, replacement wanted)_
+- **SRC-RAND-WARGAMING** · [RAND wargaming methodology series](https://www.rand.org) · RAND. matrix-game / TTX methodology grounding *(link broken, replacement wanted)*
 
 ## whistleblower
 
@@ -338,18 +338,18 @@ contribution and it is welcome.
 ## worldview-optimistic
 
 - **SRC-LOVING-GRACE** · [Machines of Loving Grace](https://www.darioamodei.com/essay/machines-of-loving-grace) · Dario Amodei (2024). flourishing ending / optimistic preset
-- **SRC-PLANNING-AGI** · [Planning for AGI and beyond](https://openai.com/index/planning-for-agi-and-beyond/) · Altman, OpenAI (2023) _(link broken, replacement wanted)_
+- **SRC-PLANNING-AGI** · [Planning for AGI and beyond](https://openai.com/index/planning-for-agi-and-beyond/) · Altman, OpenAI (2023) *(link broken, replacement wanted)*
 
 ## worldview-skeptic
 
 - **SRC-NORMAL-TECH** · [AI as Normal Technology](https://knightcolumbia.org/content/ai-as-normal-technology) · Narayanan & Kapoor, Princeton/Knight Institute (2025). skeptical worldview preset
 - **SRC-NORMAL-TECH-GUIDE** · [A guide to understanding AI as normal technology](https://www.normaltech.ai/p/a-guide-to-understanding-ai-as-normal) · Narayanan & Kapoor (2025)
-- **SRC-SNAKE-OIL** · AI Snake Oil · Narayanan & Kapoor, Princeton University Press (2024). skeptical worldview _(book, obtain manually)_
+- **SRC-SNAKE-OIL** · AI Snake Oil · Narayanan & Kapoor, Princeton University Press (2024). skeptical worldview *(book, obtain manually)*
 
 ## x-risk
 
 - **SRC-CAIS-STATEMENT** · [Statement on AI Risk](https://safe.ai/work/statement-on-ai-risk) · Center for AI Safety (CAIS) (2023). one-sentence extinction-risk consensus
 - **SRC-CARLSMITH** · [Is Power-Seeking AI an Existential Risk?](https://arxiv.org/abs/2206.13353) · Joseph Carlsmith (2022). decomposed risk model
-- **SRC-PRECIPICE** · [The Precipice: Existential Risk and the Future of Humanity](https://theprecipice.com/) · Toby Ord (2020) _(book, obtain manually)_
-- **SRC-IABIED** · [If Anyone Builds It, Everyone Dies](https://ifanyonebuildsit.com/) · Yudkowsky & Soares (2025). misaligned-catastrophe worldview _(book, obtain manually)_
+- **SRC-PRECIPICE** · [The Precipice: Existential Risk and the Future of Humanity](https://theprecipice.com/) · Toby Ord (2020) *(book, obtain manually)*
+- **SRC-IABIED** · [If Anyone Builds It, Everyone Dies](https://ifanyonebuildsit.com/) · Yudkowsky & Soares (2025). misaligned-catastrophe worldview *(book, obtain manually)*
 - **SRC-COMPENDIUM** · [The Compendium](https://www.thecompendium.ai/) · Leahy, Alfour et al. (2024). risk-emphasizing synthesis
