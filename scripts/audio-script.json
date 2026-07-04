@@ -2,8 +2,8 @@
   "comment": "Voice surfaces resolve against data/strings/en.json at generation time: one source of truth, rename-proof, i18n-ready. Generation is build-time only (constitution). Playback is governed by the off-by-default sound setting. Two registers: the NARRATOR speaks history (prologue, endings, scheduled beats), the ADVISOR speaks the room (memos, incidents, wildcards). Advisor voice id pending Michel's pick; surfaces without a cast voice are skipped with a report, so generation can run narrator-first.",
   "voices": {
     "narrator": {
-      "voiceId": "nbhuZvGPlMc3SacWr72m",
-      "note": "Michel-supplied 2026-07-04, female, proven in the story project."
+      "voiceId": "dnwBRYgytZDR3bhBOT7q",
+      "note": "Michel-supplied narrator (2026-07-04, revised), female. Replaces nbhuZvGPlMc3SacWr72m."
     },
     "advisor": {
       "voiceId": "PZDaEGofJmmmazpkVBLT",
