@@ -1450,3 +1450,31 @@ body {
 .hint p {
   margin: 0;
 }
+
+/* ---------- tag stamps ---------- */
+
+.tag-stamp {
+  color: var(--ink);
+  opacity: 0.82;
+  transform: rotate(-3deg);
+  flex-shrink: 0;
+}
+
+.memo-masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.shock-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: var(--space-2);
+}
+
+.card-head .tag-stamp {
+  transform: rotate(-2deg);
+  opacity: 0.7;
+}

@@ -3,6 +3,7 @@ import type { EngineData } from '../../engine/data';
 import type { GameState } from '../../engine/types';
 import { playVoice, stopVoice } from '../audio';
 import { Hint } from './Hint';
+import { TagStamp } from './TagStamp';
 import { delayedSummary, effectSummary, turnDate } from '../format';
 import { t, tRef } from '../i18n';
 import { useStore } from '../store';
@@ -45,7 +46,10 @@ export function EventMemo({ data, run, onChoose }: EventMemoProps) {
     <div className="memo-backdrop">
       <section className="memo" role="dialog" aria-modal="true" aria-labelledby="memo-title">
         <div className="memo-masthead">
-          {t('phase.event.heading')} · {date.quarter} {date.year}
+          <span>
+            {t('phase.event.heading')} · {date.quarter} {date.year}
+          </span>
+          <TagStamp tags={card.tags} />
         </div>
         <h2 id="memo-title" className="memo-title" tabIndex={-1} ref={headingRef}>
           {tRef(card.title)}

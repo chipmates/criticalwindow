@@ -3,6 +3,7 @@ import type { EngineData } from '../../engine/data';
 import type { GameState, LogEntry } from '../../engine/types';
 import { playVoice, stopVoice } from '../audio';
 import { Hint } from './Hint';
+import { TagStamp } from './TagStamp';
 import { signed, targetLabel } from '../format';
 import { t, tRef } from '../i18n';
 import { useStore } from '../store';
@@ -65,14 +66,23 @@ export function ShockOverlay({ data, run, shocks, onContinue }: ShockOverlayProp
         {shocks.some((s) => s.kind === 'incident') && <Hint id="incident" />}
         {shocks.map((entry, i) => (
           <div key={i} className="shock-block">
-            <h2
-              id={i === 0 ? 'shock-title' : undefined}
-              className="memo-title"
-              tabIndex={i === 0 ? -1 : undefined}
-              ref={i === 0 ? headingRef : undefined}
-            >
-              {entry.stringKey ? tRef(entry.stringKey) : ''}
-            </h2>
+            <div className="shock-title-row">
+              <h2
+                id={i === 0 ? 'shock-title' : undefined}
+                className="memo-title"
+                tabIndex={i === 0 ? -1 : undefined}
+                ref={i === 0 ? headingRef : undefined}
+              >
+                {entry.stringKey ? tRef(entry.stringKey) : ''}
+              </h2>
+              <TagStamp
+                tags={
+                  entry.kind === 'incident'
+                    ? ['security']
+                    : (data.events.find((e) => e.id === entry.meta?.eventId)?.tags ?? [])
+                }
+              />
+            </div>
             <p className="memo-body">{bodyFor(entry)}</p>
             <p className="memo-choice-effects">
               {Object.entries(entry.deltas ?? {})

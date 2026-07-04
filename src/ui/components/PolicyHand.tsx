@@ -3,6 +3,7 @@ import { playablePolicies } from '../../engine/step';
 import type { GameState } from '../../engine/types';
 import { delayedSummary, effectSummary } from '../format';
 import { t, tRef, type StringKey } from '../i18n';
+import { TagStamp } from './TagStamp';
 
 interface PolicyHandProps {
   data: EngineData;
@@ -32,6 +33,7 @@ export function PolicyHand({ data, run, onPlay, onSkip }: PolicyHandProps) {
           return (
             <article key={id} className={ok ? 'card' : 'card card-locked'}>
               <header className="card-head">
+                <TagStamp tags={card.tags} size={26} />
                 <h3 className="card-title">{tRef(card.title)}</h3>
                 {card.oncePerRun && (
                   <span className="card-badge">{t('phase.policy.oncePerRun')}</span>
