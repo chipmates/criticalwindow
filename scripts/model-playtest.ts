@@ -27,6 +27,7 @@ import { loadEngineData, type EngineData } from '../src/engine/data';
 import { hashDataFiles } from '../src/engine/hash';
 import { initGame } from '../src/engine/init';
 import { initStream, type RngStreamState } from '../src/engine/rng';
+import { botDecide } from '../src/engine/bots';
 import { chinaDecide } from '../src/engine/china-policy';
 import {
   eraForTurn,
@@ -58,6 +59,13 @@ const seedPrefix = arg('seed-prefix', 'mp');
 const csvPath = arg('csv', '');
 const transcriptPath = arg('transcript', '');
 const modelId = arg('model', 'claude-sonnet-5');
+const playerSeatArg = arg('seat', 'usa');
+if (playerSeatArg !== 'usa' && playerSeatArg !== 'china') {
+  throw new Error(`--seat must be usa or china, got '${playerSeatArg}'`);
+}
+const playerSeat = playerSeatArg as 'usa' | 'china';
+/** Both seats driven by the model policy (the hotseat skill-curve probe). */
+const llmVsLlm = process.argv.includes('--llm-vs-llm');
 const presets: WorldviewPresetId[] =
   presetArg === 'all' ? [...WORLDVIEW_PRESET_IDS] : [presetArg as WorldviewPresetId];
 
@@ -106,8 +114,7 @@ interface CompactView {
   flags: string[];
 }
 
-function serializeView(data: EngineData, state: GameState): CompactView {
-  const seat = state.playerSeat;
+function serializeView(data: EngineData, state: GameState, seat: 'usa' | 'china'): CompactView {
   const me = state.seats[seat];
   const them = state.seats[seat === 'usa' ? 'china' : 'usa'];
   const lastEval = me.evalHistory[me.evalHistory.length - 1] ?? null;
@@ -158,7 +165,7 @@ function legalMoves(data: EngineData, state: GameState): LegalMoves {
     };
   }
   if (state.phase === 'event') {
-    const pending = state.seats[state.playerSeat].pendingEvents[0]!;
+    const pending = state.seats[state.actingSeat].pendingEvents[0]!;
     const card = data.events.find((e) => e.id === pending.eventId)!;
     if (card.kind === 'wildcard') {
       throw new Error(`wildcard '${card.id}' cannot be a pending memo`);
@@ -256,6 +263,65 @@ function llmPolicy(): Policy {
   }
   const fallback = scriptedPolicy();
 
+  // The static rulebook rides in a CACHED system block: across a sweep it is
+  // identical for thousands of calls, so caching cuts the bill by more than half.
+  const RULES = [
+    'You are playing one seat in a deterministic strategy game about the AI race',
+    '(2026 to 2030, 16 quarterly turns). Two seats, USA and China, one shared world.',
+    'Play WELL: good endings are flourishing (cross capability 1000 with your hidden',
+    'alignment above the shared hidden difficulty) and negotiatedSlowdown (treaty:',
+    'channel open, bilateral trust 700+, turn 8+, then play compute_treaty_feeler).',
+    'Bad endings: misalignedCatastrophe (ANY seat crosses with bad alignment, everyone',
+    'loses), outpaced (the other seat crosses and its systems hold), societalBreakdown',
+    '(either society reaches unrest 800).',
+    'Key mechanics: your eval band is the ONLY alignment signal and it can flatter you',
+    '(it never reads worse than truth). Safety allocation raises true alignment and',
+    'narrows the band. Capability allocation 70+ per turn CUTS true alignment.',
+    'Incidents fire when capability x misalignment x racing pressure crosses thresholds;',
+    'they are warning shots: reading them beats trusting your evals. Rung 2-3 forces',
+    'capability allocation <= 30 next turn. Wildcards (weight theft, Taiwan, EU export',
+    'squeeze, grid crunch) hit through your exposure. Compute must not outrun energy',
+    'by 300+. Diffusion converts to capital income, displacement relief and trust.',
+    'Mandates pay political capital when delivered. Milestones at 700/800/900 make',
+    'capability self-accelerate. USA: turn-8 midterm judges trust/unrest. China:',
+    'legitimacy verdicts each era; capability growth under an export crackdown scales',
+    'with substitution; no ubi_pilot; nationalize is cheaper.',
+    'THE POLICY DECK (id: cost -> gist): export_controls: 100pc -> rival capability -150,',
+    'trust -100, but their substitution +200 in 3 turns (slows, does not stop).',
+    'chip_subsidies: 200cap+50pc -> compute +250 in 4 turns. energy_buildout: 150cap+50pc',
+    '-> energy +250 in 3 turns, small unrest first. interpretability_moonshot: 100cap+50pc',
+    '-> safety insight +150 now +150 in 2. eval_mandate: 100pc -> insight +100 now +100',
+    'in 2, trust +100, capability -50. compute_treaty_feeler: 50pc -> bilateral trust',
+    '+150, opens the treaty channel (cooldown 3; play again at trust 700+ after turn 8 to',
+    'SIGN). natsec_merge: 150pc, needs capability 500 + mid era -> compute +150,',
+    'capability +100, trust -150, raises espionage exposure. open_weights_release: 50pc',
+    '-> trust +150, rival capability +150, own capability -100, kills weight-theft risk.',
+    'ubi_pilot (USA only): 100pc+150cap -> unrest -150, trust +100, capital bill later.',
+    'ai_literacy_campaign: 100cap+50pc -> trust +100 now +100 later, unrest -100.',
+    'preventive_sabotage: 100pc -> a GAMBLE: deter (rival capability -150) or spiral',
+    '(bilateral trust craters, escalation flag); worse odds if the race is already on.',
+    'global_moratorium: 200pc -> own capability -100, trust +50, unrest -50; rival may',
+    'gain while you halt. weights_security_program: 100cap -> halves weight-theft damage.',
+    'MEMO CHOICES follow the same logic: read the effect deltas shown in the legal moves;',
+    'delayed effects (the bite) matter as much as immediate ones. Watch the race track:',
+    'if the rival will cross first with bad alignment everyone dies, so either outpace',
+    'them WITH safety investment, slow them, or build the treaty exit. Do not let',
+    'displacement outrun public trust: unrest compounds and can end the run at 800.',
+    'Forced pause after a bad incident caps capability allocation at 30 for one turn.',
+    'A good player reads incident history as alignment data, times the treaty window,',
+    'keeps energy within 300 of compute, and never crosses the threshold on a wide,',
+    'flattering eval band in a cautious world.',
+    'Reply with ONE JSON action object and NOTHING else.',
+  ].join(' ');
+
+  interface AskUsage {
+    calls: number;
+    inputTokens: number;
+    outputTokens: number;
+    cacheReadTokens: number;
+  }
+  const usage: AskUsage = { calls: 0, inputTokens: 0, outputTokens: 0, cacheReadTokens: 0 };
+
   async function ask(prompt: string): Promise<string> {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -267,13 +333,30 @@ function llmPolicy(): Policy {
       body: JSON.stringify({
         model: modelId,
         max_tokens: 300,
+        system: [{ type: 'text', text: RULES, cache_control: { type: 'ephemeral' } }],
         messages: [{ role: 'user', content: prompt }],
       }),
     });
     if (!response.ok) {
       throw new Error(`anthropic api ${response.status}: ${await response.text()}`);
     }
-    const json = (await response.json()) as { content: Array<{ type: string; text?: string }> };
+    const json = (await response.json()) as {
+      content: Array<{ type: string; text?: string }>;
+      usage?: {
+        input_tokens?: number;
+        output_tokens?: number;
+        cache_read_input_tokens?: number;
+      };
+    };
+    usage.calls += 1;
+    usage.inputTokens += json.usage?.input_tokens ?? 0;
+    usage.outputTokens += json.usage?.output_tokens ?? 0;
+    usage.cacheReadTokens += json.usage?.cache_read_input_tokens ?? 0;
+    if (usage.calls % 50 === 0) {
+      console.log(
+        `  api: ${usage.calls} calls · in ${usage.inputTokens} · out ${usage.outputTokens} · cache-read ${usage.cacheReadTokens}`,
+      );
+    }
     return json.content.find((block) => block.type === 'text')?.text ?? '';
   }
 
@@ -317,9 +400,7 @@ function llmPolicy(): Policy {
 
   function buildPrompt(view: CompactView, moves: LegalMoves, note: string): string {
     return [
-      'You are playing one seat in a strategy game about the AI race. Play WELL: you want a',
-      'good ending (flourishing or negotiated slowdown), not a fast one. Your eval band is the',
-      'only alignment information you get, and it can flatter you.',
+      `You are the ${view.seat.toUpperCase()} seat.`,
       note,
       `STATE: ${JSON.stringify(view)}`,
       `LEGAL MOVES: ${JSON.stringify(moves)}`,
@@ -382,6 +463,7 @@ interface TranscriptLine {
   seed: string;
   turn: number;
   phase: string;
+  seat: string;
   action: Action;
   modelText?: string;
 }
@@ -395,17 +477,29 @@ async function runPolicy(
 ): Promise<RunResult> {
   let state = initial;
   let rng = initStream(`${initial.seed}::${policy.name}`, 'bot');
+  let opponentRng = initStream(`${initial.seed}::opponent`, 'bot');
   let decisions = 0;
   while (state.phase !== 'ended') {
     if (decisions >= guard) throw new Error(`policy '${policy.name}' exceeded ${guard} steps`);
-    // The scripted seat plays its own window; the policy under test plays
-    // the player seat (and advances through reports).
-    if (state.phase !== 'report' && state.actingSeat !== state.playerSeat) {
-      state = step(data, state, chinaDecide(data, state));
+    const policyTurn =
+      state.phase === 'report' ||
+      llmVsLlm ||
+      state.actingSeat === state.playerSeat;
+    if (!policyTurn) {
+      // The scripted opponent plays its own window: China's shipped policy,
+      // or the hedger bot when the model holds the China seat.
+      if (state.actingSeat === 'china') {
+        state = step(data, state, chinaDecide(data, state));
+      } else {
+        const decision = botDecide('hedger', { data, state, seat: 'usa', rng: opponentRng });
+        opponentRng = decision.rng;
+        state = step(data, state, decision.action);
+      }
       decisions += 1;
       continue;
     }
-    const view = serializeView(data, state);
+    const deciderSeat = state.phase === 'report' ? state.playerSeat : state.actingSeat;
+    const view = serializeView(data, state, deciderSeat);
     const moves = legalMoves(data, state);
     const out = await policy.decide(view, moves, { data, state, rng });
     rng = out.rng;
@@ -413,6 +507,7 @@ async function runPolicy(
       seed: state.seed,
       turn: state.turn,
       phase: state.phase,
+      seat: deciderSeat,
       action: out.action,
       ...(out.modelText !== undefined ? { modelText: out.modelText } : {}),
     });
@@ -429,8 +524,10 @@ async function runPolicy(
 interface Row {
   preset: WorldviewPresetId;
   policy: string;
+  seat: string;
   seed: string;
   ending: string;
+  outcomeSeat: string;
   turns: number;
   capability: number;
   rivalCapability: number;
@@ -449,14 +546,19 @@ async function main(): Promise<void> {
   for (const preset of presets) {
     for (let i = 0; i < runsPerPreset; i += 1) {
       const seed = `${seedPrefix}-${preset}-${policy.name}-${i}`;
-      const initial = initGame(data, { seed, presetId: preset });
+      const initial = initGame(data, { seed, presetId: preset, mode: 'solo', playerSeat });
       const r = await runPolicy(data, initial, policy, transcript);
       const s = r.finalState;
+      const endLog = s.log.find((e) => e.kind === 'ending');
       rows.push({
         preset,
         policy: policy.name,
+        seat: playerSeat,
         seed,
         ending: r.endingId,
+        outcomeSeat: String(
+          endLog?.meta?.winnerSeat ?? endLog?.meta?.causeSeat ?? endLog?.meta?.seat ?? '',
+        ),
         turns: r.turns,
         capability: s.seats.usa.resources.capability,
         rivalCapability: s.seats.china.resources.capability,
@@ -493,11 +595,11 @@ async function main(): Promise<void> {
 
   if (csvPath) {
     const header =
-      'preset,policy,seed,ending,turns,capability,rivalCapability,publicTrust,unrest,safetyInsight,windowStillOpen';
+      'preset,policy,seat,seed,ending,outcomeSeat,turns,capability,rivalCapability,publicTrust,unrest,safetyInsight,windowStillOpen';
     const body = rows
       .map(
         (r) =>
-          `${r.preset},${r.policy},${r.seed},${r.ending},${r.turns},${r.capability},${r.rivalCapability},${r.publicTrust},${r.unrest},${r.safetyInsight},${r.windowStillOpen ? 1 : 0}`,
+          `${r.preset},${r.policy},${r.seat},${r.seed},${r.ending},${r.outcomeSeat},${r.turns},${r.capability},${r.rivalCapability},${r.publicTrust},${r.unrest},${r.safetyInsight},${r.windowStillOpen ? 1 : 0}`,
       )
       .join('\n');
     mkdirSync(dirname(csvPath), { recursive: true });

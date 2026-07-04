@@ -17,14 +17,14 @@ import type { Action, GameState, PlayableSeatId } from './types';
 export const BOT_IDS = ['racer', 'steward', 'dove', 'hedger', 'chaos'] as const;
 export type BotId = (typeof BOT_IDS)[number];
 
-interface BotContext {
+export interface BotContext {
   data: EngineData;
   state: GameState;
   seat: PlayableSeatId;
   rng: RngStreamState;
 }
 
-interface BotDecision {
+export interface BotDecision {
   action: Action;
   rng: RngStreamState;
 }
@@ -77,7 +77,8 @@ function preferPolicy(context: BotContext, preferences: string[]): Action {
   return { type: 'skipPolicy', seat: context.seat };
 }
 
-function decide(bot: BotId, context: BotContext): BotDecision {
+/** One decision for a named bot on a given seat (exported for harnesses). */
+export function botDecide(bot: BotId, context: BotContext): BotDecision {
   const { state, seat, rng } = context;
   const seatState = state.seats[seat];
   switch (state.phase) {
@@ -256,7 +257,7 @@ export function runBot(
     if (state.phase === 'report') {
       action = { type: 'advance' };
     } else if (state.actingSeat === state.playerSeat) {
-      const decision = decide(bot, { data, state, seat: state.playerSeat, rng: botRng });
+      const decision = botDecide(bot, { data, state, seat: state.playerSeat, rng: botRng });
       botRng = decision.rng;
       action = decision.action;
     } else {
@@ -290,11 +291,11 @@ export function runMatch(
     if (state.phase === 'report') {
       action = { type: 'advance' };
     } else if (state.actingSeat === 'usa') {
-      const decision = decide(botUsa, { data, state, seat: 'usa', rng: usaRng });
+      const decision = botDecide(botUsa, { data, state, seat: 'usa', rng: usaRng });
       usaRng = decision.rng;
       action = decision.action;
     } else {
-      const decision = decide(botChina, { data, state, seat: 'china', rng: chinaRng });
+      const decision = botDecide(botChina, { data, state, seat: 'china', rng: chinaRng });
       chinaRng = decision.rng;
       action = decision.action;
     }
