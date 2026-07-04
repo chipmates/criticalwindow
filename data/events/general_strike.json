@@ -1,6 +1,7 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "general_strike",
+  "kind": "choice",
   "title": "strings:event.generalStrike.title",
   "body": "strings:event.generalStrike.body",
   "trigger": {
@@ -17,14 +18,14 @@
     {
       "label": "strings:event.generalStrike.crackdown",
       "effects": {
-        "society.unrest": -100,
-        "publicTrust": -100
+        "society.unrest": -150,
+        "publicTrust": -150
       },
       "delayedEffects": [
         {
           "inTurns": 2,
           "effects": {
-            "society.unrest": 150
+            "society.unrest": 200
           }
         }
       ]
@@ -32,16 +33,16 @@
     {
       "label": "strings:event.generalStrike.compact",
       "effects": {
-        "politicalCapital": -100,
-        "capital": -100,
-        "society.unrest": -100,
-        "publicTrust": 50
+        "politicalCapital": -150,
+        "capital": -150,
+        "society.unrest": -150,
+        "publicTrust": 100
       },
       "delayedEffects": [
         {
           "inTurns": 3,
           "effects": {
-            "publicTrust": 50
+            "publicTrust": 100
           }
         }
       ]

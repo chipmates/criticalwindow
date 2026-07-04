@@ -1,0 +1,16 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "weights_security_program",
+  "title": "strings:policy.weightsSecurityProgram.title",
+  "body": "strings:policy.weightsSecurityProgram.body",
+  "cost": {
+    "capital": 100
+  },
+  "effects": {
+    "flags": ["weightsSecured"]
+  },
+  "oncePerRun": true,
+  "sourceIds": ["SRC-RAND-WEIGHTS", "SRC-AI2027"],
+  "claimIds": ["SRC-AI2027#10", "SRC-AI2027#11"],
+  "tags": ["security", "espionage", "defense"]
+}

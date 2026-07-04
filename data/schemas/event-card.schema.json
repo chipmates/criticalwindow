@@ -1,58 +1,585 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "id": {
-      "type": "string",
-      "pattern": "^[a-z][a-z0-9_]*$"
-    },
-    "title": {
-      "type": "string",
-      "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
-    },
-    "body": {
-      "type": "string",
-      "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
-    },
-    "trigger": {
+  "oneOf": [
+    {
       "type": "object",
       "properties": {
-        "era": {
+        "$schema": {
+          "type": "string"
+        },
+        "id": {
           "type": "string",
-          "enum": [
-            "early",
-            "mid",
-            "late"
-          ]
+          "pattern": "^[a-z][a-z0-9_]*$"
         },
-        "turnMin": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 64
+        "title": {
+          "type": "string",
+          "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
         },
-        "turnMax": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 64
+        "body": {
+          "type": "string",
+          "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
         },
-        "weight": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 10
+        "sourceIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+              },
+              {
+                "type": "string",
+                "const": "TODO-SOURCE"
+              }
+            ]
+          }
         },
-        "conditions": {
+        "claimIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*#\\d+$"
+          }
+        },
+        "tags": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          }
+        },
+        "kind": {
+          "type": "string",
+          "const": "choice"
+        },
+        "trigger": {
           "type": "object",
           "properties": {
-            "rivalPosture": {
+            "era": {
               "type": "string",
               "enum": [
-                "race",
-                "mirror",
-                "cautious"
+                "early",
+                "mid",
+                "late"
               ]
+            },
+            "turnMin": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            },
+            "turnMax": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            },
+            "weight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "conditions": {
+              "type": "object",
+              "properties": {
+                "rivalPosture": {
+                  "type": "string",
+                  "enum": [
+                    "race",
+                    "mirror",
+                    "cautious"
+                  ]
+                },
+                "flagsAll": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$"
+                  }
+                },
+                "flagsNone": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$"
+                  }
+                },
+                "resourceMin": {
+                  "type": "object",
+                  "properties": {
+                    "compute": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "energy": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "talent": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "capital": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "publicTrust": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "politicalCapital": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "capability": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "safetyInsight": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "resourceMax": {
+                  "type": "object",
+                  "properties": {
+                    "compute": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "energy": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "talent": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "capital": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "publicTrust": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "politicalCapital": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "capability": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "safetyInsight": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "societyMin": {
+                  "type": "object",
+                  "properties": {
+                    "jobDisplacement": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "unrest": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "societyMax": {
+                  "type": "object",
+                  "properties": {
+                    "jobDisplacement": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "unrest": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "weight"
+          ],
+          "additionalProperties": false
+        },
+        "choices": {
+          "minItems": 1,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+              },
+              "effects": {
+                "type": "object",
+                "properties": {
+                  "compute": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "energy": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "talent": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "capital": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "publicTrust": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "politicalCapital": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "capability": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "safetyInsight": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "society.jobDisplacement": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "society.unrest": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "rival.trust": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "rival.capability": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "rival.substitution": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "hidden.trueAlignment": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "hidden.agencyErosion": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "flags": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-zA-Z0-9]*$"
+                    }
+                  },
+                  "clearFlags": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-zA-Z0-9]*$"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "delayedEffects": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "inTurns": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 16
+                    },
+                    "effects": {
+                      "type": "object",
+                      "properties": {
+                        "compute": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "energy": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "talent": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "capital": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "publicTrust": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "politicalCapital": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "capability": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "safetyInsight": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "society.jobDisplacement": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "society.unrest": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "rival.trust": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "rival.capability": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "rival.substitution": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "hidden.trueAlignment": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "hidden.agencyErosion": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "flags": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[a-z][a-zA-Z0-9]*$"
+                          }
+                        },
+                        "clearFlags": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[a-z][a-zA-Z0-9]*$"
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "inTurns",
+                    "effects"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "repeatable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "body",
+        "sourceIds",
+        "tags",
+        "kind",
+        "trigger",
+        "choices"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "title": {
+          "type": "string",
+          "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+        },
+        "body": {
+          "type": "string",
+          "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+        },
+        "sourceIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+              },
+              {
+                "type": "string",
+                "const": "TODO-SOURCE"
+              }
+            ]
+          }
+        },
+        "claimIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*#\\d+$"
+          }
+        },
+        "tags": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          }
+        },
+        "kind": {
+          "type": "string",
+          "const": "fixed"
+        },
+        "fixedTurn": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ],
+          "additionalProperties": false
+        },
+        "historical": {
+          "type": "boolean"
+        },
+        "condition": {
+          "type": "object",
+          "properties": {
+            "era": {
+              "type": "string",
+              "enum": [
+                "early",
+                "mid",
+                "late"
+              ]
+            },
+            "minCapability": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
             },
             "flagsAll": {
               "minItems": 1,
@@ -70,406 +597,674 @@
                 "pattern": "^[a-z][a-zA-Z0-9]*$"
               }
             },
-            "resourceMin": {
-              "type": "object",
-              "properties": {
-                "compute": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "energy": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "talent": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "capital": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "publicTrust": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "politicalCapital": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "capability": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "safetyInsight": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                }
-              },
-              "additionalProperties": false
-            },
-            "resourceMax": {
-              "type": "object",
-              "properties": {
-                "compute": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "energy": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "talent": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "capital": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "publicTrust": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "politicalCapital": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "capability": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "safetyInsight": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                }
-              },
-              "additionalProperties": false
-            },
-            "societyMin": {
-              "type": "object",
-              "properties": {
-                "jobDisplacement": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "unrest": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                }
-              },
-              "additionalProperties": false
-            },
-            "societyMax": {
-              "type": "object",
-              "properties": {
-                "jobDisplacement": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                },
-                "unrest": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 1000
-                }
-              },
-              "additionalProperties": false
+            "diceScaledFireProb": {
+              "type": "string",
+              "const": "takeoffSteepness"
             }
           },
           "additionalProperties": false
-        }
-      },
-      "required": [
-        "weight"
-      ],
-      "additionalProperties": false
-    },
-    "choices": {
-      "minItems": 1,
-      "maxItems": 4,
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "label": {
-            "type": "string",
-            "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
-          },
-          "effects": {
+        },
+        "choices": {
+          "minItems": 1,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
             "type": "object",
             "properties": {
-              "compute": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
+              "label": {
+                "type": "string",
+                "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
               },
-              "energy": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
+              "effects": {
+                "type": "object",
+                "properties": {
+                  "compute": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "energy": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "talent": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "capital": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "publicTrust": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "politicalCapital": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "capability": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "safetyInsight": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "society.jobDisplacement": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "society.unrest": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "rival.trust": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "rival.capability": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "rival.substitution": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "hidden.trueAlignment": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "hidden.agencyErosion": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "flags": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-zA-Z0-9]*$"
+                    }
+                  },
+                  "clearFlags": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-zA-Z0-9]*$"
+                    }
+                  }
+                },
+                "additionalProperties": false
               },
-              "talent": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "capital": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "publicTrust": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "politicalCapital": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "capability": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "safetyInsight": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "society.jobDisplacement": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "society.unrest": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "rival.trust": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "rival.capability": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "rival.substitution": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "hidden.trueAlignment": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "hidden.agencyErosion": {
-                "type": "integer",
-                "minimum": -1000,
-                "maximum": 1000
-              },
-              "flags": {
+              "delayedEffects": {
                 "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string",
-                  "pattern": "^[a-z][a-zA-Z0-9]*$"
-                }
-              },
-              "clearFlags": {
-                "minItems": 1,
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "pattern": "^[a-z][a-zA-Z0-9]*$"
+                  "type": "object",
+                  "properties": {
+                    "inTurns": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 16
+                    },
+                    "effects": {
+                      "type": "object",
+                      "properties": {
+                        "compute": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "energy": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "talent": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "capital": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "publicTrust": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "politicalCapital": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "capability": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "safetyInsight": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "society.jobDisplacement": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "society.unrest": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "rival.trust": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "rival.capability": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "rival.substitution": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "hidden.trueAlignment": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "hidden.agencyErosion": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "flags": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[a-z][a-zA-Z0-9]*$"
+                          }
+                        },
+                        "clearFlags": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[a-z][a-zA-Z0-9]*$"
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "inTurns",
+                    "effects"
+                  ],
+                  "additionalProperties": false
                 }
               }
             },
+            "required": [
+              "label"
+            ],
             "additionalProperties": false
-          },
-          "delayedEffects": {
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "inTurns": {
-                  "type": "integer",
-                  "minimum": 1,
-                  "maximum": 16
-                },
-                "effects": {
-                  "type": "object",
-                  "properties": {
-                    "compute": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "energy": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "talent": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "capital": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "publicTrust": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "politicalCapital": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "capability": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "safetyInsight": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "society.jobDisplacement": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "society.unrest": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "rival.trust": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "rival.capability": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "rival.substitution": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "hidden.trueAlignment": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "hidden.agencyErosion": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "flags": {
-                      "minItems": 1,
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "pattern": "^[a-z][a-zA-Z0-9]*$"
-                      }
-                    },
-                    "clearFlags": {
-                      "minItems": 1,
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "pattern": "^[a-z][a-zA-Z0-9]*$"
-                      }
-                    }
-                  },
-                  "additionalProperties": false
-                }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "body",
+        "sourceIds",
+        "tags",
+        "kind",
+        "fixedTurn",
+        "historical",
+        "choices"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "title": {
+          "type": "string",
+          "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+        },
+        "body": {
+          "type": "string",
+          "pattern": "^strings:[a-z][a-zA-Z0-9]*(?:\\.[a-zA-Z0-9]+)+$"
+        },
+        "sourceIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
               },
-              "required": [
-                "inTurns",
-                "effects"
-              ],
-              "additionalProperties": false
-            }
+              {
+                "type": "string",
+                "const": "TODO-SOURCE"
+              }
+            ]
           }
         },
-        "required": [
-          "label"
-        ],
-        "additionalProperties": false
-      }
-    },
-    "repeatable": {
-      "type": "boolean"
-    },
-    "sourceIds": {
-      "minItems": 1,
-      "type": "array",
-      "items": {
-        "anyOf": [
-          {
+        "claimIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
             "type": "string",
-            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-          },
-          {
-            "type": "string",
-            "const": "TODO-SOURCE"
+            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*#\\d+$"
           }
-        ]
-      }
-    },
-    "tags": {
-      "minItems": 1,
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[a-z][a-z0-9-]*$"
-      }
+        },
+        "tags": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          }
+        },
+        "kind": {
+          "type": "string",
+          "const": "wildcard"
+        },
+        "fire": {
+          "type": "object",
+          "properties": {
+            "probPerMille": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            "probModifiers": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "flag": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$"
+                  },
+                  "deltaPerMille": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  }
+                },
+                "required": [
+                  "flag",
+                  "deltaPerMille"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "eligible": {
+              "type": "object",
+              "properties": {
+                "turnMin": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 64
+                },
+                "minCapability": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "computeOverEnergyMin": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "flagsAll": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$"
+                  }
+                },
+                "flagsNone": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-zA-Z0-9]*$"
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
+            "cooldownTurns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16
+            }
+          },
+          "required": [
+            "probPerMille",
+            "cooldownTurns"
+          ],
+          "additionalProperties": false
+        },
+        "effects": {
+          "type": "object",
+          "properties": {
+            "compute": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "energy": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "talent": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "capital": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "publicTrust": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "politicalCapital": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "capability": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "safetyInsight": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "society.jobDisplacement": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "society.unrest": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "rival.trust": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "rival.capability": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "rival.substitution": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "hidden.trueAlignment": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "hidden.agencyErosion": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "flags": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$"
+              }
+            },
+            "clearFlags": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "scaledEffects": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "type": "string",
+                "enum": [
+                  "compute",
+                  "energy",
+                  "talent",
+                  "capital",
+                  "publicTrust",
+                  "politicalCapital",
+                  "capability",
+                  "safetyInsight",
+                  "society.jobDisplacement",
+                  "society.unrest",
+                  "rival.trust",
+                  "rival.capability",
+                  "rival.substitution",
+                  "hidden.trueAlignment",
+                  "hidden.agencyErosion"
+                ]
+              },
+              "base": {
+                "type": "integer",
+                "minimum": -1000,
+                "maximum": 1000
+              },
+              "coef": {
+                "type": "integer",
+                "minimum": -1000,
+                "maximum": 1000
+              },
+              "exposure": {
+                "type": "string",
+                "enum": [
+                  "capability",
+                  "compute",
+                  "computeMinusEnergy"
+                ]
+              },
+              "halveIfFlag": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$"
+              }
+            },
+            "required": [
+              "target",
+              "base",
+              "coef",
+              "exposure"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "delayedEffects": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "inTurns": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 16
+              },
+              "effects": {
+                "type": "object",
+                "properties": {
+                  "compute": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "energy": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "talent": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "capital": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "publicTrust": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "politicalCapital": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "capability": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "safetyInsight": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "society.jobDisplacement": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "society.unrest": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "rival.trust": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "rival.capability": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "rival.substitution": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "hidden.trueAlignment": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "hidden.agencyErosion": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "flags": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-zA-Z0-9]*$"
+                    }
+                  },
+                  "clearFlags": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-zA-Z0-9]*$"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "inTurns",
+              "effects"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "body",
+        "sourceIds",
+        "tags",
+        "kind",
+        "fire"
+      ],
+      "additionalProperties": false
     }
-  },
-  "required": [
-    "id",
-    "title",
-    "body",
-    "trigger",
-    "choices",
-    "sourceIds",
-    "tags"
-  ],
-  "additionalProperties": false
+  ]
 }

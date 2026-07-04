@@ -1,11 +1,11 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "1cea36f0097602",
+  "dataVersion": "1d69e43465b237",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
-  "endingId": "outpaced",
-  "turns": 12,
+  "endingId": "societalBreakdown",
+  "turns": 10,
   "actions": [
     {
       "type": "allocate",
@@ -19,7 +19,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "viral_job_loss",
+      "eventId": "eu_ai_act_full_force",
       "choiceIndex": 1
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "grid_strain",
+      "eventId": "open_weights_shock",
       "choiceIndex": 0
     },
     {
@@ -55,7 +55,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "eval_breakthrough",
+      "eventId": "viral_job_loss",
       "choiceIndex": 1
     },
     {
@@ -73,7 +73,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "open_weights_shock",
+      "eventId": "eval_breakthrough",
       "choiceIndex": 0
     },
     {
@@ -90,6 +90,11 @@
       "policyId": "energy_buildout"
     },
     {
+      "type": "resolveEventChoice",
+      "eventId": "eu_ai_act_high_risk",
+      "choiceIndex": 1
+    },
+    {
       "type": "advance"
     },
     {
@@ -103,7 +108,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "whistleblower",
+      "eventId": "treaty_feeler",
       "choiceIndex": 0
     },
     {
@@ -121,7 +126,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "general_strike",
+      "eventId": "whistleblower",
       "choiceIndex": 1
     },
     {
@@ -138,7 +143,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "model_weight_theft",
+      "eventId": "election_scandal",
       "choiceIndex": 0
     },
     {
@@ -155,7 +160,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "lab_merger",
+      "eventId": "superhuman_coder",
       "choiceIndex": 1
     },
     {
@@ -172,57 +177,21 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
-      "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 50,
-      "safety": 25,
-      "diffusion": 25
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "benchmark_gaming",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 50,
-      "safety": 25,
-      "diffusion": 25
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "rival_breakthrough",
+      "eventId": "the_project",
       "choiceIndex": 0
     }
   ],
   "perTurnHashes": [
-    "1ebbe3a05718dd",
-    "1055553c2fb7fc",
-    "10ed7955f252c1",
-    "186e1dc3b6d9e1",
-    "19704a1a5e953f",
-    "0fe69840b59c2a",
-    "094374983e44a2",
-    "00d4d455c809f9",
-    "0b064592d7a4ca",
-    "0eeb944f19c5a5",
-    "1b4ac0780bcef2",
-    "0f68b3655fab9a"
+    "0ff8e3f87fbb73",
+    "14974164f0635d",
+    "0e188d40d49df7",
+    "05f22862b5bb75",
+    "1e78fd47d3e485",
+    "195a5a2fcfe792",
+    "1be82473f3a254",
+    "0fe56fc66ef72b",
+    "1f54fc7b63f313",
+    "147de91fa3fa06"
   ],
-  "finalHash": "0f68b3655fab9a"
+  "finalHash": "147de91fa3fa06"
 }

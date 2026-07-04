@@ -1,6 +1,7 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "verification_offer",
+  "kind": "choice",
   "title": "strings:event.verificationOffer.title",
   "body": "strings:event.verificationOffer.body",
   "trigger": {
@@ -16,8 +17,8 @@
     {
       "label": "strings:event.verificationOffer.accept",
       "effects": {
-        "safetyInsight": 100,
-        "rival.trust": 100,
+        "safetyInsight": 150,
+        "rival.trust": 150,
         "politicalCapital": -100,
         "flags": ["verificationPilot"]
       }
@@ -25,13 +26,13 @@
     {
       "label": "strings:event.verificationOffer.counter",
       "effects": {
-        "rival.trust": -100
+        "rival.trust": -150
       },
       "delayedEffects": [
         {
           "inTurns": 2,
           "effects": {
-            "rival.capability": 50
+            "rival.capability": 100
           }
         }
       ]

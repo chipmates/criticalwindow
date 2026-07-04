@@ -1,6 +1,7 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "public_opinion_swing",
+  "kind": "choice",
   "title": "strings:event.publicOpinionSwing.title",
   "body": "strings:event.publicOpinionSwing.body",
   "trigger": {
@@ -13,14 +14,14 @@
     {
       "label": "strings:event.publicOpinionSwing.engage",
       "effects": {
-        "politicalCapital": -50,
-        "publicTrust": 100
+        "politicalCapital": -100,
+        "publicTrust": 150
       },
       "delayedEffects": [
         {
           "inTurns": 2,
           "effects": {
-            "capability": -50
+            "capability": -100
           }
         }
       ]
@@ -28,13 +29,13 @@
     {
       "label": "strings:event.publicOpinionSwing.dismiss",
       "effects": {
-        "publicTrust": -100
+        "publicTrust": -150
       },
       "delayedEffects": [
         {
           "inTurns": 2,
           "effects": {
-            "society.unrest": 100
+            "society.unrest": 150
           }
         }
       ]

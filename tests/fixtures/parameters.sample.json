@@ -12,6 +12,10 @@
         "min": 500,
         "max": 900,
         "sourceIds": ["SRC-AI2027"]
+      },
+      "displacementLagDivisor": {
+        "value": 4,
+        "sourceIds": ["TODO-SOURCE"]
       }
     },
     "consensus": {
@@ -26,6 +30,10 @@
         "min": 300,
         "max": 800,
         "sourceIds": ["SRC-GRACE-SURVEY"]
+      },
+      "displacementLagDivisor": {
+        "value": 6,
+        "sourceIds": ["TODO-SOURCE"]
       }
     },
     "skeptic": {
@@ -39,6 +47,10 @@
       "takeoffSteepness": {
         "min": 100,
         "max": 500,
+        "sourceIds": ["TODO-SOURCE"]
+      },
+      "displacementLagDivisor": {
+        "value": 9,
         "sourceIds": ["TODO-SOURCE"]
       }
     }
@@ -215,10 +227,6 @@
       }
     },
     "societyDepth": {
-      "displacementEquilibriumDivisor": {
-        "value": 6,
-        "sourceIds": ["TODO-SOURCE"]
-      },
       "trustCurveDivisor": {
         "value": 4,
         "sourceIds": ["TODO-SOURCE"]
@@ -296,5 +304,31 @@
       "value": 25,
       "sourceIds": ["SRC-DESIGN-HANDOVER"]
     }
+  },
+  "capabilityLadder": {
+    "milestones": [
+      {
+        "id": "superhuman_coder",
+        "at": {
+          "value": 700,
+          "sourceIds": ["SRC-AI2027"]
+        },
+        "selfAccel": {
+          "value": 50,
+          "sourceIds": ["SRC-AI2027"]
+        }
+      },
+      {
+        "id": "superhuman_researcher",
+        "at": {
+          "value": 800,
+          "sourceIds": ["SRC-AI2027"]
+        },
+        "selfAccel": {
+          "value": 100,
+          "sourceIds": ["SRC-AI2027"]
+        }
+      }
+    ]
   }
 }

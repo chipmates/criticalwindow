@@ -7,7 +7,7 @@
     "politicalCapital": 50
   },
   "effects": {
-    "rival.trust": 100,
+    "rival.trust": 150,
     "flags": ["treatyChannel"]
   },
   "delayedEffects": [

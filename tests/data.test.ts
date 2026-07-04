@@ -2,12 +2,14 @@ import { describe, expect, test } from 'vitest';
 import { DataLoadError, checkIntegrity, loadEngineData } from '../src/engine/data';
 import {
   eventCardSchema,
+  incidentsSchema,
   parametersSchema,
   policyCardSchema,
   scenarioSchema,
   sourcesRegistrySchema,
 } from '../src/engine/schemas';
 import eventFixture from './fixtures/event.sample.json';
+import incidentsFixture from './fixtures/incidents.sample.json';
 import parametersFixture from './fixtures/parameters.sample.json';
 import policyFixture from './fixtures/policy.sample.json';
 import scenarioFixture from './fixtures/scenario.sample.json';
@@ -18,6 +20,7 @@ const parsed = {
   scenario: scenarioSchema.parse(scenarioFixture),
   events: [eventCardSchema.parse(eventFixture)],
   policies: [policyCardSchema.parse(policyFixture)],
+  incidents: incidentsSchema.parse(incidentsFixture),
   sources: sourcesRegistrySchema.parse(sourcesFixture),
 };
 
@@ -37,6 +40,10 @@ const fixtureStrings = Object.fromEntries(
     'preset.skeptic.label',
     'preset.skeptic.description',
     'scenario.usa2026.label',
+    'incident.nearMiss.title',
+    'incident.nearMiss.body',
+    'incident.labAccident.title',
+    'incident.labAccident.body',
   ].map((key) => [key, 'placeholder text']),
 );
 
@@ -48,6 +55,7 @@ describe('loadEngineData', () => {
       scenario: scenarioFixture,
       events: [{ name: 'event.sample.json', json: eventFixture }],
       policies: [{ name: 'policy.sample.json', json: policyFixture }],
+      incidents: incidentsFixture,
     });
     expect(data.events).toHaveLength(1);
     expect(data.policies).toHaveLength(1);
@@ -62,6 +70,7 @@ describe('loadEngineData', () => {
         scenario: {},
         events: [{ name: 'bad.json', json: { id: 'bad' } }],
         policies: [],
+        incidents: incidentsFixture,
       }),
     ).toThrow(DataLoadError);
     try {
@@ -71,6 +80,7 @@ describe('loadEngineData', () => {
         scenario: {},
         events: [{ name: 'bad.json', json: { id: 'bad' } }],
         policies: [],
+        incidents: incidentsFixture,
       });
     } catch (error) {
       const issues = (error as DataLoadError).issues;

@@ -1,0 +1,42 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "branch_point",
+  "kind": "fixed",
+  "title": "strings:event.branchPoint.title",
+  "body": "strings:event.branchPoint.body",
+  "fixedTurn": {
+    "min": 1,
+    "max": 16
+  },
+  "historical": false,
+  "condition": {
+    "minCapability": 800
+  },
+  "choices": [
+    {
+      "label": "strings:event.branchPoint.sprint",
+      "effects": {
+        "capability": 50,
+        "hidden.trueAlignment": -50
+      }
+    },
+    {
+      "label": "strings:event.branchPoint.hold",
+      "effects": {
+        "safetyInsight": 50,
+        "politicalCapital": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "publicTrust": 50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-AI2027"],
+  "claimIds": ["SRC-AI2027#1"],
+  "tags": ["race", "milestone", "fixed-beat"]
+}

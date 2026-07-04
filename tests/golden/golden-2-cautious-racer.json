@@ -1,11 +1,11 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "1cea36f0097602",
+  "dataVersion": "1d69e43465b237",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
   "endingId": "misalignedCatastrophe",
-  "turns": 11,
+  "turns": 6,
   "actions": [
     {
       "type": "allocate",
@@ -19,7 +19,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "viral_job_loss",
+      "eventId": "eu_ai_act_full_force",
       "choiceIndex": 0
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "open_weights_shock",
+      "eventId": "viral_job_loss",
       "choiceIndex": 0
     },
     {
@@ -55,7 +55,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "grid_strain",
+      "eventId": "open_weights_shock",
       "choiceIndex": 0
     },
     {
@@ -88,55 +88,8 @@
       "type": "skipPolicy"
     },
     {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
       "type": "resolveEventChoice",
-      "eventId": "model_weight_theft",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "whistleblower",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "energy_buildout"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "election_scandal",
+      "eventId": "eu_ai_act_high_risk",
       "choiceIndex": 0
     },
     {
@@ -153,56 +106,17 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "lab_merger",
+      "eventId": "superhuman_coder",
       "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "benchmark_gaming",
-      "choiceIndex": 1
     }
   ],
   "perTurnHashes": [
-    "15c4276ecbde7b",
-    "1d564a3c1c31cb",
-    "051aba5e171895",
-    "0a38ae976f7ebf",
-    "1816a9427d3ea7",
-    "0f5df25614824f",
-    "1a66ab2d178f22",
-    "06206708e19450",
-    "1781c16e1f750d",
-    "186c833820ddd0",
-    "0e309372430b32"
+    "0194e92a80c8ea",
+    "046361e9e56ef6",
+    "190bcf055f869c",
+    "1134e2aecc5d14",
+    "038f8c73683dd8",
+    "1f9a6c1c115c9d"
   ],
-  "finalHash": "0e309372430b32"
+  "finalHash": "1f9a6c1c115c9d"
 }

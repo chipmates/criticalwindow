@@ -6,10 +6,12 @@
  */
 import {
   eventCardSchema,
+  incidentsSchema,
   policyCardSchema,
   parametersSchema,
   scenarioSchema,
   type EventCardData,
+  type IncidentsData,
   type ParametersData,
   type PolicyCardData,
   type ScenarioData,
@@ -23,6 +25,7 @@ export interface EngineData {
   scenario: ScenarioData;
   events: EventCardData[];
   policies: PolicyCardData[];
+  incidents: IncidentsData;
 }
 
 export interface RawEngineData {
@@ -31,6 +34,7 @@ export interface RawEngineData {
   scenario: unknown;
   events: Array<{ name: string; json: unknown }>;
   policies: Array<{ name: string; json: unknown }>;
+  incidents: unknown;
 }
 
 export class DataLoadError extends Error {
@@ -52,6 +56,10 @@ export function loadEngineData(raw: RawEngineData): EngineData {
   const scenario = scenarioSchema.safeParse(raw.scenario);
   if (!scenario.success) {
     issues.push(...formatZodIssues('scenario', scenario.error));
+  }
+  const incidents = incidentsSchema.safeParse(raw.incidents);
+  if (!incidents.success) {
+    issues.push(...formatZodIssues('incidents.json', incidents.error));
   }
 
   const events: EventCardData[] = [];
@@ -84,6 +92,7 @@ export function loadEngineData(raw: RawEngineData): EngineData {
     scenario: scenario.data!,
     events,
     policies,
+    incidents: incidents.data!,
   };
 }
 
@@ -157,6 +166,7 @@ export function checkIntegrity(input: {
   scenario: ScenarioData;
   events: EventCardData[];
   policies: PolicyCardData[];
+  incidents: IncidentsData;
   strings: StringsData | null;
   sources: SourcesRegistryData | null;
 }): IntegrityReport {
@@ -194,6 +204,7 @@ export function checkIntegrity(input: {
   const roots: Array<[string, unknown]> = [
     ['parameters', input.parameters],
     [`scenario(${input.scenario.id})`, input.scenario],
+    ['incidents', input.incidents],
     ...input.events.map((e): [string, unknown] => [`event(${e.id})`, e]),
     ...input.policies.map((p): [string, unknown] => [`policy(${p.id})`, p]),
   ];

@@ -1,11 +1,11 @@
 {
   "name": "golden-5-skeptic-racer",
-  "dataVersion": "1cea36f0097602",
+  "dataVersion": "1d69e43465b237",
   "seed": "golden-5",
   "presetId": "skeptic",
   "bot": "racer",
   "endingId": "misalignedCatastrophe",
-  "turns": 11,
+  "turns": 8,
   "actions": [
     {
       "type": "allocate",
@@ -19,7 +19,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "viral_job_loss",
+      "eventId": "eu_ai_act_full_force",
       "choiceIndex": 0
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "grid_strain",
+      "eventId": "open_weights_shock",
       "choiceIndex": 0
     },
     {
@@ -52,23 +52,6 @@
     {
       "type": "playPolicy",
       "policyId": "chip_subsidies"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "open_weights_shock",
-      "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "skipPolicy"
     },
     {
       "type": "resolveEventChoice",
@@ -88,55 +71,8 @@
       "type": "skipPolicy"
     },
     {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
       "type": "resolveEventChoice",
-      "eventId": "whistleblower",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "election_scandal",
-      "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "energy_buildout"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "lab_merger",
+      "eventId": "viral_job_loss",
       "choiceIndex": 0
     },
     {
@@ -153,8 +89,8 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "model_weight_theft",
-      "choiceIndex": 1
+      "eventId": "eu_ai_act_high_risk",
+      "choiceIndex": 0
     },
     {
       "type": "advance"
@@ -170,8 +106,25 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "taiwan_strait_crisis",
-      "choiceIndex": 1
+      "eventId": "superhuman_coder",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 30,
+      "safety": 40,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "branch_point",
+      "choiceIndex": 0
     },
     {
       "type": "advance"
@@ -187,22 +140,19 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "public_opinion_swing",
-      "choiceIndex": 1
+      "eventId": "intelligence_explosion",
+      "choiceIndex": 0
     }
   ],
   "perTurnHashes": [
-    "17b863677a39f1",
-    "16195d551d12bd",
-    "0a779105bf2425",
-    "0ef2f50cf43da3",
-    "07696df141a602",
-    "159035eb947251",
-    "128d969d5f724b",
-    "01a07a57e55e6f",
-    "059acad25670dc",
-    "1e049e3bad683c",
-    "085e654b5f6a9e"
+    "1319e505cf5d54",
+    "014eec22f30fed",
+    "0f2d14d189c730",
+    "0985cf07db8446",
+    "022f7168f7ddcc",
+    "06b9935f5fffae",
+    "0c5b5c1d515e2b",
+    "09d2a4823aec69"
   ],
-  "finalHash": "085e654b5f6a9e"
+  "finalHash": "09d2a4823aec69"
 }

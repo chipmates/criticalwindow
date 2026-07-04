@@ -1,6 +1,7 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "energy_crunch",
+  "kind": "choice",
   "title": "strings:event.energyCrunch.title",
   "body": "strings:event.energyCrunch.body",
   "trigger": {
@@ -13,14 +14,14 @@
     {
       "label": "strings:event.energyCrunch.subsidize",
       "effects": {
-        "capital": -100,
+        "capital": -150,
         "publicTrust": -50
       },
       "delayedEffects": [
         {
           "inTurns": 2,
           "effects": {
-            "society.unrest": 50
+            "society.unrest": 100
           }
         }
       ]
@@ -28,14 +29,14 @@
     {
       "label": "strings:event.energyCrunch.throttleAi",
       "effects": {
-        "compute": -50,
-        "publicTrust": 50
+        "compute": -100,
+        "publicTrust": 100
       },
       "delayedEffects": [
         {
           "inTurns": 2,
           "effects": {
-            "energy": 50
+            "energy": 100
           }
         }
       ]

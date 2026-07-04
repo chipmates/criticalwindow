@@ -1,24 +1,46 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "whistleblower",
+  "kind": "choice",
   "title": "strings:event.whistleblower.title",
   "body": "strings:event.whistleblower.body",
-  "trigger": { "era": "mid", "turnMin": 5, "turnMax": 11, "weight": 3 },
+  "trigger": {
+    "era": "mid",
+    "turnMin": 5,
+    "turnMax": 11,
+    "weight": 3
+  },
   "choices": [
     {
       "label": "strings:event.whistleblower.investigate",
       "effects": {
-        "capability": -50,
-        "publicTrust": 100,
-        "safetyInsight": 50
+        "capability": -100,
+        "publicTrust": 150,
+        "safetyInsight": 100
       },
-      "delayedEffects": [{ "inTurns": 2, "effects": { "capital": -50 } }]
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "capital": -100
+          }
+        }
+      ]
     },
     {
       "label": "strings:event.whistleblower.discredit",
-      "effects": { "publicTrust": -50, "politicalCapital": -50 },
+      "effects": {
+        "publicTrust": -100,
+        "politicalCapital": -50
+      },
       "delayedEffects": [
-        { "inTurns": 3, "effects": { "publicTrust": -150, "society.unrest": 100 } }
+        {
+          "inTurns": 3,
+          "effects": {
+            "publicTrust": -200,
+            "society.unrest": 150
+          }
+        }
       ]
     }
   ],

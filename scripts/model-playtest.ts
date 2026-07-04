@@ -49,6 +49,8 @@ const presetArg = arg('preset', 'consensus');
 const policyName = arg('policy', 'scripted');
 const seedPrefix = arg('seed-prefix', 'mp');
 const csvPath = arg('csv', '');
+const transcriptPath = arg('transcript', '');
+const modelId = arg('model', 'claude-sonnet-5');
 const presets: WorldviewPresetId[] =
   presetArg === 'all' ? [...WORLDVIEW_PRESET_IDS] : [presetArg as WorldviewPresetId];
 
@@ -64,6 +66,7 @@ function loadData(): EngineData {
     dataVersion: hashDataFiles(files.map((f) => ({ path: f.relPath, content: f.content }))),
     parameters: json('parameters.json'),
     scenario: json('scenarios/scenario_2026.json'),
+    incidents: json('incidents.json'),
     events: files
       .filter((f) => f.relPath.startsWith('events/'))
       .map((f) => ({ name: f.relPath, json: JSON.parse(f.content) as unknown })),
@@ -142,6 +145,9 @@ function legalMoves(data: EngineData, state: GameState): LegalMoves {
   if (state.phase === 'event') {
     const pending = state.pendingEvents[0]!;
     const card = data.events.find((e) => e.id === pending.eventId)!;
+    if (card.kind === 'wildcard') {
+      throw new Error(`wildcard '${card.id}' cannot be a pending memo`);
+    }
     return {
       phase: 'event',
       eventId: pending.eventId,
@@ -166,13 +172,19 @@ interface PolicyContext {
   state: GameState;
   rng: RngStreamState;
 }
+interface PolicyDecision {
+  action: Action;
+  rng: RngStreamState;
+  /** Raw model output, when a model made the call (transcripts). */
+  modelText?: string;
+}
 interface Policy {
   name: string;
   decide(
     view: CompactView,
     moves: LegalMoves,
     ctx: PolicyContext,
-  ): { action: Action; rng: RngStreamState };
+  ): PolicyDecision | Promise<PolicyDecision>;
 }
 
 /** API-FREE scripted policy: a steward-ish heuristic that exercises the full view->action path. */
@@ -213,33 +225,122 @@ function scriptedPolicy(): Policy {
 }
 
 /**
- * LLM POLICY — STUB. Reads ANTHROPIC_API_KEY from env at TOOLING TIME ONLY. Never shipped,
- * never called at game runtime. The skeleton BUILDS the prompt to prove the serializer feeds
- * a model cleanly, but does NOT execute a request — wiring the fetch is a Phase-3 task behind
- * an explicit flag. Invoking it without that wiring throws, by design.
+ * LLM POLICY. Reads ANTHROPIC_API_KEY from env at TOOLING TIME ONLY (constitution: never
+ * shipped, never called at game runtime; this script is a balance tool). The model plays
+ * under the same fog as a human: serializeView() never exposes hidden state. Invalid or
+ * unparseable replies get ONE retry with the error explained, then fall back to the
+ * scripted heuristic so a sweep never dies mid-run.
  */
 function llmPolicy(): Policy {
   const key = process.env.ANTHROPIC_API_KEY;
+  if (!key) {
+    throw new Error(
+      '--policy llm needs ANTHROPIC_API_KEY in the environment (tooling time only). ' +
+        'Use --policy scripted for the API-free dry-run.',
+    );
+  }
+  const fallback = scriptedPolicy();
+
+  async function ask(prompt: string): Promise<string> {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': key!,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: modelId,
+        max_tokens: 300,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`anthropic api ${response.status}: ${await response.text()}`);
+    }
+    const json = (await response.json()) as { content: Array<{ type: string; text?: string }> };
+    return json.content.find((block) => block.type === 'text')?.text ?? '';
+  }
+
+  function parseAction(text: string, moves: LegalMoves): Action | null {
+    const match = text.match(/\{[\s\S]*\}/);
+    if (!match) return null;
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(match[0]);
+    } catch {
+      return null;
+    }
+    const action = parsed as Action;
+    if (moves.phase === 'allocate' && action.type === 'allocate') {
+      const { capability, safety, diffusion } = action;
+      if (
+        [capability, safety, diffusion].every((v) => Number.isInteger(v) && v >= 0) &&
+        capability + safety + diffusion === 100
+      ) {
+        return action;
+      }
+      return null;
+    }
+    if (moves.phase === 'policy') {
+      if (action.type === 'skipPolicy') return action;
+      if (action.type === 'playPolicy' && moves.playable.includes(action.policyId)) return action;
+      return null;
+    }
+    if (moves.phase === 'event' && action.type === 'resolveEventChoice') {
+      if (
+        action.eventId === moves.eventId &&
+        moves.choices.some((c) => c.index === action.choiceIndex)
+      ) {
+        return action;
+      }
+      return null;
+    }
+    if (moves.phase === 'report' && action.type === 'advance') return action;
+    return null;
+  }
+
+  function buildPrompt(view: CompactView, moves: LegalMoves, note: string): string {
+    return [
+      'You are playing one seat in a strategy game about the AI race. Play WELL: you want a',
+      'good ending (flourishing or negotiated slowdown), not a fast one. Your eval band is the',
+      'only alignment information you get, and it can flatter you.',
+      note,
+      `STATE: ${JSON.stringify(view)}`,
+      `LEGAL MOVES: ${JSON.stringify(moves)}`,
+      'Reply with ONE JSON action object and nothing else, e.g.',
+      '{"type":"allocate","capability":60,"safety":30,"diffusion":10} or',
+      '{"type":"playPolicy","policyId":"..."} or {"type":"skipPolicy"} or',
+      '{"type":"resolveEventChoice","eventId":"...","choiceIndex":0} or {"type":"advance"}.',
+      moves.phase === 'allocate' && view.flags.includes('forcedPause')
+        ? 'NOTE: forced pause is active, capability share must be 30 or less.'
+        : '',
+    ]
+      .filter(Boolean)
+      .join('\n');
+  }
+
   return {
     name: 'llm',
-    decide(view, moves) {
-      // Prompt construction is safe to show; execution is intentionally absent in the skeleton.
-      const _prompt = [
-        'You are one seat in an AI-race strategy game. Choose ONE legal action.',
-        `STATE: ${JSON.stringify(view)}`,
-        `LEGAL MOVES: ${JSON.stringify(moves)}`,
-        'Reply with a single JSON action object, e.g. {"type":"allocate","capability":60,"safety":30,"diffusion":10}.',
-      ].join('\n');
-      void _prompt;
-      if (!key) {
-        throw new Error(
-          'llmPolicy is a Phase-3 stub: set ANTHROPIC_API_KEY (tooling-time only) AND wire the request before use. ' +
-            'Use --policy scripted for the API-free dry-run.',
-        );
+    async decide(view, moves, ctx) {
+      let text: string;
+      try {
+        text = await ask(buildPrompt(view, moves, ''));
+        let action = parseAction(text, moves);
+        if (!action) {
+          text = await ask(
+            buildPrompt(view, moves, 'Your previous reply was not a legal action. Try again.'),
+          );
+          action = parseAction(text, moves);
+        }
+        if (action) {
+          return { action, rng: ctx.rng, modelText: text };
+        }
+      } catch (error) {
+        text = `ERROR: ${String(error)}`;
       }
-      throw new Error(
-        'llmPolicy: request wiring is intentionally not implemented in the P-D3 skeleton.',
-      );
+      const scripted = fallback.decide(view, moves, ctx) as PolicyDecision;
+      return { ...scripted, modelText: `${text} [fell back to scripted]` };
     },
   };
 }
@@ -262,7 +363,21 @@ interface RunResult {
   decisions: number;
 }
 
-function runPolicy(data: EngineData, initial: GameState, policy: Policy, guard = 600): RunResult {
+interface TranscriptLine {
+  seed: string;
+  turn: number;
+  phase: string;
+  action: Action;
+  modelText?: string;
+}
+
+async function runPolicy(
+  data: EngineData,
+  initial: GameState,
+  policy: Policy,
+  transcript: TranscriptLine[] | null,
+  guard = 600,
+): Promise<RunResult> {
   let state = initial;
   let rng = initStream(`${initial.seed}::${policy.name}`, 'bot');
   let decisions = 0;
@@ -270,8 +385,15 @@ function runPolicy(data: EngineData, initial: GameState, policy: Policy, guard =
     if (decisions >= guard) throw new Error(`policy '${policy.name}' exceeded ${guard} steps`);
     const view = serializeView(data, state);
     const moves = legalMoves(data, state);
-    const out = policy.decide(view, moves, { data, state, rng });
+    const out = await policy.decide(view, moves, { data, state, rng });
     rng = out.rng;
+    transcript?.push({
+      seed: state.seed,
+      turn: state.turn,
+      phase: state.phase,
+      action: out.action,
+      ...(out.modelText !== undefined ? { modelText: out.modelText } : {}),
+    });
     state = step(data, state, out.action);
     decisions += 1;
   }
@@ -296,16 +418,17 @@ interface Row {
   windowStillOpen: boolean;
 }
 
-function main(): void {
+async function main(): Promise<void> {
   const data = loadData();
   const policy = makePolicy(policyName);
   const rows: Row[] = [];
+  const transcript: TranscriptLine[] | null = transcriptPath ? [] : null;
   const started = performance.now();
   for (const preset of presets) {
     for (let i = 0; i < runsPerPreset; i += 1) {
       const seed = `${seedPrefix}-${preset}-${policy.name}-${i}`;
       const initial = initGame(data, { seed, presetId: preset });
-      const r = runPolicy(data, initial, policy);
+      const r = await runPolicy(data, initial, policy, transcript);
       const s = r.finalState;
       rows.push({
         preset,
@@ -340,6 +463,12 @@ function main(): void {
     );
   }
 
+  if (transcriptPath && transcript) {
+    mkdirSync(dirname(transcriptPath), { recursive: true });
+    writeFileSync(transcriptPath, transcript.map((line) => JSON.stringify(line)).join('\n') + '\n');
+    console.log(`  transcript: ${transcriptPath} (${transcript.length} decisions)`);
+  }
+
   if (csvPath) {
     const header =
       'preset,policy,seed,ending,turns,capability,rivalCapability,publicTrust,unrest,safetyInsight,windowStillOpen';
@@ -355,4 +484,4 @@ function main(): void {
   }
 }
 
-main();
+await main();

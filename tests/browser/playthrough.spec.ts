@@ -25,6 +25,11 @@ test('a full run plays through the UI to the debrief', async ({ page }) => {
       await page.getByRole('button', { name: 'Pass this quarter' }).click();
       continue;
     }
+    const shock = page.locator('.memo-shock .btn-primary');
+    if (await shock.isVisible()) {
+      await shock.click();
+      continue;
+    }
     const memo = page.locator('.memo-choice').first();
     if (await memo.isVisible()) {
       await memo.click();

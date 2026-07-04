@@ -1,6 +1,6 @@
 {
   "name": "golden-3-skeptic-dove",
-  "dataVersion": "1cea36f0097602",
+  "dataVersion": "1d69e43465b237",
   "seed": "golden-3",
   "presetId": "skeptic",
   "bot": "dove",
@@ -16,6 +16,23 @@
     {
       "type": "playPolicy",
       "policyId": "interpretability_moonshot"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "eu_ai_act_full_force",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
     },
     {
       "type": "resolveEventChoice",
@@ -36,6 +53,24 @@
     },
     {
       "type": "resolveEventChoice",
+      "eventId": "eval_breakthrough",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "playPolicy",
+      "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
       "eventId": "open_weights_shock",
       "choiceIndex": 0
     },
@@ -53,54 +88,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "grid_strain",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 20,
-      "safety": 50,
-      "diffusion": 30
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "eval_breakthrough",
-      "choiceIndex": 0
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 20,
-      "safety": 50,
-      "diffusion": 30
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 20,
-      "safety": 50,
-      "diffusion": 30
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "treaty_feeler",
+      "eventId": "eu_ai_act_high_risk",
       "choiceIndex": 0
     },
     {
@@ -117,7 +105,24 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "energy_crunch",
+      "eventId": "election_scandal",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 20,
+      "safety": 50,
+      "diffusion": 30
+    },
+    {
+      "type": "skipPolicy"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "lab_merger",
       "choiceIndex": 1
     },
     {
@@ -140,14 +145,14 @@
     }
   ],
   "perTurnHashes": [
-    "0876ddeaf2ef23",
-    "1e86f0d38e173a",
-    "120757d9a13ed5",
-    "12e50fb4ccde43",
-    "1af2a4e61ce298",
-    "068b418cd71cdc",
-    "0e437d5dc71194",
-    "0d5787dea5ba3a"
+    "1751347860179a",
+    "17e7290b17fece",
+    "1f0997310c4cc5",
+    "0183568b4c7413",
+    "09406f9d3d44ee",
+    "1dac328364315b",
+    "0dfd5f61ee024b",
+    "1954791a208e90"
   ],
-  "finalHash": "0d5787dea5ba3a"
+  "finalHash": "1954791a208e90"
 }

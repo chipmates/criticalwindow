@@ -7,17 +7,17 @@
     "politicalCapital": 50
   },
   "effects": {
-    "publicTrust": 100,
+    "publicTrust": 150,
     "rival.trust": 50,
-    "capability": -50,
-    "rival.capability": 100,
+    "capability": -100,
+    "rival.capability": 150,
     "flags": ["openWeightsWorld"]
   },
   "delayedEffects": [
     {
       "inTurns": 3,
       "effects": {
-        "safetyInsight": 50
+        "safetyInsight": 100
       }
     }
   ],

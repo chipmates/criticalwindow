@@ -1,6 +1,7 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "chip_smuggling",
+  "kind": "choice",
   "title": "strings:event.chipSmuggling.title",
   "body": "strings:event.chipSmuggling.body",
   "trigger": {
@@ -8,18 +9,40 @@
     "turnMin": 5,
     "turnMax": 11,
     "weight": 2,
-    "conditions": { "flagsAll": ["exportCrackdown"] }
+    "conditions": {
+      "flagsAll": ["exportCrackdown"]
+    }
   },
   "choices": [
     {
       "label": "strings:event.chipSmuggling.enforce",
-      "effects": { "capital": -100, "politicalCapital": -50 },
-      "delayedEffects": [{ "inTurns": 2, "effects": { "rival.capability": -50 } }]
+      "effects": {
+        "capital": -150,
+        "politicalCapital": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "rival.capability": -100
+          }
+        }
+      ]
     },
     {
       "label": "strings:event.chipSmuggling.lookAway",
-      "effects": { "rival.capability": 100, "capital": 50 },
-      "delayedEffects": [{ "inTurns": 3, "effects": { "politicalCapital": -100 } }]
+      "effects": {
+        "rival.capability": 150,
+        "capital": 100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "politicalCapital": -150
+          }
+        }
+      ]
     }
   ],
   "sourceIds": ["SRC-CNAS-SMUGGLING", "SRC-CSIS-EXPORT"],

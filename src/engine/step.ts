@@ -12,10 +12,20 @@
  */
 import type { EngineData } from './data';
 import { clamp, divRound, evalCurve, mulDiv } from './math';
-import { drawFromStream, nextIntInRange, weightedIndex } from './rng';
-import type { EventCardData, EffectSetData, ParametersData, PolicyCardData } from './schemas';
+import { drawFromStream, nextInt, nextIntInRange, weightedIndex } from './rng';
+import type {
+  ChoiceEventData,
+  EffectSetData,
+  FixedEventData,
+  ParametersData,
+  PolicyCardData,
+  WildcardEventData,
+} from './schemas';
 import type { Action, ActionType, EffectTarget, EraId, GameState, LogEntry, Phase } from './types';
 import { ALLOCATION_TOTAL, SCALE_MAX, SCALE_MIN } from './types';
+
+/** Allocation cap on the capability share during a forced pause (incident fallout). */
+export const FORCED_PAUSE_CAPABILITY_MAX = 30;
 
 export class EngineError extends Error {
   readonly code:
@@ -207,6 +217,16 @@ function handleAllocate(
   ) {
     throw new EngineError('badAllocation', 'allocation shares must be >=0 and sum to 100');
   }
+  const paused = state.flags.includes('forcedPause');
+  if (paused) {
+    if (capability > FORCED_PAUSE_CAPABILITY_MAX) {
+      throw new EngineError(
+        'badAllocation',
+        `forced pause: capability share is capped at ${FORCED_PAUSE_CAPABILITY_MAX} this turn`,
+      );
+    }
+    state.flags = state.flags.filter((f) => f !== 'forcedPause');
+  }
   state.allocation = { capability, safety, diffusion };
 
   const rndCurve = data.parameters.curves['rndCapacity'];
@@ -336,6 +356,37 @@ function handlePlayPolicy(
   });
   queueDelayed(state, card.delayedEffects, 'policy', card.id, null);
 
+  // Chosen gamble (the structural coup): outcome is stochastic BY the card's
+  // own copy. The only place a decision rolls dice — everything else obeys
+  // "randomness changes the situation, not whether your decision works".
+  if (card.gamble) {
+    const gamble = card.gamble;
+    let spiralProb = gamble.baseSpiralPerMille;
+    spiralProb += gamble.postureModifiers?.[state.rival.posture] ?? 0;
+    for (const mod of gamble.flagModifiers ?? []) {
+      if (state.flags.includes(mod.flag)) {
+        spiralProb += mod.deltaPerMille;
+      }
+    }
+    spiralProb = clamp(spiralProb, 0, 1000);
+    const [roll, nextWild] = nextInt(state.rng.wildcards, 1000);
+    state.rng = { ...state.rng, wildcards: [...nextWild] as [number, number, number, number] };
+    const spiraled = roll < spiralProb;
+    applyEffects(state, spiraled ? gamble.spiral : gamble.deter, 'policyPlayed', {
+      policyId: card.id,
+      gambleOutcome: spiraled ? 'spiral' : 'deter',
+    });
+    if (spiraled && gamble.spiralSetsPosture && gamble.spiralSetsPosture !== state.rival.posture) {
+      pushLog(state, {
+        kind: 'rivalPostureChange',
+        stringKey: null,
+        deltas: null,
+        meta: { from: state.rival.posture, to: gamble.spiralSetsPosture, cause: card.id },
+      });
+      state.rival.posture = gamble.spiralSetsPosture;
+    }
+  }
+
   state.policy.hand = state.policy.hand.filter((id) => id !== card.id);
   state.policy.playedThisTurn = card.id;
   if (card.oncePerRun) {
@@ -359,7 +410,11 @@ function handleSkipPolicy(data: EngineData, state: GameState): void {
 // Events
 // ---------------------------------------------------------------------------
 
-function eventEligible(parameters: ParametersData, state: GameState, card: EventCardData): boolean {
+function eventEligible(
+  parameters: ParametersData,
+  state: GameState,
+  card: ChoiceEventData,
+): boolean {
   if (!card.repeatable && state.firedEvents.includes(card.id)) {
     return false;
   }
@@ -408,8 +463,64 @@ function eventEligible(parameters: ParametersData, state: GameState, card: Event
   return true;
 }
 
+/**
+ * FIXED beats take the memo slot when due (TS-style: the scheduled thing
+ * happens, you play around it). Real-past beats fire unconditionally in their
+ * window; future beats require their R1 state-condition to hold.
+ */
+function fixedBeatDue(data: EngineData, state: GameState): FixedEventData | null {
+  const beats = data.events
+    .filter((card): card is FixedEventData => card.kind === 'fixed')
+    .filter((card) => !state.firedEvents.includes(card.id))
+    .sort((a, b) => (a.id < b.id ? -1 : 1));
+  for (const card of beats) {
+    if (state.turn < card.fixedTurn.min || state.turn > card.fixedTurn.max) {
+      continue;
+    }
+    if (!card.historical) {
+      const cond = card.condition!;
+      if (cond.era !== undefined && cond.era !== eraForTurn(data.parameters, state.turn)) {
+        continue;
+      }
+      if (cond.minCapability !== undefined && state.resources.capability < cond.minCapability) {
+        continue;
+      }
+      if (cond.flagsAll && !cond.flagsAll.every((f) => state.flags.includes(f))) {
+        continue;
+      }
+      if (cond.flagsNone && cond.flagsNone.some((f) => state.flags.includes(f))) {
+        continue;
+      }
+      if (cond.diceScaledFireProb !== undefined) {
+        // Per-turn fire chance = the hidden die's value in per-mille: steep
+        // worlds erupt sooner. Drawn on the events stream (it is scheduling).
+        const [roll, nextRng] = nextInt(state.rng.events, 1000);
+        state.rng = { ...state.rng, events: [...nextRng] as [number, number, number, number] };
+        if (roll >= state.hidden.takeoffSteepness) {
+          continue;
+        }
+      }
+    }
+    return card;
+  }
+  return null;
+}
+
 function drawEvent(data: EngineData, state: GameState): void {
+  const beat = fixedBeatDue(data, state);
+  if (beat) {
+    state.pendingEvents = [{ eventId: beat.id, drawnOnTurn: state.turn }];
+    pushLog(state, {
+      kind: 'eventDrawn',
+      stringKey: beat.title,
+      deltas: null,
+      meta: { eventId: beat.id, kind: 'fixed', historical: beat.historical },
+    });
+    state.phase = 'event';
+    return;
+  }
   const pool = data.events
+    .filter((card): card is ChoiceEventData => card.kind === 'choice')
     .filter((card) => eventEligible(data.parameters, state, card))
     .sort((a, b) => (a.id < b.id ? -1 : 1));
   if (pool.length === 0) {
@@ -427,7 +538,7 @@ function drawEvent(data: EngineData, state: GameState): void {
     kind: 'eventDrawn',
     stringKey: drawn.title,
     deltas: null,
-    meta: { eventId: drawn.id },
+    meta: { eventId: drawn.id, kind: 'choice' },
   });
   state.phase = 'event';
 }
@@ -442,6 +553,10 @@ function handleResolveEvent(
     throw new EngineError('wrongEvent', `event '${action.eventId}' is not pending`);
   }
   const card = data.events.find((e) => e.id === pending.eventId)!;
+  if (card.kind === 'wildcard') {
+    // Unreachable by construction: wildcards never enter pendingEvents.
+    throw new EngineError('wrongEvent', `wildcard '${card.id}' cannot be resolved as a memo`);
+  }
   const choice = card.choices[action.choiceIndex];
   if (!choice) {
     throw new EngineError('badChoice', `event '${card.id}' has no choice ${action.choiceIndex}`);
@@ -460,9 +575,243 @@ function handleResolveEvent(
 // World update (v0 rules = the paper reference card, from parameters)
 // ---------------------------------------------------------------------------
 
+/**
+ * Incident check (misalignment-incident system). Returns true if a rung-3
+ * catastrophe ended the run. Damage is reduced by Safety Insight (detection
+ * and containment), never to zero and never touching true alignment.
+ */
+function runIncidentCheck(data: EngineData, state: GameState): boolean {
+  const incidents = data.incidents;
+  const baseRisk = mulDiv(
+    state.resources.capability,
+    SCALE_MAX - state.hidden.trueAlignment,
+    SCALE_MAX,
+  );
+  let pressurePct = 100;
+  if (state.allocation.capability >= data.parameters.alignmentModel.crashThresholdShare.value) {
+    pressurePct += incidents.riskFormula.pressureAllocationPct.value;
+  }
+  if (state.rival.posture === 'race') {
+    pressurePct += incidents.riskFormula.pressureRivalRacePct.value;
+  }
+  const risk = clamp(mulDiv(baseRisk, pressurePct, 100), 0, SCALE_MAX);
+
+  let rung: (typeof incidents.rungs)[number] | null = null;
+  for (const candidate of incidents.rungs) {
+    const cooldownUntil = state.incidentCooldowns[candidate.id] ?? 0;
+    if (risk > candidate.threshold && state.turn >= cooldownUntil) {
+      rung = candidate; // rungs are ladder-ordered: last match = highest
+    }
+  }
+  if (!rung) {
+    return false;
+  }
+  const fireProb = Math.min(500, risk - rung.threshold);
+  const [roll, nextIncidents] = nextInt(state.rng.incidents, 1000);
+  state.rng = { ...state.rng, incidents: [...nextIncidents] as [number, number, number, number] };
+  if (roll >= fireProb) {
+    return false;
+  }
+
+  const maxReduction = incidents.safetyInsightDamageReductionMaxPerMille.value;
+  const reduction = Math.min(
+    maxReduction,
+    mulDiv(state.resources.safetyInsight, maxReduction, SCALE_MAX),
+  );
+  const deltas: Partial<Record<EffectTarget, number>> = {};
+  for (const [key, value] of Object.entries(rung.baseDamage)) {
+    if (key === 'flags') {
+      for (const flag of value as string[]) {
+        setFlag(state, flag);
+      }
+      continue;
+    }
+    if (typeof value === 'number') {
+      const reduced = mulDiv(value, 1000 - reduction, 1000);
+      const applied = applyDelta(state, key as EffectTarget, reduced);
+      if (applied !== 0) {
+        deltas[key as EffectTarget] = applied;
+      }
+    }
+  }
+  state.incidentCooldowns = {
+    ...state.incidentCooldowns,
+    [rung.id]: state.turn + rung.cooldownTurns,
+  };
+  if (rung.forcedPause) {
+    setFlag(state, 'forcedPause');
+  }
+  pushLog(state, {
+    kind: 'incident',
+    stringKey: rung.title,
+    deltas,
+    meta: {
+      rungId: rung.id,
+      ladder: rung.ladder,
+      risk,
+      reductionPerMille: reduction,
+      forcedPause: rung.forcedPause,
+    },
+  });
+  if (
+    rung.catastropheBelowTrueAlignment !== undefined &&
+    state.hidden.trueAlignment < rung.catastropheBelowTrueAlignment
+  ) {
+    endRun(state, 'misalignedCatastrophe', {
+      trigger: 'labAccident',
+      trueAlignment: state.hidden.trueAlignment,
+      alignmentDifficulty: state.hidden.alignmentDifficulty,
+    });
+    return true;
+  }
+  return false;
+}
+
+/** One wildcard check per turn: sorted pool order, first success fires. */
+function runWildcardCheck(data: EngineData, state: GameState): void {
+  if (state.turn < state.wildcardGlobalUntil) {
+    return;
+  }
+  const pool = data.events
+    .filter((card): card is WildcardEventData => card.kind === 'wildcard')
+    .sort((a, b) => (a.id < b.id ? -1 : 1));
+  for (const card of pool) {
+    if (state.turn < (state.wildcardCooldowns[card.id] ?? 0)) {
+      continue;
+    }
+    const eligible = card.fire.eligible;
+    if (eligible) {
+      if (eligible.turnMin !== undefined && state.turn < eligible.turnMin) {
+        continue;
+      }
+      if (
+        eligible.minCapability !== undefined &&
+        state.resources.capability < eligible.minCapability
+      ) {
+        continue;
+      }
+      if (
+        eligible.computeOverEnergyMin !== undefined &&
+        state.resources.compute - state.resources.energy < eligible.computeOverEnergyMin
+      ) {
+        continue;
+      }
+      if (eligible.flagsAll && !eligible.flagsAll.every((f) => state.flags.includes(f))) {
+        continue;
+      }
+      if (eligible.flagsNone && eligible.flagsNone.some((f) => state.flags.includes(f))) {
+        continue;
+      }
+    }
+    let prob = card.fire.probPerMille;
+    for (const mod of card.fire.probModifiers ?? []) {
+      if (state.flags.includes(mod.flag)) {
+        prob += mod.deltaPerMille;
+      }
+    }
+    prob = clamp(prob, 0, 1000);
+    if (prob === 0) {
+      continue;
+    }
+    const [roll, nextWild] = nextInt(state.rng.wildcards, 1000);
+    state.rng = { ...state.rng, wildcards: [...nextWild] as [number, number, number, number] };
+    if (roll >= prob) {
+      continue;
+    }
+
+    const deltas: Partial<Record<EffectTarget, number>> = {};
+    for (const [key, value] of Object.entries(card.effects ?? {})) {
+      if (key === 'flags') {
+        for (const flag of value as string[]) {
+          setFlag(state, flag);
+        }
+        continue;
+      }
+      if (key === 'clearFlags') {
+        state.flags = state.flags.filter((f) => !(value as string[]).includes(f));
+        continue;
+      }
+      if (typeof value === 'number') {
+        const applied = applyDelta(state, key as EffectTarget, value);
+        if (applied !== 0) {
+          deltas[key as EffectTarget] = applied;
+        }
+      }
+    }
+    for (const scaled of card.scaledEffects ?? []) {
+      const exposureValue =
+        scaled.exposure === 'capability'
+          ? state.resources.capability
+          : scaled.exposure === 'compute'
+            ? state.resources.compute
+            : clamp(state.resources.compute - state.resources.energy, 0, SCALE_MAX);
+      let delta = scaled.base + mulDiv(scaled.coef, exposureValue, 1000);
+      if (scaled.halveIfFlag && state.flags.includes(scaled.halveIfFlag)) {
+        delta = divRound(delta, 2);
+      }
+      const applied = applyDelta(state, scaled.target, delta);
+      if (applied !== 0) {
+        deltas[scaled.target] = (deltas[scaled.target] ?? 0) + applied;
+      }
+    }
+    queueDelayed(state, card.delayedEffects, 'event', card.id, null);
+    state.wildcardCooldowns = {
+      ...state.wildcardCooldowns,
+      [card.id]: state.turn + card.fire.cooldownTurns,
+    };
+    state.wildcardGlobalUntil = state.turn + 2;
+    pushLog(state, {
+      kind: 'wildcard',
+      stringKey: card.title,
+      deltas,
+      meta: { eventId: card.id },
+    });
+    return;
+  }
+}
+
+/**
+ * Milestone self-acceleration (capability ladder, R1): once a track crosses a
+ * rung, each turn grants a passive bonus scaled by the hidden steepness die.
+ * Highest crossed rung only — bounded swings, no stacking.
+ */
+function ladderAccel(
+  data: EngineData,
+  state: GameState,
+  capability: number,
+): { milestoneId: string; bonus: number } | null {
+  let crossed: { id: string; selfAccel: number } | null = null;
+  for (const milestone of data.parameters.capabilityLadder.milestones) {
+    if (capability >= milestone.at.value) {
+      crossed = { id: milestone.id, selfAccel: milestone.selfAccel.value };
+    }
+  }
+  if (!crossed) {
+    return null;
+  }
+  const bonus = mulDiv(crossed.selfAccel, state.hidden.takeoffSteepness, 1000);
+  return bonus > 0 ? { milestoneId: crossed.id, bonus } : null;
+}
+
 function worldUpdate(data: EngineData, state: GameState): void {
   const rules = data.parameters.worldRules;
   const thresholds = data.parameters.thresholds;
+
+  // 0. Takeoff self-acceleration (player side): milestones feed themselves.
+  const playerAccel = ladderAccel(data, state, state.resources.capability);
+  if (playerAccel) {
+    const before = state.resources.capability;
+    state.resources.capability = clamp(before + playerAccel.bonus, 0, SCALE_MAX);
+    const applied = state.resources.capability - before;
+    if (applied !== 0) {
+      pushLog(state, {
+        kind: 'upkeep',
+        stringKey: null,
+        deltas: { capability: applied },
+        meta: { rule: 'selfAcceleration', milestone: playerAccel.milestoneId },
+      });
+    }
+  }
 
   // 1. Rival acts by current posture.
   const posture = state.rival.posture;
@@ -486,6 +835,12 @@ function worldUpdate(data: EngineData, state: GameState): void {
   // Chip substitution pays off late: the long bite of export controls.
   if (state.rival.substitution >= rules.rivalDepth.substitutionBonusMin.value) {
     rivalCapabilityGain += rules.rivalDepth.substitutionBonus.value;
+  }
+  // The ladder is symmetric: their milestones feed themselves too (one world,
+  // one steepness die — the envelope is shared, the seats are not).
+  const rivalAccel = ladderAccel(data, state, state.rival.capability);
+  if (rivalAccel) {
+    rivalCapabilityGain += rivalAccel.bonus;
   }
   // Their progress is foggy too: seeded variance from the rival stream.
   const variance = rules.rivalDepth.progressVariance.value;
@@ -535,11 +890,12 @@ function worldUpdate(data: EngineData, state: GameState): void {
   const displacementCurve = data.parameters.curves['displacementFromCapability'];
   let displacementGain = 0;
   if (displacementCurve) {
+    // The exposure curve is shared across worldviews (measured agreement);
+    // the LAG divisor is the preset dial (fast-and-painful vs slow-diffusion).
+    const lagDivisor =
+      data.parameters.worldviewPresets[state.presetId].displacementLagDivisor.value;
     const target = evalCurve(displacementCurve, state.resources.capability);
-    displacementGain = divRound(
-      target - state.society.jobDisplacement,
-      Math.max(1, rules.societyDepth.displacementEquilibriumDivisor.value),
-    );
+    displacementGain = divRound(target - state.society.jobDisplacement, Math.max(1, lagDivisor));
   } else {
     if (state.resources.capability >= society.displacementCapabilityMin.value) {
       displacementGain += society.displacementPerTurn.value;
@@ -629,6 +985,19 @@ function worldUpdate(data: EngineData, state: GameState): void {
     const accrual = shielded ? divRound(erosion.perTurn.value, 2) : erosion.perTurn.value;
     state.hidden.agencyErosion = clamp(state.hidden.agencyErosion + accrual, 0, SCALE_MAX);
   }
+
+  // 3d. Misalignment incidents: the hidden dice LEAKING. Risk rises with
+  // capability x misalignment x pressure; one seeded check per turn against
+  // the highest eligible rung. A player who reads their incident history has
+  // better data than their evals — that is the design point.
+  if (runIncidentCheck(data, state)) {
+    return; // rung-3 catastrophe ended the run
+  }
+
+  // 3e. Wildcards: the world hits you, no choice. Publicly-listed pool,
+  // bounded magnitudes, exposure-scaled damage: dice pick the weather,
+  // prior play picks how wet you get.
+  runWildcardCheck(data, state);
 
   // 4. Election.
   if (state.turn === data.parameters.turnStructure.electionTurn.value) {

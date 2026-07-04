@@ -1,0 +1,34 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "global_moratorium",
+  "title": "strings:policy.globalMoratorium.title",
+  "body": "strings:policy.globalMoratorium.body",
+  "cost": {
+    "politicalCapital": 200
+  },
+  "effects": {
+    "capability": -100,
+    "publicTrust": 50,
+    "society.unrest": -50,
+    "rival.trust": 50,
+    "flags": ["moratoriumPush"]
+  },
+  "delayedEffects": [
+    {
+      "inTurns": 2,
+      "effects": {
+        "rival.capability": 50
+      }
+    },
+    {
+      "inTurns": 4,
+      "effects": {
+        "capital": -100
+      }
+    }
+  ],
+  "oncePerRun": true,
+  "sourceIds": ["SRC-IABIED"],
+  "claimIds": ["SRC-IABIED#3"],
+  "tags": ["pause", "diplomacy", "treaty"]
+}

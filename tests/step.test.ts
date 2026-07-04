@@ -13,11 +13,13 @@ function newGame(seed = 'b3-test-seed'): GameState {
 
 /** Drive one full turn with a simple policy; returns the state at next allocate (or ended). */
 function playTurn(state: GameState, allocation: [number, number, number]): GameState {
+  const paused = state.flags.includes('forcedPause');
+  const [cap, safety, diffusion] = paused ? ([30, 40, 30] as const) : allocation;
   let s = step(data, state, {
     type: 'allocate',
-    capability: allocation[0],
-    safety: allocation[1],
-    diffusion: allocation[2],
+    capability: cap,
+    safety,
+    diffusion,
   });
   if (s.phase === 'policy') {
     s = step(data, s, { type: 'skipPolicy' });
@@ -157,11 +159,11 @@ describe('full runs (B3 done-when)', () => {
           ? { type: 'playPolicy', policyId: playable[0].id }
           : { type: 'skipPolicy' };
       } else if (phase === 'event') {
+        const pendingCard = data.events.find((e) => e.id === state.pendingEvents[0]!.eventId)!;
         action = {
           type: 'resolveEventChoice',
           eventId: state.pendingEvents[0]!.eventId,
-          choiceIndex:
-            1 % data.events.find((e) => e.id === state.pendingEvents[0]!.eventId)!.choices.length,
+          choiceIndex: pendingCard.kind === 'wildcard' ? 0 : 1 % pendingCard.choices.length,
         };
       } else {
         action = { type: 'advance' };

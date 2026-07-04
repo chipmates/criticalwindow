@@ -7,15 +7,15 @@
     "politicalCapital": 100
   },
   "effects": {
-    "safetyInsight": 50,
+    "safetyInsight": 100,
     "capability": -50,
-    "publicTrust": 50
+    "publicTrust": 100
   },
   "delayedEffects": [
     {
       "inTurns": 2,
       "effects": {
-        "safetyInsight": 50
+        "safetyInsight": 100
       }
     }
   ],

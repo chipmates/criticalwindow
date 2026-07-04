@@ -1,0 +1,36 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "the_project",
+  "kind": "fixed",
+  "title": "strings:event.theProject.title",
+  "body": "strings:event.theProject.body",
+  "fixedTurn": {
+    "min": 1,
+    "max": 16
+  },
+  "historical": false,
+  "condition": {
+    "minCapability": 750
+  },
+  "choices": [
+    {
+      "label": "strings:event.theProject.merge",
+      "effects": {
+        "compute": 150,
+        "talent": 100,
+        "publicTrust": -100,
+        "flags": ["natsecMerged"]
+      }
+    },
+    {
+      "label": "strings:event.theProject.refuse",
+      "effects": {
+        "politicalCapital": -100,
+        "publicTrust": 50
+      }
+    }
+  ],
+  "sourceIds": ["SRC-SITUATIONAL-AWARENESS", "SRC-SIM-GAMING-INSIGHTS"],
+  "claimIds": ["SRC-SITUATIONAL-AWARENESS#5", "SRC-SIM-GAMING-INSIGHTS#5"],
+  "tags": ["natsec", "milestone", "fixed-beat"]
+}

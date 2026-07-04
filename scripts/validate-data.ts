@@ -16,12 +16,14 @@ import { join } from 'node:path';
 import { checkIntegrity } from '../src/engine/data';
 import {
   eventCardSchema,
+  incidentsSchema,
   parametersSchema,
   policyCardSchema,
   scenarioSchema,
   sourcesRegistrySchema,
   stringsFileSchema,
   type EventCardData,
+  type IncidentsData,
   type ParametersData,
   type PolicyCardData,
   type ScenarioData,
@@ -122,6 +124,13 @@ if (!parsed.has('parameters.json')) {
   warnings.push('data/parameters.json not present yet (arrives with Block C1)');
 }
 
+const incidents = parsed.has('incidents.json')
+  ? validateFile<IncidentsData>('incidents.json', incidentsSchema)
+  : null;
+if (!parsed.has('incidents.json')) {
+  errors.push('data/incidents.json is missing (misalignment-incident system, v0.2)');
+}
+
 const scenarios: ScenarioData[] = [];
 for (const file of byDir('scenarios')) {
   const scenario = validateFile<ScenarioData>(file.relPath, scenarioSchema);
@@ -154,9 +163,17 @@ for (const file of byDir('policies')) {
 
 // -- 3. cross-file integrity ------------------------------------------------
 let draftValues: string[] = [];
-if (parameters && scenarios.length > 0) {
+if (parameters && incidents && scenarios.length > 0) {
   for (const scenario of scenarios) {
-    const report = checkIntegrity({ parameters, scenario, events, policies, strings, sources });
+    const report = checkIntegrity({
+      parameters,
+      scenario,
+      events,
+      policies,
+      incidents,
+      strings,
+      sources,
+    });
     errors.push(...report.errors);
     draftValues = [...draftValues, ...report.draftValues];
   }

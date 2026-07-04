@@ -1,20 +1,45 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "viral_job_loss",
+  "kind": "choice",
   "title": "strings:event.viralJobLoss.title",
   "body": "strings:event.viralJobLoss.body",
-  "trigger": { "era": "early", "turnMin": 1, "turnMax": 5, "weight": 3 },
+  "trigger": {
+    "era": "early",
+    "turnMin": 1,
+    "turnMax": 5,
+    "weight": 3
+  },
   "choices": [
     {
       "label": "strings:event.viralJobLoss.retrain",
-      "effects": { "capital": -100, "publicTrust": 50, "society.unrest": -50 },
-      "delayedEffects": [{ "inTurns": 4, "effects": { "publicTrust": 50 } }]
+      "effects": {
+        "capital": -150,
+        "publicTrust": 100,
+        "society.unrest": -100
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "publicTrust": 100
+          }
+        }
+      ]
     },
     {
       "label": "strings:event.viralJobLoss.dismiss",
-      "effects": { "politicalCapital": 50 },
+      "effects": {
+        "politicalCapital": 100
+      },
       "delayedEffects": [
-        { "inTurns": 2, "effects": { "publicTrust": -100, "society.unrest": 100 } }
+        {
+          "inTurns": 2,
+          "effects": {
+            "publicTrust": -150,
+            "society.unrest": 150
+          }
+        }
       ]
     }
   ],

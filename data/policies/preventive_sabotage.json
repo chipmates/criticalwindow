@@ -1,0 +1,37 @@
+{
+  "$schema": "../schemas/policy-card.schema.json",
+  "id": "preventive_sabotage",
+  "title": "strings:policy.preventiveSabotage.title",
+  "body": "strings:policy.preventiveSabotage.body",
+  "cost": {
+    "politicalCapital": 100
+  },
+  "gamble": {
+    "stream": "wildcards",
+    "baseSpiralPerMille": 500,
+    "postureModifiers": {
+      "cautious": -100,
+      "race": 150
+    },
+    "flagModifiers": [
+      {
+        "flag": "escalation",
+        "deltaPerMille": 100
+      }
+    ],
+    "deter": {
+      "rival.capability": -150,
+      "rival.trust": -50
+    },
+    "spiral": {
+      "rival.capability": -50,
+      "rival.trust": -200,
+      "flags": ["escalation"]
+    },
+    "spiralSetsPosture": "race"
+  },
+  "cooldown": 4,
+  "sourceIds": ["SRC-MAIM", "SRC-RAND-STABILITY", "SRC-ZVI-MAIM"],
+  "claimIds": ["SRC-MAIM#1", "SRC-MAIM#3"],
+  "tags": ["sabotage", "escalation", "covert"]
+}

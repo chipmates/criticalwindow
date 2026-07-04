@@ -1,6 +1,7 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "lab_merger",
+  "kind": "choice",
   "title": "strings:event.labMerger.title",
   "body": "strings:event.labMerger.body",
   "trigger": {
@@ -14,15 +15,15 @@
       "label": "strings:event.labMerger.approve",
       "effects": {
         "capability": 50,
-        "capital": 50,
+        "capital": 100,
         "safetyInsight": 50
       },
       "delayedEffects": [
         {
           "inTurns": 2,
           "effects": {
-            "publicTrust": -50,
-            "hidden.agencyErosion": 25
+            "publicTrust": -100,
+            "hidden.agencyErosion": 50
           }
         }
       ]
@@ -30,14 +31,14 @@
     {
       "label": "strings:event.labMerger.block",
       "effects": {
-        "politicalCapital": -50,
-        "capital": -50
+        "politicalCapital": -100,
+        "capital": -100
       },
       "delayedEffects": [
         {
           "inTurns": 3,
           "effects": {
-            "rival.capability": 50
+            "rival.capability": 100
           }
         }
       ]

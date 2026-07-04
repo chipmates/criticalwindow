@@ -291,6 +291,273 @@
         "additionalProperties": false
       }
     },
+    "gamble": {
+      "type": "object",
+      "properties": {
+        "stream": {
+          "type": "string",
+          "const": "wildcards"
+        },
+        "baseSpiralPerMille": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "postureModifiers": {
+          "type": "object",
+          "properties": {
+            "cautious": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "mirror": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "race": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "flagModifiers": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "flag": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$"
+              },
+              "deltaPerMille": {
+                "type": "integer",
+                "minimum": -1000,
+                "maximum": 1000
+              }
+            },
+            "required": [
+              "flag",
+              "deltaPerMille"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "deter": {
+          "type": "object",
+          "properties": {
+            "compute": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "energy": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "talent": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "capital": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "publicTrust": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "politicalCapital": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "capability": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "safetyInsight": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "society.jobDisplacement": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "society.unrest": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "rival.trust": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "rival.capability": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "rival.substitution": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "hidden.trueAlignment": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "hidden.agencyErosion": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "flags": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$"
+              }
+            },
+            "clearFlags": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "spiral": {
+          "type": "object",
+          "properties": {
+            "compute": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "energy": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "talent": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "capital": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "publicTrust": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "politicalCapital": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "capability": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "safetyInsight": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "society.jobDisplacement": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "society.unrest": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "rival.trust": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "rival.capability": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "rival.substitution": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "hidden.trueAlignment": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "hidden.agencyErosion": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "flags": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$"
+              }
+            },
+            "clearFlags": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9]*$"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "spiralSetsPosture": {
+          "type": "string",
+          "enum": [
+            "race",
+            "mirror",
+            "cautious"
+          ]
+        }
+      },
+      "required": [
+        "stream",
+        "baseSpiralPerMille",
+        "deter",
+        "spiral"
+      ],
+      "additionalProperties": false
+    },
     "cooldown": {
       "type": "integer",
       "minimum": 1,
@@ -313,6 +580,14 @@
             "const": "TODO-SOURCE"
           }
         ]
+      }
+    },
+    "claimIds": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*#\\d+$"
       }
     },
     "tags": {

@@ -3,15 +3,22 @@
   "id": "energy_buildout",
   "title": "strings:policy.energyBuildout.title",
   "body": "strings:policy.energyBuildout.body",
-  "cost": { "capital": 150, "politicalCapital": 50 },
+  "cost": {
+    "capital": 150,
+    "politicalCapital": 50
+  },
   "delayedEffects": [
     {
       "inTurns": 1,
-      "effects": { "society.unrest": 50 }
+      "effects": {
+        "society.unrest": 50
+      }
     },
     {
       "inTurns": 3,
-      "effects": { "energy": 200 }
+      "effects": {
+        "energy": 250
+      }
     }
   ],
   "cooldown": 4,

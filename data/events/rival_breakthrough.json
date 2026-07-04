@@ -1,30 +1,50 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "rival_breakthrough",
+  "kind": "choice",
   "title": "strings:event.rivalBreakthrough.title",
   "body": "strings:event.rivalBreakthrough.body",
-  "trigger": { "era": "late", "turnMin": 10, "turnMax": 16, "weight": 3 },
+  "trigger": {
+    "era": "late",
+    "turnMin": 10,
+    "turnMax": 16,
+    "weight": 3
+  },
   "choices": [
     {
       "label": "strings:event.rivalBreakthrough.crash",
       "effects": {
         "capability": 100,
-        "safetyInsight": -100,
-        "publicTrust": -50,
+        "safetyInsight": -150,
+        "publicTrust": -100,
         "rival.capability": 100,
         "hidden.agencyErosion": 50,
         "flags": ["crashProgram"]
       },
-      "delayedEffects": [{ "inTurns": 2, "effects": { "hidden.trueAlignment": -100 } }]
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "hidden.trueAlignment": -150
+          }
+        }
+      ]
     },
     {
       "label": "strings:event.rivalBreakthrough.verify",
       "effects": {
         "politicalCapital": -100,
-        "safetyInsight": 50,
-        "rival.capability": 50
+        "safetyInsight": 100,
+        "rival.capability": 100
       },
-      "delayedEffects": [{ "inTurns": 2, "effects": { "politicalCapital": -50 } }]
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "politicalCapital": -100
+          }
+        }
+      ]
     }
   ],
   "sourceIds": ["SRC-AI2027", "SRC-MAIM"],

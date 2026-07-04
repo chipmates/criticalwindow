@@ -3,20 +3,27 @@
   "id": "natsec_merge",
   "title": "strings:policy.natsecMerge.title",
   "body": "strings:policy.natsecMerge.body",
-  "cost": { "politicalCapital": 150 },
-  "gates": { "capabilityMin": 500, "eraMin": "mid" },
+  "cost": {
+    "politicalCapital": 150
+  },
+  "gates": {
+    "capabilityMin": 500,
+    "eraMin": "mid"
+  },
   "effects": {
-    "compute": 100,
-    "capability": 50,
-    "publicTrust": -100,
+    "compute": 150,
+    "capability": 100,
+    "publicTrust": -150,
     "talent": -50,
-    "hidden.agencyErosion": 50,
+    "hidden.agencyErosion": 100,
     "flags": ["natsecMerged"]
   },
   "delayedEffects": [
     {
       "inTurns": 3,
-      "effects": { "society.unrest": 50 }
+      "effects": {
+        "society.unrest": 100
+      }
     }
   ],
   "oncePerRun": true,

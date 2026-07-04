@@ -32,6 +32,8 @@ test('axe: title, setup, game and debrief scan clean', async ({ page }) => {
       await page.getByRole('button', { name: 'Commit allocation' }).click();
     } else if (await page.getByRole('button', { name: 'Pass this quarter' }).isVisible()) {
       await page.getByRole('button', { name: 'Pass this quarter' }).click();
+    } else if (await page.locator('.memo-shock .btn-primary').isVisible()) {
+      await page.locator('.memo-shock .btn-primary').click();
     } else if (await page.getByRole('button', { name: 'Next quarter' }).isVisible()) {
       await page.getByRole('button', { name: 'Next quarter' }).click();
     }
@@ -48,6 +50,8 @@ test('axe: title, setup, game and debrief scan clean', async ({ page }) => {
       await page.getByRole('button', { name: 'Commit allocation' }).click();
     } else if (await page.getByRole('button', { name: 'Pass this quarter' }).isVisible()) {
       await page.getByRole('button', { name: 'Pass this quarter' }).click();
+    } else if (await page.locator('.memo-shock .btn-primary').isVisible()) {
+      await page.locator('.memo-shock .btn-primary').click();
     } else if (await page.locator('.memo-choice').first().isVisible()) {
       await page.locator('.memo-choice').first().click();
     } else if (await page.getByRole('button', { name: 'Next quarter' }).isVisible()) {

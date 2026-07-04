@@ -3,16 +3,20 @@
   "id": "export_controls",
   "title": "strings:policy.exportControls.title",
   "body": "strings:policy.exportControls.body",
-  "cost": { "politicalCapital": 100 },
+  "cost": {
+    "politicalCapital": 100
+  },
   "effects": {
-    "rival.capability": -100,
+    "rival.capability": -150,
     "rival.trust": -100,
     "flags": ["exportCrackdown"]
   },
   "delayedEffects": [
     {
       "inTurns": 3,
-      "effects": { "rival.substitution": 150 }
+      "effects": {
+        "rival.substitution": 200
+      }
     }
   ],
   "cooldown": 4,

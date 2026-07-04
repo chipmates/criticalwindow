@@ -1,0 +1,78 @@
+{
+  "$schema": "./schemas/incidents.schema.json",
+  "riskFormula": {
+    "pressureAllocationPct": {
+      "value": 25,
+      "sourceIds": ["SRC-AGENTIC-MISALIGNMENT"],
+      "note": "racing-heavy allocation raises incident risk 25%: misaligned behavior is pressure-driven (threat or goal conflict triggers it; control near zero without pressure)"
+    },
+    "pressureRivalRacePct": {
+      "value": 25,
+      "sourceIds": ["SRC-AGENTIC-MISALIGNMENT", "SRC-SIM-GAMING-INSIGHTS"],
+      "note": "an open race adds the same again: pressure multiplier max 1.5x total (F1 row 7 calibration, scaled down from lab-elicited 79-96% rates to per-turn cadence)"
+    }
+  },
+  "safetyInsightDamageReductionMaxPerMille": {
+    "value": 500,
+    "sourceIds": ["SRC-SLEEPER", "SRC-SCHEMING"],
+    "note": "Safety Insight cuts incident DAMAGE up to 50% (detection and containment), never to zero and never the underlying misalignment: probes catch sleeper agents, sandbagging can stay invisible even to chain-of-thought monitors"
+  },
+  "rungs": [
+    {
+      "id": "near_miss",
+      "ladder": 0,
+      "title": "strings:incident.nearMiss.title",
+      "body": "strings:incident.nearMiss.body",
+      "threshold": 250,
+      "baseDamage": { "publicTrust": -50 },
+      "forcedPause": false,
+      "cooldownTurns": 2,
+      "sourceIds": ["SRC-SLEEPER", "SRC-AGENTIC-MISALIGNMENT", "SRC-SCHEMING"],
+      "claimIds": ["SRC-SLEEPER#4", "SRC-AGENTIC-MISALIGNMENT#5", "SRC-SCHEMING#3"]
+    },
+    {
+      "id": "deployment_failure",
+      "ladder": 1,
+      "title": "strings:incident.deploymentFailure.title",
+      "body": "strings:incident.deploymentFailure.body",
+      "threshold": 400,
+      "baseDamage": { "publicTrust": -100, "society.unrest": 100, "politicalCapital": -50 },
+      "forcedPause": false,
+      "cooldownTurns": 2,
+      "sourceIds": ["SRC-AGENTIC-MISALIGNMENT", "SRC-SCHEMING"],
+      "claimIds": ["SRC-AGENTIC-MISALIGNMENT#2", "SRC-AGENTIC-MISALIGNMENT#10", "SRC-SCHEMING#2"]
+    },
+    {
+      "id": "breakout_attempt",
+      "ladder": 2,
+      "title": "strings:incident.breakoutAttempt.title",
+      "body": "strings:incident.breakoutAttempt.body",
+      "threshold": 550,
+      "baseDamage": { "publicTrust": -150, "society.unrest": 100, "capital": -100 },
+      "forcedPause": true,
+      "cooldownTurns": 2,
+      "sourceIds": ["SRC-SCHEMING", "SRC-AI2027"],
+      "claimIds": ["SRC-SCHEMING#2", "SRC-AI2027#12"]
+    },
+    {
+      "id": "lab_accident",
+      "ladder": 3,
+      "title": "strings:incident.labAccident.title",
+      "body": "strings:incident.labAccident.body",
+      "threshold": 700,
+      "baseDamage": { "publicTrust": -250, "society.unrest": 200, "politicalCapital": -100 },
+      "forcedPause": true,
+      "cooldownTurns": 2,
+      "catastropheBelowTrueAlignment": 150,
+      "sourceIds": ["SRC-AI2027", "SRC-AGENTIC-MISALIGNMENT"],
+      "claimIds": ["SRC-AI2027#12", "SRC-AGENTIC-MISALIGNMENT#8"]
+    }
+  ],
+  "sourceIds": [
+    "SRC-SLEEPER",
+    "SRC-SCHEMING",
+    "SRC-AGENTIC-MISALIGNMENT",
+    "SRC-AI-INCIDENT-DB",
+    "SRC-SIM-GAMING-INSIGHTS"
+  ]
+}

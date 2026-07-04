@@ -1,5 +1,6 @@
 {
   "id": "open_weights_shock",
+  "kind": "choice",
   "title": "strings:event.openWeightsShock.title",
   "body": "strings:event.openWeightsShock.body",
   "trigger": {
@@ -7,17 +8,34 @@
     "turnMin": 2,
     "turnMax": 8,
     "weight": 3,
-    "conditions": { "rivalPosture": "race" }
+    "conditions": {
+      "rivalPosture": "race"
+    }
   },
   "choices": [
     {
       "label": "strings:event.openWeightsShock.embrace",
-      "effects": { "publicTrust": -30, "capability": 20, "flags": ["openWeightsWorld"] },
-      "delayedEffects": [{ "inTurns": 4, "effects": { "capital": -40 } }]
+      "effects": {
+        "publicTrust": -30,
+        "capability": 20,
+        "flags": ["openWeightsWorld"]
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "capital": -40
+          }
+        }
+      ]
     },
     {
       "label": "strings:event.openWeightsShock.crackdown",
-      "effects": { "politicalCapital": -50, "rival.trust": -60, "flags": ["exportCrackdown"] }
+      "effects": {
+        "politicalCapital": -50,
+        "rival.trust": -60,
+        "flags": ["exportCrackdown"]
+      }
     }
   ],
   "sourceIds": ["SRC-DEEPSEEK-R1", "SRC-CSIS-EXPORT"],

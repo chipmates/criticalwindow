@@ -1,0 +1,46 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "weight_theft",
+  "kind": "wildcard",
+  "title": "strings:event.weightTheft.title",
+  "body": "strings:event.weightTheft.body",
+  "fire": {
+    "probPerMille": 50,
+    "probModifiers": [
+      {
+        "flag": "natsecMerged",
+        "deltaPerMille": 25
+      },
+      {
+        "flag": "escalation",
+        "deltaPerMille": 25
+      },
+      {
+        "flag": "weightsSecured",
+        "deltaPerMille": -25
+      }
+    ],
+    "eligible": {
+      "minCapability": 500,
+      "flagsNone": ["openWeightsWorld"]
+    },
+    "cooldownTurns": 4
+  },
+  "effects": {
+    "publicTrust": -50,
+    "politicalCapital": -50,
+    "flags": ["weightsStolen"]
+  },
+  "scaledEffects": [
+    {
+      "target": "rival.capability",
+      "base": 50,
+      "coef": 100,
+      "exposure": "capability",
+      "halveIfFlag": "weightsSecured"
+    }
+  ],
+  "sourceIds": ["SRC-AI2027", "SRC-RAND-WEIGHTS", "SRC-SIM-GAMING-INSIGHTS"],
+  "claimIds": ["SRC-AI2027#10", "SRC-AI2027#11", "SRC-SIM-GAMING-INSIGHTS#2"],
+  "tags": ["security", "espionage", "china"]
+}

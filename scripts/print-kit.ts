@@ -15,13 +15,16 @@ import { divRound, evalCurve } from '../src/engine/math';
 import { hashDataFiles } from '../src/engine/hash';
 import {
   eventCardSchema,
+  incidentsSchema,
   parametersSchema,
   policyCardSchema,
   scenarioSchema,
   stringsFileSchema,
+  type ChoiceEventData,
   type EffectSetData,
-  type EventCardData,
+  type FixedEventData,
   type PolicyCardData,
+  type WildcardEventData,
 } from '../src/engine/schemas';
 import { dataRoot, readDataFiles } from './lib/data-files';
 import * as T from './print-kit-text';
@@ -42,6 +45,11 @@ const events = files
 const policies = files
   .filter((f) => f.relPath.startsWith('policies/'))
   .map((f) => policyCardSchema.parse(byPath.get(f.relPath)));
+const incidents = incidentsSchema.parse(byPath.get('incidents.json'));
+
+const choiceEvents = events.filter((c): c is ChoiceEventData => c.kind === 'choice');
+const fixedEvents = events.filter((c): c is FixedEventData => c.kind === 'fixed');
+const wildcardEvents = events.filter((c): c is WildcardEventData => c.kind === 'wildcard');
 
 const dataVersion = hashDataFiles(files.map((f) => ({ path: f.relPath, content: f.content })));
 
@@ -241,7 +249,7 @@ function presetRows(): string {
 // Card rendering
 // ---------------------------------------------------------------------------
 
-function conditionLine(card: EventCardData): string {
+function conditionLine(card: ChoiceEventData): string {
   const parts: string[] = [];
   const conditions = card.trigger.conditions;
   if (conditions?.rivalPosture) {
@@ -256,7 +264,7 @@ function conditionLine(card: EventCardData): string {
   return parts.length > 0 ? `Only if: ${parts.join(', ')}` : '';
 }
 
-function renderEventCard(card: EventCardData): string {
+function renderEventCard(card: ChoiceEventData): string {
   const era = card.trigger.era ?? 'early';
   const condition = conditionLine(card);
   const choices = card.choices
@@ -281,6 +289,106 @@ function renderEventCard(card: EventCardData): string {
       <div class="card-body">${esc(ref(card.body))}</div>
       ${condition ? `<div class="condition">${esc(condition)}</div>` : ''}
       <div class="choices">${choices}</div>
+      <div class="card-sources">${esc(card.sourceIds.join(' · '))}</div>
+    </div>`;
+}
+
+function beatWhenLine(card: FixedEventData): string {
+  if (card.historical) {
+    return card.fixedTurn.min === card.fixedTurn.max
+      ? `Turn ${card.fixedTurn.min}, every run`
+      : `Turns ${card.fixedTurn.min}-${card.fixedTurn.max}, every run`;
+  }
+  const parts: string[] = [];
+  const cond = card.condition!;
+  if (cond.minCapability !== undefined) {
+    parts.push(`${t('resource.capability.label')} reaches ${paperRound(cond.minCapability)}`);
+  }
+  if (cond.era) {
+    parts.push(`${t(`era.${cond.era}.label`)} era`);
+  }
+  for (const flag of cond.flagsAll ?? []) {
+    parts.push(`flag ${t(`flag.${flag}.label`)}`);
+  }
+  if (cond.diceScaledFireProb) {
+    parts.push('then d100 at or under the Takeoff slip value each quarter');
+  }
+  return `When: ${parts.join(', ')}`;
+}
+
+function renderBeatCard(card: FixedEventData): string {
+  const choices = card.choices
+    .map((choice, i) => {
+      const effects = effectLine(choice.effects, `event(${card.id}).choice[${i}]`);
+      const delayed = delayedLines(choice.delayedEffects, `event(${card.id}).choice[${i}]`);
+      return `
+        <div class="choice">
+          <div class="choice-label">${String.fromCharCode(65 + i)}. ${esc(ref(choice.label))}</div>
+          ${effects ? `<div class="fx">${esc(effects)}</div>` : ''}
+          ${delayed.map((line) => `<div class="fx delayed">${esc(line)}</div>`).join('')}
+        </div>`;
+    })
+    .join('');
+  return `
+    <div class="card event-card era-mid">
+      <div class="card-top">
+        <span class="era-badge">${card.historical ? 'SCHEDULED' : 'MILESTONE'}</span>
+        <span class="card-kind">BEAT</span>
+      </div>
+      <div class="card-title">${esc(ref(card.title))}</div>
+      <div class="card-body">${esc(ref(card.body))}</div>
+      <div class="condition">${esc(beatWhenLine(card))}</div>
+      <div class="choices">${choices}</div>
+      <div class="card-sources">${esc(card.sourceIds.join(' · '))}</div>
+    </div>`;
+}
+
+function wildcardScaledLine(card: WildcardEventData): string {
+  const lines: string[] = [];
+  for (const scaled of card.scaledEffects ?? []) {
+    const label =
+      scaled.exposure === 'computeMinusEnergy'
+        ? `${t('resource.compute.label')} over ${t('resource.energy.label')}`
+        : t(`resource.${scaled.exposure}.label`);
+    const at = (x: number) => paperRound(scaled.base + Math.round((scaled.coef * x) / 1000));
+    lines.push(
+      `${targetLabel(scaled.target)}: scales with ${label} (at 300/600/900: ${at(300)}/${at(600)}/${at(900)})`,
+    );
+  }
+  return lines.join(' · ');
+}
+
+function renderWildcardCard(card: WildcardEventData): string {
+  const effects = effectLine(card.effects, `event(${card.id}).effects`);
+  const delayed = delayedLines(card.delayedEffects, `event(${card.id})`);
+  const eligible: string[] = [];
+  const e = card.fire.eligible;
+  if (e?.turnMin !== undefined) eligible.push(`from turn ${e.turnMin}`);
+  if (e?.minCapability !== undefined) {
+    eligible.push(`${t('resource.capability.label')} ${paperRound(e.minCapability)}+`);
+  }
+  if (e?.computeOverEnergyMin !== undefined) {
+    eligible.push(
+      `${t('resource.compute.label')} more than ${paperRound(e.computeOverEnergyMin)} over ${t('resource.energy.label')}`,
+    );
+  }
+  for (const flag of e?.flagsAll ?? []) eligible.push(`flag ${t(`flag.${flag}.label`)}`);
+  for (const flag of e?.flagsNone ?? []) eligible.push(`no flag ${t(`flag.${flag}.label`)}`);
+  const scaledLine = wildcardScaledLine(card);
+  return `
+    <div class="card event-card era-late">
+      <div class="card-top">
+        <span class="era-badge">WILDCARD</span>
+        <span class="card-kind">NO CHOICE</span>
+      </div>
+      <div class="card-title">${esc(ref(card.title))}</div>
+      <div class="card-body">${esc(ref(card.body))}</div>
+      <div class="condition">${esc(
+        `Each quarter${eligible.length ? ` (${eligible.join(', ')})` : ''}: d100 at or under ${Math.round(card.fire.probPerMille / 10)} fires. Rests ${card.fire.cooldownTurns} turns after.`,
+      )}</div>
+      ${effects ? `<div class="fx">${esc(effects)}</div>` : ''}
+      ${scaledLine ? `<div class="fx">${esc(scaledLine)}</div>` : ''}
+      ${delayed.map((line) => `<div class="fx delayed">${esc(line)}</div>`).join('')}
       <div class="card-sources">${esc(card.sourceIds.join(' · '))}</div>
     </div>`;
 }
@@ -507,12 +615,16 @@ function rulesPages(): string {
 }
 
 function cardPages(): string {
-  const eventCards = [...events]
+  const eventCards = [...choiceEvents]
     .sort((a, b) => {
       const order = { early: 0, mid: 1, late: 2 } as const;
       return order[a.trigger.era ?? 'early'] - order[b.trigger.era ?? 'early'];
     })
     .map(renderEventCard);
+  const beatAndWildcardCards = [
+    ...fixedEvents.map(renderBeatCard),
+    ...wildcardEvents.map(renderWildcardCard),
+  ];
   const policyCards = policies.map(renderPolicyCard);
 
   const pages: string[] = [];
@@ -521,6 +633,14 @@ function cardPages(): string {
       <section class="page">
         <h2>Event cards <span class="muted">${i / 9 + 1}</span></h2>
         <div class="card-grid">${eventCards.slice(i, i + 9).join('')}</div>
+        ${footer()}
+      </section>`);
+  }
+  for (let i = 0; i < beatAndWildcardCards.length; i += 9) {
+    pages.push(`
+      <section class="page">
+        <h2>Beats and wildcards <span class="muted">scheduled and uninvited</span></h2>
+        <div class="card-grid">${beatAndWildcardCards.slice(i, i + 9).join('')}</div>
         ${footer()}
       </section>`);
   }
@@ -533,6 +653,36 @@ function cardPages(): string {
       </section>`);
   }
   return pages.join('');
+}
+
+function incidentsPage(): string {
+  const rows = incidents.rungs
+    .map((rung) => {
+      const damage = effectLine(rung.baseDamage, `incident(${rung.id})`);
+      return `<tr>
+        <td>${esc(ref(rung.title))}</td>
+        <td>${paperRound(rung.threshold)}</td>
+        <td>${esc(damage)}</td>
+        <td>${rung.forcedPause ? 'YES' : 'no'}</td>
+      </tr>`;
+    })
+    .join('');
+  return `
+    <section class="page">
+      <h2>Incident table <span class="muted">world update, after society</span></h2>
+      <p>Risk (paper) = Capability x (20 minus your best guess of Alignment) / 20. If your
+      Capability share this quarter was 7+ of 10, add a quarter more. If the rival is RACING,
+      add a quarter more. Find the highest row your Risk beats, roll d100: at or under
+      (Risk minus the row's threshold) x 5, the incident fires. Each row rests 2 turns after firing.</p>
+      <table class="preset-table">
+        <tr><th>Incident</th><th>Risk over</th><th>Damage (before Insight)</th><th>Forced pause</th></tr>
+        ${rows}
+      </table>
+      <p class="small">Safety Insight softens damage: knock off up to half at Insight 20.
+      The lab accident ends the run in catastrophe if true Alignment is under 3 on the slip.
+      Damage values from data/incidents.json (same numbers the digital game uses).</p>
+      ${footer()}
+    </section>`;
 }
 
 function referencePage(): string {
@@ -704,6 +854,7 @@ ${rulesPages()}
 ${renderBoard()}
 ${cardPages()}
 ${referencePage()}
+${incidentsPage()}
 ${envelopePage()}
 </body>
 </html>`;

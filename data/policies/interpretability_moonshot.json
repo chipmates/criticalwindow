@@ -3,15 +3,20 @@
   "id": "interpretability_moonshot",
   "title": "strings:policy.interpretabilityMoonshot.title",
   "body": "strings:policy.interpretabilityMoonshot.body",
-  "cost": { "capital": 100, "politicalCapital": 50 },
+  "cost": {
+    "capital": 100,
+    "politicalCapital": 50
+  },
   "effects": {
-    "safetyInsight": 100,
+    "safetyInsight": 150,
     "talent": -50
   },
   "delayedEffects": [
     {
       "inTurns": 2,
-      "effects": { "safetyInsight": 100 }
+      "effects": {
+        "safetyInsight": 150
+      }
     }
   ],
   "oncePerRun": true,

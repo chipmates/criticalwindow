@@ -1,21 +1,37 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "taiwan_strait_crisis",
+  "kind": "wildcard",
   "title": "strings:event.taiwanStraitCrisis.title",
   "body": "strings:event.taiwanStraitCrisis.body",
-  "trigger": { "era": "mid", "turnMin": 7, "turnMax": 13, "weight": 3 },
-  "choices": [
-    {
-      "label": "strings:event.taiwanStraitCrisis.deter",
-      "effects": { "rival.trust": -150, "capital": -100 },
-      "delayedEffects": [{ "inTurns": 2, "effects": { "compute": -100 } }]
+  "fire": {
+    "probPerMille": 30,
+    "eligible": {
+      "turnMin": 4
     },
+    "cooldownTurns": 4
+  },
+  "effects": {
+    "rival.capability": -100,
+    "capital": -100
+  },
+  "scaledEffects": [
     {
-      "label": "strings:event.taiwanStraitCrisis.backchannel",
-      "effects": { "politicalCapital": -100, "rival.trust": 100 },
-      "delayedEffects": [{ "inTurns": 2, "effects": { "publicTrust": -50 } }]
+      "target": "compute",
+      "base": -50,
+      "coef": -150,
+      "exposure": "compute"
     }
   ],
-  "sourceIds": ["SRC-CHIP-WAR", "SRC-CSIS-EXPORT"],
+  "delayedEffects": [
+    {
+      "inTurns": 2,
+      "effects": {
+        "compute": 50
+      }
+    }
+  ],
+  "sourceIds": ["SRC-CHIP-WAR", "SRC-CSIS-EXPORT", "SRC-SIM-GAMING-INSIGHTS"],
+  "claimIds": ["SRC-SIM-GAMING-INSIGHTS#7"],
   "tags": ["taiwan", "chips", "crisis"]
 }

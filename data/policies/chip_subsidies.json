@@ -3,14 +3,19 @@
   "id": "chip_subsidies",
   "title": "strings:policy.chipSubsidies.title",
   "body": "strings:policy.chipSubsidies.body",
-  "cost": { "capital": 200, "politicalCapital": 50 },
+  "cost": {
+    "capital": 200,
+    "politicalCapital": 50
+  },
   "effects": {
     "publicTrust": 50
   },
   "delayedEffects": [
     {
       "inTurns": 4,
-      "effects": { "compute": 200 }
+      "effects": {
+        "compute": 250
+      }
     }
   ],
   "oncePerRun": true,

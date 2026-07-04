@@ -1,6 +1,7 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "allied_export_fracture",
+  "kind": "choice",
   "title": "strings:event.alliedExportFracture.title",
   "body": "strings:event.alliedExportFracture.body",
   "trigger": {
@@ -16,14 +17,14 @@
     {
       "label": "strings:event.alliedExportFracture.compensate",
       "effects": {
-        "capital": -150,
+        "capital": -200,
         "politicalCapital": -50
       },
       "delayedEffects": [
         {
           "inTurns": 2,
           "effects": {
-            "rival.capability": -50
+            "rival.capability": -100
           }
         }
       ]
@@ -31,14 +32,14 @@
     {
       "label": "strings:event.alliedExportFracture.fray",
       "effects": {
-        "rival.capability": 100,
-        "rival.substitution": 50
+        "rival.capability": 150,
+        "rival.substitution": 100
       },
       "delayedEffects": [
         {
           "inTurns": 3,
           "effects": {
-            "politicalCapital": -50
+            "politicalCapital": -100
           }
         }
       ]

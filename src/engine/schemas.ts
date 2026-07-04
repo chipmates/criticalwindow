@@ -13,6 +13,7 @@ import { z } from 'zod';
 import {
   EFFECT_TARGETS,
   ERA_IDS,
+  EXPOSURE_KEYS,
   RESOURCE_KEYS,
   RIVAL_POSTURES,
   SEAT_IDS,
@@ -40,6 +41,10 @@ export const sourceIdOrTodoSchema = z.union([sourceIdSchema, z.literal('TODO-SOU
 export const sourceIdsSchema = z
   .array(sourceIdOrTodoSchema)
   .min(1, 'iron rule: at least one source id (TODO-SOURCE only while drafting)');
+
+/** Claim-level citations (iron-rule extension, v0.2): SRC-ID#n from internal/distill. */
+const CLAIM_ID_PATTERN = /^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*#\d+$/;
+export const claimIdsSchema = z.array(z.string().regex(CLAIM_ID_PATTERN)).min(1).optional();
 
 export const stringsRefSchema = z
   .string()
@@ -139,47 +144,172 @@ export const eventChoiceSchema = z.strictObject({
   delayedEffects: z.array(delayedEffectSpecSchema).min(1).optional(),
 });
 
-export const eventCardSchema = z
-  .strictObject({
-    $schema: z.string().optional(),
-    id: z.string().regex(CARD_ID_PATTERN),
-    title: stringsRefSchema,
-    body: stringsRefSchema,
-    trigger: z
+const eventBaseFields = {
+  $schema: z.string().optional(),
+  id: z.string().regex(CARD_ID_PATTERN),
+  title: stringsRefSchema,
+  body: stringsRefSchema,
+  sourceIds: sourceIdsSchema,
+  claimIds: claimIdsSchema,
+  tags: z.array(z.string().regex(TAG_PATTERN)).min(1),
+};
+
+/** CHOICE: the classic dilemma memo, drawn from the weighted pool. */
+const choiceEventSchema = z.strictObject({
+  ...eventBaseFields,
+  kind: z.literal('choice'),
+  trigger: z.strictObject({
+    era: z.enum(ERA_IDS).optional(),
+    turnMin: turnInt.optional(),
+    turnMax: turnInt.optional(),
+    weight: z.number().int().min(1).max(10),
+    conditions: conditionsSchema.optional(),
+  }),
+  choices: z.array(eventChoiceSchema).min(1).max(4),
+  repeatable: z.boolean().optional(),
+});
+
+/**
+ * R1 NEUTRALITY GUARD: a future beat's condition reads run STATE (capability
+ * crossings, hidden dice, flags), never calendar dates. Real-past beats are
+ * date-scheduled and unconditional.
+ */
+const beatConditionSchema = z.strictObject({
+  era: z.enum(ERA_IDS).optional(),
+  minCapability: scaledInt.optional(),
+  flagsAll: z.array(flagName).min(1).optional(),
+  flagsNone: z.array(flagName).min(1).optional(),
+  /** Per-turn fire probability = the named hidden die's value, in per-mille. */
+  diceScaledFireProb: z.literal('takeoffSteepness').optional(),
+});
+
+/** FIXED: a scheduled beat (TS-style). Historical = real past, every run shares it. */
+const fixedEventSchema = z.strictObject({
+  ...eventBaseFields,
+  kind: z.literal('fixed'),
+  fixedTurn: z.strictObject({ min: turnInt, max: turnInt }),
+  historical: z.boolean(),
+  condition: beatConditionSchema.optional(),
+  choices: z.array(eventChoiceSchema).min(1).max(4),
+});
+
+const scaledEffectSchema = z.strictObject({
+  target: z.enum(EFFECT_TARGETS),
+  /** delta = base + mulDiv(coef, exposureValue, 1000); halved under halveIfFlag. */
+  base: deltaInt,
+  coef: deltaInt,
+  exposure: z.enum(EXPOSURE_KEYS),
+  halveIfFlag: flagName.optional(),
+});
+
+/** WILDCARD: no choice, the world hits you; damage is exposure-scaled. */
+const wildcardEventSchema = z.strictObject({
+  ...eventBaseFields,
+  kind: z.literal('wildcard'),
+  fire: z.strictObject({
+    probPerMille: z.number().int().min(1).max(1000),
+    probModifiers: z
+      .array(
+        z.strictObject({
+          flag: flagName,
+          deltaPerMille: z.number().int().min(-1000).max(1000),
+        }),
+      )
+      .min(1)
+      .optional(),
+    eligible: z
       .strictObject({
-        era: z.enum(ERA_IDS).optional(),
         turnMin: turnInt.optional(),
-        turnMax: turnInt.optional(),
-        weight: z.number().int().min(1).max(10),
-        conditions: conditionsSchema.optional(),
+        minCapability: scaledInt.optional(),
+        computeOverEnergyMin: scaledInt.optional(),
+        flagsAll: z.array(flagName).min(1).optional(),
+        flagsNone: z.array(flagName).min(1).optional(),
       })
-      .refine((t) => t.turnMin === undefined || t.turnMax === undefined || t.turnMin <= t.turnMax, {
-        message: 'turnMin must be <= turnMax',
-      }),
-    choices: z.array(eventChoiceSchema).min(1).max(4),
-    repeatable: z.boolean().optional(),
-    sourceIds: sourceIdsSchema,
-    tags: z.array(z.string().regex(TAG_PATTERN)).min(1),
-  })
-  .refine(
-    (card) =>
-      card.choices.some(
+      .optional(),
+    cooldownTurns: z.number().int().min(1).max(16),
+  }),
+  effects: effectSetSchema.optional(),
+  scaledEffects: z.array(scaledEffectSchema).min(1).optional(),
+  delayedEffects: z.array(delayedEffectSpecSchema).min(1).optional(),
+});
+
+export const eventCardSchema = z
+  .discriminatedUnion('kind', [choiceEventSchema, fixedEventSchema, wildcardEventSchema])
+  .superRefine((card, ctx) => {
+    if (card.kind === 'choice') {
+      const t = card.trigger;
+      if (t.turnMin !== undefined && t.turnMax !== undefined && t.turnMin > t.turnMax) {
+        ctx.addIssue({ code: 'custom', message: 'turnMin must be <= turnMax' });
+      }
+      const bites = card.choices.some(
         (choice) =>
           (choice.delayedEffects?.length ?? 0) > 0 ||
           (choice.effects?.flags?.length ?? 0) > 0 ||
           Object.values(choice.effects ?? {}).some(
             (value) => typeof value === 'number' && value < 0,
           ),
-      ),
-    {
-      message:
-        'every strong card bites: at least one choice needs a delayed effect, a flag, or a cost',
-    },
-  );
+      );
+      if (!bites) {
+        ctx.addIssue({
+          code: 'custom',
+          message:
+            'every strong card bites: at least one choice needs a delayed effect, a flag, or a cost',
+        });
+      }
+    }
+    if (card.kind === 'fixed') {
+      if (card.fixedTurn.min > card.fixedTurn.max) {
+        ctx.addIssue({ code: 'custom', message: 'fixedTurn min must be <= max' });
+      }
+      if (card.historical && card.condition !== undefined) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'real-past beats are unconditional (R1 guard): drop the condition',
+        });
+      }
+      if (!card.historical && card.condition === undefined) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'future fixed beats require a condition (R1 guard)',
+        });
+      }
+    }
+    if (card.kind === 'wildcard' && !card.effects && !card.scaledEffects) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'a wildcard needs effects or scaledEffects (it must actually hit)',
+      });
+    }
+  });
 
 // ---------------------------------------------------------------------------
 // Policy cards
 // ---------------------------------------------------------------------------
+
+/**
+ * A CHOSEN GAMBLE (the structural Twilight-Struggle coup): the card's outcome
+ * is stochastic and the card copy says so. This is the sanctioned exception to
+ * "decisions execute deterministically" — reserved for cards whose real-world
+ * referent is genuinely contested (MAIM sabotage: deterrence vs spiral).
+ */
+const gambleSchema = z.strictObject({
+  stream: z.literal('wildcards'),
+  baseSpiralPerMille: z.number().int().min(0).max(1000),
+  postureModifiers: z
+    .strictObject({
+      cautious: z.number().int().min(-1000).max(1000).optional(),
+      mirror: z.number().int().min(-1000).max(1000).optional(),
+      race: z.number().int().min(-1000).max(1000).optional(),
+    })
+    .optional(),
+  flagModifiers: z
+    .array(z.strictObject({ flag: flagName, deltaPerMille: z.number().int().min(-1000).max(1000) }))
+    .min(1)
+    .optional(),
+  deter: effectSetSchema,
+  spiral: effectSetSchema,
+  spiralSetsPosture: z.enum(RIVAL_POSTURES).optional(),
+});
 
 export const policyCardSchema = z.strictObject({
   $schema: z.string().optional(),
@@ -204,9 +334,11 @@ export const policyCardSchema = z.strictObject({
     .optional(),
   effects: effectSetSchema.optional(),
   delayedEffects: z.array(delayedEffectSpecSchema).min(1).optional(),
+  gamble: gambleSchema.optional(),
   cooldown: z.number().int().min(1).max(16).optional(),
   oncePerRun: z.boolean().optional(),
   sourceIds: sourceIdsSchema,
+  claimIds: claimIdsSchema,
   tags: z.array(z.string().regex(TAG_PATTERN)).min(1),
 });
 
@@ -219,6 +351,12 @@ export const worldviewPresetSchema = z.strictObject({
   description: stringsRefSchema,
   alignmentDifficulty: sourcedRangeSchema,
   takeoffSteepness: sourcedRangeSchema,
+  /**
+   * Displacement drifts toward its exposure curve by gap/divisor per turn.
+   * The EXPOSURE curve is shared (measured agreement); how fast exposure
+   * becomes lived reality is the worldview dial (contradiction row 5).
+   */
+  displacementLagDivisor: sourcedIntSchema,
 });
 
 export const parametersSchema = z.strictObject({
@@ -284,7 +422,6 @@ export const parametersSchema = z.strictObject({
       progressVariance: sourcedIntSchema,
     }),
     societyDepth: z.strictObject({
-      displacementEquilibriumDivisor: sourcedIntSchema,
       trustCurveDivisor: sourcedIntSchema,
       unrestEconomicDragMin: sourcedIntSchema,
       unrestEconomicDrag: sourcedIntSchema,
@@ -294,6 +431,26 @@ export const parametersSchema = z.strictObject({
       perTurn: sourcedIntSchema,
       diffusionShieldMin: sourcedIntSchema,
     }),
+  }),
+  /**
+   * The projected milestone ladder (SC -> SAR -> SIAR), R1-tagged: crossing a
+   * rung grants a passive per-turn capability bonus scaled by the hidden
+   * takeoffSteepness die. Reachability is emergent from play + preset dice,
+   * never from calendar dates.
+   */
+  capabilityLadder: z.strictObject({
+    milestones: z
+      .array(
+        z.strictObject({
+          id: z.string().regex(CARD_ID_PATTERN),
+          at: sourcedIntSchema,
+          selfAccel: sourcedIntSchema,
+        }),
+      )
+      .min(1)
+      .refine((ms) => ms.every((m, i) => i === 0 || m.at.value > ms[i - 1]!.at.value), {
+        message: 'milestones must be in strictly increasing track order',
+      }),
   }),
   turnStructure: z.strictObject({
     maxTurns: sourcedIntSchema,
@@ -347,6 +504,46 @@ export const scenarioSchema = z.strictObject({
     }),
   startingHand: z.array(z.string().regex(CARD_ID_PATTERN)).optional(),
 });
+
+// ---------------------------------------------------------------------------
+// Incidents (data/incidents.json) — the misalignment-incident system.
+// The hidden dice LEAKING: risk ∝ capability x misalignment x pressure, one
+// seeded check per turn on the 'incidents' stream. Safety Insight reduces
+// DAMAGE (detection/containment), never true alignment.
+// ---------------------------------------------------------------------------
+
+export const incidentRungSchema = z.strictObject({
+  id: z.string().regex(CARD_ID_PATTERN),
+  ladder: z.number().int().min(0).max(3),
+  title: stringsRefSchema,
+  body: stringsRefSchema,
+  threshold: scaledInt,
+  baseDamage: effectSetSchema,
+  forcedPause: z.boolean(),
+  cooldownTurns: z.number().int().min(1).max(16),
+  /** Rung 3 only: firing while true alignment sits below this ends the run. */
+  catastropheBelowTrueAlignment: scaledInt.optional(),
+  sourceIds: sourceIdsSchema,
+  claimIds: claimIdsSchema,
+});
+
+export const incidentsSchema = z
+  .strictObject({
+    $schema: z.string().optional(),
+    riskFormula: z.strictObject({
+      pressureAllocationPct: sourcedIntSchema,
+      pressureRivalRacePct: sourcedIntSchema,
+    }),
+    safetyInsightDamageReductionMaxPerMille: sourcedIntSchema,
+    rungs: z.array(incidentRungSchema).min(1),
+    sourceIds: sourceIdsSchema,
+  })
+  .refine(
+    (data) =>
+      data.rungs.every((r, i) => i === 0 || r.threshold > data.rungs[i - 1]!.threshold) &&
+      data.rungs.every((r, i) => i === 0 || r.ladder > data.rungs[i - 1]!.ladder),
+    { message: 'incident rungs must be ordered by rising ladder and threshold' },
+  );
 
 // ---------------------------------------------------------------------------
 // Sources registry
@@ -429,8 +626,13 @@ export type SourcedRange = z.infer<typeof sourcedRangeSchema>;
 export type CurveTable = z.infer<typeof curveTableSchema>;
 export type EffectSetData = z.infer<typeof effectSetSchema>;
 export type EventCardData = z.infer<typeof eventCardSchema>;
+export type ChoiceEventData = Extract<EventCardData, { kind: 'choice' }>;
+export type FixedEventData = Extract<EventCardData, { kind: 'fixed' }>;
+export type WildcardEventData = Extract<EventCardData, { kind: 'wildcard' }>;
 export type EventChoiceData = z.infer<typeof eventChoiceSchema>;
 export type PolicyCardData = z.infer<typeof policyCardSchema>;
+export type IncidentRungData = z.infer<typeof incidentRungSchema>;
+export type IncidentsData = z.infer<typeof incidentsSchema>;
 export type WorldviewPresetData = z.infer<typeof worldviewPresetSchema>;
 export type ParametersData = z.infer<typeof parametersSchema>;
 export type ScenarioData = z.infer<typeof scenarioSchema>;

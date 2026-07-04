@@ -1,6 +1,7 @@
 {
   "$schema": "../schemas/event-card.schema.json",
   "id": "treaty_feeler",
+  "kind": "choice",
   "title": "strings:event.treatyFeeler.title",
   "body": "strings:event.treatyFeeler.body",
   "trigger": {
@@ -8,22 +9,41 @@
     "turnMin": 6,
     "turnMax": 11,
     "weight": 2,
-    "conditions": { "rivalPosture": "mirror" }
+    "conditions": {
+      "rivalPosture": "mirror"
+    }
   },
   "choices": [
     {
       "label": "strings:event.treatyFeeler.engage",
       "effects": {
-        "rival.trust": 150,
+        "rival.trust": 200,
         "politicalCapital": -100,
         "flags": ["treatyChannel"]
       },
-      "delayedEffects": [{ "inTurns": 2, "effects": { "politicalCapital": -50 } }]
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "politicalCapital": -100
+          }
+        }
+      ]
     },
     {
       "label": "strings:event.treatyFeeler.leak",
-      "effects": { "politicalCapital": 100, "rival.trust": -200 },
-      "delayedEffects": [{ "inTurns": 3, "effects": { "rival.capability": 100 } }]
+      "effects": {
+        "politicalCapital": 150,
+        "rival.trust": -250
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "rival.capability": 150
+          }
+        }
+      ]
     }
   ],
   "sourceIds": ["SRC-MAIM", "SRC-HO-INTL-INSTITUTIONS"],

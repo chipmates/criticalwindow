@@ -3,15 +3,20 @@
   "id": "ubi_pilot",
   "title": "strings:policy.ubiPilot.title",
   "body": "strings:policy.ubiPilot.body",
-  "cost": { "politicalCapital": 100, "capital": 150 },
+  "cost": {
+    "politicalCapital": 100,
+    "capital": 150
+  },
   "effects": {
-    "society.unrest": -100,
-    "publicTrust": 50
+    "society.unrest": -150,
+    "publicTrust": 100
   },
   "delayedEffects": [
     {
       "inTurns": 4,
-      "effects": { "capital": -100 }
+      "effects": {
+        "capital": -150
+      }
     }
   ],
   "oncePerRun": true,

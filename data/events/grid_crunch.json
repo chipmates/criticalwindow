@@ -1,0 +1,28 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "grid_crunch",
+  "kind": "wildcard",
+  "title": "strings:event.gridCrunch.title",
+  "body": "strings:event.gridCrunch.body",
+  "fire": {
+    "probPerMille": 60,
+    "eligible": {
+      "computeOverEnergyMin": 100
+    },
+    "cooldownTurns": 4
+  },
+  "effects": {
+    "capital": -50
+  },
+  "scaledEffects": [
+    {
+      "target": "compute",
+      "base": -50,
+      "coef": -150,
+      "exposure": "computeMinusEnergy"
+    }
+  ],
+  "sourceIds": ["SRC-IEA-ENERGY-AI", "SRC-AI2027", "SRC-SITUATIONAL-AWARENESS"],
+  "claimIds": ["SRC-AI2027#8", "SRC-SITUATIONAL-AWARENESS#4"],
+  "tags": ["energy", "infrastructure", "exposure"]
+}

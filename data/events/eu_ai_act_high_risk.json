@@ -1,0 +1,38 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "eu_ai_act_high_risk",
+  "kind": "fixed",
+  "title": "strings:event.euAiActHighRisk.title",
+  "body": "strings:event.euAiActHighRisk.body",
+  "fixedTurn": {
+    "min": 5,
+    "max": 5
+  },
+  "historical": true,
+  "choices": [
+    {
+      "label": "strings:event.euAiActHighRisk.certify",
+      "effects": {
+        "capital": -100,
+        "safetyInsight": 50
+      }
+    },
+    {
+      "label": "strings:event.euAiActHighRisk.routeAround",
+      "effects": {
+        "politicalCapital": -50,
+        "rival.trust": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 4,
+          "effects": {
+            "publicTrust": -100
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-EU-AI-ACT-TIMELINE", "SRC-EU-AI-ACT"],
+  "tags": ["eu", "regulation", "fixed-beat"]
+}

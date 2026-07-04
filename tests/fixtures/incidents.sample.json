@@ -1,0 +1,47 @@
+{
+  "riskFormula": {
+    "pressureAllocationPct": {
+      "value": 25,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    },
+    "pressureRivalRacePct": {
+      "value": 25,
+      "sourceIds": ["SRC-DESIGN-HANDOVER"]
+    }
+  },
+  "safetyInsightDamageReductionMaxPerMille": {
+    "value": 500,
+    "sourceIds": ["SRC-SLEEPER"]
+  },
+  "rungs": [
+    {
+      "id": "near_miss",
+      "ladder": 0,
+      "title": "strings:incident.nearMiss.title",
+      "body": "strings:incident.nearMiss.body",
+      "threshold": 250,
+      "baseDamage": {
+        "publicTrust": -50
+      },
+      "forcedPause": false,
+      "cooldownTurns": 2,
+      "sourceIds": ["SRC-SLEEPER"]
+    },
+    {
+      "id": "lab_accident",
+      "ladder": 3,
+      "title": "strings:incident.labAccident.title",
+      "body": "strings:incident.labAccident.body",
+      "threshold": 700,
+      "baseDamage": {
+        "publicTrust": -250,
+        "society.unrest": 200
+      },
+      "forcedPause": true,
+      "cooldownTurns": 2,
+      "catastropheBelowTrueAlignment": 150,
+      "sourceIds": ["SRC-AI2027"]
+    }
+  ],
+  "sourceIds": ["SRC-AI2027", "SRC-SLEEPER"]
+}

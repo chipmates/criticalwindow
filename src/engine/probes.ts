@@ -107,10 +107,35 @@ export function societyNeglect(_data: EngineData, snapshots: TurnSnapshot[]): Pr
   return { turns, evidence };
 }
 
+/**
+ * Warning shots: the turns incidents fired, with evidence 1 when the NEXT
+ * turn's allocation stayed racing-heavy (capability >= 60) anyway. The
+ * observed pattern across 43 real AI-race wargames: act early, go
+ * complacent, reengage only after the shot (SRC-SIM-GAMING-INSIGHTS).
+ */
+export function warningShots(_data: EngineData, snapshots: TurnSnapshot[]): ProbeResult {
+  const last = snapshots[snapshots.length - 1];
+  if (!last) {
+    return { turns: [], evidence: [] };
+  }
+  const turns: number[] = [];
+  const evidence: number[] = [];
+  for (const entry of last.state.log) {
+    if (entry.kind !== 'incident') {
+      continue;
+    }
+    const after = snapshots.find((s) => s.turn === entry.turn + 1);
+    turns.push(entry.turn);
+    evidence.push(after && after.state.allocation.capability >= 60 ? 1 : 0);
+  }
+  return { turns, evidence };
+}
+
 export interface DebriefProbes {
   treatyWindowOpen: ProbeResult;
   safetyUnderinvestment: ProbeResult;
   societyNeglect: ProbeResult;
+  warningShots: ProbeResult;
 }
 
 /** Everything the debrief needs, from one replay. */
@@ -124,5 +149,6 @@ export function runProbes(
     treatyWindowOpen: treatyWindowOpen(data, snapshots),
     safetyUnderinvestment: safetyUnderinvestment(data, snapshots),
     societyNeglect: societyNeglect(data, snapshots),
+    warningShots: warningShots(data, snapshots),
   };
 }

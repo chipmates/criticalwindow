@@ -1,0 +1,38 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "eu_ai_act_full_force",
+  "kind": "fixed",
+  "title": "strings:event.euAiActFullForce.title",
+  "body": "strings:event.euAiActFullForce.body",
+  "fixedTurn": {
+    "min": 1,
+    "max": 1
+  },
+  "historical": true,
+  "choices": [
+    {
+      "label": "strings:event.euAiActFullForce.comply",
+      "effects": {
+        "capital": -100,
+        "publicTrust": 50
+      }
+    },
+    {
+      "label": "strings:event.euAiActFullForce.carveouts",
+      "effects": {
+        "politicalCapital": -50,
+        "publicTrust": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 3,
+          "effects": {
+            "publicTrust": -50
+          }
+        }
+      ]
+    }
+  ],
+  "sourceIds": ["SRC-EU-AI-ACT-TIMELINE", "SRC-EU-AI-ACT"],
+  "tags": ["eu", "regulation", "fixed-beat"]
+}

@@ -75,20 +75,33 @@ function decide(bot: BotId, context: BotContext): BotDecision {
   const { state, rng } = context;
   switch (state.phase) {
     case 'allocate': {
+      // A forced pause (incident fallout) caps the capability share; every
+      // bot complies rather than crashing into the engine guard.
+      const paused = state.flags.includes('forcedPause');
       if (bot === 'racer') {
-        return { action: { type: 'allocate', capability: 80, safety: 10, diffusion: 10 }, rng };
+        const action: Action = paused
+          ? { type: 'allocate', capability: 30, safety: 40, diffusion: 30 }
+          : { type: 'allocate', capability: 80, safety: 10, diffusion: 10 };
+        return { action, rng };
       }
       if (bot === 'steward') {
         // The taught strategy: push the frontier AND pay for alignment.
-        return { action: { type: 'allocate', capability: 65, safety: 25, diffusion: 10 }, rng };
+        const action: Action = paused
+          ? { type: 'allocate', capability: 30, safety: 45, diffusion: 25 }
+          : { type: 'allocate', capability: 65, safety: 25, diffusion: 10 };
+        return { action, rng };
       }
       if (bot === 'dove') {
         return { action: { type: 'allocate', capability: 20, safety: 50, diffusion: 30 }, rng };
       }
       if (bot === 'hedger') {
-        return { action: { type: 'allocate', capability: 50, safety: 25, diffusion: 25 }, rng };
+        const action: Action = paused
+          ? { type: 'allocate', capability: 30, safety: 35, diffusion: 35 }
+          : { type: 'allocate', capability: 50, safety: 25, diffusion: 25 };
+        return { action, rng };
       }
-      const [a, r1] = nextInt(rng, 11);
+      const bound = paused ? 4 : 11;
+      const [a, r1] = nextInt(rng, bound);
       const [b, r2] = nextInt(r1, 11 - a);
       const capability = a * 10;
       const safety = b * 10;
@@ -156,6 +169,9 @@ function decide(bot: BotId, context: BotContext): BotDecision {
     case 'event': {
       const pending = state.pendingEvents[0]!;
       const card = context.data.events.find((e) => e.id === pending.eventId)!;
+      if (card.kind === 'wildcard') {
+        throw new Error(`wildcard '${card.id}' cannot be a pending memo`);
+      }
       let choiceIndex: number;
       let nextRng = rng;
       if (bot === 'racer') {

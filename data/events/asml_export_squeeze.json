@@ -1,0 +1,23 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "asml_export_squeeze",
+  "kind": "wildcard",
+  "title": "strings:event.asmlExportSqueeze.title",
+  "body": "strings:event.asmlExportSqueeze.body",
+  "fire": {
+    "probPerMille": 40,
+    "eligible": {
+      "turnMin": 3
+    },
+    "cooldownTurns": 4
+  },
+  "effects": {
+    "compute": -100,
+    "rival.capability": -100,
+    "rival.substitution": 50,
+    "politicalCapital": -50
+  },
+  "sourceIds": ["SRC-CSIS-EXPORT", "SRC-CHIP-WAR", "SRC-SIM-GAMING-INSIGHTS"],
+  "claimIds": ["SRC-SIM-GAMING-INSIGHTS#7"],
+  "tags": ["eu", "chips", "chokepoint"]
+}

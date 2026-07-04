@@ -21,7 +21,7 @@ export const SCALE_MIN = 0;
 export const ALLOCATION_TOTAL = 100;
 
 /** Bumped when the shape of GameState / SaveGame changes incompatibly. */
-export const STATE_SCHEMA_VERSION = 1;
+export const STATE_SCHEMA_VERSION = 2;
 
 // ---------------------------------------------------------------------------
 // Identifiers
@@ -69,8 +69,23 @@ export const ENDING_IDS = [
 ] as const;
 export type EndingId = (typeof ENDING_IDS)[number];
 
-export const RNG_STREAM_NAMES = ['events', 'hiddenDice', 'rival', 'ticker'] as const;
+export const RNG_STREAM_NAMES = [
+  'events',
+  'hiddenDice',
+  'rival',
+  'ticker',
+  'wildcards',
+  'incidents',
+] as const;
 export type RngStreamName = (typeof RNG_STREAM_NAMES)[number];
+
+/** Card scheduling classes (v0.2 event layer). */
+export const EVENT_KINDS = ['choice', 'wildcard', 'fixed'] as const;
+export type EventKind = (typeof EVENT_KINDS)[number];
+
+/** What a wildcard's exposure-scaled damage reads from. */
+export const EXPOSURE_KEYS = ['capability', 'compute', 'computeMinusEnergy'] as const;
+export type ExposureKey = (typeof EXPOSURE_KEYS)[number];
 
 // ---------------------------------------------------------------------------
 // Effects (shared vocabulary of events, policies, subsystems)
@@ -165,6 +180,8 @@ export interface LogEntry {
     | 'election'
     | 'evalReport'
     | 'ticker'
+    | 'incident'
+    | 'wildcard'
     | 'ending';
   stringKey: string | null;
   deltas: Partial<Record<EffectTarget, number>> | null;
@@ -232,6 +249,13 @@ export interface GameState {
   /** Events already fired this run (non-repeatable ones never redraw). */
   firedEvents: string[];
   pendingEvents: PendingEvent[];
+
+  /** Incident rung id -> turn it may fire again (misalignment-incident system). */
+  incidentCooldowns: Record<string, number>;
+  /** Wildcard card id -> turn it may fire again. */
+  wildcardCooldowns: Record<string, number>;
+  /** No wildcard fires before this turn (global spacing between shocks). */
+  wildcardGlobalUntil: number;
 
   delayed: DelayedEffect[];
 

@@ -1,11 +1,11 @@
 {
   "name": "golden-4-consensus-chaos",
-  "dataVersion": "1cea36f0097602",
+  "dataVersion": "1d69e43465b237",
   "seed": "golden-4",
   "presetId": "consensus",
   "bot": "chaos",
   "endingId": "outpaced",
-  "turns": 11,
+  "turns": 10,
   "actions": [
     {
       "type": "allocate",
@@ -18,7 +18,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "viral_job_loss",
+      "eventId": "eu_ai_act_full_force",
       "choiceIndex": 0
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "grid_strain",
+      "eventId": "open_weights_shock",
       "choiceIndex": 0
     },
     {
@@ -61,9 +61,9 @@
     },
     {
       "type": "allocate",
-      "capability": 20,
-      "safety": 10,
-      "diffusion": 70
+      "capability": 0,
+      "safety": 50,
+      "diffusion": 50
     },
     {
       "type": "playPolicy",
@@ -71,7 +71,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "open_weights_shock",
+      "eventId": "viral_job_loss",
       "choiceIndex": 0
     },
     {
@@ -87,38 +87,8 @@
       "type": "skipPolicy"
     },
     {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 40,
-      "safety": 40,
-      "diffusion": 20
-    },
-    {
-      "type": "skipPolicy"
-    },
-    {
       "type": "resolveEventChoice",
-      "eventId": "energy_crunch",
-      "choiceIndex": 1
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 100,
-      "safety": 0,
-      "diffusion": 0
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "energy_buildout"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "treaty_feeler",
+      "eventId": "eu_ai_act_high_risk",
       "choiceIndex": 1
     },
     {
@@ -131,26 +101,42 @@
       "diffusion": 60
     },
     {
-      "type": "playPolicy",
-      "policyId": "ai_literacy_campaign"
+      "type": "skipPolicy"
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "model_weight_theft",
-      "choiceIndex": 1
+      "eventId": "whistleblower",
+      "choiceIndex": 0
     },
     {
       "type": "advance"
     },
     {
       "type": "allocate",
-      "capability": 30,
-      "safety": 30,
+      "capability": 40,
+      "safety": 20,
       "diffusion": 40
     },
     {
       "type": "playPolicy",
-      "policyId": "export_controls"
+      "policyId": "compute_treaty_feeler"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "energy_crunch",
+      "choiceIndex": 0
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 80,
+      "safety": 0,
+      "diffusion": 20
+    },
+    {
+      "type": "skipPolicy"
     },
     {
       "type": "resolveEventChoice",
@@ -162,17 +148,16 @@
     },
     {
       "type": "allocate",
-      "capability": 20,
-      "safety": 70,
-      "diffusion": 10
+      "capability": 10,
+      "safety": 90,
+      "diffusion": 0
     },
     {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler"
+      "type": "skipPolicy"
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "whistleblower",
+      "eventId": "election_scandal",
       "choiceIndex": 1
     },
     {
@@ -180,32 +165,26 @@
     },
     {
       "type": "allocate",
-      "capability": 20,
-      "safety": 40,
-      "diffusion": 40
+      "capability": 50,
+      "safety": 50,
+      "diffusion": 0
     },
     {
       "type": "playPolicy",
-      "policyId": "natsec_merge"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "rival_breakthrough",
-      "choiceIndex": 0
+      "policyId": "eval_mandate"
     }
   ],
   "perTurnHashes": [
-    "082afe9837c98c",
-    "08d9a0fb115c20",
-    "1cdf32914f2ca4",
-    "074e40dd06c028",
-    "140fe642af6a1e",
-    "0959b2f6aee344",
-    "069f05869b9ffb",
-    "03ece53d745939",
-    "015c6f4a0f7299",
-    "1662b397c8372c",
-    "144aaf6f87db8a"
+    "16944c2443f201",
+    "13894fff087101",
+    "0a437733cfaa91",
+    "1a5870d9ae4287",
+    "152f17f685e99c",
+    "11c3c4ae1bc1e6",
+    "02dc2403871660",
+    "13df9b1361be41",
+    "08c0eede9dd85b",
+    "1898e87c5f2b5f"
   ],
-  "finalHash": "144aaf6f87db8a"
+  "finalHash": "1898e87c5f2b5f"
 }

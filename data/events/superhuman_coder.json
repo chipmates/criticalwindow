@@ -1,0 +1,42 @@
+{
+  "$schema": "../schemas/event-card.schema.json",
+  "id": "superhuman_coder",
+  "kind": "fixed",
+  "title": "strings:event.superhumanCoder.title",
+  "body": "strings:event.superhumanCoder.body",
+  "fixedTurn": {
+    "min": 1,
+    "max": 16
+  },
+  "historical": false,
+  "condition": {
+    "minCapability": 700
+  },
+  "choices": [
+    {
+      "label": "strings:event.superhumanCoder.deploy",
+      "effects": {
+        "capability": 50,
+        "hidden.trueAlignment": -50
+      },
+      "delayedEffects": [
+        {
+          "inTurns": 2,
+          "effects": {
+            "capability": 50
+          }
+        }
+      ]
+    },
+    {
+      "label": "strings:event.superhumanCoder.sandbox",
+      "effects": {
+        "safetyInsight": 100,
+        "politicalCapital": -50
+      }
+    }
+  ],
+  "sourceIds": ["SRC-AI2027", "SRC-SITUATIONAL-AWARENESS", "SRC-GRACE-SURVEY"],
+  "claimIds": ["SRC-AI2027#2", "SRC-AI2027#3", "SRC-SITUATIONAL-AWARENESS#1", "SRC-GRACE-SURVEY#6"],
+  "tags": ["capability", "milestone", "fixed-beat"]
+}

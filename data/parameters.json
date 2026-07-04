@@ -13,8 +13,13 @@
       "takeoffSteepness": {
         "min": 500,
         "max": 900,
-        "sourceIds": ["SRC-AI2027", "SRC-SITUATIONAL-AWARENESS"],
-        "note": "fast-takeoff worldview: software intelligence explosion plausible within the game window"
+        "sourceIds": ["SRC-AI2027", "SRC-SITUATIONAL-AWARENESS", "SRC-METR-HORIZON"],
+        "note": "fast-takeoff worldview: software intelligence explosion plausible within the game window; top at 900 not 1000 because even the aggressive sources call 2027 strikingly plausible, not certain (F1 row 1, 2026-07-04)"
+      },
+      "displacementLagDivisor": {
+        "value": 4,
+        "sourceIds": ["SRC-IMF-GENAI", "SRC-DESIGN-HANDOVER"],
+        "note": "fast-and-painful worldview: exposure becomes lived displacement quickly (F1 row 5)"
       }
     },
     "consensus": {
@@ -27,10 +32,15 @@
         "note": "wide band: expert median worry with heavy disagreement (Grace 2024: 38-51% give >=10% to extremely bad outcomes; IAISR: deep uncertainty)"
       },
       "takeoffSteepness": {
-        "min": 300,
-        "max": 800,
-        "sourceIds": ["SRC-IAISR", "SRC-METR-HORIZON"],
-        "note": "capability doubling trends real but discontinuity contested"
+        "min": 250,
+        "max": 700,
+        "sourceIds": ["SRC-IAISR", "SRC-METR-HORIZON", "SRC-GRACE-SURVEY"],
+        "note": "capability doubling trends real but discontinuity contested; range centers the Grace survey middle with a real fast tail (10% HLMI by 2027), tightened from 300-800 at F1 row 1 (2026-07-04)"
+      },
+      "displacementLagDivisor": {
+        "value": 6,
+        "sourceIds": ["SRC-IMF-GENAI", "SRC-DESIGN-HANDOVER"],
+        "note": "default diffusion lag: high exposure, gradual realization (F1 row 5; carries the v0.1 divisor)"
       }
     },
     "skeptic": {
@@ -44,9 +54,14 @@
       },
       "takeoffSteepness": {
         "min": 100,
-        "max": 500,
-        "sourceIds": ["SRC-NORMAL-TECH"],
-        "note": "adoption and integration lags cap effective takeoff speed"
+        "max": 450,
+        "sourceIds": ["SRC-NORMAL-TECH", "SRC-METR-HORIZON"],
+        "note": "adoption and integration lags cap effective takeoff speed; tightened from 100-500 at F1 row 1 (2026-07-04)"
+      },
+      "displacementLagDivisor": {
+        "value": 9,
+        "sourceIds": ["SRC-NORMAL-TECH", "SRC-GRACE-SURVEY"],
+        "note": "slow-diffusion worldview: only 0.5-3.5% of work hours realized despite adoption (Normal Tech); Grace FAOL median 2116 (F1 row 5)"
       }
     }
   },
@@ -62,9 +77,9 @@
       "note": "narrowing per 100 Safety Insight: simple probes catch sleeper agents (Anthropic), so interpretability investment buys real eval confidence; the rate itself is a design constant tuned in playtests"
     },
     "floorBandWidth": {
-      "value": 80,
-      "sourceIds": ["SRC-SLEEPER"],
-      "note": "the band never closes: perfect verification is not on the menu (Sleeper Agents persistence result)"
+      "value": 100,
+      "sourceIds": ["SRC-SLEEPER", "SRC-AGENTIC-MISALIGNMENT"],
+      "note": "the band never closes: near-99% true-trigger vs ~0 red-team (Sleeper Agents), 55.1% real vs 6.5% eval (Agentic Misalignment). Raised 80->100 at F1 row 8 (2026-07-04), multiple-of-50 rule"
     },
     "deceptionMaxLift": {
       "value": 250,
@@ -253,11 +268,6 @@
       }
     },
     "societyDepth": {
-      "displacementEquilibriumDivisor": {
-        "value": 6,
-        "sourceIds": ["SRC-DESIGN-HANDOVER"],
-        "note": "displacement drifts toward displacementFromCapability(capability) by gap/divisor per turn: diffusion-coupled, not instant"
-      },
       "trustCurveDivisor": {
         "value": 4,
         "sourceIds": ["SRC-DESIGN-HANDOVER"],
@@ -291,6 +301,49 @@
         "note": "broad benefit-sharing keeps humans in the loop; share threshold is design-tuned"
       }
     }
+  },
+  "capabilityLadder": {
+    "milestones": [
+      {
+        "id": "superhuman_coder",
+        "at": {
+          "value": 700,
+          "sourceIds": ["SRC-AI2027", "SRC-GRACE-SURVEY", "SRC-SITUATIONAL-AWARENESS"],
+          "note": "SC milestone on the 0-1000 track: below the fog zone, above today's hour-scale frontier. Arrival is emergent from play + dice, never a calendar date (R1)"
+        },
+        "selfAccel": {
+          "value": 50,
+          "sourceIds": ["SRC-AI2027", "SRC-METR-HORIZON"],
+          "note": "AI R&D multiplier ladder 5x->25x->250x compressed to game-scale bonuses 50/100/150, scaled by the takeoffSteepness die (F1 row 2)"
+        }
+      },
+      {
+        "id": "superhuman_researcher",
+        "at": {
+          "value": 800,
+          "sourceIds": ["SRC-AI2027", "SRC-SITUATIONAL-AWARENESS"],
+          "note": "SAR milestone = fogZoneStart: the fog begins where AI does the AI research"
+        },
+        "selfAccel": {
+          "value": 100,
+          "sourceIds": ["SRC-AI2027", "SRC-METR-HORIZON"],
+          "note": "second rung of the compressed multiplier ladder"
+        }
+      },
+      {
+        "id": "superintelligent_researcher",
+        "at": {
+          "value": 900,
+          "sourceIds": ["SRC-AI2027"],
+          "note": "SIAR milestone: the last rung before threshold resolution at 1000"
+        },
+        "selfAccel": {
+          "value": 150,
+          "sourceIds": ["SRC-AI2027", "SRC-METR-HORIZON"],
+          "note": "top rung; max per-turn bonus 150 x steepness/1000 <= 135 keeps swings bounded (TS rule)"
+        }
+      }
+    ]
   },
   "turnStructure": {
     "maxTurns": {
