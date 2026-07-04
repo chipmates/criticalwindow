@@ -418,6 +418,14 @@ export function Game() {
                 token="--m-rival"
                 trend={prev('rival.substitution')}
               />
+              {run.world.flags.includes('treatyChannel') && (
+                <p className="rival-weather">
+                  {them.resources.politicalCapital >=
+                  data.parameters.thresholds.treatySignPoliticalCapitalMin.value
+                    ? t('race.ratification.favorable')
+                    : t('race.ratification.hostile')}
+                </p>
+              )}
             </>
           )}
         </aside>

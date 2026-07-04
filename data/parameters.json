@@ -125,8 +125,8 @@
     },
     "treatySignPoliticalCapitalMin": {
       "value": 300,
-      "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-SIM-GAMING-INSIGHTS"],
-      "note": "the signing seat needs this much standing political capital to ratify: a verified slowdown must be sold at home, not just negotiated abroad. Added 2026-07-04 (iter3: trust-bar notch alone did not separate the skill curve; the treaty lacked a competing COST)."
+      "sourceIds": ["SRC-PUTNAM-TWO-LEVEL", "SRC-HO-INTL-INSTITUTIONS", "SRC-SIM-GAMING-INSIGHTS"],
+      "note": "BOTH seats need this much standing political capital at signing: every treaty has two home fronts (Putnam's two-level games), and the rival's swings with era verdicts outside the player's control. The signature is a window to be read, not a recipe to execute. (2026-07-04, iter3: price-based gates alone could not cap recipe play.)"
     }
   },
   "worldRules": {

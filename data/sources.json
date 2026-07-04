@@ -1905,6 +1905,16 @@
       "status": "verified",
       "gameUse": "whistleblower event card",
       "note": "Curated addition at Block C1 (grounds event(whistleblower)); not present in the two bibliography files. Verify URL in A4."
+    },
+    {
+      "id": "SRC-PUTNAM-TWO-LEVEL",
+      "title": "Diplomacy and Domestic Politics: The Logic of Two-Level Games",
+      "org": "International Organization 42(3), Robert D. Putnam",
+      "year": 1988,
+      "type": "paper",
+      "status": "verified",
+      "gameUse": "treaty ratification requires BOTH governments' domestic standing (political capital) at signing; the win-set logic behind the ratification window mechanic",
+      "url": "https://www.jstor.org/stable/2706785"
     }
   ]
 }

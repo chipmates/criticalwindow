@@ -1481,3 +1481,10 @@ body {
   transform: rotate(-2deg);
   opacity: 0.7;
 }
+
+.rival-weather {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-style: italic;
+  color: var(--ink-muted);
+}

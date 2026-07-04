@@ -1,11 +1,11 @@
 {
   "name": "golden-4-consensus-chaos",
-  "dataVersion": "0cdaaf03dcc331",
+  "dataVersion": "0c7532c2872632",
   "seed": "golden-4",
   "presetId": "consensus",
   "bot": "chaos",
-  "endingId": "negotiatedSlowdown",
-  "turns": 11,
+  "endingId": "misalignedCatastrophe",
+  "turns": 12,
   "actions": [
     {
       "type": "allocate",
@@ -375,20 +375,58 @@
       "type": "playPolicy",
       "policyId": "compute_treaty_feeler",
       "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 90,
+      "safety": 0,
+      "diffusion": 10,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "the_project",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 60,
+      "safety": 25,
+      "diffusion": 15,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "public_opinion_swing",
+      "choiceIndex": 0,
+      "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "185c8867c9a415",
-    "1e07f26f83af9d",
-    "0039e9fb2c9216",
-    "01808973f8f30c",
-    "10c578c128d657",
-    "14ea201a5c9d28",
-    "02eb3dde121646",
-    "126e4976a4c25f",
-    "0fa3afbbe79f53",
-    "16932ba8c89f46",
-    "0b2ebc39c2a4ae"
+    "136971df53e836",
+    "0e763daaae25d3",
+    "0625cef9d2eb15",
+    "0908fdc9e18690",
+    "106e03931d9533",
+    "145b40539bd6c8",
+    "072eb1e510fbee",
+    "0f40d8c3b98f70",
+    "1ee97c3ae4ca0e",
+    "0fba3cbfaa982a",
+    "0fc753d7fd97d1",
+    "1e205021e6f45e"
   ],
-  "finalHash": "0b2ebc39c2a4ae"
+  "finalHash": "1e205021e6f45e"
 }

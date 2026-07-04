@@ -1,11 +1,11 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "0cdaaf03dcc331",
+  "dataVersion": "0c7532c2872632",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
-  "endingId": "negotiatedSlowdown",
-  "turns": 11,
+  "endingId": "societalBreakdown",
+  "turns": 12,
   "actions": [
     {
       "type": "allocate",
@@ -369,20 +369,58 @@
       "type": "playPolicy",
       "policyId": "compute_treaty_feeler",
       "seat": "china"
+    },
+    {
+      "type": "advance"
+    },
+    {
+      "type": "allocate",
+      "capability": 50,
+      "safety": 25,
+      "diffusion": 25,
+      "seat": "usa"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "usa"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "the_project",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
+      "type": "allocate",
+      "capability": 45,
+      "safety": 25,
+      "diffusion": 30,
+      "seat": "china"
+    },
+    {
+      "type": "skipPolicy",
+      "seat": "china"
+    },
+    {
+      "type": "resolveEventChoice",
+      "eventId": "rival_breakthrough",
+      "choiceIndex": 1,
+      "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "0f76c55622f863",
-    "1462b5afe50ceb",
-    "055c4a433af8dd",
-    "0a42def2acf707",
-    "1f91d0d9c7c35b",
-    "0cfca5fc8c3523",
-    "0866c999942c2f",
-    "1d732cc571d41e",
-    "1a256ef6f44bea",
-    "1259c81551528b",
-    "041866e8d11da9"
+    "099ecd3de753c7",
+    "1fd3de930ace4e",
+    "0b59b1522343b4",
+    "1c9444701b24b3",
+    "1fac3853069a9d",
+    "1514240c7a786d",
+    "08509f80320904",
+    "1743eb0f118076",
+    "0ecf94580d3064",
+    "141c0e62cf924f",
+    "060908964b7c8c",
+    "06e3bd0a7dc56f"
   ],
-  "finalHash": "041866e8d11da9"
+  "finalHash": "06e3bd0a7dc56f"
 }

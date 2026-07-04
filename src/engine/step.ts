@@ -1466,8 +1466,14 @@ function worldUpdate(data: EngineData, state: GameState): void {
     state.world.bilateralTrust >= thresholds.treatyTrustMin.value &&
     state.turn >= thresholds.treatySignTurnMin.value &&
     PLAYABLE_SEAT_IDS.every((seat) => state.seats[seat].flags.includes('treatySignaled')) &&
-    // Ratification: the signer must be able to sell the slowdown at home.
-    state.seats[signer].resources.politicalCapital >= thresholds.treatySignPoliticalCapitalMin.value
+    // Ratification: BOTH home fronts must sell the slowdown (two-level game).
+    // The rival's standing swings with era verdicts the player does not
+    // control, so the signature has a WINDOW, not a recipe: read their
+    // domestic weather and time it.
+    state.seats[signer].resources.politicalCapital >=
+      thresholds.treatySignPoliticalCapitalMin.value &&
+    state.seats[otherSeat(signer)].resources.politicalCapital >=
+      thresholds.treatySignPoliticalCapitalMin.value
   ) {
     endRun(state, 'negotiatedSlowdown', { trigger: 'treatySigned' });
     return;
