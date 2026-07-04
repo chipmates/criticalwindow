@@ -4,7 +4,7 @@ import { encodeShare } from '../../engine/save';
 import { playNarration } from '../audio';
 import { Timeline } from '../components/Timeline';
 import en from '../../../data/strings/en.json';
-import { t, type StringKey } from '../i18n';
+import { t, tRef, type StringKey } from '../i18n';
 import { gameData, useStore } from '../store';
 
 function has(key: string): key is StringKey {
@@ -43,6 +43,18 @@ export function Debrief() {
   const player = run.seats[run.playerSeat];
   const rivalSeat = run.seats[run.playerSeat === 'usa' ? 'china' : 'usa'];
   const windowOpen = run.world.flags.includes('windowStillOpen');
+  // The hidden reveal must show the truth that DECIDED the ending: when the
+  // other seat crossed (or its lab blew up), its alignment is the number
+  // that mattered, not the player's.
+  const endingLog = run.log.find((e) => e.kind === 'ending');
+  const decidingSeat = String(
+    endingLog?.meta?.causeSeat ?? endingLog?.meta?.winnerSeat ?? run.playerSeat,
+  ) as 'usa' | 'china';
+  const revealedAlignment =
+    typeof endingLog?.meta?.trueAlignment === 'number'
+      ? endingLog.meta.trueAlignment
+      : player.hidden.trueAlignment;
+  const decidedByOther = decidingSeat !== run.playerSeat;
   const epilogueKey =
     windowOpen && has(`debrief.ending.${ending}.epilogueOpen`)
       ? `debrief.ending.${ending}.epilogueOpen`
@@ -152,9 +164,16 @@ export function Debrief() {
           </div>
           <div>
             <dt>{t('debrief.hidden.trueAlignment')}</dt>
-            <dd>{player.hidden.trueAlignment}</dd>
+            <dd>{revealedAlignment}</dd>
           </div>
         </dl>
+        {decidedByOther && (
+          <p className="debrief-window">
+            {t('debrief.hidden.decidedBy', {
+              seat: tRef(data.seatsRules[decidingSeat].labelKey),
+            })}
+          </p>
+        )}
         <p className="panel-explain">{t('debrief.hidden.explain')}</p>
       </section>
 

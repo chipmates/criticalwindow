@@ -4,7 +4,7 @@
  * saves/probes, autosaves each step, and never mutates engine state.
  */
 import { create } from 'zustand';
-import { chinaDecide } from '../engine/china-policy';
+import { scriptedSeatDecide } from '../engine/china-policy';
 import { initGame } from '../engine/init';
 import { buildSave, loadSave, SaveError } from '../engine/save';
 import { step } from '../engine/step';
@@ -124,8 +124,11 @@ export const useStore = create<UiStore>((set, get) => ({
     if (!run || !runMeta) {
       return;
     }
-    let next = step(data, run, action);
-    const log = [...actionsLog, action];
+    // Stamp the player's action with the acting seat: a free engine-level
+    // assertion that the UI and the turn machine agree on whose window it is.
+    const stamped = action.type === 'advance' ? action : { ...action, seat: run.actingSeat };
+    let next = step(data, run, stamped);
+    const log = [...actionsLog, stamped];
     // Solo mode: the scripted seat plays its whole window immediately, and
     // every scripted action is RECORDED, so the save replays as one fold.
     if (next.mode === 'solo') {
@@ -136,7 +139,7 @@ export const useStore = create<UiStore>((set, get) => ({
         next.actingSeat !== next.playerSeat &&
         guard < 20
       ) {
-        const scripted = chinaDecide(data, next);
+        const scripted = scriptedSeatDecide(data, next);
         next = step(data, next, scripted);
         log.push(scripted);
         guard += 1;

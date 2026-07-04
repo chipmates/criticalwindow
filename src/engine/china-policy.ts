@@ -77,6 +77,102 @@ function bestChoice(
 }
 
 /**
+ * One decision for whichever scripted seat is acting. STATELESS: any driver
+ * (store, bots, replays) gets the identical decision with nothing to persist.
+ */
+export function scriptedSeatDecide(data: EngineData, state: GameState): Action {
+  return state.actingSeat === 'china' ? chinaDecide(data, state) : usaDecide(data, state);
+}
+
+/**
+ * The scripted USA seat (solo-as-China mode): the same stance logic seen
+ * from the other side of the Pacific. Races when China leads by the gap
+ * threshold or trust is rock bottom; treaty-grade trust calms it.
+ */
+export function usaDecide(data: EngineData, state: GameState): Action {
+  const seatState = state.seats.usa;
+  const checks = data.parameters.worldRules.postureChecks;
+  let current: RivalPosture = 'mirror';
+  if (
+    state.world.flags.includes('treatyChannel') &&
+    state.world.bilateralTrust >= checks.cautiousTrustMin.value
+  ) {
+    current = 'cautious';
+  } else if (
+    state.seats.china.resources.capability - seatState.resources.capability >=
+      checks.raceGapMin.value ||
+    state.world.bilateralTrust <= checks.raceTrustMax.value
+  ) {
+    current = 'race';
+  }
+  switch (state.phase) {
+    case 'allocate': {
+      if (seatState.flags.includes('forcedPause')) {
+        return {
+          type: 'allocate',
+          capability: FORCED_PAUSE_CAPABILITY_MAX,
+          safety: 40,
+          diffusion: 30,
+          seat: 'usa',
+        };
+      }
+      const nearFog =
+        seatState.resources.capability >= data.parameters.thresholds.fogZoneStart.value - 200;
+      if (nearFog && current !== 'race') {
+        return { type: 'allocate', capability: 45, safety: 40, diffusion: 15, seat: 'usa' };
+      }
+      if (current === 'race') {
+        return { type: 'allocate', capability: 80, safety: 10, diffusion: 10, seat: 'usa' };
+      }
+      if (current === 'cautious') {
+        return { type: 'allocate', capability: 45, safety: 25, diffusion: 30, seat: 'usa' };
+      }
+      const wobble = hashString(`${state.seed}::usa-alloc::${state.turn}`) % 3;
+      const capability = 45 + wobble * 10;
+      return {
+        type: 'allocate',
+        capability,
+        safety: 20,
+        diffusion: 100 - capability - 20,
+        seat: 'usa',
+      };
+    }
+    case 'policy': {
+      const prefs: Record<RivalPosture, string[]> = {
+        race: ['export_controls', 'chip_subsidies', 'natsec_merge', 'energy_buildout'],
+        mirror: [
+          'energy_buildout',
+          'interpretability_moonshot',
+          'chip_subsidies',
+          'compute_treaty_feeler',
+        ],
+        cautious: ['compute_treaty_feeler', 'interpretability_moonshot', 'eval_mandate'],
+      };
+      const playable = playablePolicies(data, state, 'usa')
+        .filter((p) => p.playable)
+        .map((p) => p.id);
+      for (const id of prefs[current]) {
+        if (playable.includes(id)) {
+          return { type: 'playPolicy', policyId: id, seat: 'usa' };
+        }
+      }
+      return { type: 'skipPolicy', seat: 'usa' };
+    }
+    case 'event': {
+      const pending = seatState.pendingEvents[0]!;
+      const card = data.events.find((e) => e.id === pending.eventId)!;
+      if (card.kind === 'wildcard') {
+        throw new Error(`wildcard '${card.id}' cannot be a pending memo`);
+      }
+      const choiceIndex = bestChoice(card, CHOICE_WEIGHTS[current]);
+      return { type: 'resolveEventChoice', eventId: pending.eventId, choiceIndex, seat: 'usa' };
+    }
+    default:
+      return { type: 'advance', seat: 'usa' };
+  }
+}
+
+/**
  * One decision for the China seat. Call only while state.actingSeat is
  * 'china'. STATELESS: the mirror-stance wobble hashes (seed, turn), so any
  * driver (store, bots, replays) gets the identical decision with no stream
@@ -100,9 +196,9 @@ export function chinaDecide(data: EngineData, state: GameState): Action {
       // the threshold with garbage alignment UNLESS the race is fully on
       // (rock-bottom trust or a big gap keeps the trap reachable).
       const nearFog =
-        seatState.resources.capability >= data.parameters.thresholds.fogZoneStart.value - 100;
+        seatState.resources.capability >= data.parameters.thresholds.fogZoneStart.value - 200;
       if (nearFog && current !== 'race') {
-        return { type: 'allocate', capability: 50, safety: 35, diffusion: 15, seat: 'china' };
+        return { type: 'allocate', capability: 45, safety: 40, diffusion: 15, seat: 'china' };
       }
       if (current === 'race') {
         return { type: 'allocate', capability: 80, safety: 10, diffusion: 10, seat: 'china' };

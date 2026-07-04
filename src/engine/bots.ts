@@ -8,7 +8,7 @@
  * and the other seat with the scripted china policy (the shipped solo mode);
  * runMatch drives both seats with named bots (the hotseat balance grid).
  */
-import { chinaDecide } from './china-policy';
+import { scriptedSeatDecide } from './china-policy';
 import type { EngineData } from './data';
 import { initStream, nextInt, type RngStreamState } from './rng';
 import { playablePolicies, step } from './step';
@@ -261,7 +261,7 @@ export function runBot(
       botRng = decision.rng;
       action = decision.action;
     } else {
-      action = chinaDecide(data, state);
+      action = scriptedSeatDecide(data, state);
     }
     actions.push(action);
     state = step(data, state, action);

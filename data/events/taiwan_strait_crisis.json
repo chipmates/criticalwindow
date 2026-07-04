@@ -12,7 +12,6 @@
     "cooldownTurns": 4
   },
   "effects": {
-    "rival.capability": -100,
     "capital": -100
   },
   "scaledEffects": [

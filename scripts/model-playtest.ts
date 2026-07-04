@@ -63,7 +63,7 @@ const playerSeatArg = arg('seat', 'usa');
 if (playerSeatArg !== 'usa' && playerSeatArg !== 'china') {
   throw new Error(`--seat must be usa or china, got '${playerSeatArg}'`);
 }
-const playerSeat = playerSeatArg as 'usa' | 'china';
+const playerSeat = playerSeatArg;
 /** Both seats driven by the model policy (the hotseat skill-curve probe). */
 const llmVsLlm = process.argv.includes('--llm-vs-llm');
 const presets: WorldviewPresetId[] =
@@ -482,9 +482,7 @@ async function runPolicy(
   while (state.phase !== 'ended') {
     if (decisions >= guard) throw new Error(`policy '${policy.name}' exceeded ${guard} steps`);
     const policyTurn =
-      state.phase === 'report' ||
-      llmVsLlm ||
-      state.actingSeat === state.playerSeat;
+      state.phase === 'report' || llmVsLlm || state.actingSeat === state.playerSeat;
     if (!policyTurn) {
       // The scripted opponent plays its own window: China's shipped policy,
       // or the hedger bot when the model holds the China seat.

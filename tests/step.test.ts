@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { chinaDecide } from '../src/engine/china-policy';
+import { chinaDecide, scriptedSeatDecide } from '../src/engine/china-policy';
 import { canonicalJson } from '../src/engine/hash';
 import { initGame } from '../src/engine/init';
 import {
@@ -13,6 +13,36 @@ import type { Action, GameState } from '../src/engine/types';
 import { loadRealData } from './helpers/load-real-data';
 
 const data = loadRealData();
+
+/** Racer-vs-scripted run used by the ending-meta probe. */
+function runBotForMeta(initial: GameState) {
+  let state = initial;
+  let guard = 0;
+  while (state.phase !== 'ended' && guard < 800) {
+    let action: Action;
+    if (state.phase === 'report') {
+      action = { type: 'advance' };
+    } else if (state.actingSeat === 'china') {
+      action = chinaDecide(data, state);
+    } else if (state.phase === 'allocate') {
+      const paused = state.seats.usa.flags.includes('forcedPause');
+      action = paused
+        ? { type: 'allocate', capability: 30, safety: 40, diffusion: 30 }
+        : { type: 'allocate', capability: 80, safety: 10, diffusion: 10 };
+    } else if (state.phase === 'policy') {
+      action = { type: 'skipPolicy' };
+    } else {
+      action = {
+        type: 'resolveEventChoice',
+        eventId: state.seats.usa.pendingEvents[0]!.eventId,
+        choiceIndex: 0,
+      };
+    }
+    state = step(data, state, action);
+    guard += 1;
+  }
+  return { endingId: state.endingId, finalState: state };
+}
 
 function newGame(seed = 'b3-test-seed'): GameState {
   return initGame(data, { seed, presetId: 'consensus' });
@@ -87,6 +117,38 @@ describe('init', () => {
     expect(state.turn).toBe(1);
     expect(state.phase).toBe('allocate');
     expect(state.actingSeat).toBe('usa');
+  });
+
+  test('solo as China: scripted USA plays its window, china actions hit china', () => {
+    let state = initGame(data, {
+      seed: 'china-solo',
+      presetId: 'consensus',
+      playerSeat: 'china',
+    });
+    while (state.actingSeat === 'usa' && state.phase !== 'report' && state.phase !== 'ended') {
+      state = step(data, state, scriptedSeatDecide(data, state));
+    }
+    expect(state.actingSeat).toBe('china');
+    expect(state.phase).toBe('allocate');
+    const chinaCapBefore = state.seats.china.resources.capability;
+    const usaCapBefore = state.seats.usa.resources.capability;
+    state = step(data, state, { type: 'allocate', capability: 70, safety: 15, diffusion: 15 });
+    expect(state.seats.china.resources.capability).toBeGreaterThan(chinaCapBefore);
+    expect(state.seats.usa.resources.capability).toBe(usaCapBefore);
+  });
+
+  test('endings carry the deciding seat and its true alignment in meta', () => {
+    for (let i = 0; i < 12; i += 1) {
+      const initial = initGame(data, { seed: `meta-racer-${i}`, presetId: 'cautious' });
+      const result = runBotForMeta(initial);
+      if (result.endingId === 'misalignedCatastrophe') {
+        const endLog = result.finalState.log.find((e) => e.kind === 'ending')!;
+        expect(typeof endLog.meta?.trueAlignment).toBe('number');
+        expect(['usa', 'china']).toContain(String(endLog.meta?.causeSeat));
+        return;
+      }
+    }
+    throw new Error('no catastrophe found across 12 cautious racer seeds');
   });
 
   test('both seats share difficulty but own their true alignment', () => {

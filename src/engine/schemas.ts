@@ -275,11 +275,27 @@ export const eventCardSchema = z
         });
       }
     }
-    if (card.kind === 'wildcard' && !card.effects && !card.scaledEffects) {
-      ctx.addIssue({
-        code: 'custom',
-        message: 'a wildcard needs effects or scaledEffects (it must actually hit)',
-      });
+    if (card.kind === 'wildcard') {
+      if (!card.effects && !card.scaledEffects) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'a wildcard needs effects or scaledEffects (it must actually hit)',
+        });
+      }
+      // Systemic wildcards apply to EVERY eligible seat, so a rival.* flat
+      // effect would double-hit both seats symmetrically. Theft-type cards
+      // (single victim) declare their rival.* transfer in scaledEffects.
+      const theft = (card.scaledEffects ?? []).some((s) => s.target.startsWith('rival.'));
+      if (!theft) {
+        for (const key of Object.keys(card.effects ?? {})) {
+          if (key.startsWith('rival.')) {
+            ctx.addIssue({
+              code: 'custom',
+              message: `systemic wildcard '${card.id}' must self-target; '${key}' would hit both seats symmetrically`,
+            });
+          }
+        }
+      }
     }
   });
 

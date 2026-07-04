@@ -305,6 +305,11 @@
                     "minimum": -1000,
                     "maximum": 1000
                   },
+                  "substitution": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
                   "rival.trust": {
                     "type": "integer",
                     "minimum": -1000,
@@ -409,6 +414,11 @@
                           "maximum": 1000
                         },
                         "society.unrest": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "substitution": {
                           "type": "integer",
                           "minimum": -1000,
                           "maximum": 1000
@@ -668,6 +678,11 @@
                     "minimum": -1000,
                     "maximum": 1000
                   },
+                  "substitution": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
                   "rival.trust": {
                     "type": "integer",
                     "minimum": -1000,
@@ -772,6 +787,11 @@
                           "maximum": 1000
                         },
                         "society.unrest": {
+                          "type": "integer",
+                          "minimum": -1000,
+                          "maximum": 1000
+                        },
+                        "substitution": {
                           "type": "integer",
                           "minimum": -1000,
                           "maximum": 1000
@@ -1036,6 +1056,11 @@
               "minimum": -1000,
               "maximum": 1000
             },
+            "substitution": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
             "rival.trust": {
               "type": "integer",
               "minimum": -1000,
@@ -1099,6 +1124,7 @@
                   "safetyInsight",
                   "society.jobDisplacement",
                   "society.unrest",
+                  "substitution",
                   "rival.trust",
                   "rival.capability",
                   "rival.substitution",
@@ -1198,6 +1224,11 @@
                     "maximum": 1000
                   },
                   "society.unrest": {
+                    "type": "integer",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "substitution": {
                     "type": "integer",
                     "minimum": -1000,
                     "maximum": 1000

@@ -75,6 +75,22 @@ function divCenter(report: { bandLow: number; bandHigh: number }): number {
   return Math.round((report.bandLow + report.bandHigh) / 2);
 }
 
+describe('wildcard targeting', () => {
+  test('systemic wildcards self-target: no flat rival.* hits (review finding)', () => {
+    for (const card of data.events) {
+      if (card.kind !== 'wildcard') {
+        continue;
+      }
+      const theft = (card.scaledEffects ?? []).some((s) => s.target.startsWith('rival.'));
+      if (!theft) {
+        for (const key of Object.keys(card.effects ?? {})) {
+          expect(key.startsWith('rival.')).toBe(false);
+        }
+      }
+    }
+  });
+});
+
 describe('the chokepoint with teeth (substitution gate)', () => {
   test('under the export crackdown, low substitution slows China more than high', () => {
     const base = initGame(data, { seed: 'subst-check', presetId: 'consensus' });

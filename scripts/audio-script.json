@@ -1,6 +1,6 @@
 {
   "comment": "Build-time narration inputs (NOT in data/: presentation assets never churn the sim dataVersion). House rule: every generation uses the with-timestamps endpoint and stores alignment beside the audio. Voice: calm documentary read, no drama.",
-  "voiceId": "21m00Tcm4TlvDq8ikWAM",
+  "voiceId": "nbhuZvGPlMc3SacWr72m",
   "modelId": "eleven_multilingual_v2",
   "lines": [
     {
@@ -23,5 +23,6 @@
       "id": "ending-societal-breakdown",
       "text": "The country broke before the question resolved. The machines were never the immediate problem. The bill for ignoring the humans was."
     }
-  ]
+  ],
+  "voiceNote": "Michel-supplied narrator (2026-07-04), female, proven in the story project; replaces the placeholder. Generation stays held until the Phase-3 gate."
 }

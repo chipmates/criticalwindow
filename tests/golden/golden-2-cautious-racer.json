@@ -1,11 +1,11 @@
 {
   "name": "golden-2-cautious-racer",
-  "dataVersion": "0d5c0e422da7be",
+  "dataVersion": "0a8c286bd353a5",
   "seed": "golden-2",
   "presetId": "cautious",
   "bot": "racer",
-  "endingId": "societalBreakdown",
-  "turns": 13,
+  "endingId": "misalignedCatastrophe",
+  "turns": 11,
   "actions": [
     {
       "type": "allocate",
@@ -368,90 +368,20 @@
     {
       "type": "skipPolicy",
       "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 30,
-      "safety": 40,
-      "diffusion": 30,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "the_project",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "benchmark_gaming",
-      "choiceIndex": 1,
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "usa"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
-      "eventId": "intelligence_explosion",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 80,
-      "safety": 10,
-      "diffusion": 10,
-      "seat": "china"
-    },
-    {
-      "type": "skipPolicy",
-      "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "12e8d4bba0e3ae",
-    "19796cf2bc5594",
-    "0d6c507650776c",
-    "15d12aed858506",
-    "0501b6e03bbee0",
-    "12c65a6d69fecb",
-    "00259e45a9c077",
-    "0e3a01f076f622",
-    "0369514219f9d3",
-    "1dde52120ffe23",
-    "1640d4e8d0881a",
-    "186c32ef1374b4",
-    "1239c20f4b6fd4"
+    "023abfc15840cd",
+    "16afd5550736a0",
+    "05f0826bbf8263",
+    "0fd1bdf21c612a",
+    "116b40a1f96c6f",
+    "0ecb014815aea5",
+    "0e4de27c10339a",
+    "0add28395dd75a",
+    "0e8390c0c0bf60",
+    "00ab7aac570ae0",
+    "170a91febbe578"
   ],
-  "finalHash": "1239c20f4b6fd4"
+  "finalHash": "170a91febbe578"
 }

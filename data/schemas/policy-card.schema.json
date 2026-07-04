@@ -131,6 +131,11 @@
           "minimum": -1000,
           "maximum": 1000
         },
+        "substitution": {
+          "type": "integer",
+          "minimum": -1000,
+          "maximum": 1000
+        },
         "rival.trust": {
           "type": "integer",
           "minimum": -1000,
@@ -235,6 +240,11 @@
                 "maximum": 1000
               },
               "society.unrest": {
+                "type": "integer",
+                "minimum": -1000,
+                "maximum": 1000
+              },
+              "substitution": {
                 "type": "integer",
                 "minimum": -1000,
                 "maximum": 1000
@@ -400,6 +410,11 @@
               "minimum": -1000,
               "maximum": 1000
             },
+            "substitution": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
             "rival.trust": {
               "type": "integer",
               "minimum": -1000,
@@ -493,6 +508,11 @@
               "maximum": 1000
             },
             "society.unrest": {
+              "type": "integer",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "substitution": {
               "type": "integer",
               "minimum": -1000,
               "maximum": 1000

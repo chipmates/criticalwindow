@@ -174,6 +174,11 @@ function applyDelta(
       own.society.unrest = apply(before);
       return own.society.unrest - before;
     }
+    case 'substitution': {
+      const before = own.substitution;
+      own.substitution = apply(before);
+      return own.substitution - before;
+    }
     case 'rival.trust': {
       const before = state.world.bilateralTrust;
       state.world.bilateralTrust = apply(before);
@@ -283,6 +288,8 @@ function readVisibleTarget(state: GameState, seat: PlayableSeatId, target: Effec
       return own.society.jobDisplacement;
     case 'society.unrest':
       return own.society.unrest;
+    case 'substitution':
+      return own.substitution;
     case 'rival.trust':
       return state.world.bilateralTrust;
     case 'rival.capability':
@@ -1093,9 +1100,23 @@ function runWildcardCheck(data: EngineData, state: GameState): void {
     if (eligibleSeats.length === 0) {
       continue;
     }
+    // Theft-type wildcards (any rival.* scaled effect) hit ONE victim: the
+    // seat with the most to steal. Its flags, not the world's, set the odds.
+    const theftType = (card.scaledEffects ?? []).some((s) => s.target.startsWith('rival.'));
+    const victim = theftType
+      ? eligibleSeats.reduce((best, seat) =>
+          exposureValue(state.seats[seat], card.scaledEffects![0]!.exposure) >
+          exposureValue(state.seats[best], card.scaledEffects![0]!.exposure)
+            ? seat
+            : best,
+        )
+      : null;
     let prob = card.fire.probPerMille;
     for (const mod of card.fire.probModifiers ?? []) {
-      if (eligibleSeats.some((seat) => flagsView(state, seat).has(mod.flag))) {
+      const applies = victim
+        ? flagsView(state, victim).has(mod.flag)
+        : eligibleSeats.some((seat) => flagsView(state, seat).has(mod.flag));
+      if (applies) {
         prob += mod.deltaPerMille;
       }
     }
@@ -1109,12 +1130,7 @@ function runWildcardCheck(data: EngineData, state: GameState): void {
       continue;
     }
 
-    const theftType = (card.scaledEffects ?? []).some((s) => s.target.startsWith('rival.'));
-    if (theftType) {
-      const key = card.scaledEffects![0]!.exposure;
-      const victim = eligibleSeats.reduce((best, seat) =>
-        exposureValue(state.seats[seat], key) > exposureValue(state.seats[best], key) ? seat : best,
-      );
+    if (victim) {
       applyWildcardTo(state, card, victim);
     } else {
       for (const seat of eligibleSeats) {

@@ -13,9 +13,8 @@
   },
   "effects": {
     "compute": -100,
-    "rival.capability": -100,
-    "rival.substitution": 50,
-    "politicalCapital": -50
+    "politicalCapital": -50,
+    "substitution": 50
   },
   "sourceIds": ["SRC-CSIS-EXPORT", "SRC-CHIP-WAR", "SRC-SIM-GAMING-INSIGHTS"],
   "claimIds": ["SRC-SIM-GAMING-INSIGHTS#7"],

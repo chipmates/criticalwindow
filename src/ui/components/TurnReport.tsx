@@ -59,7 +59,22 @@ function kindLine(data: EngineData, entry: LogEntry): string {
 }
 
 export function TurnReport({ data, run, seat, onAdvance }: TurnReportProps) {
-  const entries = reportEntries(run, seat);
+  // Hotseat's report is a SHARED screen: both seats' turn events appear,
+  // labeled. Solo keeps the fog: only your seat and the world.
+  const entries =
+    run.mode === 'hotseat'
+      ? run.log.filter(
+          (entry) =>
+            entry.turn === run.turn &&
+            entry.deltas !== null &&
+            Object.keys(entry.deltas).length > 0 &&
+            entry.kind !== 'allocation',
+        )
+      : reportEntries(run, seat);
+  const seatTag = (entry: { seat: string | null }): string =>
+    run.mode === 'hotseat' && entry.seat
+      ? `${tRef(data.seatsRules[entry.seat as 'usa' | 'china'].labelKey)}: `
+      : '';
   const ended = run.phase === 'ended';
   const election = run.log.find(
     (e) => e.turn === run.turn && e.kind === 'election' && e.seat === seat,
@@ -87,7 +102,10 @@ export function TurnReport({ data, run, seat, onAdvance }: TurnReportProps) {
                 : 'report-line'
             }
           >
-            <span className="report-kind">{kindLine(data, entry)}</span>
+            <span className="report-kind">
+              {seatTag(entry)}
+              {kindLine(data, entry)}
+            </span>
             <span className="report-deltas">
               {Object.entries(entry.deltas ?? {})
                 .filter(([target]) => !target.startsWith('hidden.'))

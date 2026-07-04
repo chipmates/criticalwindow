@@ -143,6 +143,7 @@ export const EFFECT_TARGETS = [
   ...RESOURCE_KEYS,
   'society.jobDisplacement',
   'society.unrest',
+  'substitution',
   'rival.trust',
   'rival.capability',
   'rival.substitution',

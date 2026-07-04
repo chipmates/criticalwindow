@@ -1,11 +1,11 @@
 {
   "name": "golden-4-consensus-chaos",
-  "dataVersion": "0d5c0e422da7be",
+  "dataVersion": "0a8c286bd353a5",
   "seed": "golden-4",
   "presetId": "consensus",
   "bot": "chaos",
-  "endingId": "negotiatedSlowdown",
-  "turns": 11,
+  "endingId": "misalignedCatastrophe",
+  "turns": 10,
   "actions": [
     {
       "type": "allocate",
@@ -226,7 +226,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "election_scandal",
+      "eventId": "superhuman_coder",
       "choiceIndex": 1,
       "seat": "usa"
     },
@@ -290,15 +290,15 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "energy_crunch",
+      "eventId": "branch_point",
       "choiceIndex": 0,
       "seat": "usa"
     },
     {
       "type": "allocate",
       "capability": 45,
-      "safety": 25,
-      "diffusion": 30,
+      "safety": 40,
+      "diffusion": 15,
       "seat": "china"
     },
     {
@@ -320,10 +320,16 @@
       "seat": "usa"
     },
     {
+      "type": "resolveEventChoice",
+      "eventId": "intelligence_explosion",
+      "choiceIndex": 0,
+      "seat": "usa"
+    },
+    {
       "type": "allocate",
       "capability": 45,
-      "safety": 25,
-      "diffusion": 30,
+      "safety": 40,
+      "diffusion": 15,
       "seat": "china"
     },
     {
@@ -332,56 +338,22 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "whistleblower",
-      "choiceIndex": 0,
-      "seat": "china"
-    },
-    {
-      "type": "advance"
-    },
-    {
-      "type": "allocate",
-      "capability": 50,
-      "safety": 50,
-      "diffusion": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler",
-      "seat": "usa"
-    },
-    {
-      "type": "resolveEventChoice",
       "eventId": "superhuman_coder",
-      "choiceIndex": 0,
-      "seat": "usa"
-    },
-    {
-      "type": "allocate",
-      "capability": 45,
-      "safety": 25,
-      "diffusion": 30,
-      "seat": "china"
-    },
-    {
-      "type": "playPolicy",
-      "policyId": "compute_treaty_feeler",
+      "choiceIndex": 1,
       "seat": "china"
     }
   ],
   "perTurnHashes": [
-    "13c92581d26d7f",
-    "188630156c00de",
-    "054d94226b850b",
-    "1b7023cae7f5af",
-    "077d0d953055fd",
-    "1e5507046e9416",
-    "0123eafe1d06a8",
-    "0a8ce3e57f2491",
-    "186780ea8d68da",
-    "0b9a3e809154ef",
-    "071bfd32baf458"
+    "0fed35a6768326",
+    "0e18ed8e6acac9",
+    "0d6d9546304c63",
+    "11def42d93aa6c",
+    "0ac692c1dbdb5f",
+    "1567e99d053871",
+    "049934bb2fe0c7",
+    "1ac503c568a34d",
+    "0d383176f1578a",
+    "1a1f01f128c7ab"
   ],
-  "finalHash": "071bfd32baf458"
+  "finalHash": "1a1f01f128c7ab"
 }

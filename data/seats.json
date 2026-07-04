@@ -28,7 +28,7 @@
       }
     },
     "computeGatedBySubstitution": true,
-    "policyUnavailable": ["ubi_pilot"],
+    "policyUnavailable": ["ubi_pilot", "export_controls"],
     "costModifiers": {
       "natsec_merge": {
         "politicalCapital": -50

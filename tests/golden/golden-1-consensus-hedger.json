@@ -1,6 +1,6 @@
 {
   "name": "golden-1-consensus-hedger",
-  "dataVersion": "0d5c0e422da7be",
+  "dataVersion": "0a8c286bd353a5",
   "seed": "golden-1",
   "presetId": "consensus",
   "bot": "hedger",
@@ -228,7 +228,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "election_scandal",
+      "eventId": "superhuman_coder",
       "choiceIndex": 1,
       "seat": "usa"
     },
@@ -259,7 +259,7 @@
     },
     {
       "type": "resolveEventChoice",
-      "eventId": "superhuman_coder",
+      "eventId": "branch_point",
       "choiceIndex": 0,
       "seat": "usa"
     },
@@ -283,14 +283,14 @@
     }
   ],
   "perTurnHashes": [
-    "16714d3390b696",
-    "17b9a014b8d37f",
-    "05d1ed37df3511",
-    "0b7526ed1edaef",
-    "14713b36b86756",
-    "1a97985a053b0a",
-    "1c7b7f938dee86",
-    "165472f157d387"
+    "086210989b4111",
+    "0bfba1a72bcfda",
+    "10a55ad80c33c2",
+    "1ea38b776e56c7",
+    "1e86479cfb77ce",
+    "01678c1c1735f0",
+    "028720f7300ee5",
+    "06176294a57a01"
   ],
-  "finalHash": "165472f157d387"
+  "finalHash": "06176294a57a01"
 }
