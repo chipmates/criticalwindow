@@ -241,12 +241,12 @@ presumably by a person.
   under a prompt. Both are proxies for "does the mechanic work as designed," not for "is
   this fun to sit down and play." The real gate is human, and it hasn't happened at scale
   yet.
-- **No distribution ceilings asserted in CI.** The reachability guard only checks that
-  every ending occurs somewhere in a 100-plus run batch. It does not yet assert, for
-  example, that racer catastrophe must stay above some floor. A future content change
-  could quietly drift the balance in either direction without failing a test. That's a gap
-  worth closing before the numbers in this document are trusted as a regression suite
-  instead of a snapshot.
+- **Distribution guards in CI are floors, not the full grid.** Since v0.3.2,
+  `tests/subsystems.test.ts` asserts the thesis as invariants: racing pressure
+  dominates, the treaty path stays alive, flourishing stays reachable, all five
+  endings appear, and the planned sixth stays unreachable. Per-worldview,
+  per-strategy cell bounds are still open work; the grid above is reproducible
+  but not yet armed.
 - **The cautious worldview may be tuned too hard, or may be honest.** `steward`, the
   taught strategy, reaches flourishing zero times out of 100 in the cautious preset. We
   read that as the preset doing its job (some worldviews should be genuinely brutal), but

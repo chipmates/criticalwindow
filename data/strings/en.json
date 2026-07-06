@@ -382,7 +382,7 @@
   "help.term.jobDisplacement.affects": "Whenever it exceeds Public Trust, Unrest grows. Above 600 it grows Unrest twice as fast.",
   "help.term.unrest.what": "Strikes, protests, a country stopping.",
   "help.term.unrest.moves": "Grows from displacement outrunning trust. Some memo choices inflame it, delayed bites especially.",
-  "help.term.unrest.affects": "At 500+, trust erodes each quarter. At 600+, it drains Capital and Talent. At 800 the run ends: Societal Breakdown.",
+  "help.term.unrest.affects": "Trust erodes every quarter unrest sits above calm, a few points at moderate levels and steeply past 600. At 600+ it also drains Capital and Talent. At 800 the run ends: Societal Breakdown.",
   "help.term.rivalCapability.what": "The rival power's frontier reach. The dashed marker racing you.",
   "help.term.rivalCapability.moves": "Their posture sets the pace: Race +60, Mirror +30 (plus +25 if you gained 50+ this quarter), Cautious +30, all with seeded variance. Mature substitution (700+) adds +25. Past each capability milestone (700, 800, 900) their own progress feeds itself, scaled by the hidden takeoff die.",
   "help.term.rivalCapability.affects": "If it reaches 1000 before yours, the run ends: Outpaced.",

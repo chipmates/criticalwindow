@@ -43,7 +43,7 @@ The tables below are complete; these five show the transformation step by step.
    point is the mapping, not a measurement of its own.
 2. **Capability pacing (curves.capabilityPerRnd).** The cited analyses report training
    compute doubling roughly every six months and the 50% task horizon P50 doubling every
-   196.5 days on the all-time fit (130.8 days for models from 2023 on). The curve compresses that regime onto the 0-1000
+   196 days on the all-time fit (130.8 days for models from 2023 on). The curve compresses that regime onto the 0-1000
    index so an all-in racer reaches threshold resolution around turn 10 of 16; the
    compression ratio is the design decision, and it cites the constitution.
 3. **Eval band floor (evalUncertainty.floorBandWidth 100).** The deception literature
@@ -211,7 +211,7 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 | turnStructure.electionTurn | value 8 | design constant | SRC-DESIGN-HANDOVER | US midterms fall on turn 8 of the quarterly clock |
 | turnStructure.handSize | value 3 | design constant | SRC-DESIGN-HANDOVER | rotating policy hand; refills from the unspent pool each upkeep |
 | curves.rndCapacity |  | forecast-based | SRC-GATE, SRC-DESIGN-HANDOVER | R&D points from compute+talent with diminishing returns; shape motivated by compute-centric growth models (Epoch GATE), values are design pacing |
-| curves.capabilityPerRnd |  | anchored, game-calibrated | SRC-EPOCH-COMPUTE, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER, SRC-EPOCH-DOUBLING, SRC-METR-TH11 | abstraction of the measured regime (training compute doubling roughly every six months; task horizon P50 doubling every 196.5 days on the all-time fit, 130.8 days for models from 2023 on) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16 |
+| curves.capabilityPerRnd |  | anchored, game-calibrated | SRC-EPOCH-COMPUTE, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER, SRC-EPOCH-DOUBLING, SRC-METR-TH11 | abstraction of the measured regime (training compute doubling roughly every six months; task horizon P50 doubling every 196 days on the all-time fit, 130.8 days for models from 2023 on) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16 |
 | curves.displacementFromCapability |  | anchored, game-calibrated | SRC-IMF-GENAI, SRC-PAYROLLS-TO-PROMPTS, SRC-DESIGN-HANDOVER | equilibrium displacement by capability: exposure is already material at 2026 capability levels (IMF: almost 40% of global employment exposed) and rises toward index 550 at frontier; early knee raised after the 2026-07-03 playtest (displacement was FALLING early game because the start value exceeded the old curve target) |
 | curves.trustFromUnrest |  | design constant | SRC-DESIGN-HANDOVER | trust erosion accelerates with unrest; design curve, playtests tune |
 | alignmentModel.startBase | value 500 | design constant | SRC-DESIGN-HANDOVER | true alignment starts at startBase - difficulty/2: alignment is an achievement, not a default. Retuned after the 2026-07-03 playtest finding: zero safety investment could win (old start 1000-difficulty meant easy worlds came pre-aligned) |

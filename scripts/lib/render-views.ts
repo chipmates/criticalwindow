@@ -378,7 +378,7 @@ The tables below are complete; these five show the transformation step by step.
    point is the mapping, not a measurement of its own.
 2. **Capability pacing (curves.capabilityPerRnd).** The cited analyses report training
    compute doubling roughly every six months and the 50% task horizon P50 doubling every
-   196.5 days on the all-time fit (130.8 days for models from 2023 on). The curve compresses that regime onto the 0-1000
+   196 days on the all-time fit (130.8 days for models from 2023 on). The curve compresses that regime onto the 0-1000
    index so an all-in racer reaches threshold resolution around turn 10 of 16; the
    compression ratio is the design decision, and it cites the constitution.
 3. **Eval band floor (evalUncertainty.floorBandWidth 100).** The deception literature

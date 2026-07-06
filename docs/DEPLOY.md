@@ -3,7 +3,7 @@
 The game is a static build, deployed to Cloudflare Pages. There is no server.
 
 1. Every push to `main` runs the CI chain (validate, lint, typecheck, tests, build).
-2. A maintainer deploys the built `dist/` after the same gates pass locally.
+2. A maintainer runs [`scripts/deploy.sh`](../scripts/deploy.sh) after the same gates pass locally.
 3. Every build ships a `version.json` (commit, data version, package version). The
    deploy is not considered done until https://criticalwindow.org/version.json serves
    the commit that was just deployed; the deploy script enforces this and fails

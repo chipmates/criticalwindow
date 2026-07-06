@@ -14,13 +14,13 @@ The print script refuses to build a kit if a card value is not divisible by 50.
 
 ## Time
 
-|             | Digital                         | Paper                         |
-| ----------- | ------------------------------- | ----------------------------- |
-| Turns       | 16                              | 10                            |
-| One turn is | a quarter                       | roughly half a year           |
-| Window      | 2026 Q3 to 2030 Q2              | mid 2026 to 2031              |
-| Election    | turn 8                          | turn 5                        |
-| Eras        | early 1-5, mid 6-10, late 11-16 | early 1-3, mid 4-7, late 8-10 |
+|             | Digital                         | Paper                                                                                                            |
+| ----------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Turns       | 16                              | 10                                                                                                               |
+| One turn is | a quarter                       | roughly half a year                                                                                              |
+| Window      | 2026 Q3 to 2030 Q2              | mid 2026 to 2031 (ten half-year turns overshoot 2030 by design; the era mapping, not the calendar, is canonical) |
+| Election    | turn 8                          | turn 5                                                                                                           |
+| Eras        | early 1-5, mid 6-10, late 11-16 | early 1-3, mid 4-7, late 8-10                                                                                    |
 
 Event timing on paper uses ERA decks only (three stacks, marked card backs). The finer
 `turnMin`/`turnMax` windows are digital-only. Card conditions (flags, rival posture)

@@ -7,6 +7,19 @@ This file was written after the fact, reconstructed from the git history rather 
 turn by turn. That is why the early entries bundle a lot into one release and the later
 ones get more specific. It will stay current from here on.
 
+## [0.3.5] · 2026-07-06
+
+The launch version, and the first one with an outside name in it.
+
+- First community contribution merged: remaining UI text moved onto the strings map, thanks to Aayush Tiwari picking up a good-first-issue within hours of the repo going public
+- The in-game rulebook now matches the engine exactly: trust erosion under unrest was described with a threshold the code never had
+- The deploy script is in the repo, so the last step between the code and the site is as inspectable as the rest, and a link checker backs the registry's verification claim
+- The design constitution gained a constants appendix: the table those 85 design citations resolve to
+- Balance documentation points at the CI invariants that guard the thesis, instead of claiming none exist
+- Commit timestamps are batch-normalized before publishing; now the governance doc says so before anyone has to ask
+- The maintainer has a name in GOVERNANCE.md, not just in the imprint
+- security.txt, a wider landing-page count guard, METR's figure quoted as printed, and the founding decision record annotated where later decisions amended it
+
 ## [0.3.4] · 2026-07-06
 
 The checkability release: everything a skeptic checks first now checks out.
@@ -81,7 +94,7 @@ The first release meant for outside readers, not just us.
   into a number. Browsable in two clicks from the title screen.
 - A second, opposite direction for the iron rule: a source that claims to back a value
   without actually being cited anywhere now fails the build too, not only the reverse.
-- Translated debrief screen, so the closing report speaks whichever language the UI is
+- Debrief screen moved onto the strings map, so the closing report is ready for future languages and it is
   set to.
 - A design constitution (`docs/DESIGN.md`) as the project's living public reference,
   replacing the original founding brief in that role.

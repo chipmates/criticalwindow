@@ -1,0 +1,4 @@
+Contact: mailto:criticalwindow@chipmates.ai
+Expires: 2027-07-06T00:00:00.000Z
+Policy: https://github.com/chipmates/criticalwindow/blob/main/SECURITY.md
+Preferred-Languages: en, de

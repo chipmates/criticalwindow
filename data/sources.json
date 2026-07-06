@@ -11,7 +11,7 @@
       "tier": "load-bearing",
       "evidenceClass": "design",
       "gameUse": "design constants with no empirical referent (turn counts, starting defaults, allocation defaults)",
-      "url": "https://github.com/chipmates/criticalwindow/blob/v0.3.4/docs/DESIGN.md"
+      "url": "https://github.com/chipmates/criticalwindow/blob/v0.3.5/docs/DESIGN.md"
     },
     {
       "id": "SRC-KAPLAN-SCALING",
@@ -2206,7 +2206,7 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
-      "gameUse": "The updated task-horizon fit the capabilityPerRnd pacing note quotes: P50 doubling of 196.5 days on the all-time stitched trend, 130.8 days for models from 2023 on.",
+      "gameUse": "The updated task-horizon fit the capabilityPerRnd pacing note quotes: P50 doubling of 196 days (7 months) on the all-time stitched trend, 130.8 days for models from 2023 on.",
       "note": "Refines the original task-horizon paper with 228 tasks; figures re-verified against the METR page 2026-07-06."
     }
   ]

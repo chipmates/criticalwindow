@@ -1,3 +1,4 @@
+import { stampFamily } from '../stamp-family';
 /**
  * Tag stamps: small line-drawn glyphs, like rubber stamps on a briefing
  * folder. Twelve families cover every content tag; strokes ride
@@ -143,95 +144,6 @@ const GLYPHS: Record<string, ReactElement> = {
 };
 
 /** Every content tag collapses onto one of the twelve stamp families. */
-const TAG_FAMILY: Record<string, string> = {
-  chips: 'chips',
-  subsidy: 'chips',
-  substitution: 'chips',
-  'industrial-policy': 'chips',
-  compute: 'chips',
-  chokepoint: 'chips',
-  buildout: 'chips',
-  infrastructure: 'chips',
-  taiwan: 'chips',
-  smuggling: 'chips',
-  energy: 'energy',
-  grid: 'energy',
-  labor: 'labor',
-  automation: 'labor',
-  jobs: 'labor',
-  welfare: 'labor',
-  unrest: 'labor',
-  governance: 'governance',
-  legitimacy: 'governance',
-  politics: 'governance',
-  election: 'governance',
-  liability: 'governance',
-  regulation: 'governance',
-  enforcement: 'governance',
-  eu: 'governance',
-  local: 'governance',
-  transparency: 'governance',
-  treaty: 'treaty',
-  verification: 'treaty',
-  pause: 'treaty',
-  window: 'treaty',
-  media: 'media',
-  press: 'media',
-  benchmarks: 'media',
-  military: 'security',
-  defense: 'security',
-  security: 'security',
-  espionage: 'security',
-  escalation: 'security',
-  natsec: 'security',
-  covert: 'security',
-  sabotage: 'security',
-  secrecy: 'security',
-  'dual-use': 'security',
-  crisis: 'security',
-  shock: 'security',
-  society: 'society',
-  trust: 'society',
-  'companion-ai': 'society',
-  education: 'society',
-  economy: 'economy',
-  markets: 'economy',
-  insurance: 'economy',
-  risk: 'economy',
-  trade: 'economy',
-  concentration: 'economy',
-  safety: 'science',
-  evals: 'science',
-  research: 'science',
-  interpretability: 'science',
-  talent: 'science',
-  labs: 'science',
-  agents: 'agents',
-  autonomy: 'agents',
-  capability: 'agents',
-  'open-weights': 'agents',
-  takeoff: 'agents',
-  milestone: 'agents',
-  'fixed-beat': 'agents',
-  diplomacy: 'diplomacy',
-  alliance: 'diplomacy',
-  allies: 'diplomacy',
-  rival: 'diplomacy',
-  race: 'diplomacy',
-  pressure: 'diplomacy',
-  exposure: 'diplomacy',
-  diffusion: 'society',
-};
-
-export function stampFamily(tags: readonly string[]): string | null {
-  for (const tag of tags) {
-    const family = TAG_FAMILY[tag];
-    if (family) {
-      return family;
-    }
-  }
-  return null;
-}
 
 export function TagStamp({ tags, size = 34 }: { tags: readonly string[]; size?: number }) {
   const family = stampFamily(tags);

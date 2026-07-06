@@ -66,3 +66,10 @@ account? Email criticalwindow@chipmates.ai; the debrief links it too.
 
 Planned, not shipped. Its groundwork already accrues during play, and it ships after
 the alpha, once it can land unspoiled.
+
+## Why AGPL for a game with no server?
+
+Because someday someone will host a modified fork, maybe with a backend bolted
+on. AGPL means whoever plays that fork over a network is entitled to its source
+too. The license protects the players of every future version, not our server,
+of which there is none.

@@ -7,6 +7,8 @@
 import type { SaveGameData } from '../engine/schemas';
 
 const PREFIX = 'critical-window';
+// Working-title keys from pre-launch builds (2026-07-03..05); remove the
+// migration after the alpha, nobody else ever had them.
 const OLD_PREFIX = 'race-conditions';
 
 /**

@@ -36,7 +36,7 @@ Not outside evidence, and never counted as such: game-design constants cite the
 project's own design document so that no game-feel number ever has to wear a
 fake empirical citation.
 
-- **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/v0.3.4/docs/DESIGN.md) · project (2026) · `design`
+- **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/v0.3.5/docs/DESIGN.md) · project (2026) · `design`
   Used for: design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
 
 ## External sources that drive numbers (54)
@@ -203,7 +203,7 @@ Every entry lists each place it is cited. Sorted by citation count.
   Used for: treaty ratification requires BOTH governments' domestic standing (political capital) at signing; the win-set logic behind the ratification window mechanic
   Cited 1× by: parameters.json → thresholds.treatySignPoliticalCapitalMin
 - **SRC-METR-TH11** · [Time Horizon 1.1](https://metr.org/blog/2026-1-29-time-horizon-1-1/) · METR (2026) · `empirical`
-  Used for: The updated task-horizon fit the capabilityPerRnd pacing note quotes: P50 doubling of 196.5 days on the all-time stitched trend, 130.8 days for models from 2023 on.
+  Used for: The updated task-horizon fit the capabilityPerRnd pacing note quotes: P50 doubling of 196 days (7 months) on the all-time stitched trend, 130.8 days for models from 2023 on.
   Cited 1× by: parameters.json → curves.capabilityPerRnd
 
 ## Sources that shaped the design (11)

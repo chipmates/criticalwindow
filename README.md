@@ -37,7 +37,7 @@ Three ways to play. Solo as the United States. Solo as China, where the chips ar
 
 Sixteen quarterly turns. Each one, you split your effort between capability, safety, and diffusion, then the world answers: memos with no clean options, incidents that leak the truth your eval reports smoothed over, a rival whose posture you can read but whose progress you can only watch. Five endings, and the good ones are earned. Losing tells you exactly why: the debrief opens the envelope and draws what your evals said each quarter against what was actually true.
 
-Every number translates to something real. Compute 700 is most of the world's frontier training capacity. Capability 350 is systems that handle hour-scale expert tasks. The anchors come from published research, and the game shows you which.
+Every number translates to something real. Compute 700 is about two-thirds of 2026 frontier training capacity. Capability 350 is systems that handle hour-scale expert tasks. The anchors come from published research, and the game shows you which.
 
 ## Why this game exists
 

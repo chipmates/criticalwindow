@@ -50,6 +50,11 @@ narrative does not get to wear our name while doing it.
 
 ## How this project is built
 
+One habit disclosed up front, because forensics will find it anyway: commit
+timestamps are normalized in batches before publishing (a working-hours privacy
+habit, not a content rewrite). The diffs, their order, and the cited balance
+commits are real and reproducible.
+
 Openly answered because an honest reader will ask: this project is built by a very
 small human core using heavy AI assistance, at a speed the git history makes obvious.
 Every design decision, every adjudication, and every number is owned by the human

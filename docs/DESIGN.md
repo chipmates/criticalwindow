@@ -66,3 +66,25 @@ Every number in the game data cites a source, the rule is machine-enforced in bo
 ## 10. How decisions get made
 
 The core team decides; realism disputes are decided by the maintainer in public issues today, with reviewers to be named in GOVERNANCE.md if the project earns them; every significant decision lands in [`decisions/`](decisions/) as a numbered record. See [`GOVERNANCE.md`](../GOVERNANCE.md). The roadmap runs on gates, not dates: [`ROADMAP.md`](../ROADMAP.md).
+
+## Appendix: the design constants
+
+Values that cite this document as their source are game-design decisions. This
+table is what that citation resolves to for the load-bearing ones; any
+design-cited value not listed here carries its rationale in its own note in
+[EVIDENCE.md](EVIDENCE.md).
+
+| Constant                | Value                             | Why                                                                                                                              |
+| ----------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Turns                   | 16 quarters, 2026-2030            | Long enough for consequences to land, short enough for one sitting; the window the title names.                                  |
+| Index scale             | 0-1000, all tracks                | One mental model everywhere; anchors translate indices to real units.                                                            |
+| Multiple-of-50 rule     | all hand-tuned values             | Coarse steps admit imprecision honestly; a value of 483 would claim knowledge we do not have.                                    |
+| Eval band floor         | 100                               | The band never closes: the deception literature's core finding, expressed as one permanent unit of doubt on a 1000 scale.        |
+| Eval band base          | 400                               | Early evals are nearly uninformative; the band starts wide and narrows only when earned.                                         |
+| Deception lift cap      | 250                               | Deceptive capability can widen your blind spot by up to a quarter of the scale, never all of it.                                 |
+| Threshold fog           | starts at 700                     | The crossing must be feelable before it is knowable; fog begins where the racer's gamble gets serious.                           |
+| Breakdown at unrest 800 | run ends                          | Societies fail before the meter maxes; 800 leaves room to see it coming and not enough to ignore it.                             |
+| Treaty earliest signing | turn 11                           | Trust takes most of a term to build; a treaty before year three would make cooperation cheap, and the thesis is that it is not.  |
+| Allocation default      | balanced thirds                   | The uncommitted opening stance; every doctrine is a deliberate departure from it.                                                |
+| Capability pacing       | racer reaches resolution ~turn 10 | The compression ratio from the cited real-world doubling regimes onto 16 turns; fast enough to threaten, slow enough to govern.  |
+| Ending base scores      | 200-1400 by ending                | Orders endings by how much of the window was used well; magnitudes are for comparison between runs, not measurement of anything. |
