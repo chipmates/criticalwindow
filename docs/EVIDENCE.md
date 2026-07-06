@@ -19,9 +19,11 @@ otherwise. Run it yourself.
 - **84** measured
 
 A **measured** value cites only empirical evidence. A **forecast-based** or
-**analysis-based** value rests on somebody's argument about the future, which is
-why it lives in a preset range instead of pretending to be a fact. A **design
-choice** claims nothing about the world.
+**analysis-based** value rests on somebody's argument rather than a measurement;
+the most contested of these, alignment difficulty and takeoff speed, sit as
+ranges inside worldview presets rather than pretending to be facts, and the rest
+say in their note what they take from the argument. A **design choice** claims
+nothing about the world.
 
 Disagree with a value? Open a "challenge a number" issue with a source. The
 advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.md).

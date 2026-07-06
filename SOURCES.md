@@ -14,9 +14,9 @@ Status: 9 book, 6 flagged, 148 verified.
 Every entry carries an evidence class: `empirical` (a measurement or documented
 fact), `forecast` (a claim about the future), `analysis` (an argument or
 framework), `design` (a game-design decision, no claim about the world).
-Contested forecasts never become single numbers in the game: they live as ranges
-inside worldview presets, and a seeded hidden roll picks the truth inside the
-range you chose.
+The most contested dials, how hard alignment is and how fast capability
+compounds, never become single numbers: they live as ranges inside worldview
+presets, and a seeded hidden roll picks the truth inside the range you chose.
 
 Found a dead link, a better source, or a number you want to challenge? Open an
 issue. That is a real contribution and it is welcome, see

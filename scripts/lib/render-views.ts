@@ -128,9 +128,9 @@ Status: ${Object.entries(statusCounts)
 Every entry carries an evidence class: \`empirical\` (a measurement or documented
 fact), \`forecast\` (a claim about the future), \`analysis\` (an argument or
 framework), \`design\` (a game-design decision, no claim about the world).
-Contested forecasts never become single numbers in the game: they live as ranges
-inside worldview presets, and a seeded hidden roll picks the truth inside the
-range you chose.
+The most contested dials, how hard alignment is and how fast capability
+compounds, never become single numbers: they live as ranges inside worldview
+presets, and a seeded hidden roll picks the truth inside the range you chose.
 
 Found a dead link, a better source, or a number you want to challenge? Open an
 issue. That is a real contribution and it is welcome, see
@@ -308,9 +308,11 @@ otherwise. Run it yourself.
 ${kindSummary}
 
 A **measured** value cites only empirical evidence. A **forecast-based** or
-**analysis-based** value rests on somebody's argument about the future, which is
-why it lives in a preset range instead of pretending to be a fact. A **design
-choice** claims nothing about the world.
+**analysis-based** value rests on somebody's argument rather than a measurement;
+the most contested of these, alignment difficulty and takeoff speed, sit as
+ranges inside worldview presets rather than pretending to be facts, and the rest
+say in their note what they take from the argument. A **design choice** claims
+nothing about the world.
 
 Disagree with a value? Open a "challenge a number" issue with a source. The
 advisory board arbitrates realism disputes, see [\`GOVERNANCE.md\`](../GOVERNANCE.md).
