@@ -11,7 +11,7 @@
       "tier": "load-bearing",
       "evidenceClass": "design",
       "gameUse": "design constants with no empirical referent (turn counts, starting defaults, allocation defaults)",
-      "url": "https://github.com/chipmates/criticalwindow/blob/v0.3.3/docs/DESIGN.md"
+      "url": "https://github.com/chipmates/criticalwindow/blob/v0.3.4/docs/DESIGN.md"
     },
     {
       "id": "SRC-KAPLAN-SCALING",
@@ -619,10 +619,11 @@
       "year": 2014,
       "type": "book",
       "tags": ["risk", "worldview"],
-      "status": "book",
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
-      "whyListed": "The foundational instrumental-convergence and orthogonality-thesis argument underlying the general existential-risk vocabulary echoed by the game's cautious worldview preset."
+      "whyListed": "The foundational instrumental-convergence and orthogonality-thesis argument underlying the general existential-risk vocabulary echoed by the game's cautious worldview preset.",
+      "note": "Verified against the print edition."
     },
     {
       "id": "SRC-HUMAN-COMPATIBLE",
@@ -632,10 +633,11 @@
       "year": 2019,
       "type": "book",
       "tags": ["alignment", "worldview"],
-      "status": "book",
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
-      "whyListed": "Russell's provably-beneficial-AI framing and the control problem, for readers wanting the classic popular-science argument behind the game's alignment mechanics."
+      "whyListed": "Russell's provably-beneficial-AI framing and the control problem, for readers wanting the classic popular-science argument behind the game's alignment mechanics.",
+      "note": "Verified against the print edition."
     },
     {
       "id": "SRC-GOVAI-COMPUTE",
@@ -783,10 +785,11 @@
       "year": 2022,
       "type": "book",
       "tags": ["chip-war", "taiwan", "semiconductors", "supply-chain"],
-      "status": "book",
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
-      "gameUse": "TSMC/Taiwan chokepoint background"
+      "gameUse": "TSMC/Taiwan chokepoint background",
+      "note": "Verified against the print edition."
     },
     {
       "id": "SRC-MAIM",
@@ -1086,10 +1089,11 @@
       "year": 2020,
       "type": "book",
       "tags": ["europe", "eu-regulation", "brussels-effect", "sovereignty"],
-      "status": "book",
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
-      "whyListed": "Bradford's thesis on how EU regulation projects power globally even without EU market presence, relevant background for why the game's EU AI Act wildcard events fire regardless of whether Europe is a playable seat, though those events cite EU-AI-Act sources directly rather than this book."
+      "whyListed": "Bradford's thesis on how EU regulation projects power globally even without EU market presence, relevant background for why the game's EU AI Act wildcard events fire regardless of whether Europe is a playable seat, though those events cite EU-AI-Act sources directly rather than this book.",
+      "note": "Verified against the print edition."
     },
     {
       "id": "SRC-IMF-GENAI",
@@ -1168,10 +1172,11 @@
       "year": 2023,
       "type": "book",
       "tags": ["economy", "political-economy", "automation"],
-      "status": "book",
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
-      "whyListed": "Acemoglu & Johnson's historical argument that a new technology's benefits depend on institutional choices, not inevitability, deeper reading behind the game's political-economy framing of automation and unrest."
+      "whyListed": "Acemoglu & Johnson's historical argument that a new technology's benefits depend on institutional choices, not inevitability, deeper reading behind the game's political-economy framing of automation and unrest.",
+      "note": "Verified against the print edition."
     },
     {
       "id": "SRC-GPTS-ARE-GPTS",
@@ -1388,10 +1393,11 @@
       "url": "https://theprecipice.com/",
       "type": "book",
       "tags": ["x-risk", "worldview-doom"],
-      "status": "book",
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
-      "whyListed": "Ord's canonical popular introduction to existential risk, a gentler companion to Carlsmith's technical paper for a reader building the case behind the game's doom-worldview preset."
+      "whyListed": "Ord's canonical popular introduction to existential risk, a gentler companion to Carlsmith's technical paper for a reader building the case behind the game's doom-worldview preset.",
+      "note": "Verified against the print edition."
     },
     {
       "id": "SRC-IABIED",
@@ -1401,10 +1407,11 @@
       "url": "https://ifanyonebuildsit.com/",
       "type": "book",
       "tags": ["x-risk", "worldview-doom", "misaligned-catastrophe"],
-      "status": "book",
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
-      "gameUse": "Grounds the cautious worldview's high alignment-difficulty range (upper half of the 550-950 band) and, via the book's core policy prescription of a halt on frontier AI development, the global_moratorium policy card's pause mechanic."
+      "gameUse": "Grounds the cautious worldview's high alignment-difficulty range (upper half of the 550-950 band) and, via the book's core policy prescription of a halt on frontier AI development, the global_moratorium policy card's pause mechanic.",
+      "note": "Verified against the print edition."
     },
     {
       "id": "SRC-SNAKE-OIL",
@@ -1414,11 +1421,11 @@
       "year": 2024,
       "type": "book",
       "tags": ["worldview-skeptic", "benefit-scenario"],
-      "status": "book",
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
       "gameUse": "skeptical worldview",
-      "note": "companion site per the founding source list: https://www.aisnakeoil.com"
+      "note": "companion site per the founding source list: https://www.aisnakeoil.com. Verified against the print edition."
     },
     {
       "id": "SRC-COMPENDIUM",
@@ -1564,7 +1571,7 @@
       "tags": ["serious-games", "ai-race", "wargaming", "facilitation"],
       "status": "verified",
       "tier": "load-bearing",
-      "evidenceClass": "design",
+      "evidenceClass": "analysis",
       "gameUse": "facilitator insights from 43 Intelligence Rising games",
       "note": "ScienceDirect version: https://www.sciencedirect.com/science/article/abs/pii/S0016328725000254."
     },
@@ -1591,20 +1598,8 @@
       "tags": ["serious-games", "ai-futures", "forecasting-methods", "roleplay"],
       "status": "verified",
       "tier": "library",
-      "evidenceClass": "design",
+      "evidenceClass": "analysis",
       "whyListed": "For readers curious how game-based exploration of AI futures compares to narrative scenario-writing (like AI-2027) or survey forecasting, this is Avin's overview of the methodological menu the project's format sits within."
-    },
-    {
-      "id": "SRC-SERIOUS-GAMES-BUNDLE",
-      "title": "RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak)",
-      "type": "web",
-      "tags": ["serious-games", "wargaming", "ttx-methodology", "debrief-design"],
-      "status": "flagged",
-      "tier": "library",
-      "evidenceClass": "design",
-      "whyListed": "For a teacher or researcher wanting the wider serious-games/wargaming literature behind the debrief design (Schelling on gaming, matrix-game/TTX methodology, climate-game studies like Daybreak) beyond the four works already listed individually.",
-      "flagReason": "An umbrella entry for several works on learning through games; the individual works are listed in this registry, but there is no single link to verify.",
-      "note": "Umbrella entry. Wouters et al. 2013, Clark et al. 2016, Bogost's Persuasive Games and the RAND wargaming series have their own entries; this bundle remains for the still-unpinned items: Schelling on gaming, matrix-game/TTX methodology, and climate-game studies such as Daybreak."
     },
     {
       "id": "SRC-WOUTERS-2013",
@@ -1616,7 +1611,7 @@
       "tags": ["serious-games", "learning-outcomes", "pedagogy", "meta-analysis"],
       "status": "verified",
       "tier": "background",
-      "evidenceClass": "design",
+      "evidenceClass": "empirical",
       "shaped": "The debrief screen (src/ui/screens/Debrief.tsx, spec'd in docs/DESIGN.md §8: takeaways surfaced, counterfactual hints, sources link) follows this meta-analysis's finding that serious games produce better learning outcomes when paired with explicit debriefing rather than left to stand alone.",
       "note": "No URL in the original reference; link added at the July 2026 verification. See also SRC-SERIOUS-GAMES-BUNDLE."
     },
@@ -1641,25 +1636,25 @@
       "year": 2007,
       "type": "book",
       "tags": ["serious-games", "game-design", "persuasion", "pedagogy"],
-      "status": "book",
+      "status": "verified",
       "tier": "background",
-      "evidenceClass": "design",
+      "evidenceClass": "analysis",
       "shaped": "The project's core Fun-First-70/30 principle (docs/DESIGN.md §3, operating principle 1: the lesson lives in mechanics, never in lecture screens) follows Bogost's concept of procedural rhetoric: games persuade through their rules and systems, not through explicit argument.",
-      "note": "Book, obtain manually. See also SRC-SERIOUS-GAMES-BUNDLE."
+      "note": "Book, obtain manually. See also SRC-SERIOUS-GAMES-BUNDLE. Verified against the print edition."
     },
     {
       "id": "SRC-RAND-WARGAMING",
       "title": "RAND wargaming methodology series",
       "org": "RAND",
-      "url": "https://www.rand.org",
+      "url": "https://www.rand.org/topics/wargaming.html",
       "type": "report",
       "tags": ["wargaming", "methodology", "ttx", "serious-games"],
       "status": "flagged",
       "tier": "library",
-      "evidenceClass": "design",
+      "evidenceClass": "analysis",
       "whyListed": "For readers curious about the tabletop-wargaming methodology (matrix games, structured turn phases) that the project's turn/era/event structure resembles, RAND's wargaming-methodology literature is the field's reference; no single report is pinned here.",
       "flagReason": "An umbrella entry for RAND's wargaming methodology literature; individual reports verify, the bundle as such has no single link.",
-      "note": "URL is the RAND homepage; search 'wargaming' on rand.org for specific reports. July 2026 check: rand.org blocks automated fetches, but the methodology publications exist (e.g. rand.org/pubs/research_memoranda/RM2413.html). See also SRC-SERIOUS-GAMES-BUNDLE."
+      "note": "RAND's wargaming topic hub; no single report is pinned, which keeps this on the shelf tier."
     },
     {
       "id": "SRC-AI-INDEX-2025",
@@ -1781,18 +1776,6 @@
       "evidenceClass": "analysis",
       "whyListed": "For a classroom teacher (a stated project audience) wanting a structured follow-on curriculum after playing, BlueDot's AI Safety Fundamentals courses are the standard on-ramp into technical alignment and governance study.",
       "note": "Courses page: https://bluedot.org/courses/alignment. Matches the founding source list entry 'BlueDot / AI Safety Fundamentals curricula'."
-    },
-    {
-      "id": "SRC-MODEL-DOCS-BUNDLE",
-      "title": "System/model cards (GPT-4, Claude 3/Opus, Gemini); Papers with Code; Alignment Forum / LessWrong key posts",
-      "type": "web",
-      "tags": ["model-cards", "documentation", "live-data"],
-      "status": "flagged",
-      "tier": "library",
-      "evidenceClass": "empirical",
-      "whyListed": "For a researcher wanting primary model documentation and reproducible benchmark tracking behind the game's abstracted capability meter, this points to real published model cards (GPT-4, Claude, Gemini) and Papers with Code's benchmark leaderboards.",
-      "flagReason": "An umbrella entry for model release documentation across several labs; no single link to verify.",
-      "note": "Bundled placeholder entry (marked verify-individual-URLs, no single URL given). Alignment Forum is captured individually as SRC-ALIGNMENT-FORUM via a clean atomic URL from the founding source list Live data & community; System/model cards and Papers with Code remain unresolved individual citations. Bundle entry, no single URL by design."
     },
     {
       "id": "SRC-ALIGNMENT-FORUM",

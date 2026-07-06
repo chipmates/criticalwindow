@@ -482,6 +482,10 @@ if (sources) {
   }
 }
 
+// House typography, stated so nobody has to guess the motive: displayed text
+// follows a style guide (short sentences, commas over dashes), and since
+// displayed text is data here, the style rule lives with the data rules.
+// CONTRIBUTING.md documents it for writers.
 // Displayed markdown prose obeys the same rules. SOURCES.md is exempt because
 // quoted publication titles legitimately carry em dashes.
 for (const relPath of [

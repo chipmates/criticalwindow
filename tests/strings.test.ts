@@ -14,7 +14,7 @@ test('every string key is a dot-path with a non-empty value', () => {
   }
 });
 
-// Displayed-text voice rule (CLAUDE.md): no em dashes in anything the player reads.
+// Displayed-text voice rule (house style, CONTRIBUTING.md): no em dashes in anything the player reads.
 test('no em dashes in displayed strings', () => {
   for (const value of Object.values(strings as Record<string, string>)) {
     expect(value).not.toContain('—');

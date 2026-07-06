@@ -776,7 +776,7 @@ export const sourceEntrySchema = z
     url: z.url().optional(),
     type: z.enum(['paper', 'report', 'book', 'dataset', 'web', 'design']),
     tags: z.array(z.string().regex(TAG_PATTERN)).optional(),
-    status: z.enum(['verified', 'flagged', 'book', 'pending']),
+    status: z.enum(['verified', 'flagged']),
     tier: sourceTierSchema,
     evidenceClass: sourceEvidenceClassSchema,
     /** load-bearing only: what the citations actually use this source for. */

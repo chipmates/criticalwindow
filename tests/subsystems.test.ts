@@ -147,7 +147,7 @@ describe('agency erosion (hidden ending hook)', () => {
 });
 
 describe('ending reachability batch (reachability verify; the full batch runs in the balance harness)', () => {
-  test('bots across seeds reach at least 3 distinct endings', () => {
+  test('bots across seeds reach all five shipped endings', () => {
     const endings = new Set<string>();
     const counts: Record<string, number> = {};
     for (const bot of BOT_IDS) {
@@ -166,7 +166,7 @@ describe('ending reachability batch (reachability verify; the full batch runs in
     // Racing pressure dominates (the trap is real), the treaty path stays
     // alive, flourishing stays reachable, and the planned sixth ending
     // must remain unreachable until it actually ships.
-    expect(endings.size).toBeGreaterThanOrEqual(4);
+    expect(endings.size).toBe(5);
     expect(counts['misalignedCatastrophe'] ?? 0).toBeGreaterThanOrEqual(40);
     expect(counts['negotiatedSlowdown'] ?? 0).toBeGreaterThanOrEqual(5);
     expect(counts['flourishing'] ?? 0).toBeGreaterThanOrEqual(1);

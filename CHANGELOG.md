@@ -7,6 +7,19 @@ This file was written after the fact, reconstructed from the git history rather 
 turn by turn. That is why the early entries bundle a lot into one release and the later
 ones get more specific. It will stay current from here on.
 
+## [0.3.4] · 2026-07-06
+
+The checkability release: everything a skeptic checks first now checks out.
+
+- Every commit hash cited in the balance history resolves on the published branch, and the deploy script refuses hashes that do not
+- The evidence map's worked example quotes the same METR figure as its table
+- Pedagogy research reclassified from design to the class its claims deserve; two umbrella registry entries dissolved (162 entries now)
+- The cautious preset says on its card that it is hard mode; the title screen says most terms end badly
+- Roadmap gates restated in currency the project can actually count
+- The sixth ending keeps its mystery: theme description removed from public docs
+- House typography rule documents its own rationale in the validator
+- Narration licensing scoped to what the terms actually grant
+
 ## [0.3.3] · 2026-07-06
 
 Precision and provenance.

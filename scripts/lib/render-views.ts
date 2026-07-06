@@ -20,9 +20,7 @@ const TIER_HEADING: Record<SourceEntry['tier'], string> = {
 
 const STATUS_BADGE: Record<SourceEntry['status'], string> = {
   verified: '',
-  pending: ' *(verification pending)*',
   flagged: ' *(link broken, replacement wanted)*',
-  book: ' *(book, obtain manually)*',
 };
 
 /** Max citation sites listed per entry before folding into "+N more". */
@@ -379,8 +377,8 @@ The tables below are complete; these five show the transformation step by step.
    training capacity, the cited compute dataset's picture of the US share; the index
    point is the mapping, not a measurement of its own.
 2. **Capability pacing (curves.capabilityPerRnd).** The cited analyses report training
-   compute doubling roughly every six months and the 50% task horizon doubling every
-   188 days on the all-time fit. The curve compresses that regime onto the 0-1000
+   compute doubling roughly every six months and the 50% task horizon P50 doubling every
+   196.5 days on the all-time fit (130.8 days for models from 2023 on). The curve compresses that regime onto the 0-1000
    index so an all-in racer reaches threshold resolution around turn 10 of 16; the
    compression ratio is the design decision, and it cites the constitution.
 3. **Eval band floor (evalUncertainty.floorBandWidth 100).** The deception literature

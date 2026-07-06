@@ -29,7 +29,7 @@ pnpm install && pnpm dev
 
 There is also a print-and-play paper kit: download the PDF from the latest [release](https://github.com/chipmates/criticalwindow/releases), or generate it yourself with `pnpm exec playwright install chromium` once and then `pnpm print-kit`. Board, cards, rules, and one sealed envelope you are not allowed to open until the end.
 
-Three ways to play. Solo as the United States. Solo as China, where the chips are scarce but the power is not. Hotseat: two people, one device, one shared world, two private screens of doubt.
+Three ways to play. Solo as the United States. Solo as China, where the chips are scarce but the power is not. Hotseat: two people, one device, one shared world, two private screens.
 
 ## What a run feels like
 
@@ -77,7 +77,7 @@ Off by default, everything works silent. Music by Scott Buckley (CC BY 4.0), see
 
 ## Who makes this
 
-Critical Window is a project of ChipMates gemeinnuetzige GmbH, a German nonprofit, built by a very small human core working with heavy AI assistance; how and why is spelled out in [GOVERNANCE.md](GOVERNANCE.md), and the whole trust architecture exists so you never have to take anyone's word for anything, human or machine. No revenue, no ads, no investors; if grants ever fund this, the funders get named in [GOVERNANCE.md](GOVERNANCE.md), which also explains how this project is built and who answers for it. Contact: criticalwindow@chipmates.ai. Legal: [imprint](https://criticalwindow.org/imprint.html) and [privacy](https://criticalwindow.org/privacy.html).
+Critical Window is a project of ChipMates gemeinnuetzige GmbH, a German nonprofit. One maintainer, working with heavy AI assistance; how, why, and who answers for it is spelled out in [GOVERNANCE.md](GOVERNANCE.md), and the whole trust architecture exists so you never have to take anyone's word for anything, human or machine. No revenue, no ads, no investors; if grants ever fund this, the funders get named there too. Contact: criticalwindow@chipmates.ai. Legal: [imprint](https://criticalwindow.org/imprint.html) and [privacy](https://criticalwindow.org/privacy.html).
 
 ## License
 

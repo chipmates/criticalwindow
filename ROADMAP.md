@@ -22,12 +22,12 @@ A print-and-play kit generated from the same data files the digital game uses. I
 
 ### Phase 2: Prototype. Built, gate in measurement
 
-The game in your browser: both the US and China seats, hotseat on one device, hidden alignment dice, eval reports that flatter you exactly when it matters, a society with its own clock, five endings, voice narration, and a debrief that opens the sealed envelope and shows what your run argued. Balance was tuned by an adversarial campaign of several hundred model-played games; its methods, its ending distributions, and the three times it caught its own instruments lying are documented in [docs/BALANCE.md](docs/BALANCE.md). But this phase's gate is human by definition (15-minute median sessions, unprompted replays, takeaways named unaided), models cannot feel whether losing is fun, and we do not mark our own gates passed. It gets measured with real players during the alpha, and this line changes when it does.
+The game in your browser: both the US and China seats, hotseat on one device, hidden alignment dice, eval reports that flatter you exactly when it matters, a society with its own clock, five endings, voice narration, and a debrief that opens the sealed envelope and shows what your run argued. Balance was tuned by an adversarial campaign of several hundred model-played games; its methods, its ending distributions, and the three times it caught its own instruments lying are documented in [docs/BALANCE.md](docs/BALANCE.md). But this phase's gate is human by definition (runs that get finished rather than abandoned, per voluntary reports, unprompted replays, takeaways named unaided), models cannot feel whether losing is fun, and we do not mark our own gates passed. It gets measured with real players during the alpha, and this line changes when it does.
 
 ### Phase 3: Public Alpha. You are here
 
 The first real launch. In rough order: the hosted game at criticalwindow.org, real players through the Phase 2 human gate, balance shaped by people instead of proxies, more events for replay depth, art beyond the stamp glyphs (with every prompt and decision published), and an itch.io satellite page that points home.
-**Gate:** a thousand organic plays and five outside contributors.
+**Gate:** completed-debrief reports arriving steadily without prompting and five outside contributors.
 
 ### Phase 4: 1.0
 

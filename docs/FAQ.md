@@ -1,15 +1,16 @@
 # FAQ
 
-The questions people actually ask, answered plainly.
+The questions we expect, and the ones playtesting raised, answered plainly.
 
 ## Is it fun?
 
 Sessions during development kept forcing rebalances, which is what fun pressure looks
 like from the inside: a player loses in a way that feels wrong, argues, and the
 mechanism has to answer (the alignment-earned model and the hard-crossing rebalance
-both started that way; the commits are in [BALANCE.md](BALANCE.md)). Runs take 20 to
-40 minutes, losing is common, and the debrief is built to make losing worth it. The
-public alpha exists to test that against people who did not build the game.
+both started that way; the commits are in [BALANCE.md](BALANCE.md)). Playtesting so
+far is mostly bots plus a handful of humans, so treat this as a claim under test. Runs
+take 20 to 40 minutes, losing is common, and the debrief is built to make losing worth
+it. The public alpha exists to test that against people who did not build the game.
 
 ## Is this a game or advocacy?
 
@@ -63,6 +64,5 @@ account? Email criticalwindow@chipmates.ai; the debrief links it too.
 
 ## Where is the sixth ending?
 
-Planned, not shipped, and not secret: its groundwork already accrues during play and
-its evidence base sits in the registry. It ships when discovering it can feel like
-discovering it.
+Planned, not shipped. Its groundwork already accrues during play, and it ships after
+the alpha, once it can land unspoiled.

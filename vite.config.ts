@@ -70,7 +70,9 @@ export default defineConfig({
           {
             urlPattern: /\/audio\/.*\.(?:mp3|json)$/,
             handler: 'CacheFirst',
-            options: { cacheName: 'audio', expiration: { maxEntries: 160 } },
+            // Ceiling sits far above the shipped file count (mp3 + timestamps pairs)
+            // so offline narration never silently evicts; raise it when audio grows.
+            options: { cacheName: 'audio', expiration: { maxEntries: 400 } },
           },
         ],
       },

@@ -16,7 +16,7 @@ There are two ways in, and the one without code matters at least as much.
 
 **Later: translations.** The game is built for it (all text lives in `data/strings/`), but translation opens at Phase 4 when the text stabilizes. Do not translate yet, it would churn.
 
-**Writing style for anything players read:** short sentences, plain words, no em dashes. Serious about the stakes, dry about the absurdity. If it sounds like a press release, rewrite it.
+**Writing style for anything players read:** short sentences, plain words, no em dashes (house typography; displayed text is data here, so the style rule is enforced by the validator like every other data rule). Serious about the stakes, dry about the absurdity. If it sounds like a press release, rewrite it.
 
 ## The code path
 

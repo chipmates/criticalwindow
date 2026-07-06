@@ -13,9 +13,9 @@ otherwise. Run it yourself.
 
 **76 cited parameter values and 100 cited card premises, across 334 citation sites.** Parameter values by kind:
 
-- **9** analysis-based
-- **23** anchored, game-calibrated
-- **29** design constant
+- **13** analysis-based
+- **21** anchored, game-calibrated
+- **27** design constant
 - **15** forecast-based
 
 The vocabulary claims exactly what is true. **Empirically anchored** means the
@@ -42,8 +42,8 @@ The tables below are complete; these five show the transformation step by step.
    training capacity, the cited compute dataset's picture of the US share; the index
    point is the mapping, not a measurement of its own.
 2. **Capability pacing (curves.capabilityPerRnd).** The cited analyses report training
-   compute doubling roughly every six months and the 50% task horizon doubling every
-   188 days on the all-time fit. The curve compresses that regime onto the 0-1000
+   compute doubling roughly every six months and the 50% task horizon P50 doubling every
+   196.5 days on the all-time fit (130.8 days for models from 2023 on). The curve compresses that regime onto the 0-1000
    index so an all-in racer reaches threshold resolution around turn 10 of 16; the
    compression ratio is the design decision, and it cites the constitution.
 3. **Eval band floor (evalUncertainty.floorBandWidth 100).** The deception literature
@@ -89,7 +89,7 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 |---|---|---|
 | events/allied_export_fracture.json → (root) | empirically anchored premise | SRC-CSIS-SME-CONTROLS, SRC-CSIS-EXPORT |
 | events/ally_eval_request.json → (root) | analysis-based premise | SRC-HO-INTL-INSTITUTIONS, SRC-CSIS-EXPORT |
-| events/asml_export_squeeze.json → (root) | anchored, game-calibrated premise | SRC-CSIS-EXPORT, SRC-CHIP-WAR, SRC-SIM-GAMING-INSIGHTS |
+| events/asml_export_squeeze.json → (root) | analysis-based premise | SRC-CSIS-EXPORT, SRC-CHIP-WAR, SRC-SIM-GAMING-INSIGHTS |
 | events/autonomous_targeting_demo.json → (root) | forecast-based premise | SRC-AI2027, SRC-SIM-GAMING-INSIGHTS |
 | events/benchmark_gaming.json → (root) | empirically anchored premise | SRC-BENCH-COP, SRC-SCHEMING |
 | events/branch_point.json → (root) | forecast-based premise | SRC-AI2027 |
@@ -119,7 +119,7 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 | events/rival_breakthrough.json → (root) | forecast-based premise | SRC-AI2027, SRC-MAIM |
 | events/shuttered_factory_census.json → (root) | empirically anchored premise | SRC-CSIS-EXPORT, SRC-OECD-EMPLOYMENT |
 | events/superhuman_coder.json → (root) | forecast-based premise | SRC-AI2027, SRC-SITUATIONAL-AWARENESS, SRC-GRACE-SURVEY |
-| events/taiwan_strait_crisis.json → (root) | anchored, game-calibrated premise | SRC-CHIP-WAR, SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
+| events/taiwan_strait_crisis.json → (root) | analysis-based premise | SRC-CHIP-WAR, SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
 | events/the_project.json → (root) | forecast-based premise | SRC-SITUATIONAL-AWARENESS, SRC-SIM-GAMING-INSIGHTS |
 | events/treaty_feeler.json → (root) | analysis-based premise | SRC-MAIM, SRC-HO-INTL-INSTITUTIONS |
 | events/union_moratorium_demand.json → (root) | empirically anchored premise | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
@@ -132,9 +132,9 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 
 | Where | Premise kind | Sources |
 |---|---|---|
-| (root) | anchored, game-calibrated premise | SRC-SLEEPER, SRC-SCHEMING, SRC-AGENTIC-MISALIGNMENT, SRC-AI-INCIDENT-DB, SRC-SIM-GAMING-INSIGHTS |
+| (root) | analysis-based premise | SRC-SLEEPER, SRC-SCHEMING, SRC-AGENTIC-MISALIGNMENT, SRC-AI-INCIDENT-DB, SRC-SIM-GAMING-INSIGHTS |
 | riskFormula.pressureAllocationPct | empirically anchored premise | SRC-AGENTIC-MISALIGNMENT |
-| riskFormula.pressureRivalRacePct | anchored, game-calibrated premise | SRC-AGENTIC-MISALIGNMENT, SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
+| riskFormula.pressureRivalRacePct | analysis-based premise | SRC-AGENTIC-MISALIGNMENT, SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
 | safetyInsightDamageReductionMaxPerMille | empirically anchored premise | SRC-SLEEPER, SRC-SCHEMING |
 | rungs[0] | empirically anchored premise | SRC-SLEEPER, SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
 | rungs[1] | empirically anchored premise | SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
@@ -145,7 +145,7 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 
 | Where | Premise kind | Sources |
 |---|---|---|
-| (root) | design constant premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
+| (root) | analysis-based premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
 | mandates[0] | empirically anchored premise | SRC-IEA-ENERGY-AI, SRC-GRID-DATACENTER |
 | mandates[1] | empirically anchored premise | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
 | mandates[2] | empirically anchored premise | SRC-UK-AISI, SRC-SLEEPER |
@@ -154,8 +154,8 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 | mandates[5] | empirically anchored premise | SRC-IEA-ENERGY-AI |
 | mandates[6] | empirically anchored premise | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
 | mandates[7] | empirically anchored premise | SRC-SLEEPER, SRC-SCHEMING |
-| mandates[8] | design constant premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
-| mandates[9] | anchored, game-calibrated premise | SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
+| mandates[8] | analysis-based premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
+| mandates[9] | analysis-based premise | SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
 
 ## parameters.json
 
@@ -267,8 +267,8 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 | seats.china.resources.energy | empirically anchored premise | SRC-IEA-ENERGY-AI |
 | seats.china.resources.talent | anchored, game-calibrated premise | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
 | seats.china.resources.capital | anchored, game-calibrated premise | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
-| seats.china.resources.publicTrust | design constant premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
-| seats.china.resources.politicalCapital | design constant premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
+| seats.china.resources.publicTrust | analysis-based premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
+| seats.china.resources.politicalCapital | analysis-based premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
 | seats.china.resources.capability | empirically anchored premise | SRC-DEEPSEEK-COST |
 | seats.china.resources.safetyInsight | analysis-based premise | SRC-IAISR, SRC-DESIGN-HANDOVER |
 | seats.china.society.jobDisplacement | empirically anchored premise | SRC-IMF-GENAI |
@@ -280,8 +280,8 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 
 | Where | Numbers | Kind | Sources | How the number was derived |
 |---|---|---|---|---|
-| (root) |  | anchored, game-calibrated | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT | Shared seat rules: the asymmetries encode the facilitation literature and export-control reality cited; the magnitudes themselves are design-tuned for balance. |
-| usa |  | design constant | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER | design constant; the constitution is the derivation |
-| china |  | anchored, game-calibrated | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT, SRC-DESIGN-HANDOVER | Legitimacy cadence and the substitution-gated compute door follow the cited analyses of the China seat asymmetry; magnitudes design-tuned. |
-| china.legitimacyCheck.trustMin | value 400 | design constant | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER | legitimacy pressure replaces the midterm: verdicts at each era turn instead of one election |
+| (root) |  | analysis-based | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT | Shared seat rules: the asymmetries encode the facilitation literature and export-control reality cited; the magnitudes themselves are design-tuned for balance. |
+| usa |  | analysis-based | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER | ⚠ derivation note missing |
+| china |  | analysis-based | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT, SRC-DESIGN-HANDOVER | Legitimacy cadence and the substitution-gated compute door follow the cited analyses of the China seat asymmetry; magnitudes design-tuned. |
+| china.legitimacyCheck.trustMin | value 400 | analysis-based | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER | legitimacy pressure replaces the midterm: verdicts at each era turn instead of one election |
 | china.legitimacyCheck.swing | value 100 | design constant | SRC-DESIGN-HANDOVER | political capital gained per era while legitimacy holds, lost while it does not |

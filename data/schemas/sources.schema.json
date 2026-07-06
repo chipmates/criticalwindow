@@ -56,9 +56,7 @@
             "type": "string",
             "enum": [
               "verified",
-              "flagged",
-              "book",
-              "pending"
+              "flagged"
             ]
           },
           "tier": {

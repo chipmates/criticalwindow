@@ -8,7 +8,7 @@ authors:
 repository-code: 'https://github.com/chipmates/criticalwindow'
 url: 'https://criticalwindow.org'
 license: AGPL-3.0-only
-version: 0.3.3
+version: 0.3.4
 date-released: 2026-07-06
 keywords:
   - serious game

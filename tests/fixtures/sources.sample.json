@@ -114,10 +114,11 @@
       "authors": "Narayanan & Kapoor",
       "year": 2025,
       "type": "web",
-      "status": "pending",
+      "status": "flagged",
       "gameUse": "skeptic preset anchors",
       "tier": "load-bearing",
-      "evidenceClass": "analysis"
+      "evidenceClass": "analysis",
+      "flagReason": "Sample fixture: flagged entry for schema coverage."
     },
     {
       "id": "SRC-METR-HORIZON",

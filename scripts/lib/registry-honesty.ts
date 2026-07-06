@@ -1,7 +1,9 @@
 /**
  * The registry-honesty rules, extracted so the test suite can mutation-test
  * them: a tier is declared in sources.json but proven by the citation map,
- * and usage claims must be specific enough to check.
+ * and usage claims must be specific enough to check. The vague-phrase lint here
+ * is deliberately blunt: it catches the worst offenders, and human review
+ * catches the rest. Nobody should mistake a blocklist for understanding.
  */
 import type { SourcesRegistryData } from '../../src/engine/schemas';
 import type { UsageMap } from './source-usage';

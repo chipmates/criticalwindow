@@ -210,7 +210,7 @@ strategy directly: bank alignment before the sprint, read the incidents as align
 data, time the treaty signature to the window. A model told the answer and then graded on
 whether it repeated the answer is not being tested on discovery, it's being tested on
 obedience, and obedience is not what balance needs to know. The fix
-([`4746508`](https://github.com/chipmates/criticalwindow/commit/4746508)) added a second,
+([`14b08c3`](https://github.com/chipmates/criticalwindow/commit/14b08c3)) added a second,
 mechanics-only rulebook with every strategy sentence stripped out, plus a mode where the
 model plays a series of games carrying forward nothing but its own notes, revised after
 each debrief, which is exactly what a human carries between runs.
@@ -222,13 +222,13 @@ gets far more than that: a chart of what the evals said against what was actuall
 each quarter, whether the treaty window was open and when, which incidents fired and
 whether they were raced past. Grading a model on what it learned from a debrief it was
 never actually shown is the same mistake as the other two, worn differently. Fixed in
-[`a8ececd`](https://github.com/chipmates/criticalwindow/commit/a8ececd) by replaying every
+[`d3f15da`](https://github.com/chipmates/criticalwindow/commit/d3f15da) by replaying every
 finished run through the same probes that generate the debrief screen itself, so the
 model's between-game notes are built from the same information a human closes a run with.
 
 Once the model could actually see what a human sees, the campaign's clearest skill signal
 showed up: bots that could not see the rival's ratification status (added to the model's
-view alongside the fix above, [`4e1bd27`](https://github.com/chipmates/criticalwindow/commit/4e1bd27))
+view alongside the fix above, [`a53c06c`](https://github.com/chipmates/criticalwindow/commit/a53c06c))
 succeeded at reaching a good ending about 26 percent of the time. Bots given that same
 "diplomatic weather" line the human UI already shows succeeded around 60 percent of the
 time. The treaty was never really about knowing the mechanic exists. It was about reading

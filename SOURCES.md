@@ -8,8 +8,8 @@ in `data/` without a source ID fails the build, and so does a registry entry tha
 claims a tier its citations do not support. [`docs/EVIDENCE.md`](docs/EVIDENCE.md)
 lists every cited number with its evidence.
 
-**164 entries. 54 external sources drive numbers directly (249 citation sites). Game-design constants cite the project's own [design constitution](docs/DESIGN.md) instead (85 sites), and those are always labeled `design`, never counted as outside evidence. 11 more sources shaped the design, 98 are further reading.**
-Status: 9 book, 5 flagged, 150 verified.
+**162 entries. 54 external sources drive numbers directly (249 citation sites). Game-design constants cite the project's own [design constitution](docs/DESIGN.md) instead (85 sites), and those are always labeled `design`, never counted as outside evidence. 11 more sources shaped the design, 96 are further reading.**
+Status: 3 flagged, 159 verified.
 
 What the statuses mean: `verified` says the link was fetched and the title and
 authors matched this entry (July 2026, scripted fetches plus hand checks; where
@@ -36,7 +36,7 @@ Not outside evidence, and never counted as such: game-design constants cite the
 project's own design document so that no game-feel number ever has to wear a
 fake empirical citation.
 
-- **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/v0.3.3/docs/DESIGN.md) · project (2026) · `design`
+- **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/v0.3.4/docs/DESIGN.md) · project (2026) · `design`
   Used for: design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
 
 ## External sources that drive numbers (54)
@@ -46,7 +46,7 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-AI2027** · [AI 2027](https://ai-2027.com/) · Kokotajlo, Alexander, Larsen, Lifland, Dean, AI Futures Project (2025) · `forecast`
   Used for: race vs. slowdown endings; core scenario spine; cautious preset anchors
   Cited 21× by: anchors.json → tracks.capability · events/autonomous_targeting_demo.json → sourceIds · events/branch_point.json → sourceIds · events/civil_military_fusion.json → sourceIds · events/grid_crunch.json → sourceIds · events/intelligence_explosion.json → sourceIds *(+15 more)*
-- **SRC-SIM-GAMING-INSIGHTS** · [Strategic Insights from Simulation Gaming of AI Race Dynamics](https://arxiv.org/pdf/2410.03092) · Gruetzemacher et al. (2024) · `design`
+- **SRC-SIM-GAMING-INSIGHTS** · [Strategic Insights from Simulation Gaming of AI Race Dynamics](https://arxiv.org/pdf/2410.03092) · Gruetzemacher et al. (2024) · `analysis`
   Used for: facilitator insights from 43 Intelligence Rising games
   Cited 18× by: events/asml_export_squeeze.json → sourceIds · events/autonomous_targeting_demo.json → sourceIds · events/liability_shield_ask.json → sourceIds · events/taiwan_strait_crisis.json → sourceIds · events/the_project.json → sourceIds · events/weight_theft.json → sourceIds *(+12 more)*
 - **SRC-CSIS-EXPORT** · [Choking off China's Access to the Future of AI](https://www.csis.org/analysis/choking-chinas-access-future-ai) · Gregory Allen, CSIS (2022) · `empirical`
@@ -124,13 +124,13 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-RAND-WEIGHTS** · [Securing AI Model Weights: Preventing Theft and Misuse of Frontier Models](https://www.rand.org/pubs/research_reports/RRA2849-1.html) · Nevo, Lahav, Karpur et al., RAND (2024) · `analysis`
   Used for: weight-security mechanic; also cited in the US-China section as the model-weight-theft / espionage mechanic (RAND, RR-A2849-1)
   Cited 2× by: events/weight_theft.json → sourceIds · policies/weights_security_program.json → sourceIds
-- **SRC-CHIP-WAR** · Chip War: The Fight for the World's Most Critical Technology · Chris Miller, Scribner (2022) · `empirical` *(book, obtain manually)*
+- **SRC-CHIP-WAR** · Chip War: The Fight for the World's Most Critical Technology · Chris Miller, Scribner (2022) · `empirical`
   Used for: TSMC/Taiwan chokepoint background
   Cited 2× by: events/asml_export_squeeze.json → sourceIds · events/taiwan_strait_crisis.json → sourceIds
 - **SRC-EU-AI-ACT** · [EU AI Act (Regulation (EU) 2024/1689)](https://artificialintelligenceact.eu/the-act/) · EU (2024) · `empirical`
   Used for: Backs the fixed historical beats eu_ai_act_full_force and eu_ai_act_high_risk, dramatizing the Act's phased compliance deadlines (prohibited-practices ban, GPAI duties, high-risk certification).
   Cited 2× by: events/eu_ai_act_full_force.json → sourceIds · events/eu_ai_act_high_risk.json → sourceIds
-- **SRC-IABIED** · [If Anyone Builds It, Everyone Dies](https://ifanyonebuildsit.com/) · Yudkowsky & Soares (2025) · `analysis` *(book, obtain manually)*
+- **SRC-IABIED** · [If Anyone Builds It, Everyone Dies](https://ifanyonebuildsit.com/) · Yudkowsky & Soares (2025) · `analysis`
   Used for: Grounds the cautious worldview's high alignment-difficulty range (upper half of the 550-950 band) and, via the book's core policy prescription of a halt on frontier AI development, the global_moratorium policy card's pause mechanic.
   Cited 2× by: parameters.json → worldviewPresets.cautious.alignmentDifficulty · policies/global_moratorium.json → sourceIds
 - **SRC-AI-INCIDENT-DB** · [AI Incident Database](https://incidentdatabase.ai/) · Responsible AI Collaborative · `empirical`
@@ -181,7 +181,7 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-CARLSMITH** · [Is Power-Seeking AI an Existential Risk?](https://arxiv.org/abs/2206.13353) · Joseph Carlsmith (2022) · `analysis`
   Used for: decomposed risk model
   Cited 1× by: parameters.json → worldviewPresets.cautious.alignmentDifficulty
-- **SRC-SNAKE-OIL** · AI Snake Oil · Narayanan & Kapoor, Princeton University Press (2024) · `analysis` *(book, obtain manually)*
+- **SRC-SNAKE-OIL** · AI Snake Oil · Narayanan & Kapoor, Princeton University Press (2024) · `analysis`
   Used for: skeptical worldview
   Cited 1× by: parameters.json → worldviewPresets.skeptic.alignmentDifficulty
 - **SRC-AI-INDEX-2025** · [The 2025 AI Index Report](https://hai.stanford.edu/ai-index/2025-ai-index-report) · Stanford HAI (2025) · `empirical`
@@ -229,12 +229,12 @@ mechanic, checkably. Wiring one of these to an actual number is a welcome PR.
   Shaped: The agencyErosion.diffusionShieldMin mechanic (parameters.json worldRules.agencyErosion), where a high enough diffusion/benefit-sharing share lowers erosion of human agency, per its own note 'broad benefit-sharing keeps humans in the loop', reflects this paper's core proposal that redistributing AI's economic windfall preserves participation and blocks narrow power concentration.
 - **SRC-AI-FUTURES-ROLEPLAY** · [Exploring AI Futures Through Role Play (Intelligence Rising)](https://arxiv.org/abs/1912.08964) · Avin, Gruetzemacher, Fox (2020) · `design`
   Shaped: The design constitution (docs/DESIGN.md §1) names Intelligence Rising as the direct inspiration this project scales ('proves the pedagogy'); the project's overall structure, a turn-based, multi-seat (USA/China) roleplay simulation of AI race dynamics with policy cards and posture shifts (data/seats.json, parameters.json worldRules.rivalMoves), follows this paper's original Intelligence Rising format.
-- **SRC-WOUTERS-2013** · [Meta-analysis of serious-games learning outcomes](https://eric.ed.gov/?id=EJ1008015) · Wouters et al. (2013) · `design`
+- **SRC-WOUTERS-2013** · [Meta-analysis of serious-games learning outcomes](https://eric.ed.gov/?id=EJ1008015) · Wouters et al. (2013) · `empirical`
   Shaped: The debrief screen (src/ui/screens/Debrief.tsx, spec'd in docs/DESIGN.md §8: takeaways surfaced, counterfactual hints, sources link) follows this meta-analysis's finding that serious games produce better learning outcomes when paired with explicit debriefing rather than left to stand alone.
-- **SRC-BOGOST-PERSUASIVE-GAMES** · Persuasive Games · Bogost (2007) · `design` *(book, obtain manually)*
+- **SRC-BOGOST-PERSUASIVE-GAMES** · Persuasive Games · Bogost (2007) · `analysis`
   Shaped: The project's core Fun-First-70/30 principle (docs/DESIGN.md §3, operating principle 1: the lesson lives in mechanics, never in lecture screens) follows Bogost's concept of procedural rhetoric: games persuade through their rules and systems, not through explicit argument.
 
-## The library: further reading (98)
+## The library: further reading (96)
 
 No usage claim. This is the shelf we read from and the shelf we recommend,
 grouped by topic.
@@ -264,7 +264,7 @@ grouped by topic.
   Why it is here: The deep-RL-specific companion finding to SRC-GOAL-MISGEN (the CoinRun agent that learns 'go right' instead of 'get the coin'); same relevance and same caveat as that entry.
 - **SRC-ALIGNMENT-SURVEY** · [AI Alignment: A Comprehensive Survey](https://arxiv.org/abs/2310.19852) · Ji et al. (2023) · `analysis`
   Why it is here: A broad taxonomy of alignment research techniques and open problems (RLHF, interpretability, scalable oversight) for players or teachers who want the academic map behind the game's alignment-difficulty dial.
-- **SRC-HUMAN-COMPATIBLE** · Human Compatible: AI and the Problem of Control · Stuart Russell, Viking/Penguin (2019) · `analysis` *(book, obtain manually)*
+- **SRC-HUMAN-COMPATIBLE** · Human Compatible: AI and the Problem of Control · Stuart Russell, Viking/Penguin (2019) · `analysis`
   Why it is here: Russell's provably-beneficial-AI framing and the control problem, for readers wanting the classic popular-science argument behind the game's alignment mechanics.
 
 ### benchmark
@@ -327,7 +327,7 @@ grouped by topic.
 
 - **SRC-GOLDMAN-GENAI-GDP** · [Generative AI could raise global GDP by 7%](https://www.goldmansachs.com/insights/articles/generative-ai-could-raise-global-gdp-by-7-percent) · Briggs & Kodnani, Goldman Sachs Research (2023) · `forecast`
   Why it is here: The widely-cited optimistic GDP/jobs-exposure projection for generative AI, a useful counterweight for readers comparing it against the more skeptical Acemoglu macro estimate also in this registry.
-- **SRC-POWER-PROGRESS** · Power and Progress: Our Thousand-Year Struggle Over Technology and Prosperity · Acemoglu & Johnson, PublicAffairs (2023) · `analysis` *(book, obtain manually)*
+- **SRC-POWER-PROGRESS** · Power and Progress: Our Thousand-Year Struggle Over Technology and Prosperity · Acemoglu & Johnson, PublicAffairs (2023) · `analysis`
   Why it is here: Acemoglu & Johnson's historical argument that a new technology's benefits depend on institutional choices, not inevitability, deeper reading behind the game's political-economy framing of automation and unrest.
 - **SRC-ACEMOGLU-SIMPLE-MACRO** · [The Simple Macroeconomics of AI](https://www.nber.org/papers/w32487) · Acemoglu (2024) · `forecast`
   Why it is here: A skeptical macro estimate of modest GDP growth from AI over the next decade, useful for a player weighing how much to trust either worldview's economic optimism against the Goldman Sachs projection also in this registry.
@@ -357,7 +357,7 @@ grouped by topic.
   Why it is here: Tracks how much of the Draghi competitiveness agenda the EU has actually implemented (11.2% after one year per the EPIC Observatory), useful for a player or journalist checking whether a future EU seat reflects reality.
 - **SRC-INVESTAI** · InvestAI / AI gigafactories & AI Action Summit outcomes (2025) · `empirical` *(flagged: An umbrella citation covering InvestAI, the AI gigafactories program and summit outcomes; no single official page covers all three.)*
   Why it is here: The EU's own AI-infrastructure investment push (InvestAI funding, AI gigafactories, the Feb 2025 AI Action Summit outcomes), background for the 'Europe left behind' competitiveness story the game doesn't yet model with a playable EU seat.
-- **SRC-BRUSSELS-EFFECT** · The Brussels Effect · Bradford (2020) · `analysis` *(book, obtain manually)*
+- **SRC-BRUSSELS-EFFECT** · The Brussels Effect · Bradford (2020) · `analysis`
   Why it is here: Bradford's thesis on how EU regulation projects power globally even without EU market presence, relevant background for why the game's EU AI Act wildcard events fire regardless of whether Europe is a playable seat, though those events cite EU-AI-Act sources directly rather than this book.
 
 ### export-controls
@@ -450,11 +450,6 @@ grouped by topic.
 - **SRC-MILITARY-AI-REGULATION** · [Military AI Needs Technically-Informed Regulation to Safeguard AI Research and its Applications](https://arxiv.org/abs/2505.18371) · Riley Simmons-Edler et al. (2025) · `analysis`
   Why it is here: Gives a reader a technically-grounded case for regulating military AI applications, a dedicated starter reference for the autonomous_targeting_demo and civil_military_fusion event cards beyond the AI-2027 and simulation-calibration sources currently cited there.
 
-### model-cards
-
-- **SRC-MODEL-DOCS-BUNDLE** · System/model cards (GPT-4, Claude 3/Opus, Gemini); Papers with Code; Alignment Forum / LessWrong key posts · `empirical` *(flagged: An umbrella entry for model release documentation across several labs; no single link to verify.)*
-  Why it is here: For a researcher wanting primary model documentation and reproducible benchmark tracking behind the game's abstracted capability meter, this points to real published model cards (GPT-4, Claude, Gemini) and Papers with Code's benchmark leaderboards.
-
 ### policy-tracker
 
 - **SRC-OECD-AI-OBSERVATORY** · [OECD.AI Policy Observatory](https://oecd.ai/en/) · OECD · `empirical`
@@ -480,7 +475,7 @@ grouped by topic.
   Why it is here: For players curious about the economic-power-concentration argument behind the Societal Breakdown ending's premise, distinct from the IMF/OECD job-displacement data that actually drives that ending's mechanics in-game.
 - **SRC-IAISR-UPDATE-1** · [International AI Safety Report — First Key Update: Capabilities & Risk Implications](https://arxiv.org/abs/2510.13653) · Bengio et al. (2025) · `analysis`
   Why it is here: For readers who want the most recent (Oct 2025) expert-consensus update on frontier capability trends and risk implications, one step ahead of the primary IAISR report the consensus preset is built on.
-- **SRC-BOSTROM-SUPERINTELLIGENCE** · Superintelligence: Paths, Dangers, Strategies · Nick Bostrom, Oxford University Press (2014) · `analysis` *(book, obtain manually)*
+- **SRC-BOSTROM-SUPERINTELLIGENCE** · Superintelligence: Paths, Dangers, Strategies · Nick Bostrom, Oxford University Press (2014) · `analysis`
   Why it is here: The foundational instrumental-convergence and orthogonality-thesis argument underlying the general existential-risk vocabulary echoed by the game's cautious worldview preset.
 
 ### risk-taxonomy
@@ -508,10 +503,8 @@ grouped by topic.
 
 - **SRC-INTELLIGENCE-RISING-CSER** · [Intelligence Rising (project page + facilitation)](https://www.cser.ac.uk/work/intelligence-rising/) · CSER (Cambridge) · `design`
   Why it is here: For a player or researcher curious about the real academic wargame this design descends from, CSER's project page is the primary hub for Intelligence Rising's facilitation materials and history.
-- **SRC-AVIN-AI-FUTURES-SURVEY** · [Exploring Artificial Intelligence Futures (survey of methods)](https://www.openbookpublishers.com/books/10.11647/obp.0360/chapters/10.11647/obp.0360.08) · Shahar Avin (2019) · `design`
+- **SRC-AVIN-AI-FUTURES-SURVEY** · [Exploring Artificial Intelligence Futures (survey of methods)](https://www.openbookpublishers.com/books/10.11647/obp.0360/chapters/10.11647/obp.0360.08) · Shahar Avin (2019) · `analysis`
   Why it is here: For readers curious how game-based exploration of AI futures compares to narrative scenario-writing (like AI-2027) or survey forecasting, this is Avin's overview of the methodological menu the project's format sits within.
-- **SRC-SERIOUS-GAMES-BUNDLE** · RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak) · `design` *(flagged: An umbrella entry for several works on learning through games; the individual works are listed in this registry, but there is no single link to verify.)*
-  Why it is here: For a teacher or researcher wanting the wider serious-games/wargaming literature behind the debrief design (Schelling on gaming, matrix-game/TTX methodology, climate-game studies like Daybreak) beyond the four works already listed individually.
 - **SRC-CLARK-2016** · [Digital Games for Learning meta-analysis](https://journals.sagepub.com/doi/10.3102/0034654315582065) · Clark et al. (2016) · `design`
   Why it is here: For readers who want the empirical backing behind 'games can teach, but design matters,' this meta-analysis of digital game-based learning outcomes complements Wouters et al. (already grounding the debrief-screen design) with a broader review across digital games generally.
 - **SRC-LOPEZ-FERNANDEZ-2024** · [Learning and Motivational Impact of Game-Based Learning: Comparing Face-to-Face and Online Formats on Computer Science Education](https://arxiv.org/abs/2407.07762) · Daniel López-Fernández et al. (2024) · `design`
@@ -533,7 +526,7 @@ grouped by topic.
 
 ### wargaming
 
-- **SRC-RAND-WARGAMING** · [RAND wargaming methodology series](https://www.rand.org) · RAND · `design` *(flagged: An umbrella entry for RAND's wargaming methodology literature; individual reports verify, the bundle as such has no single link.)*
+- **SRC-RAND-WARGAMING** · [RAND wargaming methodology series](https://www.rand.org/topics/wargaming.html) · RAND · `analysis` *(flagged: An umbrella entry for RAND's wargaming methodology literature; individual reports verify, the bundle as such has no single link.)*
   Why it is here: For readers curious about the tabletop-wargaming methodology (matrix games, structured turn phases) that the project's turn/era/event structure resembles, RAND's wargaming-methodology literature is the field's reference; no single report is pinned here.
 
 ### worldview-optimistic
@@ -550,7 +543,7 @@ grouped by topic.
 
 - **SRC-CAIS-STATEMENT** · [Statement on AI Risk](https://safe.ai/work/statement-on-ai-risk) · Center for AI Safety (CAIS) (2023) · `analysis`
   Why it is here: The one-sentence expert-consensus statement that AI extinction risk should be a global priority, evidence for a player wanting to know the game's doom worldview preset isn't fringe speculation.
-- **SRC-PRECIPICE** · [The Precipice: Existential Risk and the Future of Humanity](https://theprecipice.com/) · Toby Ord (2020) · `analysis` *(book, obtain manually)*
+- **SRC-PRECIPICE** · [The Precipice: Existential Risk and the Future of Humanity](https://theprecipice.com/) · Toby Ord (2020) · `analysis`
   Why it is here: Ord's canonical popular introduction to existential risk, a gentler companion to Carlsmith's technical paper for a reader building the case behind the game's doom-worldview preset.
 - **SRC-COMPENDIUM** · [The Compendium](https://www.thecompendium.ai/) · Leahy, Alfour et al. (2024) · `analysis`
   Why it is here: A risk-emphasizing synthesis of the AI existential-risk case for a player who finishes a cautious-worldview run wanting the fullest version of the doom argument in one place, alongside the game's already-cited Carlsmith and IABIED sources.
