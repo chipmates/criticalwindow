@@ -4,7 +4,7 @@
 
 <p align="center"><b>An open source strategy game about the AI race.</b></p>
 
-<p align="center">Nonprofit · No accounts, no tracking, ever · Works offline · Every number cites a source</p>
+<p align="center">Nonprofit · No accounts, no tracking, ever · Works offline · Every number: a source you can check, or a design choice that says so</p>
 
 <p align="center">
 <a href="https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml"><img src="https://github.com/chipmates/criticalwindow/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
@@ -19,7 +19,7 @@
 
 ## Play
 
-**Play now: [criticalwindow.org](https://criticalwindow.org)** (mirror: [criticalwindow.pages.dev](https://criticalwindow.pages.dev)). It works on phones, installs from the browser as an app, and keeps working offline after the first load.
+**Play now: [criticalwindow.org](https://criticalwindow.org)**. It works on phones, installs from the browser as an app, and keeps working offline after the first load.
 
 Or clone and run it locally:
 
@@ -73,11 +73,11 @@ The engine is a pure deterministic fold: same seed, same run, on every machine. 
 
 ## Sound
 
-Off by default, everything works silent. Music by Scott Buckley (CC BY 4.0), see [CREDITS.md](CREDITS.md). Voice narration is generated at build time from the game's own displayed text; nothing talks to a server while you play.
+Off by default, everything works silent. Music by Scott Buckley (CC BY 4.0), see [CREDITS.md](CREDITS.md). Voice narration is generated ahead of time by maintainers from the game's own displayed text and ships as static files; it caches for offline play the first time a clip plays, and nothing talks to a server while you play.
 
 ## Who makes this
 
-Critical Window is a project of ChipMates gemeinnuetzige GmbH, a German nonprofit. No revenue, no ads, no investors; if grants ever fund this, the funders get named in [GOVERNANCE.md](GOVERNANCE.md), which also explains how this project is built and who answers for it. Contact: criticalwindow@chipmates.ai. Legal: [imprint](https://criticalwindow.org/imprint.html) and [privacy](https://criticalwindow.org/privacy.html).
+Critical Window is a project of ChipMates gemeinnuetzige GmbH, a German nonprofit, built by a very small human core working with heavy AI assistance; how and why is spelled out in [GOVERNANCE.md](GOVERNANCE.md), and the whole trust architecture exists so you never have to take anyone's word for anything, human or machine. No revenue, no ads, no investors; if grants ever fund this, the funders get named in [GOVERNANCE.md](GOVERNANCE.md), which also explains how this project is built and who answers for it. Contact: criticalwindow@chipmates.ai. Legal: [imprint](https://criticalwindow.org/imprint.html) and [privacy](https://criticalwindow.org/privacy.html).
 
 ## License
 

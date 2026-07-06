@@ -8,8 +8,6 @@ The game is a static build, deployed to Cloudflare Pages.
 3. `criticalwindow.org` is the canonical home; `criticalwindow.pages.dev` is the same
    deployment under the host's default name.
 
-Verifying a deployment against this repository: the Sources screen in the game shows
-the build's data-version hash. Check out the matching commit, run `pnpm build`, and
-compare. The `public/_headers` file sets a Content-Security-Policy of `default-src 'self'`,
+Verifying a deployment against this repository: the Sources screen in the game shows the running build's commit and its data-version hash (the hash covers all game data; the commit pins the code). Check out that commit, run `pnpm build`, and compare. The `public/_headers` file sets a Content-Security-Policy of `default-src 'self'`,
 so the browser itself refuses any request to a foreign host, which makes the
 no-external-calls promise enforced rather than merely claimed.

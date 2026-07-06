@@ -6,7 +6,7 @@ There are two ways in, and the one without code matters at least as much.
 
 **Check a source.** Every number in the game cites an entry in `data/sources.json`. Sources rot, papers get revised, better data appears. Open an issue titled `source: ...` with what you found. This is the single most useful small contribution.
 
-**Challenge a number.** [docs/EVIDENCE.md](docs/EVIDENCE.md) lists every cited value and its evidence. If you think one is wrong, open a "challenge a number" issue with a better source and your proposed value. Disagreement with evidence attached is the project working as designed.
+**Challenge a number.** [docs/EVIDENCE.md](docs/EVIDENCE.md) lists every cited value and its evidence. If you think one is wrong, open a "challenge a number" issue with a better source and your proposed value. Disagreement with evidence attached is exactly what the registry is for.
 
 **Wire a source to a mechanic.** SOURCES.md keeps an honest ledger: some sources back numbers, some shaped the design, some are just the shelf. Promoting a shelf source into one that backs an actual value, with the figure quoted, is a small PR with real weight.
 
@@ -23,10 +23,11 @@ There are two ways in, and the one without code matters at least as much.
 ```
 pnpm install
 pnpm dev
-pnpm test && pnpm validate && pnpm lint && pnpm typecheck
+pnpm check        # validate + lint + typecheck + test + build, same as CI
+pnpm check:full   # adds the browser suite (needs: pnpm exec playwright install chromium)
 ```
 
-All four must pass. CI runs the same chain.
+`pnpm check` must pass; run `check:full` when you touch the UI.
 
 **The engine is pure.** `src/engine/` is a deterministic fold: `step(state, action, rng)`. No `Math.random`, no `Date`, no fetch, no storage, no transcendental `Math` functions (their results differ across JS engines and would break replays). Lint enforces every one of these. If your change fights the lint, the design needs to change, not the lint.
 
@@ -50,4 +51,4 @@ That adds `Signed-off-by: you <your@email>`, which certifies you have the right 
 
 ## What happens to your contribution
 
-Small fixes: quick review, merge. Cards and content: a maintainer checks sources and the dilemma rule, then it enters playtest rotation. Realism disputes go to the advisory board once it exists (see GOVERNANCE.md). We aim to respond within two days, kindly. Contributors land in the in-game credits.
+Small fixes: quick review, merge. Cards and content: a maintainer checks sources and the dilemma rule, then it enters playtest rotation. Realism disputes are decided by the maintainer in public issues today; an advisory board takes that role if the project earns one (see GOVERNANCE.md). We aim to respond within two days, kindly; this is a single-maintainer project today, so busy weeks may run slower. Contributors land in the in-game credits.

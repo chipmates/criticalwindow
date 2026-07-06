@@ -24,9 +24,9 @@ literally, and less cleverly, than a curious teenager or a policy wonk who reads
 Neither one gets bored, distracted, or attached to a losing plan out of stubbornness the
 way a person does.
 
-We do not have a large human playtest yet. As of this writing it is single digits: one
-person, a handful of sessions. Everything in this document is evidence that the trap
-works as designed. It is not yet evidence that the game is good. That gate is human by
+We do not have a large human playtest yet; the sessions so far are few and all from
+inside the project, and the public alpha exists precisely to change that. Everything in
+this document is evidence that the trap works as designed. It is not yet evidence that the game is good. That gate is human by
 definition, and it has not been pulled yet. [`ROADMAP.md`](../ROADMAP.md) says so directly
 and will keep saying so until real players change it.
 

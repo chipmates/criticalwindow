@@ -49,4 +49,4 @@ You do not need to code. Cards, parameters, and all game text live in JSON files
 
 ## How we measure success
 
-We do not track players. No analytics, no beacons, nothing, and you can verify that in the code. So we only count what people give us freely: exit survey answers, shared seeds, issues and pull requests, and aggregate request counts from our hosting provider, which involve no code running on your device. Our north star is completed debriefs, reported voluntarily. If those numbers look small, they are at least real.
+We do not track players. No analytics, no beacons, nothing, and you can verify that in the code. So we only count what people give us freely: debrief feedback (the challenge loop and email), shared seeds, issues and pull requests, and aggregate request counts from our hosting provider, which involve no code running on your device. Our north star is completed debriefs, reported voluntarily. If those numbers look small, they are at least real.

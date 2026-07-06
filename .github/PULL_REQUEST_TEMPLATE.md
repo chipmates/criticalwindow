@@ -4,7 +4,7 @@
 
 ## Checklist
 
-- [ ] `pnpm validate && pnpm lint && pnpm typecheck && pnpm test` pass locally
+- [ ] `pnpm check` passes (and `pnpm check:full` if you touched the UI)
 - [ ] Commits are signed off (`git commit -s`, see CONTRIBUTING.md, no CLA, you keep copyright)
 - [ ] If this changes a value in `data/`: the source ID is named below and exists in `data/sources.json`
 - [ ] If this touches `src/engine/`: no new ambient state, determinism tests still pass

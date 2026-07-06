@@ -39,7 +39,7 @@ export function Title() {
           <path d="M440 72 H 306 L 330 440 H 440 Z" fill="var(--ink)" />
           <path d="M226 72 H 306 L 330 440 H 302 Z" fill="var(--accent)" />
         </svg>
-        <p className="title-kicker">{t('app.workingTitleNote')}</p>
+        <p className="title-kicker">{t('app.definition')}</p>
         <h1 className="title-name">{t('app.title')}</h1>
         <p className="title-tagline">{t('app.tagline')}</p>
         <div className="title-race" aria-hidden="true">

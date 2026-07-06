@@ -296,6 +296,10 @@ export function Debrief() {
         <button type="button" className="btn" onClick={() => goTo('sources')}>
           {t('debrief.sources.browse')}
         </button>
+        <p className="panel-explain">
+          {t('debrief.emailAsk')}{' '}
+          <a href="mailto:criticalwindow@chipmates.ai">criticalwindow@chipmates.ai</a>
+        </p>
         <details>
           <summary>{t('debrief.sources.link')}</summary>
           <SourceChips

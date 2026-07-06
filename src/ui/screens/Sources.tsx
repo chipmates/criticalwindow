@@ -190,7 +190,7 @@ export function Sources() {
       )}
 
       <p className="sources-legend sources-build">
-        {t('sources.dataVersion', { hash: data.dataVersion })}
+        {t('sources.dataVersion', { sha: __COMMIT_SHA__, hash: data.dataVersion })}
       </p>
     </main>
   );

@@ -1,6 +1,6 @@
 # ADR-002: Defer the EU playable seat; keep Europe as a force
 
-Status: **ACCEPTED 2026-07-04** by the maintainer. Standing review: the alpha exit survey
+Status: **ACCEPTED 2026-07-04** by the maintainer. Standing review: the alpha debrief feedback
 re-tests takeaway 5; the reversal conditions below say what would bring the seat back.
 Supersedes parts of ADR-001 (#8 seats, #18 MVP path) and reframes how takeaway #5 is delivered.
 Context: v0.2 direction set by the project lead after the first human playtest of v0.1.

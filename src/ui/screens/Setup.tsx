@@ -36,6 +36,17 @@ export function Setup() {
         <p className="panel-explain">{t('setup.presetExplain')}</p>
       </header>
 
+      <div className="panel quickstart">
+        <button
+          type="button"
+          className="btn btn-primary btn-big"
+          onClick={() => startRun(rollSeed(), 'consensus', 'solo', 'usa')}
+        >
+          {t('setup.quickStart')}
+        </button>
+        <p className="panel-explain">{t('setup.quickStartHint')}</p>
+      </div>
+
       <div className="preset-grid" role="radiogroup" aria-label={t('setup.heading')}>
         {WORLDVIEW_PRESET_IDS.map((id) => {
           const preset = data.parameters.worldviewPresets[id];

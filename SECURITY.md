@@ -4,7 +4,7 @@
 
 The game runs entirely in your browser. No accounts, no tracking, no analytics, no telemetry, and no requests to any third-party host, ever. To be exact about the network: after the first load, the only requests the app can make are for its own static files on the same origin (the optional music and narration load lazily the first time you enable sound, then cache for offline play). The static host serves files and keeps ordinary access logs like any web server; nothing the game does sends your choices, saves, or anything else anywhere. Saves live in your browser's localStorage and never leave your device.
 
-These claims are auditable in this repository: there is no server code because there is no server, the service-worker config lists exactly what is cached, and the Sources screen in the game shows the build's data-version hash so you can check a deployment against this repo. A Content-Security-Policy header restricts the app to its own origin at the browser level.
+These claims are auditable in this repository: there is no server code because there is no server, the service-worker config lists exactly what is cached, and the Sources screen in the game shows the running build's commit and data-version hash so you can check a deployment against this repo. A Content-Security-Policy header restricts the app to its own origin at the browser level.
 
 ## Reporting
 

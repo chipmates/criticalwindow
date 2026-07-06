@@ -12,7 +12,7 @@ be disclosed in this file. Contact: criticalwindow@chipmates.ai.
 about scope, design, releases, and moderation rest there. As regular contributors emerge,
 core membership grows by invitation of the existing core, and this file records each change.
 
-**Realism disputes resolve toward honesty, not authority.** When contributors disagree
+**Realism disputes resolve toward honesty, not authority.** Today that means the maintainer decides, in public issues, with the reasoning on the record. When contributors disagree
 about what is realistic (a parameter range, a rival behavior, an event's plausibility),
 the ladder is: a better source wins; failing that, the disagreement becomes a wider
 uncertainty range or a worldview-preset difference, so the game carries the dispute

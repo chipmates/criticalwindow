@@ -8,7 +8,7 @@ A nonprofit education project. No revenue, no ads, no tracking, ever. Fully open
 
 The game is a strategy simulation of the AI race. You take a seat, the United States or China, solo or hotseat on one device, from 2026 through the critical window around 2030. You win, lose, or discover that winning was the wrong frame.
 
-Why it exists: most people meet the AI race through headlines, and headlines do not teach how traps work. Intelligence Rising, the facilitated academic wargame, proves the pedagogy at the scale of hundreds of players a year (SRC-AI-FUTURES-ROLEPLAY, SRC-SIM-GAMING-INSIGHTS); this project is the attempt to ship the scalable public version. Plague Inc and AI 2027 prove the reach potential.
+Why it exists: most people meet the AI race through headlines, and headlines do not teach how traps work. Intelligence Rising, the facilitated academic wargame, proves the pedagogy at the scale of hundreds of players a year (SRC-AI-FUTURES-ROLEPLAY, SRC-SIM-GAMING-INSIGHTS); this project is the attempt to ship the scalable public version. Plague Inc and AI 2027 suggest the reach is there for the taking.
 
 Audience, in order: the curious internet public and light strategy gamers; classrooms 16 to 25, whose constraints (Chromebooks, 40-minute sessions, no accounts) shape the tech; policy workshops.
 
@@ -57,11 +57,11 @@ Doom fatigue produces fatalism, which is the opposite of the mission. The good e
 
 ## 8. The debrief
 
-The education lands after the run ends, which is where the learning-science evidence says it works (SRC-WOUTERS-2013): what happened, which takeaways surfaced, counterfactual hints ("the treaty window was open on turn 7"), the truth chart showing what your evals said each quarter against what was actually true, every final number translated back to its real-world anchor, and the sources one click away. It closes with a provocation: what did this game get wrong? That question is the contributor funnel, and the project's north-star metric is completed debriefs.
+The education lands after the run ends, which is where the learning-science evidence says it works (SRC-WOUTERS-2013): what happened, which takeaways surfaced, counterfactual hints ("the treaty window was open on turn 12"), the truth chart showing what your evals said each quarter against what was actually true, every final number translated back to its real-world anchor, and the sources one click away. It closes with a provocation: what did this game get wrong? That question is the contributor funnel, and the project's north-star metric is completed debriefs.
 
 ## 9. Where the numbers come from
 
-Every number in the game data cites a source, the rule is machine-enforced in both directions, and [`EVIDENCE.md`](EVIDENCE.md) lists every cited value with its evidence and derivation. Numbers come in three kinds, labeled: measured (empirical evidence), forecast-based or analysis-based (somebody's argument, with the most contested dials living as preset ranges), and design choices, which cite this constitution and claim nothing about the world. Disagree with a value? Open a challenge-a-number issue with a source. That argument is the project working as designed.
+Every number in the game data cites a source, the rule is machine-enforced in both directions, and [`EVIDENCE.md`](EVIDENCE.md) lists every cited value with its evidence and derivation. Numbers come in three kinds, labeled: measured (empirical evidence), forecast-based or analysis-based (somebody's argument, with the most contested dials living as preset ranges), and design choices, which cite this constitution and claim nothing about the world. Disagree with a value? Open a challenge-a-number issue with a source; that is the invitation, not a nuisance.
 
 ## 10. How decisions get made
 
