@@ -188,7 +188,9 @@ try {
       new URL(`../docs/media/${name}`, import.meta.url).pathname,
     ]);
   }
-  console.log(`playthrough.gif + ${Object.values(STILLS).join(' + ')} rebuilt from ${files.length} keyframes`);
+  console.log(
+    `playthrough.gif + ${Object.values(STILLS).join(' + ')} rebuilt from ${files.length} keyframes`,
+  );
 } finally {
   await browser.close();
   server?.kill();

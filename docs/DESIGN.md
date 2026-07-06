@@ -51,7 +51,7 @@ Europe appears as a force in the world (regulatory beats, the ASML chokepoint) b
 
 ## 7. Endings
 
-Five endings, plus one hidden. Flourishing, where aligned transformative AI arrives and the benefits actually diffuse, is genuinely reachable and deliberately rare on a first run. Misaligned catastrophe, where somebody raced past the uncertainty band and lost the gamble. Outpaced. Negotiated slowdown, a verified treaty, slower and politically expensive. Societal breakdown, where trust and jobs collapsed before AI resolved anything. The hidden ending is best discovered, not read about; its evidence base is cited in the registry.
+Five endings, plus a sixth planned. Flourishing, where aligned transformative AI arrives and the benefits actually diffuse, is genuinely reachable and deliberately rare on a first run. Misaligned catastrophe, where somebody raced past the uncertainty band and lost the gamble. Outpaced. Negotiated slowdown, a verified treaty, slower and politically expensive. Societal breakdown, where trust and jobs collapsed before AI resolved anything. The sixth is a hidden ending about losing without noticing; its groundwork already accrues quietly during play, its evidence base is cited in the registry, and it ships once it can be discovered properly rather than announced.
 
 Doom fatigue produces fatalism, which is the opposite of the mission. The good endings are earned, not promised.
 
