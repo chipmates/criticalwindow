@@ -1604,3 +1604,125 @@ body {
   color: var(--ink-muted);
   overflow-wrap: anywhere;
 }
+
+/* ---------- source chips ---------- */
+
+/* A row of clickable source titles, standing in for raw SRC- ids. */
+.source-chips {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.source-chip {
+  padding-block: 0.4rem;
+  font-family: var(--font-data);
+  font-size: var(--text-xs);
+  padding: 2px var(--space-2);
+  border: var(--hairline) solid var(--rule);
+  border-radius: var(--radius);
+  color: var(--ink-muted);
+  background: none;
+  cursor: pointer;
+  max-width: 100%;
+  text-align: left;
+  /* Source titles run long; wrap inside the pill so one never overflows the
+     row (and clips at the screen edge on a phone) instead of truncating. */
+  white-space: normal;
+  overflow-wrap: anywhere;
+  transition: border-color var(--t-fast) var(--ease);
+}
+
+.source-chip:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+/* Preset card plus its (now interactive) source chips as one grid cell, so
+   the chips are siblings of the selectable card, never nested buttons. */
+.preset-cell {
+  /* Chips hug their own card so ownership is unambiguous. */
+  row-gap: 0.35rem;
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.eval-anchor {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+
+.sources-build {
+  margin-top: var(--space-5);
+}
+
+/* ---------- title: stale save + sound offer ---------- */
+
+.title-stale-save {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+
+.sound-offer {
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3);
+  border: var(--hairline) solid var(--rule);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  display: grid;
+  gap: var(--space-2);
+}
+
+.sound-offer-text {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+
+.sound-offer-actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- narrow-width fixes ---------- */
+
+@media (max-width: 40rem) {
+  /* The ticker keeps its shape on wide screens; on a phone it may wrap to two
+     lines rather than clip a headline mid-word. */
+  .wire-line {
+    white-space: normal;
+    text-overflow: clip;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  /* The 50/70/90% horizon ticks collide into text soup at phone width. They
+     are aria-hidden decoration; the current-position phrase below carries the
+     reading and the full ladder lives in Help. */
+  .race-horizon {
+    height: 0;
+    margin-top: 0;
+  }
+  .race-horizon-tick {
+    display: none;
+  }
+
+  /* THRESHOLD FOG must not wrap into the hatching. Tighter, smaller, one line. */
+  .race-fog-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+}
+
+.screen-loading {
+  min-height: 100vh;
+}

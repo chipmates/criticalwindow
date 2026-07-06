@@ -8,7 +8,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 
 const strings = JSON.parse(readFileSync('data/strings/en.json', 'utf8')) as Record<string, string>;
-const title = strings['app.title'] ?? 'Race Conditions';
+const title = strings['app.title'] ?? 'Critical Window';
 
 const html = `<!doctype html>
 <html><head><meta charset="utf-8"><style>

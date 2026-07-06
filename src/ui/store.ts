@@ -48,6 +48,10 @@ interface UiStore {
   lastError: string | null;
   /** Shock-overlay acknowledgment key (seed:turn); survives screen changes. */
   shockAck: string;
+  /** Prefill for the sources search when a chip jumps there; null when unset. */
+  sourcesQuery: string | null;
+  /** Seed of an autosave refused at boot for a data-version mismatch. */
+  staleSaveSeed: string | null;
 
   goTo: (screen: Screen) => void;
   startRun: (
@@ -64,12 +68,32 @@ interface UiStore {
   ackShocks: (key: string) => void;
   markPrologueSeen: () => void;
   clearError: () => void;
+  setSourcesQuery: (query: string | null) => void;
 }
 
 const data = loadGameData();
 
 export function gameData() {
   return data;
+}
+
+/**
+ * A data update rewrites the content hash, so an autosave from the old build
+ * can no longer resume (replaying it would diverge). We do not delete it
+ * silently: read its seed at boot so the title can explain what happened and
+ * offer the seed for a fresh run.
+ */
+function readStaleSaveSeed(): string | null {
+  const raw = readSlot('auto') as { dataVersion?: unknown; seed?: unknown } | null;
+  if (
+    raw &&
+    typeof raw === 'object' &&
+    typeof raw.dataVersion === 'string' &&
+    raw.dataVersion !== data.dataVersion
+  ) {
+    return typeof raw.seed === 'string' ? raw.seed : null;
+  }
+  return null;
 }
 
 function applyDocumentSettings(settings: Settings): void {
@@ -93,6 +117,8 @@ export const useStore = create<UiStore>((set, get) => ({
   settings: readSettings(),
   lastError: null,
   shockAck: '',
+  sourcesQuery: null,
+  staleSaveSeed: readStaleSaveSeed(),
 
   goTo(screen) {
     const { settings } = get();
@@ -143,6 +169,19 @@ export const useStore = create<UiStore>((set, get) => ({
         next = step(data, next, scripted);
         log.push(scripted);
         guard += 1;
+      }
+      // The cap should never bind: a hung scripted seat would freeze the run
+      // with the human's window never reopening. Log enough to debug the stall.
+      if (
+        guard >= 20 &&
+        next.phase !== 'ended' &&
+        next.phase !== 'report' &&
+        next.actingSeat !== next.playerSeat
+      ) {
+        console.error(
+          `[criticalwindow] scripted-seat auto-advance did not return the window: ` +
+            `phase=${next.phase} actingSeat=${next.actingSeat} playerSeat=${next.playerSeat} turn=${next.turn}`,
+        );
       }
     }
     set({ run: next, actionsLog: log });
@@ -215,6 +254,10 @@ export const useStore = create<UiStore>((set, get) => ({
 
   clearError() {
     set({ lastError: null });
+  },
+
+  setSourcesQuery(query) {
+    set({ sourcesQuery: query });
   },
 }));
 

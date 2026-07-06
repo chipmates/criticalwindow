@@ -8,13 +8,13 @@
  * (Block B4); the print script then reads them from data like everything else.
  */
 
-export const KIT_TITLE = 'Race Conditions';
+export const KIT_TITLE = 'Critical Window';
 export const KIT_SUBTITLE = 'paper prototype kit (working title, v0)';
 
 export const COVER_NOTES = [
   'Print single-sided on plain A4. Cardstock helps for the two card pages but is optional.',
   'Cut the cards along the light gray lines. Cards are 60 by 85 mm.',
-  'You need: two ten-sided dice, a pencil, one envelope, 30 to 45 minutes.',
+  'You need: two ten-sided dice in different colors, a pencil, one envelope, 30 to 45 minutes.',
   'The board sheet is your save file. Mark tracks with pencil, erase as they move.',
   'Sources are printed on every card. Every number in this game cites one. When you disagree with a number, that is a conversation we want: the repository takes issues.',
 ];
@@ -44,7 +44,7 @@ export const RULES_GOAL =
 export const RULES_SETUP: string[] = [
   'Lay out the board, the three era decks (shuffle each), the policy rack, the reference card.',
   'Mark every track at the printed start value (the small triangle on each track).',
-  'The envelope: roll d10 twice WITHOUT LOOKING at the results. Have a friend note the two digits on the slip, first digit is Alignment Difficulty, second is Takeoff Steepness. Seal it. Solo: tip both dice into the envelope unseen and seal. You govern without knowing what is inside.',
+  'The envelope: roll d10 twice WITHOUT LOOKING at the results. Have a friend note the two digits on the slip, first digit is Alignment Difficulty, second is Takeoff Steepness. Seal it. Solo: use different-colored dice, roll both without looking and tip them straight in; the darker die is Alignment Difficulty, the lighter is Takeoff Steepness. Seal it. You govern without knowing what is inside.',
   'Check the flag row is all unchecked. Put a pencil mark on turn 1.',
 ];
 
@@ -170,7 +170,7 @@ export const ENVELOPE_TITLE = 'The Envelope';
 
 export const ENVELOPE_INSTRUCTIONS: string[] = [
   'Cut out the slip below. At setup, roll d10 twice without anyone seeing the results.',
-  'A second person writes the two digits on the slip and seals it. Solo: tip the dice into the envelope unseen.',
+  'A second person writes the two digits on the slip and seals it. Solo: different-colored dice, unseen, darker = Alignment Difficulty.',
   'First digit: Alignment Difficulty. Second digit: Takeoff Steepness.',
   'The envelope stays sealed until the Endgame. Every decision you make before that is made under exactly the uncertainty the real world has.',
 ];

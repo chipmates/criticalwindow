@@ -1,5 +1,6 @@
 import type { EngineData } from '../../engine/data';
 import type { GameState, PlayableSeatId } from '../../engine/types';
+import { anchorFor } from '../anchors';
 import { t } from '../i18n';
 
 export function EvalBand({
@@ -22,6 +23,16 @@ export function EvalBand({
     run.seats[seat].resources.capability >= data.parameters.thresholds.fogZoneStart.value;
   const left = (report.bandLow / 1000) * 100;
   const width = ((report.bandHigh - report.bandLow) / 1000) * 100;
+  // Translate the RANGE endpoints into plain rungs, never the hidden truth.
+  // Same rung at both ends: show it once; different rungs: low then high.
+  const lowAnchor = anchorFor('alignment', report.bandLow);
+  const highAnchor = anchorFor('alignment', report.bandHigh);
+  const bandAnchor =
+    lowAnchor && highAnchor
+      ? lowAnchor === highAnchor
+        ? lowAnchor
+        : `${lowAnchor} · ${highAnchor}`
+      : (lowAnchor ?? highAnchor);
   return (
     <section className="panel eval" aria-labelledby="eval-heading">
       <h2 id="eval-heading" className="panel-heading">
@@ -37,6 +48,7 @@ export function EvalBand({
       <p className="eval-numbers">
         {t('eval.band', { low: report.bandLow, high: report.bandHigh })}
       </p>
+      {bandAnchor && <p className="eval-anchor">{bandAnchor}</p>}
       {inFog && <p className="eval-fog-warning">{t('eval.fogWarning')}</p>}
       <p className="panel-explain">{t('eval.explain')}</p>
     </section>

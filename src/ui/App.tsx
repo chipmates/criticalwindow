@@ -1,14 +1,18 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect, type ReactNode } from 'react';
 import { parseShare } from '../engine/save';
 import { t } from './i18n';
-import { Debrief } from './screens/Debrief';
-import { Help } from './screens/Help';
 import { Game } from './screens/Game';
-import { Prologue } from './screens/Prologue';
 import { Setup } from './screens/Setup';
-import { Sources } from './screens/Sources';
 import { Title } from './screens/Title';
 import { gameData, useStore } from './store';
+
+// Title, Setup and Game are the hot path and stay in the main chunk. The
+// rest split out so a school Chromebook does not download the debrief, the
+// prologue, the sources browser and the help glossary just to see the menu.
+const Debrief = lazy(() => import('./screens/Debrief').then((m) => ({ default: m.Debrief })));
+const Help = lazy(() => import('./screens/Help').then((m) => ({ default: m.Help })));
+const Prologue = lazy(() => import('./screens/Prologue').then((m) => ({ default: m.Prologue })));
+const Sources = lazy(() => import('./screens/Sources').then((m) => ({ default: m.Sources })));
 
 export function App() {
   const screen = useStore((s) => s.screen);
@@ -28,20 +32,32 @@ export function App() {
     }
   }, [startRun]);
 
+  let view: ReactNode = null;
   switch (screen) {
     case 'help':
-      return <Help onBack={() => useStore.getState().goTo(useStore.getState().helpReturn)} />;
+      view = <Help onBack={() => useStore.getState().goTo(useStore.getState().helpReturn)} />;
+      break;
     case 'title':
-      return <Title />;
+      view = <Title />;
+      break;
     case 'setup':
-      return <Setup />;
+      view = <Setup />;
+      break;
     case 'prologue':
-      return <Prologue />;
+      view = <Prologue />;
+      break;
     case 'game':
-      return <Game />;
+      view = <Game />;
+      break;
     case 'debrief':
-      return <Debrief />;
+      view = <Debrief />;
+      break;
     case 'sources':
-      return <Sources />;
+      view = <Sources />;
+      break;
   }
+
+  return (
+    <Suspense fallback={<main className="screen-loading" aria-busy="true" />}>{view}</Suspense>
+  );
 }

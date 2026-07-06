@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import sourcesJson from '../../../data/sources.json';
 import usageJson from '../generated/source-usage.json';
 import { t } from '../i18n';
-import { useStore } from '../store';
+import { gameData, useStore } from '../store';
 
 interface SourceEntry {
   id: string;
@@ -120,8 +120,18 @@ const SECTIONS: Section[] = [
  */
 export function Sources() {
   const goTo = useStore((s) => s.goTo);
-  const [query, setQuery] = useState('');
+  const sourcesQuery = useStore((s) => s.sourcesQuery);
+  const setSourcesQuery = useStore((s) => s.setSourcesQuery);
+  // A chip elsewhere can hand us a search term; consume it once, then clear so
+  // it never re-applies on a later visit.
+  const [query, setQuery] = useState(sourcesQuery ?? '');
+  useEffect(() => {
+    if (sourcesQuery !== null) {
+      setSourcesQuery(null);
+    }
+  }, [sourcesQuery, setSourcesQuery]);
   const trimmed = query.trim().toLowerCase();
+  const data = gameData();
 
   return (
     <main className="help-screen sources-screen">
@@ -178,6 +188,10 @@ export function Sources() {
       {trimmed && SECTIONS.every((s) => s.entries.every((e) => !matches(e, trimmed))) && (
         <p className="panel-explain">{t('sources.none')}</p>
       )}
+
+      <p className="sources-legend sources-build">
+        {t('sources.dataVersion', { hash: data.dataVersion })}
+      </p>
     </main>
   );
 }

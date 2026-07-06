@@ -4,7 +4,7 @@
  * One content source for paper and digital: cards, tracks, tables and start
  * values all come from the same files the engine loads. The script refuses
  * to build if a card effect is not printable on the paper scale (multiples
- * of 50). Output: dist-print/kit.html + dist-print/race-conditions-paper-kit.pdf.
+ * of 50). Output: dist-print/kit.html + dist-print/critical-window-paper-kit.pdf.
  *
  * Paper mapping documented in docs/paper-kit.md. Kit prose in print-kit-text.ts.
  */
@@ -871,7 +871,7 @@ const browser = await chromium.launch();
 try {
   const page = await browser.newPage();
   await page.goto(`file://${htmlPath}`);
-  const pdfPath = join(outDir, 'race-conditions-paper-kit.pdf');
+  const pdfPath = join(outDir, 'critical-window-paper-kit.pdf');
   await page.pdf({ path: pdfPath, format: 'A4', printBackground: true });
   console.log(`wrote ${pdfPath}`);
 } finally {

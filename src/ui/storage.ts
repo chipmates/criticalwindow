@@ -6,7 +6,33 @@
  */
 import type { SaveGameData } from '../engine/schemas';
 
-const PREFIX = 'race-conditions';
+const PREFIX = 'critical-window';
+const OLD_PREFIX = 'race-conditions';
+
+/**
+ * One-time migration from the working-title prefix. Copies any old key to
+ * its new name without deleting the original (a rollback never loses data).
+ */
+function migrateOldPrefix(): void {
+  try {
+    for (let i = 0; i < localStorage.length; i += 1) {
+      const oldKey = localStorage.key(i);
+      if (!oldKey || !oldKey.startsWith(`${OLD_PREFIX}.`)) {
+        continue;
+      }
+      const newKey = `${PREFIX}${oldKey.slice(OLD_PREFIX.length)}`;
+      if (localStorage.getItem(newKey) === null) {
+        const value = localStorage.getItem(oldKey);
+        if (value !== null) {
+          localStorage.setItem(newKey, value);
+        }
+      }
+    }
+  } catch {
+    // Storage unavailable: nothing to migrate.
+  }
+}
+migrateOldPrefix();
 
 export const SAVE_SLOTS = ['auto', 'slot1', 'slot2', 'slot3'] as const;
 export type SaveSlot = (typeof SAVE_SLOTS)[number];

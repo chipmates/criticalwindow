@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { SettingsDialog } from '../components/SettingsDialog';
 import { t } from '../i18n';
+import { hintSeen, markHint } from '../storage';
 import { useStore } from '../store';
 
 export function Title() {
   const goTo = useStore((s) => s.goTo);
   const loadFrom = useStore((s) => s.loadFrom);
   const hasAutosave = useStore((s) => s.hasAutosave)();
+  const staleSaveSeed = useStore((s) => s.staleSaveSeed);
   const musicOn = useStore((s) => s.settings.musicOn);
   const voiceOn = useStore((s) => s.settings.voiceOn);
   const updateSettings = useStore((s) => s.updateSettings);
@@ -14,6 +16,13 @@ export function Title() {
   // just the narrator or just the bed split them apart in Settings.
   const soundOn = musicOn || voiceOn;
   const [settingsOpen, setSettingsOpen] = useState(false);
+  // Sound is off by default out of respect; the offer is the one nudge, shown
+  // once. It rides the same first-run hint flags as every other one-time note.
+  const [soundOfferOpen, setSoundOfferOpen] = useState(() => !hintSeen('soundOffer'));
+  const dismissSoundOffer = (): void => {
+    markHint('soundOffer');
+    setSoundOfferOpen(false);
+  };
 
   return (
     <main className="title-screen">
@@ -48,17 +57,42 @@ export function Title() {
           <button type="button" className="btn btn-primary btn-big" onClick={() => goTo('setup')}>
             {t('setup.newRun')}
           </button>
-          {hasAutosave && (
+          {hasAutosave && !staleSaveSeed && (
             <button type="button" className="btn btn-big" onClick={() => loadFrom('auto')}>
               {t('setup.continueRun')}
             </button>
           )}
         </div>
+        {staleSaveSeed && (
+          <p className="title-stale-save">{t('title.staleSave', { seed: staleSaveSeed })}</p>
+        )}
+        {soundOfferOpen && (
+          <div className="sound-offer" role="group" aria-label={t('title.soundOffer')}>
+            <p className="sound-offer-text">{t('title.soundOffer')}</p>
+            <div className="sound-offer-actions">
+              <button
+                type="button"
+                className="btn"
+                onClick={() => {
+                  updateSettings({ musicOn: true, voiceOn: true });
+                  dismissSoundOffer();
+                }}
+              >
+                {t('title.soundOn')}
+              </button>
+              <button type="button" className="btn-link" onClick={dismissSoundOffer}>
+                {t('title.soundNotNow')}
+              </button>
+            </div>
+          </div>
+        )}
         <p className="title-privacy">
           {t('footer.privacy')}{' '}
           <a href={t('app.repoUrl')} target="_blank" rel="noopener noreferrer">
             {t('title.github')}
-          </a>
+          </a>{' '}
+          · <a href="/imprint.html">{t('title.imprint')}</a> ·{' '}
+          <a href="/privacy.html">{t('title.privacyPage')}</a>
         </p>
         <nav className="title-links" aria-label="More">
           <button type="button" className="btn-link" onClick={() => goTo('help')}>

@@ -39,16 +39,16 @@ export default defineConfig({
         globIgnores: ['audio/**'],
         runtimeCaching: [
           {
-            urlPattern: /\/audio\/.*\.mp3$/,
+            urlPattern: /\/audio\/.*\.(?:mp3|json)$/,
             handler: 'CacheFirst',
-            options: { cacheName: 'audio', expiration: { maxEntries: 12 } },
+            options: { cacheName: 'audio', expiration: { maxEntries: 160 } },
           },
         ],
       },
     }),
   ],
   // Relative base keeps the build portable across static hosts and subpaths
-  // (GitHub Pages project sites included). Revisit at E1 if the PWA needs it.
+  // (GitHub Pages project sites included). Revisit if the PWA needs it.
   base: './',
   define: {
     __DATA_VERSION__: JSON.stringify(dataVersion),

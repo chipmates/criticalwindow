@@ -159,7 +159,8 @@ describe('ending reachability batch (B4 verify; the full 10k batch is B6)', () =
         expect(result.turns).toBeLessThanOrEqual(16);
       }
     }
-    process.stdout.write(`ending distribution (100 runs): ${JSON.stringify(counts)}
+    process.stdout
+      .write(`ending distribution (100 runs, counts overlap across bot personas): ${JSON.stringify(counts)}
 `);
     expect(endings.size).toBeGreaterThanOrEqual(3);
   });

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { GameMode, PlayableSeatId, WorldviewPresetId } from '../../engine/types';
 import { PLAYABLE_SEAT_IDS, WORLDVIEW_PRESET_IDS } from '../../engine/types';
+import { SourceChips } from '../components/SourceChip';
 import { t, tRef } from '../i18n';
 import { gameData, useStore } from '../store';
 
@@ -33,25 +34,24 @@ export function Setup() {
           const preset = data.parameters.worldviewPresets[id];
           const selected = id === presetId;
           return (
-            <button
-              key={id}
-              type="button"
-              role="radio"
-              aria-checked={selected}
-              className={selected ? 'preset-card preset-selected' : 'preset-card'}
-              onClick={() => setPresetId(id)}
-            >
-              <h2 className="preset-name">{tRef(preset.label)}</h2>
-              <p className="preset-desc">{tRef(preset.description)}</p>
-              <p className="preset-sources">
-                {[
-                  ...new Set([
-                    ...preset.alignmentDifficulty.sourceIds,
-                    ...preset.takeoffSteepness.sourceIds,
-                  ]),
-                ].join(' · ')}
-              </p>
-            </button>
+            <div key={id} className="preset-cell">
+              <button
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                className={selected ? 'preset-card preset-selected' : 'preset-card'}
+                onClick={() => setPresetId(id)}
+              >
+                <h2 className="preset-name">{tRef(preset.label)}</h2>
+                <p className="preset-desc">{tRef(preset.description)}</p>
+              </button>
+              <SourceChips
+                ids={[
+                  ...preset.alignmentDifficulty.sourceIds,
+                  ...preset.takeoffSteepness.sourceIds,
+                ]}
+              />
+            </div>
           );
         })}
       </div>
@@ -128,10 +128,13 @@ export function Setup() {
         <button
           type="button"
           className="btn btn-primary btn-big"
-          disabled={seed.trim().length === 0}
-          onClick={() =>
-            startRun(seed.trim(), presetId, mode, mode === 'solo' ? playerSeat : 'usa')
-          }
+          onClick={() => {
+            // Never start on an empty or oversized seed: roll one if blank, cap
+            // at 64 chars, and reflect the real seed so it is visible before we go.
+            const cleaned = seed.trim().slice(0, 64) || rollSeed();
+            setSeed(cleaned);
+            startRun(cleaned, presetId, mode, mode === 'solo' ? playerSeat : 'usa');
+          }}
         >
           {t('setup.begin')}
         </button>

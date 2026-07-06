@@ -83,8 +83,8 @@ test('keyboard only: a turn can be played without a pointer', async ({ page }) =
   await expect(page.getByRole('button', { name: 'New run' })).toBeFocused();
   await page.keyboard.press('Enter');
 
-  // Setup: radio group -> seed -> begin. Walk with Tab until Take office.
-  for (let i = 0; i < 20; i += 1) {
+  // Setup: preset cards + their source chips + radios + seed. Walk until Take office.
+  for (let i = 0; i < 60; i += 1) {
     const focused = await page.evaluate(() =>
       (
         globalThis as unknown as {
@@ -120,6 +120,8 @@ test('keyboard only: a turn can be played without a pointer', async ({ page }) =
     throw new Error(`keyboard walk never reached '${label}'`);
   };
 
+  // Lazy-loaded screen: wait for it to mount, as a sighted user would.
+  await page.getByRole('button', { name: 'Continue' }).waitFor();
   await walkTo('Continue'); // intro -> chapter 1
   await walkTo('Commit allocation'); // chapter 1 teaches the allocation control
   await walkTo('Enact'); // chapter 2 teaches a policy card

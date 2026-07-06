@@ -3,6 +3,7 @@ import { evalCurve, divRound, mulDiv } from '../../engine/math';
 import type { PrologueChapterData } from '../../engine/schemas';
 import { playVoice, stopVoice } from '../audio';
 import { AllocationControl } from '../components/AllocationControl';
+import { SourceChips } from '../components/SourceChip';
 import { targetLabel } from '../format';
 import { t, tRef } from '../i18n';
 import { loadPrologueData } from '../load-data';
@@ -134,7 +135,7 @@ export function Prologue() {
                   <div className="policy-card">
                     <h2 className="policy-title">{tRef(card.title)}</h2>
                     <p className="policy-body">{tRef(card.body)}</p>
-                    <p className="memo-sources">{card.sourceIds.join(' · ')}</p>
+                    <SourceChips ids={card.sourceIds} />
                   </div>
                   <div className="panel-actions">
                     <button type="button" className="btn btn-primary" onClick={advance}>
@@ -175,7 +176,7 @@ export function Prologue() {
             </div>
           )}
 
-          <p className="memo-sources">{chapter.sourceIds.join(' · ')}</p>
+          <SourceChips ids={chapter.sourceIds} />
         </section>
       )}
 

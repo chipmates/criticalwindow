@@ -4,6 +4,7 @@ import { encodeShare } from '../../engine/save';
 import { scoreRun } from '../../engine/score';
 import { anchorFor, unitFor } from '../anchors';
 import { playNarration } from '../audio';
+import { SourceChips } from '../components/SourceChip';
 import { Timeline } from '../components/Timeline';
 import { TruthChart } from '../components/TruthChart';
 import en from '../../../data/strings/en.json';
@@ -199,7 +200,12 @@ export function Debrief() {
           </div>
           <div>
             <dt>{t('debrief.hidden.trueAlignment')}</dt>
-            <dd>{revealedAlignment}</dd>
+            <dd>
+              {revealedAlignment}
+              {anchorFor('alignment', revealedAlignment)
+                ? ` · ${anchorFor('alignment', revealedAlignment)}`
+                : ''}
+            </dd>
           </div>
         </dl>
         {decidedByOther && (
@@ -280,6 +286,11 @@ export function Debrief() {
       </section>
 
       <section className="panel">
+        <h2 className="panel-heading">{t('debrief.provocation')}</h2>
+        <p className="panel-explain">{t('debrief.provocationBody')}</p>
+      </section>
+
+      <section className="panel">
         <h2 className="panel-heading">{t('debrief.sources.heading')}</h2>
         <p className="panel-explain">{t('debrief.sources.body')}</p>
         <button type="button" className="btn" onClick={() => goTo('sources')}>
@@ -287,16 +298,14 @@ export function Debrief() {
         </button>
         <details>
           <summary>{t('debrief.sources.link')}</summary>
-          <p className="debrief-sources-list">
-            {[
-              ...new Set([
-                ...data.parameters.worldviewPresets[runMeta.presetId].alignmentDifficulty.sourceIds,
-                ...data.parameters.worldviewPresets[runMeta.presetId].takeoffSteepness.sourceIds,
-                ...data.parameters.evalUncertainty.baseBandWidth.sourceIds,
-                ...data.parameters.evalUncertainty.deceptionMaxLift.sourceIds,
-              ]),
-            ].join(' · ')}
-          </p>
+          <SourceChips
+            ids={[
+              ...data.parameters.worldviewPresets[runMeta.presetId].alignmentDifficulty.sourceIds,
+              ...data.parameters.worldviewPresets[runMeta.presetId].takeoffSteepness.sourceIds,
+              ...data.parameters.evalUncertainty.baseBandWidth.sourceIds,
+              ...data.parameters.evalUncertainty.deceptionMaxLift.sourceIds,
+            ]}
+          />
         </details>
       </section>
 
@@ -319,10 +328,6 @@ export function Debrief() {
               {t('debrief.playAgain')}
             </button>
           </div>
-        </div>
-        <div className="debrief-provocation">
-          <h2 className="panel-heading">{t('debrief.provocation')}</h2>
-          <p className="panel-explain">{t('debrief.provocationBody')}</p>
         </div>
       </section>
     </main>

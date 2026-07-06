@@ -5,8 +5,16 @@ import { playVoice, stopVoice } from '../audio';
 import { Hint } from './Hint';
 import { TagStamp } from './TagStamp';
 import { delayedSummary, effectSummary, turnDate } from '../format';
+import sourcesJson from '../../../data/sources.json';
 import { t, tRef } from '../i18n';
 import { useStore } from '../store';
+
+const SOURCE_TITLE = new Map(
+  (sourcesJson as { sources: Array<{ id: string; title: string }> }).sources.map((s) => [
+    s.id,
+    s.title,
+  ]),
+);
 
 interface EventMemoProps {
   data: EngineData;
@@ -73,7 +81,9 @@ export function EventMemo({ data, run, onChoose }: EventMemoProps) {
             </button>
           ))}
         </div>
-        <p className="memo-sources">{card.sourceIds.join(' · ')}</p>
+        <p className="memo-sources">
+          {card.sourceIds.map((id) => SOURCE_TITLE.get(id) ?? id).join(' · ')}
+        </p>
       </section>
     </div>
   );
