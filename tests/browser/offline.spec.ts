@@ -36,7 +36,11 @@ test.afterAll(() => {
   server?.kill();
 });
 
-test('core game survives going offline after first load', async ({ browser }) => {
+test('core game survives going offline after first load', async ({ browser, browserName }) => {
+  // Offline emulation plus service workers is only reliable in chromium's
+  // Playwright driver; the promise itself is engine-independent (one engine
+  // proving the artifact serves from cache is the claim).
+  test.skip(browserName !== 'chromium', 'offline+SW emulation is chromium-only in Playwright');
   test.setTimeout(120_000);
   const context = await browser.newContext();
   const page = await context.newPage();

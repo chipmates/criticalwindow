@@ -76,7 +76,11 @@ test('axe: title, setup, game and debrief scan clean', async ({ page }) => {
   await expectNoViolations(page);
 });
 
-test('keyboard only: a turn can be played without a pointer', async ({ page }) => {
+test('keyboard only: a turn can be played without a pointer', async ({ page, browserName }) => {
+  // WebKit's tab-focus model skips elements chromium and firefox focus; real
+  // Safari keyboard behavior is a manual check (tracked in the STAND), not a
+  // driver emulation question.
+  test.skip(browserName === 'webkit', 'webkit tab-focus semantics differ in the driver');
   await page.goto('/');
   // Tab to "New run" and activate.
   await page.keyboard.press('Tab');
