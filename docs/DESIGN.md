@@ -8,23 +8,23 @@ A nonprofit education project. No revenue, no ads, no tracking, ever. Fully open
 
 The game is a strategy simulation of the AI race. You take a seat, the United States or China, solo or hotseat on one device, from 2026 through the critical window around 2030. You win, lose, or discover that winning was the wrong frame.
 
-Why it exists: most people meet the AI race through headlines, and headlines do not teach how traps work. Intelligence Rising, the facilitated academic wargame, proves the pedagogy at the scale of hundreds of players a year; this project is the attempt to ship the scalable public version. Plague Inc and AI 2027 prove the reach potential.
+Why it exists: most people meet the AI race through headlines, and headlines do not teach how traps work. Intelligence Rising, the facilitated academic wargame, proves the pedagogy at the scale of hundreds of players a year (SRC-AI-FUTURES-ROLEPLAY, SRC-SIM-GAMING-INSIGHTS); this project is the attempt to ship the scalable public version. Plague Inc and AI 2027 prove the reach potential.
 
 Audience, in order: the curious internet public and light strategy gamers; classrooms 16 to 25, whose constraints (Chromebooks, 40-minute sessions, no accounts) shape the tech; policy workshops.
 
 ## 2. The five takeaways
 
-Every mechanic serves at least one of these. If a mechanic serves none, it gets cut.
+Every mechanic serves at least one of these. If a mechanic serves none, it gets cut. The takeaways are claims about the world, so each cites its evidence; the IDs resolve in [`SOURCES.md`](../SOURCES.md).
 
-1. **Race dynamics are a trap.** Individually rational moves, collectively catastrophic outcomes, even when everyone is decent.
-2. **Alignment cannot be verified directly.** You govern under irreducible uncertainty. Eval scores are not truth.
-3. **AI has a physical body.** Chips, fabs, energy. Chokepoints are leverage.
-4. **Neither racing nor pausing is automatically winning.** Every path has costs. Cooperation is hard but possible.
-5. **Middle powers have real leverage and a closing window,** and societal stability is a resource leaders can bankrupt.
+1. **Race dynamics are a trap.** Individually rational moves, collectively catastrophic outcomes, even when everyone is decent. (SRC-RACING-PRECIPICE, SRC-SIM-GAMING-INSIGHTS)
+2. **Alignment cannot be verified directly.** You govern under irreducible uncertainty. Eval scores are not truth. (SRC-SLEEPER, SRC-SCHEMING, SRC-ALIGNMENT-FAKING)
+3. **AI has a physical body.** Chips, fabs, energy. Chokepoints are leverage. (SRC-CHIP-WAR, SRC-CSIS-EXPORT, SRC-IEA-ENERGY-AI)
+4. **Neither racing nor pausing is automatically winning.** Every path has costs. Cooperation is hard but possible. (SRC-MAIM, SRC-HO-INTL-INSTITUTIONS, SRC-PUTNAM-TWO-LEVEL)
+5. **Middle powers have real leverage and a closing window,** and societal stability is a resource leaders can bankrupt. (SRC-DRAGHI-REPORT, SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT)
 
 ## 3. Operating principles
 
-1. **Fun first, about 70/30.** The lesson lives in mechanics. Explicit education (debrief, sources, teacher kit) surrounds the loop and never interrupts it.
+1. **Fun first, about 70/30.** The lesson lives in mechanics, because games persuade through their rules, not through lectures (SRC-BOGOST-PERSUASIVE-GAMES). Explicit education (debrief, sources, teacher kit) surrounds the loop and never interrupts it.
 2. **Transparency over neutrality.** Worldview presets set honest parameter ranges, hidden dice roll within them, every number cites a source. We do not claim to know how hard alignment is; we make you pick a worldview and live with it.
 3. **Zero recurring costs.** Static hosting, no backend, no accounts, all assets baked at build time.
 4. **Everything is data.** Rules, events, parameters and strings live in JSON. Non-coders contribute content.
@@ -39,9 +39,9 @@ One turn is one quarter. You read the briefing (advisor summaries plus a satiric
 
 ## 5. The signature mechanic: governing under uncertainty
 
-Two dice are sealed per run before turn one: how hard alignment actually is, and how fast capability compounds once it starts feeding itself. Both are rolled inside the ranges set by the worldview preset you chose (cautious, consensus, skeptic), each range cited to the sources that argue for it.
+Two dice are sealed per run before turn one: how hard alignment actually is, and how fast capability compounds once it starts feeding itself. Both are rolled inside the ranges set by the worldview preset you chose (cautious, consensus, skeptic), each range cited to the sources that argue for it. The presets exist because expert estimates genuinely diverge and stay diverged (SRC-XPT, SRC-GRACE-SURVEY); pretending otherwise would be a worldview smuggled in as a fact.
 
-You never see the dice. You see eval reports with an uncertainty band. Investing in safety insight narrows the band, never to zero, and a deceptively aligned system can read better than it is; that behavior is grounded in the deception literature the parameters cite. Every deployment and racing decision is made under that uncertainty. Takeaway 2 is felt, not stated.
+You never see the dice. You see eval reports with an uncertainty band. Investing in safety insight narrows the band, never to zero, and a deceptively aligned system can read better than it is; that behavior is grounded in the deception literature the parameters cite (SRC-SLEEPER, SRC-AGENTIC-MISALIGNMENT). Every deployment and racing decision is made under that uncertainty. Takeaway 2 is felt, not stated.
 
 ## 6. Seats and the rival
 
@@ -57,7 +57,7 @@ Doom fatigue produces fatalism, which is the opposite of the mission. The good e
 
 ## 8. The debrief
 
-The education lands after the run ends: what happened, which takeaways surfaced, counterfactual hints ("the treaty window was open on turn 7"), the truth chart showing what your evals said each quarter against what was actually true, every final number translated back to its real-world anchor, and the sources one click away. It closes with a provocation: what did this game get wrong? That question is the contributor funnel, and the project's north-star metric is completed debriefs.
+The education lands after the run ends, which is where the learning-science evidence says it works (SRC-WOUTERS-2013): what happened, which takeaways surfaced, counterfactual hints ("the treaty window was open on turn 7"), the truth chart showing what your evals said each quarter against what was actually true, every final number translated back to its real-world anchor, and the sources one click away. It closes with a provocation: what did this game get wrong? That question is the contributor funnel, and the project's north-star metric is completed debriefs.
 
 ## 9. Where the numbers come from
 
