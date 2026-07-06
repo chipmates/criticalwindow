@@ -110,38 +110,18 @@
   "worldRules": {
     "rivalMoves": {
       "race": {
-        "capability": {
-          "value": 100,
-          "sourceIds": ["TODO-SOURCE"]
-        },
         "trust": {
           "value": -50,
           "sourceIds": ["TODO-SOURCE"]
         }
       },
       "mirror": {
-        "capability": {
-          "value": 50,
-          "sourceIds": ["TODO-SOURCE"]
-        },
-        "matchBonus": {
-          "value": 50,
-          "sourceIds": ["TODO-SOURCE"]
-        },
         "diplomacyTrust": {
-          "value": 50,
-          "sourceIds": ["TODO-SOURCE"]
-        },
-        "matchTrigger": {
           "value": 50,
           "sourceIds": ["TODO-SOURCE"]
         }
       },
       "cautious": {
-        "capability": {
-          "value": 50,
-          "sourceIds": ["TODO-SOURCE"]
-        },
         "trust": {
           "value": 50,
           "sourceIds": ["TODO-SOURCE"]
@@ -163,18 +143,6 @@
       }
     },
     "society": {
-      "displacementCapabilityMin": {
-        "value": 400,
-        "sourceIds": ["TODO-SOURCE"]
-      },
-      "displacementPerTurn": {
-        "value": 50,
-        "sourceIds": ["TODO-SOURCE"]
-      },
-      "displacementSurgeCapability": {
-        "value": 700,
-        "sourceIds": ["TODO-SOURCE"]
-      },
       "diffusionReliefPer": {
         "value": 100,
         "sourceIds": ["TODO-SOURCE"]
@@ -185,14 +153,6 @@
       },
       "unrestSurgeDisplacement": {
         "value": 600,
-        "sourceIds": ["TODO-SOURCE"]
-      },
-      "trustErosionUnrestMin": {
-        "value": 500,
-        "sourceIds": ["TODO-SOURCE"]
-      },
-      "trustErosionPerTurn": {
-        "value": 50,
         "sourceIds": ["TODO-SOURCE"]
       }
     },
@@ -212,20 +172,6 @@
     },
     "upkeep": {
       "capitalIncomePerDiffusion": {
-        "value": 25,
-        "sourceIds": ["TODO-SOURCE"]
-      }
-    },
-    "rivalDepth": {
-      "substitutionBonusMin": {
-        "value": 700,
-        "sourceIds": ["TODO-SOURCE"]
-      },
-      "substitutionBonus": {
-        "value": 25,
-        "sourceIds": ["TODO-SOURCE"]
-      },
-      "progressVariance": {
         "value": 25,
         "sourceIds": ["TODO-SOURCE"]
       }

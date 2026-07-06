@@ -1049,40 +1049,6 @@
             "race": {
               "type": "object",
               "properties": {
-                "capability": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "sourceIds": {
-                      "minItems": 1,
-                      "type": "array",
-                      "items": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                          },
-                          {
-                            "type": "string",
-                            "const": "TODO-SOURCE"
-                          }
-                        ]
-                      }
-                    },
-                    "note": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "value",
-                    "sourceIds"
-                  ],
-                  "additionalProperties": false
-                },
                 "trust": {
                   "type": "object",
                   "properties": {
@@ -1119,7 +1085,6 @@
                 }
               },
               "required": [
-                "capability",
                 "trust"
               ],
               "additionalProperties": false
@@ -1127,108 +1092,6 @@
             "mirror": {
               "type": "object",
               "properties": {
-                "capability": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "sourceIds": {
-                      "minItems": 1,
-                      "type": "array",
-                      "items": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                          },
-                          {
-                            "type": "string",
-                            "const": "TODO-SOURCE"
-                          }
-                        ]
-                      }
-                    },
-                    "note": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "value",
-                    "sourceIds"
-                  ],
-                  "additionalProperties": false
-                },
-                "matchBonus": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "sourceIds": {
-                      "minItems": 1,
-                      "type": "array",
-                      "items": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                          },
-                          {
-                            "type": "string",
-                            "const": "TODO-SOURCE"
-                          }
-                        ]
-                      }
-                    },
-                    "note": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "value",
-                    "sourceIds"
-                  ],
-                  "additionalProperties": false
-                },
-                "matchTrigger": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "sourceIds": {
-                      "minItems": 1,
-                      "type": "array",
-                      "items": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                          },
-                          {
-                            "type": "string",
-                            "const": "TODO-SOURCE"
-                          }
-                        ]
-                      }
-                    },
-                    "note": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "value",
-                    "sourceIds"
-                  ],
-                  "additionalProperties": false
-                },
                 "diplomacyTrust": {
                   "type": "object",
                   "properties": {
@@ -1265,9 +1128,6 @@
                 }
               },
               "required": [
-                "capability",
-                "matchBonus",
-                "matchTrigger",
                 "diplomacyTrust"
               ],
               "additionalProperties": false
@@ -1275,40 +1135,6 @@
             "cautious": {
               "type": "object",
               "properties": {
-                "capability": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "integer",
-                      "minimum": -1000,
-                      "maximum": 1000
-                    },
-                    "sourceIds": {
-                      "minItems": 1,
-                      "type": "array",
-                      "items": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                          },
-                          {
-                            "type": "string",
-                            "const": "TODO-SOURCE"
-                          }
-                        ]
-                      }
-                    },
-                    "note": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "value",
-                    "sourceIds"
-                  ],
-                  "additionalProperties": false
-                },
                 "trust": {
                   "type": "object",
                   "properties": {
@@ -1345,7 +1171,6 @@
                 }
               },
               "required": [
-                "capability",
                 "trust"
               ],
               "additionalProperties": false
@@ -1474,108 +1299,6 @@
         "society": {
           "type": "object",
           "properties": {
-            "displacementCapabilityMin": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "integer",
-                  "minimum": -1000,
-                  "maximum": 1000
-                },
-                "sourceIds": {
-                  "minItems": 1,
-                  "type": "array",
-                  "items": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                      },
-                      {
-                        "type": "string",
-                        "const": "TODO-SOURCE"
-                      }
-                    ]
-                  }
-                },
-                "note": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "value",
-                "sourceIds"
-              ],
-              "additionalProperties": false
-            },
-            "displacementPerTurn": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "integer",
-                  "minimum": -1000,
-                  "maximum": 1000
-                },
-                "sourceIds": {
-                  "minItems": 1,
-                  "type": "array",
-                  "items": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                      },
-                      {
-                        "type": "string",
-                        "const": "TODO-SOURCE"
-                      }
-                    ]
-                  }
-                },
-                "note": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "value",
-                "sourceIds"
-              ],
-              "additionalProperties": false
-            },
-            "displacementSurgeCapability": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "integer",
-                  "minimum": -1000,
-                  "maximum": 1000
-                },
-                "sourceIds": {
-                  "minItems": 1,
-                  "type": "array",
-                  "items": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                      },
-                      {
-                        "type": "string",
-                        "const": "TODO-SOURCE"
-                      }
-                    ]
-                  }
-                },
-                "note": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "value",
-                "sourceIds"
-              ],
-              "additionalProperties": false
-            },
             "diffusionReliefPer": {
               "type": "object",
               "properties": {
@@ -1677,85 +1400,12 @@
                 "sourceIds"
               ],
               "additionalProperties": false
-            },
-            "trustErosionUnrestMin": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "integer",
-                  "minimum": -1000,
-                  "maximum": 1000
-                },
-                "sourceIds": {
-                  "minItems": 1,
-                  "type": "array",
-                  "items": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                      },
-                      {
-                        "type": "string",
-                        "const": "TODO-SOURCE"
-                      }
-                    ]
-                  }
-                },
-                "note": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "value",
-                "sourceIds"
-              ],
-              "additionalProperties": false
-            },
-            "trustErosionPerTurn": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "integer",
-                  "minimum": -1000,
-                  "maximum": 1000
-                },
-                "sourceIds": {
-                  "minItems": 1,
-                  "type": "array",
-                  "items": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                      },
-                      {
-                        "type": "string",
-                        "const": "TODO-SOURCE"
-                      }
-                    ]
-                  }
-                },
-                "note": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "value",
-                "sourceIds"
-              ],
-              "additionalProperties": false
             }
           },
           "required": [
-            "displacementCapabilityMin",
-            "displacementPerTurn",
-            "displacementSurgeCapability",
             "diffusionReliefPer",
             "unrestFromDisplacementGap",
-            "unrestSurgeDisplacement",
-            "trustErosionUnrestMin",
-            "trustErosionPerTurn"
+            "unrestSurgeDisplacement"
           ],
           "additionalProperties": false
         },
@@ -1912,119 +1562,6 @@
           },
           "required": [
             "capitalIncomePerDiffusion"
-          ],
-          "additionalProperties": false
-        },
-        "rivalDepth": {
-          "type": "object",
-          "properties": {
-            "substitutionBonusMin": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "integer",
-                  "minimum": -1000,
-                  "maximum": 1000
-                },
-                "sourceIds": {
-                  "minItems": 1,
-                  "type": "array",
-                  "items": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                      },
-                      {
-                        "type": "string",
-                        "const": "TODO-SOURCE"
-                      }
-                    ]
-                  }
-                },
-                "note": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "value",
-                "sourceIds"
-              ],
-              "additionalProperties": false
-            },
-            "substitutionBonus": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "integer",
-                  "minimum": -1000,
-                  "maximum": 1000
-                },
-                "sourceIds": {
-                  "minItems": 1,
-                  "type": "array",
-                  "items": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                      },
-                      {
-                        "type": "string",
-                        "const": "TODO-SOURCE"
-                      }
-                    ]
-                  }
-                },
-                "note": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "value",
-                "sourceIds"
-              ],
-              "additionalProperties": false
-            },
-            "progressVariance": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "integer",
-                  "minimum": -1000,
-                  "maximum": 1000
-                },
-                "sourceIds": {
-                  "minItems": 1,
-                  "type": "array",
-                  "items": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
-                      },
-                      {
-                        "type": "string",
-                        "const": "TODO-SOURCE"
-                      }
-                    ]
-                  }
-                },
-                "note": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "value",
-                "sourceIds"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "required": [
-            "substitutionBonusMin",
-            "substitutionBonus",
-            "progressVariance"
           ],
           "additionalProperties": false
         },
@@ -2261,7 +1798,6 @@
         "society",
         "election",
         "upkeep",
-        "rivalDepth",
         "societyDepth",
         "agencyErosion"
       ],

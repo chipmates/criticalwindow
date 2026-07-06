@@ -405,30 +405,30 @@ export const parametersSchema = z.strictObject({
     gridSlackBeforeCap: sourcedIntSchema,
   }),
   worldRules: z.strictObject({
+    /**
+     * Rival posture drives TRUST drift only; rival capability rides the same
+     * capabilityPerRnd curve as the player since the two-seat refactor. The
+     * old per-posture capability fields were removed 2026-07-06 as dead data.
+     */
     rivalMoves: z.strictObject({
-      race: z.strictObject({ capability: sourcedIntSchema, trust: sourcedIntSchema }),
-      mirror: z.strictObject({
-        capability: sourcedIntSchema,
-        matchBonus: sourcedIntSchema,
-        matchTrigger: sourcedIntSchema,
-        diplomacyTrust: sourcedIntSchema,
-      }),
-      cautious: z.strictObject({ capability: sourcedIntSchema, trust: sourcedIntSchema }),
+      race: z.strictObject({ trust: sourcedIntSchema }),
+      mirror: z.strictObject({ diplomacyTrust: sourcedIntSchema }),
+      cautious: z.strictObject({ trust: sourcedIntSchema }),
     }),
     postureChecks: z.strictObject({
       cautiousTrustMin: sourcedIntSchema,
       raceGapMin: sourcedIntSchema,
       raceTrustMax: sourcedIntSchema,
     }),
+    /**
+     * Displacement and trust erosion run through the displacementFromCapability
+     * and trustFromUnrest curves; the flat-rate fields that predated the curves
+     * were removed 2026-07-06 as dead data.
+     */
     society: z.strictObject({
-      displacementCapabilityMin: sourcedIntSchema,
-      displacementPerTurn: sourcedIntSchema,
-      displacementSurgeCapability: sourcedIntSchema,
       diffusionReliefPer: sourcedIntSchema,
       unrestFromDisplacementGap: sourcedIntSchema,
       unrestSurgeDisplacement: sourcedIntSchema,
-      trustErosionUnrestMin: sourcedIntSchema,
-      trustErosionPerTurn: sourcedIntSchema,
     }),
     election: z.strictObject({
       trustMin: sourcedIntSchema,
@@ -437,11 +437,6 @@ export const parametersSchema = z.strictObject({
     }),
     upkeep: z.strictObject({
       capitalIncomePerDiffusion: sourcedIntSchema,
-    }),
-    rivalDepth: z.strictObject({
-      substitutionBonusMin: sourcedIntSchema,
-      substitutionBonus: sourcedIntSchema,
-      progressVariance: sourcedIntSchema,
     }),
     societyDepth: z.strictObject({
       trustCurveDivisor: sourcedIntSchema,

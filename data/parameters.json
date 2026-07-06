@@ -132,43 +132,19 @@
   "worldRules": {
     "rivalMoves": {
       "race": {
-        "capability": {
-          "value": 60,
-          "sourceIds": ["SRC-DESIGN-HANDOVER"],
-          "note": "rival pace in race posture; tuned against the B6 simulation grid (median run length target 11+ turns)"
-        },
         "trust": {
           "value": -50,
           "sourceIds": ["SRC-DESIGN-HANDOVER"]
         }
       },
       "mirror": {
-        "capability": {
-          "value": 30,
-          "sourceIds": ["SRC-DESIGN-HANDOVER"],
-          "note": "unprovoked mirror pace; the rival mostly accelerates when YOU do (match bonus) or when provoked into race posture. Retuned with the alignment-earned model (2026-07-03 playtest follow-up)"
-        },
-        "matchBonus": {
-          "value": 25,
-          "sourceIds": ["SRC-DESIGN-HANDOVER"],
-          "note": "tit-for-tat: extra rival capability when the player gained 100+ this turn"
-        },
         "diplomacyTrust": {
           "value": 50,
           "sourceIds": ["SRC-DESIGN-HANDOVER"],
           "note": "trust gain when the player played a diplomacy-tagged card this turn"
-        },
-        "matchTrigger": {
-          "value": 50,
-          "sourceIds": ["SRC-DESIGN-HANDOVER"],
-          "note": "player capability gain this turn that triggers the tit-for-tat match bonus"
         }
       },
       "cautious": {
-        "capability": {
-          "value": 30,
-          "sourceIds": ["SRC-DESIGN-HANDOVER"]
-        },
         "trust": {
           "value": 50,
           "sourceIds": ["SRC-DESIGN-HANDOVER"]
@@ -193,20 +169,6 @@
       }
     },
     "society": {
-      "displacementCapabilityMin": {
-        "value": 400,
-        "sourceIds": ["SRC-IMF-GENAI", "SRC-DESIGN-HANDOVER"],
-        "note": "capability level where displacement pressure starts; v2 uses the displacementFromCapability curve"
-      },
-      "displacementPerTurn": {
-        "value": 50,
-        "sourceIds": ["SRC-DESIGN-HANDOVER"]
-      },
-      "displacementSurgeCapability": {
-        "value": 700,
-        "sourceIds": ["SRC-DESIGN-HANDOVER"],
-        "note": "above this, displacement accrues double"
-      },
       "diffusionReliefPer": {
         "value": 100,
         "sourceIds": ["SRC-DESIGN-HANDOVER"],
@@ -221,15 +183,6 @@
         "value": 600,
         "sourceIds": ["SRC-DESIGN-HANDOVER"],
         "note": "above this displacement, unrest accrues double"
-      },
-      "trustErosionUnrestMin": {
-        "value": 500,
-        "sourceIds": ["SRC-DESIGN-HANDOVER"],
-        "note": "unrest level where public trust starts eroding"
-      },
-      "trustErosionPerTurn": {
-        "value": 50,
-        "sourceIds": ["SRC-DESIGN-HANDOVER"]
       }
     },
     "election": {
@@ -253,23 +206,6 @@
         "value": 25,
         "sourceIds": ["SRC-GATE", "SRC-DESIGN-HANDOVER"],
         "note": "diffusion converts capability into economic output (compute-centric growth models); the rate is design pacing"
-      }
-    },
-    "rivalDepth": {
-      "substitutionBonusMin": {
-        "value": 700,
-        "sourceIds": ["SRC-CSIS-EXPORT", "SRC-DEEPSEEK-COST"],
-        "note": "substitution maturity threshold: export controls accelerate domestic alternatives and efficiency under constraint"
-      },
-      "substitutionBonus": {
-        "value": 25,
-        "sourceIds": ["SRC-CSIS-EXPORT", "SRC-DESIGN-HANDOVER"],
-        "note": "extra rival capability per turn once substitution matured; magnitude design-tuned"
-      },
-      "progressVariance": {
-        "value": 25,
-        "sourceIds": ["SRC-DESIGN-HANDOVER"],
-        "note": "seeded per-turn rival capability variance (their progress is foggy too); drawn from the rival stream"
       }
     },
     "societyDepth": {
