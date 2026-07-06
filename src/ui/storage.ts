@@ -69,7 +69,9 @@ export interface Settings {
 }
 
 export const DEFAULT_SETTINGS: Settings = {
-  theme: 'auto',
+  // Dark is the brand: the wedge of light needs its dark field. Auto, light
+  // and contrast stay one toggle away for bright classrooms and projectors.
+  theme: 'dark',
   reducedMotion: 'auto',
   textSize: 'normal',
   musicOn: false,
