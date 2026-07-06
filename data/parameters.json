@@ -333,7 +333,7 @@
         "SRC-DESIGN-HANDOVER",
         "SRC-EPOCH-DOUBLING"
       ],
-      "note": "abstraction of the measured regime (training compute doubling every 5.2 months since 2020; 50% task horizon doubling every ~207 days per the v3 estimate) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16"
+      "note": "abstraction of the measured regime (training compute doubling every 5.2 months since 2020; 50% task horizon doubling roughly every 188 days on METR's all-time fit, faster post-2023) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16"
     },
     "displacementFromCapability": {
       "x": [0, 200, 400, 600, 800, 1000],

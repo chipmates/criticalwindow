@@ -35,7 +35,9 @@
       }
     },
     "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-CSIS-EXPORT", "SRC-DESIGN-HANDOVER"],
-    "claimIds": ["SRC-SIM-GAMING-INSIGHTS#5", "SRC-SIM-GAMING-INSIGHTS#6"]
+    "claimIds": ["SRC-SIM-GAMING-INSIGHTS#5", "SRC-SIM-GAMING-INSIGHTS#6"],
+    "note": "Legitimacy cadence and the substitution-gated compute door follow the cited analyses of the China seat asymmetry; magnitudes design-tuned."
   },
-  "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-CSIS-EXPORT"]
+  "sourceIds": ["SRC-SIM-GAMING-INSIGHTS", "SRC-CSIS-EXPORT"],
+  "note": "Shared seat rules: the asymmetries encode the facilitation literature and export-control reality cited; the magnitudes themselves are design-tuned for balance."
 }

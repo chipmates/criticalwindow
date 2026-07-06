@@ -7,17 +7,17 @@ do not edit by hand, run `pnpm sources-md`. Registry with full source details:
 How a number gets into this game: a claim from the literature becomes an honest
 range, contested ranges live inside worldview presets you pick at setup, and a
 seeded hidden roll fixes the truth for your run inside that range. Design
-constants with no real-world referent cite the design handover and say so. The
+constants with no real-world referent cite the design constitution and say so. The
 iron rule: no number ships without a source ID, `pnpm validate` fails CI
 otherwise. Run it yourself.
 
-**175 cited values across 309 citation sites.** By kind:
+**76 cited parameter values and 100 cited card premises, across 312 citation sites.** Parameter values by kind:
 
-- **22** analysis-based
-- **40** design choice
-- **29** forecast-based
-- **63** measured
-- **21** measured, design-tuned
+- **9** analysis-based
+- **29** design choice
+- **15** forecast-based
+- **13** measured
+- **10** measured, design-tuned
 
 A **measured** value cites only empirical evidence, and **measured,
 design-tuned** means an empirical base whose game magnitude we calibrated, with
@@ -27,99 +27,107 @@ alignment difficulty and takeoff speed, sit as ranges inside worldview presets
 rather than pretending to be facts, and the rest say in their note what they
 take from the argument. A **design choice** claims nothing about the world.
 
-Disagree with a value? Open a "challenge a number" issue with a source. The
-advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.md).
+Card premises are counted separately on purpose: a card's citations back the
+real-world event it dramatizes, while its effect magnitudes are balance-tuned
+design values unless a note says otherwise. No card premise is ever counted as
+a measured value.
+
+Disagree with a value? Open a "challenge a number" issue with a source.
+Realism disputes are decided by the maintainer in public issues today; if the
+project earns an advisory board, it takes that role.
+See [`GOVERNANCE.md`](../GOVERNANCE.md).
 
 ## anchors.json
 
 | Where | Numbers | Kind | Sources | How the number was derived |
 |---|---|---|---|---|
-| tracks.capability |  | forecast-based | SRC-METR-HORIZON, SRC-AI2027, SRC-AISI-FRONTIER-TRENDS |  |
-| tracks.compute |  | measured | SRC-EPOCH-COMPUTE |  |
-| tracks.energy |  | measured | SRC-IEA-ENERGY-AI |  |
-| tracks.talent |  | measured | SRC-AI-INDEX-2026 |  |
-| tracks.capital |  | measured | SRC-AI-INDEX-2026 |  |
-| tracks.publicTrust |  | measured | SRC-AI-INDEX-2026 |  |
-| tracks.politicalCapital |  | design choice | SRC-DESIGN-HANDOVER |  |
-| tracks.safetyInsight |  | measured | SRC-SCALING-MONOSEMANTICITY, SRC-SLEEPER-PROBES |  |
-| tracks.jobDisplacement |  | measured | SRC-IMF-GENAI |  |
-| tracks.unrest |  | measured, design-tuned | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER |  |
-| tracks.bilateralTrust |  | analysis-based | SRC-HO-INTL-INSTITUTIONS |  |
-| tracks.substitution |  | measured | SRC-CSIS-EXPORT |  |
+| tracks.capability | 7 labeled rungs plus a continuous real-world unit mapping | forecast-based | SRC-METR-HORIZON, SRC-AI2027, SRC-AISI-FRONTIER-TRENDS | rungs follow the task-horizon ladder from minutes-long tasks to research beyond human following; the unit maps index points to the task length a system completes at 50% success, log scale, anchored to METR's measured horizons and the cited projections |
+| tracks.compute | 5 labeled rungs plus a continuous real-world unit mapping | measured | SRC-EPOCH-COMPUTE | unit maps index points to an approximate share of the world's frontier training capacity, from the cited compute dataset; rungs mark recognizable scale points |
+| tracks.energy | 5 labeled rungs plus a continuous real-world unit mapping | measured | SRC-IEA-ENERGY-AI | unit maps index points to GW of grid headroom available for new datacenter load, from the cited demand projections |
+| tracks.talent | 4 labeled rungs plus a continuous real-world unit mapping | measured | SRC-AI-INDEX-2026 | unit maps index points to an approximate share of the frontier research workforce, from the cited annual report's workforce data |
+| tracks.capital | 4 labeled rungs plus a continuous real-world unit mapping | measured | SRC-AI-INDEX-2026 | unit maps index points to annual AI investment levels, from the cited annual report's investment data |
+| tracks.publicTrust | 5 labeled rungs plus a continuous real-world unit mapping | measured | SRC-AI-INDEX-2026 | unit maps index points to surveyed trust-in-AI percentages, from the cited annual report's public-opinion data |
+| tracks.politicalCapital | 4 labeled rungs | design choice | SRC-DESIGN-HANDOVER | design constant; the constitution is the derivation |
+| tracks.safetyInsight | 5 labeled rungs | measured | SRC-SCALING-MONOSEMANTICITY, SRC-SLEEPER-PROBES | qualitative rungs from lab-demo interpretability to auditing deployed frontier systems, following what the cited interpretability results actually demonstrated at each scale |
+| tracks.jobDisplacement | 4 labeled rungs plus a continuous real-world unit mapping | measured | SRC-IMF-GENAI | unit maps index points to the share of workers displaced faster than they are rehired, derived from the cited exposure split |
+| tracks.unrest | 5 labeled rungs | measured, design-tuned | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER | qualitative rungs from background grumbling to general strike; thresholds are design-tuned against the labor-disruption context in the cited outlook |
+| tracks.bilateralTrust | 4 labeled rungs | analysis-based | SRC-HO-INTL-INSTITUTIONS | qualitative rungs from open hostility to verifiable deals becoming possible, following the cited institutional-design analysis |
+| tracks.substitution | 4 labeled rungs plus a continuous real-world unit mapping | measured | SRC-CSIS-EXPORT | unit maps index points to domestic chip-supply substitution capability, following the cited export-control analysis |
+| tracks.alignment | 6 labeled rungs | measured | SRC-SLEEPER, SRC-SCHEMING, SRC-AGENTIC-MISALIGNMENT | qualitative rungs describing what each level of true alignment would mean under adversarial evaluation, per the cited deception results; in play this scale stays hidden and only the eval band is shown |
 
 ## events/
 
-| Where | Kind | Sources |
+| Where | Premise kind | Sources |
 |---|---|---|
-| events/allied_export_fracture.json → (root) | measured | SRC-CSIS-SME-CONTROLS, SRC-CSIS-EXPORT |
-| events/ally_eval_request.json → (root) | analysis-based | SRC-HO-INTL-INSTITUTIONS, SRC-CSIS-EXPORT |
-| events/asml_export_squeeze.json → (root) | measured, design-tuned | SRC-CSIS-EXPORT, SRC-CHIP-WAR, SRC-SIM-GAMING-INSIGHTS |
-| events/autonomous_targeting_demo.json → (root) | forecast-based | SRC-AI2027, SRC-SIM-GAMING-INSIGHTS |
-| events/benchmark_gaming.json → (root) | measured | SRC-BENCH-COP, SRC-SCHEMING |
-| events/branch_point.json → (root) | forecast-based | SRC-AI2027 |
-| events/chip_smuggling.json → (root) | measured | SRC-CNAS-SMUGGLING, SRC-CSIS-EXPORT |
-| events/city_power_deal.json → (root) | forecast-based | SRC-IEA-ENERGY-AI, SRC-GATE |
-| events/civil_military_fusion.json → (root) | forecast-based | SRC-AI2027, SRC-HO-INTL-INSTITUTIONS |
-| events/civil_service_flood.json → (root) | measured | SRC-OECD-EMPLOYMENT, SRC-IMF-GENAI |
-| events/coal_province_datacenter_bid.json → (root) | measured | SRC-IEA-ENERGY-AI, SRC-EPOCH-COMPUTE |
-| events/companion_app_boom.json → (root) | measured | SRC-AI-INDEX-2026 |
-| events/election_scandal.json → (root) | measured | SRC-AI-INCIDENT-DB, SRC-AI-INDEX-2026 |
-| events/energy_crunch.json → (root) | measured | SRC-IEA-ENERGY-AI, SRC-GRID-DATACENTER |
-| events/eu_ai_act_full_force.json → (root) | measured | SRC-EU-AI-ACT-TIMELINE, SRC-EU-AI-ACT |
-| events/eu_ai_act_high_risk.json → (root) | measured | SRC-EU-AI-ACT-TIMELINE, SRC-EU-AI-ACT |
-| events/eval_breakthrough.json → (root) | measured | SRC-SCALING-MONOSEMANTICITY, SRC-SLEEPER |
-| events/fab_yield_breakthrough.json → (root) | measured | SRC-EPOCH-COMPUTE, SRC-CSIS-EXPORT |
-| events/flash_crash_agent.json → (root) | measured | SRC-METR-HORIZON, SRC-AI-INDEX-2026 |
-| events/general_strike.json → (root) | measured | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
-| events/grid_crunch.json → (root) | forecast-based | SRC-IEA-ENERGY-AI, SRC-AI2027, SRC-SITUATIONAL-AWARENESS |
-| events/insurance_repricing.json → (root) | measured | SRC-AI-INDEX-2026, SRC-SLEEPER-PROBES |
-| events/intelligence_explosion.json → (root) | forecast-based | SRC-AI2027, SRC-SITUATIONAL-AWARENESS |
-| events/lab_merger.json → (root) | analysis-based | SRC-NSCAI, SRC-CSET-LIBRARY |
-| events/liability_shield_ask.json → (root) | analysis-based | SRC-HO-INTL-INSTITUTIONS, SRC-SIM-GAMING-INSIGHTS |
-| events/open_source_replication.json → (root) | measured | SRC-EPOCH-COMPUTE, SRC-AI-INDEX-2026 |
-| events/open_weights_shock.json → (root) | measured | SRC-DEEPSEEK-R1, SRC-DEEPSEEK-COST |
-| events/provincial_growth_mirage.json → (root) | measured | SRC-AI-INDEX-2026 |
-| events/public_opinion_swing.json → (root) | measured | SRC-AI-INDEX-2026 |
-| events/rival_breakthrough.json → (root) | forecast-based | SRC-AI2027, SRC-MAIM |
-| events/shuttered_factory_census.json → (root) | measured | SRC-CSIS-EXPORT, SRC-OECD-EMPLOYMENT |
-| events/superhuman_coder.json → (root) | forecast-based | SRC-AI2027, SRC-SITUATIONAL-AWARENESS, SRC-GRACE-SURVEY |
-| events/taiwan_strait_crisis.json → (root) | measured, design-tuned | SRC-CHIP-WAR, SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
-| events/the_project.json → (root) | forecast-based | SRC-SITUATIONAL-AWARENESS, SRC-SIM-GAMING-INSIGHTS |
-| events/treaty_feeler.json → (root) | analysis-based | SRC-MAIM, SRC-HO-INTL-INSTITUTIONS |
-| events/union_moratorium_demand.json → (root) | measured | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
-| events/verification_offer.json → (root) | analysis-based | SRC-GOVAI-COMPUTE, SRC-HO-INTL-INSTITUTIONS |
-| events/viral_job_loss.json → (root) | measured | SRC-IMF-GENAI, SRC-ANTHROPIC-ECON-INDEX |
-| events/weight_theft.json → (root) | forecast-based | SRC-AI2027, SRC-RAND-WEIGHTS, SRC-SIM-GAMING-INSIGHTS |
-| events/whistleblower.json → (root) | analysis-based | SRC-RIGHT-TO-WARN, SRC-SLEEPER |
+| events/allied_export_fracture.json → (root) | measured premise | SRC-CSIS-SME-CONTROLS, SRC-CSIS-EXPORT |
+| events/ally_eval_request.json → (root) | analysis-based premise | SRC-HO-INTL-INSTITUTIONS, SRC-CSIS-EXPORT |
+| events/asml_export_squeeze.json → (root) | measured, design-tuned premise | SRC-CSIS-EXPORT, SRC-CHIP-WAR, SRC-SIM-GAMING-INSIGHTS |
+| events/autonomous_targeting_demo.json → (root) | forecast-based premise | SRC-AI2027, SRC-SIM-GAMING-INSIGHTS |
+| events/benchmark_gaming.json → (root) | measured premise | SRC-BENCH-COP, SRC-SCHEMING |
+| events/branch_point.json → (root) | forecast-based premise | SRC-AI2027 |
+| events/chip_smuggling.json → (root) | measured premise | SRC-CNAS-SMUGGLING, SRC-CSIS-EXPORT |
+| events/city_power_deal.json → (root) | forecast-based premise | SRC-IEA-ENERGY-AI, SRC-GATE |
+| events/civil_military_fusion.json → (root) | forecast-based premise | SRC-AI2027, SRC-HO-INTL-INSTITUTIONS |
+| events/civil_service_flood.json → (root) | measured premise | SRC-OECD-EMPLOYMENT, SRC-IMF-GENAI |
+| events/coal_province_datacenter_bid.json → (root) | measured premise | SRC-IEA-ENERGY-AI, SRC-EPOCH-COMPUTE |
+| events/companion_app_boom.json → (root) | measured premise | SRC-AI-INDEX-2026 |
+| events/election_scandal.json → (root) | measured premise | SRC-AI-INCIDENT-DB, SRC-AI-INDEX-2026 |
+| events/energy_crunch.json → (root) | measured premise | SRC-IEA-ENERGY-AI, SRC-GRID-DATACENTER |
+| events/eu_ai_act_full_force.json → (root) | measured premise | SRC-EU-AI-ACT-TIMELINE, SRC-EU-AI-ACT |
+| events/eu_ai_act_high_risk.json → (root) | measured premise | SRC-EU-AI-ACT-TIMELINE, SRC-EU-AI-ACT |
+| events/eval_breakthrough.json → (root) | measured premise | SRC-SCALING-MONOSEMANTICITY, SRC-SLEEPER |
+| events/fab_yield_breakthrough.json → (root) | measured premise | SRC-EPOCH-COMPUTE, SRC-CSIS-EXPORT |
+| events/flash_crash_agent.json → (root) | measured premise | SRC-METR-HORIZON, SRC-AI-INDEX-2026 |
+| events/general_strike.json → (root) | measured premise | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
+| events/grid_crunch.json → (root) | forecast-based premise | SRC-IEA-ENERGY-AI, SRC-AI2027, SRC-SITUATIONAL-AWARENESS |
+| events/insurance_repricing.json → (root) | measured premise | SRC-AI-INDEX-2026, SRC-SLEEPER-PROBES |
+| events/intelligence_explosion.json → (root) | forecast-based premise | SRC-AI2027, SRC-SITUATIONAL-AWARENESS |
+| events/lab_merger.json → (root) | analysis-based premise | SRC-NSCAI, SRC-CSET-LIBRARY |
+| events/liability_shield_ask.json → (root) | analysis-based premise | SRC-HO-INTL-INSTITUTIONS, SRC-SIM-GAMING-INSIGHTS |
+| events/open_source_replication.json → (root) | measured premise | SRC-EPOCH-COMPUTE, SRC-AI-INDEX-2026 |
+| events/open_weights_shock.json → (root) | measured premise | SRC-DEEPSEEK-R1, SRC-DEEPSEEK-COST |
+| events/provincial_growth_mirage.json → (root) | measured premise | SRC-AI-INDEX-2026 |
+| events/public_opinion_swing.json → (root) | measured premise | SRC-AI-INDEX-2026 |
+| events/rival_breakthrough.json → (root) | forecast-based premise | SRC-AI2027, SRC-MAIM |
+| events/shuttered_factory_census.json → (root) | measured premise | SRC-CSIS-EXPORT, SRC-OECD-EMPLOYMENT |
+| events/superhuman_coder.json → (root) | forecast-based premise | SRC-AI2027, SRC-SITUATIONAL-AWARENESS, SRC-GRACE-SURVEY |
+| events/taiwan_strait_crisis.json → (root) | measured, design-tuned premise | SRC-CHIP-WAR, SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
+| events/the_project.json → (root) | forecast-based premise | SRC-SITUATIONAL-AWARENESS, SRC-SIM-GAMING-INSIGHTS |
+| events/treaty_feeler.json → (root) | analysis-based premise | SRC-MAIM, SRC-HO-INTL-INSTITUTIONS |
+| events/union_moratorium_demand.json → (root) | measured premise | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
+| events/verification_offer.json → (root) | analysis-based premise | SRC-GOVAI-COMPUTE, SRC-HO-INTL-INSTITUTIONS |
+| events/viral_job_loss.json → (root) | measured premise | SRC-IMF-GENAI, SRC-ANTHROPIC-ECON-INDEX |
+| events/weight_theft.json → (root) | forecast-based premise | SRC-AI2027, SRC-RAND-WEIGHTS, SRC-SIM-GAMING-INSIGHTS |
+| events/whistleblower.json → (root) | analysis-based premise | SRC-RIGHT-TO-WARN, SRC-SLEEPER |
 
 ## incidents.json
 
-| Where | Kind | Sources |
+| Where | Premise kind | Sources |
 |---|---|---|
-| (root) | measured, design-tuned | SRC-SLEEPER, SRC-SCHEMING, SRC-AGENTIC-MISALIGNMENT, SRC-AI-INCIDENT-DB, SRC-SIM-GAMING-INSIGHTS |
-| riskFormula.pressureAllocationPct | measured | SRC-AGENTIC-MISALIGNMENT |
-| riskFormula.pressureRivalRacePct | measured, design-tuned | SRC-AGENTIC-MISALIGNMENT, SRC-SIM-GAMING-INSIGHTS |
-| safetyInsightDamageReductionMaxPerMille | measured | SRC-SLEEPER, SRC-SCHEMING |
-| rungs[0] | measured | SRC-SLEEPER, SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
-| rungs[1] | measured | SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
-| rungs[2] | forecast-based | SRC-SCHEMING, SRC-AI2027 |
-| rungs[3] | forecast-based | SRC-AI2027, SRC-AGENTIC-MISALIGNMENT |
+| (root) | measured, design-tuned premise | SRC-SLEEPER, SRC-SCHEMING, SRC-AGENTIC-MISALIGNMENT, SRC-AI-INCIDENT-DB, SRC-SIM-GAMING-INSIGHTS |
+| riskFormula.pressureAllocationPct | measured premise | SRC-AGENTIC-MISALIGNMENT |
+| riskFormula.pressureRivalRacePct | measured, design-tuned premise | SRC-AGENTIC-MISALIGNMENT, SRC-SIM-GAMING-INSIGHTS |
+| safetyInsightDamageReductionMaxPerMille | measured premise | SRC-SLEEPER, SRC-SCHEMING |
+| rungs[0] | measured premise | SRC-SLEEPER, SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
+| rungs[1] | measured premise | SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
+| rungs[2] | forecast-based premise | SRC-SCHEMING, SRC-AI2027 |
+| rungs[3] | forecast-based premise | SRC-AI2027, SRC-AGENTIC-MISALIGNMENT |
 
 ## mandates.json
 
-| Where | Kind | Sources |
+| Where | Premise kind | Sources |
 |---|---|---|
-| (root) | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
-| mandates[0] | measured | SRC-IEA-ENERGY-AI, SRC-GRID-DATACENTER |
-| mandates[1] | measured | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
-| mandates[2] | measured | SRC-UK-AISI, SRC-SLEEPER |
-| mandates[3] | measured, design-tuned | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER |
-| mandates[4] | measured | SRC-SLEEPER, SRC-SCHEMING |
-| mandates[5] | measured | SRC-IEA-ENERGY-AI |
-| mandates[6] | measured | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
-| mandates[7] | measured | SRC-SLEEPER, SRC-SCHEMING |
-| mandates[8] | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
-| mandates[9] | measured, design-tuned | SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
+| (root) | design choice premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
+| mandates[0] | measured premise | SRC-IEA-ENERGY-AI, SRC-GRID-DATACENTER |
+| mandates[1] | measured premise | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
+| mandates[2] | measured premise | SRC-UK-AISI, SRC-SLEEPER |
+| mandates[3] | measured, design-tuned premise | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER |
+| mandates[4] | measured premise | SRC-SLEEPER, SRC-SCHEMING |
+| mandates[5] | measured premise | SRC-IEA-ENERGY-AI |
+| mandates[6] | measured premise | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
+| mandates[7] | measured premise | SRC-SLEEPER, SRC-SCHEMING |
+| mandates[8] | design choice premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
+| mandates[9] | measured, design-tuned premise | SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
 
 ## parameters.json
 
@@ -146,9 +154,9 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | thresholds.gridSlackBeforeCap | value 300 | measured, design-tuned | SRC-IEA-ENERGY-AI, SRC-DESIGN-HANDOVER | compute outrunning energy decays: IEA base case has datacentre demand rising 415 TWh (2024, ~1.5% of world electricity) to ~945 TWh by 2030; slack width is design-tuned |
 | thresholds.treatySignTurnMin | value 11 | analysis-based | SRC-HO-INTL-INSTITUTIONS, SRC-DESIGN-HANDOVER | earliest signing turn. Raised 8->11 on 2026-07-04: you must survive the dangerous middle before cooperation is real. |
 | thresholds.treatySignPoliticalCapitalMin | value 300 | analysis-based | SRC-PUTNAM-TWO-LEVEL, SRC-HO-INTL-INSTITUTIONS, SRC-SIM-GAMING-INSIGHTS | BOTH seats need this much standing political capital at signing: every treaty has two home fronts (Putnam's two-level games), and the rival's swings with era verdicts outside the player's control. The signature is a window to be read, not a recipe to execute. (2026-07-04, iter3: price-based gates alone could not cap recipe play.) |
-| worldRules.rivalMoves.race.trust | value -50 | design choice | SRC-DESIGN-HANDOVER |  |
+| worldRules.rivalMoves.race.trust | value -50 | design choice | SRC-DESIGN-HANDOVER | design constant; the constitution is the derivation |
 | worldRules.rivalMoves.mirror.diplomacyTrust | value 50 | design choice | SRC-DESIGN-HANDOVER | trust gain when the player played a diplomacy-tagged card this turn |
-| worldRules.rivalMoves.cautious.trust | value 50 | design choice | SRC-DESIGN-HANDOVER |  |
+| worldRules.rivalMoves.cautious.trust | value 50 | design choice | SRC-DESIGN-HANDOVER | design constant; the constitution is the derivation |
 | worldRules.postureChecks.cautiousTrustMin | value 700 | design choice | SRC-DESIGN-HANDOVER | trust + treatyChannel flag flips rival to cautious |
 | worldRules.postureChecks.raceGapMin | value 200 | design choice | SRC-DESIGN-HANDOVER | player capability lead that flips rival to race |
 | worldRules.postureChecks.raceTrustMax | value 250 | design choice | SRC-DESIGN-HANDOVER | trust at or below this flips rival to race |
@@ -156,7 +164,7 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | worldRules.society.unrestFromDisplacementGap | value 50 | design choice | SRC-DESIGN-HANDOVER | unrest per turn while displacement exceeds public trust |
 | worldRules.society.unrestSurgeDisplacement | value 600 | design choice | SRC-DESIGN-HANDOVER | above this displacement, unrest accrues double |
 | worldRules.election.trustMin | value 400 | design choice | SRC-DESIGN-HANDOVER | midterm verdict: trust at or above this AND unrest at or below unrestMax renews the mandate |
-| worldRules.election.unrestMax | value 400 | design choice | SRC-DESIGN-HANDOVER |  |
+| worldRules.election.unrestMax | value 400 | design choice | SRC-DESIGN-HANDOVER | design constant; the constitution is the derivation |
 | worldRules.election.mandateSwing | value 100 | design choice | SRC-DESIGN-HANDOVER | political capital gained on renewal, lost on rebuke |
 | worldRules.upkeep.capitalIncomePerDiffusion | value 25 | forecast-based | SRC-GATE, SRC-DESIGN-HANDOVER | diffusion converts capability into economic output (compute-centric growth models); the rate is design pacing |
 | worldRules.societyDepth.trustCurveDivisor | value 4 | design choice | SRC-DESIGN-HANDOVER | trustFromUnrest(unrest)/divisor applied to public trust per turn |
@@ -175,7 +183,7 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | turnStructure.electionTurn | value 8 | design choice | SRC-DESIGN-HANDOVER | US midterms fall on turn 8 of the quarterly clock |
 | turnStructure.handSize | value 3 | design choice | SRC-DESIGN-HANDOVER | rotating policy hand; refills from the unspent pool each upkeep |
 | curves.rndCapacity |  | forecast-based | SRC-GATE, SRC-DESIGN-HANDOVER | R&D points from compute+talent with diminishing returns; shape motivated by compute-centric growth models (Epoch GATE), values are design pacing |
-| curves.capabilityPerRnd |  | measured, design-tuned | SRC-EPOCH-COMPUTE, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER, SRC-EPOCH-DOUBLING | abstraction of the measured regime (training compute doubling every 5.2 months since 2020; 50% task horizon doubling every ~207 days per the v3 estimate) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16 |
+| curves.capabilityPerRnd |  | measured, design-tuned | SRC-EPOCH-COMPUTE, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER, SRC-EPOCH-DOUBLING | abstraction of the measured regime (training compute doubling every 5.2 months since 2020; 50% task horizon doubling roughly every 188 days on METR's all-time fit, faster post-2023) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16 |
 | curves.displacementFromCapability |  | measured | SRC-IMF-GENAI, SRC-PAYROLLS-TO-PROMPTS | equilibrium displacement by capability: exposure is already material at 2026 capability levels (IMF: almost 40% of global employment exposed) and rises toward index 550 at frontier; early knee raised after the 2026-07-03 playtest (displacement was FALLING early game because the start value exceeded the old curve target) |
 | curves.trustFromUnrest |  | design choice | SRC-DESIGN-HANDOVER | trust erosion accelerates with unrest; design curve, playtests tune |
 | alignmentModel.startBase | value 500 | design choice | SRC-DESIGN-HANDOVER | true alignment starts at startBase - difficulty/2: alignment is an achievement, not a default. Retuned after the 2026-07-03 playtest finding: zero safety investment could win (old start 1000-difficulty meant easy worlds came pre-aligned) |
@@ -186,66 +194,66 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 
 ## policies/
 
-| Where | Kind | Sources |
+| Where | Premise kind | Sources |
 |---|---|---|
-| policies/ai_literacy_campaign.json → (root) | measured | SRC-OECD-EMPLOYMENT, SRC-AI-INDEX-2026 |
-| policies/chip_subsidies.json → (root) | measured | SRC-CSET-AI-CHIPS, SRC-CSIS-EXPORT |
-| policies/compute_treaty_feeler.json → (root) | analysis-based | SRC-MAIM, SRC-HO-INTL-INSTITUTIONS |
-| policies/energy_buildout.json → (root) | measured | SRC-IEA-ENERGY-AI |
-| policies/eval_mandate.json → (root) | measured | SRC-UK-AISI, SRC-BENCH-COP |
-| policies/export_controls.json → (root) | measured | SRC-CSIS-EXPORT |
-| policies/global_moratorium.json → (root) | analysis-based | SRC-IABIED |
-| policies/interpretability_moonshot.json → (root) | measured | SRC-SCALING-MONOSEMANTICITY, SRC-SLEEPER |
-| policies/natsec_merge.json → (root) | forecast-based | SRC-MAIM, SRC-SITUATIONAL-AWARENESS |
-| policies/open_weights_release.json → (root) | analysis-based | SRC-DEEPSEEK-R1, SRC-US-POLICY-CHINA-OPEN-ECOSYSTEM |
-| policies/preventive_sabotage.json → (root) | analysis-based | SRC-MAIM, SRC-RAND-STABILITY, SRC-ZVI-MAIM |
-| policies/ubi_pilot.json → (root) | measured | SRC-OPENRESEARCH-UBI, SRC-IMF-GENAI |
-| policies/weights_security_program.json → (root) | forecast-based | SRC-RAND-WEIGHTS, SRC-AI2027 |
+| policies/ai_literacy_campaign.json → (root) | measured premise | SRC-OECD-EMPLOYMENT, SRC-AI-INDEX-2026 |
+| policies/chip_subsidies.json → (root) | measured premise | SRC-CSET-AI-CHIPS, SRC-CSIS-EXPORT |
+| policies/compute_treaty_feeler.json → (root) | analysis-based premise | SRC-MAIM, SRC-HO-INTL-INSTITUTIONS |
+| policies/energy_buildout.json → (root) | measured premise | SRC-IEA-ENERGY-AI |
+| policies/eval_mandate.json → (root) | measured premise | SRC-UK-AISI, SRC-BENCH-COP |
+| policies/export_controls.json → (root) | measured premise | SRC-CSIS-EXPORT |
+| policies/global_moratorium.json → (root) | analysis-based premise | SRC-IABIED |
+| policies/interpretability_moonshot.json → (root) | measured premise | SRC-SCALING-MONOSEMANTICITY, SRC-SLEEPER |
+| policies/natsec_merge.json → (root) | forecast-based premise | SRC-MAIM, SRC-SITUATIONAL-AWARENESS |
+| policies/open_weights_release.json → (root) | analysis-based premise | SRC-DEEPSEEK-R1, SRC-US-POLICY-CHINA-OPEN-ECOSYSTEM |
+| policies/preventive_sabotage.json → (root) | analysis-based premise | SRC-MAIM, SRC-RAND-STABILITY, SRC-ZVI-MAIM |
+| policies/ubi_pilot.json → (root) | measured premise | SRC-OPENRESEARCH-UBI, SRC-IMF-GENAI |
+| policies/weights_security_program.json → (root) | forecast-based premise | SRC-RAND-WEIGHTS, SRC-AI2027 |
 
 ## prologue.json
 
-| Where | Kind | Sources |
+| Where | Premise kind | Sources |
 |---|---|---|
-| chapters[0] | measured | SRC-AI-INDEX-2025 |
-| chapters[1] | measured | SRC-CSIS-EXPORT, SRC-DEEPSEEK-R1, SRC-DEEPSEEK-COST |
-| chapters[2] | analysis-based | SRC-EU-AI-ACT-TIMELINE, SRC-IAISR, SRC-IEA-ENERGY-AI |
+| chapters[0] | measured premise | SRC-AI-INDEX-2025 |
+| chapters[1] | measured premise | SRC-CSIS-EXPORT, SRC-DEEPSEEK-R1, SRC-DEEPSEEK-COST |
+| chapters[2] | analysis-based premise | SRC-EU-AI-ACT-TIMELINE, SRC-IAISR, SRC-IEA-ENERGY-AI |
 
 ## scenarios/
 
-| Where | Kind | Sources |
+| Where | Premise kind | Sources |
 |---|---|---|
-| world.bilateralTrust | design choice | SRC-DESIGN-HANDOVER |
-| seats.usa.resources.compute | measured | SRC-EPOCH-COMPUTE |
-| seats.usa.resources.energy | measured | SRC-IEA-ENERGY-AI |
-| seats.usa.resources.talent | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
-| seats.usa.resources.capital | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
-| seats.usa.resources.publicTrust | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
-| seats.usa.resources.politicalCapital | design choice | SRC-DESIGN-HANDOVER |
-| seats.usa.resources.capability | measured | SRC-METR-HORIZON |
-| seats.usa.resources.safetyInsight | analysis-based | SRC-SCALING-MONOSEMANTICITY, SRC-IAISR-UPDATE-2 |
-| seats.usa.society.jobDisplacement | measured | SRC-IMF-GENAI |
-| seats.usa.society.unrest | design choice | SRC-DESIGN-HANDOVER |
-| seats.usa.substitution | design choice | SRC-DESIGN-HANDOVER |
-| seats.usa.allocation | design choice | SRC-DESIGN-HANDOVER |
-| seats.china.resources.compute | measured | SRC-CSIS-EXPORT, SRC-DEEPSEEK-COST |
-| seats.china.resources.energy | measured | SRC-IEA-ENERGY-AI |
-| seats.china.resources.talent | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
-| seats.china.resources.capital | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
-| seats.china.resources.publicTrust | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
-| seats.china.resources.politicalCapital | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
-| seats.china.resources.capability | measured | SRC-DEEPSEEK-COST |
-| seats.china.resources.safetyInsight | analysis-based | SRC-IAISR, SRC-DESIGN-HANDOVER |
-| seats.china.society.jobDisplacement | measured | SRC-IMF-GENAI |
-| seats.china.society.unrest | design choice | SRC-DESIGN-HANDOVER |
-| seats.china.substitution | measured | SRC-CSIS-EXPORT |
-| seats.china.allocation | design choice | SRC-DESIGN-HANDOVER |
+| world.bilateralTrust | design choice premise | SRC-DESIGN-HANDOVER |
+| seats.usa.resources.compute | measured premise | SRC-EPOCH-COMPUTE |
+| seats.usa.resources.energy | measured premise | SRC-IEA-ENERGY-AI |
+| seats.usa.resources.talent | measured, design-tuned premise | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.usa.resources.capital | measured, design-tuned premise | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.usa.resources.publicTrust | measured, design-tuned premise | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.usa.resources.politicalCapital | design choice premise | SRC-DESIGN-HANDOVER |
+| seats.usa.resources.capability | measured premise | SRC-METR-HORIZON |
+| seats.usa.resources.safetyInsight | analysis-based premise | SRC-SCALING-MONOSEMANTICITY, SRC-IAISR-UPDATE-2 |
+| seats.usa.society.jobDisplacement | measured premise | SRC-IMF-GENAI |
+| seats.usa.society.unrest | design choice premise | SRC-DESIGN-HANDOVER |
+| seats.usa.substitution | design choice premise | SRC-DESIGN-HANDOVER |
+| seats.usa.allocation | design choice premise | SRC-DESIGN-HANDOVER |
+| seats.china.resources.compute | measured premise | SRC-CSIS-EXPORT, SRC-DEEPSEEK-COST |
+| seats.china.resources.energy | measured premise | SRC-IEA-ENERGY-AI |
+| seats.china.resources.talent | measured, design-tuned premise | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.china.resources.capital | measured, design-tuned premise | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.china.resources.publicTrust | design choice premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
+| seats.china.resources.politicalCapital | design choice premise | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
+| seats.china.resources.capability | measured premise | SRC-DEEPSEEK-COST |
+| seats.china.resources.safetyInsight | analysis-based premise | SRC-IAISR, SRC-DESIGN-HANDOVER |
+| seats.china.society.jobDisplacement | measured premise | SRC-IMF-GENAI |
+| seats.china.society.unrest | design choice premise | SRC-DESIGN-HANDOVER |
+| seats.china.substitution | measured premise | SRC-CSIS-EXPORT |
+| seats.china.allocation | design choice premise | SRC-DESIGN-HANDOVER |
 
 ## seats.json
 
 | Where | Numbers | Kind | Sources | How the number was derived |
 |---|---|---|---|---|
-| (root) |  | measured, design-tuned | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT |  |
-| usa |  | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |  |
-| china |  | measured, design-tuned | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT, SRC-DESIGN-HANDOVER |  |
+| (root) |  | measured, design-tuned | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT | Shared seat rules: the asymmetries encode the facilitation literature and export-control reality cited; the magnitudes themselves are design-tuned for balance. |
+| usa |  | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER | design constant; the constitution is the derivation |
+| china |  | measured, design-tuned | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT, SRC-DESIGN-HANDOVER | Legitimacy cadence and the substitution-gated compute door follow the cited analyses of the China seat asymmetry; magnitudes design-tuned. |
 | china.legitimacyCheck.trustMin | value 400 | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER | legitimacy pressure replaces the midterm: verdicts at each era turn instead of one election |
 | china.legitimacyCheck.swing | value 100 | design choice | SRC-DESIGN-HANDOVER | political capital gained per era while legitimacy holds, lost while it does not |

@@ -653,6 +653,8 @@ export const anchorsSchema = z.strictObject({
     z.string(),
     z.strictObject({
       sourceIds: z.array(z.string()).min(1),
+      /** How the rungs and unit mapping were derived from the cited sources. */
+      note: z.string().optional(),
       anchors: z
         .array(z.strictObject({ at: z.number().int().min(0).max(1000), label: stringsRefSchema }))
         .min(2),
@@ -729,6 +731,8 @@ export const seatRulesSchema = z.strictObject({
     .optional(),
   sourceIds: sourceIdsSchema,
   claimIds: claimIdsSchema,
+  /** How the seat's rule magnitudes relate to the cited sources. */
+  note: z.string().optional(),
 });
 
 export const seatsSchema = z.strictObject({
@@ -736,6 +740,8 @@ export const seatsSchema = z.strictObject({
   usa: seatRulesSchema,
   china: seatRulesSchema,
   sourceIds: sourceIdsSchema,
+  /** How the shared seat rules relate to the cited sources. */
+  note: z.string().optional(),
 });
 
 // ---------------------------------------------------------------------------

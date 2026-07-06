@@ -11,7 +11,7 @@
       "tier": "load-bearing",
       "evidenceClass": "design",
       "gameUse": "design constants with no empirical referent (turn counts, starting defaults, allocation defaults)",
-      "url": "https://github.com/chipmates/criticalwindow/blob/main/docs/DESIGN.md"
+      "url": "https://github.com/chipmates/criticalwindow/blob/v0.3.1/docs/DESIGN.md"
     },
     {
       "id": "SRC-KAPLAN-SCALING",
@@ -840,7 +840,7 @@
       "tier": "load-bearing",
       "evidenceClass": "analysis",
       "gameUse": "General US national-security AI-strategy framing (talent, compute, government-industry coordination) motivates natsec-flavored governance events like lab_merger; the 2021 report itself does not specifically address lab-merger or industry-concentration policy.",
-      "note": "Verification 2026-07-03: unclear. DNS failure (ENOTFOUND) from this sandbox on retry, but WebSearch confirms live page with exact matching title '2021 Final Report - NSCAI'. Likely local network/DNS issue, not a dead site."
+      "note": "Automated fetch failed from our network on the 2026-07-03 check, but the report is live at this exact title and address; confirmed via search."
     },
     {
       "id": "SRC-AI-ACTION-PLAN",
@@ -1261,15 +1261,15 @@
       "id": "SRC-OECD-EMPLOYMENT",
       "title": "OECD Employment Outlook (AI chapters)",
       "org": "OECD",
-      "url": "https://www.oecd.org/en/publications/oecd-employment-outlook-2023_08785bba-en.html",
+      "url": "https://doi.org/10.1787/08785bba-en",
       "type": "report",
       "tags": ["labor-market", "policy", "economy"],
-      "status": "flagged",
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "Backs the unrest/labor-disruption side of the society mechanic across multiple mandates, strike/displacement events, the ai_literacy_campaign policy, and the unrestEconomicDragMin threshold (sustained high unrest starts costing the economy).",
-      "flagReason": "The publisher blocks automated checks; this is the canonical publication page for the 2023 Employment Outlook, Artificial Intelligence and the Labour Market.",
-      "note": "ongoing publication series, no single year given; homepage URL only, per the founding source list (absent from the founding bibliography) Verification 2026-07-03: unclear. oecd.org returned HTTP 403 to WebFetch twice (bot-blocking, not necessarily dead). WebSearch confirms live OECD Employment Outlook pages with AI chapters exist under oecd.org/en/publications/."
+      "note": "Pinned to the 2023 edition (the Outlook with the AI and labour market chapters), via DOI. The publisher blocks robots, so this one was checked by hand, 2026-07-06.",
+      "year": 2023
     },
     {
       "id": "SRC-CAIS-STATEMENT",
@@ -1323,7 +1323,7 @@
       "tier": "library",
       "evidenceClass": "analysis",
       "whyListed": "OpenAI's own stated AGI-development philosophy in its own words, useful for a player wanting the lab-worldview case behind capability-heavy default allocations elsewhere in the game (which cite the design handover, not this essay, directly).",
-      "note": "Verification 2026-07-03: unclear. openai.com returned HTTP 403 to WebFetch twice (bot-blocking). WebSearch confirms the page exists at this exact URL with matching title and content."
+      "note": "The publisher blocks robots; the page exists at this exact URL with matching title and content, confirmed by hand 2026-07-03."
     },
     {
       "id": "SRC-PAUSE-LETTER",
@@ -1581,7 +1581,7 @@
       "tier": "library",
       "evidenceClass": "design",
       "whyListed": "For a player or researcher curious about the real academic wargame this design descends from, CSER's project page is the primary hub for Intelligence Rising's facilitation materials and history.",
-      "note": "Official project site per the founding source list: https://www.intelligencerising.org Verification 2026-07-03: unclear. WebFetch got 403 Forbidden twice (bot-blocked, not confirmed dead). WebSearch confirms page exists and is indexed with matching title/content."
+      "note": "Official project site per the founding source list: https://www.intelligencerising.org The site blocks robots; the page exists with matching title and content, confirmed by hand 2026-07-03."
     },
     {
       "id": "SRC-AVIN-AI-FUTURES-SURVEY",

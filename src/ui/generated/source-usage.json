@@ -4,7 +4,7 @@
     "loadBearing": 55,
     "background": 11,
     "library": 97,
-    "citationSites": 309
+    "citationSites": 312
   },
   "uses": {
     "SRC-DESIGN-HANDOVER": [
@@ -141,6 +141,7 @@
       "parameters.json → capabilityLadder.milestones.0.at"
     ],
     "SRC-SLEEPER": [
+      "anchors.json → tracks.alignment",
       "events/eval_breakthrough.json → sourceIds",
       "events/whistleblower.json → sourceIds",
       "incidents.json → safetyInsightDamageReductionMaxPerMille",
@@ -158,6 +159,7 @@
       "parameters.json → evalUncertainty.deceptionMaxLift"
     ],
     "SRC-SCHEMING": [
+      "anchors.json → tracks.alignment",
       "events/benchmark_gaming.json → sourceIds",
       "incidents.json → safetyInsightDamageReductionMaxPerMille",
       "incidents.json → rungs.0",
@@ -398,6 +400,7 @@
       "anchors.json → tracks.capability"
     ],
     "SRC-AGENTIC-MISALIGNMENT": [
+      "anchors.json → tracks.alignment",
       "incidents.json → riskFormula.pressureAllocationPct",
       "incidents.json → riskFormula.pressureRivalRacePct",
       "incidents.json → rungs.0",

@@ -47,7 +47,8 @@
         ],
         "scale": "log",
         "decimals": 0
-      }
+      },
+      "note": "rungs follow the task-horizon ladder from minutes-long tasks to research beyond human following; the unit maps index points to the task length a system completes at 50% success, log scale, anchored to METR's measured horizons and the cited projections"
     },
     "compute": {
       "sourceIds": ["SRC-EPOCH-COMPUTE"],
@@ -85,7 +86,8 @@
         ],
         "scale": "linear",
         "decimals": 0
-      }
+      },
+      "note": "unit maps index points to an approximate share of the world's frontier training capacity, from the cited compute dataset; rungs mark recognizable scale points"
     },
     "energy": {
       "sourceIds": ["SRC-IEA-ENERGY-AI"],
@@ -123,7 +125,8 @@
         ],
         "scale": "linear",
         "decimals": 0
-      }
+      },
+      "note": "unit maps index points to GW of grid headroom available for new datacenter load, from the cited demand projections"
     },
     "talent": {
       "sourceIds": ["SRC-AI-INDEX-2026"],
@@ -156,7 +159,8 @@
         ],
         "scale": "linear",
         "decimals": 0
-      }
+      },
+      "note": "unit maps index points to an approximate share of the frontier research workforce, from the cited annual report's workforce data"
     },
     "capital": {
       "sourceIds": ["SRC-AI-INDEX-2026"],
@@ -189,7 +193,8 @@
         ],
         "scale": "linear",
         "decimals": 0
-      }
+      },
+      "note": "unit maps index points to annual AI investment levels, from the cited annual report's investment data"
     },
     "publicTrust": {
       "sourceIds": ["SRC-AI-INDEX-2026"],
@@ -223,7 +228,8 @@
         ],
         "scale": "linear",
         "decimals": 0
-      }
+      },
+      "note": "unit maps index points to surveyed trust-in-AI percentages, from the cited annual report's public-opinion data"
     },
     "politicalCapital": {
       "sourceIds": ["SRC-DESIGN-HANDOVER"],
@@ -269,7 +275,8 @@
           "at": 800,
           "label": "strings:anchor.safetyInsight.800"
         }
-      ]
+      ],
+      "note": "qualitative rungs from lab-demo interpretability to auditing deployed frontier systems, following what the cited interpretability results actually demonstrated at each scale"
     },
     "jobDisplacement": {
       "sourceIds": ["SRC-IMF-GENAI"],
@@ -299,7 +306,8 @@
         ],
         "scale": "linear",
         "decimals": 1
-      }
+      },
+      "note": "unit maps index points to the share of workers displaced faster than they are rehired, derived from the cited exposure split"
     },
     "unrest": {
       "sourceIds": ["SRC-OECD-EMPLOYMENT", "SRC-DESIGN-HANDOVER"],
@@ -324,7 +332,8 @@
           "at": 800,
           "label": "strings:anchor.unrest.800"
         }
-      ]
+      ],
+      "note": "qualitative rungs from background grumbling to general strike; thresholds are design-tuned against the labor-disruption context in the cited outlook"
     },
     "bilateralTrust": {
       "sourceIds": ["SRC-HO-INTL-INSTITUTIONS"],
@@ -345,7 +354,8 @@
           "at": 700,
           "label": "strings:anchor.bilateralTrust.700"
         }
-      ]
+      ],
+      "note": "qualitative rungs from open hostility to verifiable deals becoming possible, following the cited institutional-design analysis"
     },
     "substitution": {
       "sourceIds": ["SRC-CSIS-EXPORT"],
@@ -375,7 +385,38 @@
         ],
         "scale": "linear",
         "decimals": 0
-      }
+      },
+      "note": "unit maps index points to domestic chip-supply substitution capability, following the cited export-control analysis"
+    },
+    "alignment": {
+      "sourceIds": ["SRC-SLEEPER", "SRC-SCHEMING", "SRC-AGENTIC-MISALIGNMENT"],
+      "anchors": [
+        {
+          "at": 0,
+          "label": "strings:anchor.alignment.0"
+        },
+        {
+          "at": 150,
+          "label": "strings:anchor.alignment.150"
+        },
+        {
+          "at": 350,
+          "label": "strings:anchor.alignment.350"
+        },
+        {
+          "at": 500,
+          "label": "strings:anchor.alignment.500"
+        },
+        {
+          "at": 700,
+          "label": "strings:anchor.alignment.700"
+        },
+        {
+          "at": 850,
+          "label": "strings:anchor.alignment.850"
+        }
+      ],
+      "note": "qualitative rungs describing what each level of true alignment would mean under adversarial evaluation, per the cited deception results; in play this scale stays hidden and only the eval band is shown"
     }
   }
 }

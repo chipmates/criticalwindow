@@ -32,7 +32,12 @@ function entryLine(source: SourceEntry): string {
   const who = [source.authors, source.org].filter(Boolean).join(', ');
   const year = source.year ? ` (${source.year})` : '';
   const title = source.url ? `[${source.title}](${source.url})` : source.title;
-  return `- **${source.id}** · ${title}${who ? ` · ${who}` : ''}${year} · \`${source.evidenceClass}\`${STATUS_BADGE[source.status]}`;
+  // Flagged entries name their own limitation instead of a generic badge.
+  const badge =
+    source.status === 'flagged' && source.flagReason
+      ? ` *(flagged: ${source.flagReason})*`
+      : STATUS_BADGE[source.status];
+  return `- **${source.id}** · ${title}${who ? ` · ${who}` : ''}${year} · \`${source.evidenceClass}\`${badge}`;
 }
 
 function citedSites(source: SourceEntry, usage: UsageMap): string {
@@ -65,6 +70,7 @@ export function citationSiteCount(usage: UsageMap): number {
 export function renderSourcesMd(registry: SourcesRegistryData, usage: UsageMap): string {
   const counts = tierCounts(registry);
   const sites = citationSiteCount(usage);
+  const selfSites = usage.get('SRC-DESIGN-HANDOVER')?.length ?? 0;
 
   const loadBearing = registry.sources
     .filter((s) => s.tier === 'load-bearing')
@@ -119,11 +125,19 @@ in \`data/\` without a source ID fails the build, and so does a registry entry t
 claims a tier its citations do not support. [\`docs/EVIDENCE.md\`](docs/EVIDENCE.md)
 lists every cited number with its evidence.
 
-**${registry.sources.length} entries: ${counts['load-bearing']} drive numbers directly (${sites} citation sites), ${counts.background} shaped the design, ${counts.library} are further reading.**
+**${registry.sources.length} entries. ${counts['load-bearing'] - 1} external sources drive numbers directly (${sites - selfSites} citation sites). Game-design constants cite the project's own [design constitution](docs/DESIGN.md) instead (${selfSites} sites), and those are always labeled \`design\`, never counted as outside evidence. ${counts.background} more sources shaped the design, ${counts.library} are further reading.**
 Status: ${Object.entries(statusCounts)
     .sort()
     .map(([k, v]) => `${v} ${k}`)
     .join(', ')}.
+
+What the statuses mean: \`verified\` says the link was fetched and the title and
+authors matched this entry (July 2026, scripted fetches plus hand checks; where
+a publisher blocks robots, the entry's note says so and the check was manual).
+\`flagged\` names its own limitation on the entry. \`book\` means a library copy.
+One honest limit, stated plainly: the machine proves every citation exists and
+every tier is real. Whether a source truly supports a value is human work, and
+the challenge loop exists exactly for that.
 
 Every entry carries an evidence class: \`empirical\` (a measurement or documented
 fact), \`forecast\` (a claim about the future), \`analysis\` (an argument or
@@ -187,10 +201,14 @@ function collectRows(value: unknown, path: string, out: EvidenceRow[]): void {
   }
   const node = value as Record<string, unknown>;
   if (Array.isArray(node.sourceIds)) {
-    const numbers = Object.entries(node)
+    let numbers = Object.entries(node)
       .filter((pair): pair is [string, number] => typeof pair[1] === 'number')
       .map(([k, v]) => `${k} ${v}`)
       .join(' · ');
+    // Anchor tracks carry labeled rungs, not a single value; say what is there.
+    if (!numbers && Array.isArray(node.anchors)) {
+      numbers = `${node.anchors.length} labeled rungs${node.unit ? ' plus a continuous real-world unit mapping' : ''}`;
+    }
     out.push({
       path: path || '(root)',
       numbers,
@@ -242,6 +260,8 @@ export function renderEvidenceMd(
   const classes = classOf(registry);
   const kindTotals = new Map<string, number>();
   const sections: string[] = [];
+  let paramRowCount = 0;
+  let cardRowCount = 0;
 
   const ordered = [...files]
     .filter((f) => f.relPath !== 'sources.json' && !f.relPath.startsWith('schemas/'))
@@ -268,28 +288,42 @@ export function renderEvidenceMd(
     if (rows.length === 0) {
       continue;
     }
-    for (const row of rows) {
-      const kind = rowKind(row.sourceIds, classes);
-      kindTotals.set(kind, (kindTotals.get(kind) ?? 0) + 1);
-    }
     const detailed = groupFiles.every((f) => DETAILED_FILES.has(f.relPath));
+    for (const row of rows) {
+      if (detailed) {
+        const kind = rowKind(row.sourceIds, classes);
+        kindTotals.set(kind, (kindTotals.get(kind) ?? 0) + 1);
+        paramRowCount += 1;
+      } else {
+        cardRowCount += 1;
+      }
+    }
     const header = detailed
       ? '| Where | Numbers | Kind | Sources | How the number was derived |\n|---|---|---|---|---|'
-      : '| Where | Kind | Sources |\n|---|---|---|';
+      : '| Where | Premise kind | Sources |\n|---|---|---|';
     const body = rows
       .map((row) => {
         const where = groupFiles.length > 1 ? `${row.file} → ${row.path}` : row.path;
         const sources = row.sourceIds.join(', ');
         const kind = rowKind(row.sourceIds, classes);
-        return detailed
-          ? `| ${mdEscape(where)} | ${mdEscape(row.numbers)} | ${kind} | ${sources} | ${mdEscape(row.note)} |`
-          : `| ${mdEscape(where)} | ${kind} | ${sources} |`;
+        if (!detailed) {
+          // Cards cite the real-world premise they dramatize; the effect
+          // magnitudes are balance-tuned design values unless a note says more.
+          return `| ${mdEscape(where)} | ${kind} premise | ${sources} |`;
+        }
+        let note = row.note;
+        if (!note) {
+          note =
+            kind === 'design choice'
+              ? 'design constant; the constitution is the derivation'
+              : '⚠ derivation note missing';
+        }
+        return `| ${mdEscape(where)} | ${mdEscape(row.numbers)} | ${kind} | ${sources} | ${mdEscape(note)} |`;
       })
       .join('\n');
     sections.push(`## ${groupName}\n\n${header}\n${body}`);
   }
 
-  const totalRows = [...kindTotals.values()].reduce((a, b) => a + b, 0);
   const kindSummary = [...kindTotals.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([kind, n]) => `- **${n}** ${kind}`)
@@ -304,11 +338,11 @@ do not edit by hand, run \`pnpm sources-md\`. Registry with full source details:
 How a number gets into this game: a claim from the literature becomes an honest
 range, contested ranges live inside worldview presets you pick at setup, and a
 seeded hidden roll fixes the truth for your run inside that range. Design
-constants with no real-world referent cite the design handover and say so. The
+constants with no real-world referent cite the design constitution and say so. The
 iron rule: no number ships without a source ID, \`pnpm validate\` fails CI
 otherwise. Run it yourself.
 
-**${totalRows} cited values across ${citationSiteCount(usage)} citation sites.** By kind:
+**${paramRowCount} cited parameter values and ${cardRowCount} cited card premises, across ${citationSiteCount(usage)} citation sites.** Parameter values by kind:
 
 ${kindSummary}
 
@@ -320,8 +354,15 @@ alignment difficulty and takeoff speed, sit as ranges inside worldview presets
 rather than pretending to be facts, and the rest say in their note what they
 take from the argument. A **design choice** claims nothing about the world.
 
-Disagree with a value? Open a "challenge a number" issue with a source. The
-advisory board arbitrates realism disputes, see [\`GOVERNANCE.md\`](../GOVERNANCE.md).
+Card premises are counted separately on purpose: a card's citations back the
+real-world event it dramatizes, while its effect magnitudes are balance-tuned
+design values unless a note says otherwise. No card premise is ever counted as
+a measured value.
+
+Disagree with a value? Open a "challenge a number" issue with a source.
+Realism disputes are decided by the maintainer in public issues today; if the
+project earns an advisory board, it takes that role.
+See [\`GOVERNANCE.md\`](../GOVERNANCE.md).
 
 ${sections.join('\n\n')}
 `;

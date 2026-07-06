@@ -8,8 +8,16 @@ in `data/` without a source ID fails the build, and so does a registry entry tha
 claims a tier its citations do not support. [`docs/EVIDENCE.md`](docs/EVIDENCE.md)
 lists every cited number with its evidence.
 
-**163 entries: 55 drive numbers directly (309 citation sites), 11 shaped the design, 97 are further reading.**
-Status: 9 book, 6 flagged, 148 verified.
+**163 entries. 54 external sources drive numbers directly (249 citation sites). Game-design constants cite the project's own [design constitution](docs/DESIGN.md) instead (63 sites), and those are always labeled `design`, never counted as outside evidence. 11 more sources shaped the design, 97 are further reading.**
+Status: 9 book, 5 flagged, 149 verified.
+
+What the statuses mean: `verified` says the link was fetched and the title and
+authors matched this entry (July 2026, scripted fetches plus hand checks; where
+a publisher blocks robots, the entry's note says so and the check was manual).
+`flagged` names its own limitation on the entry. `book` means a library copy.
+One honest limit, stated plainly: the machine proves every citation exists and
+every tier is real. Whether a source truly supports a value is human work, and
+the challenge loop exists exactly for that.
 
 Every entry carries an evidence class: `empirical` (a measurement or documented
 fact), `forecast` (a claim about the future), `analysis` (an argument or
@@ -26,7 +34,7 @@ issue. That is a real contribution and it is welcome, see
 
 Every entry lists each place it is cited. Sorted by citation count.
 
-- **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/main/docs/DESIGN.md) · project (2026) · `design`
+- **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/v0.3.1/docs/DESIGN.md) · project (2026) · `design`
   Used for: design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
   Cited 63× by: anchors.json → tracks.politicalCapital · anchors.json → tracks.unrest · mandates.json → mandates.3 · mandates.json → mandates.8 · mandates.json → sourceIds · parameters.json → worldviewPresets.cautious.displacementLagDivisor *(+57 more)*
 - **SRC-AI2027** · [AI 2027](https://ai-2027.com/) · Kokotajlo, Alexander, Larsen, Lifland, Dean, AI Futures Project (2025) · `forecast`
@@ -41,33 +49,33 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-AI-INDEX-2026** · [Artificial Intelligence Index Report 2026](https://arxiv.org/abs/2606.15708) · Stanford Institute for Human-Centered AI (2026) · `empirical`
   Used for: Best single annual synthesis for capabilities, policy, labor, science, medicine, and AI sovereignty; ideal baseline world-state reference for opening turns
   Cited 16× by: anchors.json → tracks.talent · anchors.json → tracks.capital · anchors.json → tracks.publicTrust · events/companion_app_boom.json → sourceIds · events/election_scandal.json → sourceIds · events/flash_crash_agent.json → sourceIds *(+10 more)*
+- **SRC-SLEEPER** · [Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training](https://arxiv.org/abs/2401.05566) · Hubinger et al., Anthropic (2024) · `empirical`
+  Used for: deceptive-alignment mechanic; eval uncertainty band
+  Cited 13× by: anchors.json → tracks.alignment · events/eval_breakthrough.json → sourceIds · events/whistleblower.json → sourceIds · incidents.json → safetyInsightDamageReductionMaxPerMille · incidents.json → rungs.0 · incidents.json → sourceIds *(+7 more)*
 - **SRC-IMF-GENAI** · [Gen-AI: Artificial Intelligence and the Future of Work](https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf) · Cazzaniga et al., IMF SDN (2024) · `empirical`
   Used for: job-displacement mechanic; ~40% of global jobs exposed (60% advanced economies, 40% emerging, 26% low-income)
   Cited 13× by: anchors.json → tracks.jobDisplacement · events/civil_service_flood.json → sourceIds · events/general_strike.json → sourceIds · events/union_moratorium_demand.json → sourceIds · events/viral_job_loss.json → sourceIds · mandates.json → mandates.1 *(+7 more)*
-- **SRC-SLEEPER** · [Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training](https://arxiv.org/abs/2401.05566) · Hubinger et al., Anthropic (2024) · `empirical`
-  Used for: deceptive-alignment mechanic; eval uncertainty band
-  Cited 12× by: events/eval_breakthrough.json → sourceIds · events/whistleblower.json → sourceIds · incidents.json → safetyInsightDamageReductionMaxPerMille · incidents.json → rungs.0 · incidents.json → sourceIds · mandates.json → mandates.2 *(+6 more)*
 - **SRC-IEA-ENERGY-AI** · [Energy and AI](https://www.iea.org/reports/energy-and-ai) · International Energy Agency (2025) · `empirical`
   Used for: Grounds the single energy-resource track and its thresholds (gridSlackBeforeCap, mandates, event/policy effects) in IEA's datacentre electricity-demand projections (415 TWh in 2024 rising to ~945 TWh by 2030); the game does not separately model energy-source mix or climate/emissions as distinct mechanics, despite the entry's wording.
   Cited 12× by: anchors.json → tracks.energy · events/city_power_deal.json → sourceIds · events/coal_province_datacenter_bid.json → sourceIds · events/energy_crunch.json → sourceIds · events/grid_crunch.json → sourceIds · mandates.json → mandates.0 *(+6 more)*
 - **SRC-METR-HORIZON** · [Measuring AI Ability to Complete Long Tasks (task-horizon)](https://arxiv.org/abs/2503.14499) · Kwa, West et al., METR (2025) · `empirical`
   Used for: 50% task-completion time horizon doubling ~every 7 months since 2019; capability clock calibration
   Cited 10× by: anchors.json → tracks.capability · events/flash_crash_agent.json → sourceIds · parameters.json → worldviewPresets.cautious.takeoffSteepness · parameters.json → worldviewPresets.consensus.takeoffSteepness · parameters.json → worldviewPresets.skeptic.takeoffSteepness · parameters.json → capabilityLadder.milestones.0.selfAccel *(+4 more)*
-- **SRC-OECD-EMPLOYMENT** · [OECD Employment Outlook (AI chapters)](https://www.oecd.org/en/publications/oecd-employment-outlook-2023_08785bba-en.html) · OECD · `empirical` *(link broken, replacement wanted)*
+- **SRC-SCHEMING** · [Frontier Models are Capable of In-context Scheming](https://arxiv.org/abs/2412.04984) · Meinke, Schoen et al., Apollo Research (2024) · `empirical`
+  Used for: Frontier models demonstrated strategically deceiving evaluators and pursuing misaligned goals covertly in controlled evals; backs the eval-uncertainty band width, several incident-ladder rungs, and the safety-focused mandates.
+  Cited 10× by: anchors.json → tracks.alignment · events/benchmark_gaming.json → sourceIds · incidents.json → safetyInsightDamageReductionMaxPerMille · incidents.json → rungs.0 · incidents.json → rungs.1 · incidents.json → rungs.2 *(+4 more)*
+- **SRC-OECD-EMPLOYMENT** · [OECD Employment Outlook (AI chapters)](https://doi.org/10.1787/08785bba-en) · OECD (2023) · `empirical`
   Used for: Backs the unrest/labor-disruption side of the society mechanic across multiple mandates, strike/displacement events, the ai_literacy_campaign policy, and the unrestEconomicDragMin threshold (sustained high unrest starts costing the economy).
   Cited 10× by: anchors.json → tracks.unrest · events/civil_service_flood.json → sourceIds · events/general_strike.json → sourceIds · events/shuttered_factory_census.json → sourceIds · events/union_moratorium_demand.json → sourceIds · mandates.json → mandates.1 *(+4 more)*
 - **SRC-HO-INTL-INSTITUTIONS** · [International Institutions for Advanced AI](https://arxiv.org/abs/2307.04699) · Ho et al. (2023) · `analysis`
   Used for: Grounds the bilateral-trust track and treaty-signing thresholds/events: real proposals for international AI institutions (verification bodies, joint safety research, coordination mechanisms) motivate the trust-building diplomacy chain (ally_eval_request, civil_military_fusion, liability_shield_ask, treaty_feeler, verification_offer, compute_treaty_feeler) and the political-capital/trust gates required to sign a treaty.
   Cited 10× by: anchors.json → tracks.bilateralTrust · events/ally_eval_request.json → sourceIds · events/civil_military_fusion.json → sourceIds · events/liability_shield_ask.json → sourceIds · events/treaty_feeler.json → sourceIds · events/verification_offer.json → sourceIds *(+4 more)*
-- **SRC-SCHEMING** · [Frontier Models are Capable of In-context Scheming](https://arxiv.org/abs/2412.04984) · Meinke, Schoen et al., Apollo Research (2024) · `empirical`
-  Used for: Frontier models demonstrated strategically deceiving evaluators and pursuing misaligned goals covertly in controlled evals; backs the eval-uncertainty band width, several incident-ladder rungs, and the safety-focused mandates.
-  Cited 9× by: events/benchmark_gaming.json → sourceIds · incidents.json → safetyInsightDamageReductionMaxPerMille · incidents.json → rungs.0 · incidents.json → rungs.1 · incidents.json → rungs.2 · incidents.json → sourceIds *(+3 more)*
 - **SRC-SITUATIONAL-AWARENESS** · [Situational Awareness: The Decade Ahead](https://situational-awareness.ai/) · Leopold Aschenbrenner (2024) · `forecast`
   Used for: Aggressive-timeline / intelligence-explosion worldview preset anchor; also backs the nationalized 'the Project' event and natsec_merge policy, the SC/SAR milestone timing, and the compute-energy grid-crunch event, all drawn from the essay's industrial-mobilization and intelligence-explosion argument.
   Cited 8× by: events/grid_crunch.json → sourceIds · events/intelligence_explosion.json → sourceIds · events/superhuman_coder.json → sourceIds · events/the_project.json → sourceIds · parameters.json → worldviewPresets.cautious.takeoffSteepness · parameters.json → capabilityLadder.milestones.0.at *(+2 more)*
 - **SRC-AGENTIC-MISALIGNMENT** · [Agentic Misalignment: How LLMs Could Be Insider Threats](https://arxiv.org/abs/2510.05179) · Aengus Lynch et al. (2025) · `empirical`
   Used for: Most directly game-relevant recent paper for sabotage / blackmail / insider-threat event chains under high-autonomy deployment
-  Cited 7× by: incidents.json → riskFormula.pressureAllocationPct · incidents.json → riskFormula.pressureRivalRacePct · incidents.json → rungs.0 · incidents.json → rungs.1 · incidents.json → rungs.3 · incidents.json → sourceIds *(+1 more)*
+  Cited 8× by: anchors.json → tracks.alignment · incidents.json → riskFormula.pressureAllocationPct · incidents.json → riskFormula.pressureRivalRacePct · incidents.json → rungs.0 · incidents.json → rungs.1 · incidents.json → rungs.3 *(+2 more)*
 - **SRC-EPOCH-COMPUTE** · [Data on the Trajectory of AI (databases hub)](https://epoch.ai/data) · Epoch AI · `empirical`
   Used for: Compute-meter anchor and the capabilityPerRnd growth curve's compute-doubling assumption (~5.2 months per doubling since 2020); also general compute/energy event flavor. No tech-tree feature exists anywhere in the game.
   Cited 6× by: anchors.json → tracks.compute · events/coal_province_datacenter_bid.json → sourceIds · events/fab_yield_breakthrough.json → sourceIds · events/open_source_replication.json → sourceIds · parameters.json → curves.capabilityPerRnd · scenarios/scenario_2026.json → seats.usa.resources.compute
@@ -339,7 +347,7 @@ grouped by topic.
   Why it is here: Gives a curious reader or teacher the actual EU competitiveness diagnosis (the roughly 800bn-euro/yr investment gap) behind the 'Europe has real leverage and a closing window' takeaway, ahead of the Phase 4 EU seat this game does not have yet.
 - **SRC-DRAGHI-WIKI** · [Draghi report](https://en.wikipedia.org/wiki/Draghi_report) · Wikipedia · `empirical`
   Why it is here: Tracks how much of the Draghi competitiveness agenda the EU has actually implemented (11.2% after one year per the EPIC Observatory), useful for a player or journalist checking whether a future EU seat reflects reality.
-- **SRC-INVESTAI** · InvestAI / AI gigafactories & AI Action Summit outcomes (2025) · `empirical` *(link broken, replacement wanted)*
+- **SRC-INVESTAI** · InvestAI / AI gigafactories & AI Action Summit outcomes (2025) · `empirical` *(flagged: An umbrella citation covering InvestAI, the AI gigafactories program and summit outcomes; no single official page covers all three.)*
   Why it is here: The EU's own AI-infrastructure investment push (InvestAI funding, AI gigafactories, the Feb 2025 AI Action Summit outcomes), background for the 'Europe left behind' competitiveness story the game doesn't yet model with a playable EU seat.
 - **SRC-BRUSSELS-EFFECT** · The Brussels Effect · Bradford (2020) · `analysis` *(book, obtain manually)*
   Why it is here: Bradford's thesis on how EU regulation projects power globally even without EU market presence, relevant background for why the game's EU AI Act wildcard events fire regardless of whether Europe is a playable seat, though those events cite EU-AI-Act sources directly rather than this book.
@@ -361,7 +369,7 @@ grouped by topic.
   Why it is here: Forecasts how many frontier-scale models will exist through 2028 as compute costs fall; useful context for why the game assumes more than one actor can approach the frontier over time, though no specific in-game number is drawn from it.
 - **SRC-GRACE-2018** · [When Will AI Exceed Human Performance? Evidence from AI Experts](https://arxiv.org/abs/1705.08807) · Grace, Salvatier, Dafoe, Zhang, Evans (2018) · `forecast`
   Why it is here: The original 2017/2018 AI Impacts expert-timeline survey; useful for a reader who wants to see how much expert opinion moved between this survey and the 2024 follow-up (SRC-GRACE-SURVEY) that the game actually draws its consensus-preset anchors from.
-- **SRC-COTRA-BIOANCHORS** · Forecasting TAI with Biological Anchors · Cotra, Open Philanthropy (2020) · `forecast` *(link broken, replacement wanted)*
+- **SRC-COTRA-BIOANCHORS** · Forecasting TAI with Biological Anchors · Cotra, Open Philanthropy (2020) · `forecast` *(flagged: The report has no canonical page: it lives in an unlisted folder linked from the author's announcement post. We cite the work; the link situation is genuinely messy.)*
   Why it is here: The founding bio-anchors approach to forecasting transformative AI by analogy to biological brain compute; useful for a researcher tracing where the field's timeline debates (and this game's takeoff/timeline thinking) originally came from, despite backing no specific number here and having a genuinely messy citation trail.
 
 ### governance
@@ -436,7 +444,7 @@ grouped by topic.
 
 ### model-cards
 
-- **SRC-MODEL-DOCS-BUNDLE** · System/model cards (GPT-4, Claude 3/Opus, Gemini); Papers with Code; Alignment Forum / LessWrong key posts · `empirical` *(link broken, replacement wanted)*
+- **SRC-MODEL-DOCS-BUNDLE** · System/model cards (GPT-4, Claude 3/Opus, Gemini); Papers with Code; Alignment Forum / LessWrong key posts · `empirical` *(flagged: An umbrella entry for model release documentation across several labs; no single link to verify.)*
   Why it is here: For a researcher wanting primary model documentation and reproducible benchmark tracking behind the game's abstracted capability meter, this points to real published model cards (GPT-4, Claude, Gemini) and Papers with Code's benchmark leaderboards.
 
 ### policy-tracker
@@ -494,7 +502,7 @@ grouped by topic.
   Why it is here: For a player or researcher curious about the real academic wargame this design descends from, CSER's project page is the primary hub for Intelligence Rising's facilitation materials and history.
 - **SRC-AVIN-AI-FUTURES-SURVEY** · [Exploring Artificial Intelligence Futures (survey of methods)](https://www.openbookpublishers.com/books/10.11647/obp.0360/chapters/10.11647/obp.0360.08) · Shahar Avin (2019) · `design`
   Why it is here: For readers curious how game-based exploration of AI futures compares to narrative scenario-writing (like AI-2027) or survey forecasting, this is Avin's overview of the methodological menu the project's format sits within.
-- **SRC-SERIOUS-GAMES-BUNDLE** · RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak) · `design` *(link broken, replacement wanted)*
+- **SRC-SERIOUS-GAMES-BUNDLE** · RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak) · `design` *(flagged: An umbrella entry for several works on learning through games; the individual works are listed in this registry, but there is no single link to verify.)*
   Why it is here: For a teacher or researcher wanting the wider serious-games/wargaming literature behind the debrief design (Schelling on gaming, matrix-game/TTX methodology, climate-game studies like Daybreak) beyond the four works already listed individually.
 - **SRC-CLARK-2016** · [Digital Games for Learning meta-analysis](https://journals.sagepub.com/doi/10.3102/0034654315582065) · Clark et al. (2016) · `design`
   Why it is here: For readers who want the empirical backing behind 'games can teach, but design matters,' this meta-analysis of digital game-based learning outcomes complements Wouters et al. (already grounding the debrief-screen design) with a broader review across digital games generally.
@@ -517,7 +525,7 @@ grouped by topic.
 
 ### wargaming
 
-- **SRC-RAND-WARGAMING** · [RAND wargaming methodology series](https://www.rand.org) · RAND · `design` *(link broken, replacement wanted)*
+- **SRC-RAND-WARGAMING** · [RAND wargaming methodology series](https://www.rand.org) · RAND · `design` *(flagged: An umbrella entry for RAND's wargaming methodology literature; individual reports verify, the bundle as such has no single link.)*
   Why it is here: For readers curious about the tabletop-wargaming methodology (matrix games, structured turn phases) that the project's turn/era/event structure resembles, RAND's wargaming-methodology literature is the field's reference; no single report is pinned here.
 
 ### worldview-optimistic
