@@ -372,7 +372,14 @@ if (strings) {
 
 // Displayed markdown prose obeys the same rules. SOURCES.md is exempt because
 // quoted publication titles legitimately carry em dashes.
-for (const relPath of ['README.md', 'ROADMAP.md', 'CONTRIBUTING.md', 'GOVERNANCE.md']) {
+for (const relPath of [
+  'README.md',
+  'ROADMAP.md',
+  'CONTRIBUTING.md',
+  'GOVERNANCE.md',
+  'docs/HANDOVER.md',
+  'docs/EVIDENCE.md',
+]) {
   const absPath = join(dataRootPath, '..', relPath);
   if (!existsSync(absPath)) {
     continue;

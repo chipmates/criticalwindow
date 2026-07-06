@@ -16,14 +16,16 @@ otherwise. Run it yourself.
 - **22** analysis-based
 - **40** design choice
 - **29** forecast-based
-- **84** measured
+- **63** measured
+- **21** measured, design-tuned
 
-A **measured** value cites only empirical evidence. A **forecast-based** or
-**analysis-based** value rests on somebody's argument rather than a measurement;
-the most contested of these, alignment difficulty and takeoff speed, sit as
-ranges inside worldview presets rather than pretending to be facts, and the rest
-say in their note what they take from the argument. A **design choice** claims
-nothing about the world.
+A **measured** value cites only empirical evidence, and **measured,
+design-tuned** means an empirical base whose game magnitude we calibrated, with
+the note saying how. A **forecast-based** or **analysis-based** value rests on
+somebody's argument rather than a measurement; the most contested of these,
+alignment difficulty and takeoff speed, sit as ranges inside worldview presets
+rather than pretending to be facts, and the rest say in their note what they
+take from the argument. A **design choice** claims nothing about the world.
 
 Disagree with a value? Open a "challenge a number" issue with a source. The
 advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.md).
@@ -41,7 +43,7 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | tracks.politicalCapital |  | design choice | SRC-DESIGN-HANDOVER |  |
 | tracks.safetyInsight |  | measured | SRC-SCALING-MONOSEMANTICITY, SRC-SLEEPER-PROBES |  |
 | tracks.jobDisplacement |  | measured | SRC-IMF-GENAI |  |
-| tracks.unrest |  | measured | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER |  |
+| tracks.unrest |  | measured, design-tuned | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER |  |
 | tracks.bilateralTrust |  | analysis-based | SRC-HO-INTL-INSTITUTIONS |  |
 | tracks.substitution |  | measured | SRC-CSIS-EXPORT |  |
 
@@ -51,7 +53,7 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 |---|---|---|
 | events/allied_export_fracture.json → (root) | measured | SRC-CSIS-SME-CONTROLS, SRC-CSIS-EXPORT |
 | events/ally_eval_request.json → (root) | analysis-based | SRC-HO-INTL-INSTITUTIONS, SRC-CSIS-EXPORT |
-| events/asml_export_squeeze.json → (root) | measured | SRC-CSIS-EXPORT, SRC-CHIP-WAR, SRC-SIM-GAMING-INSIGHTS |
+| events/asml_export_squeeze.json → (root) | measured, design-tuned | SRC-CSIS-EXPORT, SRC-CHIP-WAR, SRC-SIM-GAMING-INSIGHTS |
 | events/autonomous_targeting_demo.json → (root) | forecast-based | SRC-AI2027, SRC-SIM-GAMING-INSIGHTS |
 | events/benchmark_gaming.json → (root) | measured | SRC-BENCH-COP, SRC-SCHEMING |
 | events/branch_point.json → (root) | forecast-based | SRC-AI2027 |
@@ -81,7 +83,7 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | events/rival_breakthrough.json → (root) | forecast-based | SRC-AI2027, SRC-MAIM |
 | events/shuttered_factory_census.json → (root) | measured | SRC-CSIS-EXPORT, SRC-OECD-EMPLOYMENT |
 | events/superhuman_coder.json → (root) | forecast-based | SRC-AI2027, SRC-SITUATIONAL-AWARENESS, SRC-GRACE-SURVEY |
-| events/taiwan_strait_crisis.json → (root) | measured | SRC-CHIP-WAR, SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
+| events/taiwan_strait_crisis.json → (root) | measured, design-tuned | SRC-CHIP-WAR, SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
 | events/the_project.json → (root) | forecast-based | SRC-SITUATIONAL-AWARENESS, SRC-SIM-GAMING-INSIGHTS |
 | events/treaty_feeler.json → (root) | analysis-based | SRC-MAIM, SRC-HO-INTL-INSTITUTIONS |
 | events/union_moratorium_demand.json → (root) | measured | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
@@ -94,9 +96,9 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 
 | Where | Kind | Sources |
 |---|---|---|
-| (root) | measured | SRC-SLEEPER, SRC-SCHEMING, SRC-AGENTIC-MISALIGNMENT, SRC-AI-INCIDENT-DB, SRC-SIM-GAMING-INSIGHTS |
+| (root) | measured, design-tuned | SRC-SLEEPER, SRC-SCHEMING, SRC-AGENTIC-MISALIGNMENT, SRC-AI-INCIDENT-DB, SRC-SIM-GAMING-INSIGHTS |
 | riskFormula.pressureAllocationPct | measured | SRC-AGENTIC-MISALIGNMENT |
-| riskFormula.pressureRivalRacePct | measured | SRC-AGENTIC-MISALIGNMENT, SRC-SIM-GAMING-INSIGHTS |
+| riskFormula.pressureRivalRacePct | measured, design-tuned | SRC-AGENTIC-MISALIGNMENT, SRC-SIM-GAMING-INSIGHTS |
 | safetyInsightDamageReductionMaxPerMille | measured | SRC-SLEEPER, SRC-SCHEMING |
 | rungs[0] | measured | SRC-SLEEPER, SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
 | rungs[1] | measured | SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
@@ -111,13 +113,13 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | mandates[0] | measured | SRC-IEA-ENERGY-AI, SRC-GRID-DATACENTER |
 | mandates[1] | measured | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
 | mandates[2] | measured | SRC-UK-AISI, SRC-SLEEPER |
-| mandates[3] | measured | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER |
+| mandates[3] | measured, design-tuned | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER |
 | mandates[4] | measured | SRC-SLEEPER, SRC-SCHEMING |
 | mandates[5] | measured | SRC-IEA-ENERGY-AI |
 | mandates[6] | measured | SRC-IMF-GENAI, SRC-OECD-EMPLOYMENT |
 | mandates[7] | measured | SRC-SLEEPER, SRC-SCHEMING |
 | mandates[8] | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
-| mandates[9] | measured | SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
+| mandates[9] | measured, design-tuned | SRC-CSIS-EXPORT, SRC-SIM-GAMING-INSIGHTS |
 
 ## parameters.json
 
@@ -125,23 +127,23 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 |---|---|---|---|---|
 | worldviewPresets.cautious.alignmentDifficulty | min 550 · max 950 | forecast-based | SRC-AI2027, SRC-CARLSMITH, SRC-IABIED | maps the power-seeking-AI risk cluster (Carlsmith >10% x-risk, AI-2027 race ending, IABIED thesis) onto the upper half of the difficulty scale |
 | worldviewPresets.cautious.takeoffSteepness | min 500 · max 900 | forecast-based | SRC-AI2027, SRC-SITUATIONAL-AWARENESS, SRC-METR-HORIZON | fast-takeoff worldview: software intelligence explosion plausible within the game window; top at 900 not 1000 because even the aggressive sources call 2027 strikingly plausible, not certain (tuning pass 2026-07-04) |
-| worldviewPresets.cautious.displacementLagDivisor | value 4 | measured | SRC-IMF-GENAI, SRC-DESIGN-HANDOVER | fast-and-painful worldview: exposure becomes lived displacement quickly (tuning pass 2026-07-04) |
+| worldviewPresets.cautious.displacementLagDivisor | value 4 | measured, design-tuned | SRC-IMF-GENAI, SRC-DESIGN-HANDOVER | fast-and-painful worldview: exposure becomes lived displacement quickly (tuning pass 2026-07-04) |
 | worldviewPresets.consensus.alignmentDifficulty | min 300 · max 800 | forecast-based | SRC-IAISR, SRC-GRACE-SURVEY | wide band: expert median worry with heavy disagreement (Grace 2024: 38-51% give >=10% to extremely bad outcomes; IAISR: deep uncertainty) |
 | worldviewPresets.consensus.takeoffSteepness | min 250 · max 700 | forecast-based | SRC-IAISR, SRC-METR-HORIZON, SRC-GRACE-SURVEY | capability doubling trends real but discontinuity contested; range centers the Grace survey middle with a real fast tail (10% HLMI by 2027), tightened from 300-800 in the 2026-07-04 tuning pass |
-| worldviewPresets.consensus.displacementLagDivisor | value 6 | measured | SRC-IMF-GENAI, SRC-DESIGN-HANDOVER | default diffusion lag: high exposure, gradual realization (tuning pass 2026-07-04; carries the v0.1 divisor) |
+| worldviewPresets.consensus.displacementLagDivisor | value 6 | measured, design-tuned | SRC-IMF-GENAI, SRC-DESIGN-HANDOVER | default diffusion lag: high exposure, gradual realization (tuning pass 2026-07-04; carries the v0.1 divisor) |
 | worldviewPresets.skeptic.alignmentDifficulty | min 200 · max 500 | analysis-based | SRC-NORMAL-TECH, SRC-SNAKE-OIL | normal-technology worldview: control problems mostly engineering, diffusion friction dominates Floor raised 50->200 on 2026-07-04: even the optimistic worldview is not a trivial giveaway; alignment is never free. |
 | worldviewPresets.skeptic.takeoffSteepness | min 100 · max 450 | analysis-based | SRC-NORMAL-TECH, SRC-METR-HORIZON | adoption and integration lags cap effective takeoff speed; tightened from 100-500 in the 2026-07-04 tuning pass |
 | worldviewPresets.skeptic.displacementLagDivisor | value 9 | forecast-based | SRC-NORMAL-TECH, SRC-GRACE-SURVEY | slow-diffusion worldview: only 0.5-3.5% of work hours realized despite adoption (Normal Tech); Grace FAOL median 2116 (tuning pass 2026-07-04) |
 | evalUncertainty.baseBandWidth | value 400 | measured | SRC-SLEEPER, SRC-SCHEMING | wide starting band: deceptive models can pass evals, so low evidence means low confidence either way |
-| evalUncertainty.safetyInsightNarrowing | value 40 | measured | SRC-SLEEPER-PROBES, SRC-DESIGN-HANDOVER | narrowing per 100 Safety Insight: simple probes catch sleeper agents (Anthropic), so interpretability investment buys real eval confidence; the rate itself is a design constant tuned in playtests |
+| evalUncertainty.safetyInsightNarrowing | value 40 | measured, design-tuned | SRC-SLEEPER-PROBES, SRC-DESIGN-HANDOVER | narrowing per 100 Safety Insight: simple probes catch sleeper agents (Anthropic), so interpretability investment buys real eval confidence; the rate itself is a design constant tuned in playtests |
 | evalUncertainty.floorBandWidth | value 100 | measured | SRC-SLEEPER, SRC-AGENTIC-MISALIGNMENT | the band never closes: near-99% true-trigger vs ~0 red-team (Sleeper Agents), 55.1% real vs 6.5% eval (Agentic Misalignment). Raised 80->100 in the 2026-07-04 tuning pass, multiple-of-50 rule |
 | evalUncertainty.deceptionMaxLift | value 250 | measured | SRC-SLEEPER, SRC-ALIGNMENT-FAKING | how far a badly aligned model's eval report can read ABOVE the truth: deceptive alignment survives safety training and looks fine on the outside |
-| evalUncertainty.deceptionInsightCounter | value 40 | measured | SRC-SLEEPER-PROBES, SRC-DESIGN-HANDOVER | lift reduction per 100 Safety Insight: probes are the counter to deceptive passes; rate is design-tuned |
+| evalUncertainty.deceptionInsightCounter | value 40 | measured, design-tuned | SRC-SLEEPER-PROBES, SRC-DESIGN-HANDOVER | lift reduction per 100 Safety Insight: probes are the counter to deceptive passes; rate is design-tuned |
 | thresholds.fogZoneStart | value 800 | design choice | SRC-DESIGN-HANDOVER | capability level where the threshold zone begins; the race track shades from here |
 | thresholds.capabilityThreshold | value 1000 | design choice | SRC-DESIGN-HANDOVER | crossing forces the alignment resolution (envelope opens) |
 | thresholds.breakdownUnrest | value 800 | design choice | SRC-DESIGN-HANDOVER | unrest level that ends the run; paper playtests tune |
 | thresholds.treatyTrustMin | value 850 | analysis-based | SRC-HO-INTL-INSTITUTIONS, SRC-DESIGN-HANDOVER | bilateral trust needed to SIGN. 700->800 (2026-07-04 rebalance), 800->850 (same day, iter2 volume tripwire: mid-tier play banked the treaty at 63%, matching the expert ceiling; the recipe needed to cost more commitment). Both seats must also have signaled. |
-| thresholds.gridSlackBeforeCap | value 300 | measured | SRC-IEA-ENERGY-AI, SRC-DESIGN-HANDOVER | compute outrunning energy decays: IEA base case has datacentre demand rising 415 TWh (2024, ~1.5% of world electricity) to ~945 TWh by 2030; slack width is design-tuned |
+| thresholds.gridSlackBeforeCap | value 300 | measured, design-tuned | SRC-IEA-ENERGY-AI, SRC-DESIGN-HANDOVER | compute outrunning energy decays: IEA base case has datacentre demand rising 415 TWh (2024, ~1.5% of world electricity) to ~945 TWh by 2030; slack width is design-tuned |
 | thresholds.treatySignTurnMin | value 11 | analysis-based | SRC-HO-INTL-INSTITUTIONS, SRC-DESIGN-HANDOVER | earliest signing turn. Raised 8->11 on 2026-07-04: you must survive the dangerous middle before cooperation is real. |
 | thresholds.treatySignPoliticalCapitalMin | value 300 | analysis-based | SRC-PUTNAM-TWO-LEVEL, SRC-HO-INTL-INSTITUTIONS, SRC-SIM-GAMING-INSIGHTS | BOTH seats need this much standing political capital at signing: every treaty has two home fronts (Putnam's two-level games), and the rival's swings with era verdicts outside the player's control. The signature is a window to be read, not a recipe to execute. (2026-07-04, iter3: price-based gates alone could not cap recipe play.) |
 | worldRules.rivalMoves.race.trust | value -50 | design choice | SRC-DESIGN-HANDOVER |  |
@@ -158,7 +160,7 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | worldRules.election.mandateSwing | value 100 | design choice | SRC-DESIGN-HANDOVER | political capital gained on renewal, lost on rebuke |
 | worldRules.upkeep.capitalIncomePerDiffusion | value 25 | forecast-based | SRC-GATE, SRC-DESIGN-HANDOVER | diffusion converts capability into economic output (compute-centric growth models); the rate is design pacing |
 | worldRules.societyDepth.trustCurveDivisor | value 4 | design choice | SRC-DESIGN-HANDOVER | trustFromUnrest(unrest)/divisor applied to public trust per turn |
-| worldRules.societyDepth.unrestEconomicDragMin | value 600 | measured | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER | sustained high unrest starts costing the economy (strikes, capital flight, risk premia); threshold design-tuned |
+| worldRules.societyDepth.unrestEconomicDragMin | value 600 | measured, design-tuned | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER | sustained high unrest starts costing the economy (strikes, capital flight, risk premia); threshold design-tuned |
 | worldRules.societyDepth.unrestEconomicDrag | value 25 | design choice | SRC-DESIGN-HANDOVER | capital drag per turn at high unrest; talent drains at half rate |
 | worldRules.agencyErosion.highCapabilityMin | value 800 | analysis-based | SRC-GRADUAL-DISEMPOWERMENT | erosion accrues once systems this capable run core functions |
 | worldRules.agencyErosion.perTurn | value 25 | analysis-based | SRC-GRADUAL-DISEMPOWERMENT, SRC-DESIGN-HANDOVER | quiet per-turn handover of decision-making at high capability; no P1 ending, Alpha ships it |
@@ -173,7 +175,7 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | turnStructure.electionTurn | value 8 | design choice | SRC-DESIGN-HANDOVER | US midterms fall on turn 8 of the quarterly clock |
 | turnStructure.handSize | value 3 | design choice | SRC-DESIGN-HANDOVER | rotating policy hand; refills from the unspent pool each upkeep |
 | curves.rndCapacity |  | forecast-based | SRC-GATE, SRC-DESIGN-HANDOVER | R&D points from compute+talent with diminishing returns; shape motivated by compute-centric growth models (Epoch GATE), values are design pacing |
-| curves.capabilityPerRnd |  | measured | SRC-EPOCH-COMPUTE, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER, SRC-EPOCH-DOUBLING | abstraction of the measured regime (training compute doubling every 5.2 months since 2020; 50% task horizon doubling every ~207 days per the v3 estimate) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16 |
+| curves.capabilityPerRnd |  | measured, design-tuned | SRC-EPOCH-COMPUTE, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER, SRC-EPOCH-DOUBLING | abstraction of the measured regime (training compute doubling every 5.2 months since 2020; 50% task horizon doubling every ~207 days per the v3 estimate) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16 |
 | curves.displacementFromCapability |  | measured | SRC-IMF-GENAI, SRC-PAYROLLS-TO-PROMPTS | equilibrium displacement by capability: exposure is already material at 2026 capability levels (IMF: almost 40% of global employment exposed) and rises toward index 550 at frontier; early knee raised after the 2026-07-03 playtest (displacement was FALLING early game because the start value exceeded the old curve target) |
 | curves.trustFromUnrest |  | design choice | SRC-DESIGN-HANDOVER | trust erosion accelerates with unrest; design curve, playtests tune |
 | alignmentModel.startBase | value 500 | design choice | SRC-DESIGN-HANDOVER | true alignment starts at startBase - difficulty/2: alignment is an achievement, not a default. Retuned after the 2026-07-03 playtest finding: zero safety investment could win (old start 1000-difficulty meant easy worlds came pre-aligned) |
@@ -215,9 +217,9 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | world.bilateralTrust | design choice | SRC-DESIGN-HANDOVER |
 | seats.usa.resources.compute | measured | SRC-EPOCH-COMPUTE |
 | seats.usa.resources.energy | measured | SRC-IEA-ENERGY-AI |
-| seats.usa.resources.talent | measured | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
-| seats.usa.resources.capital | measured | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
-| seats.usa.resources.publicTrust | measured | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.usa.resources.talent | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.usa.resources.capital | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.usa.resources.publicTrust | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
 | seats.usa.resources.politicalCapital | design choice | SRC-DESIGN-HANDOVER |
 | seats.usa.resources.capability | measured | SRC-METR-HORIZON |
 | seats.usa.resources.safetyInsight | analysis-based | SRC-SCALING-MONOSEMANTICITY, SRC-IAISR-UPDATE-2 |
@@ -227,8 +229,8 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | seats.usa.allocation | design choice | SRC-DESIGN-HANDOVER |
 | seats.china.resources.compute | measured | SRC-CSIS-EXPORT, SRC-DEEPSEEK-COST |
 | seats.china.resources.energy | measured | SRC-IEA-ENERGY-AI |
-| seats.china.resources.talent | measured | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
-| seats.china.resources.capital | measured | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.china.resources.talent | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
+| seats.china.resources.capital | measured, design-tuned | SRC-AI-INDEX-2026, SRC-DESIGN-HANDOVER |
 | seats.china.resources.publicTrust | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
 | seats.china.resources.politicalCapital | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
 | seats.china.resources.capability | measured | SRC-DEEPSEEK-COST |
@@ -242,8 +244,8 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 
 | Where | Numbers | Kind | Sources | How the number was derived |
 |---|---|---|---|---|
-| (root) |  | measured | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT |  |
+| (root) |  | measured, design-tuned | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT |  |
 | usa |  | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |  |
-| china |  | measured | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT, SRC-DESIGN-HANDOVER |  |
+| china |  | measured, design-tuned | SRC-SIM-GAMING-INSIGHTS, SRC-CSIS-EXPORT, SRC-DESIGN-HANDOVER |  |
 | china.legitimacyCheck.trustMin | value 400 | design choice | SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER | legitimacy pressure replaces the midterm: verdicts at each era turn instead of one election |
 | china.legitimacyCheck.swing | value 100 | design choice | SRC-DESIGN-HANDOVER | political capital gained per era while legitimacy holds, lost while it does not |

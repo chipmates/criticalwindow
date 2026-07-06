@@ -71,27 +71,50 @@ describe('mutations are caught (the rules bite)', () => {
     expect(errors.some((e) => e.includes(uncited.id) && e.includes('nothing in data/'))).toBe(true);
   });
 
-  test('vague usage claims fail', () => {
-    const mutated = structuredClone(registry);
-    const background = mutated.sources.find((s) => s.tier === 'background');
-    if (!background) throw new Error('no background source in registry');
-    background.shaped = 'This source informed our thinking about the design.';
-    const errors = registryHonestyErrors(mutated, usage);
-    expect(errors.some((e) => e.includes(background.id))).toBe(true);
+  const TIER_FIELD = {
+    'load-bearing': 'gameUse',
+    background: 'shaped',
+    library: 'whyListed',
+  } as const;
+  const CLAIM_FIELDS = ['gameUse', 'shaped', 'whyListed'] as const;
+
+  test('vague phrasing fails on every claim field, every tier', () => {
+    for (const [tier, field] of Object.entries(TIER_FIELD)) {
+      const mutated = structuredClone(registry);
+      const entry = mutated.sources.find((s) => s.tier === tier);
+      if (!entry) throw new Error(`no ${tier} source in registry`);
+      entry[field] =
+        'This source informed our thinking, as general background.';
+      const errors = registryHonestyErrors(mutated, usage);
+      expect(
+        errors.some((e) => e.includes(entry.id) && e.includes(field)),
+        `${tier}.${field}`,
+      ).toBe(true);
+    }
   });
 
-  test('schema: a background entry without shaped fails', () => {
-    const entry = registry.sources.find((s) => s.tier === 'background');
-    if (!entry) throw new Error('no background source');
-    const { shaped: _dropped, ...bare } = entry;
-    expect(sourceEntrySchema.safeParse(bare).success).toBe(false);
-  });
+  test('schema: every tier requires its claim field and forbids the other two', () => {
+    for (const [tier, required] of Object.entries(TIER_FIELD)) {
+      const original = registry.sources.find((s) => s.tier === tier);
+      if (!original) throw new Error(`no ${tier} source in registry`);
 
-  test('schema: a library entry claiming gameUse fails', () => {
-    const entry = structuredClone(registry.sources.find((s) => s.tier === 'library'));
-    if (!entry) throw new Error('no library source');
-    entry.gameUse = 'sneaking a usage claim onto a shelf entry';
-    expect(sourceEntrySchema.safeParse(entry).success).toBe(false);
+      const missing = structuredClone(original);
+      delete missing[required];
+      expect(sourceEntrySchema.safeParse(missing).success, `${tier} without ${required}`).toBe(
+        false,
+      );
+
+      for (const field of CLAIM_FIELDS) {
+        if (field === required) {
+          continue;
+        }
+        const smuggled = structuredClone(original);
+        smuggled[field] = 'a claim that does not belong on this tier';
+        expect(sourceEntrySchema.safeParse(smuggled).success, `${tier} claiming ${field}`).toBe(
+          false,
+        );
+      }
+    }
   });
 
   test('registry changes surface as view drift', () => {

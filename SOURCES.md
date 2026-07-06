@@ -477,7 +477,7 @@ grouped by topic.
 - **SRC-CONCRETE-PROBLEMS** · [Concrete Problems in AI Safety](https://arxiv.org/abs/1606.06565) · Amodei, Olah, Steinhardt, Christiano, Schulman, Mané (2016) · `analysis`
   Why it is here: The field-defining 2016 taxonomy of concrete AI safety failure modes (side effects, reward hacking, safe exploration, scalable oversight, distributional shift); a strong entry point for a curious player or teacher who wants the original framing behind 'why AI safety is hard,' even though the game's actual incident system draws more specifically on later deception-focused papers.
 - **SRC-AI-CONTROL** · [AI Control: Improving Safety Despite Intentional Subversion](https://arxiv.org/abs/2312.06942) · Greenblatt, Shlegeris, Sachan, Roger, Redwood Research (2023) · `analysis`
-  Why it is here: Proposes 'control' (catching and restricting a misaligned deployed model even without solving alignment) as a safety strategy distinct from alignment training; relevant further reading, though the game does not currently implement a distinct control-agenda mechanic despite what its own gameUse field claims.
+  Why it is here: Proposes 'control' (catching and restricting a misaligned deployed model even without solving alignment) as a safety strategy distinct from alignment training; relevant further reading, though the game does not currently implement a distinct control-agenda mechanic (an earlier registry draft overclaimed one).
 
 ### scaling
 

@@ -458,7 +458,7 @@
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
-      "whyListed": "Proposes 'control' (catching and restricting a misaligned deployed model even without solving alignment) as a safety strategy distinct from alignment training; relevant further reading, though the game does not currently implement a distinct control-agenda mechanic despite what its own gameUse field claims.",
+      "whyListed": "Proposes 'control' (catching and restricting a misaligned deployed model even without solving alignment) as a safety strategy distinct from alignment training; relevant further reading, though the game does not currently implement a distinct control-agenda mechanic (an earlier registry draft overclaimed one).",
       "note": "Dated 2023/2024."
     },
     {

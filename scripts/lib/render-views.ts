@@ -222,6 +222,11 @@ function rowKind(sourceIds: string[], classes: Map<string, SourceEntry['evidence
   if (set.has('analysis')) {
     return 'analysis-based';
   }
+  // An empirical base with a design-class citation on top means the magnitude
+  // was calibrated, not read off the source; the badge must not hide that.
+  if (set.has('design')) {
+    return 'measured, design-tuned';
+  }
   return 'measured';
 }
 
@@ -307,12 +312,13 @@ otherwise. Run it yourself.
 
 ${kindSummary}
 
-A **measured** value cites only empirical evidence. A **forecast-based** or
-**analysis-based** value rests on somebody's argument rather than a measurement;
-the most contested of these, alignment difficulty and takeoff speed, sit as
-ranges inside worldview presets rather than pretending to be facts, and the rest
-say in their note what they take from the argument. A **design choice** claims
-nothing about the world.
+A **measured** value cites only empirical evidence, and **measured,
+design-tuned** means an empirical base whose game magnitude we calibrated, with
+the note saying how. A **forecast-based** or **analysis-based** value rests on
+somebody's argument rather than a measurement; the most contested of these,
+alignment difficulty and takeoff speed, sit as ranges inside worldview presets
+rather than pretending to be facts, and the rest say in their note what they
+take from the argument. A **design choice** claims nothing about the world.
 
 Disagree with a value? Open a "challenge a number" issue with a source. The
 advisory board arbitrates realism disputes, see [\`GOVERNANCE.md\`](../GOVERNANCE.md).
