@@ -2,7 +2,7 @@
 
 Status: accepted, 2026-07. These were settled before the first line of code and they are
 the frame everything else hangs on. Changing one is a new ADR with a real argument, not a
-drive-by refactor. Condensed from the founding handover (docs/HANDOVER.md, section 4).
+drive-by refactor. Condensed from the founding brief of 2026-07-03; its living public form is docs/DESIGN.md.
 
 | #   | Question               | Decision                                                                                                   | Why (one line)                                                                               |
 | --- | ---------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |

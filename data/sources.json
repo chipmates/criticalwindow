@@ -3,7 +3,7 @@
   "sources": [
     {
       "id": "SRC-DESIGN-HANDOVER",
-      "title": "Design handover (founding document, drafted under the working title Race Conditions)",
+      "title": "Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)",
       "org": "project",
       "year": 2026,
       "type": "design",
@@ -11,7 +11,7 @@
       "tier": "load-bearing",
       "evidenceClass": "design",
       "gameUse": "design constants with no empirical referent (turn counts, starting defaults, allocation defaults)",
-      "url": "https://github.com/chipmates/criticalwindow/blob/main/docs/HANDOVER.md"
+      "url": "https://github.com/chipmates/criticalwindow/blob/main/docs/DESIGN.md"
     },
     {
       "id": "SRC-KAPLAN-SCALING",
@@ -79,7 +79,7 @@
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "Compute-meter anchor and the capabilityPerRnd growth curve's compute-doubling assumption (~5.2 months per doubling since 2020); also general compute/energy event flavor. No tech-tree feature exists anywhere in the game.",
-      "note": "Living hub, also listed in section 10 (models, hardware, benchmarks, chip sales, data centers). Trends dashboard: https://epoch.ai/trends (largest known run Grok 4 ~5e26 FLOP). HANDOVER section 11 lists https://epoch.ai."
+      "note": "Living hub, also listed in section 10 (models, hardware, benchmarks, chip sales, data centers). Trends dashboard: https://epoch.ai/trends (largest known run Grok 4 ~5e26 FLOP)."
     },
     {
       "id": "SRC-EPOCH-DOUBLING",
@@ -191,7 +191,7 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "forecast",
-      "gameUse": "expert-survey timeline distributions; consensus preset anchors (HANDOVER core anchor)"
+      "gameUse": "expert-survey timeline distributions; consensus preset anchors (founding core anchor set)"
     },
     {
       "id": "SRC-OWID-AI",
@@ -204,7 +204,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "A live, continuously-updated chart of real training-compute growth; a good external link for a player who wants to see the actual trend behind the game's abstracted compute meter, though the game embeds no live chart itself.",
-      "note": "Live chart; dated 2026. OWID AI topic hub (HANDOVER section 11): https://ourworldindata.org/artificial-intelligence"
+      "note": "Live chart; dated 2026. OWID AI topic hub: https://ourworldindata.org/artificial-intelligence"
     },
     {
       "id": "SRC-COTRA-BIOANCHORS",
@@ -219,7 +219,7 @@
       "evidenceClass": "forecast",
       "whyListed": "The founding bio-anchors approach to forecasting transformative AI by analogy to biological brain compute; useful for a researcher tracing where the field's timeline debates (and this game's takeoff/timeline thinking) originally came from, despite backing no specific number here and having a genuinely messy citation trail.",
       "flagReason": "The report has no canonical page: it lives in an unlisted folder linked from the author's announcement post. We cite the work; the link situation is genuinely messy.",
-      "note": "Link not independently re-verified: exact URLs for the Cotra/Davidson/Christiano bio-anchors cluster as unverified (Open Philanthropy site). HANDOVER hint: search openphilanthropy.org. Verification 2026-07-03: unclear. No fetchable canonical page under the exact title. The report itself lives in an unlisted Google Drive folder per Cotra's own LessWrong announcement post, which is titled differently ('Draft report on AI timelines', not 'Forecasting TAI with Biological Anchors'). openphilanthropy.org/coefficientgiving.org has no confirmed page for it either (its 'key writings' page 403'd). All other search results are third-party commentary about the report, not the report itself."
+      "note": "Link not independently re-verified: exact URLs for the Cotra/Davidson/Christiano bio-anchors cluster as unverified (Open Philanthropy site). Hint: search openphilanthropy.org. Verification 2026-07-03: unclear. No fetchable canonical page under the exact title. The report itself lives in an unlisted Google Drive folder per Cotra's own LessWrong announcement post, which is titled differently ('Draft report on AI timelines', not 'Forecasting TAI with Biological Anchors'). openphilanthropy.org/coefficientgiving.org has no confirmed page for it either (its 'key writings' page 403'd). All other search results are third-party commentary about the report, not the report itself."
     },
     {
       "id": "SRC-DAVIDSON-TAKEOFF",
@@ -473,7 +473,7 @@
       "tier": "library",
       "evidenceClass": "analysis",
       "whyListed": "A real frontier lab's own public capability-scaling safety commitments; relevant further reading on real-world lab self-governance, though the game has no policy card that distinctly models voluntary lab self-governance apart from the government-mandated eval_mandate and the pause-focused global_moratorium.",
-      "note": "Living document (2023+); a 2026 update that materially affects lab self-governance in-game. HANDOVER alt URL: https://www.anthropic.com/rsp. Pin version/date when citing."
+      "note": "Living document (2023+); a 2026 update that materially affects lab self-governance in-game. Alt URL: https://www.anthropic.com/rsp. Pin version/date when citing."
     },
     {
       "id": "SRC-OPENAI-PREPAREDNESS",
@@ -526,7 +526,7 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
-      "gameUse": "gradual-disempowerment ending (HANDOVER: grounds the hidden ending)",
+      "gameUse": "grounds the hidden gradual-disempowerment ending",
       "note": "ICML: https://proceedings.mlr.press/v267/kulveit25a.html"
     },
     {
@@ -907,7 +907,7 @@
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "Backs the fixed historical beats eu_ai_act_full_force and eu_ai_act_high_risk, dramatizing the Act's phased compliance deadlines (prohibited-practices ban, GPAI duties, high-risk certification).",
-      "note": "official Commission page: https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai; HANDOVER also cites the official legal text host https://eur-lex.europa.eu"
+      "note": "official Commission page: https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai; the founding brief also cites the official legal text host https://eur-lex.europa.eu"
     },
     {
       "id": "SRC-EU-AI-ACT-TIMELINE",
@@ -973,7 +973,7 @@
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "Backs the chip_subsidies policy's chokepoint premise: advanced AI chips are a scarce, export-controlled resource, justifying the card's delayed compute + substitution payoff.",
-      "note": "HANDOVER gives only the CSET homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://cset.georgetown.edu."
+      "note": "The founding brief gave only the CSET homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://cset.georgetown.edu."
     },
     {
       "id": "SRC-IEA-ENERGY-AI",
@@ -1000,7 +1000,7 @@
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "Backs the chip_smuggling event's enforce-vs-look-away choice: documented smuggling routes and enforcement tradeoffs for export-controlled AI chips reaching China.",
-      "note": "HANDOVER gives only the CNAS homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://www.cnas.org."
+      "note": "The founding brief gave only the CNAS homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://www.cnas.org."
     },
     {
       "id": "SRC-SEMIANALYSIS-BLOG",
@@ -1185,7 +1185,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "The original occupational-exposure measurement study for LLMs, useful background on the methodology behind 'percent of jobs exposed' claims used elsewhere in the registry.",
-      "note": "Not independently re-verified: bundled under an unverified-URLs note in FULL section 6 (economy/labor); title and URL confirmed instead via HANDOVER section 11 Economy & labor"
+      "note": "Not independently re-verified: bundled under an unverified-URLs note in the founding bibliography; title and URL confirmed instead via the founding source list Economy & labor"
     },
     {
       "id": "SRC-ACEMOGLU-SIMPLE-MACRO",
@@ -1199,7 +1199,7 @@
       "tier": "library",
       "evidenceClass": "forecast",
       "whyListed": "A skeptical macro estimate of modest GDP growth from AI over the next decade, useful for a player weighing how much to trust either worldview's economic optimism against the Goldman Sachs projection also in this registry.",
-      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
+      "note": "search hint from the founding source list: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
     },
     {
       "id": "SRC-BRYNJOLFSSON-GENAI-WORK",
@@ -1213,7 +1213,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "The call-center field experiment showing real productivity gains from generative AI assistance, primary evidence behind the game's general 'AI boosts productivity' framing.",
-      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
+      "note": "search hint from the founding source list: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
     },
     {
       "id": "SRC-NOY-ZHANG",
@@ -1227,7 +1227,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "A controlled experiment showing GenAI narrows the productivity gap between weaker and stronger writers, useful background on the productivity-and-equity angle behind the game's automation mechanics.",
-      "note": "published in Science (2023) per HANDOVER section 11; no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
+      "note": "published in Science (2023) per the founding source list; no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
     },
     {
       "id": "SRC-DELLACQUA-JAGGED",
@@ -1242,7 +1242,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "The HBS consulting-task study showing GenAI helps unevenly across tasks (the 'jagged frontier'), good background for why the game treats automation benefits as uneven rather than uniform.",
-      "note": "search hint from HANDOVER section 11, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
+      "note": "search hint from the founding source list, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
     },
     {
       "id": "SRC-OPENRESEARCH-UBI",
@@ -1269,7 +1269,7 @@
       "evidenceClass": "empirical",
       "gameUse": "Backs the unrest/labor-disruption side of the society mechanic across multiple mandates, strike/displacement events, the ai_literacy_campaign policy, and the unrestEconomicDragMin threshold (sustained high unrest starts costing the economy).",
       "flagReason": "The publisher blocks automated checks; this is the canonical publication page for the 2023 Employment Outlook, Artificial Intelligence and the Labour Market.",
-      "note": "ongoing publication series, no single year given; homepage URL only, per HANDOVER section 11 (absent from FULL section 6) Verification 2026-07-03: unclear. oecd.org returned HTTP 403 to WebFetch twice (bot-blocking, not necessarily dead). WebSearch confirms live OECD Employment Outlook pages with AI chapters exist under oecd.org/en/publications/."
+      "note": "ongoing publication series, no single year given; homepage URL only, per the founding source list (absent from the founding bibliography) Verification 2026-07-03: unclear. oecd.org returned HTTP 403 to WebFetch twice (bot-blocking, not necessarily dead). WebSearch confirms live OECD Employment Outlook pages with AI chapters exist under oecd.org/en/publications/."
     },
     {
       "id": "SRC-CAIS-STATEMENT",
@@ -1350,7 +1350,7 @@
       "status": "verified",
       "tier": "background",
       "evidenceClass": "forecast",
-      "shaped": "The three worldview presets (parameters.json worldviewPresets.cautious/consensus/skeptic), which encode unresolved expert disagreement about alignment difficulty and takeoff speed as different dice ranges rather than one 'true' number, reflect XPT's core finding that domain-expert and superforecaster estimates of AI existential risk persistently diverge; HANDOVER §11 explicitly lists this source under 'feeds worldview presets.'"
+      "shaped": "The three worldview presets (parameters.json worldviewPresets.cautious/consensus/skeptic), which encode unresolved expert disagreement about alignment difficulty and takeoff speed as different dice ranges rather than one 'true' number, reflect XPT's core finding that domain-expert and superforecaster estimates of AI existential risk persistently diverge. The founding brief filed it under 'feeds worldview presets', and the presets still do."
     },
     {
       "id": "SRC-NORMAL-TECH",
@@ -1418,7 +1418,7 @@
       "tier": "load-bearing",
       "evidenceClass": "analysis",
       "gameUse": "skeptical worldview",
-      "note": "companion site per HANDOVER section 11: https://www.aisnakeoil.com"
+      "note": "companion site per the founding source list: https://www.aisnakeoil.com"
     },
     {
       "id": "SRC-COMPENDIUM",
@@ -1432,7 +1432,7 @@
       "tier": "library",
       "evidenceClass": "analysis",
       "whyListed": "A risk-emphasizing synthesis of the AI existential-risk case for a player who finishes a cautious-worldview run wanting the fullest version of the doom argument in one place, alongside the game's already-cited Carlsmith and IABIED sources.",
-      "note": "Not independently re-verified: canonical URL flagged unverified in FULL section 7"
+      "note": "Link, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-RACING-PRECIPICE",
@@ -1513,7 +1513,7 @@
       "tier": "load-bearing",
       "evidenceClass": "analysis",
       "gameUse": "Grounds the bilateral-trust track and treaty-signing thresholds/events: real proposals for international AI institutions (verification bodies, joint safety research, coordination mechanisms) motivate the trust-building diplomacy chain (ally_eval_request, civil_military_fusion, liability_shield_ask, treaty_feeler, verification_offer, compute_treaty_feeler) and the political-capital/trust gates required to sign a treaty.",
-      "note": "present in HANDOVER section 11 Governance & coordination, absent from FULL section 8"
+      "note": "present in the founding source list: Governance & coordination, absent from the founding bibliography"
     },
     {
       "id": "SRC-GOVAI-LIBRARY",
@@ -1526,7 +1526,7 @@
       "tier": "library",
       "evidenceClass": "analysis",
       "whyListed": "A curated portal to GovAI's own governance research (institutions, compute governance, benefit-sharing) for players or teachers wanting primary sources behind the treaty and coordination mechanics.",
-      "note": "present in HANDOVER section 11 only, absent from FULL section 8"
+      "note": "present in the founding source list: only, absent from the founding bibliography"
     },
     {
       "id": "SRC-WINDFALL-CLAUSE",
@@ -1540,7 +1540,7 @@
       "tier": "background",
       "evidenceClass": "analysis",
       "shaped": "The agencyErosion.diffusionShieldMin mechanic (parameters.json worldRules.agencyErosion), where a high enough diffusion/benefit-sharing share lowers erosion of human agency, per its own note 'broad benefit-sharing keeps humans in the loop', reflects this paper's core proposal that redistributing AI's economic windfall preserves participation and blocks narrow power concentration.",
-      "note": "search hint from HANDOVER section 11: search title, no URL or year given. Present in HANDOVER only, absent from FULL section 8 URL updated at verification from (none)."
+      "note": "search hint from the founding source list: search title, no URL or year given. Present in the founding source list only, absent from the founding bibliography URL updated at verification from (none)."
     },
     {
       "id": "SRC-AI-FUTURES-ROLEPLAY",
@@ -1553,8 +1553,8 @@
       "status": "verified",
       "tier": "background",
       "evidenceClass": "design",
-      "shaped": "HANDOVER §1 names Intelligence Rising as the direct inspiration this project scales ('proves the pedagogy'); the project's overall structure, a turn-based, multi-seat (USA/China) roleplay simulation of AI race dynamics with policy cards and posture shifts (data/seats.json, parameters.json worldRules.rivalMoves), follows this paper's original Intelligence Rising format.",
-      "note": "ACM version: https://dl.acm.org/doi/abs/10.1145/3375627.3375817 (AIES '20). Also listed in HANDOVER §11 Serious games & learning science with ACM link https://dl.acm.org/doi/10.1145/3375627.3375817 (same DOI, no new info)."
+      "shaped": "The design constitution (docs/DESIGN.md §1) names Intelligence Rising as the direct inspiration this project scales ('proves the pedagogy'); the project's overall structure, a turn-based, multi-seat (USA/China) roleplay simulation of AI race dynamics with policy cards and posture shifts (data/seats.json, parameters.json worldRules.rivalMoves), follows this paper's original Intelligence Rising format.",
+      "note": "ACM version: https://dl.acm.org/doi/abs/10.1145/3375627.3375817 (AIES '20). Also in the founding source list: Serious games & learning science with ACM link https://dl.acm.org/doi/10.1145/3375627.3375817 (same DOI, no new info)."
     },
     {
       "id": "SRC-SIM-GAMING-INSIGHTS",
@@ -1568,7 +1568,7 @@
       "tier": "load-bearing",
       "evidenceClass": "design",
       "gameUse": "facilitator insights from 43 Intelligence Rising games",
-      "note": "ScienceDirect version: https://www.sciencedirect.com/science/article/abs/pii/S0016328725000254. Also listed in HANDOVER §11 (search hint only, no new info)."
+      "note": "ScienceDirect version: https://www.sciencedirect.com/science/article/abs/pii/S0016328725000254. Also in the founding source list: (search hint only, no new info)."
     },
     {
       "id": "SRC-INTELLIGENCE-RISING-CSER",
@@ -1581,7 +1581,7 @@
       "tier": "library",
       "evidenceClass": "design",
       "whyListed": "For a player or researcher curious about the real academic wargame this design descends from, CSER's project page is the primary hub for Intelligence Rising's facilitation materials and history.",
-      "note": "Official project site per HANDOVER §11 Serious games & learning science: https://www.intelligencerising.org Verification 2026-07-03: unclear. WebFetch got 403 Forbidden twice (bot-blocked, not confirmed dead). WebSearch confirms page exists and is indexed with matching title/content."
+      "note": "Official project site per the founding source list: https://www.intelligencerising.org Verification 2026-07-03: unclear. WebFetch got 403 Forbidden twice (bot-blocked, not confirmed dead). WebSearch confirms page exists and is indexed with matching title/content."
     },
     {
       "id": "SRC-AVIN-AI-FUTURES-SURVEY",
@@ -1620,7 +1620,7 @@
       "status": "verified",
       "tier": "background",
       "evidenceClass": "design",
-      "shaped": "The debrief screen (src/ui/screens/Debrief.tsx, spec'd in HANDOVER §5.8: takeaways surfaced, counterfactual hints, sources link) follows this meta-analysis's finding that serious games produce better learning outcomes when paired with explicit debriefing rather than left to stand alone.",
+      "shaped": "The debrief screen (src/ui/screens/Debrief.tsx, spec'd in docs/DESIGN.md §8: takeaways surfaced, counterfactual hints, sources link) follows this meta-analysis's finding that serious games produce better learning outcomes when paired with explicit debriefing rather than left to stand alone.",
       "note": "No URL in the original reference; link added at the July 2026 verification. See also SRC-SERIOUS-GAMES-BUNDLE."
     },
     {
@@ -1647,7 +1647,7 @@
       "status": "book",
       "tier": "background",
       "evidenceClass": "design",
-      "shaped": "The project's core Fun-First-70/30 principle (HANDOVER §3, Operating Principle 1: the lesson lives in mechanics, hidden alignment dice, eval-uncertainty bands, delayed consequences, never in lecture screens) follows Bogost's concept of procedural rhetoric: games persuade through their rules and systems, not through explicit argument.",
+      "shaped": "The project's core Fun-First-70/30 principle (docs/DESIGN.md §3, operating principle 1: the lesson lives in mechanics, never in lecture screens) follows Bogost's concept of procedural rhetoric: games persuade through their rules and systems, not through explicit argument.",
       "note": "Book, obtain manually. See also SRC-SERIOUS-GAMES-BUNDLE."
     },
     {
@@ -1757,7 +1757,7 @@
       "tier": "library",
       "evidenceClass": "analysis",
       "whyListed": "An accessible on-ramp for a player who finishes a run wanting the AI-catastrophe case explained in plain language, aimed at people considering working on the problem rather than researchers.",
-      "note": "Published 2022, living/updated resource (year omitted). Matches HANDOVER §11 Live data & community: '80,000 Hours AI problem profile'."
+      "note": "Published 2022, living/updated resource (year omitted). Matches the founding source list entry '80,000 Hours AI problem profile'."
     },
     {
       "id": "SRC-80K-GRADUAL-DISEMPOWERMENT",
@@ -1783,7 +1783,7 @@
       "tier": "library",
       "evidenceClass": "analysis",
       "whyListed": "For a classroom teacher (a stated project audience) wanting a structured follow-on curriculum after playing, BlueDot's AI Safety Fundamentals courses are the standard on-ramp into technical alignment and governance study.",
-      "note": "Courses page: https://bluedot.org/courses/alignment. Matches HANDOVER §11 Live data & community: 'BlueDot / AI Safety Fundamentals curricula'."
+      "note": "Courses page: https://bluedot.org/courses/alignment. Matches the founding source list entry 'BlueDot / AI Safety Fundamentals curricula'."
     },
     {
       "id": "SRC-MODEL-DOCS-BUNDLE",
@@ -1795,7 +1795,7 @@
       "evidenceClass": "empirical",
       "whyListed": "For a researcher wanting primary model documentation and reproducible benchmark tracking behind the game's abstracted capability meter, this points to real published model cards (GPT-4, Claude, Gemini) and Papers with Code's benchmark leaderboards.",
       "flagReason": "An umbrella entry for model release documentation across several labs; no single link to verify.",
-      "note": "Bundled placeholder entry (marked verify-individual-URLs, no single URL given). Alignment Forum is captured individually as SRC-ALIGNMENT-FORUM via a clean atomic URL from HANDOVER §11 Live data & community; System/model cards and Papers with Code remain unresolved individual citations. Bundle entry, no single URL by design."
+      "note": "Bundled placeholder entry (marked verify-individual-URLs, no single URL given). Alignment Forum is captured individually as SRC-ALIGNMENT-FORUM via a clean atomic URL from the founding source list Live data & community; System/model cards and Papers with Code remain unresolved individual citations. Bundle entry, no single URL by design."
     },
     {
       "id": "SRC-ALIGNMENT-FORUM",

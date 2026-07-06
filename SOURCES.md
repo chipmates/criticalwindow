@@ -26,7 +26,7 @@ issue. That is a real contribution and it is welcome, see
 
 Every entry lists each place it is cited. Sorted by citation count.
 
-- **SRC-DESIGN-HANDOVER** · [Design handover (founding document, drafted under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/main/docs/HANDOVER.md) · project (2026) · `design`
+- **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/main/docs/DESIGN.md) · project (2026) · `design`
   Used for: design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
   Cited 63× by: anchors.json → tracks.politicalCapital · anchors.json → tracks.unrest · mandates.json → mandates.3 · mandates.json → mandates.8 · mandates.json → sourceIds · parameters.json → worldviewPresets.cautious.displacementLagDivisor *(+57 more)*
 - **SRC-AI2027** · [AI 2027](https://ai-2027.com/) · Kokotajlo, Alexander, Larsen, Lifland, Dean, AI Futures Project (2025) · `forecast`
@@ -72,7 +72,7 @@ Every entry lists each place it is cited. Sorted by citation count.
   Used for: Compute-meter anchor and the capabilityPerRnd growth curve's compute-doubling assumption (~5.2 months per doubling since 2020); also general compute/energy event flavor. No tech-tree feature exists anywhere in the game.
   Cited 6× by: anchors.json → tracks.compute · events/coal_province_datacenter_bid.json → sourceIds · events/fab_yield_breakthrough.json → sourceIds · events/open_source_replication.json → sourceIds · parameters.json → curves.capabilityPerRnd · scenarios/scenario_2026.json → seats.usa.resources.compute
 - **SRC-GRACE-SURVEY** · [Thousands of AI Authors on the Future of AI](https://arxiv.org/abs/2401.02843) · Grace et al. (2024) · `forecast`
-  Used for: expert-survey timeline distributions; consensus preset anchors (HANDOVER core anchor)
+  Used for: expert-survey timeline distributions; consensus preset anchors (founding core anchor set)
   Cited 5× by: events/superhuman_coder.json → sourceIds · parameters.json → worldviewPresets.consensus.alignmentDifficulty · parameters.json → worldviewPresets.consensus.takeoffSteepness · parameters.json → worldviewPresets.skeptic.displacementLagDivisor · parameters.json → capabilityLadder.milestones.0.at
 - **SRC-MAIM** · [Superintelligence Strategy: Expert Version (MAIM)](https://arxiv.org/abs/2503.05628) · Hendrycks, Schmidt, Wang (2025) · `analysis`
   Used for: deterrence/sabotage/nonproliferation mechanic
@@ -93,7 +93,7 @@ Every entry lists each place it is cited. Sorted by citation count.
   Used for: compute-centric economic takeoff model; automation/growth economic engine
   Cited 3× by: events/city_power_deal.json → sourceIds · parameters.json → worldRules.upkeep.capitalIncomePerDiffusion · parameters.json → curves.rndCapacity
 - **SRC-GRADUAL-DISEMPOWERMENT** · [Gradual Disempowerment: Systemic Existential Risks from Incremental AI Development](https://arxiv.org/abs/2501.16946) · Kulveit, Douglas, Ammann, Turan, Krueger, Duvenaud (2025) · `analysis`
-  Used for: gradual-disempowerment ending (HANDOVER: grounds the hidden ending)
+  Used for: grounds the hidden gradual-disempowerment ending
   Cited 3× by: parameters.json → worldRules.agencyErosion.highCapabilityMin · parameters.json → worldRules.agencyErosion.perTurn · parameters.json → worldRules.agencyErosion.diffusionShieldMin
 - **SRC-EU-AI-ACT-TIMELINE** · [EU AI Act Implementation Timeline](https://artificialintelligenceact.eu/implementation-timeline/) · FLI · `empirical`
   Used for: phased dates (bans Feb 2025; GPAI Aug 2025; bulk Aug 2026; high-risk Aug 2027)
@@ -206,7 +206,7 @@ mechanic, checkably. Wiring one of these to an actual number is a welcome PR.
 - **SRC-PAUSE-LETTER** · [Pause Giant AI Experiments: An Open Letter](https://futureoflife.org/open-letter/pause-giant-ai-experiments/) · Future of Life Institute (2023) · `analysis`
   Shaped: The global_moratorium policy card (data/policies/global_moratorium.json), letting a seat push a coordinated capability freeze at political-capital cost, simulates the real-world coordination move this open letter proposed: a temporary, verifiable pause on frontier AI training runs (though the card's own sourceIds currently cite SRC-IABIED instead of this letter).
 - **SRC-XPT** · [Forecasting Existential Risks (Existential Risk Persuasion Tournament / XPT)](https://forecastingresearch.org/xpt) · Karger, Rosenberg, Tetlock et al., FRI (2023) · `forecast`
-  Shaped: The three worldview presets (parameters.json worldviewPresets.cautious/consensus/skeptic), which encode unresolved expert disagreement about alignment difficulty and takeoff speed as different dice ranges rather than one 'true' number, reflect XPT's core finding that domain-expert and superforecaster estimates of AI existential risk persistently diverge; HANDOVER §11 explicitly lists this source under 'feeds worldview presets.'
+  Shaped: The three worldview presets (parameters.json worldviewPresets.cautious/consensus/skeptic), which encode unresolved expert disagreement about alignment difficulty and takeoff speed as different dice ranges rather than one 'true' number, reflect XPT's core finding that domain-expert and superforecaster estimates of AI existential risk persistently diverge. The founding brief filed it under 'feeds worldview presets', and the presets still do.
 - **SRC-RACING-PRECIPICE** · [Racing to the precipice: a model of AI development](https://link.springer.com/article/10.1007/s00146-015-0590-y) · Armstrong, Bostrom, Shulman, AI & Society (2016) · `analysis`
   Shaped: The alignmentModel.crashThresholdShare/crashPenalty mechanic (parameters.json), where allocating 70%+ capability share cuts true alignment per turn, mirrors this paper's founding game-theoretic finding that competitive racing pressure drives teams to cut corners on safety precautions.
 - **SRC-HEIM-TECH-GOVERNANCE** · [Technical AI Governance](https://blog.heim.xyz/technical-ai-governance/) · Lennart Heim · `analysis`
@@ -214,11 +214,11 @@ mechanic, checkably. Wiring one of these to an actual number is a welcome PR.
 - **SRC-WINDFALL-CLAUSE** · [The Windfall Clause](https://www.governance.ai/research-paper/the-windfall-clause-distributing-the-benefits-of-ai-for-the-common-good) · O'Keefe et al., GovAI · `analysis`
   Shaped: The agencyErosion.diffusionShieldMin mechanic (parameters.json worldRules.agencyErosion), where a high enough diffusion/benefit-sharing share lowers erosion of human agency, per its own note 'broad benefit-sharing keeps humans in the loop', reflects this paper's core proposal that redistributing AI's economic windfall preserves participation and blocks narrow power concentration.
 - **SRC-AI-FUTURES-ROLEPLAY** · [Exploring AI Futures Through Role Play (Intelligence Rising)](https://arxiv.org/abs/1912.08964) · Avin, Gruetzemacher, Fox (2020) · `design`
-  Shaped: HANDOVER §1 names Intelligence Rising as the direct inspiration this project scales ('proves the pedagogy'); the project's overall structure, a turn-based, multi-seat (USA/China) roleplay simulation of AI race dynamics with policy cards and posture shifts (data/seats.json, parameters.json worldRules.rivalMoves), follows this paper's original Intelligence Rising format.
+  Shaped: The design constitution (docs/DESIGN.md §1) names Intelligence Rising as the direct inspiration this project scales ('proves the pedagogy'); the project's overall structure, a turn-based, multi-seat (USA/China) roleplay simulation of AI race dynamics with policy cards and posture shifts (data/seats.json, parameters.json worldRules.rivalMoves), follows this paper's original Intelligence Rising format.
 - **SRC-WOUTERS-2013** · [Meta-analysis of serious-games learning outcomes](https://eric.ed.gov/?id=EJ1008015) · Wouters et al. (2013) · `design`
-  Shaped: The debrief screen (src/ui/screens/Debrief.tsx, spec'd in HANDOVER §5.8: takeaways surfaced, counterfactual hints, sources link) follows this meta-analysis's finding that serious games produce better learning outcomes when paired with explicit debriefing rather than left to stand alone.
+  Shaped: The debrief screen (src/ui/screens/Debrief.tsx, spec'd in docs/DESIGN.md §8: takeaways surfaced, counterfactual hints, sources link) follows this meta-analysis's finding that serious games produce better learning outcomes when paired with explicit debriefing rather than left to stand alone.
 - **SRC-BOGOST-PERSUASIVE-GAMES** · Persuasive Games · Bogost (2007) · `design` *(book, obtain manually)*
-  Shaped: The project's core Fun-First-70/30 principle (HANDOVER §3, Operating Principle 1: the lesson lives in mechanics, hidden alignment dice, eval-uncertainty bands, delayed consequences, never in lecture screens) follows Bogost's concept of procedural rhetoric: games persuade through their rules and systems, not through explicit argument.
+  Shaped: The project's core Fun-First-70/30 principle (docs/DESIGN.md §3, operating principle 1: the lesson lives in mechanics, never in lecture screens) follows Bogost's concept of procedural rhetoric: games persuade through their rules and systems, not through explicit argument.
 
 ## The library: further reading (97)
 

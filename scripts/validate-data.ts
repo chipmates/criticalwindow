@@ -377,7 +377,7 @@ for (const relPath of [
   'ROADMAP.md',
   'CONTRIBUTING.md',
   'GOVERNANCE.md',
-  'docs/HANDOVER.md',
+  'docs/DESIGN.md',
   'docs/EVIDENCE.md',
 ]) {
   const absPath = join(dataRootPath, '..', relPath);
