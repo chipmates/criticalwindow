@@ -105,8 +105,8 @@ export function Title() {
           <a href={t('app.repoUrl')} target="_blank" rel="noopener noreferrer">
             {t('title.github')}
           </a>{' '}
-          · <a href="/imprint.html">{t('title.imprint')}</a> ·{' '}
-          <a href="/privacy.html">{t('title.privacyPage')}</a>
+          · <a href="./imprint.html">{t('title.imprint')}</a> ·{' '}
+          <a href="./privacy.html">{t('title.privacyPage')}</a>
         </p>
         <nav className="title-links" aria-label="More">
           <button type="button" className="btn-link" onClick={() => goTo('help')}>

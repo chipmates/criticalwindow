@@ -72,8 +72,9 @@ export function renderSourcesMd(registry: SourcesRegistryData, usage: UsageMap):
   const sites = citationSiteCount(usage);
   const selfSites = usage.get('SRC-DESIGN-HANDOVER')?.length ?? 0;
 
+  const constitution = registry.sources.find((s) => s.id === 'SRC-DESIGN-HANDOVER');
   const loadBearing = registry.sources
-    .filter((s) => s.tier === 'load-bearing')
+    .filter((s) => s.tier === 'load-bearing' && s.id !== 'SRC-DESIGN-HANDOVER')
     .sort((a, b) => (usage.get(b.id)?.length ?? 0) - (usage.get(a.id)?.length ?? 0));
   const background = registry.sources.filter((s) => s.tier === 'background');
   const library = registry.sources.filter((s) => s.tier === 'library');
@@ -150,7 +151,15 @@ Found a dead link, a better source, or a number you want to challenge? Open an
 issue. That is a real contribution and it is welcome, see
 [\`CONTRIBUTING.md\`](CONTRIBUTING.md).
 
-## ${TIER_HEADING['load-bearing']} (${counts['load-bearing']})
+## The design constitution (internal, ${selfSites} citation sites)
+
+Not outside evidence, and never counted as such: game-design constants cite the
+project's own design document so that no game-feel number ever has to wear a
+fake empirical citation.
+
+${constitution ? `${entryLine(constitution)}\n  Used for: ${constitution.gameUse ?? ''}` : ''}
+
+## External ${TIER_HEADING['load-bearing'].toLowerCase()} (${counts['load-bearing'] - 1})
 
 Every entry lists each place it is cited. Sorted by citation count.
 
@@ -232,7 +241,7 @@ function classOf(registry: SourcesRegistryData): Map<string, SourceEntry['eviden
 function rowKind(sourceIds: string[], classes: Map<string, SourceEntry['evidenceClass']>): string {
   const set = new Set(sourceIds.map((id) => classes.get(id)).filter(Boolean));
   if (set.size > 0 && [...set].every((c) => c === 'design')) {
-    return 'design choice';
+    return 'design constant';
   }
   if (set.has('forecast')) {
     return 'forecast-based';
@@ -243,9 +252,9 @@ function rowKind(sourceIds: string[], classes: Map<string, SourceEntry['evidence
   // An empirical base with a design-class citation on top means the magnitude
   // was calibrated, not read off the source; the badge must not hide that.
   if (set.has('design')) {
-    return 'measured, design-tuned';
+    return 'anchored, game-calibrated';
   }
-  return 'measured';
+  return 'empirically anchored';
 }
 
 function mdEscape(text: string): string {
@@ -314,7 +323,7 @@ export function renderEvidenceMd(
         let note = row.note;
         if (!note) {
           note =
-            kind === 'design choice'
+            kind === 'design constant'
               ? 'design constant; the constitution is the derivation'
               : '⚠ derivation note missing';
         }
@@ -346,13 +355,15 @@ otherwise. Run it yourself.
 
 ${kindSummary}
 
-A **measured** value cites only empirical evidence, and **measured,
-design-tuned** means an empirical base whose game magnitude we calibrated, with
-the note saying how. A **forecast-based** or **analysis-based** value rests on
+The vocabulary claims exactly what is true. **Empirically anchored** means the
+value is anchored to a real measurement, then expressed on the game's index; it
+is never the measurement itself. **Anchored, game-calibrated** means an
+empirical base whose game magnitude we calibrated for play, with the note
+saying how. A **forecast-based** or **analysis-based** value rests on
 somebody's argument rather than a measurement; the most contested of these,
 alignment difficulty and takeoff speed, sit as ranges inside worldview presets
-rather than pretending to be facts, and the rest say in their note what they
-take from the argument. A **design choice** claims nothing about the world.
+rather than pretending to be facts. A **design constant** claims nothing about
+the world.
 
 Card premises are counted separately on purpose: a card's citations back the
 real-world event it dramatizes, while its effect magnitudes are balance-tuned

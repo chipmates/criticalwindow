@@ -1,5 +1,6 @@
 /// <reference types="vitest/config" />
 import { execSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -8,13 +9,39 @@ import { hashDataFiles } from './src/engine/hash';
 
 // Content stamp baked into the bundle: saves and share URLs carry it, so a
 // replay against different data is refused honestly instead of diverging.
-const commitSha = execSync('git rev-parse --short HEAD').toString().trim();
+const pkgVersion = (
+  JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as {
+    version: string;
+  }
+).version;
+const commitSha = (() => {
+  if (process.env.COMMIT_SHA) {
+    return process.env.COMMIT_SHA;
+  }
+  try {
+    return execSync('git rev-parse --short HEAD').toString().trim();
+  } catch {
+    return 'unknown';
+  }
+})();
 const dataVersion = hashDataFiles(
   readDataFiles(dataRoot()).map((file) => ({ path: file.relPath, content: file.content })),
 );
 
 export default defineConfig({
   plugins: [
+    // Deployment provenance: every build carries a version.json so the deploy
+    // script (and any visitor) can verify what a live domain actually serves.
+    {
+      name: 'emit-version-json',
+      generateBundle() {
+        this.emitFile({
+          type: 'asset',
+          fileName: 'version.json',
+          source: `${JSON.stringify({ commit: commitSha, dataVersion, version: pkgVersion }, null, 2)}\n`,
+        });
+      },
+    },
     react(),
     // Offline after first load (school wifi, airplane runs). Music stays out
     // of the precache (lazy, cached on first play instead) to keep installs

@@ -44,6 +44,6 @@
       ]
     }
   ],
-  "sourceIds": ["SRC-NSCAI", "SRC-CSET-LIBRARY"],
+  "sourceIds": ["SRC-NSCAI"],
   "tags": ["labs", "concentration", "governance"]
 }

@@ -11,7 +11,7 @@
  * plain 4-tuple of uint32 living inside GameState; functions take a state
  * and return [value, nextState]. Nothing mutates.
  *
- * API frozen at Block B2. The engine builds on: initRngState, nextU32,
+ * API frozen at the first engine build. The engine builds on: initRngState, nextU32,
  * nextInt, weightedIndex.
  */
 import type { RngState, RngStreamName } from './types';

@@ -22,3 +22,5 @@ the game's content.
 
 Playtesters, source checkers and card authors land here as they arrive, and in the
 in-game credits from the public alpha onward.
+
+Interface icons: [Phosphor Icons](https://phosphoricons.com) (MIT license), inlined as SVG.

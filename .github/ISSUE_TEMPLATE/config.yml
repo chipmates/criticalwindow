@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Feedback without a GitHub account
+    url: mailto:criticalwindow@chipmates.ai
+    about: Email works for everything, playtest notes and corrections included.
+  - name: Play the game
+    url: https://criticalwindow.org
+    about: The debrief at the end of a run links straight back here.

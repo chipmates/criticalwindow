@@ -17,6 +17,7 @@ import { SettingsDialog } from '../components/SettingsDialog';
 import { ShockOverlay } from '../components/ShockOverlay';
 import { TurnReport } from '../components/TurnReport';
 import { eraLabelKey, turnDate } from '../format';
+import { GearIcon } from '../components/icons';
 import { t, tRef, tickerPool, type StringKey } from '../i18n';
 import { gameData, useStore } from '../store';
 
@@ -240,7 +241,7 @@ export function Game() {
           aria-label={t('settings.heading')}
           onClick={() => setSettingsOpen(true)}
         >
-          ⚙
+          <GearIcon />
         </button>
       </header>
 

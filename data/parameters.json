@@ -73,8 +73,8 @@
   "evalUncertainty": {
     "baseBandWidth": {
       "value": 400,
-      "sourceIds": ["SRC-SLEEPER", "SRC-SCHEMING"],
-      "note": "wide starting band: deceptive models can pass evals, so low evidence means low confidence either way"
+      "sourceIds": ["SRC-SLEEPER", "SRC-SCHEMING", "SRC-DESIGN-HANDOVER"],
+      "note": "wide starting band: deceptive models can pass evals, so low evidence means low confidence either way. The 400-point band is a design mapping of those findings onto the game scale."
     },
     "safetyInsightNarrowing": {
       "value": 40,
@@ -88,13 +88,13 @@
     },
     "deceptionMaxLift": {
       "value": 250,
-      "sourceIds": ["SRC-SLEEPER", "SRC-ALIGNMENT-FAKING"],
-      "note": "how far a badly aligned model's eval report can read ABOVE the truth: deceptive alignment survives safety training and looks fine on the outside"
+      "sourceIds": ["SRC-SLEEPER", "SRC-ALIGNMENT-FAKING", "SRC-DESIGN-HANDOVER"],
+      "note": "how far a badly aligned model's eval report can read ABOVE the truth: deceptive alignment survives safety training and looks fine on the outside. The 250-point cap is a design mapping of those findings onto the game scale."
     },
     "deceptionInsightCounter": {
       "value": 40,
       "sourceIds": ["SRC-SLEEPER-PROBES", "SRC-DESIGN-HANDOVER"],
-      "note": "lift reduction per 100 Safety Insight: probes are the counter to deceptive passes; rate is design-tuned"
+      "note": "lift reduction per 100 Safety Insight: probes are the counter to deceptive passes; rate is design-tuned. The per-point counter rate is a design mapping, not a measured coefficient."
     }
   },
   "thresholds": {
@@ -339,7 +339,7 @@
         "SRC-EPOCH-DOUBLING",
         "SRC-METR-TH11"
       ],
-      "note": "abstraction of the measured regime (training compute doubling roughly every six months; 50% task horizon doubling every 188 days on the all-time fit, faster after 2023) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16"
+      "note": "abstraction of the measured regime (training compute doubling roughly every six months; task horizon P50 doubling every 196.5 days on the all-time fit, 130.8 days for models from 2023 on) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16"
     },
     "displacementFromCapability": {
       "x": [0, 200, 400, 600, 800, 1000],

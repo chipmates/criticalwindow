@@ -2,7 +2,12 @@
   "comment": "Descriptive UI anchors: each index translated back to the sourced reality it came from. NEVER read by the engine; zero balance impact. Nearest anchor at or below the value shows under the meter. Tracks with an honest real-world unit also carry a continuous mapping (unit.points, interpolated; capability log-scale over task-horizon hours); tracks without one keep qualitative rungs and never fake precision.",
   "tracks": {
     "capability": {
-      "sourceIds": ["SRC-METR-HORIZON", "SRC-AI2027", "SRC-AISI-FRONTIER-TRENDS"],
+      "sourceIds": [
+        "SRC-METR-HORIZON",
+        "SRC-AI2027",
+        "SRC-AISI-FRONTIER-TRENDS",
+        "SRC-DESIGN-HANDOVER"
+      ],
       "anchors": [
         {
           "at": 0,
@@ -51,7 +56,7 @@
       "note": "rungs follow the task-horizon ladder from minutes-long tasks to research beyond human following; the unit maps index points to the task length a system completes at 50% success, log scale, anchored to METR's measured horizons and the cited projections"
     },
     "compute": {
-      "sourceIds": ["SRC-EPOCH-COMPUTE"],
+      "sourceIds": ["SRC-EPOCH-COMPUTE", "SRC-DESIGN-HANDOVER"],
       "anchors": [
         {
           "at": 0,
@@ -87,10 +92,10 @@
         "scale": "linear",
         "decimals": 0
       },
-      "note": "unit maps index points to an approximate share of the world's frontier training capacity, from the cited compute dataset; rungs mark recognizable scale points"
+      "note": "unit maps index points to an approximate share of 2026 frontier training capacity (a fixed baseline, so grown values can read past early shares honestly), from the cited compute dataset; rungs mark recognizable scale points"
     },
     "energy": {
-      "sourceIds": ["SRC-IEA-ENERGY-AI"],
+      "sourceIds": ["SRC-IEA-ENERGY-AI", "SRC-DESIGN-HANDOVER"],
       "anchors": [
         {
           "at": 0,
@@ -129,7 +134,7 @@
       "note": "unit maps index points to GW of grid headroom available for new datacenter load, from the cited demand projections"
     },
     "talent": {
-      "sourceIds": ["SRC-AI-INDEX-2026"],
+      "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
       "anchors": [
         {
           "at": 0,
@@ -163,7 +168,7 @@
       "note": "unit maps index points to an approximate share of the frontier research workforce, from the cited annual report's workforce data"
     },
     "capital": {
-      "sourceIds": ["SRC-AI-INDEX-2026"],
+      "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
       "anchors": [
         {
           "at": 0,
@@ -197,7 +202,7 @@
       "note": "unit maps index points to annual AI investment levels, from the cited annual report's investment data"
     },
     "publicTrust": {
-      "sourceIds": ["SRC-AI-INDEX-2026"],
+      "sourceIds": ["SRC-AI-INDEX-2026", "SRC-DESIGN-HANDOVER"],
       "anchors": [
         {
           "at": 0,
@@ -253,7 +258,7 @@
       ]
     },
     "safetyInsight": {
-      "sourceIds": ["SRC-SCALING-MONOSEMANTICITY", "SRC-SLEEPER-PROBES"],
+      "sourceIds": ["SRC-SCALING-MONOSEMANTICITY", "SRC-SLEEPER-PROBES", "SRC-DESIGN-HANDOVER"],
       "anchors": [
         {
           "at": 0,
@@ -279,7 +284,7 @@
       "note": "qualitative rungs from lab-demo interpretability to auditing deployed frontier systems, following what the cited interpretability results actually demonstrated at each scale"
     },
     "jobDisplacement": {
-      "sourceIds": ["SRC-IMF-GENAI"],
+      "sourceIds": ["SRC-IMF-GENAI", "SRC-DESIGN-HANDOVER"],
       "anchors": [
         {
           "at": 0,
@@ -336,7 +341,7 @@
       "note": "qualitative rungs from background grumbling to general strike; thresholds are design-tuned against the labor-disruption context in the cited outlook"
     },
     "bilateralTrust": {
-      "sourceIds": ["SRC-HO-INTL-INSTITUTIONS"],
+      "sourceIds": ["SRC-HO-INTL-INSTITUTIONS", "SRC-DESIGN-HANDOVER"],
       "anchors": [
         {
           "at": 0,
@@ -358,7 +363,7 @@
       "note": "qualitative rungs from open hostility to verifiable deals becoming possible, following the cited institutional-design analysis"
     },
     "substitution": {
-      "sourceIds": ["SRC-CSIS-EXPORT"],
+      "sourceIds": ["SRC-CSIS-EXPORT", "SRC-DESIGN-HANDOVER"],
       "anchors": [
         {
           "at": 0,
@@ -389,7 +394,12 @@
       "note": "unit maps index points to domestic chip-supply substitution capability, following the cited export-control analysis"
     },
     "alignment": {
-      "sourceIds": ["SRC-SLEEPER", "SRC-SCHEMING", "SRC-AGENTIC-MISALIGNMENT"],
+      "sourceIds": [
+        "SRC-SLEEPER",
+        "SRC-SCHEMING",
+        "SRC-AGENTIC-MISALIGNMENT",
+        "SRC-DESIGN-HANDOVER"
+      ],
       "anchors": [
         {
           "at": 0,

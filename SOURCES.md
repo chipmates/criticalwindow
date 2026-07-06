@@ -8,7 +8,7 @@ in `data/` without a source ID fails the build, and so does a registry entry tha
 claims a tier its citations do not support. [`docs/EVIDENCE.md`](docs/EVIDENCE.md)
 lists every cited number with its evidence.
 
-**164 entries. 55 external sources drive numbers directly (250 citation sites). Game-design constants cite the project's own [design constitution](docs/DESIGN.md) instead (72 sites), and those are always labeled `design`, never counted as outside evidence. 11 more sources shaped the design, 97 are further reading.**
+**164 entries. 54 external sources drive numbers directly (249 citation sites). Game-design constants cite the project's own [design constitution](docs/DESIGN.md) instead (85 sites), and those are always labeled `design`, never counted as outside evidence. 11 more sources shaped the design, 98 are further reading.**
 Status: 9 book, 5 flagged, 150 verified.
 
 What the statuses mean: `verified` says the link was fetched and the title and
@@ -30,13 +30,19 @@ Found a dead link, a better source, or a number you want to challenge? Open an
 issue. That is a real contribution and it is welcome, see
 [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-## Sources that drive numbers (56)
+## The design constitution (internal, 85 citation sites)
+
+Not outside evidence, and never counted as such: game-design constants cite the
+project's own design document so that no game-feel number ever has to wear a
+fake empirical citation.
+
+- **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/v0.3.3/docs/DESIGN.md) · project (2026) · `design`
+  Used for: design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
+
+## External sources that drive numbers (54)
 
 Every entry lists each place it is cited. Sorted by citation count.
 
-- **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/v0.3.1/docs/DESIGN.md) · project (2026) · `design`
-  Used for: design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
-  Cited 72× by: anchors.json → tracks.politicalCapital · anchors.json → tracks.unrest · incidents.json → riskFormula.pressureRivalRacePct · mandates.json → mandates.3 · mandates.json → mandates.8 · mandates.json → sourceIds *(+66 more)*
 - **SRC-AI2027** · [AI 2027](https://ai-2027.com/) · Kokotajlo, Alexander, Larsen, Lifland, Dean, AI Futures Project (2025) · `forecast`
   Used for: race vs. slowdown endings; core scenario spine; cautious preset anchors
   Cited 21× by: anchors.json → tracks.capability · events/autonomous_targeting_demo.json → sourceIds · events/branch_point.json → sourceIds · events/civil_military_fusion.json → sourceIds · events/grid_crunch.json → sourceIds · events/intelligence_explosion.json → sourceIds *(+15 more)*
@@ -56,7 +62,7 @@ Every entry lists each place it is cited. Sorted by citation count.
   Used for: job-displacement mechanic; ~40% of global jobs exposed (60% advanced economies, 40% emerging, 26% low-income)
   Cited 13× by: anchors.json → tracks.jobDisplacement · events/civil_service_flood.json → sourceIds · events/general_strike.json → sourceIds · events/union_moratorium_demand.json → sourceIds · events/viral_job_loss.json → sourceIds · mandates.json → mandates.1 *(+7 more)*
 - **SRC-IEA-ENERGY-AI** · [Energy and AI](https://www.iea.org/reports/energy-and-ai) · International Energy Agency (2025) · `empirical`
-  Used for: Grounds the single energy-resource track and its thresholds (gridSlackBeforeCap, mandates, event/policy effects) in IEA's datacentre electricity-demand projections (415 TWh in 2024 rising to ~945 TWh by 2030); the game does not separately model energy-source mix or climate/emissions as distinct mechanics, despite the entry's wording.
+  Used for: Grounds the single energy-resource track and its thresholds (grid slack, mandates, event and policy effects) in IEA's datacentre electricity-demand projections, 415 TWh in 2024 rising toward roughly 945 TWh by 2030. The game folds energy-source mix and emissions into that one track rather than modeling them separately.
   Cited 12× by: anchors.json → tracks.energy · events/city_power_deal.json → sourceIds · events/coal_province_datacenter_bid.json → sourceIds · events/energy_crunch.json → sourceIds · events/grid_crunch.json → sourceIds · mandates.json → mandates.0 *(+6 more)*
 - **SRC-METR-HORIZON** · [Measuring AI Ability to Complete Long Tasks (task-horizon)](https://arxiv.org/abs/2503.14499) · Kwa, West et al., METR (2025) · `empirical`
   Used for: 50% task-completion time horizon doubling ~every 7 months since 2019; capability clock calibration
@@ -166,9 +172,6 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-CNAS-SMUGGLING** · [Preventing AI Chip Smuggling](https://www.cnas.org/publications/reports/preventing-ai-chip-smuggling-to-china) · Fist et al., CNAS · `empirical`
   Used for: Backs the chip_smuggling event's enforce-vs-look-away choice: documented smuggling routes and enforcement tradeoffs for export-controlled AI chips reaching China.
   Cited 1× by: events/chip_smuggling.json → sourceIds
-- **SRC-CSET-LIBRARY** · [CSET reports library](https://cset.georgetown.edu) · CSET · `analysis`
-  Used for: General CSET policy-research backing (alongside NSCAI) for the lab_merger event's AI-lab-concentration and governance-oversight tradeoffs; not tied to one specific CSET publication.
-  Cited 1× by: events/lab_merger.json → sourceIds
 - **SRC-ANTHROPIC-ECON-INDEX** · [The Anthropic Economic Index](https://www.anthropic.com/economic-index) · Anthropic (2025) · `empirical`
   Used for: real usage-by-occupation data
   Cited 1× by: events/viral_job_loss.json → sourceIds
@@ -200,7 +203,7 @@ Every entry lists each place it is cited. Sorted by citation count.
   Used for: treaty ratification requires BOTH governments' domestic standing (political capital) at signing; the win-set logic behind the ratification window mechanic
   Cited 1× by: parameters.json → thresholds.treatySignPoliticalCapitalMin
 - **SRC-METR-TH11** · [Time Horizon 1.1](https://metr.org/blog/2026-1-29-time-horizon-1-1/) · METR (2026) · `empirical`
-  Used for: The updated task-horizon fit (188-day all-time doubling, faster after 2023) that the capabilityPerRnd pacing note quotes directly.
+  Used for: The updated task-horizon fit the capabilityPerRnd pacing note quotes: P50 doubling of 196.5 days on the all-time stitched trend, 130.8 days for models from 2023 on.
   Cited 1× by: parameters.json → curves.capabilityPerRnd
 
 ## Sources that shaped the design (11)
@@ -231,7 +234,7 @@ mechanic, checkably. Wiring one of these to an actual number is a welcome PR.
 - **SRC-BOGOST-PERSUASIVE-GAMES** · Persuasive Games · Bogost (2007) · `design` *(book, obtain manually)*
   Shaped: The project's core Fun-First-70/30 principle (docs/DESIGN.md §3, operating principle 1: the lesson lives in mechanics, never in lecture screens) follows Bogost's concept of procedural rhetoric: games persuade through their rules and systems, not through explicit argument.
 
-## The library: further reading (97)
+## The library: further reading (98)
 
 No usage claim. This is the shelf we read from and the shelf we recommend,
 grouped by topic.
@@ -285,6 +288,8 @@ grouped by topic.
   Why it is here: Traces the historical origins of China's AI governance approach, complementing SRC-CARNEGIE-CHINA-REGS for readers who want the fuller policy history behind the China seat.
 - **SRC-MERICS** · [MERICS China AI/tech analyses](https://merics.org) · MERICS · `analysis`
   Why it is here: Ongoing China AI-policy analysis for a player or teacher wanting deeper context on the China seat's regulatory and geopolitical environment than the game's abstracted mechanics can show.
+- **SRC-CSET-LIBRARY** · [CSET reports library](https://cset.georgetown.edu) · CSET · `analysis`
+  Why it is here: CSET's research library on AI-lab concentration and governance oversight, the reading behind the lab_merger dilemma's premise; no single publication is pinned, which is why it is shelf rather than citation.
 - **SRC-DEEPSEEK-V3-HARDWARE-INSIGHTS** · [Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures](https://arxiv.org/abs/2505.09343) · Chenggang Zhao et al. (2025) · `empirical`
   Why it is here: Gives a reader the actual hardware/interconnect engineering story behind cost-efficient frontier training, useful further reading for anyone wanting compute mechanics to reflect hardware co-design rather than a single scalar, beyond the Epoch/METR compute-trend sources currently cited.
 
@@ -460,7 +465,7 @@ grouped by topic.
 - **SRC-80K-AI-CATASTROPHE** · [Preventing an AI-related catastrophe (problem profile)](https://80000hours.org/problem-profiles/artificial-intelligence/) · Benjamin Hilton, 80,000 Hours · `analysis`
   Why it is here: An accessible on-ramp for a player who finishes a run wanting the AI-catastrophe case explained in plain language, aimed at people considering working on the problem rather than researchers.
 - **SRC-80K-GRADUAL-DISEMPOWERMENT** · [Gradual disempowerment (problem profile)](https://80000hours.org/problem-profiles/gradual-disempowerment/) · 80,000 Hours (2025) · `analysis`
-  Why it is here: An accessible explainer of the gradual-disempowerment risk model that already grounds the game's hidden agency-erosion ending via the primary Kulveit et al. paper (SRC-GRADUAL-DISEMPOWERMENT); good further reading for a player who unlocks that ending and wants the argument in plain language.
+  Why it is here: An accessible explainer of the gradual-disempowerment risk model behind the agency-erosion pressure the game tracks; good further reading once the planned sixth ending ships and someone wants the argument in plain language.
 
 ### public-opinion
 

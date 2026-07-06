@@ -65,4 +65,4 @@ Every number in the game data cites a source, the rule is machine-enforced in bo
 
 ## 10. How decisions get made
 
-The core team decides, an advisory board arbitrates realism disputes once it exists, and every significant decision lands in [`decisions/`](decisions/) as a numbered record. See [`GOVERNANCE.md`](../GOVERNANCE.md). The roadmap runs on gates, not dates: [`ROADMAP.md`](../ROADMAP.md).
+The core team decides; realism disputes are decided by the maintainer in public issues today, with reviewers to be named in GOVERNANCE.md if the project earns them; every significant decision lands in [`decisions/`](decisions/) as a numbered record. See [`GOVERNANCE.md`](../GOVERNANCE.md). The roadmap runs on gates, not dates: [`ROADMAP.md`](../ROADMAP.md).

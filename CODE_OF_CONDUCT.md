@@ -36,7 +36,7 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at criticalwindow@chipmates.ai. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at criticalwindow@chipmates.ai. If your report concerns the maintainer, write instead to the entity address in the [imprint](https://criticalwindow.org/imprint.html), marked confidential; we acknowledge plainly that a one-maintainer project has a structural limit here, and naming independent recipients is on the governance roadmap. All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 

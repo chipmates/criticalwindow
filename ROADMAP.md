@@ -4,7 +4,7 @@
 
 Critical Window is an open source strategy game about the AI race. You lead the United States or China through the critical years, starting in 2026. You decide how fast to push, how much to spend on safety you cannot verify, and what to tell the public. Your rival decides too. Nobody can see the whole truth, and that is the point.
 
-The project is nonprofit. No ads, no tracking, no accounts, ever. Code is AGPL-3.0, content is CC BY-SA 4.0, and every number in the game cites a source you can check.
+The project is nonprofit. No ads, no tracking, no accounts, ever. Code is AGPL-3.0, content is CC BY-SA 4.0, and every number in the game cites a source you can check, or a design choice that says so.
 
 ## How we work
 

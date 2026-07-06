@@ -11,7 +11,7 @@
       "tier": "load-bearing",
       "evidenceClass": "design",
       "gameUse": "design constants with no empirical referent (turn counts, starting defaults, allocation defaults)",
-      "url": "https://github.com/chipmates/criticalwindow/blob/v0.3.1/docs/DESIGN.md"
+      "url": "https://github.com/chipmates/criticalwindow/blob/v0.3.3/docs/DESIGN.md"
     },
     {
       "id": "SRC-KAPLAN-SCALING",
@@ -986,7 +986,7 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
-      "gameUse": "Grounds the single energy-resource track and its thresholds (gridSlackBeforeCap, mandates, event/policy effects) in IEA's datacentre electricity-demand projections (415 TWh in 2024 rising to ~945 TWh by 2030); the game does not separately model energy-source mix or climate/emissions as distinct mechanics, despite the entry's wording."
+      "gameUse": "Grounds the single energy-resource track and its thresholds (grid slack, mandates, event and policy effects) in IEA's datacentre electricity-demand projections, 415 TWh in 2024 rising toward roughly 945 TWh by 2030. The game folds energy-source mix and emissions into that one track rather than modeling them separately."
     },
     {
       "id": "SRC-CNAS-SMUGGLING",
@@ -1061,10 +1061,10 @@
       "type": "web",
       "tags": ["china", "us-china", "think-tank", "reports"],
       "status": "verified",
-      "tier": "load-bearing",
+      "tier": "library",
       "evidenceClass": "analysis",
-      "gameUse": "General CSET policy-research backing (alongside NSCAI) for the lab_merger event's AI-lab-concentration and governance-oversight tradeoffs; not tied to one specific CSET publication.",
-      "note": "general CSET reports-library resource cited in the US-China section, distinct from the specific 2020 AI Chips paper (SRC-CSET-AI-CHIPS); same homepage URL given in source"
+      "note": "general CSET reports-library resource cited in the US-China section, distinct from the specific 2020 AI Chips paper (SRC-CSET-AI-CHIPS); same homepage URL given in source",
+      "whyListed": "CSET's research library on AI-lab concentration and governance oversight, the reading behind the lab_merger dilemma's premise; no single publication is pinned, which is why it is shelf rather than citation."
     },
     {
       "id": "SRC-INVESTAI",
@@ -1767,7 +1767,7 @@
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
-      "whyListed": "An accessible explainer of the gradual-disempowerment risk model that already grounds the game's hidden agency-erosion ending via the primary Kulveit et al. paper (SRC-GRADUAL-DISEMPOWERMENT); good further reading for a player who unlocks that ending and wants the argument in plain language."
+      "whyListed": "An accessible explainer of the gradual-disempowerment risk model behind the agency-erosion pressure the game tracks; good further reading once the planned sixth ending ships and someone wants the argument in plain language."
     },
     {
       "id": "SRC-BLUEDOT-IMPACT",
@@ -2223,8 +2223,8 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
-      "gameUse": "The updated task-horizon fit (188-day all-time doubling, faster after 2023) that the capabilityPerRnd pacing note quotes directly.",
-      "note": "Refines the original task-horizon paper with 228 tasks; verified 2026-07-06."
+      "gameUse": "The updated task-horizon fit the capabilityPerRnd pacing note quotes: P50 doubling of 196.5 days on the all-time stitched trend, 130.8 days for models from 2023 on.",
+      "note": "Refines the original task-horizon paper with 228 tasks; figures re-verified against the METR page 2026-07-06."
     }
   ]
 }

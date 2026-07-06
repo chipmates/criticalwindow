@@ -836,7 +836,7 @@ export const stringsFileSchema = z.record(
 );
 
 // ---------------------------------------------------------------------------
-// Save format (Block B5 implements load/save; the shape is contract now)
+// Save format (load/save honors this shape as a contract)
 // ---------------------------------------------------------------------------
 
 const seatField = z.enum(PLAYABLE_SEAT_IDS).optional();

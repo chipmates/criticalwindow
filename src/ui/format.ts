@@ -45,7 +45,7 @@ export function delayedSummary(
   delayed: Array<{ inTurns: number; effects: EffectSetData }> | undefined,
 ): string[] {
   return (delayed ?? []).map(
-    (d) => `⏳ +${d.inTurns}: ${effectSummary(d.effects).join(', ') || '…'}`,
+    (d) => `in ${d.inTurns} turns: ${effectSummary(d.effects).join(', ') || '…'}`,
   );
 }
 

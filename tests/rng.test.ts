@@ -40,7 +40,7 @@ describe('determinism (the constitution)', () => {
   });
 
   test('known-answer: pinned first draws for the release seed derivation', () => {
-    // Pinned 2026-07-03 (Block B2). If this test ever fails, the seed
+    // Pinned 2026-07-03 at the first engine build. If this test ever fails, the seed
     // derivation or generator changed and EVERY shared seed breaks:
     // that is a schemaVersion bump, not a test to update casually.
     const { values } = drawMany(initStream('kat-seed', 'events'), 4);

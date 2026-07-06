@@ -5,7 +5,7 @@
  *
  * Numbers in RULES_* constants are paper-scale v0 printed guesses. The board
  * thresholds move into data/parameters.json when the endings evaluator lands
- * (Block B4); the print script then reads them from data like everything else.
+ * (the paper kit build); the print script then reads them from data like everything else.
  */
 
 export const KIT_TITLE = 'Critical Window';

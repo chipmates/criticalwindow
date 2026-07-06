@@ -1,5 +1,25 @@
 # Changelog
 
+All notable changes to Critical Window, in the format of
+[Keep a Changelog](https://keepachangelog.com/). Newest first.
+
+This file was written after the fact, reconstructed from the git history rather than kept
+turn by turn. That is why the early entries bundle a lot into one release and the later
+ones get more specific. It will stay current from here on.
+
+## [0.3.3] · 2026-07-06
+
+Precision and provenance.
+
+- Evidence vocabulary now claims exactly what is true: empirically anchored, game-calibrated, design constant
+- The capability pacing note carries METR's published figures verbatim (196.5-day P50 all-time, 130.8 post-2023)
+- Every build ships version.json; a deploy only counts once the live domain serves the deployed commit
+- Anchor rung placements and eval-band constants co-cite the design constitution they always embodied
+- Compute reads against a fixed 2026 baseline so grown shares stay arithmetically honest
+- A public FAQ answers the questions people actually ask
+- Interface icons move from emoji to inlined Phosphor SVGs
+- Loading state, session-length promise, and a first-turn description before any JavaScript runs
+
 ## [0.3.2] · 2026-07-06
 
 Refinement pass after the first public day.
@@ -11,13 +31,6 @@ Refinement pass after the first public day.
 - Build provenance: the Sources screen shows the commit and data hash of the running build
 - Feedback without an account: the debrief offers email alongside the challenge loop
 - Registry notes polished for outside readers
-
-All notable changes to Critical Window, in the format of
-[Keep a Changelog](https://keepachangelog.com/). Newest first.
-
-This file was written after the fact, reconstructed from the git history rather than kept
-turn by turn. That is why the early entries bundle a lot into one release and the later
-ones get more specific. It will stay current from here on.
 
 ## [0.3.1] · 2026-07-06
 

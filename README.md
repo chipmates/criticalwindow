@@ -13,13 +13,13 @@
 <a href="SECURITY.md"><img src="https://img.shields.io/badge/tracking-none%2C_ever-1c1e21" alt="No tracking"></a>
 </p>
 
-<p align="center"><a href="#play">Play</a> · <a href="SOURCES.md">Sources</a> · <a href="ROADMAP.md">Roadmap</a> · <a href="CONTRIBUTING.md">Contribute</a> · <a href="GOVERNANCE.md">Governance</a></p>
+<p align="center"><a href="#play">Play</a> · <a href="docs/FAQ.md">FAQ</a> · <a href="SOURCES.md">Sources</a> · <a href="ROADMAP.md">Roadmap</a> · <a href="CONTRIBUTING.md">Contribute</a> · <a href="GOVERNANCE.md">Governance</a></p>
 
 ![One run of Critical Window, from taking office to the envelope opening](docs/media/playthrough.gif)
 
 ## Play
 
-**Play now: [criticalwindow.org](https://criticalwindow.org)**. It works on phones, installs from the browser as an app, and keeps working offline after the first load.
+**Play now: [criticalwindow.org](https://criticalwindow.org)**. A run takes 20 to 40 minutes. It works on phones, installs from the browser as an app, and the core game keeps working offline after the first load (music and narration cache once they have played).
 
 Or clone and run it locally:
 
@@ -51,7 +51,7 @@ Every number in `data/` cites a source in `data/sources.json`, and `pnpm validat
 
 The registry is honest about what each source does. Some set numbers directly, and [SOURCES.md](SOURCES.md) lists every place each one is cited. Some shaped a mechanic without backing a single value, and each names the mechanic so the claim is checkable. The rest are the shelf we read from, listed as further reading and nothing more. [docs/EVIDENCE.md](docs/EVIDENCE.md) goes the other way: every cited value in the game, with its numbers, its kind, its sources, and the note that says how evidence became value. The same map is browsable inside the game, two clicks from the title screen.
 
-The most contested dials, how hard alignment is and how fast capability compounds, never become single numbers. They live as ranges inside the worldview preset you pick at setup, and a seeded hidden roll fixes the truth for your run inside that range. Design constants with no real-world referent say so and cite the design handover. Nothing pretends to be measured that is not.
+The most contested dials, how hard alignment is and how fast capability compounds, never become single numbers. They live as ranges inside the worldview preset you pick at setup, and a seeded hidden roll fixes the truth for your run inside that range. Design constants with no real-world referent say so and cite the design constitution. If you catch a label claiming more than its source supports, that is a bug in our map: file it and it gets fixed like one.
 
 One honest limit, stated plainly: the machine proves every citation exists and every tier is truthful, and it cannot prove a source actually supports a value. That last step is human work, which is exactly why the challenge loop exists. Do not take our word for any of this: run `pnpm validate` yourself. If you change a value, your commit names the source. If you think a number is wrong, open a "challenge a number" issue with a better source. That argument is the project working as designed. How the balance was tuned, ugly numbers included, is in [docs/BALANCE.md](docs/BALANCE.md).
 
@@ -73,7 +73,7 @@ The engine is a pure deterministic fold: same seed, same run, on every machine. 
 
 ## Sound
 
-Off by default, everything works silent. Music by Scott Buckley (CC BY 4.0), see [CREDITS.md](CREDITS.md). Voice narration is generated ahead of time by maintainers from the game's own displayed text and ships as static files; it caches for offline play the first time a clip plays, and nothing talks to a server while you play.
+Off by default, everything works silent. Music by Scott Buckley (CC BY 4.0), see [CREDITS.md](CREDITS.md). Voice narration is generated ahead of time by maintainers from the game's own displayed text and ships as static files. During play the only network requests are for the game's own static files, narration included; each clip caches for offline use once it has played.
 
 ## Who makes this
 

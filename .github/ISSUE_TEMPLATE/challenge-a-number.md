@@ -26,3 +26,10 @@ labels: ['sources', 'balance', 'non-code']
 ## Confidence
 
 <!-- How sure are you: certain / probable / worth-a-look. Honest uncertainty welcome. -->
+
+<!-- A filled example, so you know the bar:
+     Number: data/parameters.json -> evalUncertainty.floorBandWidth (currently 100)
+     Proposed: 150. Reasoning: newer red-team results show wider residual blind spots.
+     Source: <link>, Table 2, "post-mitigation detection rate 31%", versus the 55.1%/6.5%
+     gap the current note cites. Confidence: probable.
+     That is a complete, decidable challenge. -->

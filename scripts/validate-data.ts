@@ -144,35 +144,35 @@ const incidents = parsed.has('incidents.json')
   ? validateFile<IncidentsData>('incidents.json', incidentsSchema)
   : null;
 if (!parsed.has('incidents.json')) {
-  errors.push('data/incidents.json is missing (misalignment-incident system, v0.2)');
+  errors.push('data/incidents.json is missing');
 }
 
 const mandates = parsed.has('mandates.json')
   ? validateFile<MandatesData>('mandates.json', mandatesSchema)
   : null;
 if (!parsed.has('mandates.json')) {
-  errors.push('data/mandates.json is missing (cabinet mandates, v0.2 wave 2)');
+  errors.push('data/mandates.json is missing');
 }
 
 const prologue = parsed.has('prologue.json')
   ? validateFile<PrologueData>('prologue.json', prologueSchema)
   : null;
 if (!parsed.has('prologue.json')) {
-  errors.push('data/prologue.json is missing (tutorial prologue, v0.2 wave 2)');
+  errors.push('data/prologue.json is missing');
 }
 
 const anchors = parsed.has('anchors.json')
   ? validateFile<AnchorsData>('anchors.json', anchorsSchema)
   : null;
 if (!parsed.has('anchors.json')) {
-  errors.push('data/anchors.json is missing (anchor labels, v0.3 wave A)');
+  errors.push('data/anchors.json is missing');
 }
 
 const seatsRules = parsed.has('seats.json')
   ? validateFile<SeatsData>('seats.json', seatsSchema)
   : null;
 if (!parsed.has('seats.json')) {
-  errors.push('data/seats.json is missing (seat rules, v0.2 wave 3)');
+  errors.push('data/seats.json is missing');
 }
 
 const scenarios: ScenarioData[] = [];
@@ -374,10 +374,29 @@ if (strings) {
 // on the landing page is exactly the gotcha this project cannot afford.
 if (sources) {
   const indexHtml = readFileSync(join(dataRootPath, '..', 'index.html'), 'utf8');
-  for (const match of indexHtml.matchAll(/(\d+)(?:-entry| sources)/g)) {
-    if (Number(match[1]) !== sources.sources.length) {
+  // Any three-digit number within shouting distance of the word "source" must
+  // be the registry count, whatever the phrasing around it.
+  for (const match of indexHtml.matchAll(
+    /\b(\d{3})\b(?=[^<]{0,60}[Ss]ource)|[Ss]ources?[^<]{0,60}?\b(\d{3})\b/g,
+  )) {
+    const num = Number(match[1] ?? match[2]);
+    if (num !== sources.sources.length) {
       errors.push(
-        `index.html: says '${match[0]}' but the registry has ${sources.sources.length} entries`,
+        `index.html: mentions ${num} near 'source' but the registry has ${sources.sources.length} entries`,
+      );
+    }
+  }
+  // Release-pinned links inside data files must match the package version too.
+  const pkgVersionForPins = (
+    JSON.parse(readFileSync(join(dataRootPath, '..', 'package.json'), 'utf8')) as {
+      version: string;
+    }
+  ).version;
+  const sourcesRaw = readFileSync(join(dataRootPath, 'sources.json'), 'utf8');
+  for (const match of sourcesRaw.matchAll(/blob\/v([0-9.]+)\//g)) {
+    if (match[1] !== pkgVersionForPins) {
+      errors.push(
+        `data/sources.json: pins blob/v${match[1]} but the package version is ${pkgVersionForPins}`,
       );
     }
   }

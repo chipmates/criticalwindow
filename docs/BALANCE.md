@@ -24,11 +24,12 @@ literally, and less cleverly, than a curious teenager or a policy wonk who reads
 Neither one gets bored, distracted, or attached to a losing plan out of stubbornness the
 way a person does.
 
-We do not have a large human playtest yet; the sessions so far are few and all from
-inside the project, and the public alpha exists precisely to change that. Everything in
-this document is evidence that the trap works as designed. It is not yet evidence that the game is good. That gate is human by
-definition, and it has not been pulled yet. [`ROADMAP.md`](../ROADMAP.md) says so directly
-and will keep saying so until real players change it.
+Human play already shaped this game in ways the bots never managed: the
+alignment-earned model, the displacement curve's early knee, and the hard-crossing
+rebalance all came from a person playing, losing wrong, and demanding the mechanism
+answer for it (commits 7dae4cb and 433e1db carry two of those stories). What the bots
+prove is the trap and the corridor; how it feels is judged at the table, and the public
+alpha exists to grow that table beyond the people who built it.
 
 ## How the harness works
 
@@ -105,7 +106,7 @@ will not spoil. Play it.
 
 ### Why racer is 98 to 100 percent catastrophe, and why that's the point
 
-A reviewer read an earlier draft of our numbers and said, correctly, that 60 to 100
+An external zero-context review pass read an earlier draft of our numbers and said, correctly, that 60 to 100
 percent of bot runs ending in misaligned catastrophe looks like the design is broken.
 Read the table again with the allocations attached. `racer` spends 10% on safety, ever.
 The central mechanic is that crossing the capability threshold resolves your true

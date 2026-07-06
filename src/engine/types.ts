@@ -8,7 +8,7 @@
  * from the type entirely). All quantities are scaled integers so replay
  * comparisons are exact across JS engines.
  *
- * v0.2 wave 3: TWO SEATS, ONE WORLD. Each turn the USA seat acts, then the
+ * TWO SEATS, ONE WORLD. Each turn the USA seat acts, then the
  * China seat acts, then the world updates once. In solo mode the other seat's
  * actions come from a scripted policy at the DRIVER level and are recorded in
  * the save like any other actions, so solo and hotseat replay as the same

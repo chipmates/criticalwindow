@@ -146,7 +146,7 @@ describe('agency erosion (hidden ending hook)', () => {
   });
 });
 
-describe('ending reachability batch (B4 verify; the full 10k batch is B6)', () => {
+describe('ending reachability batch (reachability verify; the full batch runs in the balance harness)', () => {
   test('bots across seeds reach at least 3 distinct endings', () => {
     const endings = new Set<string>();
     const counts: Record<string, number> = {};
@@ -160,7 +160,7 @@ describe('ending reachability batch (B4 verify; the full 10k batch is B6)', () =
       }
     }
     process.stdout
-      .write(`ending distribution (100 runs, counts overlap across bot personas): ${JSON.stringify(counts)}
+      .write(`ending distribution (${BOT_IDS.length * 25} runs across bot personas, counts overlap): ${JSON.stringify(counts)}
 `);
     // Guarded invariants, not a snapshot: the design thesis in numbers.
     // Racing pressure dominates (the trap is real), the treaty path stays
