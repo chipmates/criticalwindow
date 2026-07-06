@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Privacy · Critical Window</title>
+    <title>Datenschutz · Privacy · Critical Window</title>
     <meta name="robots" content="noindex, follow" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <style>
@@ -37,67 +37,125 @@
         margin-bottom: 2rem;
         font-size: 0.9rem;
       }
+      hr {
+        border: 0;
+        border-top: 1px solid #2a2e36;
+        margin: 3rem 0;
+      }
     </style>
   </head>
   <body>
     <main>
-      <nav><a href="/">← Critical Window</a></nav>
-      <h1>Privacy</h1>
-      <p>
-        The short version, which is also the whole version: this game collects nothing about you. No
-        accounts, no tracking, no analytics, no cookies, no telemetry. These are design commitments,
-        and because the game is open source, you can verify them in the
-        <a href="https://github.com/chipmates/criticalwindow">code</a>
-        rather than take our word.
-      </p>
+      <nav>
+        <a href="/">← Critical Window</a> · <a href="#de">Deutsch</a> ·
+        <a href="#en" lang="en">English</a>
+      </nav>
 
-      <h2>What stays on your device</h2>
-      <p>
-        Your saved runs and settings live in your browser's localStorage. They never leave your
-        device; there is no server to send them to. Deleting your browser data for this site deletes
-        them.
-      </p>
+      <section id="de">
+        <h1>Datenschutzerklärung</h1>
+        <p>
+          Die kurze Fassung, die zugleich die vollständige ist: dieses Spiel erhebt keine
+          personenbezogenen Daten. Keine Konten, kein Tracking, keine Analyse-Tools, keine Cookies,
+          keine Telemetrie. Das ist eine Designentscheidung, und weil das Spiel quelloffen ist,
+          lässt sie sich im
+          <a href="https://github.com/chipmates/criticalwindow">Code überprüfen</a>, statt sie
+          glauben zu müssen.
+        </p>
 
-      <h2>What the network sees</h2>
-      <p>
-        The game is a set of static files. When you load or play it, your browser requests those
-        files, and the optional music and narration load the same way the first time you enable
-        sound. Our host, Cloudflare Pages (Cloudflare, Inc.), serves these files and, like any web
-        server, processes technical connection data (such as your IP address) to deliver them and
-        keeps ordinary, short-lived server logs. We add no logging of our own, and the site sends a
-        Content-Security-Policy that forbids requests to any other host. Legal basis for this
-        technical processing: legitimate interest in delivering a website you requested (Art.
-        6(1)(f) GDPR).
-      </p>
+        <h2>Verantwortliche</h2>
+        <p>
+          ChipMates gemeinnützige GmbH, Schusterstr. 50, 79098 Freiburg im Breisgau, Deutschland,
+          <a href="mailto:criticalwindow@chipmates.ai">criticalwindow@chipmates.ai</a> (vollständige
+          Angaben im <a href="/imprint.html">Impressum</a>).
+        </p>
 
-      <h2>Sharing a run</h2>
-      <p>
-        A "challenge link" encodes only your seed, worldview and data version in the link itself.
-        Nothing is uploaded; sharing it is you sending a piece of text.
-      </p>
+        <h2>Was auf Ihrem Gerät bleibt</h2>
+        <p>
+          Spielstände und Einstellungen liegen ausschließlich im localStorage Ihres Browsers. Sie
+          verlassen Ihr Gerät nicht; es gibt keinen Server, an den sie gesendet werden könnten.
+          Löschen Sie die Browserdaten für diese Website, sind sie weg.
+        </p>
 
-      <h2>Your rights, and who is responsible</h2>
-      <p>
-        Controller: ChipMates gemeinnützige GmbH, Schusterstr. 50, 79098 Freiburg im Breisgau,
-        Germany, <a href="mailto:criticalwindow@chipmates.ai">criticalwindow@chipmates.ai</a> (full
-        details in the <a href="/imprint.html">imprint</a>). Under the GDPR you have rights to
-        access, rectification, erasure, restriction, portability, objection, and complaint to a
-        supervisory authority. Since we hold no personal data about you, most of these have nothing
-        to act on, but the rights and the contact address are yours regardless.
-      </p>
+        <h2>Hosting und technische Verbindungsdaten</h2>
+        <p>
+          Das Spiel besteht aus statischen Dateien. Beim Laden und Spielen ruft Ihr Browser diese
+          Dateien ab; die optionale Musik und Sprachausgabe werden auf dieselbe Weise geladen,
+          sobald Sie den Ton einschalten. Unser Hoster Cloudflare Pages (Cloudflare, Inc.) liefert
+          diese Dateien aus und verarbeitet dabei, wie jeder Webserver, technische Verbindungsdaten
+          (etwa die IP-Adresse) zur Auslieferung, mit üblichen, kurzlebigen Server-Logs. Wir selbst
+          protokollieren nichts, und die Website sendet eine Content-Security-Policy, die Anfragen
+          an fremde Hosts browserseitig verbietet. Rechtsgrundlage dieser technischen Verarbeitung
+          ist unser berechtigtes Interesse an der Auslieferung einer von Ihnen aufgerufenen Website
+          (Art. 6 Abs. 1 lit. f DSGVO).
+        </p>
 
-      <h2 lang="de">Kurzfassung auf Deutsch</h2>
-      <p lang="de">
-        Dieses Spiel erhebt keine personenbezogenen Daten: keine Konten, kein Tracking, keine
-        Analyse-Tools, keine Cookies. Spielstände liegen ausschließlich im localStorage Ihres
-        Browsers. Beim Abruf der statischen Dateien verarbeitet unser Hoster Cloudflare Pages
-        technische Verbindungsdaten (z. B. IP-Adresse) zur Auslieferung der Website (Art. 6 Abs. 1
-        lit. f DSGVO). Verantwortliche: ChipMates gemeinnützige GmbH (siehe
-        <a href="/imprint.html">Impressum</a>). Ihnen stehen die Rechte aus Art. 15 bis 21 DSGVO
-        sowie das Beschwerderecht bei einer Aufsichtsbehörde zu.
-      </p>
+        <h2>Geteilte Spielstände</h2>
+        <p>
+          Ein Challenge-Link kodiert nur Seed, Weltbild-Voreinstellung und Datenversion im Link
+          selbst. Es wird nichts hochgeladen; einen Link zu teilen heißt, ein Stück Text zu
+          verschicken.
+        </p>
 
-      <p class="muted">Last updated: 2026-07-06</p>
+        <h2>Ihre Rechte</h2>
+        <p>
+          Ihnen stehen die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der
+          Verarbeitung, Datenübertragbarkeit und Widerspruch zu (Art. 15 bis 21 DSGVO) sowie das
+          Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde. Da wir keine personenbezogenen
+          Daten über Sie speichern, läuft das meiste davon ins Leere; die Rechte und die
+          Kontaktadresse gelten trotzdem.
+        </p>
+      </section>
+
+      <hr />
+
+      <section id="en" lang="en">
+        <h1>Privacy</h1>
+        <p>
+          The short version, which is also the whole version: this game collects nothing about you.
+          No accounts, no tracking, no analytics, no cookies, no telemetry. These are design
+          commitments, and because the game is open source, you can verify them in the
+          <a href="https://github.com/chipmates/criticalwindow">code</a>
+          rather than take our word.
+        </p>
+
+        <h2>What stays on your device</h2>
+        <p>
+          Your saved runs and settings live in your browser's localStorage. They never leave your
+          device; there is no server to send them to. Deleting your browser data for this site
+          deletes them.
+        </p>
+
+        <h2>What the network sees</h2>
+        <p>
+          The game is a set of static files. When you load or play it, your browser requests those
+          files, and the optional music and narration load the same way the first time you enable
+          sound. Our host, Cloudflare Pages (Cloudflare, Inc.), serves these files and, like any web
+          server, processes technical connection data (such as your IP address) to deliver them and
+          keeps ordinary, short-lived server logs. We add no logging of our own, and the site sends
+          a Content-Security-Policy that forbids requests to any other host. Legal basis for this
+          technical processing: legitimate interest in delivering a website you requested (Art.
+          6(1)(f) GDPR).
+        </p>
+
+        <h2>Sharing a run</h2>
+        <p>
+          A "challenge link" encodes only your seed, worldview and data version in the link itself.
+          Nothing is uploaded; sharing it is you sending a piece of text.
+        </p>
+
+        <h2>Your rights, and who is responsible</h2>
+        <p>
+          Controller: ChipMates gemeinnützige GmbH, Schusterstr. 50, 79098 Freiburg im Breisgau,
+          Germany,
+          <a href="mailto:criticalwindow@chipmates.ai">criticalwindow@chipmates.ai</a>
+          (full details in the <a href="/imprint.html">imprint</a>). Under the GDPR you have rights
+          to access, rectification, erasure, restriction, portability, objection, and complaint to a
+          supervisory authority. Since we hold no personal data about you, most of these have
+          nothing to act on, but the rights and the contact address are yours regardless.
+        </p>
+      </section>
+
+      <p class="muted">Stand / last updated: 2026-07-06</p>
     </main>
   </body>
 </html>
