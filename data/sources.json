@@ -3,11 +3,13 @@
   "sources": [
     {
       "id": "SRC-DESIGN-HANDOVER",
-      "title": "Race Conditions design handover (founding document)",
+      "title": "Design handover (founding document, drafted under the working title Race Conditions)",
       "org": "project",
       "year": 2026,
       "type": "design",
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "design",
       "gameUse": "design constants with no empirical referent (turn counts, starting defaults, allocation defaults)"
     },
     {
@@ -18,9 +20,15 @@
       "year": 2020,
       "url": "https://arxiv.org/abs/2001.08361",
       "type": "paper",
-      "tags": ["scaling", "compute", "forecasting"],
+      "tags": [
+        "scaling",
+        "compute",
+        "forecasting"
+      ],
       "status": "verified",
-      "gameUse": "power-law scaling; foundation of compute mechanic"
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Foundational scaling-laws paper explaining why bigger training runs predictably buy more capability; useful for a reader who wants to understand why the game ties capability progress to compute investment at all, even though the specific curve values here come from Epoch/METR data rather than this paper."
     },
     {
       "id": "SRC-CHINCHILLA",
@@ -30,9 +38,15 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2203.15556",
       "type": "paper",
-      "tags": ["scaling", "compute", "data"],
+      "tags": [
+        "scaling",
+        "compute",
+        "data"
+      ],
       "status": "verified",
-      "gameUse": "compute/params/data tradeoff (20 tokens/param heuristic)"
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Explains the real compute/parameters/data tradeoff behind compute-optimal training; good background for why the game abstracts training investment into a single compute resource rather than modeling model size and dataset size separately."
     },
     {
       "id": "SRC-CHINCHILLA-REPLICATION",
@@ -42,9 +56,14 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2404.10102",
       "type": "paper",
-      "tags": ["scaling", "uncertainty"],
+      "tags": [
+        "scaling",
+        "uncertainty"
+      ],
       "status": "verified",
-      "gameUse": "models scaling-law uncertainty"
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Shows that even a landmark scaling-law paper's specific numbers don't replicate cleanly; useful for a skeptical reader who wants to see how contested the compute-to-capability curves underlying this game's mechanics really are in the literature."
     },
     {
       "id": "SRC-EPOCH-MODELS",
@@ -52,9 +71,15 @@
       "org": "Epoch AI",
       "url": "https://epoch.ai/data/notable-ai-models",
       "type": "dataset",
-      "tags": ["compute", "dataset", "models"],
+      "tags": [
+        "compute",
+        "dataset",
+        "models"
+      ],
       "status": "verified",
-      "gameUse": ">3,500-model training-run database for the tech tree",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The primary public database of 3,500+ real AI training runs; the natural first stop for a player or researcher who wants to check the game's abstracted compute/capability numbers against actual historical models, even though the game has no model-level tech tree drawing on it directly.",
       "note": "Living database (ongoing)."
     },
     {
@@ -63,9 +88,16 @@
       "org": "Epoch AI",
       "url": "https://epoch.ai/data",
       "type": "dataset",
-      "tags": ["compute", "trends", "dataset", "live-data"],
+      "tags": [
+        "compute",
+        "trends",
+        "dataset",
+        "live-data"
+      ],
       "status": "verified",
-      "gameUse": "compute tech-tree and growth-curve anchor; frontier training compute doubling every 5.2 months since 2020 (~5x/yr)",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Compute-meter anchor and the capabilityPerRnd growth curve's compute-doubling assumption (~5.2 months per doubling since 2020); also general compute/energy event flavor. No tech-tree feature exists anywhere in the game.",
       "note": "Living hub, also listed in section 10 (models, hardware, benchmarks, chip sales, data centers). Trends dashboard: https://epoch.ai/trends (largest known run Grok 4 ~5e26 FLOP). HANDOVER section 11 lists https://epoch.ai."
     },
     {
@@ -76,9 +108,14 @@
       "year": 2024,
       "url": "https://epoch.ai/data-insights/compute-trend-post-2010",
       "type": "web",
-      "tags": ["compute", "trends"],
+      "tags": [
+        "compute",
+        "trends"
+      ],
       "status": "verified",
-      "gameUse": "compute growth-rate anchor"
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Training compute doubling roughly every six months since 2020; the capabilityPerRnd growth curve cites it for exactly that assumption."
     },
     {
       "id": "SRC-EPOCH-MODEL-COUNT",
@@ -87,9 +124,14 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.16138",
       "type": "paper",
-      "tags": ["forecasting", "compute"],
+      "tags": [
+        "forecasting",
+        "compute"
+      ],
       "status": "verified",
-      "gameUse": "models exceeding compute thresholds over time"
+      "tier": "library",
+      "evidenceClass": "forecast",
+      "whyListed": "Forecasts how many frontier-scale models will exist through 2028 as compute costs fall; useful context for why the game assumes more than one actor can approach the frontier over time, though no specific in-game number is drawn from it."
     },
     {
       "id": "SRC-GATE",
@@ -98,10 +140,16 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2503.04941",
       "type": "paper",
-      "tags": ["economics", "automation", "takeoff"],
+      "tags": [
+        "economics",
+        "automation",
+        "takeoff"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "forecast",
       "gameUse": "compute-centric economic takeoff model; automation/growth economic engine",
-      "note": "Playground: https://epoch.ai/gate. Cross-listed in section 6 of BIBLIOGRAPHY-FULL."
+      "note": "Playground: https://epoch.ai/gate."
     },
     {
       "id": "SRC-AI2027",
@@ -111,8 +159,14 @@
       "year": 2025,
       "url": "https://ai-2027.com/",
       "type": "web",
-      "tags": ["scenario", "forecasting", "timelines"],
+      "tags": [
+        "scenario",
+        "forecasting",
+        "timelines"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "forecast",
       "gameUse": "race vs. slowdown endings; core scenario spine; cautious preset anchors",
       "note": "About: https://ai-2027.com/about. Author blog 'Our first project: AI 2027' (Kokotajlo): https://blog.aifutures.org/p/our-first-project-ai-2027. Caveat: scenario/projection, not established outcome."
     },
@@ -124,8 +178,14 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2503.14499",
       "type": "paper",
-      "tags": ["capabilities", "forecasting", "benchmarks"],
+      "tags": [
+        "capabilities",
+        "forecasting",
+        "benchmarks"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "50% task-completion time horizon doubling ~every 7 months since 2019; capability clock calibration",
       "note": "Blog: https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/"
     },
@@ -136,9 +196,15 @@
       "year": 2024,
       "url": "https://situational-awareness.ai/",
       "type": "web",
-      "tags": ["forecasting", "takeoff", "worldview"],
+      "tags": [
+        "forecasting",
+        "takeoff",
+        "worldview"
+      ],
       "status": "verified",
-      "gameUse": "aggressive-timeline / intelligence-explosion worldview preset",
+      "tier": "load-bearing",
+      "evidenceClass": "forecast",
+      "gameUse": "Aggressive-timeline / intelligence-explosion worldview preset anchor; also backs the nationalized 'the Project' event and natsec_merge policy, the SC/SAR milestone timing, and the compute-energy grid-crunch event, all drawn from the essay's industrial-mobilization and intelligence-explosion argument.",
       "note": "PDF: https://situational-awareness.ai/wp-content/uploads/2024/06/situationalawareness.pdf. Caveat: scenario/strategy argument, label as projection."
     },
     {
@@ -148,10 +214,16 @@
       "year": 2018,
       "url": "https://arxiv.org/abs/1705.08807",
       "type": "paper",
-      "tags": ["forecasting", "timelines", "survey"],
-      "status": "verified",
-      "gameUse": "expert-timeline survey (AI Impacts); treat estimates as ranges, not points",
-      "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL flags that a newer 2023 AI Impacts survey exists. See SRC-GRACE-SURVEY for the 2024 paper."
+      "tags": [
+        "forecasting",
+        "timelines",
+        "survey"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "forecast",
+      "whyListed": "The original 2017/2018 AI Impacts expert-timeline survey; useful for a reader who wants to see how much expert opinion moved between this survey and the 2024 follow-up (SRC-GRACE-SURVEY) that the game actually draws its consensus-preset anchors from.",
+      "note": "Link not independently re-verified: that a newer 2023 AI Impacts survey exists. See SRC-GRACE-SURVEY for the 2024 paper."
     },
     {
       "id": "SRC-GRACE-SURVEY",
@@ -160,20 +232,32 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2401.02843",
       "type": "paper",
-      "tags": ["forecasting", "timelines", "survey"],
+      "tags": [
+        "forecasting",
+        "timelines",
+        "survey"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "forecast",
       "gameUse": "expert-survey timeline distributions; consensus preset anchors (HANDOVER core anchor)"
     },
     {
       "id": "SRC-OWID-AI",
-      "title": "Our World in Data \u2014 training computation of notable AI systems",
+      "title": "Our World in Data — training computation of notable AI systems",
       "org": "Epoch/OWID",
       "url": "https://ourworldindata.org/grapher/artificial-intelligence-training-computation",
       "type": "dataset",
-      "tags": ["dataset", "compute", "live-data"],
+      "tags": [
+        "dataset",
+        "compute",
+        "live-data"
+      ],
       "status": "verified",
-      "gameUse": "live chart/data for UI",
-      "note": "Live chart; bibliography dates it 2026. OWID AI topic hub (HANDOVER section 11): https://ourworldindata.org/artificial-intelligence"
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "A live, continuously-updated chart of real training-compute growth; a good external link for a player who wants to see the actual trend behind the game's abstracted compute meter, though the game embeds no live chart itself.",
+      "note": "Live chart; dated 2026. OWID AI topic hub (HANDOVER section 11): https://ourworldindata.org/artificial-intelligence"
     },
     {
       "id": "SRC-COTRA-BIOANCHORS",
@@ -182,11 +266,17 @@
       "org": "Open Philanthropy",
       "year": 2020,
       "type": "report",
-      "tags": ["forecasting", "timelines", "compute"],
+      "tags": [
+        "forecasting",
+        "timelines",
+        "compute"
+      ],
       "status": "flagged",
-      "gameUse": "bio-anchors timeline model",
-      "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL flags exact URLs for the Cotra/Davidson/Christiano bio-anchors cluster as unverified (Open Philanthropy site). HANDOVER hint: search openphilanthropy.org. Verification 2026-07-03: unclear. No fetchable canonical page under the exact title. The report itself lives in an unlisted Google Drive folder per Cotra's own LessWrong announcement post, which is titled differently ('Draft report on AI timelines', not 'Forecasting TAI with Biological Anchors'). openphilanthropy.org/coefficientgiving.org has no confirmed page for it either (its 'key writings' page 403'd). All other search results are third-party commentary about the report, not the report itself.",
-      "flagReason": "The report has no canonical page: it lives in an unlisted folder linked from the author's announcement post. We cite the work; the link situation is genuinely messy."
+      "tier": "library",
+      "evidenceClass": "forecast",
+      "whyListed": "The founding bio-anchors approach to forecasting transformative AI by analogy to biological brain compute; useful for a researcher tracing where the field's timeline debates (and this game's takeoff/timeline thinking) originally came from, despite backing no specific number here and having a genuinely messy citation trail.",
+      "flagReason": "The report has no canonical page: it lives in an unlisted folder linked from the author's announcement post. We cite the work; the link situation is genuinely messy.",
+      "note": "Link not independently re-verified: exact URLs for the Cotra/Davidson/Christiano bio-anchors cluster as unverified (Open Philanthropy site). HANDOVER hint: search openphilanthropy.org. Verification 2026-07-03: unclear. No fetchable canonical page under the exact title. The report itself lives in an unlisted Google Drive folder per Cotra's own LessWrong announcement post, which is titled differently ('Draft report on AI timelines', not 'Forecasting TAI with Biological Anchors'). openphilanthropy.org/coefficientgiving.org has no confirmed page for it either (its 'key writings' page 403'd). All other search results are third-party commentary about the report, not the report itself."
     },
     {
       "id": "SRC-DAVIDSON-TAKEOFF",
@@ -196,21 +286,32 @@
       "year": 2023,
       "url": "https://takeoffspeeds.com",
       "type": "web",
-      "tags": ["takeoff", "forecasting", "compute"],
-      "status": "verified",
-      "gameUse": "takeoff-speed modeling",
-      "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL flags exact URLs for the Cotra/Davidson/Christiano cluster as unverified; this URL comes from HANDOVER section 11."
+      "tags": [
+        "takeoff",
+        "forecasting",
+        "compute"
+      ],
+      "status": "pending",
+      "tier": "background",
+      "evidenceClass": "forecast",
+      "shaped": "The takeoffSteepness worldview dial (parameters.json worldviewPresets.*.takeoffSteepness), which sets how fast capability compounds once frontier AI R&D automation begins, operationalizes this paper's compute-centric takeoff-speed framework of treating takeoff duration as a distinct, quantifiable axis separate from AGI-timeline forecasts.",
+      "note": "Link not independently re-verified: exact URLs for the Cotra/Davidson/Christiano cluster as unverified; this URL comes from HANDOVER section 11."
     },
     {
       "id": "SRC-CONCRETE-PROBLEMS",
       "title": "Concrete Problems in AI Safety",
-      "authors": "Amodei, Olah, Steinhardt, Christiano, Schulman, Man\u00e9",
+      "authors": "Amodei, Olah, Steinhardt, Christiano, Schulman, Mané",
       "year": 2016,
       "url": "https://arxiv.org/abs/1606.06565",
       "type": "paper",
-      "tags": ["safety", "alignment"],
+      "tags": [
+        "safety",
+        "alignment"
+      ],
       "status": "verified",
-      "gameUse": "taxonomy of failure modes"
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "The field-defining 2016 taxonomy of concrete AI safety failure modes (side effects, reward hacking, safe exploration, scalable oversight, distributional shift); a strong entry point for a curious player or teacher who wants the original framing behind 'why AI safety is hard,' even though the game's actual incident system draws more specifically on later deception-focused papers."
     },
     {
       "id": "SRC-SLEEPER",
@@ -220,8 +321,14 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2401.05566",
       "type": "paper",
-      "tags": ["alignment", "deception", "evals"],
+      "tags": [
+        "alignment",
+        "deception",
+        "evals"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "deceptive-alignment mechanic; eval uncertainty band"
     },
     {
@@ -232,8 +339,14 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2412.14093",
       "type": "paper",
-      "tags": ["alignment", "deception"],
+      "tags": [
+        "alignment",
+        "deception"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Deceptive alignment surviving safety training even under monitoring incentives; backs evalUncertainty.deceptionMaxLift (a badly-aligned model's eval report can read above the truth).",
       "note": "Anthropic post: https://www.anthropic.com/news/alignment-faking"
     },
     {
@@ -244,8 +357,15 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2412.04984",
       "type": "paper",
-      "tags": ["alignment", "deception", "evals"],
+      "tags": [
+        "alignment",
+        "deception",
+        "evals"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Frontier models demonstrated strategically deceiving evaluators and pursuing misaligned goals covertly in controlled evals; backs the eval-uncertainty band width, several incident-ladder rungs, and the safety-focused mandates.",
       "note": "Apollo page: https://www.apolloresearch.ai/science/frontier-models-are-capable-of-incontext-scheming/"
     },
     {
@@ -256,9 +376,14 @@
       "year": 2023,
       "url": "https://transformer-circuits.pub/2023/monosemantic-features/index.html",
       "type": "paper",
-      "tags": ["interpretability", "alignment"],
+      "tags": [
+        "interpretability",
+        "alignment"
+      ],
       "status": "verified",
-      "gameUse": "interpretability mechanic"
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The original, smaller-scale demonstration that a language model's internal features can be decomposed into interpretable, monosemantic units; the direct intellectual predecessor of SRC-SCALING-MONOSEMANTICITY, which the game already cites for the safetyInsight mechanic."
     },
     {
       "id": "SRC-SCALING-MONOSEMANTICITY",
@@ -268,8 +393,14 @@
       "year": 2024,
       "url": "https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html",
       "type": "paper",
-      "tags": ["interpretability", "alignment"],
-      "status": "verified"
+      "tags": [
+        "interpretability",
+        "alignment"
+      ],
+      "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Interpretability feature-extraction demonstrated at production model scale (Claude 3 Sonnet); backs the safetyInsight resource/track and the interpretability-investment mechanics (interpretability_moonshot policy, eval_breakthrough event)."
     },
     {
       "id": "SRC-GOLDEN-GATE",
@@ -278,9 +409,14 @@
       "year": 2024,
       "url": "https://www.anthropic.com/news/golden-gate-claude",
       "type": "web",
-      "tags": ["interpretability"],
-      "status": "verified",
-      "note": "PRIORITY-VERIFY: flagged in BIBLIOGRAPHY-FULL; gap audit resolves the canonical URL as https://www.anthropic.com/news/golden-gate-claude [BETTER-LINK]."
+      "tags": [
+        "interpretability"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "A vivid, non-technical public demo of what steering an interpretability feature actually looks like (an AI obsessed with the Golden Gate Bridge); accessible further reading for a player or teacher who wants a concrete picture of what the abstract safetyInsight meter represents.",
+      "note": "Link not independently re-verified; the canonical URL appears to be https://www.anthropic.com/news/golden-gate-claude [BETTER-LINK]."
     },
     {
       "id": "SRC-RLHF",
@@ -289,8 +425,14 @@
       "year": 2017,
       "url": "https://arxiv.org/abs/1706.03741",
       "type": "paper",
-      "tags": ["alignment", "training"],
-      "status": "verified"
+      "tags": [
+        "alignment",
+        "training"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The original technique paper for training models from human preference feedback; broad background reading on why 'training for alignment' is treated as an actionable, investable lever in the game, though no specific mechanic is traceably built on this paper rather than the field generally."
     },
     {
       "id": "SRC-INSTRUCTGPT",
@@ -300,9 +442,15 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2203.02155",
       "type": "paper",
-      "tags": ["alignment", "training"],
-      "status": "verified",
-      "note": "PRIORITY-VERIFY: arXiv ID flagged in BIBLIOGRAPHY-FULL; gap audit confirms the canonical version at https://arxiv.org/abs/2203.02155 [BETTER-LINK]."
+      "tags": [
+        "alignment",
+        "training"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Demonstrates that instruction-tuning via human feedback measurably improves model helpfulness and harmlessness at production scale; useful background on real alignment-training practice, though not specifically tied to any single game mechanic.",
+      "note": "ArXiv ID not independently re-verified; the canonical version at https://arxiv.org/abs/2203.02155 [BETTER-LINK]."
     },
     {
       "id": "SRC-CONSTITUTIONAL-AI",
@@ -312,8 +460,14 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2212.08073",
       "type": "paper",
-      "tags": ["alignment", "training"],
-      "status": "verified"
+      "tags": [
+        "alignment",
+        "training"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Introduces AI-feedback-based safety training as an alternative to pure RLHF; good further reading on real lab alignment techniques, though the game's abstract alignment/safety-investment numbers don't distinguish between training methods."
     },
     {
       "id": "SRC-WEAK-TO-STRONG",
@@ -323,8 +477,14 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2312.09390",
       "type": "paper",
-      "tags": ["alignment", "oversight"],
+      "tags": [
+        "alignment",
+        "oversight"
+      ],
       "status": "verified",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Investigates whether weaker supervisors can reliably oversee stronger models, the core 'scalable oversight' problem; relevant background for the fog-zone idea that oversight gets harder as capability rises, though the game's fog-zone erosion mechanic is explicitly sourced to AI-2027 rather than this paper.",
       "note": "OpenAI post: https://openai.com/index/weak-to-strong-generalization/"
     },
     {
@@ -335,9 +495,14 @@
       "year": 2020,
       "url": "https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/",
       "type": "web",
-      "tags": ["alignment", "reward-hacking"],
+      "tags": [
+        "alignment",
+        "reward-hacking"
+      ],
       "status": "verified",
-      "gameUse": "reward-hacking mechanic"
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "A widely-cited catalog of real specification-gaming/reward-hacking examples (the AI does exactly what you asked, not what you wanted); good illustrative reading, though the game has no incident type or parameter that distinctly models reward hacking as opposed to deliberate deception."
     },
     {
       "id": "SRC-GOAL-MISGEN",
@@ -347,8 +512,14 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2210.01790",
       "type": "paper",
-      "tags": ["alignment", "generalization"],
-      "status": "verified"
+      "tags": [
+        "alignment",
+        "generalization"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Demonstrates that a model can appear to have learned the intended goal during training yet pursue a different one once deployed; relevant conceptual background on why evals can mislead, though the game's eval-uncertainty band is explicitly sourced to the deception literature (Sleeper Agents, Scheming) rather than this misgeneralization paper."
     },
     {
       "id": "SRC-GOAL-MISGEN-RL",
@@ -357,8 +528,14 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2105.14111",
       "type": "paper",
-      "tags": ["alignment", "generalization"],
-      "status": "verified"
+      "tags": [
+        "alignment",
+        "generalization"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The deep-RL-specific companion finding to SRC-GOAL-MISGEN (the CoinRun agent that learns 'go right' instead of 'get the coin'); same relevance and same caveat as that entry."
     },
     {
       "id": "SRC-POWER-SEEKING-POLICIES",
@@ -367,9 +544,14 @@
       "year": 2021,
       "url": "https://arxiv.org/abs/1912.01683",
       "type": "paper",
-      "tags": ["alignment", "power-seeking"],
+      "tags": [
+        "alignment",
+        "power-seeking"
+      ],
       "status": "verified",
-      "gameUse": "instrumental convergence / power-seeking",
+      "tier": "background",
+      "evidenceClass": "analysis",
+      "shaped": "The agencyErosion mechanic (parameters.json worldRules.agencyErosion.perTurn), where sufficiently capable AI systems quietly accumulate control over decisions each turn, operationalizes this paper's formal result that optimal policies across a wide range of environments tend to seek power and resources instrumentally.",
       "note": "2019 (arXiv) / 2021 (NeurIPS)."
     },
     {
@@ -380,10 +562,16 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2312.06942",
       "type": "paper",
-      "tags": ["safety", "control", "evals"],
+      "tags": [
+        "safety",
+        "control",
+        "evals"
+      ],
       "status": "verified",
-      "gameUse": "control-agenda mechanic",
-      "note": "Dated 2023/2024 in BIBLIOGRAPHY-FULL."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Proposes 'control' (catching and restricting a misaligned deployed model even without solving alignment) as a safety strategy distinct from alignment training; relevant further reading, though the game does not currently implement a distinct control-agenda mechanic despite what its own gameUse field claims.",
+      "note": "Dated 2023/2024."
     },
     {
       "id": "SRC-ANTHROPIC-RSP",
@@ -391,10 +579,16 @@
       "org": "Anthropic",
       "url": "https://www.anthropic.com/responsible-scaling-policy",
       "type": "web",
-      "tags": ["governance", "lab-policy", "safety"],
+      "tags": [
+        "governance",
+        "lab-policy",
+        "safety"
+      ],
       "status": "verified",
-      "gameUse": "lab self-governance representation",
-      "note": "Living document (2023+); gap audit flags a 2026 update [NEWER-THAN-MINE] that materially affects lab self-governance in-game. HANDOVER alt URL: https://www.anthropic.com/rsp. Pin version/date when citing."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "A real frontier lab's own public capability-scaling safety commitments; relevant further reading on real-world lab self-governance, though the game has no policy card that distinctly models voluntary lab self-governance apart from the government-mandated eval_mandate and the pause-focused global_moratorium.",
+      "note": "Living document (2023+); a 2026 update that materially affects lab self-governance in-game. HANDOVER alt URL: https://www.anthropic.com/rsp. Pin version/date when citing."
     },
     {
       "id": "SRC-OPENAI-PREPAREDNESS",
@@ -403,9 +597,16 @@
       "year": 2025,
       "url": "https://openai.com/index/updating-our-preparedness-framework/",
       "type": "web",
-      "tags": ["governance", "lab-policy", "evals"],
+      "tags": [
+        "governance",
+        "lab-policy",
+        "evals"
+      ],
       "status": "verified",
-      "note": "Dated 2023/2025 in BIBLIOGRAPHY-FULL. Gap audit ([NEWER-THAN-MINE], 'Our updated Preparedness Framework'): clarifies tracked vs. research categories, safeguard reports, competitive-adjustment logic. Pin version/date when citing."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "For readers curious how a frontier lab operationalizes capability-risk tracking (tracked-vs-research categories, safeguard reporting, competitive-adjustment logic), a real-world analog to the game's eval-uncertainty and threshold mechanics.",
+      "note": "Dated 2023/2025. clarifies tracked vs. research categories, safeguard reports, competitive-adjustment logic. Pin version/date when citing."
     },
     {
       "id": "SRC-DEEPMIND-FSF",
@@ -413,9 +614,16 @@
       "org": "Google DeepMind",
       "url": "https://deepmind.google/blog/strengthening-our-frontier-safety-framework/",
       "type": "web",
-      "tags": ["governance", "lab-policy", "safety"],
+      "tags": [
+        "governance",
+        "lab-policy",
+        "safety"
+      ],
       "status": "verified",
-      "note": "Living framework (2024+; gap audit: 2025, updated 2026, [NEWER-THAN-MINE]). Adds harmful-manipulation and misalignment-risk framing plus tracked capability thresholds. Pin version/date when citing."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "For readers who want to compare a second frontier lab's public capability-threshold and misalignment-risk framework against the game's own fog-zone/threshold system.",
+      "note": "Living framework (2024+; 2025, updated 2026, ). Adds harmful-manipulation and misalignment-risk framing plus tracked capability thresholds. Pin version/date when citing."
     },
     {
       "id": "SRC-SLEEPER-PROBES",
@@ -424,9 +632,15 @@
       "year": 2024,
       "url": "https://www.anthropic.com/research/probes-catch-sleeper-agents",
       "type": "web",
-      "tags": ["evals", "deception", "interpretability"],
+      "tags": [
+        "evals",
+        "deception",
+        "interpretability"
+      ],
       "status": "verified",
-      "gameUse": "detection/eval mechanic"
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Backs the eval-uncertainty band's safety-insight narrowing and deception-insight counter in parameters.json (evalUncertainty.safetyInsightNarrowing, deceptionInsightCounter): probes that catch sleeper agents let Safety Insight investment narrow uncertainty about whether a model is deceptively aligned."
     },
     {
       "id": "SRC-GRADUAL-DISEMPOWERMENT",
@@ -435,8 +649,14 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2501.16946",
       "type": "paper",
-      "tags": ["risk", "endings", "economics"],
+      "tags": [
+        "risk",
+        "endings",
+        "economics"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
       "gameUse": "gradual-disempowerment ending (HANDOVER: grounds the hidden ending)",
       "note": "ICML: https://proceedings.mlr.press/v267/kulveit25a.html"
     },
@@ -447,9 +667,15 @@
       "year": 2025,
       "url": "https://intelligence-curse.ai/",
       "type": "web",
-      "tags": ["risk", "economics", "endings"],
+      "tags": [
+        "risk",
+        "economics",
+        "endings"
+      ],
       "status": "verified",
-      "gameUse": "societal-breakdown ending",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "For players curious about the economic-power-concentration argument behind the Societal Breakdown ending's premise, distinct from the IMF/OECD job-displacement data that actually drives that ending's mechanics in-game.",
       "note": "PDF: https://intelligence-curse.ai/intelligence-curse.pdf"
     },
     {
@@ -459,32 +685,50 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2501.17805",
       "type": "report",
-      "tags": ["risk", "governance", "consensus"],
+      "tags": [
+        "risk",
+        "governance",
+        "consensus"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
       "gameUse": "consensus risk synthesis; consensus preset anchors",
       "note": "96 experts, 30 countries; UK-commissioned track. Site: https://internationalaisafetyreport.org/. See SRC-IAISR-UPDATE-1, SRC-IAISR-UPDATE-2, SRC-IAISR-2026 for later editions."
     },
     {
       "id": "SRC-IAISR-UPDATE-1",
-      "title": "International AI Safety Report \u2014 First Key Update: Capabilities & Risk Implications",
+      "title": "International AI Safety Report — First Key Update: Capabilities & Risk Implications",
       "authors": "Bengio et al.",
       "year": 2025,
       "url": "https://arxiv.org/abs/2510.13653",
       "type": "report",
-      "tags": ["risk", "capabilities"],
+      "tags": [
+        "risk",
+        "capabilities"
+      ],
       "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "For readers who want the most recent (Oct 2025) expert-consensus update on frontier capability trends and risk implications, one step ahead of the primary IAISR report the consensus preset is built on.",
       "note": "October 2025."
     },
     {
       "id": "SRC-IAISR-UPDATE-2",
-      "title": "International AI Safety Report \u2014 Second Key Update: Technical Safeguards & Risk Management",
+      "title": "International AI Safety Report — Second Key Update: Technical Safeguards & Risk Management",
       "authors": "Bengio et al.",
       "year": 2025,
       "url": "https://arxiv.org/abs/2511.19863",
       "type": "report",
-      "tags": ["risk", "safeguards"],
+      "tags": [
+        "risk",
+        "safeguards"
+      ],
       "status": "verified",
-      "note": "November 2025. Gap audit ([NEWER-THAN-MINE]): valuable for operational safeguards and risk-management practice rather than abstract risk alone."
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
+      "gameUse": "Backs the scenario's starting safety-insight level: where operational safeguards practice actually stood in late 2025 sets where the world begins.",
+      "note": "November 2025 update; valuable for operational safeguards and risk-management practice rather than abstract risk alone."
     },
     {
       "id": "SRC-UK-AISI",
@@ -492,10 +736,16 @@
       "org": "UK AISI",
       "url": "https://www.aisi.gov.uk/",
       "type": "web",
-      "tags": ["evals", "governance", "institution"],
-      "status": "verified",
+      "tags": [
+        "evals",
+        "governance",
+        "institution"
+      ],
+      "status": "pending",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "eval/regulation actor",
-      "note": "PRIORITY-VERIFY: flagged in BIBLIOGRAPHY-FULL; gap audit resolves the current canonical home as https://www.aisi.gov.uk/ [BETTER-LINK]."
+      "note": "Link not independently re-verified; the canonical URL appears to be https://www.aisi.gov.uk/ [BETTER-LINK]."
     },
     {
       "id": "SRC-ALIGNMENT-SURVEY",
@@ -504,9 +754,14 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2310.19852",
       "type": "paper",
-      "tags": ["alignment", "survey"],
+      "tags": [
+        "alignment",
+        "survey"
+      ],
       "status": "verified",
-      "gameUse": "background reference"
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "A broad taxonomy of alignment research techniques and open problems (RLHF, interpretability, scalable oversight) for players or teachers who want the academic map behind the game's alignment-difficulty dial."
     },
     {
       "id": "SRC-BOSTROM-SUPERINTELLIGENCE",
@@ -515,9 +770,14 @@
       "org": "Oxford University Press",
       "year": 2014,
       "type": "book",
-      "tags": ["risk", "worldview"],
+      "tags": [
+        "risk",
+        "worldview"
+      ],
       "status": "book",
-      "gameUse": "foundational risk framing"
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "The foundational instrumental-convergence and orthogonality-thesis argument underlying the general existential-risk vocabulary echoed by the game's cautious worldview preset."
     },
     {
       "id": "SRC-HUMAN-COMPATIBLE",
@@ -526,9 +786,14 @@
       "org": "Viking/Penguin",
       "year": 2019,
       "type": "book",
-      "tags": ["alignment", "worldview"],
+      "tags": [
+        "alignment",
+        "worldview"
+      ],
       "status": "book",
-      "gameUse": "alignment framing"
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Russell's provably-beneficial-AI framing and the control problem, for readers wanting the classic popular-science argument behind the game's alignment mechanics."
     },
     {
       "id": "SRC-GOVAI-COMPUTE",
@@ -538,10 +803,17 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2402.08797",
       "type": "paper",
-      "tags": ["compute-governance", "export-controls", "hardware", "ai-policy"],
+      "tags": [
+        "compute-governance",
+        "export-controls",
+        "hardware",
+        "ai-policy"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
       "gameUse": "compute-governance mechanic",
-      "note": "secondary PDF: https://cdn.governance.ai/Computing_Power_and_the_Governance_of_AI.pdf; also cross-referenced in the bibliography's governance section as the compute-chokepoint source"
+      "note": "Secondary PDF of the same report: https://cdn.governance.ai/Computing_Power_and_the_Governance_of_AI.pdf"
     },
     {
       "id": "SRC-CSIS-EXPORT",
@@ -551,8 +823,15 @@
       "year": 2022,
       "url": "https://www.csis.org/analysis/choking-chinas-access-future-ai",
       "type": "report",
-      "tags": ["export-controls", "china", "chips", "geopolitics"],
+      "tags": [
+        "export-controls",
+        "china",
+        "chips",
+        "geopolitics"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "Oct 7 2022 export controls"
     },
     {
@@ -563,8 +842,16 @@
       "year": 2024,
       "url": "https://www.csis.org/analysis/understanding-biden-administrations-updated-export-controls",
       "type": "report",
-      "tags": ["export-controls", "china", "chips", "us-policy"],
-      "status": "verified"
+      "tags": [
+        "export-controls",
+        "china",
+        "chips",
+        "us-policy"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Documents the 2024 tightening of US export controls (closing early loopholes), useful further context for the chip/export mechanics that currently cite only the original 2022 CSIS report."
     },
     {
       "id": "SRC-CSIS-SME-CONTROLS",
@@ -574,8 +861,16 @@
       "year": 2024,
       "url": "https://www.csis.org/analysis/true-impact-allied-export-controls-us-and-chinese-semiconductor-manufacturing-equipment",
       "type": "report",
-      "tags": ["export-controls", "semiconductors", "china", "allies"],
-      "status": "verified"
+      "tags": [
+        "export-controls",
+        "semiconductors",
+        "china",
+        "allies"
+      ],
+      "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Backs the allied_export_fracture event's choice between compensating allies for enforcing semiconductor-manufacturing-equipment export controls versus letting the allied coalition fray."
     },
     {
       "id": "SRC-CSIS-COUNTERING-CHINA",
@@ -585,9 +880,16 @@
       "year": 2025,
       "url": "https://www.csis.org/analysis/countering-chinas-challenge-american-ai-leadership",
       "type": "report",
-      "tags": ["china", "ai-leadership", "chips", "datacenters"],
+      "tags": [
+        "china",
+        "ai-leadership",
+        "chips",
+        "datacenters"
+      ],
       "status": "verified",
-      "gameUse": "data-center scale, \"No chip, no AI\""
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Explains the 'no chip, no AI' framing of China's data-center scale-up, useful background for the compute/substitution mechanics even though no single game value is drawn from it directly."
     },
     {
       "id": "SRC-CSIS-ALLIES-AUTHORITY",
@@ -597,8 +899,16 @@
       "year": 2025,
       "url": "https://www.csis.org/analysis/understanding-us-allies-current-legal-authority-implement-ai-and-semiconductor-export",
       "type": "report",
-      "tags": ["export-controls", "allies", "legal", "chips"],
-      "status": "verified"
+      "tags": [
+        "export-controls",
+        "allies",
+        "legal",
+        "chips"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "For readers asking whether US allies (Netherlands, Japan, South Korea) have independent legal authority to restrict chip exports, the real-world tension echoed by the allied_export_fracture event."
     },
     {
       "id": "SRC-CSIS-SEISMIC-SHIFT",
@@ -607,8 +917,16 @@
       "year": 2022,
       "url": "https://www.csis.org/analysis/seismic-shift-new-us-semiconductor-export-controls-and-implications-us-firms-allies-and",
       "type": "report",
-      "tags": ["export-controls", "semiconductors", "us-policy", "china"],
-      "status": "verified"
+      "tags": [
+        "export-controls",
+        "semiconductors",
+        "us-policy",
+        "china"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "An earlier CSIS take on the October 2022 export controls and their implications for allied firms, complementing the primary cited CSIS-EXPORT report."
     },
     {
       "id": "SRC-DEEPSEEK-COST",
@@ -618,8 +936,15 @@
       "year": 2025,
       "url": "https://newsletter.semianalysis.com/p/deepseek-debates",
       "type": "report",
-      "tags": ["deepseek", "china", "compute-cost", "chips"],
+      "tags": [
+        "deepseek",
+        "china",
+        "compute-cost",
+        "chips"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "DeepSeek cost mechanic (~$1.6B server capex; MLA cuts KV-cache 93.3%)"
     },
     {
@@ -628,9 +953,16 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2506.03409",
       "type": "paper",
-      "tags": ["hardware-governance", "verification", "chips", "compute"],
+      "tags": [
+        "hardware-governance",
+        "verification",
+        "chips",
+        "compute"
+      ],
       "status": "verified",
-      "gameUse": "hardware-enabled governance mechanic"
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "For readers interested in the technical feasibility of hardware-based compute verification, the real-world mechanism family behind the treaty verification-pilot flag in verification_offer.json."
     },
     {
       "id": "SRC-RAND-WEIGHTS",
@@ -640,10 +972,16 @@
       "year": 2024,
       "url": "https://www.rand.org/pubs/research_reports/RRA2849-1.html",
       "type": "report",
-      "tags": ["model-weights", "security", "espionage", "china"],
+      "tags": [
+        "model-weights",
+        "security",
+        "espionage",
+        "china"
+      ],
       "status": "verified",
-      "gameUse": "weight-security mechanic; also cited in the US-China section as the model-weight-theft / espionage mechanic (RAND, RR-A2849-1)",
-      "note": "cross-referenced twice in the source bibliography (compute/chips section and US-China geopolitics section) as the same report; counted once here"
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
+      "gameUse": "weight-security mechanic; also cited in the US-China section as the model-weight-theft / espionage mechanic (RAND, RR-A2849-1)"
     },
     {
       "id": "SRC-CHIP-WAR",
@@ -652,8 +990,15 @@
       "org": "Scribner",
       "year": 2022,
       "type": "book",
-      "tags": ["chip-war", "taiwan", "semiconductors", "supply-chain"],
+      "tags": [
+        "chip-war",
+        "taiwan",
+        "semiconductors",
+        "supply-chain"
+      ],
       "status": "book",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "TSMC/Taiwan chokepoint background"
     },
     {
@@ -663,8 +1008,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2503.05628",
       "type": "paper",
-      "tags": ["us-china", "deterrence", "geopolitics", "superintelligence"],
+      "tags": [
+        "us-china",
+        "deterrence",
+        "geopolitics",
+        "superintelligence"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
       "gameUse": "deterrence/sabotage/nonproliferation mechanic",
       "note": "also at site https://www.nationalsecurity.ai/ and PDF https://files.nationalsecurity.ai/Superintelligence_Strategy.pdf"
     },
@@ -675,8 +1027,15 @@
       "year": 2025,
       "url": "https://www.rand.org/pubs/commentary/2025/03/seeking-stability-in-the-competition-for-ai-advantage.html",
       "type": "web",
-      "tags": ["us-china", "maim-critique", "deterrence", "commentary"],
+      "tags": [
+        "us-china",
+        "maim-critique",
+        "deterrence",
+        "commentary"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
       "gameUse": "critique of MAIM"
     },
     {
@@ -686,9 +1045,16 @@
       "year": 2025,
       "url": "https://thezvi.substack.com/p/on-maim-and-superintelligence-strategy",
       "type": "web",
-      "tags": ["maim", "analysis", "commentary", "us-china"],
+      "tags": [
+        "maim",
+        "analysis",
+        "commentary",
+        "us-china"
+      ],
       "status": "verified",
-      "gameUse": "analysis"
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
+      "gameUse": "Zvi's critical read of MAIM feeds the preventive_sabotage policy's deter-vs-spiral gamble and its escalation-flag risk modifier, reflecting skepticism that deterrence between rivals stays clean."
     },
     {
       "id": "SRC-NSCAI",
@@ -697,10 +1063,17 @@
       "year": 2021,
       "url": "https://www.govinfo.gov/app/details/GOVPUB-Y3-PURL-gpo153246",
       "type": "report",
-      "tags": ["us-policy", "national-security", "ai-strategy", "geopolitics"],
+      "tags": [
+        "us-policy",
+        "national-security",
+        "ai-strategy",
+        "geopolitics"
+      ],
       "status": "verified",
-      "note": "Verification 2026-07-03: unclear. DNS failure (ENOTFOUND) from this sandbox on retry, but WebSearch confirms live page with exact matching title '2021 Final Report - NSCAI'. Likely local network/DNS issue, not a dead site.",
-      "gameUse": "US natsec framing of the AI race; cited via the U.S. GovInfo archive since the commission's own domain has been unreliable after its 2021 dissolution (archive machine-checked 2026-07-04)"
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
+      "gameUse": "General US national-security AI-strategy framing (talent, compute, government-industry coordination) motivates natsec-flavored governance events like lab_merger; the 2021 report itself does not specifically address lab-merger or industry-concentration policy.",
+      "note": "Verification 2026-07-03: unclear. DNS failure (ENOTFOUND) from this sandbox on retry, but WebSearch confirms live page with exact matching title '2021 Final Report - NSCAI'. Likely local network/DNS issue, not a dead site."
     },
     {
       "id": "SRC-AI-ACTION-PLAN",
@@ -709,8 +1082,16 @@
       "year": 2025,
       "url": "https://www.whitehouse.gov/wp-content/uploads/2025/07/Americas-AI-Action-Plan.pdf",
       "type": "report",
-      "tags": ["us-policy", "ai-strategy", "export-controls", "geopolitics"],
-      "status": "verified"
+      "tags": [
+        "us-policy",
+        "ai-strategy",
+        "export-controls",
+        "geopolitics"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "The White House's 2025 AI strategy document, giving readers the current US policy backdrop (deregulation, export controls, infrastructure buildout) that the game's natsec and export mechanics gesture at."
     },
     {
       "id": "SRC-CARNEGIE-CHINA-REGS",
@@ -720,8 +1101,16 @@
       "year": 2023,
       "url": "https://carnegieendowment.org/research/2023/07/chinas-ai-regulations-and-how-they-get-made",
       "type": "report",
-      "tags": ["china", "ai-regulation", "policy", "geopolitics"],
-      "status": "verified"
+      "tags": [
+        "china",
+        "ai-regulation",
+        "policy",
+        "geopolitics"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "For readers who want to understand China's opaque AI regulatory process, useful context for the China seat's governance asymmetry even though no specific game value cites it."
     },
     {
       "id": "SRC-CARNEGIE-CHINA-ROOTS",
@@ -731,8 +1120,16 @@
       "year": 2024,
       "url": "https://carnegieendowment.org/research/2024/02/tracing-the-roots-of-chinas-ai-regulations",
       "type": "report",
-      "tags": ["china", "ai-regulation", "policy", "history"],
-      "status": "verified"
+      "tags": [
+        "china",
+        "ai-regulation",
+        "policy",
+        "history"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Traces the historical origins of China's AI governance approach, complementing SRC-CARNEGIE-CHINA-REGS for readers who want the fuller policy history behind the China seat."
     },
     {
       "id": "SRC-CSIS-LIMITS-EXPORT",
@@ -740,8 +1137,16 @@
       "org": "CSIS",
       "url": "https://www.csis.org/analysis/limits-chip-export-controls-meeting-china-challenge",
       "type": "report",
-      "tags": ["export-controls", "china", "chips", "policy"],
-      "status": "verified"
+      "tags": [
+        "export-controls",
+        "china",
+        "chips",
+        "policy"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "A critical counterpoint arguing export controls have structural limits, useful for readers weighing the substitution mechanic against the assumption that controls simply work."
     },
     {
       "id": "SRC-EU-AI-ACT",
@@ -750,8 +1155,16 @@
       "year": 2024,
       "url": "https://artificialintelligenceact.eu/the-act/",
       "type": "report",
-      "tags": ["eu-regulation", "ai-act", "europe", "policy"],
+      "tags": [
+        "eu-regulation",
+        "ai-act",
+        "europe",
+        "policy"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Backs the fixed historical beats eu_ai_act_full_force and eu_ai_act_high_risk, dramatizing the Act's phased compliance deadlines (prohibited-practices ban, GPAI duties, high-risk certification).",
       "note": "official Commission page: https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai; HANDOVER also cites the official legal text host https://eur-lex.europa.eu"
     },
     {
@@ -760,8 +1173,15 @@
       "org": "FLI",
       "url": "https://artificialintelligenceact.eu/implementation-timeline/",
       "type": "web",
-      "tags": ["eu-regulation", "ai-act", "timeline", "europe"],
+      "tags": [
+        "eu-regulation",
+        "ai-act",
+        "timeline",
+        "europe"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "phased dates (bans Feb 2025; GPAI Aug 2025; bulk Aug 2026; high-risk Aug 2027)"
     },
     {
@@ -771,8 +1191,16 @@
       "year": 2024,
       "url": "https://www.whitecase.com/insight-alert/long-awaited-eu-ai-act-becomes-law-after-publication-eus-official-journal",
       "type": "web",
-      "tags": ["eu-regulation", "ai-act", "legal-analysis", "europe"],
-      "status": "verified"
+      "tags": [
+        "eu-regulation",
+        "ai-act",
+        "legal-analysis",
+        "europe"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "A law firm's practical walkthrough of the EU AI Act's entry into force, useful further reading alongside the already-cited FLI implementation timeline that drives the game's fixed EU regulatory beats."
     },
     {
       "id": "SRC-DRAGHI-REPORT",
@@ -782,9 +1210,16 @@
       "year": 2024,
       "url": "https://commission.europa.eu/topics/competitiveness/draghi-report_en",
       "type": "report",
-      "tags": ["europe", "competitiveness", "eu-policy", "economy"],
+      "tags": [
+        "europe",
+        "competitiveness",
+        "eu-policy",
+        "economy"
+      ],
       "status": "verified",
-      "gameUse": "\"Europe left behind\" / competitiveness mechanic (\u20ac800B/yr investment gap)"
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Gives a curious reader or teacher the actual EU competitiveness diagnosis (the roughly 800bn-euro/yr investment gap) behind the 'Europe has real leverage and a closing window' takeaway, ahead of the Phase 4 EU seat this game does not have yet."
     },
     {
       "id": "SRC-DRAGHI-WIKI",
@@ -792,9 +1227,16 @@
       "org": "Wikipedia",
       "url": "https://en.wikipedia.org/wiki/Draghi_report",
       "type": "web",
-      "tags": ["europe", "competitiveness", "draghi", "tracking"],
+      "tags": [
+        "europe",
+        "competitiveness",
+        "draghi",
+        "tracking"
+      ],
       "status": "verified",
-      "gameUse": "implementation tracking incl. EPIC Observatory: 11.2% fully implemented after 1 yr"
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Tracks how much of the Draghi competitiveness agenda the EU has actually implemented (11.2% after one year per the EPIC Observatory), useful for a player or journalist checking whether a future EU seat reflects reality."
     },
     {
       "id": "SRC-CSET-AI-CHIPS",
@@ -804,8 +1246,16 @@
       "year": 2020,
       "url": "https://cset.georgetown.edu/publication/ai-chips-what-they-are-and-why-they-matter/",
       "type": "report",
-      "tags": ["chips", "hardware", "export-controls", "compute"],
+      "tags": [
+        "chips",
+        "hardware",
+        "export-controls",
+        "compute"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Backs the chip_subsidies policy's chokepoint premise: advanced AI chips are a scarce, export-controlled resource, justifying the card's delayed compute + substitution payoff.",
       "note": "HANDOVER gives only the CSET homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://cset.georgetown.edu."
     },
     {
@@ -815,10 +1265,15 @@
       "year": 2025,
       "url": "https://www.iea.org/reports/energy-and-ai",
       "type": "report",
-      "tags": ["energy", "compute", "climate"],
+      "tags": [
+        "energy",
+        "compute",
+        "climate"
+      ],
       "status": "verified",
-      "gameUse": "Grounds electricity demand, energy-source mix, affordability, security, and climate tradeoffs",
-      "note": "gap-audit tag: [NEWER-THAN-MINE]. Also listed in HANDOVER \u00a711 'Compute, chips, energy' subsection (outside worker C's assigned HANDOVER subsections; not found in BIBLIOGRAPHY-FULL.md sec.3 as read)."
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Grounds the single energy-resource track and its thresholds (gridSlackBeforeCap, mandates, event/policy effects) in IEA's datacentre electricity-demand projections (415 TWh in 2024 rising to ~945 TWh by 2030); the game does not separately model energy-source mix or climate/emissions as distinct mechanics, despite the entry's wording."
     },
     {
       "id": "SRC-CNAS-SMUGGLING",
@@ -827,8 +1282,16 @@
       "org": "CNAS",
       "url": "https://www.cnas.org/publications/reports/preventing-ai-chip-smuggling-to-china",
       "type": "report",
-      "tags": ["chips", "smuggling", "export-controls", "china"],
+      "tags": [
+        "chips",
+        "smuggling",
+        "export-controls",
+        "china"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Backs the chip_smuggling event's enforce-vs-look-away choice: documented smuggling routes and enforcement tradeoffs for export-controlled AI chips reaching China.",
       "note": "HANDOVER gives only the CNAS homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://www.cnas.org."
     },
     {
@@ -837,9 +1300,16 @@
       "org": "SemiAnalysis",
       "url": "https://semianalysis.com",
       "type": "web",
-      "tags": ["chips", "semiconductors", "industry-analysis", "live-data"],
+      "tags": [
+        "chips",
+        "semiconductors",
+        "industry-analysis",
+        "live-data"
+      ],
       "status": "verified",
-      "gameUse": "live industry-data layer: fabs, accelerators, datacenters",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The industry's ongoing fab/accelerator/datacenter data-and-analysis outlet that supplies many of the specific figures other cited sources (like DeepSeek cost estimates) draw on; a good next stop for a player who wants the chip/compute picture behind the game's abstracted single 'compute' resource.",
       "note": "general ongoing blog resource (industry blog: fabs, accelerators, datacenters), distinct from the specific SRC-DEEPSEEK-COST newsletter post"
     },
     {
@@ -849,9 +1319,16 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2412.19437",
       "type": "paper",
-      "tags": ["deepseek", "china", "llm", "compute"],
+      "tags": [
+        "deepseek",
+        "china",
+        "llm",
+        "compute"
+      ],
       "status": "verified",
-      "note": "Gap audit re-listed this (NEWER-THAN-MINE tag); one entry kept."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The primary technical report for the DeepSeek model family whose efficiency claims and R1 follow-up drive the game's open-weights-shock storyline; read this for the actual architecture and training-cost numbers behind the narrative (the game cites the R1 report and a separate cost analysis for the actual mechanics)."
     },
     {
       "id": "SRC-DEEPSEEK-R1",
@@ -860,8 +1337,16 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2501.12948",
       "type": "paper",
-      "tags": ["deepseek", "china", "llm", "reasoning"],
-      "status": "verified"
+      "tags": [
+        "deepseek",
+        "china",
+        "llm",
+        "reasoning"
+      ],
+      "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Models the real 'DeepSeek shock': a competitive open-weights reasoning release from an export-controlled rival, backing the open_weights_shock event, the open_weights_release policy's capability/trust effects, and the prologue's chokepoint-war chapter."
     },
     {
       "id": "SRC-MERICS",
@@ -869,8 +1354,16 @@
       "org": "MERICS",
       "url": "https://merics.org",
       "type": "web",
-      "tags": ["china", "geopolitics", "think-tank", "policy"],
-      "status": "verified"
+      "tags": [
+        "china",
+        "geopolitics",
+        "think-tank",
+        "policy"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Ongoing China AI-policy analysis for a player or teacher wanting deeper context on the China seat's regulatory and geopolitical environment than the game's abstracted mechanics can show."
     },
     {
       "id": "SRC-CSET-LIBRARY",
@@ -878,8 +1371,16 @@
       "org": "CSET",
       "url": "https://cset.georgetown.edu",
       "type": "web",
-      "tags": ["china", "us-china", "think-tank", "reports"],
+      "tags": [
+        "china",
+        "us-china",
+        "think-tank",
+        "reports"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
+      "gameUse": "General CSET policy-research backing (alongside NSCAI) for the lab_merger event's AI-lab-concentration and governance-oversight tradeoffs; not tied to one specific CSET publication.",
       "note": "general CSET reports-library resource cited in the US-China section, distinct from the specific 2020 AI Chips paper (SRC-CSET-AI-CHIPS); same homepage URL given in source"
     },
     {
@@ -887,10 +1388,18 @@
       "title": "InvestAI / AI gigafactories & AI Action Summit outcomes",
       "year": 2025,
       "type": "web",
-      "tags": ["europe", "eu-investment", "ai-infrastructure", "summit"],
+      "tags": [
+        "europe",
+        "eu-investment",
+        "ai-infrastructure",
+        "summit"
+      ],
       "status": "flagged",
-      "note": "search hint only, no URL given in source: search commission.europa.eu \"InvestAI\". Covers Feb 2025 AI Action Summit outcomes and the EU AI gigafactories initiative Verification 2026-07-03: unclear. This is a compound description (InvestAI + AI gigafactories + AI Action Summit outcomes), not one work. No single EC page covers all three: /ai-gigafactories_en is scoped narrowly to gigafactories only, /ai-factories covers AI Factories with just a brief InvestAI mention, and the press release covers only the InvestAI launch. Picking any one would be a close-but-different-scope match.",
-      "flagReason": "An umbrella citation covering InvestAI, the AI gigafactories program and summit outcomes; no single official page covers all three."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The EU's own AI-infrastructure investment push (InvestAI funding, AI gigafactories, the Feb 2025 AI Action Summit outcomes), background for the 'Europe left behind' competitiveness story the game doesn't yet model with a playable EU seat.",
+      "flagReason": "An umbrella citation covering InvestAI, the AI gigafactories program and summit outcomes; no single official page covers all three.",
+      "note": "search hint only, no URL given in source: search commission.europa.eu \"InvestAI\". Covers Feb 2025 AI Action Summit outcomes and the EU AI gigafactories initiative Verification 2026-07-03: unclear. This is a compound description (InvestAI + AI gigafactories + AI Action Summit outcomes), not one work. No single EC page covers all three: /ai-gigafactories_en is scoped narrowly to gigafactories only, /ai-factories covers AI Factories with just a brief InvestAI mention, and the press release covers only the InvestAI launch. Picking any one would be a close-but-different-scope match."
     },
     {
       "id": "SRC-BRUSSELS-EFFECT",
@@ -898,8 +1407,16 @@
       "authors": "Bradford",
       "year": 2020,
       "type": "book",
-      "tags": ["europe", "eu-regulation", "brussels-effect", "sovereignty"],
-      "status": "book"
+      "tags": [
+        "europe",
+        "eu-regulation",
+        "brussels-effect",
+        "sovereignty"
+      ],
+      "status": "book",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Bradford's thesis on how EU regulation projects power globally even without EU market presence, relevant background for why the game's EU AI Act wildcard events fire regardless of whether Europe is a playable seat, though those events cite EU-AI-Act sources directly rather than this book."
     },
     {
       "id": "SRC-IMF-GENAI",
@@ -909,8 +1426,14 @@
       "year": 2024,
       "url": "https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf",
       "type": "report",
-      "tags": ["labor-market", "job-displacement", "economy"],
+      "tags": [
+        "labor-market",
+        "job-displacement",
+        "economy"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "job-displacement mechanic; ~40% of global jobs exposed (60% advanced economies, 40% emerging, 26% low-income)"
     },
     {
@@ -921,8 +1444,15 @@
       "year": 2024,
       "url": "https://www.imf.org/en/blogs/articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity",
       "type": "web",
-      "tags": ["labor-market", "economy", "policy"],
-      "status": "verified"
+      "tags": [
+        "labor-market",
+        "economy",
+        "policy"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "The IMF's own plain-language summary of its Gen-AI labor-market findings (the same underlying report that backs the job-displacement mechanic elsewhere), good for a reader who wants the headline case without the full SDN paper."
     },
     {
       "id": "SRC-IMF-SKILLGAPS",
@@ -931,9 +1461,15 @@
       "year": 2026,
       "url": "https://www.imf.org/-/media/files/publications/sdn/2026/english/sdnea2026001.pdf",
       "type": "report",
-      "tags": ["labor-market", "job-creation", "economy"],
+      "tags": [
+        "labor-market",
+        "job-creation",
+        "economy"
+      ],
       "status": "verified",
-      "gameUse": "includes entry-level hiring decline evidence"
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Evidence on declining entry-level hiring in the AI era, a real labor-market dynamic the game's single job-displacement scalar doesn't yet break out separately; useful reading for a future 'entry-level jobs' mechanic."
     },
     {
       "id": "SRC-GOLDMAN-GENAI-GDP",
@@ -943,9 +1479,15 @@
       "year": 2023,
       "url": "https://www.goldmansachs.com/insights/articles/generative-ai-could-raise-global-gdp-by-7-percent",
       "type": "report",
-      "tags": ["economy", "gdp", "labor-market"],
+      "tags": [
+        "economy",
+        "gdp",
+        "labor-market"
+      ],
       "status": "verified",
-      "gameUse": "~$7T/decade GDP; ~300M full-time jobs exposed to automation"
+      "tier": "library",
+      "evidenceClass": "forecast",
+      "whyListed": "The widely-cited optimistic GDP/jobs-exposure projection for generative AI, a useful counterweight for readers comparing it against the more skeptical Acemoglu macro estimate also in this registry."
     },
     {
       "id": "SRC-ANTHROPIC-ECON-INDEX",
@@ -954,10 +1496,16 @@
       "year": 2025,
       "url": "https://www.anthropic.com/economic-index",
       "type": "dataset",
-      "tags": ["labor-market", "economy", "usage-data"],
+      "tags": [
+        "labor-market",
+        "economy",
+        "usage-data"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "real usage-by-occupation data",
-      "note": "launch post: https://www.anthropic.com/news/the-anthropic-economic-index Gap audit notes a 2026 edition at the same URL; living resource, one entry kept."
+      "note": "launch post: https://www.anthropic.com/news/the-anthropic-economic-index a 2026 edition at the same URL; living resource, one entry kept."
     },
     {
       "id": "SRC-POWER-PROGRESS",
@@ -966,9 +1514,15 @@
       "org": "PublicAffairs",
       "year": 2023,
       "type": "book",
-      "tags": ["economy", "political-economy", "automation"],
+      "tags": [
+        "economy",
+        "political-economy",
+        "automation"
+      ],
       "status": "book",
-      "gameUse": "macro/political-economy of automation"
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Acemoglu & Johnson's historical argument that a new technology's benefits depend on institutional choices, not inevitability, deeper reading behind the game's political-economy framing of automation and unrest."
     },
     {
       "id": "SRC-GPTS-ARE-GPTS",
@@ -977,43 +1531,70 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2303.10130",
       "type": "paper",
-      "tags": ["labor-market", "automation", "llm-exposure"],
-      "status": "verified",
-      "note": "PRIORITY-VERIFY: bundled under an unverified-URLs note in FULL section 6 (economy/labor); title and URL confirmed instead via HANDOVER section 11 Economy & labor"
+      "tags": [
+        "labor-market",
+        "automation",
+        "llm-exposure"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The original occupational-exposure measurement study for LLMs, useful background on the methodology behind 'percent of jobs exposed' claims used elsewhere in the registry.",
+      "note": "Not independently re-verified: bundled under an unverified-URLs note in FULL section 6 (economy/labor); title and URL confirmed instead via HANDOVER section 11 Economy & labor"
     },
     {
       "id": "SRC-ACEMOGLU-SIMPLE-MACRO",
       "title": "The Simple Macroeconomics of AI",
       "authors": "Acemoglu",
       "year": 2024,
+      "url": "https://www.nber.org/papers/w32487",
       "type": "paper",
-      "tags": ["economy", "macroeconomics", "automation"],
-      "status": "verified",
-      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. PRIORITY-VERIFY: exact URL not confirmed URL updated at verification from (none).",
-      "url": "https://www.nber.org/papers/w32487"
+      "tags": [
+        "economy",
+        "macroeconomics",
+        "automation"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "forecast",
+      "whyListed": "A skeptical macro estimate of modest GDP growth from AI over the next decade, useful for a player weighing how much to trust either worldview's economic optimism against the Goldman Sachs projection also in this registry.",
+      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
     },
     {
       "id": "SRC-BRYNJOLFSSON-GENAI-WORK",
       "title": "Generative AI at Work",
       "authors": "Brynjolfsson et al.",
       "year": 2023,
+      "url": "https://www.nber.org/papers/w31161",
       "type": "paper",
-      "tags": ["labor-market", "productivity", "automation"],
-      "status": "verified",
-      "gameUse": "productivity mechanic; the 'Brynjolfsson call-center study' referenced in FULL section 6",
-      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. PRIORITY-VERIFY: exact URL not confirmed URL updated at verification from (none).",
-      "url": "https://www.nber.org/papers/w31161"
+      "tags": [
+        "labor-market",
+        "productivity",
+        "automation"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The call-center field experiment showing real productivity gains from generative AI assistance, primary evidence behind the game's general 'AI boosts productivity' framing.",
+      "note": "search hint from HANDOVER section 11: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
     },
     {
       "id": "SRC-NOY-ZHANG",
       "title": "Experimental Evidence on Productivity Effects of GenAI",
       "authors": "Noy & Zhang",
       "year": 2023,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37440646/",
       "type": "paper",
-      "tags": ["labor-market", "productivity", "automation"],
-      "status": "verified",
-      "note": "published in Science (2023) per HANDOVER section 11; no URL given. PRIORITY-VERIFY: exact URL not confirmed URL updated at verification from (none).",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37440646/"
+      "tags": [
+        "labor-market",
+        "productivity",
+        "automation"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "A controlled experiment showing GenAI narrows the productivity gap between weaker and stronger writers, useful background on the productivity-and-equity angle behind the game's automation mechanics.",
+      "note": "published in Science (2023) per HANDOVER section 11; no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
     },
     {
       "id": "SRC-DELLACQUA-JAGGED",
@@ -1021,11 +1602,18 @@
       "authors": "Dell'Acqua et al.",
       "org": "HBS",
       "year": 2023,
+      "url": "https://pubsonline.informs.org/doi/10.1287/orsc.2025.21838",
       "type": "paper",
-      "tags": ["labor-market", "productivity", "automation"],
-      "status": "verified",
-      "note": "search hint from HANDOVER section 11, no URL given. PRIORITY-VERIFY: exact URL not confirmed URL updated at verification from (none).",
-      "url": "https://pubsonline.informs.org/doi/10.1287/orsc.2025.21838"
+      "tags": [
+        "labor-market",
+        "productivity",
+        "automation"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The HBS consulting-task study showing GenAI helps unevenly across tasks (the 'jagged frontier'), good background for why the game treats automation benefits as uneven rather than uniform.",
+      "note": "search hint from HANDOVER section 11, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
     },
     {
       "id": "SRC-OPENRESEARCH-UBI",
@@ -1033,10 +1621,16 @@
       "year": 2024,
       "url": "https://www.openresearchlab.org/our-work/unconditional-cash-study",
       "type": "report",
-      "tags": ["ubi", "redistribution", "economy"],
-      "status": "verified",
+      "tags": [
+        "ubi",
+        "redistribution",
+        "economy"
+      ],
+      "status": "pending",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "UBI/redistribution mechanic",
-      "note": "referenced only as 'OpenResearch/Altman UBI study' in FULL section 6; title and URL confirmed via HANDOVER section 11. PRIORITY-VERIFY: this is the lab homepage, not necessarily the specific study page URL updated at verification from https://www.openresearchlab.org."
+      "note": "referenced only as 'OpenResearch/Altman UBI study' in FULL section 6; title and URL confirmed via HANDOVER section 11. Not independently re-verified: this is the lab homepage, not necessarily the specific study page URL updated at verification from https://www.openresearchlab.org."
     },
     {
       "id": "SRC-OECD-EMPLOYMENT",
@@ -1044,10 +1638,17 @@
       "org": "OECD",
       "url": "https://www.oecd.org/en/publications/oecd-employment-outlook-2023_08785bba-en.html",
       "type": "report",
-      "tags": ["labor-market", "policy", "economy"],
+      "tags": [
+        "labor-market",
+        "policy",
+        "economy"
+      ],
       "status": "flagged",
-      "note": "ongoing publication series, no single year given; homepage URL only, per HANDOVER section 11 (absent from FULL section 6) Verification 2026-07-03: unclear. oecd.org returned HTTP 403 to WebFetch twice (bot-blocking, not necessarily dead). WebSearch confirms live OECD Employment Outlook pages with AI chapters exist under oecd.org/en/publications/.",
-      "flagReason": "The publisher blocks automated checks; this is the canonical publication page for the 2023 Employment Outlook, Artificial Intelligence and the Labour Market."
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Backs the unrest/labor-disruption side of the society mechanic across multiple mandates, strike/displacement events, the ai_literacy_campaign policy, and the unrestEconomicDragMin threshold (sustained high unrest starts costing the economy).",
+      "flagReason": "The publisher blocks automated checks; this is the canonical publication page for the 2023 Employment Outlook, Artificial Intelligence and the Labour Market.",
+      "note": "ongoing publication series, no single year given; homepage URL only, per HANDOVER section 11 (absent from FULL section 6) Verification 2026-07-03: unclear. oecd.org returned HTTP 403 to WebFetch twice (bot-blocking, not necessarily dead). WebSearch confirms live OECD Employment Outlook pages with AI chapters exist under oecd.org/en/publications/."
     },
     {
       "id": "SRC-CAIS-STATEMENT",
@@ -1056,9 +1657,15 @@
       "year": 2023,
       "url": "https://safe.ai/work/statement-on-ai-risk",
       "type": "web",
-      "tags": ["x-risk", "worldview-doom", "consensus"],
+      "tags": [
+        "x-risk",
+        "worldview-doom",
+        "consensus"
+      ],
       "status": "verified",
-      "gameUse": "one-sentence extinction-risk consensus"
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "The one-sentence expert-consensus statement that AI extinction risk should be a global priority, evidence for a player wanting to know the game's doom worldview preset isn't fringe speculation."
     },
     {
       "id": "SRC-CARLSMITH",
@@ -1067,8 +1674,14 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2206.13353",
       "type": "paper",
-      "tags": ["x-risk", "power-seeking", "worldview-doom"],
+      "tags": [
+        "x-risk",
+        "power-seeking",
+        "worldview-doom"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
       "gameUse": "decomposed risk model"
     },
     {
@@ -1078,9 +1691,14 @@
       "year": 2024,
       "url": "https://www.darioamodei.com/essay/machines-of-loving-grace",
       "type": "web",
-      "tags": ["worldview-optimistic", "benefit-scenario"],
+      "tags": [
+        "worldview-optimistic",
+        "benefit-scenario"
+      ],
       "status": "verified",
-      "gameUse": "flourishing ending / optimistic preset"
+      "tier": "background",
+      "evidenceClass": "forecast",
+      "shaped": "The game's top-scoring 'flourishing' ending (src/engine/score.ts, worth 5000 points versus 500-4000 for the other five endings) takes its name and optimistic-but-earned framing from this essay's vision of AI-enabled abundance once safety holds."
     },
     {
       "id": "SRC-PLANNING-AGI",
@@ -1090,10 +1708,15 @@
       "year": 2023,
       "url": "https://openai.com/index/planning-for-agi-and-beyond/",
       "type": "web",
-      "tags": ["worldview-optimistic", "agi-governance"],
+      "tags": [
+        "worldview-optimistic",
+        "agi-governance"
+      ],
       "status": "verified",
-      "note": "Verification 2026-07-03: unclear. openai.com returned HTTP 403 to WebFetch twice (bot-blocking). WebSearch confirms the page exists at this exact URL with matching title and content.",
-      "gameUse": "lab worldview and gradual-deployment doctrine behind capability-push memo framing; human-verified 2026-07-04 after the auditor bot was blocked (page live, principles content unchanged behind a 2025 structure-update banner)"
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "OpenAI's own stated AGI-development philosophy in its own words, useful for a player wanting the lab-worldview case behind capability-heavy default allocations elsewhere in the game (which cite the design handover, not this essay, directly).",
+      "note": "Verification 2026-07-03: unclear. openai.com returned HTTP 403 to WebFetch twice (bot-blocking). WebSearch confirms the page exists at this exact URL with matching title and content."
     },
     {
       "id": "SRC-PAUSE-LETTER",
@@ -1102,9 +1725,15 @@
       "year": 2023,
       "url": "https://futureoflife.org/open-letter/pause-giant-ai-experiments/",
       "type": "web",
-      "tags": ["treaty-slowdown", "coordination", "worldview-doom"],
+      "tags": [
+        "treaty-slowdown",
+        "coordination",
+        "worldview-doom"
+      ],
       "status": "verified",
-      "gameUse": "treaty/slowdown mechanic"
+      "tier": "background",
+      "evidenceClass": "analysis",
+      "shaped": "The global_moratorium policy card (data/policies/global_moratorium.json), letting a seat push a coordinated capability freeze at political-capital cost, simulates the real-world coordination move this open letter proposed: a temporary, verifiable pause on frontier AI training runs (though the card's own sourceIds currently cite SRC-IABIED instead of this letter)."
     },
     {
       "id": "SRC-XPT",
@@ -1114,9 +1743,15 @@
       "year": 2023,
       "url": "https://forecastingresearch.org/xpt",
       "type": "report",
-      "tags": ["forecasting", "x-risk", "expert-disagreement"],
+      "tags": [
+        "forecasting",
+        "x-risk",
+        "expert-disagreement"
+      ],
       "status": "verified",
-      "gameUse": "forecasting-disagreement mechanic"
+      "tier": "background",
+      "evidenceClass": "forecast",
+      "shaped": "The three worldview presets (parameters.json worldviewPresets.cautious/consensus/skeptic), which encode unresolved expert disagreement about alignment difficulty and takeoff speed as different dice ranges rather than one 'true' number, reflect XPT's core finding that domain-expert and superforecaster estimates of AI existential risk persistently diverge; HANDOVER §11 explicitly lists this source under 'feeds worldview presets.'"
     },
     {
       "id": "SRC-NORMAL-TECH",
@@ -1126,8 +1761,13 @@
       "year": 2025,
       "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
       "type": "report",
-      "tags": ["worldview-skeptic", "benefit-scenario"],
+      "tags": [
+        "worldview-skeptic",
+        "benefit-scenario"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
       "gameUse": "skeptical worldview preset",
       "note": "also on Substack: https://www.normaltech.ai/p/ai-as-normal-technology"
     },
@@ -1138,8 +1778,14 @@
       "year": 2025,
       "url": "https://www.normaltech.ai/p/a-guide-to-understanding-ai-as-normal",
       "type": "web",
-      "tags": ["worldview-skeptic", "benefit-scenario"],
-      "status": "verified"
+      "tags": [
+        "worldview-skeptic",
+        "benefit-scenario"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Narayanan & Kapoor's plain-language explainer of the 'AI as Normal Technology' thesis that backs the skeptic worldview preset elsewhere (via the main essay); a gentler entry point to the same argument."
     },
     {
       "id": "SRC-PRECIPICE",
@@ -1148,8 +1794,14 @@
       "year": 2020,
       "url": "https://theprecipice.com/",
       "type": "book",
-      "tags": ["x-risk", "worldview-doom"],
-      "status": "book"
+      "tags": [
+        "x-risk",
+        "worldview-doom"
+      ],
+      "status": "book",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Ord's canonical popular introduction to existential risk, a gentler companion to Carlsmith's technical paper for a reader building the case behind the game's doom-worldview preset."
     },
     {
       "id": "SRC-IABIED",
@@ -1158,9 +1810,15 @@
       "year": 2025,
       "url": "https://ifanyonebuildsit.com/",
       "type": "book",
-      "tags": ["x-risk", "worldview-doom", "misaligned-catastrophe"],
+      "tags": [
+        "x-risk",
+        "worldview-doom",
+        "misaligned-catastrophe"
+      ],
       "status": "book",
-      "gameUse": "misaligned-catastrophe worldview"
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
+      "gameUse": "Grounds the cautious worldview's high alignment-difficulty range (upper half of the 550-950 band) and, via the book's core policy prescription of a halt on frontier AI development, the global_moratorium policy card's pause mechanic."
     },
     {
       "id": "SRC-SNAKE-OIL",
@@ -1169,8 +1827,13 @@
       "org": "Princeton University Press",
       "year": 2024,
       "type": "book",
-      "tags": ["worldview-skeptic", "benefit-scenario"],
+      "tags": [
+        "worldview-skeptic",
+        "benefit-scenario"
+      ],
       "status": "book",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
       "gameUse": "skeptical worldview",
       "note": "companion site per HANDOVER section 11: https://www.aisnakeoil.com"
     },
@@ -1181,10 +1844,16 @@
       "year": 2024,
       "url": "https://www.thecompendium.ai/",
       "type": "web",
-      "tags": ["x-risk", "worldview-doom", "synthesis"],
-      "status": "verified",
-      "gameUse": "risk-emphasizing synthesis",
-      "note": "PRIORITY-VERIFY: canonical URL flagged unverified in FULL section 7"
+      "tags": [
+        "x-risk",
+        "worldview-doom",
+        "synthesis"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "A risk-emphasizing synthesis of the AI existential-risk case for a player who finishes a cautious-worldview run wanting the fullest version of the doom argument in one place, alongside the game's already-cited Carlsmith and IABIED sources.",
+      "note": "Not independently re-verified: canonical URL flagged unverified in FULL section 7"
     },
     {
       "id": "SRC-RACING-PRECIPICE",
@@ -1194,9 +1863,15 @@
       "year": 2016,
       "url": "https://link.springer.com/article/10.1007/s00146-015-0590-y",
       "type": "paper",
-      "tags": ["game-theory", "race-dynamics", "coordination"],
+      "tags": [
+        "game-theory",
+        "race-dynamics",
+        "coordination"
+      ],
       "status": "verified",
-      "gameUse": "race game-theory core model",
+      "tier": "background",
+      "evidenceClass": "analysis",
+      "shaped": "The alignmentModel.crashThresholdShare/crashPenalty mechanic (parameters.json), where allocating 70%+ capability share cuts true alignment per turn, mirrors this paper's founding game-theoretic finding that competitive racing pressure drives teams to cut corners on safety precautions.",
       "note": "open-access record: https://ora.ox.ac.uk/objects/uuid:d87d8e34-22d6-4597-ac31-041fcb63903f"
     },
     {
@@ -1206,8 +1881,15 @@
       "year": 2023,
       "url": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023",
       "type": "report",
-      "tags": ["summit-diplomacy", "coordination", "treaty"],
-      "status": "verified"
+      "tags": [
+        "summit-diplomacy",
+        "coordination",
+        "treaty"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "For a player or teacher wanting the real diplomatic starting point of today's AI-safety summit process (the first multilateral declaration that frontier AI risk needs cooperative attention), as background to the game's more mechanistic treaty chain, which is actually sourced from Ho et al.'s institutional-design research."
     },
     {
       "id": "SRC-PARIS-STATEMENT",
@@ -1216,20 +1898,33 @@
       "year": 2025,
       "url": "https://www.elysee.fr/en/emmanuel-macron/2025/02/11/statement-on-inclusive-and-sustainable-artificial-intelligence-for-people-and-the-planet",
       "type": "report",
-      "tags": ["summit-diplomacy", "coordination", "fracturing"],
+      "tags": [
+        "summit-diplomacy",
+        "coordination",
+        "fracturing"
+      ],
       "status": "verified",
-      "gameUse": "US and UK declined to sign, dramatizes fracturing coordination",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "For a player curious how a real recent summit actually fractured (the US and UK declining to sign the 2025 Paris statement), as a case study alongside the game's own fracturing-coordination beats in the treaty_feeler and global_moratorium mechanics.",
       "note": "dated Feb 2025"
     },
     {
       "id": "SRC-UN-GOVERNING-AI",
-      "title": "Governing AI for Humanity \u2014 Final Report",
+      "title": "Governing AI for Humanity — Final Report",
       "org": "UN Secretary-General's High-Level Advisory Body on AI",
       "year": 2024,
       "url": "https://www.un.org/sites/un2.un.org/files/governing_ai_for_humanity_final_report_en.pdf",
       "type": "report",
-      "tags": ["governance", "coordination", "international"],
-      "status": "verified"
+      "tags": [
+        "governance",
+        "coordination",
+        "international"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "For a player or teacher who wants the UN's own official menu of global AI governance proposals (an international scientific panel, a coordination/verification hub, benefit-sharing mechanisms) beyond what the game's treaty mechanic dramatizes."
     },
     {
       "id": "SRC-HEIM-TECH-GOVERNANCE",
@@ -1237,9 +1932,15 @@
       "authors": "Lennart Heim",
       "url": "https://blog.heim.xyz/technical-ai-governance/",
       "type": "web",
-      "tags": ["governance", "verification", "monitoring"],
+      "tags": [
+        "governance",
+        "verification",
+        "monitoring"
+      ],
       "status": "verified",
-      "gameUse": "verification/monitoring mechanisms"
+      "tier": "background",
+      "evidenceClass": "analysis",
+      "shaped": "The verification_offer event's verificationPilot mechanic (events/verification_offer.json: safetyInsight +150, rival.trust +150) follows this piece's core argument that concrete technical verification and monitoring mechanisms, not paper agreements alone, are what let rival powers trust an AI treaty."
     },
     {
       "id": "SRC-HO-INTL-INSTITUTIONS",
@@ -1248,8 +1949,15 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2307.04699",
       "type": "paper",
-      "tags": ["governance", "coordination", "international-institutions"],
+      "tags": [
+        "governance",
+        "coordination",
+        "international-institutions"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
+      "gameUse": "Grounds the bilateral-trust track and treaty-signing thresholds/events: real proposals for international AI institutions (verification bodies, joint safety research, coordination mechanisms) motivate the trust-building diplomacy chain (ally_eval_request, civil_military_fusion, liability_shield_ask, treaty_feeler, verification_offer, compute_treaty_feeler) and the political-capital/trust gates required to sign a treaty.",
       "note": "present in HANDOVER section 11 Governance & coordination, absent from FULL section 8"
     },
     {
@@ -1258,8 +1966,15 @@
       "org": "GovAI",
       "url": "https://www.governance.ai",
       "type": "web",
-      "tags": ["governance", "coordination", "research-library"],
+      "tags": [
+        "governance",
+        "coordination",
+        "research-library"
+      ],
       "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "A curated portal to GovAI's own governance research (institutions, compute governance, benefit-sharing) for players or teachers wanting primary sources behind the treaty and coordination mechanics.",
       "note": "present in HANDOVER section 11 only, absent from FULL section 8"
     },
     {
@@ -1267,11 +1982,18 @@
       "title": "The Windfall Clause",
       "authors": "O'Keefe et al.",
       "org": "GovAI",
+      "url": "https://www.governance.ai/research-paper/the-windfall-clause-distributing-the-benefits-of-ai-for-the-common-good",
       "type": "paper",
-      "tags": ["governance", "benefit-sharing", "coordination"],
+      "tags": [
+        "governance",
+        "benefit-sharing",
+        "coordination"
+      ],
       "status": "verified",
-      "note": "search hint from HANDOVER section 11: search title, no URL or year given. Present in HANDOVER only, absent from FULL section 8 URL updated at verification from (none).",
-      "url": "https://www.governance.ai/research-paper/the-windfall-clause-distributing-the-benefits-of-ai-for-the-common-good"
+      "tier": "background",
+      "evidenceClass": "analysis",
+      "shaped": "The agencyErosion.diffusionShieldMin mechanic (parameters.json worldRules.agencyErosion), where a high enough diffusion/benefit-sharing share lowers erosion of human agency, per its own note 'broad benefit-sharing keeps humans in the loop', reflects this paper's core proposal that redistributing AI's economic windfall preserves participation and blocks narrow power concentration.",
+      "note": "search hint from HANDOVER section 11: search title, no URL or year given. Present in HANDOVER only, absent from FULL section 8 URL updated at verification from (none)."
     },
     {
       "id": "SRC-AI-FUTURES-ROLEPLAY",
@@ -1280,10 +2002,17 @@
       "year": 2020,
       "url": "https://arxiv.org/abs/1912.08964",
       "type": "paper",
-      "tags": ["serious-games", "ai-race", "roleplay", "wargaming"],
+      "tags": [
+        "serious-games",
+        "ai-race",
+        "roleplay",
+        "wargaming"
+      ],
       "status": "verified",
-      "gameUse": "closest direct precedent to Race Conditions",
-      "note": "ACM version: https://dl.acm.org/doi/abs/10.1145/3375627.3375817 (AIES '20). Also listed in HANDOVER \u00a711 Serious games & learning science with ACM link https://dl.acm.org/doi/10.1145/3375627.3375817 (same DOI, no new info)."
+      "tier": "background",
+      "evidenceClass": "design",
+      "shaped": "HANDOVER §1 names Intelligence Rising as the direct inspiration this project scales ('proves the pedagogy'); the project's overall structure, a turn-based, multi-seat (USA/China) roleplay simulation of AI race dynamics with policy cards and posture shifts (data/seats.json, parameters.json worldRules.rivalMoves), follows this paper's original Intelligence Rising format.",
+      "note": "ACM version: https://dl.acm.org/doi/abs/10.1145/3375627.3375817 (AIES '20). Also listed in HANDOVER §11 Serious games & learning science with ACM link https://dl.acm.org/doi/10.1145/3375627.3375817 (same DOI, no new info)."
     },
     {
       "id": "SRC-SIM-GAMING-INSIGHTS",
@@ -1292,10 +2021,17 @@
       "year": 2024,
       "url": "https://arxiv.org/pdf/2410.03092",
       "type": "paper",
-      "tags": ["serious-games", "ai-race", "wargaming", "facilitation"],
+      "tags": [
+        "serious-games",
+        "ai-race",
+        "wargaming",
+        "facilitation"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "design",
       "gameUse": "facilitator insights from 43 Intelligence Rising games",
-      "note": "ScienceDirect version: https://www.sciencedirect.com/science/article/abs/pii/S0016328725000254. Also listed in HANDOVER \u00a711 (search hint only, no new info)."
+      "note": "ScienceDirect version: https://www.sciencedirect.com/science/article/abs/pii/S0016328725000254. Also listed in HANDOVER §11 (search hint only, no new info)."
     },
     {
       "id": "SRC-INTELLIGENCE-RISING-CSER",
@@ -1303,10 +2039,16 @@
       "org": "CSER (Cambridge)",
       "url": "https://www.cser.ac.uk/work/intelligence-rising/",
       "type": "web",
-      "tags": ["serious-games", "ai-race", "wargaming"],
+      "tags": [
+        "serious-games",
+        "ai-race",
+        "wargaming"
+      ],
       "status": "verified",
-      "note": "Official project site per HANDOVER \u00a711 Serious games & learning science: https://www.intelligencerising.org Verification 2026-07-03: unclear. WebFetch got 403 Forbidden twice (bot-blocked, not confirmed dead). WebSearch confirms page exists and is indexed with matching title/content.",
-      "gameUse": "the design's closest ancestor: CSER's AI-futures roleplay workshop; grounds the wargame lineage behind the simulation-gaming insights (human-verified 2026-07-04, page live and matching)"
+      "tier": "library",
+      "evidenceClass": "design",
+      "whyListed": "For a player or researcher curious about the real academic wargame this design descends from, CSER's project page is the primary hub for Intelligence Rising's facilitation materials and history.",
+      "note": "Official project site per HANDOVER §11 Serious games & learning science: https://www.intelligencerising.org Verification 2026-07-03: unclear. WebFetch got 403 Forbidden twice (bot-blocked, not confirmed dead). WebSearch confirms page exists and is indexed with matching title/content."
     },
     {
       "id": "SRC-AVIN-AI-FUTURES-SURVEY",
@@ -1315,44 +2057,72 @@
       "year": 2019,
       "url": "https://www.openbookpublishers.com/books/10.11647/obp.0360/chapters/10.11647/obp.0360.08",
       "type": "paper",
-      "tags": ["serious-games", "ai-futures", "forecasting-methods", "roleplay"],
+      "tags": [
+        "serious-games",
+        "ai-futures",
+        "forecasting-methods",
+        "roleplay"
+      ],
       "status": "verified",
-      "gameUse": "narrative to roleplay to participatory methods",
+      "tier": "library",
+      "evidenceClass": "design",
+      "whyListed": "For readers curious how game-based exploration of AI futures compares to narrative scenario-writing (like AI-2027) or survey forecasting, this is Avin's overview of the methodological menu the project's format sits within.",
       "note": "URL updated at verification from https://books.openbookpublishers.com/10.11647/obp.0360/ch8.xhtml."
     },
     {
       "id": "SRC-SERIOUS-GAMES-BUNDLE",
       "title": "RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak)",
       "type": "web",
-      "tags": ["serious-games", "wargaming", "ttx-methodology", "debrief-design"],
+      "tags": [
+        "serious-games",
+        "wargaming",
+        "ttx-methodology",
+        "debrief-design"
+      ],
       "status": "flagged",
-      "gameUse": "debrief, learning-outcome, and persuasive-game grounding",
-      "note": "PRIORITY-VERIFY: bundled placeholder entry from BIBLIOGRAPHY-FULL.md sec.9 (source explicitly flags verify-individual-URLs, no single URL given). RAND wargaming series, Wouters et al. 2013, Clark et al. 2016, and Bogost's Persuasive Games are also captured individually with cleaner citations from HANDOVER \u00a711 (see SRC-RAND-WARGAMING, SRC-WOUTERS-2013, SRC-CLARK-2016, SRC-BOGOST-PERSUASIVE-GAMES) - merger should dedupe those against this bundle. Schelling on gaming, matrix-games/TTX methodology, and climate-game studies (e.g. Daybreak) remain unresolved individual citations with no source elsewhere in worker C's material. Bundle entry, no single URL by design.",
-      "flagReason": "An umbrella entry for several works on learning through games; the individual works are listed in the bibliography, but there is no single link to verify."
+      "tier": "library",
+      "evidenceClass": "design",
+      "whyListed": "For a teacher or researcher wanting the wider serious-games/wargaming literature behind the debrief design (Schelling on gaming, matrix-game/TTX methodology, climate-game studies like Daybreak) beyond the four works already listed individually.",
+      "flagReason": "An umbrella entry for several works on learning through games; the individual works are listed in this registry, but there is no single link to verify.",
+      "note": "Umbrella entry. Wouters et al. 2013, Clark et al. 2016, Bogost's Persuasive Games and the RAND wargaming series have their own entries; this bundle remains for the still-unpinned items: Schelling on gaming, matrix-game/TTX methodology, and climate-game studies such as Daybreak."
     },
     {
       "id": "SRC-WOUTERS-2013",
       "title": "Meta-analysis of serious-games learning outcomes",
       "authors": "Wouters et al.",
       "year": 2013,
+      "url": "https://eric.ed.gov/?id=EJ1008015",
       "type": "paper",
-      "tags": ["serious-games", "learning-outcomes", "pedagogy", "meta-analysis"],
+      "tags": [
+        "serious-games",
+        "learning-outcomes",
+        "pedagogy",
+        "meta-analysis"
+      ],
       "status": "verified",
-      "gameUse": "debrief / learning-outcome grounding",
-      "note": "From HANDOVER \u00a711 Serious games & learning science; no URL given in source (hint: 'search title'). possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE). URL updated at verification from (none).",
-      "url": "https://eric.ed.gov/?id=EJ1008015"
+      "tier": "background",
+      "evidenceClass": "design",
+      "shaped": "The debrief screen (src/ui/screens/Debrief.tsx, spec'd in HANDOVER §5.8: takeaways surfaced, counterfactual hints, sources link) follows this meta-analysis's finding that serious games produce better learning outcomes when paired with explicit debriefing rather than left to stand alone.",
+      "note": "No URL in the original reference; link added at the July 2026 verification. See also SRC-SERIOUS-GAMES-BUNDLE."
     },
     {
       "id": "SRC-CLARK-2016",
       "title": "Digital Games for Learning meta-analysis",
       "authors": "Clark et al.",
       "year": 2016,
+      "url": "https://journals.sagepub.com/doi/10.3102/0034654315582065",
       "type": "paper",
-      "tags": ["serious-games", "learning-outcomes", "pedagogy", "meta-analysis"],
+      "tags": [
+        "serious-games",
+        "learning-outcomes",
+        "pedagogy",
+        "meta-analysis"
+      ],
       "status": "verified",
-      "gameUse": "debrief / learning-outcome grounding",
-      "note": "From HANDOVER \u00a711 Serious games & learning science; no URL given in source (hint: 'search title'). possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE). URL updated at verification from (none).",
-      "url": "https://journals.sagepub.com/doi/10.3102/0034654315582065"
+      "tier": "library",
+      "evidenceClass": "design",
+      "whyListed": "For readers who want the empirical backing behind 'games can teach, but design matters,' this meta-analysis of digital game-based learning outcomes complements Wouters et al. (already grounding the debrief-screen design) with a broader review across digital games generally.",
+      "note": "No URL in the original reference; link added at the July 2026 verification. See also SRC-SERIOUS-GAMES-BUNDLE."
     },
     {
       "id": "SRC-BOGOST-PERSUASIVE-GAMES",
@@ -1360,10 +2130,17 @@
       "authors": "Bogost",
       "year": 2007,
       "type": "book",
-      "tags": ["serious-games", "game-design", "persuasion", "pedagogy"],
+      "tags": [
+        "serious-games",
+        "game-design",
+        "persuasion",
+        "pedagogy"
+      ],
       "status": "book",
-      "gameUse": "persuasive-game grounding for mechanics-carry-the-message design",
-      "note": "[BOOK] manual acquisition, per HANDOVER \u00a711 Serious games & learning science. possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE)."
+      "tier": "background",
+      "evidenceClass": "design",
+      "shaped": "The project's core Fun-First-70/30 principle (HANDOVER §3, Operating Principle 1: the lesson lives in mechanics, hidden alignment dice, eval-uncertainty bands, delayed consequences, never in lecture screens) follows Bogost's concept of procedural rhetoric: games persuade through their rules and systems, not through explicit argument.",
+      "note": "Book, obtain manually. See also SRC-SERIOUS-GAMES-BUNDLE."
     },
     {
       "id": "SRC-RAND-WARGAMING",
@@ -1371,11 +2148,18 @@
       "org": "RAND",
       "url": "https://www.rand.org",
       "type": "report",
-      "tags": ["wargaming", "methodology", "ttx", "serious-games"],
+      "tags": [
+        "wargaming",
+        "methodology",
+        "ttx",
+        "serious-games"
+      ],
       "status": "flagged",
-      "gameUse": "matrix-game / TTX methodology grounding",
-      "note": "From HANDOVER \u00a711 Serious games & learning science. URL is RAND homepage only; source hint: search \"wargaming\" on rand.org for specific reports. possible-dup-of: RAND wargaming series/Schelling/Wouters/Clark/Bogost bundle in BIBLIOGRAPHY-FULL.md sec.9 (SRC-SERIOUS-GAMES-BUNDLE). Verification 2026-07-03: unclear. rand.org 403'd WebFetch (bot-blocked). Search confirms rand.org has wargaming methodology pubs (e.g. rand.org/pubs/research_memoranda/RM2413.html) but URL is generic homepage, not a specific report.",
-      "flagReason": "An umbrella entry for RAND's wargaming methodology literature; individual reports verify, the bundle as such has no single link."
+      "tier": "library",
+      "evidenceClass": "design",
+      "whyListed": "For readers curious about the tabletop-wargaming methodology (matrix games, structured turn phases) that the project's turn/era/event structure resembles, RAND's wargaming-methodology literature is the field's reference; no single report is pinned here.",
+      "flagReason": "An umbrella entry for RAND's wargaming methodology literature; individual reports verify, the bundle as such has no single link.",
+      "note": "URL is the RAND homepage; search 'wargaming' on rand.org for specific reports. July 2026 check: rand.org blocks automated fetches, but the methodology publications exist (e.g. rand.org/pubs/research_memoranda/RM2413.html). See also SRC-SERIOUS-GAMES-BUNDLE."
     },
     {
       "id": "SRC-AI-INDEX-2025",
@@ -1384,8 +2168,16 @@
       "year": 2025,
       "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report",
       "type": "report",
-      "tags": ["ai-index", "benchmarks", "live-data", "annual-report"],
+      "tags": [
+        "ai-index",
+        "benchmarks",
+        "live-data",
+        "annual-report"
+      ],
       "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Backs the prologue's opening beat (data/prologue.json chapters[0] 'starting_gun': capability, capital, and safetyInsight rising while publicTrust dips) via the 2025 report's investment, adoption, and public-opinion chapters.",
       "note": "PDF: https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf"
     },
     {
@@ -1396,9 +2188,16 @@
       "year": 2024,
       "url": "https://airisk.mit.edu/",
       "type": "dataset",
-      "tags": ["risk-taxonomy", "dataset", "live-data", "ai-safety"],
+      "tags": [
+        "risk-taxonomy",
+        "dataset",
+        "live-data",
+        "ai-safety"
+      ],
       "status": "verified",
-      "gameUse": ">1,600 risks; risk-taxonomy layer",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "For a teacher or researcher who wants the academic taxonomy behind why the game's incident ladder spans such different kinds of AI risk (misuse, accidents, systemic, geopolitical), this database catalogs 1,600+ documented risks across 65+ frameworks.",
       "note": "arXiv: https://arxiv.org/abs/2408.12622"
     },
     {
@@ -1408,31 +2207,34 @@
       "org": "ARC Prize Foundation",
       "url": "https://arcprize.org/arc-agi",
       "type": "dataset",
-      "tags": ["benchmark", "capability-eval", "live-data"],
+      "tags": [
+        "benchmark",
+        "capability-eval",
+        "live-data"
+      ],
       "status": "verified",
-      "gameUse": "capability benchmark",
-      "note": "Founded 2019, ongoing/living resource (year omitted). Successor benchmark ARC-AGI-2 filed separately (see SRC-ARC-AGI-2, gap audit)."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "For players curious what a 'capability' benchmark actually looks like in the real world, ARC-AGI is the most discussed current example of a benchmark designed to resist brute pattern-matching, alongside the METR task-horizon data already backing the capability meter.",
+      "note": "Founded 2019, ongoing/living resource (year omitted). Successor benchmark ARC-AGI-2 filed separately (see SRC-ARC-AGI-2, )."
     },
     {
       "id": "SRC-LMARENA",
       "title": "LMArena (Chatbot Arena / \"Arena\")",
-      "org": "UC Berkeley SkyLab \u2192 Arena Inc.",
+      "org": "UC Berkeley SkyLab → Arena Inc.",
       "url": "https://arena.ai/",
       "type": "web",
-      "tags": ["leaderboard", "live-data", "model-ranking", "benchmark"],
+      "tags": [
+        "leaderboard",
+        "live-data",
+        "model-ranking",
+        "benchmark"
+      ],
       "status": "verified",
-      "gameUse": "live model-ranking leaderboard",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "For players wanting to see today's actual crowd-sourced model rankings as a living companion to the game's abstract 0-1000 capability meter.",
       "note": "Founded 2023, ongoing/living resource (year omitted). URL updated at verification from https://lmarena.ai/."
-    },
-    {
-      "id": "SRC-EPOCH-DATA-TRAJECTORY",
-      "title": "Epoch AI \u2014 Data on the Trajectory of AI (models, hardware, benchmarks, chip sales, data centers)",
-      "org": "Epoch AI",
-      "url": "https://epoch.ai/data",
-      "type": "dataset",
-      "tags": ["live-data", "compute-trends", "dataset", "benchmarks"],
-      "status": "verified",
-      "note": "Ongoing/living resource (year omitted). Likely duplicate of BIBLIOGRAPHY-FULL.md sec.1 line 'Data on the Trajectory of AI (databases hub) \u2014 Epoch AI \u2014 ongoing \u2014 https://epoch.ai/data' (outside worker C's assigned sections; probably already assigned one of the TAKEN SRC-EPOCH-* ids by another worker). possible-dup-of: Data on the Trajectory of AI (databases hub)."
     },
     {
       "id": "SRC-OECD-AI-OBSERVATORY",
@@ -1440,9 +2242,15 @@
       "org": "OECD",
       "url": "https://oecd.ai/en/",
       "type": "web",
-      "tags": ["policy-tracker", "live-data", "governance"],
+      "tags": [
+        "policy-tracker",
+        "live-data",
+        "governance"
+      ],
       "status": "verified",
-      "gameUse": "national AI policy tracker"
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "For a player or teacher wanting to see actual national AI policies and strategies rather than the game's abstracted policy-card hand, OECD.AI's live observatory tracks real government AI initiatives worldwide."
     },
     {
       "id": "SRC-AI-INCIDENT-DB",
@@ -1450,10 +2258,17 @@
       "org": "Responsible AI Collaborative",
       "url": "https://incidentdatabase.ai/",
       "type": "dataset",
-      "tags": ["incidents", "live-data", "empirical-harms", "dataset"],
-      "status": "verified",
+      "tags": [
+        "incidents",
+        "live-data",
+        "empirical-harms",
+        "dataset"
+      ],
+      "status": "pending",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "real-world harm cases",
-      "note": "PRIORITY-VERIFY: BIBLIOGRAPHY-FULL.md sec.10 flags this \u26a0verify (canonical URL not independently re-fetched). Resolved by gap audit's canonical-link flag section, which confirms https://incidentdatabase.ai/ resolves cleanly. Also listed in HANDOVER \u00a711 Live data & community. Duplicate also appears in gap audit body (see SRC-AI-INCIDENT-DB-GA). Gap audit re-listed this; one entry kept."
+      "note": "Link not independently re-verified (canonical URL not independently re-fetched). Resolved by 's canonical-link flag section, which confirms https://incidentdatabase.ai/ resolves cleanly. Also listed in HANDOVER §11 Live data & community. Duplicate also appears in body (see SRC-AI-INCIDENT-DB-GA). re-listed this; one entry kept."
     },
     {
       "id": "SRC-80K-AI-CATASTROPHE",
@@ -1462,9 +2277,16 @@
       "org": "80,000 Hours",
       "url": "https://80000hours.org/problem-profiles/artificial-intelligence/",
       "type": "web",
-      "tags": ["problem-profile", "ai-risk", "curriculum"],
+      "tags": [
+        "problem-profile",
+        "ai-risk",
+        "curriculum"
+      ],
       "status": "verified",
-      "note": "Published 2022, living/updated resource (year omitted). Matches HANDOVER \u00a711 Live data & community: '80,000 Hours AI problem profile'."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "An accessible on-ramp for a player who finishes a run wanting the AI-catastrophe case explained in plain language, aimed at people considering working on the problem rather than researchers.",
+      "note": "Published 2022, living/updated resource (year omitted). Matches HANDOVER §11 Live data & community: '80,000 Hours AI problem profile'."
     },
     {
       "id": "SRC-80K-GRADUAL-DISEMPOWERMENT",
@@ -1473,38 +2295,64 @@
       "year": 2025,
       "url": "https://80000hours.org/problem-profiles/gradual-disempowerment/",
       "type": "web",
-      "tags": ["problem-profile", "ai-risk", "gradual-disempowerment"],
-      "status": "verified"
+      "tags": [
+        "problem-profile",
+        "ai-risk",
+        "gradual-disempowerment"
+      ],
+      "status": "verified",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "An accessible explainer of the gradual-disempowerment risk model that already grounds the game's hidden agency-erosion ending via the primary Kulveit et al. paper (SRC-GRADUAL-DISEMPOWERMENT); good further reading for a player who unlocks that ending and wants the argument in plain language."
     },
     {
       "id": "SRC-BLUEDOT-IMPACT",
-      "title": "BlueDot Impact \u2014 AI Safety Fundamentals / Alignment & Governance courses",
+      "title": "BlueDot Impact — AI Safety Fundamentals / Alignment & Governance courses",
       "org": "BlueDot Impact",
       "url": "https://bluedot.org/",
       "type": "web",
-      "tags": ["curriculum", "education", "ai-safety"],
+      "tags": [
+        "curriculum",
+        "education",
+        "ai-safety"
+      ],
       "status": "verified",
-      "gameUse": "curriculum scaffolding",
-      "note": "Courses page: https://bluedot.org/courses/alignment. Matches HANDOVER \u00a711 Live data & community: 'BlueDot / AI Safety Fundamentals curricula'."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "For a classroom teacher (a stated project audience) wanting a structured follow-on curriculum after playing, BlueDot's AI Safety Fundamentals courses are the standard on-ramp into technical alignment and governance study.",
+      "note": "Courses page: https://bluedot.org/courses/alignment. Matches HANDOVER §11 Live data & community: 'BlueDot / AI Safety Fundamentals curricula'."
     },
     {
       "id": "SRC-MODEL-DOCS-BUNDLE",
       "title": "System/model cards (GPT-4, Claude 3/Opus, Gemini); Papers with Code; Alignment Forum / LessWrong key posts",
       "type": "web",
-      "tags": ["model-cards", "documentation", "live-data"],
+      "tags": [
+        "model-cards",
+        "documentation",
+        "live-data"
+      ],
       "status": "flagged",
-      "gameUse": "model-release-timeline and documentation layer",
-      "note": "PRIORITY-VERIFY: bundled placeholder from BIBLIOGRAPHY-FULL.md sec.10 (marked verify-individual-URLs, no single URL given). Alignment Forum is captured individually as SRC-ALIGNMENT-FORUM via a clean atomic URL from HANDOVER \u00a711 Live data & community; System/model cards and Papers with Code remain unresolved individual citations. Bundle entry, no single URL by design.",
-      "flagReason": "An umbrella entry for model release documentation across several labs; no single link to verify."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "For a researcher wanting primary model documentation and reproducible benchmark tracking behind the game's abstracted capability meter, this points to real published model cards (GPT-4, Claude, Gemini) and Papers with Code's benchmark leaderboards.",
+      "flagReason": "An umbrella entry for model release documentation across several labs; no single link to verify.",
+      "note": "Bundled placeholder entry (marked verify-individual-URLs, no single URL given). Alignment Forum is captured individually as SRC-ALIGNMENT-FORUM via a clean atomic URL from HANDOVER §11 Live data & community; System/model cards and Papers with Code remain unresolved individual citations. Bundle entry, no single URL by design."
     },
     {
       "id": "SRC-ALIGNMENT-FORUM",
       "title": "Alignment Forum",
       "url": "https://www.alignmentforum.org",
       "type": "web",
-      "tags": ["community", "live-data", "alignment"],
+      "tags": [
+        "community",
+        "live-data",
+        "alignment"
+      ],
       "status": "verified",
-      "note": "From HANDOVER \u00a711 Live data & community; not present as an atomic entry in BIBLIOGRAPHY-FULL.md sec.10 (only bundled, unsourced, as 'LessWrong key posts' in the sec.10 grab-bag \u2014 see SRC-MODEL-DOCS-BUNDLE)."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "A live, ongoing venue where researchers debate the exact alignment questions this game dramatizes (deceptive alignment, interpretability, corrigibility); useful for a player who wants to go deeper than the evalUncertainty mechanic into current debate.",
+      "note": "Live community venue; no single citable document."
     },
     {
       "id": "SRC-AI-INDEX-2026",
@@ -1513,10 +2361,17 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2606.15708",
       "type": "report",
-      "tags": ["ai-index", "benchmarks", "live-data", "annual-report"],
-      "status": "verified",
+      "tags": [
+        "ai-index",
+        "benchmarks",
+        "live-data",
+        "annual-report"
+      ],
+      "status": "pending",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
       "gameUse": "Best single annual synthesis for capabilities, policy, labor, science, medicine, and AI sovereignty; ideal baseline world-state reference for opening turns",
-      "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEWER-THAN-MINE]. possible-dup-of: The 2025 AI Index Report (annual series; BIBLIOGRAPHY-FULL.md sec.10 / HANDOVER \u00a711 'AI Index Report \u2014 Stanford HAI, annual')."
+      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it. Annual series; see also the 2025 edition (SRC-AI-INDEX-2025)."
     },
     {
       "id": "SRC-AISI-FRONTIER-TRENDS",
@@ -1525,22 +2380,35 @@
       "year": 2026,
       "url": "https://www.aisi.gov.uk/frontier-ai-trends-report",
       "type": "report",
-      "tags": ["benchmarks", "capability-eval", "live-data", "safety"],
+      "tags": [
+        "benchmarks",
+        "capability-eval",
+        "live-data",
+        "safety"
+      ],
       "status": "verified",
-      "gameUse": "Strongest recent public source for task-length trends, cyber/CBRN/autonomy curves, safeguard bypass effort, and open-vs-closed gap narrowing; useful for escalation mechanics",
-      "note": "gap-audit tag: [NEW]. Related to but distinct from the UK AISI org entry in BIBLIOGRAPHY-FULL.md sec.2 (https://www.aisi.gov.uk/)."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "The UK AI Security Institute's task-length and capability trend curves, the natural report to check the game's capability anchors against; a candidate citation once its content is verified against the anchor mapping.",
+      "note": "Related to but distinct from the UK AI Security Institute's main site (https://www.aisi.gov.uk/)."
     },
     {
       "id": "SRC-ARC-AGI-2",
       "title": "ARC-AGI-2: A New Challenge for Frontier AI Reasoning Systems",
-      "authors": "Fran\u00e7ois Chollet, Mike Knoop, Gregory Kamradt, Bryan Landers, Henry Pinkard",
+      "authors": "François Chollet, Mike Knoop, Gregory Kamradt, Bryan Landers, Henry Pinkard",
       "year": 2025,
       "url": "https://arxiv.org/abs/2505.11831",
       "type": "paper",
-      "tags": ["benchmark", "capability-eval", "reasoning"],
+      "tags": [
+        "benchmark",
+        "capability-eval",
+        "reasoning"
+      ],
       "status": "verified",
-      "gameUse": "Successor benchmark to ARC-AGI; better for reasoning-frontier calibration",
-      "note": "gap-audit tag: [NEWER-THAN-MINE]. possible-dup-of: ARC-AGI benchmark (BIBLIOGRAPHY-FULL.md sec.10, see SRC-ARC-AGI)."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a curious player or researcher the actual successor benchmark used to show frontier models still fail novel visual-reasoning puzzles even as older benchmarks saturate, useful context for the capability-ladder milestones though no specific milestone value is drawn from it.",
+      "note": "See also SRC-ARC-AGI."
     },
     {
       "id": "SRC-RE-BENCH",
@@ -1550,10 +2418,15 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2411.15114",
       "type": "paper",
-      "tags": ["benchmark", "r-and-d-automation", "agents"],
+      "tags": [
+        "benchmark",
+        "r-and-d-automation",
+        "agents"
+      ],
       "status": "verified",
-      "gameUse": "Most gameplay-relevant capability benchmark for AI-accelerates-AI; grounds R&D-automation, recursive-acceleration, and lab-race dynamics",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a researcher METR's actual measured data on how close AI agents are to human ML-engineer performance on real R&D tasks, the concrete empirical basis a curious player could look up behind the game's abstracted 'AI accelerates AI' selfAccel bonuses, even though those bonuses are currently sourced only to AI-2027 and the METR task-horizon paper."
     },
     {
       "id": "SRC-MLRC-BENCH",
@@ -1562,10 +2435,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.09702",
       "type": "paper",
-      "tags": ["benchmark", "r-and-d-automation", "balance"],
+      "tags": [
+        "benchmark",
+        "r-and-d-automation",
+        "balance"
+      ],
       "status": "verified",
-      "gameUse": "Counterweight to hype around autonomous AI science; shows harder limits on novel ML-research performance vs. engineering-heavy tasks",
-      "note": "gap-audit tag: [BALANCE]."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a skeptical reader evidence that language agents still hit hard limits on genuinely novel ML research versus engineering-heavy tasks, a useful counterweight to autonomous-AI-science hype for anyone probing the game's R&D-automation framing."
     },
     {
       "id": "SRC-IASR-2026",
@@ -1574,34 +2452,16 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2602.21012",
       "type": "report",
-      "tags": ["ai-safety", "governance", "risk-synthesis"],
-      "status": "verified",
-      "gameUse": "Most authoritative recent multi-expert survey of capabilities, risks, and safeguards; core anchor document",
-      "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEWER-THAN-MINE]. possible-dup-of: International AI Safety Report 2025 (BIBLIOGRAPHY-FULL.md sec.2)."
-    },
-    {
-      "id": "SRC-IASR-2025-UPDATE2-GA",
-      "title": "International AI Safety Report 2025: Second Key Update: Technical Safeguards and Risk Management",
-      "authors": "Yoshua Bengio et al.",
-      "year": 2025,
-      "url": "https://arxiv.org/abs/2511.19863",
-      "type": "report",
-      "tags": ["ai-safety", "governance", "risk-management"],
-      "status": "verified",
-      "gameUse": "Focuses on operational safeguards and risk-management practice rather than abstract risk alone",
-      "note": "gap-audit tag: [NEWER-THAN-MINE]. DUPLICATE: identical arXiv URL (2511.19863) to the source already covered by TAKEN id SRC-IAISR-UPDATE-2 (BIBLIOGRAPHY-FULL.md sec.2 'International AI Safety Report \u2014 Second Key Update: Technical Safeguards & Risk Management'). possible-dup-of: International AI Safety Report \u2014 Second Key Update: Technical Safeguards & Risk Management \u2014 recommend merger drop this entry in favor of SRC-IAISR-UPDATE-2."
-    },
-    {
-      "id": "SRC-ANTHROPIC-RSP-2026-GA",
-      "title": "Anthropic's Responsible Scaling Policy",
-      "org": "Anthropic",
-      "year": 2026,
-      "url": "https://www.anthropic.com/responsible-scaling-policy",
-      "type": "web",
-      "tags": ["lab-governance", "self-regulation", "safety-policy"],
-      "status": "verified",
-      "gameUse": "2026 revisions materially affect how lab self-governance should be represented in-game",
-      "note": "gap-audit tag: [NEWER-THAN-MINE]. DUPLICATE: identical URL to TAKEN id SRC-ANTHROPIC-RSP (BIBLIOGRAPHY-FULL.md sec.2 'Anthropic Responsible Scaling Policy'). possible-dup-of: Anthropic Responsible Scaling Policy \u2014 recommend merger drop this entry in favor of SRC-ANTHROPIC-RSP, preserving the 2026-update framing as a version note."
+      "tags": [
+        "ai-safety",
+        "governance",
+        "risk-synthesis"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Points a reader to the most current multi-expert international consensus report on frontier AI capabilities and risk, the same report series already grounding the consensus worldview preset (via the separately-registered SRC-IAISR), updated to its newest edition.",
+      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it. Newer edition of the report series behind SRC-IAISR."
     },
     {
       "id": "SRC-ANTHROPIC-FSR-ROADMAP",
@@ -1610,34 +2470,16 @@
       "year": 2026,
       "url": "https://www.anthropic.com/responsible-scaling-policy/roadmap",
       "type": "web",
-      "tags": ["lab-governance", "safety-policy", "milestones"],
+      "tags": [
+        "lab-governance",
+        "safety-policy",
+        "milestones"
+      ],
       "status": "verified",
-      "gameUse": "Turns safety posture into dated milestones across security, safeguards, alignment, and policy; highly gameable",
-      "note": "gap-audit tag: [NEW]. Companion page to Anthropic Responsible Scaling Policy (SRC-ANTHROPIC-RSP), distinct /roadmap URL, not an exact duplicate."
-    },
-    {
-      "id": "SRC-OPENAI-PREPAREDNESS-2025-GA",
-      "title": "Our updated Preparedness Framework",
-      "org": "OpenAI",
-      "year": 2025,
-      "url": "https://openai.com/index/updating-our-preparedness-framework/",
-      "type": "web",
-      "tags": ["lab-governance", "self-regulation", "safety-policy"],
-      "status": "verified",
-      "gameUse": "Clarifies tracked vs. research categories, safeguard reports, and competitive-adjustment logic",
-      "note": "gap-audit tag: [NEWER-THAN-MINE]. DUPLICATE: identical URL to TAKEN id SRC-OPENAI-PREPAREDNESS (BIBLIOGRAPHY-FULL.md sec.2 'OpenAI Preparedness Framework (v2)'). possible-dup-of: OpenAI Preparedness Framework (v2) \u2014 recommend merger drop this entry in favor of SRC-OPENAI-PREPAREDNESS."
-    },
-    {
-      "id": "SRC-DEEPMIND-FSF-2026-GA",
-      "title": "Strengthening our Frontier Safety Framework",
-      "org": "Google DeepMind",
-      "year": 2025,
-      "url": "https://deepmind.google/blog/strengthening-our-frontier-safety-framework/",
-      "type": "web",
-      "tags": ["lab-governance", "safety-policy", "misalignment-risk"],
-      "status": "verified",
-      "gameUse": "Strong source for harmful-manipulation and misalignment-risk framing, plus tracked capability thresholds",
-      "note": "gap-audit tag: [NEWER-THAN-MINE], source says '2025, updated 2026'. DUPLICATE: identical URL to TAKEN id SRC-DEEPMIND-FSF (BIBLIOGRAPHY-FULL.md sec.2 'Google DeepMind Frontier Safety Framework (v3)'). possible-dup-of: Google DeepMind Frontier Safety Framework (v3) \u2014 recommend merger drop this entry in favor of SRC-DEEPMIND-FSF."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Gives a reader Anthropic's own dated-milestone breakdown of security, safeguards, alignment, and policy commitments, a more granular companion to the Responsible Scaling Policy already cited elsewhere, useful for anyone wanting to turn the game's abstract safety-posture mechanics into concrete real-world checkpoints.",
+      "note": "Companion page to Anthropic Responsible Scaling Policy (SRC-ANTHROPIC-RSP), distinct /roadmap URL, not an exact duplicate."
     },
     {
       "id": "SRC-AGENTIC-MISALIGNMENT",
@@ -1646,10 +2488,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2510.05179",
       "type": "paper",
-      "tags": ["ai-safety", "insider-threat", "sabotage"],
+      "tags": [
+        "ai-safety",
+        "insider-threat",
+        "sabotage"
+      ],
       "status": "verified",
-      "gameUse": "Most directly game-relevant recent paper for sabotage / blackmail / insider-threat event chains under high-autonomy deployment",
-      "note": "gap-audit tag: [NEW]. MUST-USE id per merge instructions."
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Most directly game-relevant recent paper for sabotage / blackmail / insider-threat event chains under high-autonomy deployment"
     },
     {
       "id": "SRC-BLACKBOX-SCHEMING-MONITORS",
@@ -1658,10 +2505,16 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2605.29601",
       "type": "paper",
-      "tags": ["ai-safety", "scheming", "monitoring"],
-      "status": "verified",
-      "gameUse": "Good for control-stack / monitoring-investment mechanics more concrete than generic alignment spending",
-      "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEW]."
+      "tags": [
+        "ai-safety",
+        "scheming",
+        "monitoring"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader a concrete technical account of training monitors to catch scheming behavior that hides from chain-of-thought, useful further reading for the control-stack/monitoring-investment theme already carried by the Safety Insight mechanic, though no current number cites it.",
+      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
     },
     {
       "id": "SRC-EU-AI-OFFICE",
@@ -1670,10 +2523,15 @@
       "year": 2026,
       "url": "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
       "type": "web",
-      "tags": ["eu-governance", "regulation", "implementation"],
+      "tags": [
+        "eu-governance",
+        "regulation",
+        "implementation"
+      ],
       "status": "verified",
-      "gameUse": "Captures the implementation machinery, enforcement structure, and current supporting instruments (better than generic AI Act explainers)",
-      "note": "gap-audit tag: [NEWER-THAN-MINE]."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader the actual enforcement machinery behind the EU AI Act (the Office, national authorities, codes of practice) beyond the Act's high-level timeline already cited in the eu_ai_act event cards."
     },
     {
       "id": "SRC-EU-GPAI-COP-PRACTICE",
@@ -1682,10 +2540,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.15181",
       "type": "paper",
-      "tags": ["eu-governance", "regulation", "compliance"],
+      "tags": [
+        "eu-governance",
+        "regulation",
+        "compliance"
+      ],
       "status": "verified",
-      "gameUse": "Bridge source between frontier-lab safety frameworks and EU compliance language; grounds regulatory-meets-technical-measures gameplay",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Shows what frontier labs are actually already doing to satisfy the EU AI Act's GPAI Code of Practice, a useful bridge for anyone extending the eval_mandate or EU AI Act event cards beyond the sources currently cited there."
     },
     {
       "id": "SRC-BENCH-COP",
@@ -1694,10 +2557,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2508.05464",
       "type": "paper",
-      "tags": ["benchmark", "eu-governance", "eval-gaming"],
+      "tags": [
+        "benchmark",
+        "eu-governance",
+        "eval-gaming"
+      ],
       "status": "verified",
-      "gameUse": "Shows common benchmarks under-measure the systemic risks regulators increasingly care about",
-      "note": "gap-audit tag: [NEW]. MUST-USE id per merge instructions."
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Shows common benchmarks under-measure the systemic risks regulators increasingly care about"
     },
     {
       "id": "SRC-CONDITIONAL-AI-TREATY",
@@ -1706,10 +2574,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2503.18956",
       "type": "paper",
-      "tags": ["governance", "treaty", "verification"],
+      "tags": [
+        "governance",
+        "treaty",
+        "verification"
+      ],
       "status": "verified",
-      "gameUse": "Strong addition for negotiated-slowdown / treaty / verification endings",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Gives a reader the fullest real-world proposal for a staged, verifiable AI safety treaty, useful further reading for anyone extending the game's treaty-window and verification-pilot mechanics beyond the sources (MAIM, Horowitz/Scharre) currently cited there."
     },
     {
       "id": "SRC-AI-RISK-MGMT-STANDARDS",
@@ -1718,10 +2591,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2506.23949",
       "type": "paper",
-      "tags": ["governance", "standards", "risk-management"],
+      "tags": [
+        "governance",
+        "standards",
+        "risk-management"
+      ],
       "status": "verified",
-      "gameUse": "Standards-oriented complement to high-level governance pieces; helpful for audits/controls/assurance mechanics",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Gives a reader a standards-profile mapping (NIST-AI-RMF-style controls for GPAI models) that could ground future audits/compliance mechanics, complementing the higher-level governance sources already in the registry."
     },
     {
       "id": "SRC-GRID-DATACENTER",
@@ -1730,10 +2608,16 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2411.09786",
       "type": "paper",
-      "tags": ["energy", "environment", "data-centers"],
+      "tags": [
+        "energy",
+        "environment",
+        "data-centers"
+      ],
       "status": "verified",
-      "gameUse": "Local environmental backlash, carbon intensity, and fossil-fuel dependence around data-center expansion",
-      "note": "gap-audit tag: [NEW]. MUST-USE id per merge instructions (hint text: 'grid stress / datacenter backlash, Guidi/Chen'). Two qualifying gap-audit papers exist: this Guidi et al. paper on environmental burden/backlash, and a companion Chen et al. 2026 paper on regional power-grid siting stress (filed separately as SRC-DATACENTER-SITING-STRESS). Assigned this id to the Guidi paper since Guidi is named first in the hint; if the intended target was the Chen paper instead, swap ids at merge time."
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Grounds the grid-capacity strain and household power-price spikes from data-center demand (events/energy_crunch.json's price-crunch event, mandates.json's keep_lights_on energy target), not specifically the paper's carbon-intensity/environmental-backlash framing.",
+      "note": "Companion paper: Chen et al. 2026 on regional siting stress (SRC-DATACENTER-SITING-STRESS)."
     },
     {
       "id": "SRC-DATACENTER-SITING-STRESS",
@@ -1742,22 +2626,16 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2604.06198",
       "type": "paper",
-      "tags": ["energy", "grid-stress", "data-centers"],
-      "status": "verified",
-      "gameUse": "Region-specific bottleneck mechanics: not just total TWh, but clustered siting and local grid vulnerability",
-      "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEW]. See SRC-GRID-DATACENTER note re: must-use-id ambiguity between this paper and Guidi et al. 2024."
-    },
-    {
-      "id": "SRC-DEEPSEEK-R1-GA",
-      "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
-      "org": "DeepSeek-AI",
-      "year": 2025,
-      "url": "https://arxiv.org/abs/2501.12948",
-      "type": "paper",
-      "tags": ["china", "open-weight", "reasoning"],
-      "status": "verified",
-      "gameUse": "Grounds reasoning-focused competition, open distillation, and lower-cost catch-up",
-      "note": "gap-audit tag: [NEWER-THAN-MINE]. Also listed in HANDOVER \u00a711 'US\u2013China & geopolitics' subsection (outside worker C's assigned HANDOVER subsections)."
+      "tags": [
+        "energy",
+        "grid-stress",
+        "data-centers"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader the regional-clustering angle on grid stress (specific power systems overloaded by concentrated data-center siting, not just national totals), useful further reading for the energy_crunch event and keep_lights_on mandate beyond the aggregate IEA figures currently cited there.",
+      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it. Companion to SRC-GRID-DATACENTER."
     },
     {
       "id": "SRC-DEEPSEEK-V3-HARDWARE-INSIGHTS",
@@ -1766,10 +2644,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2505.09343",
       "type": "paper",
-      "tags": ["china", "hardware", "compute"],
+      "tags": [
+        "china",
+        "hardware",
+        "compute"
+      ],
       "status": "verified",
-      "gameUse": "Ties model strategy to interconnects, precision formats, and hardware co-design rather than treating compute as a single scalar",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader the actual hardware/interconnect engineering story behind cost-efficient frontier training, useful further reading for anyone wanting compute mechanics to reflect hardware co-design rather than a single scalar, beyond the Epoch/METR compute-trend sources currently cited."
     },
     {
       "id": "SRC-US-POLICY-CHINA-OPEN-ECOSYSTEM",
@@ -1778,10 +2661,16 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2606.15999",
       "type": "paper",
-      "tags": ["china", "export-controls", "balance"],
-      "status": "verified",
+      "tags": [
+        "china",
+        "export-controls",
+        "balance"
+      ],
+      "status": "pending",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
       "gameUse": "Strategic counterpoint: export controls can slow frontier access while strengthening open, adaptive Chinese ecosystems",
-      "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [BALANCE]."
+      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
     },
     {
       "id": "SRC-ANTHROPIC-ECON-INDEX-ADOPTION",
@@ -1790,10 +2679,17 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2511.15080",
       "type": "report",
-      "tags": ["labor", "economics", "adoption", "balance"],
+      "tags": [
+        "labor",
+        "economics",
+        "adoption",
+        "balance"
+      ],
       "status": "verified",
-      "gameUse": "Best recent empirical corrective to instant-economy-wide-transformation narratives; valuable for adoption-friction and uneven-diffusion mechanics",
-      "note": "gap-audit tag: [BALANCE]. possible-dup-of: The Anthropic Economic Index (BIBLIOGRAPHY-FULL.md sec.6/sec.10 live dashboard) \u2014 related initiative but this is a specific dated research report (arXiv), not the live dashboard; merger should decide whether to keep both."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader Anthropic's own data showing sharply uneven AI adoption by geography and firm size, a useful corrective for anyone tightening the game's displacement-lag/diffusion-friction curves beyond the IMF, Normal Technology, and Grace-survey sources currently cited.",
+      "note": "A specific dated research report, distinct from the live Anthropic Economic Index dashboard (SRC-ANTHROPIC-ECON-INDEX)."
     },
     {
       "id": "SRC-GENAI-WORK-EUROPE",
@@ -1802,10 +2698,17 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2604.18849",
       "type": "paper",
-      "tags": ["labor", "economics", "europe", "balance"],
-      "status": "verified",
-      "gameUse": "Strong EU-specific evidence that exposure does not equal adoption, and firm/worker/country institutions shape actual AI use",
-      "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEW]."
+      "tags": [
+        "labor",
+        "economics",
+        "europe",
+        "balance"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader EU-specific survey evidence that exposure to generative AI does not equal adoption, directly relevant further reading for the game's European seat and displacement mechanics even though no number currently cites it.",
+      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
     },
     {
       "id": "SRC-PAYROLLS-TO-PROMPTS",
@@ -1814,10 +2717,16 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2602.00139",
       "type": "paper",
-      "tags": ["labor", "economics", "automation"],
-      "status": "verified",
-      "gameUse": "Measures actual spending substitution rather than only occupational exposure; good for labor-market event cards",
-      "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [NEW]."
+      "tags": [
+        "labor",
+        "economics",
+        "automation"
+      ],
+      "status": "pending",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "Backs the shape of the displacementFromCapability curve in parameters.json (paired with SRC-IMF-GENAI's exposure baseline): firm-level evidence of actual spending substitution of AI for labor justifies displacement rising with capability rather than staying flat, not merely 'labor-market event cards' generically.",
+      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
     },
     {
       "id": "SRC-GENAI-LABOR-REORG",
@@ -1826,10 +2735,16 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2605.23159",
       "type": "paper",
-      "tags": ["labor", "economics", "balance"],
-      "status": "verified",
-      "gameUse": "Jobs don't just disappear; firms reallocate and redesign tasks \u2014 exactly the nuance worldview presets should expose",
-      "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [BALANCE]."
+      "tags": [
+        "labor",
+        "economics",
+        "balance"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader evidence that firms reallocate and redesign tasks rather than simply cutting jobs, a nuance the worldview presets gesture at but don't cite directly, useful for anyone refining the displacement/diffusion balance mechanics.",
+      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
     },
     {
       "id": "SRC-GENAI-PRODUCTIVITY-META",
@@ -1838,10 +2753,16 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2605.04779",
       "type": "paper",
-      "tags": ["labor", "education", "meta-analysis"],
-      "status": "verified",
-      "gameUse": "Evidence-based antidote to both AI-changes-nothing and AI-replaces-programmers-now; useful for education/upskilling mechanics",
-      "note": "PRIORITY-VERIFY-ARXIV-2026: gap audit flags 2026-dated arXiv IDs (2602.xxxxx\u20132606.xxxxx) as the likeliest entries to be wrong; verify before citing. gap-audit tag: [BALANCE]."
+      "tags": [
+        "labor",
+        "education",
+        "meta-analysis"
+      ],
+      "status": "pending",
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader an evidence-based middle ground between 'AI changes nothing' and 'AI replaces programmers now,' useful further reading for anyone building out education/upskilling mechanics the game doesn't yet have.",
+      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
     },
     {
       "id": "SRC-PUBLIC-OPINION-AI-MODERATION",
@@ -1850,10 +2771,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.12476",
       "type": "paper",
-      "tags": ["public-opinion", "governance", "moderation"],
+      "tags": [
+        "public-opinion",
+        "governance",
+        "moderation"
+      ],
       "status": "verified",
-      "gameUse": "Public-legitimacy, censorship, and whose-values-count mechanics, comparing U.S. and European political cultures",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader comparative US/German survey evidence on what people actually want from AI moderation and alignment, useful grounding for the public-trust and legitimacy mechanics (public_opinion_swing, election_scandal) beyond the general AI Index source currently cited there."
     },
     {
       "id": "SRC-PUBLIC-OPINION-DIGITAL-MINDS",
@@ -1862,10 +2788,15 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.21849",
       "type": "paper",
-      "tags": ["public-opinion", "governance", "trust"],
+      "tags": [
+        "public-opinion",
+        "governance",
+        "trust"
+      ],
       "status": "verified",
-      "gameUse": "Regulation-support mechanics; ties trust/risk perception to policy appetite",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "empirical",
+      "whyListed": "Gives a reader survey data tying perceived AI risk and trust to appetite for regulation, useful further reading for the public-trust/regulation-support side of the game beyond the general AI Index source currently cited in public_opinion_swing."
     },
     {
       "id": "SRC-MILITARY-AI-REGULATION",
@@ -1874,34 +2805,49 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2505.18371",
       "type": "paper",
-      "tags": ["military-ai", "governance", "autonomous-weapons"],
+      "tags": [
+        "military-ai",
+        "governance",
+        "autonomous-weapons"
+      ],
       "status": "verified",
-      "gameUse": "Starter source for a dedicated autonomous-weapons / military-AI category",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "analysis",
+      "whyListed": "Gives a reader a technically-grounded case for regulating military AI applications, a dedicated starter reference for the autonomous_targeting_demo and civil_military_fusion event cards beyond the AI-2027 and simulation-calibration sources currently cited there."
     },
     {
       "id": "SRC-LOPEZ-FERNANDEZ-2024",
       "title": "Learning and Motivational Impact of Game-Based Learning: Comparing Face-to-Face and Online Formats on Computer Science Education",
-      "authors": "Daniel L\u00f3pez-Fern\u00e1ndez et al.",
+      "authors": "Daniel López-Fernández et al.",
       "year": 2024,
       "url": "https://arxiv.org/abs/2407.07762",
       "type": "paper",
-      "tags": ["serious-games", "game-based-learning", "pedagogy"],
+      "tags": [
+        "serious-games",
+        "game-based-learning",
+        "pedagogy"
+      ],
       "status": "verified",
-      "gameUse": "Useful for delivery-format decisions; shows game-based learning can remain effective outside the classroom",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "design",
+      "whyListed": "Gives a teacher or contributor evidence that game-based learning holds up whether played face-to-face or online, useful supporting citation for the project's classroom-and-solo delivery commitment even though it wasn't the original source of that decision."
     },
     {
       "id": "SRC-RIBEIRO-EVACUATION-GAMES",
       "title": "Using Serious Games to Train Evacuation Behaviour",
-      "authors": "Jo\u00e3o Ribeiro et al.",
+      "authors": "João Ribeiro et al.",
       "year": 2013,
       "url": "https://arxiv.org/abs/1303.3828",
       "type": "paper",
-      "tags": ["serious-games", "behavior-training", "simulation"],
+      "tags": [
+        "serious-games",
+        "behavior-training",
+        "simulation"
+      ],
       "status": "verified",
-      "gameUse": "Not AI-specific, but a serious-games precedent showing behavior-training value in high-stakes scenarios",
-      "note": "gap-audit tag: [NEW]."
+      "tier": "library",
+      "evidenceClass": "design",
+      "whyListed": "Gives a reader a non-AI precedent showing serious games can genuinely train behavior for high-stakes scenarios, honest supporting evidence for the project's fun-first pedagogy thesis without backing any specific mechanic."
     },
     {
       "id": "SRC-RIGHT-TO-WARN",
@@ -1910,20 +2856,29 @@
       "year": 2024,
       "url": "https://righttowarn.ai",
       "type": "web",
-      "tags": ["whistleblower", "labs", "governance"],
+      "tags": [
+        "whistleblower",
+        "labs",
+        "governance"
+      ],
       "status": "verified",
-      "gameUse": "whistleblower event card",
-      "note": "Curated addition at Block C1 (grounds event(whistleblower)); not present in the two bibliography files. Verify URL in A4."
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
+      "gameUse": "Grounds the whistleblower event card's premise that safety concerns get buried under launch pressure and employees need protection to surface them, per the 2024 open letter's core 'right to warn' demand.",
+      "note": "Curated addition grounding the whistleblower event."
     },
     {
       "id": "SRC-PUTNAM-TWO-LEVEL",
       "title": "Diplomacy and Domestic Politics: The Logic of Two-Level Games",
-      "org": "International Organization 42(3), Robert D. Putnam",
+      "authors": "Robert D. Putnam",
+      "org": "International Organization 42(3)",
       "year": 1988,
+      "url": "https://www.jstor.org/stable/2706785",
       "type": "paper",
       "status": "verified",
-      "gameUse": "treaty ratification requires BOTH governments' domestic standing (political capital) at signing; the win-set logic behind the ratification window mechanic",
-      "url": "https://www.jstor.org/stable/2706785"
+      "tier": "load-bearing",
+      "evidenceClass": "analysis",
+      "gameUse": "treaty ratification requires BOTH governments' domestic standing (political capital) at signing; the win-set logic behind the ratification window mechanic"
     }
   ]
 }

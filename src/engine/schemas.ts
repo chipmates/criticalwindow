@@ -747,21 +747,71 @@ export const seatsSchema = z.strictObject({
 // Sources registry
 // ---------------------------------------------------------------------------
 
-export const sourceEntrySchema = z.strictObject({
-  id: sourceIdSchema,
-  title: z.string().min(1),
-  authors: z.string().optional(),
-  org: z.string().optional(),
-  year: z.number().int().min(1900).max(2100).optional(),
-  url: z.url().optional(),
-  type: z.enum(['paper', 'report', 'book', 'dataset', 'web', 'design']),
-  tags: z.array(z.string().regex(TAG_PATTERN)).optional(),
-  status: z.enum(['verified', 'flagged', 'book', 'pending']),
-  gameUse: z.string().optional(),
-  /** Why a flagged entry is flagged: honesty lives on the entry itself. */
-  flagReason: z.string().optional(),
-  note: z.string().optional(),
-});
+/**
+ * Registry tiers. load-bearing = cited by at least one sourceIds array in
+ * data/ (validate-data cross-checks this against the actual citation map,
+ * so the tier is declared but never self-declared). background = shaped a
+ * mechanic's design without backing one specific number. library = honest
+ * further reading, no usage claim at all.
+ */
+export const sourceTierSchema = z.enum(['load-bearing', 'background', 'library']);
+
+/**
+ * What kind of evidence the game takes from a source: a measurement, a
+ * forecast, an argument, or a game-design decision. Orthogonal to `type`
+ * (which is the publication form).
+ */
+export const sourceEvidenceClassSchema = z.enum(['empirical', 'forecast', 'analysis', 'design']);
+
+export const sourceEntrySchema = z
+  .strictObject({
+    id: sourceIdSchema,
+    title: z.string().min(1),
+    authors: z.string().optional(),
+    org: z.string().optional(),
+    year: z.number().int().min(1900).max(2100).optional(),
+    url: z.url().optional(),
+    type: z.enum(['paper', 'report', 'book', 'dataset', 'web', 'design']),
+    tags: z.array(z.string().regex(TAG_PATTERN)).optional(),
+    status: z.enum(['verified', 'flagged', 'book', 'pending']),
+    tier: sourceTierSchema,
+    evidenceClass: sourceEvidenceClassSchema,
+    /** load-bearing only: what the citations actually use this source for. */
+    gameUse: z.string().min(1).optional(),
+    /** background only: the specific mechanic this source shaped, and how. */
+    shaped: z.string().min(1).optional(),
+    /** library only: what a curious reader gets from it. */
+    whyListed: z.string().min(1).optional(),
+    /** Why a flagged entry is flagged: honesty lives on the entry itself. */
+    flagReason: z.string().optional(),
+    note: z.string().optional(),
+  })
+  .superRefine((entry, ctx) => {
+    const want: Record<string, 'gameUse' | 'shaped' | 'whyListed'> = {
+      'load-bearing': 'gameUse',
+      background: 'shaped',
+      library: 'whyListed',
+    };
+    const required = want[entry.tier];
+    for (const field of ['gameUse', 'shaped', 'whyListed'] as const) {
+      if (field === required && !entry[field]) {
+        ctx.addIssue({
+          code: 'custom',
+          path: [field],
+          message: `${entry.tier} entries must state '${field}'`,
+        });
+      }
+      if (field !== required && entry[field]) {
+        ctx.addIssue({
+          code: 'custom',
+          path: [field],
+          message: `'${field}' is reserved for ${
+            Object.entries(want).find(([, f]) => f === field)?.[0]
+          } entries; a ${entry.tier} entry must not claim it`,
+        });
+      }
+    }
+  });
 
 export const sourcesRegistrySchema = z
   .strictObject({

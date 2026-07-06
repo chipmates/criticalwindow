@@ -14,12 +14,12 @@
         "min": 500,
         "max": 900,
         "sourceIds": ["SRC-AI2027", "SRC-SITUATIONAL-AWARENESS", "SRC-METR-HORIZON"],
-        "note": "fast-takeoff worldview: software intelligence explosion plausible within the game window; top at 900 not 1000 because even the aggressive sources call 2027 strikingly plausible, not certain (F1 row 1, 2026-07-04)"
+        "note": "fast-takeoff worldview: software intelligence explosion plausible within the game window; top at 900 not 1000 because even the aggressive sources call 2027 strikingly plausible, not certain (tuning pass 2026-07-04)"
       },
       "displacementLagDivisor": {
         "value": 4,
         "sourceIds": ["SRC-IMF-GENAI", "SRC-DESIGN-HANDOVER"],
-        "note": "fast-and-painful worldview: exposure becomes lived displacement quickly (F1 row 5)"
+        "note": "fast-and-painful worldview: exposure becomes lived displacement quickly (tuning pass 2026-07-04)"
       }
     },
     "consensus": {
@@ -35,12 +35,12 @@
         "min": 250,
         "max": 700,
         "sourceIds": ["SRC-IAISR", "SRC-METR-HORIZON", "SRC-GRACE-SURVEY"],
-        "note": "capability doubling trends real but discontinuity contested; range centers the Grace survey middle with a real fast tail (10% HLMI by 2027), tightened from 300-800 at F1 row 1 (2026-07-04)"
+        "note": "capability doubling trends real but discontinuity contested; range centers the Grace survey middle with a real fast tail (10% HLMI by 2027), tightened from 300-800 in the 2026-07-04 tuning pass"
       },
       "displacementLagDivisor": {
         "value": 6,
         "sourceIds": ["SRC-IMF-GENAI", "SRC-DESIGN-HANDOVER"],
-        "note": "default diffusion lag: high exposure, gradual realization (F1 row 5; carries the v0.1 divisor)"
+        "note": "default diffusion lag: high exposure, gradual realization (tuning pass 2026-07-04; carries the v0.1 divisor)"
       }
     },
     "skeptic": {
@@ -56,12 +56,12 @@
         "min": 100,
         "max": 450,
         "sourceIds": ["SRC-NORMAL-TECH", "SRC-METR-HORIZON"],
-        "note": "adoption and integration lags cap effective takeoff speed; tightened from 100-500 at F1 row 1 (2026-07-04)"
+        "note": "adoption and integration lags cap effective takeoff speed; tightened from 100-500 in the 2026-07-04 tuning pass"
       },
       "displacementLagDivisor": {
         "value": 9,
         "sourceIds": ["SRC-NORMAL-TECH", "SRC-GRACE-SURVEY"],
-        "note": "slow-diffusion worldview: only 0.5-3.5% of work hours realized despite adoption (Normal Tech); Grace FAOL median 2116 (F1 row 5)"
+        "note": "slow-diffusion worldview: only 0.5-3.5% of work hours realized despite adoption (Normal Tech); Grace FAOL median 2116 (tuning pass 2026-07-04)"
       }
     }
   },
@@ -79,7 +79,7 @@
     "floorBandWidth": {
       "value": 100,
       "sourceIds": ["SRC-SLEEPER", "SRC-AGENTIC-MISALIGNMENT"],
-      "note": "the band never closes: near-99% true-trigger vs ~0 red-team (Sleeper Agents), 55.1% real vs 6.5% eval (Agentic Misalignment). Raised 80->100 at F1 row 8 (2026-07-04), multiple-of-50 rule"
+      "note": "the band never closes: near-99% true-trigger vs ~0 red-team (Sleeper Agents), 55.1% real vs 6.5% eval (Agentic Misalignment). Raised 80->100 in the 2026-07-04 tuning pass, multiple-of-50 rule"
     },
     "deceptionMaxLift": {
       "value": 250,
@@ -319,7 +319,7 @@
         "selfAccel": {
           "value": 50,
           "sourceIds": ["SRC-AI2027", "SRC-METR-HORIZON"],
-          "note": "AI R&D multiplier ladder 5x->25x->250x compressed to game-scale bonuses 50/100/150, scaled by the takeoffSteepness die (F1 row 2)"
+          "note": "AI R&D multiplier ladder 5x->25x->250x compressed to game-scale bonuses 50/100/150, scaled by the takeoffSteepness die (tuning pass 2026-07-04)"
         }
       },
       {
@@ -391,7 +391,12 @@
     "capabilityPerRnd": {
       "x": [0, 100, 200, 300, 400],
       "y": [0, 20, 40, 55, 65],
-      "sourceIds": ["SRC-EPOCH-COMPUTE", "SRC-METR-HORIZON", "SRC-DESIGN-HANDOVER"],
+      "sourceIds": [
+        "SRC-EPOCH-COMPUTE",
+        "SRC-METR-HORIZON",
+        "SRC-DESIGN-HANDOVER",
+        "SRC-EPOCH-DOUBLING"
+      ],
       "note": "abstraction of the measured regime (training compute doubling every 5.2 months since 2020; 50% task horizon doubling every ~207 days per the v3 estimate) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16"
     },
     "displacementFromCapability": {

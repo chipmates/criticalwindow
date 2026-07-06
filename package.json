@@ -32,7 +32,7 @@
     "simulate": "tsx scripts/simulate.ts",
     "model-playtest": "tsx scripts/model-playtest.ts",
     "print-kit": "tsx scripts/print-kit.ts",
-    "sources-md": "tsx scripts/generate-sources-md.ts",
+    "sources-md": "tsx scripts/generate-source-views.ts",
     "golden": "tsx scripts/make-golden.ts",
     "test:browser": "playwright test",
     "audio": "tsx scripts/generate-audio.ts"

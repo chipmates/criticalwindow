@@ -61,8 +61,34 @@
               "pending"
             ]
           },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "load-bearing",
+              "background",
+              "library"
+            ]
+          },
+          "evidenceClass": {
+            "type": "string",
+            "enum": [
+              "empirical",
+              "forecast",
+              "analysis",
+              "design"
+            ]
+          },
           "gameUse": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          },
+          "shaped": {
+            "type": "string",
+            "minLength": 1
+          },
+          "whyListed": {
+            "type": "string",
+            "minLength": 1
           },
           "flagReason": {
             "type": "string"
@@ -75,7 +101,9 @@
           "id",
           "title",
           "type",
-          "status"
+          "status",
+          "tier",
+          "evidenceClass"
         ],
         "additionalProperties": false
       }

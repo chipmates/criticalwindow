@@ -2,12 +2,14 @@
   "sources": [
     {
       "id": "SRC-DESIGN-HANDOVER",
-      "title": "Race Conditions design handover (founding document)",
+      "title": "Design handover (founding document, drafted under the working title Race Conditions)",
       "org": "project",
       "year": 2026,
       "type": "design",
       "status": "verified",
-      "gameUse": "design constants with no empirical referent (turn counts, starting defaults)"
+      "gameUse": "design constants with no empirical referent (turn counts, starting defaults)",
+      "tier": "load-bearing",
+      "evidenceClass": "design"
     },
     {
       "id": "SRC-DEEPSEEK-R1",
@@ -17,7 +19,9 @@
       "url": "https://arxiv.org/abs/2501.12948",
       "type": "paper",
       "status": "verified",
-      "gameUse": "open-weights shock event"
+      "gameUse": "open-weights shock event",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical"
     },
     {
       "id": "SRC-CSIS-EXPORT",
@@ -28,7 +32,9 @@
       "url": "https://www.csis.org/analysis/choking-chinas-access-future-artificial-intelligence",
       "type": "report",
       "status": "verified",
-      "gameUse": "export-control policy card; rival substitution track"
+      "gameUse": "export-control policy card; rival substitution track",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical"
     },
     {
       "id": "SRC-SLEEPER",
@@ -39,7 +45,9 @@
       "url": "https://arxiv.org/abs/2401.05566",
       "type": "paper",
       "status": "verified",
-      "gameUse": "eval uncertainty band; deceptive-pass rule"
+      "gameUse": "eval uncertainty band; deceptive-pass rule",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical"
     },
     {
       "id": "SRC-EPOCH-COMPUTE",
@@ -48,7 +56,9 @@
       "url": "https://epoch.ai/data",
       "type": "dataset",
       "status": "verified",
-      "gameUse": "compute start values and growth curve"
+      "gameUse": "compute start values and growth curve",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical"
     },
     {
       "id": "SRC-AI2027",
@@ -58,7 +68,9 @@
       "url": "https://ai-2027.com",
       "type": "web",
       "status": "verified",
-      "gameUse": "cautious preset anchors"
+      "gameUse": "cautious preset anchors",
+      "tier": "load-bearing",
+      "evidenceClass": "forecast"
     },
     {
       "id": "SRC-CARLSMITH",
@@ -68,7 +80,9 @@
       "url": "https://arxiv.org/abs/2206.13353",
       "type": "paper",
       "status": "verified",
-      "gameUse": "cautious preset anchors"
+      "gameUse": "cautious preset anchors",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis"
     },
     {
       "id": "SRC-IAISR",
@@ -78,7 +92,9 @@
       "url": "https://internationalaisafetyreport.org",
       "type": "report",
       "status": "verified",
-      "gameUse": "consensus preset anchors"
+      "gameUse": "consensus preset anchors",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis"
     },
     {
       "id": "SRC-GRACE-SURVEY",
@@ -88,7 +104,9 @@
       "url": "https://arxiv.org/abs/2401.02843",
       "type": "paper",
       "status": "verified",
-      "gameUse": "consensus preset anchors"
+      "gameUse": "consensus preset anchors",
+      "tier": "load-bearing",
+      "evidenceClass": "forecast"
     },
     {
       "id": "SRC-NORMAL-TECH",
@@ -97,7 +115,9 @@
       "year": 2025,
       "type": "web",
       "status": "pending",
-      "gameUse": "skeptic preset anchors"
+      "gameUse": "skeptic preset anchors",
+      "tier": "load-bearing",
+      "evidenceClass": "analysis"
     },
     {
       "id": "SRC-METR-HORIZON",
@@ -107,7 +127,9 @@
       "url": "https://arxiv.org/abs/2503.14499",
       "type": "paper",
       "status": "verified",
-      "gameUse": "capability clock calibration"
+      "gameUse": "capability clock calibration",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical"
     },
     {
       "id": "SRC-IMF-GENAI",
@@ -117,7 +139,9 @@
       "url": "https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379",
       "type": "report",
       "status": "verified",
-      "gameUse": "job displacement calibration"
+      "gameUse": "job displacement calibration",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical"
     },
     {
       "id": "SRC-IEA-ENERGY-AI",
@@ -127,7 +151,9 @@
       "url": "https://www.iea.org/reports/energy-and-ai",
       "type": "report",
       "status": "verified",
-      "gameUse": "energy resource calibration"
+      "gameUse": "energy resource calibration",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical"
     }
   ]
 }

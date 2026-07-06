@@ -40,6 +40,13 @@ import {
 } from '../src/engine/schemas';
 import { dataRoot, readDataFiles, type DataFile } from './lib/data-files';
 import { buildJsonSchemas } from './lib/schema-json';
+import { buildUsageMap } from './lib/source-usage';
+import {
+  renderEvidenceMd,
+  renderSourcesMd,
+  renderUsageJson,
+  type ParsedDataFile,
+} from './lib/render-views';
 
 const strictSources = process.argv.includes('--strict-sources');
 const dataRootPath = dataRoot();
@@ -303,6 +310,68 @@ if (prologue) {
           `prologue: '${target}' ends at ${to} but the scenario starts at ${start}; history must land on the start state`,
         );
       }
+    }
+  }
+}
+
+// -- 3b. source registry honesty ---------------------------------------------
+// A tier is declared in the registry but never self-declared in effect: the
+// citation map proves it. load-bearing without citations is an overclaim,
+// citations without load-bearing is an undercount; both fail. Usage claims
+// must be specific enough to check (the vague-phrase lint is deliberately blunt).
+const usageMap = buildUsageMap(dataRootPath);
+if (sources) {
+  const VAGUE_PHRASES = [
+    'informed our thinking',
+    'provided context',
+    'general background',
+    'influenced the design',
+    'shaped our approach',
+  ];
+  for (const source of sources.sources) {
+    const cited = usageMap.has(source.id);
+    if (cited && source.tier !== 'load-bearing') {
+      errors.push(
+        `sources: '${source.id}' is cited by data files but declares tier '${source.tier}'; it is load-bearing`,
+      );
+    }
+    if (!cited && source.tier === 'load-bearing') {
+      errors.push(`sources: '${source.id}' declares load-bearing but nothing in data/ cites it`);
+    }
+    for (const field of ['gameUse', 'shaped', 'whyListed'] as const) {
+      const text = source[field];
+      if (!text) {
+        continue;
+      }
+      for (const phrase of VAGUE_PHRASES) {
+        if (text.toLowerCase().includes(phrase)) {
+          errors.push(
+            `sources: '${source.id}' ${field} says '${phrase}'; name the mechanic instead`,
+          );
+        }
+      }
+    }
+  }
+}
+
+// -- 3c. generated source views in sync ---------------------------------------
+// SOURCES.md, docs/EVIDENCE.md and the game's usage JSON are views of data/;
+// stale copies would publish wrong counts, so drift is an error, not a warning.
+if (sources) {
+  const parsedForViews: ParsedDataFile[] = files
+    .filter((f) => parsed.has(f.relPath))
+    .map((f) => ({ relPath: f.relPath, json: parsed.get(f.relPath) }));
+  const views: Array<[string, string]> = [
+    ['SOURCES.md', renderSourcesMd(sources, usageMap)],
+    ['docs/EVIDENCE.md', renderEvidenceMd(sources, parsedForViews, usageMap)],
+    ['src/ui/generated/source-usage.json', renderUsageJson(sources, usageMap)],
+  ];
+  for (const [relPath, expected] of views) {
+    const absPath = join(dataRootPath, '..', relPath);
+    if (!existsSync(absPath)) {
+      errors.push(`${relPath} missing; run pnpm sources-md`);
+    } else if (readFileSync(absPath, 'utf8') !== expected) {
+      errors.push(`${relPath} out of date; run pnpm sources-md`);
     }
   }
 }

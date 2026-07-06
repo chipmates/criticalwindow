@@ -9,7 +9,7 @@
     "pressureRivalRacePct": {
       "value": 25,
       "sourceIds": ["SRC-AGENTIC-MISALIGNMENT", "SRC-SIM-GAMING-INSIGHTS"],
-      "note": "an open race adds the same again: pressure multiplier max 1.5x total (F1 row 7 calibration, scaled down from lab-elicited 79-96% rates to per-turn cadence)"
+      "note": "an open race adds the same again: pressure multiplier max 1.5x total (2026-07-04 calibration, scaled down from lab-elicited 79-96% rates to per-turn cadence)"
     }
   },
   "safetyInsightDamageReductionMaxPerMille": {
