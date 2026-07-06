@@ -75,8 +75,8 @@ export type EraId = (typeof ERA_IDS)[number];
 
 /**
  * Prototype 1 ships the first five. 'gradualDisempowerment' is the hidden
- * sixth ending: its counters accumulate from Milestone B (agencyErosion),
- * but no ending fires until Alpha.
+ * sixth ending: its counters accumulate from the first engine build (agencyErosion),
+ * but no code path emits this ending yet; it ships when it can be discovered.
  */
 export const ENDING_IDS = [
   'flourishing',

@@ -1,4 +1,5 @@
 /// <reference types="vitest/config" />
+import { execSync } from 'node:child_process';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -7,6 +8,7 @@ import { hashDataFiles } from './src/engine/hash';
 
 // Content stamp baked into the bundle: saves and share URLs carry it, so a
 // replay against different data is refused honestly instead of diverging.
+const commitSha = execSync('git rev-parse --short HEAD').toString().trim();
 const dataVersion = hashDataFiles(
   readDataFiles(dataRoot()).map((file) => ({ path: file.relPath, content: file.content })),
 );
@@ -52,6 +54,7 @@ export default defineConfig({
   base: './',
   define: {
     __DATA_VERSION__: JSON.stringify(dataVersion),
+    __COMMIT_SHA__: JSON.stringify(commitSha),
   },
   test: {
     environment: 'node',

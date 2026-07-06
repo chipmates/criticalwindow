@@ -1,7 +1,7 @@
 {
   "name": "criticalwindow",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.3.2",
   "homepage": "https://criticalwindow.org",
   "repository": {
     "type": "git",
@@ -28,6 +28,8 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "validate": "tsx scripts/validate-data.ts --strict-sources",
+    "check": "pnpm validate && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "check:full": "pnpm check && pnpm test:browser",
     "schemas": "tsx scripts/generate-schemas.ts",
     "simulate": "tsx scripts/simulate.ts",
     "model-playtest": "tsx scripts/model-playtest.ts",

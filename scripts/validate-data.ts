@@ -130,14 +130,14 @@ const sources = parsed.has('sources.json')
   ? validateFile<SourcesRegistryData>('sources.json', sourcesRegistrySchema)
   : null;
 if (!parsed.has('sources.json')) {
-  warnings.push('data/sources.json not present yet (arrives with Block A3)');
+  warnings.push('data/sources.json not present yet');
 }
 
 const parameters = parsed.has('parameters.json')
   ? validateFile<ParametersData>('parameters.json', parametersSchema)
   : null;
 if (!parsed.has('parameters.json')) {
-  warnings.push('data/parameters.json not present yet (arrives with Block C1)');
+  warnings.push('data/parameters.json not present yet');
 }
 
 const incidents = parsed.has('incidents.json')
@@ -411,6 +411,54 @@ for (const relPath of [
   for (const phrase of STALE_PHRASES) {
     if (text.includes(phrase)) {
       errors.push(`${relPath}: stale pre-launch phrase '${phrase}'`);
+    }
+  }
+}
+
+// Release identity must be one story: package version, citation file, the
+// changelog's newest entry, and the tag pinned into the no-JS links all agree.
+{
+  const pkg = JSON.parse(readFileSync(join(dataRootPath, '..', 'package.json'), 'utf8')) as {
+    version: string;
+  };
+  const cff = readFileSync(join(dataRootPath, '..', 'CITATION.cff'), 'utf8');
+  const cffVersion = /\nversion: ([0-9.]+)/.exec(cff)?.[1];
+  const changelog = readFileSync(join(dataRootPath, '..', 'CHANGELOG.md'), 'utf8');
+  const latest = /## \[([0-9.]+)\]/.exec(changelog)?.[1];
+  const indexHtml = readFileSync(join(dataRootPath, '..', 'index.html'), 'utf8');
+  const pinned = /blob\/v([0-9.]+)\//.exec(indexHtml)?.[1];
+  for (const [name, value] of [
+    ['CITATION.cff', cffVersion],
+    ['CHANGELOG.md latest entry', latest],
+    ['index.html pinned links', pinned],
+  ] as const) {
+    if (value !== pkg.version) {
+      errors.push(`release identity: package.json says ${pkg.version} but ${name} says ${value}`);
+    }
+  }
+}
+
+// The registry's displayed prose fields follow the voice rules too (titles are
+// quoted publication names and stay exempt), and internal pipeline artifacts
+// must never resurface in notes.
+if (sources) {
+  const ARTIFACTS =
+    /updated at verification|search hint only|before shipping|gap.audit|bibliography|Block [A-Z]\d|TS rule/i;
+  for (const source of sources.sources) {
+    for (const field of ['gameUse', 'shaped', 'whyListed', 'flagReason'] as const) {
+      const text = source[field];
+      if (!text) {
+        continue;
+      }
+      if (text.includes('\u2014') || text.includes(' \u2013 ')) {
+        errors.push(`sources: '${source.id}' ${field} has an em/en dash (voice rule)`);
+      }
+    }
+    for (const field of ['gameUse', 'shaped', 'whyListed', 'flagReason', 'note'] as const) {
+      const text = source[field];
+      if (text && ARTIFACTS.test(text)) {
+        errors.push(`sources: '${source.id}' ${field} carries an internal artifact`);
+      }
     }
   }
 }

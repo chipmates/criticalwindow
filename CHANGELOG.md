@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.2] · 2026-07-06
+
+Refinement pass after the first public day.
+
+- Sharper evidence language everywhere: the pitch now says plainly that numbers are source-backed or labeled design choices, tuned values wear the design-tuned badge, and the evidence map opens with worked examples from source figure to game value
+- The capability pacing note now cites METR's Time Horizon 1.1 update directly
+- Release identity checked in CI: package version, citation file, changelog and pinned links must agree
+- Quick-start path on setup: one click into a recommended first run
+- Build provenance: the Sources screen shows the commit and data hash of the running build
+- Feedback without an account: the debrief offers email alongside the challenge loop
+- Registry notes polished for outside readers
+
 All notable changes to Critical Window, in the format of
 [Keep a Changelog](https://keepachangelog.com/). Newest first.
 
@@ -7,7 +19,7 @@ This file was written after the fact, reconstructed from the git history rather 
 turn by turn. That is why the early entries bundle a lot into one release and the later
 ones get more specific. It will stay current from here on.
 
-## [Unreleased] · v0.3.1
+## [0.3.1] · 2026-07-06
 
 Launch-review fixes: small, unglamorous, all correctness or performance, no new features.
 

@@ -162,7 +162,15 @@ describe('ending reachability batch (B4 verify; the full 10k batch is B6)', () =
     process.stdout
       .write(`ending distribution (100 runs, counts overlap across bot personas): ${JSON.stringify(counts)}
 `);
-    expect(endings.size).toBeGreaterThanOrEqual(3);
+    // Guarded invariants, not a snapshot: the design thesis in numbers.
+    // Racing pressure dominates (the trap is real), the treaty path stays
+    // alive, flourishing stays reachable, and the planned sixth ending
+    // must remain unreachable until it actually ships.
+    expect(endings.size).toBeGreaterThanOrEqual(4);
+    expect(counts['misalignedCatastrophe'] ?? 0).toBeGreaterThanOrEqual(40);
+    expect(counts['negotiatedSlowdown'] ?? 0).toBeGreaterThanOrEqual(5);
+    expect(counts['flourishing'] ?? 0).toBeGreaterThanOrEqual(1);
+    expect(counts['gradualDisempowerment'] ?? 0).toBe(0);
   });
 
   test('every worldview preset completes runs', () => {
