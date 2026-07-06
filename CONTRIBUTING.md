@@ -6,6 +6,10 @@ There are two ways in, and the one without code matters at least as much.
 
 **Check a source.** Every number in the game cites an entry in `data/sources.json`. Sources rot, papers get revised, better data appears. Open an issue titled `source: ...` with what you found. This is the single most useful small contribution.
 
+**Challenge a number.** [docs/EVIDENCE.md](docs/EVIDENCE.md) lists every cited value and its evidence. If you think one is wrong, open a "challenge a number" issue with a better source and your proposed value. Disagreement with evidence attached is the project working as designed.
+
+**Wire a source to a mechanic.** SOURCES.md keeps an honest ledger: some sources back numbers, some shaped the design, some are just the shelf. Promoting a shelf source into one that backs an actual value, with the figure quoted, is a small PR with real weight.
+
 **Propose an event card.** Events are JSON files in `data/events/`. Copy an existing one, keep its shape (your editor gets autocomplete from the `$schema` line), and follow the house dilemma rule: no obviously right choice, every option should hurt someone credible, and at least one cost should arrive later than the benefit. Real events with real sources make the best cards. You do not need to get the JSON perfect. A clearly written issue describing the event, the choices, and the sources is a fine contribution on its own.
 
 **Playtest.** Print the kit (`pnpm print-kit` or grab the PDF from a release), play it with people, and file what happened. What confused them, what they argued about, whether they wanted to go again. An issue labeled `playtest` with honest notes is gold.

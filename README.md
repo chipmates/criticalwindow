@@ -45,7 +45,13 @@ It is a nonprofit education project. No ads, no accounts, no tracking, ever ([SE
 
 ## The iron rule
 
-Every number in `data/` cites a source in `data/sources.json`, and `pnpm validate` fails when one does not. The full registry is [SOURCES.md](SOURCES.md), and it is browsable inside the game, two clicks from the title screen. If you change a value, your commit names the source. If you think a number is wrong, bring a better source. That argument is the project working as designed.
+Every number in `data/` cites a source in `data/sources.json`, and `pnpm validate` fails when one does not. The rule runs in both directions: a source that claims to back numbers without actually being cited fails the build too, so the bibliography cannot quietly pad itself.
+
+The registry is honest about what each source does. Some set numbers directly, and [SOURCES.md](SOURCES.md) lists every place each one is cited. Some shaped a mechanic without backing a single value, and each names the mechanic so the claim is checkable. The rest are the shelf we read from, listed as further reading and nothing more. [docs/EVIDENCE.md](docs/EVIDENCE.md) goes the other way: every cited value in the game, with its numbers, its kind, its sources, and the note that says how evidence became value. The same map is browsable inside the game, two clicks from the title screen.
+
+Contested forecasts never become single numbers. They live as ranges inside the worldview preset you pick at setup, and a seeded hidden roll fixes the truth for your run inside that range. Design constants with no real-world referent say so and cite the design handover. Nothing pretends to be measured that is not.
+
+Do not take our word for any of this: run `pnpm validate` yourself. If you change a value, your commit names the source. If you think a number is wrong, open a "challenge a number" issue with a better source. That argument is the project working as designed.
 
 ## For developers
 
