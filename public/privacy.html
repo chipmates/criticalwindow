@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy · Critical Window</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <style>
+      body {
+        background: #101318;
+        color: #e7e2d8;
+        font-family: Georgia, serif;
+        margin: 0;
+      }
+      main {
+        max-width: 640px;
+        margin: 3rem auto;
+        padding: 0 1.25rem 4rem;
+        line-height: 1.6;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+        margin-top: 2rem;
+      }
+      a {
+        color: #d9974a;
+      }
+      .muted {
+        color: #9a958a;
+        font-size: 0.9rem;
+      }
+      nav {
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav><a href="/">← Critical Window</a></nav>
+      <h1>Privacy</h1>
+      <p>
+        The short version, which is also the whole version: this game collects nothing about you. No
+        accounts, no tracking, no analytics, no cookies, no telemetry. These are design commitments,
+        and because the game is open source, you can verify them in the
+        <a href="https://github.com/chipmates/criticalwindow">code</a>
+        rather than take our word.
+      </p>
+
+      <h2>What stays on your device</h2>
+      <p>
+        Your saved runs and settings live in your browser's localStorage. They never leave your
+        device; there is no server to send them to. Deleting your browser data for this site deletes
+        them.
+      </p>
+
+      <h2>What the network sees</h2>
+      <p>
+        The game is a set of static files. When you load or play it, your browser requests those
+        files, and the optional music and narration load the same way the first time you enable
+        sound. Our host, Cloudflare Pages (Cloudflare, Inc.), serves these files and, like any web
+        server, processes technical connection data (such as your IP address) to deliver them and
+        keeps ordinary, short-lived server logs. We add no logging of our own, and the site sends a
+        Content-Security-Policy that forbids requests to any other host. Legal basis for this
+        technical processing: legitimate interest in delivering a website you requested (Art.
+        6(1)(f) GDPR).
+      </p>
+
+      <h2>Sharing a run</h2>
+      <p>
+        A "challenge link" encodes only your seed, worldview and data version in the link itself.
+        Nothing is uploaded; sharing it is you sending a piece of text.
+      </p>
+
+      <h2>Your rights, and who is responsible</h2>
+      <p>
+        Controller: ChipMates gemeinnützige GmbH, Schusterstr. 50, 79098 Freiburg im Breisgau,
+        Germany, <a href="mailto:hello@criticalwindow.org">hello@criticalwindow.org</a> (full
+        details in the <a href="/imprint.html">imprint</a>). Under the GDPR you have rights to
+        access, rectification, erasure, restriction, portability, objection, and complaint to a
+        supervisory authority. Since we hold no personal data about you, most of these have nothing
+        to act on, but the rights and the contact address are yours regardless.
+      </p>
+
+      <h2 lang="de">Kurzfassung auf Deutsch</h2>
+      <p lang="de">
+        Dieses Spiel erhebt keine personenbezogenen Daten: keine Konten, kein Tracking, keine
+        Analyse-Tools, keine Cookies. Spielstände liegen ausschließlich im localStorage Ihres
+        Browsers. Beim Abruf der statischen Dateien verarbeitet unser Hoster Cloudflare Pages
+        technische Verbindungsdaten (z. B. IP-Adresse) zur Auslieferung der Website (Art. 6 Abs. 1
+        lit. f DSGVO). Verantwortliche: ChipMates gemeinnützige GmbH (siehe
+        <a href="/imprint.html">Impressum</a>). Ihnen stehen die Rechte aus Art. 15 bis 21 DSGVO
+        sowie das Beschwerderecht bei einer Aufsichtsbehörde zu.
+      </p>
+
+      <p class="muted">Last updated: 2026-07-06</p>
+    </main>
+  </body>
+</html>
