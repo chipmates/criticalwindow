@@ -85,7 +85,7 @@ export function SettingsDialog({ onClose }: SettingsDialogProps) {
       >
         <div className="settings-head">
           <h2>{t('settings.heading')}</h2>
-          <button type="button" className="btn" onClick={onClose} aria-label="Close">
+          <button type="button" className="btn" onClick={onClose} aria-label={t('a11y.close')}>
             ✕
           </button>
         </div>

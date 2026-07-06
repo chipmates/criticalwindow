@@ -108,7 +108,7 @@ export function Title() {
           · <a href="./imprint.html">{t('title.imprint')}</a> ·{' '}
           <a href="./privacy.html">{t('title.privacyPage')}</a>
         </p>
-        <nav className="title-links" aria-label="More">
+        <nav className="title-links" aria-label={t('a11y.more')}>
           <button type="button" className="btn-link" onClick={() => goTo('help')}>
             {t('help.title.button')}
           </button>
