@@ -10,7 +10,7 @@ These claims are auditable in this repository: there is no server code because t
 
 If you find a way the deployed game contacts any external host at runtime, treat it as a serious bug and report it privately first. The same goes for anything that could execute untrusted input: save files and seed-challenge links are parsed data and must never become code.
 
-Open a private security advisory on the repository, or email hello@criticalwindow.org. You will get an answer within a week, usually much faster. Please include steps to reproduce.
+Open a private security advisory on the repository, or email criticalwindow@chipmates.ai. You will get an answer within a week, usually much faster. Please include steps to reproduce.
 
 ## Scope notes for contributors
 

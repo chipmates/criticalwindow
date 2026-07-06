@@ -77,7 +77,7 @@ Off by default, everything works silent. Music by Scott Buckley (CC BY 4.0), see
 
 ## Who makes this
 
-Critical Window is a project of ChipMates gemeinnuetzige GmbH, a German nonprofit. No revenue, no ads, no investors; if grants ever fund this, the funders get named in [GOVERNANCE.md](GOVERNANCE.md), which also explains how this project is built and who answers for it. Contact: hello@criticalwindow.org. Legal: [imprint](https://criticalwindow.org/imprint.html) and [privacy](https://criticalwindow.org/privacy.html).
+Critical Window is a project of ChipMates gemeinnuetzige GmbH, a German nonprofit. No revenue, no ads, no investors; if grants ever fund this, the funders get named in [GOVERNANCE.md](GOVERNANCE.md), which also explains how this project is built and who answers for it. Contact: criticalwindow@chipmates.ai. Legal: [imprint](https://criticalwindow.org/imprint.html) and [privacy](https://criticalwindow.org/privacy.html).
 
 ## License
 

@@ -4,7 +4,7 @@ Small and explicit, sized for the project we are, revisited when we outgrow it.
 
 Critical Window is a project of ChipMates gemeinnuetzige GmbH, a German nonprofit.
 No revenue, no ads, no investors. If the project ever takes grants, the funders will
-be disclosed in this file. Contact: hello@criticalwindow.org.
+be disclosed in this file. Contact: criticalwindow@chipmates.ai.
 
 ## Who decides what
 
