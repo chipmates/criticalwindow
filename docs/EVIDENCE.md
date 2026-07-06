@@ -11,13 +11,13 @@ constants with no real-world referent cite the design constitution and say so. T
 iron rule: no number ships without a source ID, `pnpm validate` fails CI
 otherwise. Run it yourself.
 
-**76 cited parameter values and 100 cited card premises, across 312 citation sites.** Parameter values by kind:
+**76 cited parameter values and 100 cited card premises, across 322 citation sites.** Parameter values by kind:
 
 - **9** analysis-based
 - **29** design choice
 - **15** forecast-based
-- **13** measured
-- **10** measured, design-tuned
+- **11** measured
+- **12** measured, design-tuned
 
 A **measured** value cites only empirical evidence, and **measured,
 design-tuned** means an empirical base whose game magnitude we calibrated, with
@@ -31,6 +31,33 @@ Card premises are counted separately on purpose: a card's citations back the
 real-world event it dramatizes, while its effect magnitudes are balance-tuned
 design values unless a note says otherwise. No card premise is ever counted as
 a measured value.
+
+## Five worked examples, source figure to game value
+
+The tables below are complete; these five show the transformation step by step.
+
+1. **Starting compute 700.** The scenario opens the US seat at 700 of 1000. The compute
+   track's unit mapping (anchors.json) reads 700 as roughly 65% of the world's frontier
+   training capacity, the cited compute dataset's picture of the US share; the index
+   point is the mapping, not a measurement of its own.
+2. **Capability pacing (curves.capabilityPerRnd).** The cited analyses report training
+   compute doubling roughly every six months and the 50% task horizon doubling every
+   188 days on the all-time fit. The curve compresses that regime onto the 0-1000
+   index so an all-in racer reaches threshold resolution around turn 10 of 16; the
+   compression ratio is the design decision, and it cites the constitution.
+3. **Eval band floor (evalUncertainty.floorBandWidth 100).** The deception literature
+   reports near-99% true-trigger rates against ~0 red-team detection, and 55% real
+   misalignment reading as 6.5% in evals. No paper says "100 points"; the floor is a
+   design-tuned translation of "the band never closes," rounded to the game's
+   multiple-of-50 rule, and badged design-tuned accordingly.
+4. **Displacement curve knee.** The cited exposure work puts about 40% of global
+   employment exposed to AI. The curve turns exposure into equilibrium displacement
+   rising with capability; the knee's position was calibrated in play so early-game
+   displacement rises instead of falling, and the note says so.
+5. **Starting energy 450.** The cited projections put datacenter electricity demand
+   rising from about 415 TWh toward about 945 TWh by 2030. The energy track reads 450
+   as roughly 40 GW of grid headroom for new AI load: the 2026 reality, with the
+   squeeze still ahead.
 
 Disagree with a value? Open a "challenge a number" issue with a source.
 Realism disputes are decided by the maintainer in public issues today; if the
@@ -106,7 +133,7 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 |---|---|---|
 | (root) | measured, design-tuned premise | SRC-SLEEPER, SRC-SCHEMING, SRC-AGENTIC-MISALIGNMENT, SRC-AI-INCIDENT-DB, SRC-SIM-GAMING-INSIGHTS |
 | riskFormula.pressureAllocationPct | measured premise | SRC-AGENTIC-MISALIGNMENT |
-| riskFormula.pressureRivalRacePct | measured, design-tuned premise | SRC-AGENTIC-MISALIGNMENT, SRC-SIM-GAMING-INSIGHTS |
+| riskFormula.pressureRivalRacePct | measured, design-tuned premise | SRC-AGENTIC-MISALIGNMENT, SRC-SIM-GAMING-INSIGHTS, SRC-DESIGN-HANDOVER |
 | safetyInsightDamageReductionMaxPerMille | measured premise | SRC-SLEEPER, SRC-SCHEMING |
 | rungs[0] | measured premise | SRC-SLEEPER, SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
 | rungs[1] | measured premise | SRC-AGENTIC-MISALIGNMENT, SRC-SCHEMING |
@@ -134,17 +161,17 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 | Where | Numbers | Kind | Sources | How the number was derived |
 |---|---|---|---|---|
 | worldviewPresets.cautious.alignmentDifficulty | min 550 · max 950 | forecast-based | SRC-AI2027, SRC-CARLSMITH, SRC-IABIED | maps the power-seeking-AI risk cluster (Carlsmith >10% x-risk, AI-2027 race ending, IABIED thesis) onto the upper half of the difficulty scale |
-| worldviewPresets.cautious.takeoffSteepness | min 500 · max 900 | forecast-based | SRC-AI2027, SRC-SITUATIONAL-AWARENESS, SRC-METR-HORIZON | fast-takeoff worldview: software intelligence explosion plausible within the game window; top at 900 not 1000 because even the aggressive sources call 2027 strikingly plausible, not certain (tuning pass 2026-07-04) |
+| worldviewPresets.cautious.takeoffSteepness | min 500 · max 900 | forecast-based | SRC-AI2027, SRC-SITUATIONAL-AWARENESS, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER | fast-takeoff worldview: software intelligence explosion plausible within the game window; top at 900 not 1000 because even the aggressive sources call 2027 strikingly plausible, not certain (tuning pass 2026-07-04) |
 | worldviewPresets.cautious.displacementLagDivisor | value 4 | measured, design-tuned | SRC-IMF-GENAI, SRC-DESIGN-HANDOVER | fast-and-painful worldview: exposure becomes lived displacement quickly (tuning pass 2026-07-04) |
 | worldviewPresets.consensus.alignmentDifficulty | min 300 · max 800 | forecast-based | SRC-IAISR, SRC-GRACE-SURVEY | wide band: expert median worry with heavy disagreement (Grace 2024: 38-51% give >=10% to extremely bad outcomes; IAISR: deep uncertainty) |
-| worldviewPresets.consensus.takeoffSteepness | min 250 · max 700 | forecast-based | SRC-IAISR, SRC-METR-HORIZON, SRC-GRACE-SURVEY | capability doubling trends real but discontinuity contested; range centers the Grace survey middle with a real fast tail (10% HLMI by 2027), tightened from 300-800 in the 2026-07-04 tuning pass |
+| worldviewPresets.consensus.takeoffSteepness | min 250 · max 700 | forecast-based | SRC-IAISR, SRC-METR-HORIZON, SRC-GRACE-SURVEY, SRC-DESIGN-HANDOVER | capability doubling trends real but discontinuity contested; range centers the Grace survey middle with a real fast tail (10% HLMI by 2027), tightened from 300-800 in the 2026-07-04 tuning pass |
 | worldviewPresets.consensus.displacementLagDivisor | value 6 | measured, design-tuned | SRC-IMF-GENAI, SRC-DESIGN-HANDOVER | default diffusion lag: high exposure, gradual realization (tuning pass 2026-07-04; carries the v0.1 divisor) |
-| worldviewPresets.skeptic.alignmentDifficulty | min 200 · max 500 | analysis-based | SRC-NORMAL-TECH, SRC-SNAKE-OIL | normal-technology worldview: control problems mostly engineering, diffusion friction dominates Floor raised 50->200 on 2026-07-04: even the optimistic worldview is not a trivial giveaway; alignment is never free. |
-| worldviewPresets.skeptic.takeoffSteepness | min 100 · max 450 | analysis-based | SRC-NORMAL-TECH, SRC-METR-HORIZON | adoption and integration lags cap effective takeoff speed; tightened from 100-500 in the 2026-07-04 tuning pass |
-| worldviewPresets.skeptic.displacementLagDivisor | value 9 | forecast-based | SRC-NORMAL-TECH, SRC-GRACE-SURVEY | slow-diffusion worldview: only 0.5-3.5% of work hours realized despite adoption (Normal Tech); Grace FAOL median 2116 (tuning pass 2026-07-04) |
+| worldviewPresets.skeptic.alignmentDifficulty | min 200 · max 500 | analysis-based | SRC-NORMAL-TECH, SRC-SNAKE-OIL, SRC-DESIGN-HANDOVER | normal-technology worldview: control problems mostly engineering, diffusion friction dominates Floor raised 50->200 on 2026-07-04: even the optimistic worldview is not a trivial giveaway; alignment is never free. |
+| worldviewPresets.skeptic.takeoffSteepness | min 100 · max 450 | analysis-based | SRC-NORMAL-TECH, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER | adoption and integration lags cap effective takeoff speed; tightened from 100-500 in the 2026-07-04 tuning pass |
+| worldviewPresets.skeptic.displacementLagDivisor | value 9 | forecast-based | SRC-NORMAL-TECH, SRC-GRACE-SURVEY, SRC-DESIGN-HANDOVER | slow-diffusion worldview: only 0.5-3.5% of work hours realized despite adoption (Normal Tech); Grace FAOL median 2116 (tuning pass 2026-07-04) |
 | evalUncertainty.baseBandWidth | value 400 | measured | SRC-SLEEPER, SRC-SCHEMING | wide starting band: deceptive models can pass evals, so low evidence means low confidence either way |
 | evalUncertainty.safetyInsightNarrowing | value 40 | measured, design-tuned | SRC-SLEEPER-PROBES, SRC-DESIGN-HANDOVER | narrowing per 100 Safety Insight: simple probes catch sleeper agents (Anthropic), so interpretability investment buys real eval confidence; the rate itself is a design constant tuned in playtests |
-| evalUncertainty.floorBandWidth | value 100 | measured | SRC-SLEEPER, SRC-AGENTIC-MISALIGNMENT | the band never closes: near-99% true-trigger vs ~0 red-team (Sleeper Agents), 55.1% real vs 6.5% eval (Agentic Misalignment). Raised 80->100 in the 2026-07-04 tuning pass, multiple-of-50 rule |
+| evalUncertainty.floorBandWidth | value 100 | measured, design-tuned | SRC-SLEEPER, SRC-AGENTIC-MISALIGNMENT, SRC-DESIGN-HANDOVER | the band never closes: near-99% true-trigger vs ~0 red-team (Sleeper Agents), 55.1% real vs 6.5% eval (Agentic Misalignment). Raised 80->100 in the 2026-07-04 tuning pass, multiple-of-50 rule |
 | evalUncertainty.deceptionMaxLift | value 250 | measured | SRC-SLEEPER, SRC-ALIGNMENT-FAKING | how far a badly aligned model's eval report can read ABOVE the truth: deceptive alignment survives safety training and looks fine on the outside |
 | evalUncertainty.deceptionInsightCounter | value 40 | measured, design-tuned | SRC-SLEEPER-PROBES, SRC-DESIGN-HANDOVER | lift reduction per 100 Safety Insight: probes are the counter to deceptive passes; rate is design-tuned |
 | thresholds.fogZoneStart | value 800 | design choice | SRC-DESIGN-HANDOVER | capability level where the threshold zone begins; the race track shades from here |
@@ -171,10 +198,10 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 | worldRules.societyDepth.unrestEconomicDragMin | value 600 | measured, design-tuned | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER | sustained high unrest starts costing the economy (strikes, capital flight, risk premia); threshold design-tuned |
 | worldRules.societyDepth.unrestEconomicDrag | value 25 | design choice | SRC-DESIGN-HANDOVER | capital drag per turn at high unrest; talent drains at half rate |
 | worldRules.agencyErosion.highCapabilityMin | value 800 | analysis-based | SRC-GRADUAL-DISEMPOWERMENT | erosion accrues once systems this capable run core functions |
-| worldRules.agencyErosion.perTurn | value 25 | analysis-based | SRC-GRADUAL-DISEMPOWERMENT, SRC-DESIGN-HANDOVER | quiet per-turn handover of decision-making at high capability; no P1 ending, Alpha ships it |
+| worldRules.agencyErosion.perTurn | value 25 | analysis-based | SRC-GRADUAL-DISEMPOWERMENT, SRC-DESIGN-HANDOVER | quiet per-turn handover of decision-making at high capability; no P1 ending, Alpha ships it. Accrues quietly and is read back in the debrief; the dedicated ending it builds toward is planned, not in this release. |
 | worldRules.agencyErosion.diffusionShieldMin | value 30 | analysis-based | SRC-GRADUAL-DISEMPOWERMENT, SRC-DESIGN-HANDOVER | broad benefit-sharing keeps humans in the loop; share threshold is design-tuned |
 | capabilityLadder.milestones[0].at | value 700 | forecast-based | SRC-AI2027, SRC-GRACE-SURVEY, SRC-SITUATIONAL-AWARENESS | SC milestone on the 0-1000 track: below the fog zone, above today's hour-scale frontier. Arrival is emergent from play + dice, never a calendar date (R1) |
-| capabilityLadder.milestones[0].selfAccel | value 50 | forecast-based | SRC-AI2027, SRC-METR-HORIZON | AI R&D multiplier ladder 5x->25x->250x compressed to game-scale bonuses 50/100/150, scaled by the takeoffSteepness die (tuning pass 2026-07-04) |
+| capabilityLadder.milestones[0].selfAccel | value 50 | forecast-based | SRC-AI2027, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER | AI R&D multiplier ladder 5x->25x->250x compressed to game-scale bonuses 50/100/150, scaled by the takeoffSteepness die (tuning pass 2026-07-04) |
 | capabilityLadder.milestones[1].at | value 800 | forecast-based | SRC-AI2027, SRC-SITUATIONAL-AWARENESS | SAR milestone = fogZoneStart: the fog begins where AI does the AI research |
 | capabilityLadder.milestones[1].selfAccel | value 100 | forecast-based | SRC-AI2027, SRC-METR-HORIZON | second rung of the compressed multiplier ladder |
 | capabilityLadder.milestones[2].at | value 900 | forecast-based | SRC-AI2027 | SIAR milestone: the last rung before threshold resolution at 1000 |
@@ -183,8 +210,8 @@ See [`GOVERNANCE.md`](../GOVERNANCE.md).
 | turnStructure.electionTurn | value 8 | design choice | SRC-DESIGN-HANDOVER | US midterms fall on turn 8 of the quarterly clock |
 | turnStructure.handSize | value 3 | design choice | SRC-DESIGN-HANDOVER | rotating policy hand; refills from the unspent pool each upkeep |
 | curves.rndCapacity |  | forecast-based | SRC-GATE, SRC-DESIGN-HANDOVER | R&D points from compute+talent with diminishing returns; shape motivated by compute-centric growth models (Epoch GATE), values are design pacing |
-| curves.capabilityPerRnd |  | measured, design-tuned | SRC-EPOCH-COMPUTE, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER, SRC-EPOCH-DOUBLING | abstraction of the measured regime (training compute doubling every 5.2 months since 2020; 50% task horizon doubling roughly every 188 days on METR's all-time fit, faster post-2023) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16 |
-| curves.displacementFromCapability |  | measured | SRC-IMF-GENAI, SRC-PAYROLLS-TO-PROMPTS | equilibrium displacement by capability: exposure is already material at 2026 capability levels (IMF: almost 40% of global employment exposed) and rises toward index 550 at frontier; early knee raised after the 2026-07-03 playtest (displacement was FALLING early game because the start value exceeded the old curve target) |
+| curves.capabilityPerRnd |  | measured, design-tuned | SRC-EPOCH-COMPUTE, SRC-METR-HORIZON, SRC-DESIGN-HANDOVER, SRC-EPOCH-DOUBLING, SRC-METR-TH11 | abstraction of the measured regime (training compute doubling roughly every six months; 50% task horizon doubling every 188 days on the all-time fit, faster after 2023) onto the 0-1000 index; paced so an all-in racer reaches threshold resolution around turn 10 of 16 |
+| curves.displacementFromCapability |  | measured, design-tuned | SRC-IMF-GENAI, SRC-PAYROLLS-TO-PROMPTS, SRC-DESIGN-HANDOVER | equilibrium displacement by capability: exposure is already material at 2026 capability levels (IMF: almost 40% of global employment exposed) and rises toward index 550 at frontier; early knee raised after the 2026-07-03 playtest (displacement was FALLING early game because the start value exceeded the old curve target) |
 | curves.trustFromUnrest |  | design choice | SRC-DESIGN-HANDOVER | trust erosion accelerates with unrest; design curve, playtests tune |
 | alignmentModel.startBase | value 500 | design choice | SRC-DESIGN-HANDOVER | true alignment starts at startBase - difficulty/2: alignment is an achievement, not a default. Retuned after the 2026-07-03 playtest finding: zero safety investment could win (old start 1000-difficulty meant easy worlds came pre-aligned) |
 | alignmentModel.crashThresholdShare | value 70 | design choice | SRC-DESIGN-HANDOVER | capability allocation share at or above this cuts true alignment per turn (corners get cut under race pressure) |

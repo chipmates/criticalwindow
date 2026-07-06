@@ -78,7 +78,7 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
-      "gameUse": "Compute-meter anchor and the capabilityPerRnd growth curve's compute-doubling assumption (~5.2 months per doubling since 2020); also general compute/energy event flavor. No tech-tree feature exists anywhere in the game.",
+      "gameUse": "Compute-meter anchor and the capabilityPerRnd growth curve's compute-doubling assumption (~5.2 months per doubling since 2020); also general compute/energy event flavor.",
       "note": "Living hub, also listed in section 10 (models, hardware, benchmarks, chip sales, data centers). Trends dashboard: https://epoch.ai/trends (largest known run Grok 4 ~5e26 FLOP)."
     },
     {
@@ -500,7 +500,7 @@
       "tier": "library",
       "evidenceClass": "analysis",
       "whyListed": "For readers who want to compare a second frontier lab's public capability-threshold and misalignment-risk framework against the game's own fog-zone/threshold system.",
-      "note": "Living framework (2024+; 2025, updated 2026, ). Adds harmful-manipulation and misalignment-risk framing plus tracked capability thresholds. Pin version/date when citing."
+      "note": "Living framework (2024+; 2025, updated 2026). Adds harmful-manipulation and misalignment-risk framing plus tracked capability thresholds. Pin version/date when citing."
     },
     {
       "id": "SRC-SLEEPER-PROBES",
@@ -526,7 +526,7 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
-      "gameUse": "grounds the hidden gradual-disempowerment ending",
+      "gameUse": "Grounds the agency-erosion pressure that accrues at high capability and is read back in the debrief; the dedicated hidden ending it argues for is planned, not in this release.",
       "note": "ICML: https://proceedings.mlr.press/v267/kulveit25a.html"
     },
     {
@@ -973,7 +973,7 @@
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "Backs the chip_subsidies policy's chokepoint premise: advanced AI chips are a scarce, export-controlled resource, justifying the card's delayed compute + substitution payoff.",
-      "note": "The founding brief gave only the CSET homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://cset.georgetown.edu."
+      "note": "The founding brief gave only the CSET homepage as the URL, not the specific report page; the exact report URL was confirmed at the July 2026 verification."
     },
     {
       "id": "SRC-IEA-ENERGY-AI",
@@ -1000,7 +1000,7 @@
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "Backs the chip_smuggling event's enforce-vs-look-away choice: documented smuggling routes and enforcement tradeoffs for export-controlled AI chips reaching China.",
-      "note": "The founding brief gave only the CNAS homepage as the URL, not the specific report page; find and verify the exact report URL before shipping URL updated at verification from https://www.cnas.org."
+      "note": "The founding brief gave only the CNAS homepage as the URL, not the specific report page; the exact report URL was confirmed at the July 2026 verification."
     },
     {
       "id": "SRC-SEMIANALYSIS-BLOG",
@@ -1077,7 +1077,7 @@
       "evidenceClass": "empirical",
       "whyListed": "The EU's own AI-infrastructure investment push (InvestAI funding, AI gigafactories, the Feb 2025 AI Action Summit outcomes), background for the 'Europe left behind' competitiveness story the game doesn't yet model with a playable EU seat.",
       "flagReason": "An umbrella citation covering InvestAI, the AI gigafactories program and summit outcomes; no single official page covers all three.",
-      "note": "search hint only, no URL given in source: search commission.europa.eu \"InvestAI\". Covers Feb 2025 AI Action Summit outcomes and the EU AI gigafactories initiative Verification 2026-07-03: unclear. This is a compound description (InvestAI + AI gigafactories + AI Action Summit outcomes), not one work. No single EC page covers all three: /ai-gigafactories_en is scoped narrowly to gigafactories only, /ai-factories covers AI Factories with just a brief InvestAI mention, and the press release covers only the InvestAI launch. Picking any one would be a close-but-different-scope match."
+      "note": "No single canonical page exists; search commission.europa.eu \"InvestAI\". Covers Feb 2025 AI Action Summit outcomes and the EU AI gigafactories initiative Verification 2026-07-03: unclear. This is a compound description (InvestAI + AI gigafactories + AI Action Summit outcomes), not one work. No single EC page covers all three: /ai-gigafactories_en is scoped narrowly to gigafactories only, /ai-factories covers AI Factories with just a brief InvestAI mention, and the press release covers only the InvestAI launch. Picking any one would be a close-but-different-scope match."
     },
     {
       "id": "SRC-BRUSSELS-EFFECT",
@@ -1185,7 +1185,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "The original occupational-exposure measurement study for LLMs, useful background on the methodology behind 'percent of jobs exposed' claims used elsewhere in the registry.",
-      "note": "Not independently re-verified: bundled under an unverified-URLs note in the founding bibliography; title and URL confirmed instead via the founding source list Economy & labor"
+      "note": "Link, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-ACEMOGLU-SIMPLE-MACRO",
@@ -1199,7 +1199,7 @@
       "tier": "library",
       "evidenceClass": "forecast",
       "whyListed": "A skeptical macro estimate of modest GDP growth from AI over the next decade, useful for a player weighing how much to trust either worldview's economic optimism against the Goldman Sachs projection also in this registry.",
-      "note": "search hint from the founding source list: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
+      "note": "search hint from the founding source list: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed"
     },
     {
       "id": "SRC-BRYNJOLFSSON-GENAI-WORK",
@@ -1213,7 +1213,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "The call-center field experiment showing real productivity gains from generative AI assistance, primary evidence behind the game's general 'AI boosts productivity' framing.",
-      "note": "search hint from the founding source list: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
+      "note": "search hint from the founding source list: NBER working paper, no URL given. Not independently re-verified: exact URL not confirmed"
     },
     {
       "id": "SRC-NOY-ZHANG",
@@ -1227,7 +1227,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "A controlled experiment showing GenAI narrows the productivity gap between weaker and stronger writers, useful background on the productivity-and-equity angle behind the game's automation mechanics.",
-      "note": "published in Science (2023) per the founding source list; no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
+      "note": "published in Science (2023) per the founding source list; no URL given. Not independently re-verified: exact URL not confirmed"
     },
     {
       "id": "SRC-DELLACQUA-JAGGED",
@@ -1242,7 +1242,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "The HBS consulting-task study showing GenAI helps unevenly across tasks (the 'jagged frontier'), good background for why the game treats automation benefits as uneven rather than uniform.",
-      "note": "search hint from the founding source list, no URL given. Not independently re-verified: exact URL not confirmed URL updated at verification from (none)."
+      "note": "search hint from the founding source list, no URL given. Not independently re-verified: exact URL not confirmed"
     },
     {
       "id": "SRC-OPENRESEARCH-UBI",
@@ -1512,8 +1512,7 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
-      "gameUse": "Grounds the bilateral-trust track and treaty-signing thresholds/events: real proposals for international AI institutions (verification bodies, joint safety research, coordination mechanisms) motivate the trust-building diplomacy chain (ally_eval_request, civil_military_fusion, liability_shield_ask, treaty_feeler, verification_offer, compute_treaty_feeler) and the political-capital/trust gates required to sign a treaty.",
-      "note": "present in the founding source list: Governance & coordination, absent from the founding bibliography"
+      "gameUse": "Grounds the bilateral-trust track and treaty-signing thresholds/events: real proposals for international AI institutions (verification bodies, joint safety research, coordination mechanisms) motivate the trust-building diplomacy chain (ally_eval_request, civil_military_fusion, liability_shield_ask, treaty_feeler, verification_offer, compute_treaty_feeler) and the political-capital/trust gates required to sign a treaty."
     },
     {
       "id": "SRC-GOVAI-LIBRARY",
@@ -1525,8 +1524,7 @@
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
-      "whyListed": "A curated portal to GovAI's own governance research (institutions, compute governance, benefit-sharing) for players or teachers wanting primary sources behind the treaty and coordination mechanics.",
-      "note": "present in the founding source list: only, absent from the founding bibliography"
+      "whyListed": "A curated portal to GovAI's own governance research (institutions, compute governance, benefit-sharing) for players or teachers wanting primary sources behind the treaty and coordination mechanics."
     },
     {
       "id": "SRC-WINDFALL-CLAUSE",
@@ -1540,7 +1538,7 @@
       "tier": "background",
       "evidenceClass": "analysis",
       "shaped": "The agencyErosion.diffusionShieldMin mechanic (parameters.json worldRules.agencyErosion), where a high enough diffusion/benefit-sharing share lowers erosion of human agency, per its own note 'broad benefit-sharing keeps humans in the loop', reflects this paper's core proposal that redistributing AI's economic windfall preserves participation and blocks narrow power concentration.",
-      "note": "search hint from the founding source list: search title, no URL or year given. Present in the founding source list only, absent from the founding bibliography URL updated at verification from (none)."
+      "note": "No URL in the original reference; link added and verified at the July 2026 pass."
     },
     {
       "id": "SRC-AI-FUTURES-ROLEPLAY",
@@ -1568,7 +1566,7 @@
       "tier": "load-bearing",
       "evidenceClass": "design",
       "gameUse": "facilitator insights from 43 Intelligence Rising games",
-      "note": "ScienceDirect version: https://www.sciencedirect.com/science/article/abs/pii/S0016328725000254. Also in the founding source list: (search hint only, no new info)."
+      "note": "ScienceDirect version: https://www.sciencedirect.com/science/article/abs/pii/S0016328725000254."
     },
     {
       "id": "SRC-INTELLIGENCE-RISING-CSER",
@@ -1594,8 +1592,7 @@
       "status": "verified",
       "tier": "library",
       "evidenceClass": "design",
-      "whyListed": "For readers curious how game-based exploration of AI futures compares to narrative scenario-writing (like AI-2027) or survey forecasting, this is Avin's overview of the methodological menu the project's format sits within.",
-      "note": "URL updated at verification from https://books.openbookpublishers.com/10.11647/obp.0360/ch8.xhtml."
+      "whyListed": "For readers curious how game-based exploration of AI futures compares to narrative scenario-writing (like AI-2027) or survey forecasting, this is Avin's overview of the methodological menu the project's format sits within."
     },
     {
       "id": "SRC-SERIOUS-GAMES-BUNDLE",
@@ -1705,7 +1702,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "For players curious what a 'capability' benchmark actually looks like in the real world, ARC-AGI is the most discussed current example of a benchmark designed to resist brute pattern-matching, alongside the METR task-horizon data already backing the capability meter.",
-      "note": "Founded 2019, ongoing/living resource (year omitted). Successor benchmark ARC-AGI-2 filed separately (see SRC-ARC-AGI-2, )."
+      "note": "Founded 2019, ongoing/living resource (year omitted). Successor benchmark ARC-AGI-2 filed separately (see SRC-ARC-AGI-2)."
     },
     {
       "id": "SRC-LMARENA",
@@ -1718,7 +1715,7 @@
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "For players wanting to see today's actual crowd-sourced model rankings as a living companion to the game's abstract 0-1000 capability meter.",
-      "note": "Founded 2023, ongoing/living resource (year omitted). URL updated at verification from https://lmarena.ai/."
+      "note": "Founded 2023, ongoing/living resource (year omitted)."
     },
     {
       "id": "SRC-OECD-AI-OBSERVATORY",
@@ -1820,7 +1817,7 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
-      "gameUse": "Best single annual synthesis for capabilities, policy, labor, science, medicine, and AI sovereignty; ideal baseline world-state reference for opening turns",
+      "gameUse": "Anchors the talent, capital and public-trust tracks and the prologue's opening beat, via the report's investment, adoption and public-opinion chapters.",
       "note": "ArXiv ID, title and authorship re-verified 2026-07-06. Annual series; see also the 2025 edition (SRC-AI-INDEX-2025)."
     },
     {
@@ -2214,6 +2211,20 @@
       "tier": "load-bearing",
       "evidenceClass": "analysis",
       "gameUse": "treaty ratification requires BOTH governments' domestic standing (political capital) at signing; the win-set logic behind the ratification window mechanic"
+    },
+    {
+      "id": "SRC-METR-TH11",
+      "title": "Time Horizon 1.1",
+      "org": "METR",
+      "year": 2026,
+      "url": "https://metr.org/blog/2026-1-29-time-horizon-1-1/",
+      "type": "web",
+      "tags": ["capability-eval", "trends"],
+      "status": "verified",
+      "tier": "load-bearing",
+      "evidenceClass": "empirical",
+      "gameUse": "The updated task-horizon fit (188-day all-time doubling, faster after 2023) that the capabilityPerRnd pacing note quotes directly.",
+      "note": "Refines the original task-horizon paper with 228 tasks; verified 2026-07-06."
     }
   ]
 }

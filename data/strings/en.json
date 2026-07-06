@@ -1,6 +1,5 @@
 {
   "app.title": "Critical Window",
-  "app.workingTitleNote": "crit-i-cal win-dow, noun: the short stretch of time in which action still changes the outcome",
   "app.tagline": "An open source strategy game about the AI race.",
   "ticker.early.0": "Markets rally on news that markets can be automated.",
   "ticker.early.1": "Chatbot passes the bar exam again. Bar exam declines comment.",
@@ -343,7 +342,7 @@
   "report.kind.rivalAction": "Rival moves",
   "report.kind.election": "Midterms",
   "help.heading": "How this world works",
-  "help.intro": "Everything on this page is the actual rulebook. The only things this game ever hides from you are the two dice sealed at the start of your run: how hard alignment really is, and how steep the takeoff gets. Everything else is public, including exactly what it takes to reach each ending.",
+  "help.intro": "Everything on this page is the actual rulebook. The only things this game ever hides from you are the two dice sealed at the start of your run: how hard alignment really is, and how steep the takeoff gets. Everything else is public, including exactly what it takes to reach each ending. Some meters stay tucked away until they first move; nothing is hidden, just decluttered.",
   "help.back": "Back",
   "help.title.button": "How to play",
   "help.terms.heading": "The tracks",
@@ -542,7 +541,7 @@
   "handoff.continue": "I am {seat}. Begin.",
   "title.hook": "Summer 2026. You take office holding the AI race portfolio. Sixteen quarters to 2030. Your eval reports are honest ranges, not answers. Your rival is racing, your public is nervous, and two dice were sealed in an envelope before you sat down.",
   "title.feature.seats": "Play the US or China. Or both, one device",
-  "title.feature.sources": "Every number cites a source you can check",
+  "title.feature.sources": "Every number: a source you can check, or a design choice that says so",
   "title.feature.endings": "Five endings. The good ones are earned",
   "title.playNow": "Take office",
   "resource.substitution.label": "Chip Substitution",
@@ -623,7 +622,7 @@
   "sources.kicker": "the evidence",
   "sources.heading": "Every number cites a source",
   "sources.body": "{loadBearing} sources set the game's numbers directly, across {sites} citations. {background} more shaped how mechanics work. {library} are here for reading further. Click any title to read the original. The repo ships the full map, number by number.",
-  "sources.classes": "Badges: measured means someone counted it. forecast means someone predicted it. argument means someone reasoned their way there. design means we chose it, and say so.",
+  "sources.classes": "Badges: measured means built from empirical measurements. forecast means someone predicted it. argument means someone reasoned their way there. design means we chose it for the game, and say so. design-tuned means an empirical base whose game magnitude we calibrated.",
   "sources.class.empirical": "measured",
   "sources.class.forecast": "forecast",
   "sources.class.analysis": "argument",
@@ -790,7 +789,7 @@
   "debrief.score.challengeBeaten": "The seed's holder scored {target}. You scored {total}.",
   "sources.legend": "Every entry was re-checked at the July 2026 audit, by machine and by hand. A few carry a note where no single stable link exists. The note says exactly why.",
   "title.staleSave": "Your saved run was made with an older data version and cannot resume. Its seed was {seed}. Start a fresh run with it to replay that world.",
-  "sources.dataVersion": "Build data version {hash}. Compare it against the repository to verify this deployment.",
+  "sources.dataVersion": "Build {sha} · data version {hash}. Compare either against the repository to verify this deployment.",
   "title.soundOffer": "This game has music and a narrator, off by default out of respect. Want them?",
   "title.soundOn": "Sound on",
   "title.soundNotNow": "Not now",
@@ -803,5 +802,9 @@
   "title.imprint": "Imprint",
   "title.privacyPage": "Privacy",
   "title.resumeRun": "Return to your run",
-  "title.resumeDebrief": "Back to your debrief"
+  "title.resumeDebrief": "Back to your debrief",
+  "setup.quickStart": "Start my first run",
+  "setup.quickStartHint": "Consensus world, solo as the United States, fresh seed. Most first terms end badly; the debrief shows you exactly why, and the full controls stay below.",
+  "debrief.emailAsk": "No GitHub account? Email what the game got wrong:",
+  "app.definition": "crit-i-cal win-dow, noun: the short stretch of time in which action still changes the outcome"
 }

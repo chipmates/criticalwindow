@@ -359,6 +359,33 @@ real-world event it dramatizes, while its effect magnitudes are balance-tuned
 design values unless a note says otherwise. No card premise is ever counted as
 a measured value.
 
+## Five worked examples, source figure to game value
+
+The tables below are complete; these five show the transformation step by step.
+
+1. **Starting compute 700.** The scenario opens the US seat at 700 of 1000. The compute
+   track's unit mapping (anchors.json) reads 700 as roughly 65% of the world's frontier
+   training capacity, the cited compute dataset's picture of the US share; the index
+   point is the mapping, not a measurement of its own.
+2. **Capability pacing (curves.capabilityPerRnd).** The cited analyses report training
+   compute doubling roughly every six months and the 50% task horizon doubling every
+   188 days on the all-time fit. The curve compresses that regime onto the 0-1000
+   index so an all-in racer reaches threshold resolution around turn 10 of 16; the
+   compression ratio is the design decision, and it cites the constitution.
+3. **Eval band floor (evalUncertainty.floorBandWidth 100).** The deception literature
+   reports near-99% true-trigger rates against ~0 red-team detection, and 55% real
+   misalignment reading as 6.5% in evals. No paper says "100 points"; the floor is a
+   design-tuned translation of "the band never closes," rounded to the game's
+   multiple-of-50 rule, and badged design-tuned accordingly.
+4. **Displacement curve knee.** The cited exposure work puts about 40% of global
+   employment exposed to AI. The curve turns exposure into equilibrium displacement
+   rising with capability; the knee's position was calibrated in play so early-game
+   displacement rises instead of falling, and the note says so.
+5. **Starting energy 450.** The cited projections put datacenter electricity demand
+   rising from about 415 TWh toward about 945 TWh by 2030. The energy track reads 450
+   as roughly 40 GW of grid headroom for new AI load: the 2026 reality, with the
+   squeeze still ahead.
+
 Disagree with a value? Open a "challenge a number" issue with a source.
 Realism disputes are decided by the maintainer in public issues today; if the
 project earns an advisory board, it takes that role.

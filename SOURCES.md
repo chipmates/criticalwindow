@@ -8,8 +8,8 @@ in `data/` without a source ID fails the build, and so does a registry entry tha
 claims a tier its citations do not support. [`docs/EVIDENCE.md`](docs/EVIDENCE.md)
 lists every cited number with its evidence.
 
-**163 entries. 54 external sources drive numbers directly (249 citation sites). Game-design constants cite the project's own [design constitution](docs/DESIGN.md) instead (63 sites), and those are always labeled `design`, never counted as outside evidence. 11 more sources shaped the design, 97 are further reading.**
-Status: 9 book, 5 flagged, 149 verified.
+**164 entries. 55 external sources drive numbers directly (250 citation sites). Game-design constants cite the project's own [design constitution](docs/DESIGN.md) instead (72 sites), and those are always labeled `design`, never counted as outside evidence. 11 more sources shaped the design, 97 are further reading.**
+Status: 9 book, 5 flagged, 150 verified.
 
 What the statuses mean: `verified` says the link was fetched and the title and
 authors matched this entry (July 2026, scripted fetches plus hand checks; where
@@ -30,13 +30,13 @@ Found a dead link, a better source, or a number you want to challenge? Open an
 issue. That is a real contribution and it is welcome, see
 [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-## Sources that drive numbers (55)
+## Sources that drive numbers (56)
 
 Every entry lists each place it is cited. Sorted by citation count.
 
 - **SRC-DESIGN-HANDOVER** · [Design constitution (founding brief drafted 2026-07-03 under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/v0.3.1/docs/DESIGN.md) · project (2026) · `design`
   Used for: design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
-  Cited 63× by: anchors.json → tracks.politicalCapital · anchors.json → tracks.unrest · mandates.json → mandates.3 · mandates.json → mandates.8 · mandates.json → sourceIds · parameters.json → worldviewPresets.cautious.displacementLagDivisor *(+57 more)*
+  Cited 72× by: anchors.json → tracks.politicalCapital · anchors.json → tracks.unrest · incidents.json → riskFormula.pressureRivalRacePct · mandates.json → mandates.3 · mandates.json → mandates.8 · mandates.json → sourceIds *(+66 more)*
 - **SRC-AI2027** · [AI 2027](https://ai-2027.com/) · Kokotajlo, Alexander, Larsen, Lifland, Dean, AI Futures Project (2025) · `forecast`
   Used for: race vs. slowdown endings; core scenario spine; cautious preset anchors
   Cited 21× by: anchors.json → tracks.capability · events/autonomous_targeting_demo.json → sourceIds · events/branch_point.json → sourceIds · events/civil_military_fusion.json → sourceIds · events/grid_crunch.json → sourceIds · events/intelligence_explosion.json → sourceIds *(+15 more)*
@@ -47,7 +47,7 @@ Every entry lists each place it is cited. Sorted by citation count.
   Used for: Oct 7 2022 export controls
   Cited 16× by: anchors.json → tracks.substitution · events/allied_export_fracture.json → sourceIds · events/ally_eval_request.json → sourceIds · events/asml_export_squeeze.json → sourceIds · events/chip_smuggling.json → sourceIds · events/fab_yield_breakthrough.json → sourceIds *(+10 more)*
 - **SRC-AI-INDEX-2026** · [Artificial Intelligence Index Report 2026](https://arxiv.org/abs/2606.15708) · Stanford Institute for Human-Centered AI (2026) · `empirical`
-  Used for: Best single annual synthesis for capabilities, policy, labor, science, medicine, and AI sovereignty; ideal baseline world-state reference for opening turns
+  Used for: Anchors the talent, capital and public-trust tracks and the prologue's opening beat, via the report's investment, adoption and public-opinion chapters.
   Cited 16× by: anchors.json → tracks.talent · anchors.json → tracks.capital · anchors.json → tracks.publicTrust · events/companion_app_boom.json → sourceIds · events/election_scandal.json → sourceIds · events/flash_crash_agent.json → sourceIds *(+10 more)*
 - **SRC-SLEEPER** · [Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training](https://arxiv.org/abs/2401.05566) · Hubinger et al., Anthropic (2024) · `empirical`
   Used for: deceptive-alignment mechanic; eval uncertainty band
@@ -77,7 +77,7 @@ Every entry lists each place it is cited. Sorted by citation count.
   Used for: Most directly game-relevant recent paper for sabotage / blackmail / insider-threat event chains under high-autonomy deployment
   Cited 8× by: anchors.json → tracks.alignment · incidents.json → riskFormula.pressureAllocationPct · incidents.json → riskFormula.pressureRivalRacePct · incidents.json → rungs.0 · incidents.json → rungs.1 · incidents.json → rungs.3 *(+2 more)*
 - **SRC-EPOCH-COMPUTE** · [Data on the Trajectory of AI (databases hub)](https://epoch.ai/data) · Epoch AI · `empirical`
-  Used for: Compute-meter anchor and the capabilityPerRnd growth curve's compute-doubling assumption (~5.2 months per doubling since 2020); also general compute/energy event flavor. No tech-tree feature exists anywhere in the game.
+  Used for: Compute-meter anchor and the capabilityPerRnd growth curve's compute-doubling assumption (~5.2 months per doubling since 2020); also general compute/energy event flavor.
   Cited 6× by: anchors.json → tracks.compute · events/coal_province_datacenter_bid.json → sourceIds · events/fab_yield_breakthrough.json → sourceIds · events/open_source_replication.json → sourceIds · parameters.json → curves.capabilityPerRnd · scenarios/scenario_2026.json → seats.usa.resources.compute
 - **SRC-GRACE-SURVEY** · [Thousands of AI Authors on the Future of AI](https://arxiv.org/abs/2401.02843) · Grace et al. (2024) · `forecast`
   Used for: expert-survey timeline distributions; consensus preset anchors (founding core anchor set)
@@ -101,7 +101,7 @@ Every entry lists each place it is cited. Sorted by citation count.
   Used for: compute-centric economic takeoff model; automation/growth economic engine
   Cited 3× by: events/city_power_deal.json → sourceIds · parameters.json → worldRules.upkeep.capitalIncomePerDiffusion · parameters.json → curves.rndCapacity
 - **SRC-GRADUAL-DISEMPOWERMENT** · [Gradual Disempowerment: Systemic Existential Risks from Incremental AI Development](https://arxiv.org/abs/2501.16946) · Kulveit, Douglas, Ammann, Turan, Krueger, Duvenaud (2025) · `analysis`
-  Used for: grounds the hidden gradual-disempowerment ending
+  Used for: Grounds the agency-erosion pressure that accrues at high capability and is read back in the debrief; the dedicated hidden ending it argues for is planned, not in this release.
   Cited 3× by: parameters.json → worldRules.agencyErosion.highCapabilityMin · parameters.json → worldRules.agencyErosion.perTurn · parameters.json → worldRules.agencyErosion.diffusionShieldMin
 - **SRC-EU-AI-ACT-TIMELINE** · [EU AI Act Implementation Timeline](https://artificialintelligenceact.eu/implementation-timeline/) · FLI · `empirical`
   Used for: phased dates (bans Feb 2025; GPAI Aug 2025; bulk Aug 2026; high-risk Aug 2027)
@@ -199,6 +199,9 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-PUTNAM-TWO-LEVEL** · [Diplomacy and Domestic Politics: The Logic of Two-Level Games](https://www.jstor.org/stable/2706785) · Robert D. Putnam, International Organization 42(3) (1988) · `analysis`
   Used for: treaty ratification requires BOTH governments' domestic standing (political capital) at signing; the win-set logic behind the ratification window mechanic
   Cited 1× by: parameters.json → thresholds.treatySignPoliticalCapitalMin
+- **SRC-METR-TH11** · [Time Horizon 1.1](https://metr.org/blog/2026-1-29-time-horizon-1-1/) · METR (2026) · `empirical`
+  Used for: The updated task-horizon fit (188-day all-time doubling, faster after 2023) that the capabilityPerRnd pacing note quotes directly.
+  Cited 1× by: parameters.json → curves.capabilityPerRnd
 
 ## Sources that shaped the design (11)
 

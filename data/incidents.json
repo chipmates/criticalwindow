@@ -8,7 +8,7 @@
     },
     "pressureRivalRacePct": {
       "value": 25,
-      "sourceIds": ["SRC-AGENTIC-MISALIGNMENT", "SRC-SIM-GAMING-INSIGHTS"],
+      "sourceIds": ["SRC-AGENTIC-MISALIGNMENT", "SRC-SIM-GAMING-INSIGHTS", "SRC-DESIGN-HANDOVER"],
       "note": "an open race adds the same again: pressure multiplier max 1.5x total (2026-07-04 calibration, scaled down from lab-elicited 79-96% rates to per-turn cadence)"
     }
   },
@@ -24,7 +24,9 @@
       "title": "strings:incident.nearMiss.title",
       "body": "strings:incident.nearMiss.body",
       "threshold": 250,
-      "baseDamage": { "publicTrust": -50 },
+      "baseDamage": {
+        "publicTrust": -50
+      },
       "forcedPause": false,
       "cooldownTurns": 2,
       "sourceIds": ["SRC-SLEEPER", "SRC-AGENTIC-MISALIGNMENT", "SRC-SCHEMING"],
@@ -36,7 +38,11 @@
       "title": "strings:incident.deploymentFailure.title",
       "body": "strings:incident.deploymentFailure.body",
       "threshold": 400,
-      "baseDamage": { "publicTrust": -100, "society.unrest": 100, "politicalCapital": -50 },
+      "baseDamage": {
+        "publicTrust": -100,
+        "society.unrest": 100,
+        "politicalCapital": -50
+      },
       "forcedPause": false,
       "cooldownTurns": 2,
       "sourceIds": ["SRC-AGENTIC-MISALIGNMENT", "SRC-SCHEMING"],
@@ -48,7 +54,11 @@
       "title": "strings:incident.breakoutAttempt.title",
       "body": "strings:incident.breakoutAttempt.body",
       "threshold": 550,
-      "baseDamage": { "publicTrust": -150, "society.unrest": 100, "capital": -100 },
+      "baseDamage": {
+        "publicTrust": -150,
+        "society.unrest": 100,
+        "capital": -100
+      },
       "forcedPause": true,
       "cooldownTurns": 2,
       "sourceIds": ["SRC-SCHEMING", "SRC-AI2027"],
@@ -60,7 +70,11 @@
       "title": "strings:incident.labAccident.title",
       "body": "strings:incident.labAccident.body",
       "threshold": 700,
-      "baseDamage": { "publicTrust": -250, "society.unrest": 200, "politicalCapital": -100 },
+      "baseDamage": {
+        "publicTrust": -250,
+        "society.unrest": 200,
+        "politicalCapital": -100
+      },
       "forcedPause": true,
       "cooldownTurns": 2,
       "catastropheBelowTrueAlignment": 150,
