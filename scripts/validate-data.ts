@@ -370,6 +370,22 @@ if (strings) {
   }
 }
 
+// Displayed markdown prose obeys the same rules. SOURCES.md is exempt because
+// quoted publication titles legitimately carry em dashes.
+for (const relPath of ['README.md', 'ROADMAP.md', 'CONTRIBUTING.md', 'GOVERNANCE.md']) {
+  const absPath = join(dataRootPath, '..', relPath);
+  if (!existsSync(absPath)) {
+    continue;
+  }
+  const text = readFileSync(absPath, 'utf8');
+  if (text.includes('—')) {
+    errors.push(`${relPath}: em dash in displayed text (voice rule)`);
+  }
+  if (text.includes(' – ')) {
+    errors.push(`${relPath}: spaced en dash in displayed text (voice rule)`);
+  }
+}
+
 // -- 6. draft values ----------------------------------------------------------
 if (draftValues.length > 0) {
   const message = `${draftValues.length} TODO-SOURCE value(s):\n  ${draftValues.join('\n  ')}`;

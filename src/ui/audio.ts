@@ -1,7 +1,7 @@
 /**
  * Audio: build-time static files, lazy-loaded, OFF by default (classrooms,
  * autoplay policies, and respect). Music: 'I Walk With Ghosts' by Scott
- * Buckley, CC BY 4.0, named in settings and credits (Michel's pick,
+ * Buckley, CC BY 4.0, named in settings and credits (picked by ear,
  * 2026-07-04: one track, looped). Narrations: generated at build time
  * (scripts/generate-audio.ts); everything degrades silently when a file
  * is absent.
@@ -13,7 +13,7 @@ const PLAYLIST = ['audio/music-i-walk-with-ghosts.mp3'] as const;
 import audioScript from '../../scripts/audio-script.json';
 
 /**
- * Model choice per VOICE, judged by ear (Michel, 2026-07-04): the narrator
+ * Model choice per VOICE, judged by ear (2026-07-04): the narrator
  * reads best in the eleven_v3 rendition (''), the advisor in the
  * multilingual v2 backup ('-v2'). Both sets ship; this map picks per clip.
  */

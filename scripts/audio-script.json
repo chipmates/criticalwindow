@@ -1,13 +1,13 @@
 {
-  "comment": "Voice surfaces resolve against data/strings/en.json at generation time: one source of truth, rename-proof, i18n-ready. Generation is build-time only (constitution). Playback is governed by the off-by-default sound setting. Two registers: the NARRATOR speaks history (prologue, endings, scheduled beats), the ADVISOR speaks the room (memos, incidents, wildcards). Advisor voice id pending Michel's pick; surfaces without a cast voice are skipped with a report, so generation can run narrator-first. Two models generated side by side: eleven_v3 (primary, language pinned to English) and eleven_multilingual_v2 (backup, suffix -v2). The app picks one via VOICE_MODEL_SUFFIX in audio.ts.",
+  "comment": "Voice surfaces resolve against data/strings/en.json at generation time: one source of truth, rename-proof, i18n-ready. Generation is build-time only (constitution). Playback is governed by the off-by-default sound setting. Two registers: the NARRATOR speaks history (prologue, endings, scheduled beats), the ADVISOR speaks the room (memos, incidents, wildcards). Advisor voice id pending the final pick; surfaces without a cast voice are skipped with a report, so generation can run narrator-first. Two models generated side by side: eleven_v3 (primary, language pinned to English) and eleven_multilingual_v2 (backup, suffix -v2). The app picks one via VOICE_MODEL_SUFFIX in audio.ts.",
   "voices": {
     "narrator": {
       "voiceId": "dnwBRYgytZDR3bhBOT7q",
-      "note": "Michel-supplied narrator (2026-07-04, revised), female. Replaces nbhuZvGPlMc3SacWr72m."
+      "note": "Narrator picked by ear (2026-07-04, revised), female. Replaces nbhuZvGPlMc3SacWr72m."
     },
     "advisor": {
       "voiceId": "PZDaEGofJmmmazpkVBLT",
-      "note": "Michel-supplied 2026-07-04, male briefing register (memos, incidents, wildcards). King's Dilemma advisor-memo steal."
+      "note": "Picked by ear 2026-07-04, male briefing register (memos, incidents, wildcards). King's Dilemma advisor-memo steal."
     }
   },
   "models": [

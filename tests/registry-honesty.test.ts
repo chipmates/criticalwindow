@@ -6,14 +6,26 @@
  */
 import { describe, expect, test } from 'vitest';
 import { sourcesRegistrySchema, sourceEntrySchema } from '../src/engine/schemas';
+import { dataRoot, readDataFiles } from '../scripts/lib/data-files';
 import { buildUsageMap } from '../scripts/lib/source-usage';
 import { registryHonestyErrors } from '../scripts/lib/registry-honesty';
-import { renderSourcesMd, renderUsageJson, tierCounts } from '../scripts/lib/render-views';
+import {
+  citationSiteCount,
+  renderEvidenceMd,
+  renderSourcesMd,
+  renderUsageJson,
+  tierCounts,
+  type ParsedDataFile,
+} from '../scripts/lib/render-views';
 import registryJson from '../data/sources.json';
 import usageView from '../src/ui/generated/source-usage.json';
 
 const registry = sourcesRegistrySchema.parse(registryJson);
 const usage = buildUsageMap();
+const parsedFiles: ParsedDataFile[] = readDataFiles(dataRoot()).map((file) => ({
+  relPath: file.relPath,
+  json: JSON.parse(file.content) as unknown,
+}));
 
 describe('the live registry is honest', () => {
   test('zero honesty errors on the real data', () => {
@@ -31,6 +43,7 @@ describe('the live registry is honest', () => {
     expect(usageView.counts.loadBearing).toBe(counts['load-bearing']);
     expect(usageView.counts.background).toBe(counts.background);
     expect(usageView.counts.library).toBe(counts.library);
+    expect(usageView.counts.citationSites).toBe(citationSiteCount(usage));
   });
 });
 
@@ -89,5 +102,17 @@ describe('mutations are caught (the rules bite)', () => {
     expect(renderSourcesMd(mutated, usage)).not.toBe(renderSourcesMd(registry, usage));
     first.tier = 'background';
     expect(renderUsageJson(mutated, usage)).not.toBe(renderUsageJson(registry, usage));
+  });
+
+  test('an evidence-class flip surfaces as EVIDENCE.md drift', () => {
+    const mutated = structuredClone(registry);
+    const cited = mutated.sources.find(
+      (s) => s.tier === 'load-bearing' && s.evidenceClass === 'empirical',
+    );
+    if (!cited) throw new Error('no empirical load-bearing source');
+    cited.evidenceClass = 'forecast';
+    expect(renderEvidenceMd(mutated, parsedFiles, usage)).not.toBe(
+      renderEvidenceMd(registry, parsedFiles, usage),
+    );
   });
 });

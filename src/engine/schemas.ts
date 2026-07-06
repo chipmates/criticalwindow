@@ -43,7 +43,7 @@ export const sourceIdsSchema = z
   .array(sourceIdOrTodoSchema)
   .min(1, 'iron rule: at least one source id (TODO-SOURCE only while drafting)');
 
-/** Claim-level citations (iron-rule extension, v0.2): SRC-ID#n from internal/distill. */
+/** Claim-level citations (iron-rule extension, v0.2): ids of the form SRC-ID#n. */
 const CLAIM_ID_PATTERN = /^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*#\d+$/;
 export const claimIdsSchema = z.array(z.string().regex(CLAIM_ID_PATTERN)).min(1).optional();
 
@@ -754,7 +754,9 @@ export const sourceTierSchema = z.enum(['load-bearing', 'background', 'library']
 /**
  * What kind of evidence the game takes from a source: a measurement, a
  * forecast, an argument, or a game-design decision. Orthogonal to `type`
- * (which is the publication form).
+ * (which is the publication form). Unlike tiers, which the validator proves
+ * against the citation map, the class is a human judgment the machine cannot
+ * verify; disagree via a source-check issue.
  */
 export const sourceEvidenceClassSchema = z.enum(['empirical', 'forecast', 'analysis', 'design']);
 
