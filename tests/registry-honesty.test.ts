@@ -55,9 +55,7 @@ describe('mutations are caught (the rules bite)', () => {
     delete uncited.whyListed;
     uncited.gameUse = 'claims a citation it does not have';
     const errors = registryHonestyErrors(mutated, usage);
-    expect(errors.some((e) => e.includes(uncited.id) && e.includes('nothing in data/'))).toBe(
-      true,
-    );
+    expect(errors.some((e) => e.includes(uncited.id) && e.includes('nothing in data/'))).toBe(true);
   });
 
   test('vague usage claims fail', () => {

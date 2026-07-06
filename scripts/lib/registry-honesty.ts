@@ -14,10 +14,7 @@ const VAGUE_PHRASES = [
   'shaped our approach',
 ];
 
-export function registryHonestyErrors(
-  registry: SourcesRegistryData,
-  usage: UsageMap,
-): string[] {
+export function registryHonestyErrors(registry: SourcesRegistryData, usage: UsageMap): string[] {
   const errors: string[] = [];
   for (const source of registry.sources) {
     const cited = usage.has(source.id);
@@ -36,7 +33,9 @@ export function registryHonestyErrors(
       }
       for (const phrase of VAGUE_PHRASES) {
         if (text.toLowerCase().includes(phrase)) {
-          errors.push(`sources: '${source.id}' ${field} says '${phrase}'; name the mechanic instead`);
+          errors.push(
+            `sources: '${source.id}' ${field} says '${phrase}'; name the mechanic instead`,
+          );
         }
       }
     }

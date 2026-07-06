@@ -34,6 +34,7 @@
     "print-kit": "tsx scripts/print-kit.ts",
     "sources-md": "tsx scripts/generate-source-views.ts",
     "golden": "tsx scripts/make-golden.ts",
+    "gif": "tsx scripts/capture-playthrough.ts",
     "test:browser": "playwright test",
     "audio": "tsx scripts/generate-audio.ts"
   },
