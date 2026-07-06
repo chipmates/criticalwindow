@@ -6,18 +6,23 @@ labels: ['sources', 'balance', 'non-code']
 
 ## The number
 
-<!-- Where it lives: file and path, e.g. data/parameters.json -> worldRules.society.displacementPerTurn.
+<!-- File and exact path, e.g. data/parameters.json -> thresholds.treatyTrustMin.
      docs/EVIDENCE.md lists every cited value with its current evidence. -->
 
-## What it should be, and why
+## Current value and your proposed value
 
-<!-- Your proposed value or range, and the reasoning. -->
+<!-- What it is now, what it should be (a number or a range), and the reasoning. -->
 
-## Your source
+## Your source, with the exact support
 
-<!-- The evidence for your number. A link plus the relevant figure or quote.
-     "It felt wrong in play" is a playtest report, not a challenge; use that template instead. -->
+<!-- Link, plus the page, table, or figure, plus a short quote or paraphrase of
+     the finding that supports your number. "It felt wrong in play" is a
+     playtest report, not a challenge; use that template instead. -->
 
-## What the game currently cites
+## What the game currently cites, and why it falls short
 
-<!-- The sourceIds on that value, and why you think they do not support it. -->
+<!-- The sourceIds on that value, and why they do not support the current number. -->
+
+## Confidence
+
+<!-- How sure are you: certain / probable / worth-a-look. Honest uncertainty welcome. -->

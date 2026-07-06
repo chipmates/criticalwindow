@@ -1,6 +1,6 @@
 # CI chain per the project constitution: validate -> lint -> typecheck -> test -> build -> smoke.
-# Written at Block A1; dormant until the repo goes public (Block E2). Determinism and
-# data-integrity checks are CI failures by design, not review catches.
+# Determinism and data-integrity checks are CI failures by design, not review catches.
+# Every commit must carry a DCO sign-off; the check below enforces it on pull requests.
 name: ci
 
 on:
@@ -23,6 +23,18 @@ jobs:
 
       - name: Install
         run: pnpm install --frozen-lockfile
+
+      - name: DCO (every PR commit carries a sign-off)
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch origin ${{ github.base_ref }} --depth=200
+          bad=0
+          for c in $(git rev-list origin/${{ github.base_ref }}..HEAD); do
+            if ! git show -s --format=%B "$c" | grep -q '^Signed-off-by: '; then
+              echo "missing sign-off: $c"; bad=1
+            fi
+          done
+          exit $bad
 
       - name: Validate data (schemas, source IDs, string keys)
         run: pnpm validate

@@ -370,6 +370,51 @@ if (strings) {
   }
 }
 
+// Public surfaces must agree with the registry count: a hardcoded stale total
+// on the landing page is exactly the gotcha this project cannot afford.
+if (sources) {
+  const indexHtml = readFileSync(join(dataRootPath, '..', 'index.html'), 'utf8');
+  for (const match of indexHtml.matchAll(/(\d+)(?:-entry| sources)/g)) {
+    if (Number(match[1]) !== sources.sources.length) {
+      errors.push(
+        `index.html: says '${match[0]}' but the registry has ${sources.sources.length} entries`,
+      );
+    }
+  }
+}
+
+// Pre-launch phrasing must not survive launch. Checked on every public prose
+// surface; add phrases here the moment one embarrasses us.
+const STALE_PHRASES = [
+  'this repository is private',
+  'when the repository goes public',
+  'when it ships',
+  'nothing playable yet',
+  'dormant until',
+];
+for (const relPath of [
+  'README.md',
+  'ROADMAP.md',
+  'CONTRIBUTING.md',
+  'GOVERNANCE.md',
+  'CODE_OF_CONDUCT.md',
+  'SECURITY.md',
+  'index.html',
+  '.github/labels.md',
+  '.github/workflows/ci.yml',
+]) {
+  const absPath = join(dataRootPath, '..', relPath);
+  if (!existsSync(absPath)) {
+    continue;
+  }
+  const text = readFileSync(absPath, 'utf8').toLowerCase();
+  for (const phrase of STALE_PHRASES) {
+    if (text.includes(phrase)) {
+      errors.push(`${relPath}: stale pre-launch phrase '${phrase}'`);
+    }
+  }
+}
+
 // Displayed markdown prose obeys the same rules. SOURCES.md is exempt because
 // quoted publication titles legitimately carry em dashes.
 for (const relPath of [

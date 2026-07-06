@@ -12,7 +12,7 @@ There are two ways in, and the one without code matters at least as much.
 
 **Propose an event card.** Events are JSON files in `data/events/`. Copy an existing one, keep its shape (your editor gets autocomplete from the `$schema` line), and follow the house dilemma rule: no obviously right choice, every option should hurt someone credible, and at least one cost should arrive later than the benefit. Real events with real sources make the best cards. You do not need to get the JSON perfect. A clearly written issue describing the event, the choices, and the sources is a fine contribution on its own.
 
-**Playtest.** Print the kit (`pnpm print-kit` or grab the PDF from a release), play it with people, and file what happened. What confused them, what they argued about, whether they wanted to go again. An issue labeled `playtest` with honest notes is gold.
+**Playtest.** Print the kit (download the PDF from the latest release, or run `pnpm exec playwright install chromium` once and then `pnpm print-kit`), play it with people, and file what happened. What confused them, what they argued about, whether they wanted to go again. An issue labeled `playtest` with honest notes is gold.
 
 **Later: translations.** The game is built for it (all text lives in `data/strings/`), but translation opens at Phase 4 when the text stabilizes. Do not translate yet, it would churn.
 

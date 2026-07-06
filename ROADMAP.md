@@ -22,16 +22,18 @@ A print-and-play kit generated from the same data files the digital game uses. I
 
 ### Phase 2: Prototype. Built, gate in measurement
 
-The game in your browser: both the US and China seats, hotseat on one device, hidden alignment dice, eval reports that flatter you exactly when it matters, a society with its own clock, five endings, voice narration, and a debrief that opens the sealed envelope and shows what your run argued. Balance was tuned by an adversarial campaign of several hundred model-played games; its methods, and the three times it caught its own instruments lying, are in the commit history. But this phase's gate is human by definition (15-minute median sessions, unprompted replays, takeaways named unaided), models cannot feel whether losing is fun, and we do not mark our own gates passed. It gets measured with real players during the alpha, and this line changes when it does.
+The game in your browser: both the US and China seats, hotseat on one device, hidden alignment dice, eval reports that flatter you exactly when it matters, a society with its own clock, five endings, voice narration, and a debrief that opens the sealed envelope and shows what your run argued. Balance was tuned by an adversarial campaign of several hundred model-played games; its methods, its ending distributions, and the three times it caught its own instruments lying are documented in [docs/BALANCE.md](docs/BALANCE.md). But this phase's gate is human by definition (15-minute median sessions, unprompted replays, takeaways named unaided), models cannot feel whether losing is fun, and we do not mark our own gates passed. It gets measured with real players during the alpha, and this line changes when it does.
 
 ### Phase 3: Public Alpha. You are here
 
 The first real launch. In rough order: the hosted game at criticalwindow.org, real players through the Phase 2 human gate, balance shaped by people instead of proxies, more events for replay depth, art beyond the stamp glyphs (with every prompt and decision published), and an itch.io satellite page that points home.
 **Gate:** a thousand organic plays and five outside contributors.
 
-### Phase 4: 1.0, the Europe Update
+### Phase 4: 1.0
 
-A playable EU seat with its own win conditions, and winning the race is not one of them. Classroom kit with hotseat tournaments and printable debrief worksheets, at least three languages, a proper teacher's guide, captions and a screen-reader narrative mode (the voice files already ship with word timestamps, so this is finishing, not starting).
+Classroom kit with hotseat tournaments and printable debrief worksheets, at least three languages, a proper teacher's guide, captions and a screen-reader narrative mode (the voice files already ship with word timestamps, so this is finishing, not starting).
+
+A playable EU seat is deferred, not promised: [ADR-002](docs/decisions/ADR-002-eu-seat-deferral.md) records the decision and what would reverse it. Europe stays in the game as a force (the AI Act beats, the ASML chokepoint) either way.
 
 Because the engine is a deterministic fold and every save is a tiny action log, three features cost us almost nothing that would cost other games a server: what-if forking from the debrief (replay from turn 9, choose differently), a replay theater (any run shareable as a link, stepped through with the truth chart growing), and async two-player by link, correspondence-chess style, no server ever. These land across Phases 3 and 4 as they mature.
 **Gate:** steady play, ten classrooms using it, press coverage.

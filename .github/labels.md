@@ -1,7 +1,6 @@
-# Label plan
+# Label taxonomy
 
-Applied when the repository goes public (issues open at Block E2/E3). Kept here so the
-good-first-issue wave at v0.1.0 has a taxonomy ready.
+The labels in use on this repository, and what each one means.
 
 | Label              | For                                                                 |
 | ------------------ | ------------------------------------------------------------------- |

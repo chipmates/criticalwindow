@@ -1,7 +1,7 @@
 # ADR-002: Defer the EU playable seat; keep Europe as a force
 
-Status: **ACCEPTED 2026-07-04.** Decided under explicit project-lead delegation of this call
-(2026-07-04); the project lead's stated lean matched. Veto remains open until v0.2 ships.
+Status: **ACCEPTED 2026-07-04** by the maintainer. Standing review: the alpha exit survey
+re-tests takeaway 5; the reversal conditions below say what would bring the seat back.
 Supersedes parts of ADR-001 (#8 seats, #18 MVP path) and reframes how takeaway #5 is delivered.
 Context: v0.2 direction set by the project lead after the first human playtest of v0.1.
 
@@ -72,8 +72,7 @@ completeness.
 
 ## Sign-off
 
-- [x] Accepted 2026-07-04 under the project lead's explicit delegation of this decision; his
-      stated gut (postpone) matched the technical assessment. Grounds: two-seat balance surface
+- [x] Accepted 2026-07-04 by the maintainer. Grounds: two-seat balance surface
       is tractable where three is not; the wave-1 event/wildcard layer already carries
       Europe-as-force (AI Act beats, ASML wildcard); the re-evaluation trigger below measures
       what the deferral costs. ADR-001 #8/#18 read as amended above. Project-lead veto stays

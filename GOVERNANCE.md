@@ -2,6 +2,10 @@
 
 Small and explicit, sized for the project we are, revisited when we outgrow it.
 
+Critical Window is a project of ChipMates gemeinnuetzige GmbH, a German nonprofit.
+No revenue, no ads, no investors. If the project ever takes grants, the funders will
+be disclosed in this file. Contact: hello@criticalwindow.org.
+
 ## Who decides what
 
 **The core team decides.** Right now the core team is the founding maintainer. Decisions
@@ -40,9 +44,20 @@ sourced range, and we want that issue filed.
 ## Licensing and the name
 
 Code is AGPL-3.0, content is CC BY-SA 4.0, contributions are certified by DCO sign-off,
-and contributors keep their copyright. The project name and mark will be trademarked: the
+and contributors keep their copyright. The name is a common-law mark today, not a registered trademark; registration is intended. The point stands either way: the
 code is free to fork and always will be, but a fork that rewrites the numbers to push a
 narrative does not get to wear our name while doing it.
+
+## How this project is built
+
+Openly answered because an honest reader will ask: this project is built by a very
+small human core using heavy AI assistance, at a speed the git history makes obvious.
+Every design decision, every adjudication, and every number is owned by the human
+maintainer, and the build method is exactly why the trust architecture exists: the
+iron rule, the two-way registry enforcement, the published evidence map, and the
+challenge-a-number loop are there so you never have to take the authors' word for
+anything, human or machine. Judge the artifact, verify the claims, and when something
+is wrong, file the issue; that is the failure mode we designed for.
 
 ## Moderation
 

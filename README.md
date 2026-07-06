@@ -19,13 +19,15 @@
 
 ## Play
 
-Clone and run it locally today:
+**Play now: [criticalwindow.org](https://criticalwindow.org)** (mirror: [criticalwindow.pages.dev](https://criticalwindow.pages.dev)). It works on phones, installs from the browser as an app, and keeps working offline after the first load.
+
+Or clone and run it locally:
 
 ```
 pnpm install && pnpm dev
 ```
 
-A hosted version arrives with the public alpha, and this line becomes a link when it ships. There is also a print-and-play paper kit: `pnpm print-kit` gives you a PDF with board, cards, rules, and one sealed envelope you are not allowed to open until the end.
+There is also a print-and-play paper kit: download the PDF from the latest [release](https://github.com/chipmates/criticalwindow/releases), or generate it yourself with `pnpm exec playwright install chromium` once and then `pnpm print-kit`. Board, cards, rules, and one sealed envelope you are not allowed to open until the end.
 
 Three ways to play. Solo as the United States. Solo as China, where the chips are scarce but the power is not. Hotseat: two people, one device, one shared world, two private screens of doubt.
 
@@ -51,7 +53,7 @@ The registry is honest about what each source does. Some set numbers directly, a
 
 The most contested dials, how hard alignment is and how fast capability compounds, never become single numbers. They live as ranges inside the worldview preset you pick at setup, and a seeded hidden roll fixes the truth for your run inside that range. Design constants with no real-world referent say so and cite the design handover. Nothing pretends to be measured that is not.
 
-Do not take our word for any of this: run `pnpm validate` yourself. If you change a value, your commit names the source. If you think a number is wrong, open a "challenge a number" issue with a better source. That argument is the project working as designed.
+One honest limit, stated plainly: the machine proves every citation exists and every tier is truthful, and it cannot prove a source actually supports a value. That last step is human work, which is exactly why the challenge loop exists. Do not take our word for any of this: run `pnpm validate` yourself. If you change a value, your commit names the source. If you think a number is wrong, open a "challenge a number" issue with a better source. That argument is the project working as designed. How the balance was tuned, ugly numbers included, is in [docs/BALANCE.md](docs/BALANCE.md).
 
 ## For developers
 
@@ -61,14 +63,21 @@ pnpm dev          # run the app
 pnpm test         # engine and data tests
 pnpm validate     # schema + source + string integrity for all game data
 pnpm simulate     # headless balance grid over seeded bot runs
-pnpm print-kit    # generate the paper prototype PDF
+pnpm print-kit    # paper kit PDF (needs: pnpm exec playwright install chromium)
+pnpm test:browser # determinism + accessibility in real browser engines
 ```
+
+The full local gate, same as CI: `pnpm validate && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm test:browser`.
 
 The engine is a pure deterministic fold: same seed, same run, on every machine. Saves are action logs, replays are exact, and a shared seed means a shared hidden world. Lint enforces the purity. See [CONTRIBUTING.md](CONTRIBUTING.md) before touching `src/engine/`.
 
 ## Sound
 
 Off by default, everything works silent. Music by Scott Buckley (CC BY 4.0), see [CREDITS.md](CREDITS.md). Voice narration is generated at build time from the game's own displayed text; nothing talks to a server while you play.
+
+## Who makes this
+
+Critical Window is a project of ChipMates gemeinnuetzige GmbH, a German nonprofit. No revenue, no ads, no investors; if grants ever fund this, the funders get named in [GOVERNANCE.md](GOVERNANCE.md), which also explains how this project is built and who answers for it. Contact: hello@criticalwindow.org. Legal: [imprint](https://criticalwindow.org/imprint.html) and [privacy](https://criticalwindow.org/privacy.html).
 
 ## License
 
