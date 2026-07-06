@@ -41,6 +41,7 @@ import {
 import { dataRoot, readDataFiles, type DataFile } from './lib/data-files';
 import { buildJsonSchemas } from './lib/schema-json';
 import { buildUsageMap } from './lib/source-usage';
+import { registryHonestyErrors } from './lib/registry-honesty';
 import {
   renderEvidenceMd,
   renderSourcesMd,
@@ -321,37 +322,7 @@ if (prologue) {
 // must be specific enough to check (the vague-phrase lint is deliberately blunt).
 const usageMap = buildUsageMap(dataRootPath);
 if (sources) {
-  const VAGUE_PHRASES = [
-    'informed our thinking',
-    'provided context',
-    'general background',
-    'influenced the design',
-    'shaped our approach',
-  ];
-  for (const source of sources.sources) {
-    const cited = usageMap.has(source.id);
-    if (cited && source.tier !== 'load-bearing') {
-      errors.push(
-        `sources: '${source.id}' is cited by data files but declares tier '${source.tier}'; it is load-bearing`,
-      );
-    }
-    if (!cited && source.tier === 'load-bearing') {
-      errors.push(`sources: '${source.id}' declares load-bearing but nothing in data/ cites it`);
-    }
-    for (const field of ['gameUse', 'shaped', 'whyListed'] as const) {
-      const text = source[field];
-      if (!text) {
-        continue;
-      }
-      for (const phrase of VAGUE_PHRASES) {
-        if (text.toLowerCase().includes(phrase)) {
-          errors.push(
-            `sources: '${source.id}' ${field} says '${phrase}'; name the mechanic instead`,
-          );
-        }
-      }
-    }
-  }
+  errors.push(...registryHonestyErrors(sources, usageMap));
 }
 
 // -- 3c. generated source views in sync ---------------------------------------
