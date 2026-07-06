@@ -20,11 +20,7 @@
       "year": 2020,
       "url": "https://arxiv.org/abs/2001.08361",
       "type": "paper",
-      "tags": [
-        "scaling",
-        "compute",
-        "forecasting"
-      ],
+      "tags": ["scaling", "compute", "forecasting"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -38,11 +34,7 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2203.15556",
       "type": "paper",
-      "tags": [
-        "scaling",
-        "compute",
-        "data"
-      ],
+      "tags": ["scaling", "compute", "data"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -56,10 +48,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2404.10102",
       "type": "paper",
-      "tags": [
-        "scaling",
-        "uncertainty"
-      ],
+      "tags": ["scaling", "uncertainty"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -71,11 +60,7 @@
       "org": "Epoch AI",
       "url": "https://epoch.ai/data/notable-ai-models",
       "type": "dataset",
-      "tags": [
-        "compute",
-        "dataset",
-        "models"
-      ],
+      "tags": ["compute", "dataset", "models"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -88,12 +73,7 @@
       "org": "Epoch AI",
       "url": "https://epoch.ai/data",
       "type": "dataset",
-      "tags": [
-        "compute",
-        "trends",
-        "dataset",
-        "live-data"
-      ],
+      "tags": ["compute", "trends", "dataset", "live-data"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -108,10 +88,7 @@
       "year": 2024,
       "url": "https://epoch.ai/data-insights/compute-trend-post-2010",
       "type": "web",
-      "tags": [
-        "compute",
-        "trends"
-      ],
+      "tags": ["compute", "trends"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -124,10 +101,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.16138",
       "type": "paper",
-      "tags": [
-        "forecasting",
-        "compute"
-      ],
+      "tags": ["forecasting", "compute"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "forecast",
@@ -140,11 +114,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2503.04941",
       "type": "paper",
-      "tags": [
-        "economics",
-        "automation",
-        "takeoff"
-      ],
+      "tags": ["economics", "automation", "takeoff"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "forecast",
@@ -159,11 +129,7 @@
       "year": 2025,
       "url": "https://ai-2027.com/",
       "type": "web",
-      "tags": [
-        "scenario",
-        "forecasting",
-        "timelines"
-      ],
+      "tags": ["scenario", "forecasting", "timelines"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "forecast",
@@ -178,11 +144,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2503.14499",
       "type": "paper",
-      "tags": [
-        "capabilities",
-        "forecasting",
-        "benchmarks"
-      ],
+      "tags": ["capabilities", "forecasting", "benchmarks"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -196,11 +158,7 @@
       "year": 2024,
       "url": "https://situational-awareness.ai/",
       "type": "web",
-      "tags": [
-        "forecasting",
-        "takeoff",
-        "worldview"
-      ],
+      "tags": ["forecasting", "takeoff", "worldview"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "forecast",
@@ -214,16 +172,12 @@
       "year": 2018,
       "url": "https://arxiv.org/abs/1705.08807",
       "type": "paper",
-      "tags": [
-        "forecasting",
-        "timelines",
-        "survey"
-      ],
-      "status": "pending",
+      "tags": ["forecasting", "timelines", "survey"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "forecast",
       "whyListed": "The original 2017/2018 AI Impacts expert-timeline survey; useful for a reader who wants to see how much expert opinion moved between this survey and the 2024 follow-up (SRC-GRACE-SURVEY) that the game actually draws its consensus-preset anchors from.",
-      "note": "Link not independently re-verified: that a newer 2023 AI Impacts survey exists. See SRC-GRACE-SURVEY for the 2024 paper."
+      "note": "Link, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-GRACE-SURVEY",
@@ -232,11 +186,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2401.02843",
       "type": "paper",
-      "tags": [
-        "forecasting",
-        "timelines",
-        "survey"
-      ],
+      "tags": ["forecasting", "timelines", "survey"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "forecast",
@@ -248,11 +198,7 @@
       "org": "Epoch/OWID",
       "url": "https://ourworldindata.org/grapher/artificial-intelligence-training-computation",
       "type": "dataset",
-      "tags": [
-        "dataset",
-        "compute",
-        "live-data"
-      ],
+      "tags": ["dataset", "compute", "live-data"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -266,11 +212,7 @@
       "org": "Open Philanthropy",
       "year": 2020,
       "type": "report",
-      "tags": [
-        "forecasting",
-        "timelines",
-        "compute"
-      ],
+      "tags": ["forecasting", "timelines", "compute"],
       "status": "flagged",
       "tier": "library",
       "evidenceClass": "forecast",
@@ -286,16 +228,12 @@
       "year": 2023,
       "url": "https://takeoffspeeds.com",
       "type": "web",
-      "tags": [
-        "takeoff",
-        "forecasting",
-        "compute"
-      ],
-      "status": "pending",
+      "tags": ["takeoff", "forecasting", "compute"],
+      "status": "verified",
       "tier": "background",
       "evidenceClass": "forecast",
       "shaped": "The takeoffSteepness worldview dial (parameters.json worldviewPresets.*.takeoffSteepness), which sets how fast capability compounds once frontier AI R&D automation begins, operationalizes this paper's compute-centric takeoff-speed framework of treating takeoff duration as a distinct, quantifiable axis separate from AGI-timeline forecasts.",
-      "note": "Link not independently re-verified: exact URLs for the Cotra/Davidson/Christiano cluster as unverified; this URL comes from HANDOVER section 11."
+      "note": "Link, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-CONCRETE-PROBLEMS",
@@ -304,10 +242,7 @@
       "year": 2016,
       "url": "https://arxiv.org/abs/1606.06565",
       "type": "paper",
-      "tags": [
-        "safety",
-        "alignment"
-      ],
+      "tags": ["safety", "alignment"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -321,11 +256,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2401.05566",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "deception",
-        "evals"
-      ],
+      "tags": ["alignment", "deception", "evals"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -339,10 +270,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2412.14093",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "deception"
-      ],
+      "tags": ["alignment", "deception"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -357,11 +285,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2412.04984",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "deception",
-        "evals"
-      ],
+      "tags": ["alignment", "deception", "evals"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -376,10 +300,7 @@
       "year": 2023,
       "url": "https://transformer-circuits.pub/2023/monosemantic-features/index.html",
       "type": "paper",
-      "tags": [
-        "interpretability",
-        "alignment"
-      ],
+      "tags": ["interpretability", "alignment"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -393,10 +314,7 @@
       "year": 2024,
       "url": "https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html",
       "type": "paper",
-      "tags": [
-        "interpretability",
-        "alignment"
-      ],
+      "tags": ["interpretability", "alignment"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -409,14 +327,12 @@
       "year": 2024,
       "url": "https://www.anthropic.com/news/golden-gate-claude",
       "type": "web",
-      "tags": [
-        "interpretability"
-      ],
-      "status": "pending",
+      "tags": ["interpretability"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "A vivid, non-technical public demo of what steering an interpretability feature actually looks like (an AI obsessed with the Golden Gate Bridge); accessible further reading for a player or teacher who wants a concrete picture of what the abstract safetyInsight meter represents.",
-      "note": "Link not independently re-verified; the canonical URL appears to be https://www.anthropic.com/news/golden-gate-claude [BETTER-LINK]."
+      "note": "Link, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-RLHF",
@@ -425,10 +341,7 @@
       "year": 2017,
       "url": "https://arxiv.org/abs/1706.03741",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "training"
-      ],
+      "tags": ["alignment", "training"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -442,15 +355,12 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2203.02155",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "training"
-      ],
-      "status": "pending",
+      "tags": ["alignment", "training"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "Demonstrates that instruction-tuning via human feedback measurably improves model helpfulness and harmlessness at production scale; useful background on real alignment-training practice, though not specifically tied to any single game mechanic.",
-      "note": "ArXiv ID not independently re-verified; the canonical version at https://arxiv.org/abs/2203.02155 [BETTER-LINK]."
+      "note": "Link, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-CONSTITUTIONAL-AI",
@@ -460,10 +370,7 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2212.08073",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "training"
-      ],
+      "tags": ["alignment", "training"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -477,10 +384,7 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2312.09390",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "oversight"
-      ],
+      "tags": ["alignment", "oversight"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -495,10 +399,7 @@
       "year": 2020,
       "url": "https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/",
       "type": "web",
-      "tags": [
-        "alignment",
-        "reward-hacking"
-      ],
+      "tags": ["alignment", "reward-hacking"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -512,10 +413,7 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2210.01790",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "generalization"
-      ],
+      "tags": ["alignment", "generalization"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -528,10 +426,7 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2105.14111",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "generalization"
-      ],
+      "tags": ["alignment", "generalization"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -544,10 +439,7 @@
       "year": 2021,
       "url": "https://arxiv.org/abs/1912.01683",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "power-seeking"
-      ],
+      "tags": ["alignment", "power-seeking"],
       "status": "verified",
       "tier": "background",
       "evidenceClass": "analysis",
@@ -562,11 +454,7 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2312.06942",
       "type": "paper",
-      "tags": [
-        "safety",
-        "control",
-        "evals"
-      ],
+      "tags": ["safety", "control", "evals"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -579,11 +467,7 @@
       "org": "Anthropic",
       "url": "https://www.anthropic.com/responsible-scaling-policy",
       "type": "web",
-      "tags": [
-        "governance",
-        "lab-policy",
-        "safety"
-      ],
+      "tags": ["governance", "lab-policy", "safety"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -597,11 +481,7 @@
       "year": 2025,
       "url": "https://openai.com/index/updating-our-preparedness-framework/",
       "type": "web",
-      "tags": [
-        "governance",
-        "lab-policy",
-        "evals"
-      ],
+      "tags": ["governance", "lab-policy", "evals"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -614,11 +494,7 @@
       "org": "Google DeepMind",
       "url": "https://deepmind.google/blog/strengthening-our-frontier-safety-framework/",
       "type": "web",
-      "tags": [
-        "governance",
-        "lab-policy",
-        "safety"
-      ],
+      "tags": ["governance", "lab-policy", "safety"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -632,11 +508,7 @@
       "year": 2024,
       "url": "https://www.anthropic.com/research/probes-catch-sleeper-agents",
       "type": "web",
-      "tags": [
-        "evals",
-        "deception",
-        "interpretability"
-      ],
+      "tags": ["evals", "deception", "interpretability"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -649,11 +521,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2501.16946",
       "type": "paper",
-      "tags": [
-        "risk",
-        "endings",
-        "economics"
-      ],
+      "tags": ["risk", "endings", "economics"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -667,11 +535,7 @@
       "year": 2025,
       "url": "https://intelligence-curse.ai/",
       "type": "web",
-      "tags": [
-        "risk",
-        "economics",
-        "endings"
-      ],
+      "tags": ["risk", "economics", "endings"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -685,11 +549,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2501.17805",
       "type": "report",
-      "tags": [
-        "risk",
-        "governance",
-        "consensus"
-      ],
+      "tags": ["risk", "governance", "consensus"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -703,10 +563,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2510.13653",
       "type": "report",
-      "tags": [
-        "risk",
-        "capabilities"
-      ],
+      "tags": ["risk", "capabilities"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -720,10 +577,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2511.19863",
       "type": "report",
-      "tags": [
-        "risk",
-        "safeguards"
-      ],
+      "tags": ["risk", "safeguards"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -736,16 +590,12 @@
       "org": "UK AISI",
       "url": "https://www.aisi.gov.uk/",
       "type": "web",
-      "tags": [
-        "evals",
-        "governance",
-        "institution"
-      ],
-      "status": "pending",
+      "tags": ["evals", "governance", "institution"],
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "eval/regulation actor",
-      "note": "Link not independently re-verified; the canonical URL appears to be https://www.aisi.gov.uk/ [BETTER-LINK]."
+      "note": "Link, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-ALIGNMENT-SURVEY",
@@ -754,10 +604,7 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2310.19852",
       "type": "paper",
-      "tags": [
-        "alignment",
-        "survey"
-      ],
+      "tags": ["alignment", "survey"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -770,10 +617,7 @@
       "org": "Oxford University Press",
       "year": 2014,
       "type": "book",
-      "tags": [
-        "risk",
-        "worldview"
-      ],
+      "tags": ["risk", "worldview"],
       "status": "book",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -786,10 +630,7 @@
       "org": "Viking/Penguin",
       "year": 2019,
       "type": "book",
-      "tags": [
-        "alignment",
-        "worldview"
-      ],
+      "tags": ["alignment", "worldview"],
       "status": "book",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -803,12 +644,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2402.08797",
       "type": "paper",
-      "tags": [
-        "compute-governance",
-        "export-controls",
-        "hardware",
-        "ai-policy"
-      ],
+      "tags": ["compute-governance", "export-controls", "hardware", "ai-policy"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -823,12 +659,7 @@
       "year": 2022,
       "url": "https://www.csis.org/analysis/choking-chinas-access-future-ai",
       "type": "report",
-      "tags": [
-        "export-controls",
-        "china",
-        "chips",
-        "geopolitics"
-      ],
+      "tags": ["export-controls", "china", "chips", "geopolitics"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -842,12 +673,7 @@
       "year": 2024,
       "url": "https://www.csis.org/analysis/understanding-biden-administrations-updated-export-controls",
       "type": "report",
-      "tags": [
-        "export-controls",
-        "china",
-        "chips",
-        "us-policy"
-      ],
+      "tags": ["export-controls", "china", "chips", "us-policy"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -861,12 +687,7 @@
       "year": 2024,
       "url": "https://www.csis.org/analysis/true-impact-allied-export-controls-us-and-chinese-semiconductor-manufacturing-equipment",
       "type": "report",
-      "tags": [
-        "export-controls",
-        "semiconductors",
-        "china",
-        "allies"
-      ],
+      "tags": ["export-controls", "semiconductors", "china", "allies"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -880,12 +701,7 @@
       "year": 2025,
       "url": "https://www.csis.org/analysis/countering-chinas-challenge-american-ai-leadership",
       "type": "report",
-      "tags": [
-        "china",
-        "ai-leadership",
-        "chips",
-        "datacenters"
-      ],
+      "tags": ["china", "ai-leadership", "chips", "datacenters"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -899,12 +715,7 @@
       "year": 2025,
       "url": "https://www.csis.org/analysis/understanding-us-allies-current-legal-authority-implement-ai-and-semiconductor-export",
       "type": "report",
-      "tags": [
-        "export-controls",
-        "allies",
-        "legal",
-        "chips"
-      ],
+      "tags": ["export-controls", "allies", "legal", "chips"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -917,12 +728,7 @@
       "year": 2022,
       "url": "https://www.csis.org/analysis/seismic-shift-new-us-semiconductor-export-controls-and-implications-us-firms-allies-and",
       "type": "report",
-      "tags": [
-        "export-controls",
-        "semiconductors",
-        "us-policy",
-        "china"
-      ],
+      "tags": ["export-controls", "semiconductors", "us-policy", "china"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -936,12 +742,7 @@
       "year": 2025,
       "url": "https://newsletter.semianalysis.com/p/deepseek-debates",
       "type": "report",
-      "tags": [
-        "deepseek",
-        "china",
-        "compute-cost",
-        "chips"
-      ],
+      "tags": ["deepseek", "china", "compute-cost", "chips"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -953,12 +754,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2506.03409",
       "type": "paper",
-      "tags": [
-        "hardware-governance",
-        "verification",
-        "chips",
-        "compute"
-      ],
+      "tags": ["hardware-governance", "verification", "chips", "compute"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -972,12 +768,7 @@
       "year": 2024,
       "url": "https://www.rand.org/pubs/research_reports/RRA2849-1.html",
       "type": "report",
-      "tags": [
-        "model-weights",
-        "security",
-        "espionage",
-        "china"
-      ],
+      "tags": ["model-weights", "security", "espionage", "china"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -990,12 +781,7 @@
       "org": "Scribner",
       "year": 2022,
       "type": "book",
-      "tags": [
-        "chip-war",
-        "taiwan",
-        "semiconductors",
-        "supply-chain"
-      ],
+      "tags": ["chip-war", "taiwan", "semiconductors", "supply-chain"],
       "status": "book",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1008,12 +794,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2503.05628",
       "type": "paper",
-      "tags": [
-        "us-china",
-        "deterrence",
-        "geopolitics",
-        "superintelligence"
-      ],
+      "tags": ["us-china", "deterrence", "geopolitics", "superintelligence"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1027,12 +808,7 @@
       "year": 2025,
       "url": "https://www.rand.org/pubs/commentary/2025/03/seeking-stability-in-the-competition-for-ai-advantage.html",
       "type": "web",
-      "tags": [
-        "us-china",
-        "maim-critique",
-        "deterrence",
-        "commentary"
-      ],
+      "tags": ["us-china", "maim-critique", "deterrence", "commentary"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1045,12 +821,7 @@
       "year": 2025,
       "url": "https://thezvi.substack.com/p/on-maim-and-superintelligence-strategy",
       "type": "web",
-      "tags": [
-        "maim",
-        "analysis",
-        "commentary",
-        "us-china"
-      ],
+      "tags": ["maim", "analysis", "commentary", "us-china"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1063,12 +834,7 @@
       "year": 2021,
       "url": "https://www.govinfo.gov/app/details/GOVPUB-Y3-PURL-gpo153246",
       "type": "report",
-      "tags": [
-        "us-policy",
-        "national-security",
-        "ai-strategy",
-        "geopolitics"
-      ],
+      "tags": ["us-policy", "national-security", "ai-strategy", "geopolitics"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1082,12 +848,7 @@
       "year": 2025,
       "url": "https://www.whitehouse.gov/wp-content/uploads/2025/07/Americas-AI-Action-Plan.pdf",
       "type": "report",
-      "tags": [
-        "us-policy",
-        "ai-strategy",
-        "export-controls",
-        "geopolitics"
-      ],
+      "tags": ["us-policy", "ai-strategy", "export-controls", "geopolitics"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1101,12 +862,7 @@
       "year": 2023,
       "url": "https://carnegieendowment.org/research/2023/07/chinas-ai-regulations-and-how-they-get-made",
       "type": "report",
-      "tags": [
-        "china",
-        "ai-regulation",
-        "policy",
-        "geopolitics"
-      ],
+      "tags": ["china", "ai-regulation", "policy", "geopolitics"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1120,12 +876,7 @@
       "year": 2024,
       "url": "https://carnegieendowment.org/research/2024/02/tracing-the-roots-of-chinas-ai-regulations",
       "type": "report",
-      "tags": [
-        "china",
-        "ai-regulation",
-        "policy",
-        "history"
-      ],
+      "tags": ["china", "ai-regulation", "policy", "history"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1137,12 +888,7 @@
       "org": "CSIS",
       "url": "https://www.csis.org/analysis/limits-chip-export-controls-meeting-china-challenge",
       "type": "report",
-      "tags": [
-        "export-controls",
-        "china",
-        "chips",
-        "policy"
-      ],
+      "tags": ["export-controls", "china", "chips", "policy"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1155,12 +901,7 @@
       "year": 2024,
       "url": "https://artificialintelligenceact.eu/the-act/",
       "type": "report",
-      "tags": [
-        "eu-regulation",
-        "ai-act",
-        "europe",
-        "policy"
-      ],
+      "tags": ["eu-regulation", "ai-act", "europe", "policy"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1173,12 +914,7 @@
       "org": "FLI",
       "url": "https://artificialintelligenceact.eu/implementation-timeline/",
       "type": "web",
-      "tags": [
-        "eu-regulation",
-        "ai-act",
-        "timeline",
-        "europe"
-      ],
+      "tags": ["eu-regulation", "ai-act", "timeline", "europe"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1191,12 +927,7 @@
       "year": 2024,
       "url": "https://www.whitecase.com/insight-alert/long-awaited-eu-ai-act-becomes-law-after-publication-eus-official-journal",
       "type": "web",
-      "tags": [
-        "eu-regulation",
-        "ai-act",
-        "legal-analysis",
-        "europe"
-      ],
+      "tags": ["eu-regulation", "ai-act", "legal-analysis", "europe"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1210,12 +941,7 @@
       "year": 2024,
       "url": "https://commission.europa.eu/topics/competitiveness/draghi-report_en",
       "type": "report",
-      "tags": [
-        "europe",
-        "competitiveness",
-        "eu-policy",
-        "economy"
-      ],
+      "tags": ["europe", "competitiveness", "eu-policy", "economy"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1227,12 +953,7 @@
       "org": "Wikipedia",
       "url": "https://en.wikipedia.org/wiki/Draghi_report",
       "type": "web",
-      "tags": [
-        "europe",
-        "competitiveness",
-        "draghi",
-        "tracking"
-      ],
+      "tags": ["europe", "competitiveness", "draghi", "tracking"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -1246,12 +967,7 @@
       "year": 2020,
       "url": "https://cset.georgetown.edu/publication/ai-chips-what-they-are-and-why-they-matter/",
       "type": "report",
-      "tags": [
-        "chips",
-        "hardware",
-        "export-controls",
-        "compute"
-      ],
+      "tags": ["chips", "hardware", "export-controls", "compute"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1265,11 +981,7 @@
       "year": 2025,
       "url": "https://www.iea.org/reports/energy-and-ai",
       "type": "report",
-      "tags": [
-        "energy",
-        "compute",
-        "climate"
-      ],
+      "tags": ["energy", "compute", "climate"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1282,12 +994,7 @@
       "org": "CNAS",
       "url": "https://www.cnas.org/publications/reports/preventing-ai-chip-smuggling-to-china",
       "type": "report",
-      "tags": [
-        "chips",
-        "smuggling",
-        "export-controls",
-        "china"
-      ],
+      "tags": ["chips", "smuggling", "export-controls", "china"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1300,12 +1007,7 @@
       "org": "SemiAnalysis",
       "url": "https://semianalysis.com",
       "type": "web",
-      "tags": [
-        "chips",
-        "semiconductors",
-        "industry-analysis",
-        "live-data"
-      ],
+      "tags": ["chips", "semiconductors", "industry-analysis", "live-data"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -1319,12 +1021,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2412.19437",
       "type": "paper",
-      "tags": [
-        "deepseek",
-        "china",
-        "llm",
-        "compute"
-      ],
+      "tags": ["deepseek", "china", "llm", "compute"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -1337,12 +1034,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2501.12948",
       "type": "paper",
-      "tags": [
-        "deepseek",
-        "china",
-        "llm",
-        "reasoning"
-      ],
+      "tags": ["deepseek", "china", "llm", "reasoning"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1354,12 +1046,7 @@
       "org": "MERICS",
       "url": "https://merics.org",
       "type": "web",
-      "tags": [
-        "china",
-        "geopolitics",
-        "think-tank",
-        "policy"
-      ],
+      "tags": ["china", "geopolitics", "think-tank", "policy"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1371,12 +1058,7 @@
       "org": "CSET",
       "url": "https://cset.georgetown.edu",
       "type": "web",
-      "tags": [
-        "china",
-        "us-china",
-        "think-tank",
-        "reports"
-      ],
+      "tags": ["china", "us-china", "think-tank", "reports"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1388,12 +1070,7 @@
       "title": "InvestAI / AI gigafactories & AI Action Summit outcomes",
       "year": 2025,
       "type": "web",
-      "tags": [
-        "europe",
-        "eu-investment",
-        "ai-infrastructure",
-        "summit"
-      ],
+      "tags": ["europe", "eu-investment", "ai-infrastructure", "summit"],
       "status": "flagged",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -1407,12 +1084,7 @@
       "authors": "Bradford",
       "year": 2020,
       "type": "book",
-      "tags": [
-        "europe",
-        "eu-regulation",
-        "brussels-effect",
-        "sovereignty"
-      ],
+      "tags": ["europe", "eu-regulation", "brussels-effect", "sovereignty"],
       "status": "book",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1426,11 +1098,7 @@
       "year": 2024,
       "url": "https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf",
       "type": "report",
-      "tags": [
-        "labor-market",
-        "job-displacement",
-        "economy"
-      ],
+      "tags": ["labor-market", "job-displacement", "economy"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1444,11 +1112,7 @@
       "year": 2024,
       "url": "https://www.imf.org/en/blogs/articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity",
       "type": "web",
-      "tags": [
-        "labor-market",
-        "economy",
-        "policy"
-      ],
+      "tags": ["labor-market", "economy", "policy"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1461,11 +1125,7 @@
       "year": 2026,
       "url": "https://www.imf.org/-/media/files/publications/sdn/2026/english/sdnea2026001.pdf",
       "type": "report",
-      "tags": [
-        "labor-market",
-        "job-creation",
-        "economy"
-      ],
+      "tags": ["labor-market", "job-creation", "economy"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -1479,11 +1139,7 @@
       "year": 2023,
       "url": "https://www.goldmansachs.com/insights/articles/generative-ai-could-raise-global-gdp-by-7-percent",
       "type": "report",
-      "tags": [
-        "economy",
-        "gdp",
-        "labor-market"
-      ],
+      "tags": ["economy", "gdp", "labor-market"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "forecast",
@@ -1496,11 +1152,7 @@
       "year": 2025,
       "url": "https://www.anthropic.com/economic-index",
       "type": "dataset",
-      "tags": [
-        "labor-market",
-        "economy",
-        "usage-data"
-      ],
+      "tags": ["labor-market", "economy", "usage-data"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1514,11 +1166,7 @@
       "org": "PublicAffairs",
       "year": 2023,
       "type": "book",
-      "tags": [
-        "economy",
-        "political-economy",
-        "automation"
-      ],
+      "tags": ["economy", "political-economy", "automation"],
       "status": "book",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1531,12 +1179,8 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2303.10130",
       "type": "paper",
-      "tags": [
-        "labor-market",
-        "automation",
-        "llm-exposure"
-      ],
-      "status": "pending",
+      "tags": ["labor-market", "automation", "llm-exposure"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "The original occupational-exposure measurement study for LLMs, useful background on the methodology behind 'percent of jobs exposed' claims used elsewhere in the registry.",
@@ -1549,12 +1193,8 @@
       "year": 2024,
       "url": "https://www.nber.org/papers/w32487",
       "type": "paper",
-      "tags": [
-        "economy",
-        "macroeconomics",
-        "automation"
-      ],
-      "status": "pending",
+      "tags": ["economy", "macroeconomics", "automation"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "forecast",
       "whyListed": "A skeptical macro estimate of modest GDP growth from AI over the next decade, useful for a player weighing how much to trust either worldview's economic optimism against the Goldman Sachs projection also in this registry.",
@@ -1567,12 +1207,8 @@
       "year": 2023,
       "url": "https://www.nber.org/papers/w31161",
       "type": "paper",
-      "tags": [
-        "labor-market",
-        "productivity",
-        "automation"
-      ],
-      "status": "pending",
+      "tags": ["labor-market", "productivity", "automation"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "The call-center field experiment showing real productivity gains from generative AI assistance, primary evidence behind the game's general 'AI boosts productivity' framing.",
@@ -1585,12 +1221,8 @@
       "year": 2023,
       "url": "https://pubmed.ncbi.nlm.nih.gov/37440646/",
       "type": "paper",
-      "tags": [
-        "labor-market",
-        "productivity",
-        "automation"
-      ],
-      "status": "pending",
+      "tags": ["labor-market", "productivity", "automation"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "A controlled experiment showing GenAI narrows the productivity gap between weaker and stronger writers, useful background on the productivity-and-equity angle behind the game's automation mechanics.",
@@ -1604,12 +1236,8 @@
       "year": 2023,
       "url": "https://pubsonline.informs.org/doi/10.1287/orsc.2025.21838",
       "type": "paper",
-      "tags": [
-        "labor-market",
-        "productivity",
-        "automation"
-      ],
-      "status": "pending",
+      "tags": ["labor-market", "productivity", "automation"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "The HBS consulting-task study showing GenAI helps unevenly across tasks (the 'jagged frontier'), good background for why the game treats automation benefits as uneven rather than uniform.",
@@ -1619,18 +1247,14 @@
       "id": "SRC-OPENRESEARCH-UBI",
       "title": "OpenResearch Unconditional Income Study",
       "year": 2024,
-      "url": "https://www.openresearchlab.org/our-work/unconditional-cash-study",
+      "url": "https://www.openresearchlab.org/studies/unconditional-cash-study/study",
       "type": "report",
-      "tags": [
-        "ubi",
-        "redistribution",
-        "economy"
-      ],
-      "status": "pending",
+      "tags": ["ubi", "redistribution", "economy"],
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "UBI/redistribution mechanic",
-      "note": "referenced only as 'OpenResearch/Altman UBI study' in FULL section 6; title and URL confirmed via HANDOVER section 11. Not independently re-verified: this is the lab homepage, not necessarily the specific study page URL updated at verification from https://www.openresearchlab.org."
+      "note": "URL updated 2026-07-06 after the original study page moved; new page re-verified."
     },
     {
       "id": "SRC-OECD-EMPLOYMENT",
@@ -1638,11 +1262,7 @@
       "org": "OECD",
       "url": "https://www.oecd.org/en/publications/oecd-employment-outlook-2023_08785bba-en.html",
       "type": "report",
-      "tags": [
-        "labor-market",
-        "policy",
-        "economy"
-      ],
+      "tags": ["labor-market", "policy", "economy"],
       "status": "flagged",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -1657,11 +1277,7 @@
       "year": 2023,
       "url": "https://safe.ai/work/statement-on-ai-risk",
       "type": "web",
-      "tags": [
-        "x-risk",
-        "worldview-doom",
-        "consensus"
-      ],
+      "tags": ["x-risk", "worldview-doom", "consensus"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1674,11 +1290,7 @@
       "year": 2022,
       "url": "https://arxiv.org/abs/2206.13353",
       "type": "paper",
-      "tags": [
-        "x-risk",
-        "power-seeking",
-        "worldview-doom"
-      ],
+      "tags": ["x-risk", "power-seeking", "worldview-doom"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1691,10 +1303,7 @@
       "year": 2024,
       "url": "https://www.darioamodei.com/essay/machines-of-loving-grace",
       "type": "web",
-      "tags": [
-        "worldview-optimistic",
-        "benefit-scenario"
-      ],
+      "tags": ["worldview-optimistic", "benefit-scenario"],
       "status": "verified",
       "tier": "background",
       "evidenceClass": "forecast",
@@ -1708,10 +1317,7 @@
       "year": 2023,
       "url": "https://openai.com/index/planning-for-agi-and-beyond/",
       "type": "web",
-      "tags": [
-        "worldview-optimistic",
-        "agi-governance"
-      ],
+      "tags": ["worldview-optimistic", "agi-governance"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1725,11 +1331,7 @@
       "year": 2023,
       "url": "https://futureoflife.org/open-letter/pause-giant-ai-experiments/",
       "type": "web",
-      "tags": [
-        "treaty-slowdown",
-        "coordination",
-        "worldview-doom"
-      ],
+      "tags": ["treaty-slowdown", "coordination", "worldview-doom"],
       "status": "verified",
       "tier": "background",
       "evidenceClass": "analysis",
@@ -1743,11 +1345,7 @@
       "year": 2023,
       "url": "https://forecastingresearch.org/xpt",
       "type": "report",
-      "tags": [
-        "forecasting",
-        "x-risk",
-        "expert-disagreement"
-      ],
+      "tags": ["forecasting", "x-risk", "expert-disagreement"],
       "status": "verified",
       "tier": "background",
       "evidenceClass": "forecast",
@@ -1761,10 +1359,7 @@
       "year": 2025,
       "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
       "type": "report",
-      "tags": [
-        "worldview-skeptic",
-        "benefit-scenario"
-      ],
+      "tags": ["worldview-skeptic", "benefit-scenario"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1778,10 +1373,7 @@
       "year": 2025,
       "url": "https://www.normaltech.ai/p/a-guide-to-understanding-ai-as-normal",
       "type": "web",
-      "tags": [
-        "worldview-skeptic",
-        "benefit-scenario"
-      ],
+      "tags": ["worldview-skeptic", "benefit-scenario"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1794,10 +1386,7 @@
       "year": 2020,
       "url": "https://theprecipice.com/",
       "type": "book",
-      "tags": [
-        "x-risk",
-        "worldview-doom"
-      ],
+      "tags": ["x-risk", "worldview-doom"],
       "status": "book",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1810,11 +1399,7 @@
       "year": 2025,
       "url": "https://ifanyonebuildsit.com/",
       "type": "book",
-      "tags": [
-        "x-risk",
-        "worldview-doom",
-        "misaligned-catastrophe"
-      ],
+      "tags": ["x-risk", "worldview-doom", "misaligned-catastrophe"],
       "status": "book",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1827,10 +1412,7 @@
       "org": "Princeton University Press",
       "year": 2024,
       "type": "book",
-      "tags": [
-        "worldview-skeptic",
-        "benefit-scenario"
-      ],
+      "tags": ["worldview-skeptic", "benefit-scenario"],
       "status": "book",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1844,12 +1426,8 @@
       "year": 2024,
       "url": "https://www.thecompendium.ai/",
       "type": "web",
-      "tags": [
-        "x-risk",
-        "worldview-doom",
-        "synthesis"
-      ],
-      "status": "pending",
+      "tags": ["x-risk", "worldview-doom", "synthesis"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
       "whyListed": "A risk-emphasizing synthesis of the AI existential-risk case for a player who finishes a cautious-worldview run wanting the fullest version of the doom argument in one place, alongside the game's already-cited Carlsmith and IABIED sources.",
@@ -1863,11 +1441,7 @@
       "year": 2016,
       "url": "https://link.springer.com/article/10.1007/s00146-015-0590-y",
       "type": "paper",
-      "tags": [
-        "game-theory",
-        "race-dynamics",
-        "coordination"
-      ],
+      "tags": ["game-theory", "race-dynamics", "coordination"],
       "status": "verified",
       "tier": "background",
       "evidenceClass": "analysis",
@@ -1881,11 +1455,7 @@
       "year": 2023,
       "url": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023",
       "type": "report",
-      "tags": [
-        "summit-diplomacy",
-        "coordination",
-        "treaty"
-      ],
+      "tags": ["summit-diplomacy", "coordination", "treaty"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -1898,11 +1468,7 @@
       "year": 2025,
       "url": "https://www.elysee.fr/en/emmanuel-macron/2025/02/11/statement-on-inclusive-and-sustainable-artificial-intelligence-for-people-and-the-planet",
       "type": "report",
-      "tags": [
-        "summit-diplomacy",
-        "coordination",
-        "fracturing"
-      ],
+      "tags": ["summit-diplomacy", "coordination", "fracturing"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -1916,11 +1482,7 @@
       "year": 2024,
       "url": "https://www.un.org/sites/un2.un.org/files/governing_ai_for_humanity_final_report_en.pdf",
       "type": "report",
-      "tags": [
-        "governance",
-        "coordination",
-        "international"
-      ],
+      "tags": ["governance", "coordination", "international"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1932,11 +1494,7 @@
       "authors": "Lennart Heim",
       "url": "https://blog.heim.xyz/technical-ai-governance/",
       "type": "web",
-      "tags": [
-        "governance",
-        "verification",
-        "monitoring"
-      ],
+      "tags": ["governance", "verification", "monitoring"],
       "status": "verified",
       "tier": "background",
       "evidenceClass": "analysis",
@@ -1949,11 +1507,7 @@
       "year": 2023,
       "url": "https://arxiv.org/abs/2307.04699",
       "type": "paper",
-      "tags": [
-        "governance",
-        "coordination",
-        "international-institutions"
-      ],
+      "tags": ["governance", "coordination", "international-institutions"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
@@ -1966,11 +1520,7 @@
       "org": "GovAI",
       "url": "https://www.governance.ai",
       "type": "web",
-      "tags": [
-        "governance",
-        "coordination",
-        "research-library"
-      ],
+      "tags": ["governance", "coordination", "research-library"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -1984,11 +1534,7 @@
       "org": "GovAI",
       "url": "https://www.governance.ai/research-paper/the-windfall-clause-distributing-the-benefits-of-ai-for-the-common-good",
       "type": "paper",
-      "tags": [
-        "governance",
-        "benefit-sharing",
-        "coordination"
-      ],
+      "tags": ["governance", "benefit-sharing", "coordination"],
       "status": "verified",
       "tier": "background",
       "evidenceClass": "analysis",
@@ -2002,12 +1548,7 @@
       "year": 2020,
       "url": "https://arxiv.org/abs/1912.08964",
       "type": "paper",
-      "tags": [
-        "serious-games",
-        "ai-race",
-        "roleplay",
-        "wargaming"
-      ],
+      "tags": ["serious-games", "ai-race", "roleplay", "wargaming"],
       "status": "verified",
       "tier": "background",
       "evidenceClass": "design",
@@ -2021,12 +1562,7 @@
       "year": 2024,
       "url": "https://arxiv.org/pdf/2410.03092",
       "type": "paper",
-      "tags": [
-        "serious-games",
-        "ai-race",
-        "wargaming",
-        "facilitation"
-      ],
+      "tags": ["serious-games", "ai-race", "wargaming", "facilitation"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "design",
@@ -2039,11 +1575,7 @@
       "org": "CSER (Cambridge)",
       "url": "https://www.cser.ac.uk/work/intelligence-rising/",
       "type": "web",
-      "tags": [
-        "serious-games",
-        "ai-race",
-        "wargaming"
-      ],
+      "tags": ["serious-games", "ai-race", "wargaming"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "design",
@@ -2057,12 +1589,7 @@
       "year": 2019,
       "url": "https://www.openbookpublishers.com/books/10.11647/obp.0360/chapters/10.11647/obp.0360.08",
       "type": "paper",
-      "tags": [
-        "serious-games",
-        "ai-futures",
-        "forecasting-methods",
-        "roleplay"
-      ],
+      "tags": ["serious-games", "ai-futures", "forecasting-methods", "roleplay"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "design",
@@ -2073,12 +1600,7 @@
       "id": "SRC-SERIOUS-GAMES-BUNDLE",
       "title": "RAND wargaming series; Schelling on gaming; Wouters et al. and Clark et al. serious-games meta-analyses; Bogost Persuasive Games; matrix-games & TTX methodology; climate-game studies (e.g. Daybreak)",
       "type": "web",
-      "tags": [
-        "serious-games",
-        "wargaming",
-        "ttx-methodology",
-        "debrief-design"
-      ],
+      "tags": ["serious-games", "wargaming", "ttx-methodology", "debrief-design"],
       "status": "flagged",
       "tier": "library",
       "evidenceClass": "design",
@@ -2093,12 +1615,7 @@
       "year": 2013,
       "url": "https://eric.ed.gov/?id=EJ1008015",
       "type": "paper",
-      "tags": [
-        "serious-games",
-        "learning-outcomes",
-        "pedagogy",
-        "meta-analysis"
-      ],
+      "tags": ["serious-games", "learning-outcomes", "pedagogy", "meta-analysis"],
       "status": "verified",
       "tier": "background",
       "evidenceClass": "design",
@@ -2112,12 +1629,7 @@
       "year": 2016,
       "url": "https://journals.sagepub.com/doi/10.3102/0034654315582065",
       "type": "paper",
-      "tags": [
-        "serious-games",
-        "learning-outcomes",
-        "pedagogy",
-        "meta-analysis"
-      ],
+      "tags": ["serious-games", "learning-outcomes", "pedagogy", "meta-analysis"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "design",
@@ -2130,12 +1642,7 @@
       "authors": "Bogost",
       "year": 2007,
       "type": "book",
-      "tags": [
-        "serious-games",
-        "game-design",
-        "persuasion",
-        "pedagogy"
-      ],
+      "tags": ["serious-games", "game-design", "persuasion", "pedagogy"],
       "status": "book",
       "tier": "background",
       "evidenceClass": "design",
@@ -2148,12 +1655,7 @@
       "org": "RAND",
       "url": "https://www.rand.org",
       "type": "report",
-      "tags": [
-        "wargaming",
-        "methodology",
-        "ttx",
-        "serious-games"
-      ],
+      "tags": ["wargaming", "methodology", "ttx", "serious-games"],
       "status": "flagged",
       "tier": "library",
       "evidenceClass": "design",
@@ -2168,12 +1670,7 @@
       "year": 2025,
       "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report",
       "type": "report",
-      "tags": [
-        "ai-index",
-        "benchmarks",
-        "live-data",
-        "annual-report"
-      ],
+      "tags": ["ai-index", "benchmarks", "live-data", "annual-report"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -2188,12 +1685,7 @@
       "year": 2024,
       "url": "https://airisk.mit.edu/",
       "type": "dataset",
-      "tags": [
-        "risk-taxonomy",
-        "dataset",
-        "live-data",
-        "ai-safety"
-      ],
+      "tags": ["risk-taxonomy", "dataset", "live-data", "ai-safety"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2207,11 +1699,7 @@
       "org": "ARC Prize Foundation",
       "url": "https://arcprize.org/arc-agi",
       "type": "dataset",
-      "tags": [
-        "benchmark",
-        "capability-eval",
-        "live-data"
-      ],
+      "tags": ["benchmark", "capability-eval", "live-data"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2224,12 +1712,7 @@
       "org": "UC Berkeley SkyLab → Arena Inc.",
       "url": "https://arena.ai/",
       "type": "web",
-      "tags": [
-        "leaderboard",
-        "live-data",
-        "model-ranking",
-        "benchmark"
-      ],
+      "tags": ["leaderboard", "live-data", "model-ranking", "benchmark"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2242,11 +1725,7 @@
       "org": "OECD",
       "url": "https://oecd.ai/en/",
       "type": "web",
-      "tags": [
-        "policy-tracker",
-        "live-data",
-        "governance"
-      ],
+      "tags": ["policy-tracker", "live-data", "governance"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2258,17 +1737,12 @@
       "org": "Responsible AI Collaborative",
       "url": "https://incidentdatabase.ai/",
       "type": "dataset",
-      "tags": [
-        "incidents",
-        "live-data",
-        "empirical-harms",
-        "dataset"
-      ],
-      "status": "pending",
+      "tags": ["incidents", "live-data", "empirical-harms", "dataset"],
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "real-world harm cases",
-      "note": "Link not independently re-verified (canonical URL not independently re-fetched). Resolved by 's canonical-link flag section, which confirms https://incidentdatabase.ai/ resolves cleanly. Also listed in HANDOVER §11 Live data & community. Duplicate also appears in body (see SRC-AI-INCIDENT-DB-GA). re-listed this; one entry kept."
+      "note": "Link, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-80K-AI-CATASTROPHE",
@@ -2277,11 +1751,7 @@
       "org": "80,000 Hours",
       "url": "https://80000hours.org/problem-profiles/artificial-intelligence/",
       "type": "web",
-      "tags": [
-        "problem-profile",
-        "ai-risk",
-        "curriculum"
-      ],
+      "tags": ["problem-profile", "ai-risk", "curriculum"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -2295,11 +1765,7 @@
       "year": 2025,
       "url": "https://80000hours.org/problem-profiles/gradual-disempowerment/",
       "type": "web",
-      "tags": [
-        "problem-profile",
-        "ai-risk",
-        "gradual-disempowerment"
-      ],
+      "tags": ["problem-profile", "ai-risk", "gradual-disempowerment"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -2311,11 +1777,7 @@
       "org": "BlueDot Impact",
       "url": "https://bluedot.org/",
       "type": "web",
-      "tags": [
-        "curriculum",
-        "education",
-        "ai-safety"
-      ],
+      "tags": ["curriculum", "education", "ai-safety"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -2326,11 +1788,7 @@
       "id": "SRC-MODEL-DOCS-BUNDLE",
       "title": "System/model cards (GPT-4, Claude 3/Opus, Gemini); Papers with Code; Alignment Forum / LessWrong key posts",
       "type": "web",
-      "tags": [
-        "model-cards",
-        "documentation",
-        "live-data"
-      ],
+      "tags": ["model-cards", "documentation", "live-data"],
       "status": "flagged",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2343,11 +1801,7 @@
       "title": "Alignment Forum",
       "url": "https://www.alignmentforum.org",
       "type": "web",
-      "tags": [
-        "community",
-        "live-data",
-        "alignment"
-      ],
+      "tags": ["community", "live-data", "alignment"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -2361,17 +1815,12 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2606.15708",
       "type": "report",
-      "tags": [
-        "ai-index",
-        "benchmarks",
-        "live-data",
-        "annual-report"
-      ],
-      "status": "pending",
+      "tags": ["ai-index", "benchmarks", "live-data", "annual-report"],
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "Best single annual synthesis for capabilities, policy, labor, science, medicine, and AI sovereignty; ideal baseline world-state reference for opening turns",
-      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it. Annual series; see also the 2025 edition (SRC-AI-INDEX-2025)."
+      "note": "ArXiv ID, title and authorship re-verified 2026-07-06. Annual series; see also the 2025 edition (SRC-AI-INDEX-2025)."
     },
     {
       "id": "SRC-AISI-FRONTIER-TRENDS",
@@ -2380,17 +1829,12 @@
       "year": 2026,
       "url": "https://www.aisi.gov.uk/frontier-ai-trends-report",
       "type": "report",
-      "tags": [
-        "benchmarks",
-        "capability-eval",
-        "live-data",
-        "safety"
-      ],
+      "tags": ["benchmarks", "capability-eval", "live-data", "safety"],
       "status": "verified",
-      "tier": "library",
+      "tier": "load-bearing",
       "evidenceClass": "empirical",
-      "whyListed": "The UK AI Security Institute's task-length and capability trend curves, the natural report to check the game's capability anchors against; a candidate citation once its content is verified against the anchor mapping.",
-      "note": "Related to but distinct from the UK AI Security Institute's main site (https://www.aisi.gov.uk/)."
+      "note": "Content re-verified 2026-07-06: the report's agents section tracks task success by duration and time-horizon benchmarks directly.",
+      "gameUse": "Task-length trend data (software task success by duration, time-horizon benchmark figures) backing the capability track's hours-scale anchor mapping alongside METR."
     },
     {
       "id": "SRC-ARC-AGI-2",
@@ -2399,11 +1843,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2505.11831",
       "type": "paper",
-      "tags": [
-        "benchmark",
-        "capability-eval",
-        "reasoning"
-      ],
+      "tags": ["benchmark", "capability-eval", "reasoning"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2418,11 +1858,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2411.15114",
       "type": "paper",
-      "tags": [
-        "benchmark",
-        "r-and-d-automation",
-        "agents"
-      ],
+      "tags": ["benchmark", "r-and-d-automation", "agents"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2435,11 +1871,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.09702",
       "type": "paper",
-      "tags": [
-        "benchmark",
-        "r-and-d-automation",
-        "balance"
-      ],
+      "tags": ["benchmark", "r-and-d-automation", "balance"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2452,16 +1884,12 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2602.21012",
       "type": "report",
-      "tags": [
-        "ai-safety",
-        "governance",
-        "risk-synthesis"
-      ],
-      "status": "pending",
+      "tags": ["ai-safety", "governance", "risk-synthesis"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
       "whyListed": "Points a reader to the most current multi-expert international consensus report on frontier AI capabilities and risk, the same report series already grounding the consensus worldview preset (via the separately-registered SRC-IAISR), updated to its newest edition.",
-      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it. Newer edition of the report series behind SRC-IAISR."
+      "note": "ArXiv ID, title and authorship re-verified 2026-07-06. Newer edition of the report series behind SRC-IAISR."
     },
     {
       "id": "SRC-ANTHROPIC-FSR-ROADMAP",
@@ -2470,11 +1898,7 @@
       "year": 2026,
       "url": "https://www.anthropic.com/responsible-scaling-policy/roadmap",
       "type": "web",
-      "tags": [
-        "lab-governance",
-        "safety-policy",
-        "milestones"
-      ],
+      "tags": ["lab-governance", "safety-policy", "milestones"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -2488,11 +1912,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2510.05179",
       "type": "paper",
-      "tags": [
-        "ai-safety",
-        "insider-threat",
-        "sabotage"
-      ],
+      "tags": ["ai-safety", "insider-threat", "sabotage"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -2505,16 +1925,12 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2605.29601",
       "type": "paper",
-      "tags": [
-        "ai-safety",
-        "scheming",
-        "monitoring"
-      ],
-      "status": "pending",
+      "tags": ["ai-safety", "scheming", "monitoring"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "Gives a reader a concrete technical account of training monitors to catch scheming behavior that hides from chain-of-thought, useful further reading for the control-stack/monitoring-investment theme already carried by the Safety Insight mechanic, though no current number cites it.",
-      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
+      "note": "ArXiv ID, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-EU-AI-OFFICE",
@@ -2523,11 +1939,7 @@
       "year": 2026,
       "url": "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
       "type": "web",
-      "tags": [
-        "eu-governance",
-        "regulation",
-        "implementation"
-      ],
+      "tags": ["eu-governance", "regulation", "implementation"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2540,11 +1952,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.15181",
       "type": "paper",
-      "tags": [
-        "eu-governance",
-        "regulation",
-        "compliance"
-      ],
+      "tags": ["eu-governance", "regulation", "compliance"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2557,11 +1965,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2508.05464",
       "type": "paper",
-      "tags": [
-        "benchmark",
-        "eu-governance",
-        "eval-gaming"
-      ],
+      "tags": ["benchmark", "eu-governance", "eval-gaming"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -2574,11 +1978,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2503.18956",
       "type": "paper",
-      "tags": [
-        "governance",
-        "treaty",
-        "verification"
-      ],
+      "tags": ["governance", "treaty", "verification"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -2591,11 +1991,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2506.23949",
       "type": "paper",
-      "tags": [
-        "governance",
-        "standards",
-        "risk-management"
-      ],
+      "tags": ["governance", "standards", "risk-management"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -2608,11 +2004,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2411.09786",
       "type": "paper",
-      "tags": [
-        "energy",
-        "environment",
-        "data-centers"
-      ],
+      "tags": ["energy", "environment", "data-centers"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
@@ -2626,16 +2018,12 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2604.06198",
       "type": "paper",
-      "tags": [
-        "energy",
-        "grid-stress",
-        "data-centers"
-      ],
-      "status": "pending",
+      "tags": ["energy", "grid-stress", "data-centers"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "Gives a reader the regional-clustering angle on grid stress (specific power systems overloaded by concentrated data-center siting, not just national totals), useful further reading for the energy_crunch event and keep_lights_on mandate beyond the aggregate IEA figures currently cited there.",
-      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it. Companion to SRC-GRID-DATACENTER."
+      "note": "ArXiv ID, title and authorship re-verified 2026-07-06. Companion to SRC-GRID-DATACENTER."
     },
     {
       "id": "SRC-DEEPSEEK-V3-HARDWARE-INSIGHTS",
@@ -2644,11 +2032,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2505.09343",
       "type": "paper",
-      "tags": [
-        "china",
-        "hardware",
-        "compute"
-      ],
+      "tags": ["china", "hardware", "compute"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2661,16 +2045,12 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2606.15999",
       "type": "paper",
-      "tags": [
-        "china",
-        "export-controls",
-        "balance"
-      ],
-      "status": "pending",
+      "tags": ["china", "export-controls", "balance"],
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",
       "gameUse": "Strategic counterpoint: export controls can slow frontier access while strengthening open, adaptive Chinese ecosystems",
-      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
+      "note": "ArXiv ID, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-ANTHROPIC-ECON-INDEX-ADOPTION",
@@ -2679,12 +2059,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2511.15080",
       "type": "report",
-      "tags": [
-        "labor",
-        "economics",
-        "adoption",
-        "balance"
-      ],
+      "tags": ["labor", "economics", "adoption", "balance"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2698,17 +2073,12 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2604.18849",
       "type": "paper",
-      "tags": [
-        "labor",
-        "economics",
-        "europe",
-        "balance"
-      ],
-      "status": "pending",
+      "tags": ["labor", "economics", "europe", "balance"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "Gives a reader EU-specific survey evidence that exposure to generative AI does not equal adoption, directly relevant further reading for the game's European seat and displacement mechanics even though no number currently cites it.",
-      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
+      "note": "ArXiv ID, title and authorship re-verified 2026-07-06. Later paper versions retitle it to \"From Exposure to Adoption: Generative AI in European Workplaces\"; same paper, same ID."
     },
     {
       "id": "SRC-PAYROLLS-TO-PROMPTS",
@@ -2717,16 +2087,12 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2602.00139",
       "type": "paper",
-      "tags": [
-        "labor",
-        "economics",
-        "automation"
-      ],
-      "status": "pending",
+      "tags": ["labor", "economics", "automation"],
+      "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "empirical",
       "gameUse": "Backs the shape of the displacementFromCapability curve in parameters.json (paired with SRC-IMF-GENAI's exposure baseline): firm-level evidence of actual spending substitution of AI for labor justifies displacement rising with capability rather than staying flat, not merely 'labor-market event cards' generically.",
-      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
+      "note": "ArXiv ID, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-GENAI-LABOR-REORG",
@@ -2735,16 +2101,12 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2605.23159",
       "type": "paper",
-      "tags": [
-        "labor",
-        "economics",
-        "balance"
-      ],
-      "status": "pending",
+      "tags": ["labor", "economics", "balance"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "Gives a reader evidence that firms reallocate and redesign tasks rather than simply cutting jobs, a nuance the worldview presets gesture at but don't cite directly, useful for anyone refining the displacement/diffusion balance mechanics.",
-      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
+      "note": "ArXiv ID, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-GENAI-PRODUCTIVITY-META",
@@ -2753,16 +2115,12 @@
       "year": 2026,
       "url": "https://arxiv.org/abs/2605.04779",
       "type": "paper",
-      "tags": [
-        "labor",
-        "education",
-        "meta-analysis"
-      ],
-      "status": "pending",
+      "tags": ["labor", "education", "meta-analysis"],
+      "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
       "whyListed": "Gives a reader an evidence-based middle ground between 'AI changes nothing' and 'AI replaces programmers now,' useful further reading for anyone building out education/upskilling mechanics the game doesn't yet have.",
-      "note": "The 2026-dated arXiv ID has not been independently re-verified; confirm the paper before relying on it."
+      "note": "ArXiv ID, title and authorship re-verified 2026-07-06."
     },
     {
       "id": "SRC-PUBLIC-OPINION-AI-MODERATION",
@@ -2771,11 +2129,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.12476",
       "type": "paper",
-      "tags": [
-        "public-opinion",
-        "governance",
-        "moderation"
-      ],
+      "tags": ["public-opinion", "governance", "moderation"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2788,11 +2142,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2504.21849",
       "type": "paper",
-      "tags": [
-        "public-opinion",
-        "governance",
-        "trust"
-      ],
+      "tags": ["public-opinion", "governance", "trust"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "empirical",
@@ -2805,11 +2155,7 @@
       "year": 2025,
       "url": "https://arxiv.org/abs/2505.18371",
       "type": "paper",
-      "tags": [
-        "military-ai",
-        "governance",
-        "autonomous-weapons"
-      ],
+      "tags": ["military-ai", "governance", "autonomous-weapons"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "analysis",
@@ -2822,11 +2168,7 @@
       "year": 2024,
       "url": "https://arxiv.org/abs/2407.07762",
       "type": "paper",
-      "tags": [
-        "serious-games",
-        "game-based-learning",
-        "pedagogy"
-      ],
+      "tags": ["serious-games", "game-based-learning", "pedagogy"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "design",
@@ -2839,11 +2181,7 @@
       "year": 2013,
       "url": "https://arxiv.org/abs/1303.3828",
       "type": "paper",
-      "tags": [
-        "serious-games",
-        "behavior-training",
-        "simulation"
-      ],
+      "tags": ["serious-games", "behavior-training", "simulation"],
       "status": "verified",
       "tier": "library",
       "evidenceClass": "design",
@@ -2856,11 +2194,7 @@
       "year": 2024,
       "url": "https://righttowarn.ai",
       "type": "web",
-      "tags": [
-        "whistleblower",
-        "labs",
-        "governance"
-      ],
+      "tags": ["whistleblower", "labs", "governance"],
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "analysis",

@@ -8,8 +8,8 @@ in `data/` without a source ID fails the build, and so does a registry entry tha
 claims a tier its citations do not support. [`docs/EVIDENCE.md`](docs/EVIDENCE.md)
 lists every cited number with its evidence.
 
-**163 entries: 54 drive numbers directly (324 citation sites), 11 shaped the design, 98 are further reading.**
-Status: 9 book, 6 flagged, 22 pending, 126 verified.
+**163 entries: 55 drive numbers directly (309 citation sites), 11 shaped the design, 97 are further reading.**
+Status: 9 book, 6 flagged, 148 verified.
 
 Every entry carries an evidence class: `empirical` (a measurement or documented
 fact), `forecast` (a claim about the future), `analysis` (an argument or
@@ -22,28 +22,28 @@ Found a dead link, a better source, or a number you want to challenge? Open an
 issue. That is a real contribution and it is welcome, see
 [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-## Sources that drive numbers (54)
+## Sources that drive numbers (55)
 
 Every entry lists each place it is cited. Sorted by citation count.
 
 - **SRC-DESIGN-HANDOVER** · Design handover (founding document, drafted under the working title Race Conditions) · project (2026) · `design`
   Used for: design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
-  Cited 75× by: anchors.json → tracks.politicalCapital · anchors.json → tracks.unrest · mandates.json → mandates.3 · mandates.json → mandates.8 · mandates.json → sourceIds · parameters.json → worldviewPresets.cautious.displacementLagDivisor *(+69 more)*
+  Cited 63× by: anchors.json → tracks.politicalCapital · anchors.json → tracks.unrest · mandates.json → mandates.3 · mandates.json → mandates.8 · mandates.json → sourceIds · parameters.json → worldviewPresets.cautious.displacementLagDivisor *(+57 more)*
 - **SRC-AI2027** · [AI 2027](https://ai-2027.com/) · Kokotajlo, Alexander, Larsen, Lifland, Dean, AI Futures Project (2025) · `forecast`
   Used for: race vs. slowdown endings; core scenario spine; cautious preset anchors
   Cited 21× by: anchors.json → tracks.capability · events/autonomous_targeting_demo.json → sourceIds · events/branch_point.json → sourceIds · events/civil_military_fusion.json → sourceIds · events/grid_crunch.json → sourceIds · events/intelligence_explosion.json → sourceIds *(+15 more)*
-- **SRC-CSIS-EXPORT** · [Choking off China's Access to the Future of AI](https://www.csis.org/analysis/choking-chinas-access-future-ai) · Gregory Allen, CSIS (2022) · `empirical`
-  Used for: Oct 7 2022 export controls
-  Cited 18× by: anchors.json → tracks.substitution · events/allied_export_fracture.json → sourceIds · events/ally_eval_request.json → sourceIds · events/asml_export_squeeze.json → sourceIds · events/chip_smuggling.json → sourceIds · events/fab_yield_breakthrough.json → sourceIds *(+12 more)*
 - **SRC-SIM-GAMING-INSIGHTS** · [Strategic Insights from Simulation Gaming of AI Race Dynamics](https://arxiv.org/pdf/2410.03092) · Gruetzemacher et al. (2024) · `design`
   Used for: facilitator insights from 43 Intelligence Rising games
   Cited 18× by: events/asml_export_squeeze.json → sourceIds · events/autonomous_targeting_demo.json → sourceIds · events/liability_shield_ask.json → sourceIds · events/taiwan_strait_crisis.json → sourceIds · events/the_project.json → sourceIds · events/weight_theft.json → sourceIds *(+12 more)*
-- **SRC-AI-INDEX-2026** · [Artificial Intelligence Index Report 2026](https://arxiv.org/abs/2606.15708) · Stanford Institute for Human-Centered AI (2026) · `empirical` *(verification pending)*
+- **SRC-CSIS-EXPORT** · [Choking off China's Access to the Future of AI](https://www.csis.org/analysis/choking-chinas-access-future-ai) · Gregory Allen, CSIS (2022) · `empirical`
+  Used for: Oct 7 2022 export controls
+  Cited 16× by: anchors.json → tracks.substitution · events/allied_export_fracture.json → sourceIds · events/ally_eval_request.json → sourceIds · events/asml_export_squeeze.json → sourceIds · events/chip_smuggling.json → sourceIds · events/fab_yield_breakthrough.json → sourceIds *(+10 more)*
+- **SRC-AI-INDEX-2026** · [Artificial Intelligence Index Report 2026](https://arxiv.org/abs/2606.15708) · Stanford Institute for Human-Centered AI (2026) · `empirical`
   Used for: Best single annual synthesis for capabilities, policy, labor, science, medicine, and AI sovereignty; ideal baseline world-state reference for opening turns
   Cited 16× by: anchors.json → tracks.talent · anchors.json → tracks.capital · anchors.json → tracks.publicTrust · events/companion_app_boom.json → sourceIds · events/election_scandal.json → sourceIds · events/flash_crash_agent.json → sourceIds *(+10 more)*
 - **SRC-IMF-GENAI** · [Gen-AI: Artificial Intelligence and the Future of Work](https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf) · Cazzaniga et al., IMF SDN (2024) · `empirical`
   Used for: job-displacement mechanic; ~40% of global jobs exposed (60% advanced economies, 40% emerging, 26% low-income)
-  Cited 14× by: anchors.json → tracks.jobDisplacement · events/civil_service_flood.json → sourceIds · events/general_strike.json → sourceIds · events/union_moratorium_demand.json → sourceIds · events/viral_job_loss.json → sourceIds · mandates.json → mandates.1 *(+8 more)*
+  Cited 13× by: anchors.json → tracks.jobDisplacement · events/civil_service_flood.json → sourceIds · events/general_strike.json → sourceIds · events/union_moratorium_demand.json → sourceIds · events/viral_job_loss.json → sourceIds · mandates.json → mandates.1 *(+7 more)*
 - **SRC-SLEEPER** · [Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training](https://arxiv.org/abs/2401.05566) · Hubinger et al., Anthropic (2024) · `empirical`
   Used for: deceptive-alignment mechanic; eval uncertainty band
   Cited 12× by: events/eval_breakthrough.json → sourceIds · events/whistleblower.json → sourceIds · incidents.json → safetyInsightDamageReductionMaxPerMille · incidents.json → rungs.0 · incidents.json → sourceIds · mandates.json → mandates.2 *(+6 more)*
@@ -74,9 +74,6 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-GRACE-SURVEY** · [Thousands of AI Authors on the Future of AI](https://arxiv.org/abs/2401.02843) · Grace et al. (2024) · `forecast`
   Used for: expert-survey timeline distributions; consensus preset anchors (HANDOVER core anchor)
   Cited 5× by: events/superhuman_coder.json → sourceIds · parameters.json → worldviewPresets.consensus.alignmentDifficulty · parameters.json → worldviewPresets.consensus.takeoffSteepness · parameters.json → worldviewPresets.skeptic.displacementLagDivisor · parameters.json → capabilityLadder.milestones.0.at
-- **SRC-DEEPSEEK-COST** · [DeepSeek Debates: Chinese Leadership on Cost, True Training Cost, Closed Model Margin Impacts](https://newsletter.semianalysis.com/p/deepseek-debates) · Patel et al., SemiAnalysis (2025) · `empirical`
-  Used for: DeepSeek cost mechanic (~$1.6B server capex; MLA cuts KV-cache 93.3%)
-  Cited 5× by: events/open_weights_shock.json → sourceIds · parameters.json → worldRules.rivalDepth.substitutionBonusMin · prologue.json → chapters.1 · scenarios/scenario_2026.json → seats.china.resources.compute · scenarios/scenario_2026.json → seats.china.resources.capability
 - **SRC-MAIM** · [Superintelligence Strategy: Expert Version (MAIM)](https://arxiv.org/abs/2503.05628) · Hendrycks, Schmidt, Wang (2025) · `analysis`
   Used for: deterrence/sabotage/nonproliferation mechanic
   Cited 5× by: events/rival_breakthrough.json → sourceIds · events/treaty_feeler.json → sourceIds · policies/compute_treaty_feeler.json → sourceIds · policies/natsec_merge.json → sourceIds · policies/preventive_sabotage.json → sourceIds
@@ -89,6 +86,9 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-IAISR** · [International AI Safety Report 2025](https://arxiv.org/abs/2501.17805) · Bengio et al. (2025) · `analysis`
   Used for: consensus risk synthesis; consensus preset anchors
   Cited 4× by: parameters.json → worldviewPresets.consensus.alignmentDifficulty · parameters.json → worldviewPresets.consensus.takeoffSteepness · prologue.json → chapters.2 · scenarios/scenario_2026.json → seats.china.resources.safetyInsight
+- **SRC-DEEPSEEK-COST** · [DeepSeek Debates: Chinese Leadership on Cost, True Training Cost, Closed Model Margin Impacts](https://newsletter.semianalysis.com/p/deepseek-debates) · Patel et al., SemiAnalysis (2025) · `empirical`
+  Used for: DeepSeek cost mechanic (~$1.6B server capex; MLA cuts KV-cache 93.3%)
+  Cited 4× by: events/open_weights_shock.json → sourceIds · prologue.json → chapters.1 · scenarios/scenario_2026.json → seats.china.resources.compute · scenarios/scenario_2026.json → seats.china.resources.capability
 - **SRC-GATE** · [GATE: An Integrated Assessment Model for AI Automation](https://arxiv.org/abs/2503.04941) · Epoch AI (2025) · `forecast`
   Used for: compute-centric economic takeoff model; automation/growth economic engine
   Cited 3× by: events/city_power_deal.json → sourceIds · parameters.json → worldRules.upkeep.capitalIncomePerDiffusion · parameters.json → curves.rndCapacity
@@ -104,7 +104,7 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-NORMAL-TECH** · [AI as Normal Technology](https://knightcolumbia.org/content/ai-as-normal-technology) · Narayanan & Kapoor, Princeton/Knight Institute (2025) · `analysis`
   Used for: skeptical worldview preset
   Cited 3× by: parameters.json → worldviewPresets.skeptic.alignmentDifficulty · parameters.json → worldviewPresets.skeptic.takeoffSteepness · parameters.json → worldviewPresets.skeptic.displacementLagDivisor
-- **SRC-UK-AISI** · [UK AI Security Institute (formerly AI Safety Institute)](https://www.aisi.gov.uk/) · UK AISI · `empirical` *(verification pending)*
+- **SRC-UK-AISI** · [UK AI Security Institute (formerly AI Safety Institute)](https://www.aisi.gov.uk/) · UK AISI · `empirical`
   Used for: eval/regulation actor
   Cited 2× by: mandates.json → mandates.2 · policies/eval_mandate.json → sourceIds
 - **SRC-RAND-WEIGHTS** · [Securing AI Model Weights: Preventing Theft and Misuse of Frontier Models](https://www.rand.org/pubs/research_reports/RRA2849-1.html) · Nevo, Lahav, Karpur et al., RAND (2024) · `analysis`
@@ -119,7 +119,7 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-IABIED** · [If Anyone Builds It, Everyone Dies](https://ifanyonebuildsit.com/) · Yudkowsky & Soares (2025) · `analysis` *(book, obtain manually)*
   Used for: Grounds the cautious worldview's high alignment-difficulty range (upper half of the 550-950 band) and, via the book's core policy prescription of a halt on frontier AI development, the global_moratorium policy card's pause mechanic.
   Cited 2× by: parameters.json → worldviewPresets.cautious.alignmentDifficulty · policies/global_moratorium.json → sourceIds
-- **SRC-AI-INCIDENT-DB** · [AI Incident Database](https://incidentdatabase.ai/) · Responsible AI Collaborative · `empirical` *(verification pending)*
+- **SRC-AI-INCIDENT-DB** · [AI Incident Database](https://incidentdatabase.ai/) · Responsible AI Collaborative · `empirical`
   Used for: real-world harm cases
   Cited 2× by: events/election_scandal.json → sourceIds · incidents.json → sourceIds
 - **SRC-BENCH-COP** · [Bench-2-CoP: Can We Trust Benchmarking for EU AI Compliance?](https://arxiv.org/abs/2508.05464) · Matteo Prandi et al. (2025) · `empirical`
@@ -164,7 +164,7 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-ANTHROPIC-ECON-INDEX** · [The Anthropic Economic Index](https://www.anthropic.com/economic-index) · Anthropic (2025) · `empirical`
   Used for: real usage-by-occupation data
   Cited 1× by: events/viral_job_loss.json → sourceIds
-- **SRC-OPENRESEARCH-UBI** · [OpenResearch Unconditional Income Study](https://www.openresearchlab.org/our-work/unconditional-cash-study) (2024) · `empirical` *(verification pending)*
+- **SRC-OPENRESEARCH-UBI** · [OpenResearch Unconditional Income Study](https://www.openresearchlab.org/studies/unconditional-cash-study/study) (2024) · `empirical`
   Used for: UBI/redistribution mechanic
   Cited 1× by: policies/ubi_pilot.json → sourceIds
 - **SRC-CARLSMITH** · [Is Power-Seeking AI an Existential Risk?](https://arxiv.org/abs/2206.13353) · Joseph Carlsmith (2022) · `analysis`
@@ -176,10 +176,13 @@ Every entry lists each place it is cited. Sorted by citation count.
 - **SRC-AI-INDEX-2025** · [The 2025 AI Index Report](https://hai.stanford.edu/ai-index/2025-ai-index-report) · Stanford HAI (2025) · `empirical`
   Used for: Backs the prologue's opening beat (data/prologue.json chapters[0] 'starting_gun': capability, capital, and safetyInsight rising while publicTrust dips) via the 2025 report's investment, adoption, and public-opinion chapters.
   Cited 1× by: prologue.json → chapters.0
-- **SRC-US-POLICY-CHINA-OPEN-ECOSYSTEM** · [U.S. Policies Unintentionally Accelerated China's Open AI Ecosystems](https://arxiv.org/abs/2606.15999) · Wang Jin et al. (2026) · `analysis` *(verification pending)*
+- **SRC-AISI-FRONTIER-TRENDS** · [Frontier AI Trends Report](https://www.aisi.gov.uk/frontier-ai-trends-report) · UK AI Security Institute (2026) · `empirical`
+  Used for: Task-length trend data (software task success by duration, time-horizon benchmark figures) backing the capability track's hours-scale anchor mapping alongside METR.
+  Cited 1× by: anchors.json → tracks.capability
+- **SRC-US-POLICY-CHINA-OPEN-ECOSYSTEM** · [U.S. Policies Unintentionally Accelerated China's Open AI Ecosystems](https://arxiv.org/abs/2606.15999) · Wang Jin et al. (2026) · `analysis`
   Used for: Strategic counterpoint: export controls can slow frontier access while strengthening open, adaptive Chinese ecosystems
   Cited 1× by: policies/open_weights_release.json → sourceIds
-- **SRC-PAYROLLS-TO-PROMPTS** · [Payrolls to Prompts: Firm-Level Evidence on the Substitution of Labor for AI](https://arxiv.org/abs/2602.00139) · Ryan Stevens (2026) · `empirical` *(verification pending)*
+- **SRC-PAYROLLS-TO-PROMPTS** · [Payrolls to Prompts: Firm-Level Evidence on the Substitution of Labor for AI](https://arxiv.org/abs/2602.00139) · Ryan Stevens (2026) · `empirical`
   Used for: Backs the shape of the displacementFromCapability curve in parameters.json (paired with SRC-IMF-GENAI's exposure baseline): firm-level evidence of actual spending substitution of AI for labor justifies displacement rising with capability rather than staying flat, not merely 'labor-market event cards' generically.
   Cited 1× by: parameters.json → curves.displacementFromCapability
 - **SRC-RIGHT-TO-WARN** · [A Right to Warn about Advanced Artificial Intelligence (open letter)](https://righttowarn.ai) · current and former OpenAI and Google DeepMind employees (2024) · `analysis`
@@ -194,7 +197,7 @@ Every entry lists each place it is cited. Sorted by citation count.
 These shaped a mechanic without backing one specific number. Each states which
 mechanic, checkably. Wiring one of these to an actual number is a welcome PR.
 
-- **SRC-DAVIDSON-TAKEOFF** · [Compute-centric takeoff model](https://takeoffspeeds.com) · Davidson, Open Philanthropy (2023) · `forecast` *(verification pending)*
+- **SRC-DAVIDSON-TAKEOFF** · [Compute-centric takeoff model](https://takeoffspeeds.com) · Davidson, Open Philanthropy (2023) · `forecast`
   Shaped: The takeoffSteepness worldview dial (parameters.json worldviewPresets.*.takeoffSteepness), which sets how fast capability compounds once frontier AI R&D automation begins, operationalizes this paper's compute-centric takeoff-speed framework of treating takeoff duration as a distinct, quantifiable axis separate from AGI-timeline forecasts.
 - **SRC-POWER-SEEKING-POLICIES** · [Optimal Policies Tend to Seek Power](https://arxiv.org/abs/1912.01683) · Turner, Smith, Shah, Critch, Tadepalli (2021) · `analysis`
   Shaped: The agencyErosion mechanic (parameters.json worldRules.agencyErosion.perTurn), where sufficiently capable AI systems quietly accumulate control over decisions each turn, operationalizes this paper's formal result that optimal policies across a wide range of environments tend to seek power and resources instrumentally.
@@ -217,23 +220,23 @@ mechanic, checkably. Wiring one of these to an actual number is a welcome PR.
 - **SRC-BOGOST-PERSUASIVE-GAMES** · Persuasive Games · Bogost (2007) · `design` *(book, obtain manually)*
   Shaped: The project's core Fun-First-70/30 principle (HANDOVER §3, Operating Principle 1: the lesson lives in mechanics, hidden alignment dice, eval-uncertainty bands, delayed consequences, never in lecture screens) follows Bogost's concept of procedural rhetoric: games persuade through their rules and systems, not through explicit argument.
 
-## The library: further reading (98)
+## The library: further reading (97)
 
 No usage claim. This is the shelf we read from and the shelf we recommend,
 grouped by topic.
 
 ### ai-safety
 
-- **SRC-IASR-2026** · [International AI Safety Report 2026](https://arxiv.org/abs/2602.21012) · Yoshua Bengio et al. (2026) · `analysis` *(verification pending)*
+- **SRC-IASR-2026** · [International AI Safety Report 2026](https://arxiv.org/abs/2602.21012) · Yoshua Bengio et al. (2026) · `analysis`
   Why it is here: Points a reader to the most current multi-expert international consensus report on frontier AI capabilities and risk, the same report series already grounding the consensus worldview preset (via the separately-registered SRC-IAISR), updated to its newest edition.
-- **SRC-BLACKBOX-SCHEMING-MONITORS** · [Training Deliberative Monitors for Black-Box Scheming Detection](https://arxiv.org/abs/2605.29601) · Aditya Sinha et al. (2026) · `empirical` *(verification pending)*
+- **SRC-BLACKBOX-SCHEMING-MONITORS** · [Training Deliberative Monitors for Black-Box Scheming Detection](https://arxiv.org/abs/2605.29601) · Aditya Sinha et al. (2026) · `empirical`
   Why it is here: Gives a reader a concrete technical account of training monitors to catch scheming behavior that hides from chain-of-thought, useful further reading for the control-stack/monitoring-investment theme already carried by the Safety Insight mechanic, though no current number cites it.
 
 ### alignment
 
 - **SRC-RLHF** · [Deep reinforcement learning from human preferences (RLHF)](https://arxiv.org/abs/1706.03741) · Christiano, Leike, Brown, Martic, Legg, Amodei (2017) · `empirical`
   Why it is here: The original technique paper for training models from human preference feedback; broad background reading on why 'training for alignment' is treated as an actionable, investable lever in the game, though no specific mechanic is traceably built on this paper rather than the field generally.
-- **SRC-INSTRUCTGPT** · [Training language models to follow instructions with human feedback (InstructGPT)](https://arxiv.org/abs/2203.02155) · Ouyang et al., OpenAI (2022) · `empirical` *(verification pending)*
+- **SRC-INSTRUCTGPT** · [Training language models to follow instructions with human feedback (InstructGPT)](https://arxiv.org/abs/2203.02155) · Ouyang et al., OpenAI (2022) · `empirical`
   Why it is here: Demonstrates that instruction-tuning via human feedback measurably improves model helpfulness and harmlessness at production scale; useful background on real alignment-training practice, though not specifically tied to any single game mechanic.
 - **SRC-CONSTITUTIONAL-AI** · [Constitutional AI: Harmlessness from AI Feedback](https://arxiv.org/abs/2212.08073) · Bai, Kadavath, Kundu et al., Anthropic (2022) · `empirical`
   Why it is here: Introduces AI-feedback-based safety training as an alternative to pure RLHF; good further reading on real lab alignment techniques, though the game's abstract alignment/safety-investment numbers don't distinguish between training methods.
@@ -260,11 +263,6 @@ grouped by topic.
   Why it is here: Gives a researcher METR's actual measured data on how close AI agents are to human ML-engineer performance on real R&D tasks, the concrete empirical basis a curious player could look up behind the game's abstracted 'AI accelerates AI' selfAccel bonuses, even though those bonuses are currently sourced only to AI-2027 and the METR task-horizon paper.
 - **SRC-MLRC-BENCH** · [MLRC-Bench: Can Language Agents Solve Machine Learning Research Challenges?](https://arxiv.org/abs/2504.09702) · Yunxiang Zhang et al. (2025) · `empirical`
   Why it is here: Gives a skeptical reader evidence that language agents still hit hard limits on genuinely novel ML research versus engineering-heavy tasks, a useful counterweight to autonomous-AI-science hype for anyone probing the game's R&D-automation framing.
-
-### benchmarks
-
-- **SRC-AISI-FRONTIER-TRENDS** · [Frontier AI Trends Report](https://www.aisi.gov.uk/frontier-ai-trends-report) · UK AI Security Institute (2026) · `empirical`
-  Why it is here: The UK AI Security Institute's task-length and capability trend curves, the natural report to check the game's capability anchors against; a candidate citation once its content is verified against the anchor mapping.
 
 ### china
 
@@ -315,12 +313,12 @@ grouped by topic.
   Why it is here: The widely-cited optimistic GDP/jobs-exposure projection for generative AI, a useful counterweight for readers comparing it against the more skeptical Acemoglu macro estimate also in this registry.
 - **SRC-POWER-PROGRESS** · Power and Progress: Our Thousand-Year Struggle Over Technology and Prosperity · Acemoglu & Johnson, PublicAffairs (2023) · `analysis` *(book, obtain manually)*
   Why it is here: Acemoglu & Johnson's historical argument that a new technology's benefits depend on institutional choices, not inevitability, deeper reading behind the game's political-economy framing of automation and unrest.
-- **SRC-ACEMOGLU-SIMPLE-MACRO** · [The Simple Macroeconomics of AI](https://www.nber.org/papers/w32487) · Acemoglu (2024) · `forecast` *(verification pending)*
+- **SRC-ACEMOGLU-SIMPLE-MACRO** · [The Simple Macroeconomics of AI](https://www.nber.org/papers/w32487) · Acemoglu (2024) · `forecast`
   Why it is here: A skeptical macro estimate of modest GDP growth from AI over the next decade, useful for a player weighing how much to trust either worldview's economic optimism against the Goldman Sachs projection also in this registry.
 
 ### energy
 
-- **SRC-DATACENTER-SITING-STRESS** · [Concentrated siting of AI data centers drives regional power-system stress under rising global compute demand](https://arxiv.org/abs/2604.06198) · Danbo Chen et al. (2026) · `empirical` *(verification pending)*
+- **SRC-DATACENTER-SITING-STRESS** · [Concentrated siting of AI data centers drives regional power-system stress under rising global compute demand](https://arxiv.org/abs/2604.06198) · Danbo Chen et al. (2026) · `empirical`
   Why it is here: Gives a reader the regional-clustering angle on grid stress (specific power systems overloaded by concentrated data-center siting, not just national totals), useful further reading for the energy_crunch event and keep_lights_on mandate beyond the aggregate IEA figures currently cited there.
 
 ### eu-governance
@@ -361,7 +359,7 @@ grouped by topic.
 
 - **SRC-EPOCH-MODEL-COUNT** · [Trends in Frontier AI Model Count: A Forecast to 2028](https://arxiv.org/abs/2504.16138) · Epoch AI (2025) · `forecast`
   Why it is here: Forecasts how many frontier-scale models will exist through 2028 as compute costs fall; useful context for why the game assumes more than one actor can approach the frontier over time, though no specific in-game number is drawn from it.
-- **SRC-GRACE-2018** · [When Will AI Exceed Human Performance? Evidence from AI Experts](https://arxiv.org/abs/1705.08807) · Grace, Salvatier, Dafoe, Zhang, Evans (2018) · `forecast` *(verification pending)*
+- **SRC-GRACE-2018** · [When Will AI Exceed Human Performance? Evidence from AI Experts](https://arxiv.org/abs/1705.08807) · Grace, Salvatier, Dafoe, Zhang, Evans (2018) · `forecast`
   Why it is here: The original 2017/2018 AI Impacts expert-timeline survey; useful for a reader who wants to see how much expert opinion moved between this survey and the 2024 follow-up (SRC-GRACE-SURVEY) that the game actually draws its consensus-preset anchors from.
 - **SRC-COTRA-BIOANCHORS** · Forecasting TAI with Biological Anchors · Cotra, Open Philanthropy (2020) · `forecast` *(link broken, replacement wanted)*
   Why it is here: The founding bio-anchors approach to forecasting transformative AI by analogy to biological brain compute; useful for a researcher tracing where the field's timeline debates (and this game's takeoff/timeline thinking) originally came from, despite backing no specific number here and having a genuinely messy citation trail.
@@ -392,7 +390,7 @@ grouped by topic.
 
 - **SRC-MONOSEMANTICITY** · [Towards Monosemanticity: Decomposing Language Models with Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/index.html) · Bricken, Templeton, Batson et al., Anthropic (2023) · `empirical`
   Why it is here: The original, smaller-scale demonstration that a language model's internal features can be decomposed into interpretable, monosemantic units; the direct intellectual predecessor of SRC-SCALING-MONOSEMANTICITY, which the game already cites for the safetyInsight mechanic.
-- **SRC-GOLDEN-GATE** · [Golden Gate Claude](https://www.anthropic.com/news/golden-gate-claude) · Anthropic (2024) · `empirical` *(verification pending)*
+- **SRC-GOLDEN-GATE** · [Golden Gate Claude](https://www.anthropic.com/news/golden-gate-claude) · Anthropic (2024) · `empirical`
   Why it is here: A vivid, non-technical public demo of what steering an interpretability feature actually looks like (an AI obsessed with the Golden Gate Bridge); accessible further reading for a player or teacher who wants a concrete picture of what the abstract safetyInsight meter represents.
 
 ### lab-governance
@@ -404,11 +402,11 @@ grouped by topic.
 
 - **SRC-ANTHROPIC-ECON-INDEX-ADOPTION** · [Anthropic Economic Index report: Uneven geographic and enterprise AI adoption](https://arxiv.org/abs/2511.15080) · Ruth Appel et al. (2025) · `empirical`
   Why it is here: Gives a reader Anthropic's own data showing sharply uneven AI adoption by geography and firm size, a useful corrective for anyone tightening the game's displacement-lag/diffusion-friction curves beyond the IMF, Normal Technology, and Grace-survey sources currently cited.
-- **SRC-GENAI-WORK-EUROPE** · [Generative AI at Work: From Exposure to Adoption across 35 European Countries](https://arxiv.org/abs/2604.18849) · Golo Henseke (2026) · `empirical` *(verification pending)*
+- **SRC-GENAI-WORK-EUROPE** · [Generative AI at Work: From Exposure to Adoption across 35 European Countries](https://arxiv.org/abs/2604.18849) · Golo Henseke (2026) · `empirical`
   Why it is here: Gives a reader EU-specific survey evidence that exposure to generative AI does not equal adoption, directly relevant further reading for the game's European seat and displacement mechanics even though no number currently cites it.
-- **SRC-GENAI-LABOR-REORG** · [Generative AI and the Reorganization of Labor Demand](https://arxiv.org/abs/2605.23159) · Fangyan Wang, Zaiyan Wei, Yang Wang (2026) · `empirical` *(verification pending)*
+- **SRC-GENAI-LABOR-REORG** · [Generative AI and the Reorganization of Labor Demand](https://arxiv.org/abs/2605.23159) · Fangyan Wang, Zaiyan Wei, Yang Wang (2026) · `empirical`
   Why it is here: Gives a reader evidence that firms reallocate and redesign tasks rather than simply cutting jobs, a nuance the worldview presets gesture at but don't cite directly, useful for anyone refining the displacement/diffusion balance mechanics.
-- **SRC-GENAI-PRODUCTIVITY-META** · [A meta-analysis of the effect of generative AI on productivity and learning in programming](https://arxiv.org/abs/2605.04779) · Sebastian Maier et al. (2026) · `empirical` *(verification pending)*
+- **SRC-GENAI-PRODUCTIVITY-META** · [A meta-analysis of the effect of generative AI on productivity and learning in programming](https://arxiv.org/abs/2605.04779) · Sebastian Maier et al. (2026) · `empirical`
   Why it is here: Gives a reader an evidence-based middle ground between 'AI changes nothing' and 'AI replaces programmers now,' useful further reading for anyone building out education/upskilling mechanics the game doesn't yet have.
 
 ### labor-market
@@ -417,13 +415,13 @@ grouped by topic.
   Why it is here: The IMF's own plain-language summary of its Gen-AI labor-market findings (the same underlying report that backs the job-displacement mechanic elsewhere), good for a reader who wants the headline case without the full SDN paper.
 - **SRC-IMF-SKILLGAPS** · [Bridging Skill Gaps for the Future: New Jobs Creation in the AI Age](https://www.imf.org/-/media/files/publications/sdn/2026/english/sdnea2026001.pdf) · IMF SDN (2026) · `empirical`
   Why it is here: Evidence on declining entry-level hiring in the AI era, a real labor-market dynamic the game's single job-displacement scalar doesn't yet break out separately; useful reading for a future 'entry-level jobs' mechanic.
-- **SRC-GPTS-ARE-GPTS** · [GPTs are GPTs](https://arxiv.org/abs/2303.10130) · Eloundou et al. (2023) · `empirical` *(verification pending)*
+- **SRC-GPTS-ARE-GPTS** · [GPTs are GPTs](https://arxiv.org/abs/2303.10130) · Eloundou et al. (2023) · `empirical`
   Why it is here: The original occupational-exposure measurement study for LLMs, useful background on the methodology behind 'percent of jobs exposed' claims used elsewhere in the registry.
-- **SRC-BRYNJOLFSSON-GENAI-WORK** · [Generative AI at Work](https://www.nber.org/papers/w31161) · Brynjolfsson et al. (2023) · `empirical` *(verification pending)*
+- **SRC-BRYNJOLFSSON-GENAI-WORK** · [Generative AI at Work](https://www.nber.org/papers/w31161) · Brynjolfsson et al. (2023) · `empirical`
   Why it is here: The call-center field experiment showing real productivity gains from generative AI assistance, primary evidence behind the game's general 'AI boosts productivity' framing.
-- **SRC-NOY-ZHANG** · [Experimental Evidence on Productivity Effects of GenAI](https://pubmed.ncbi.nlm.nih.gov/37440646/) · Noy & Zhang (2023) · `empirical` *(verification pending)*
+- **SRC-NOY-ZHANG** · [Experimental Evidence on Productivity Effects of GenAI](https://pubmed.ncbi.nlm.nih.gov/37440646/) · Noy & Zhang (2023) · `empirical`
   Why it is here: A controlled experiment showing GenAI narrows the productivity gap between weaker and stronger writers, useful background on the productivity-and-equity angle behind the game's automation mechanics.
-- **SRC-DELLACQUA-JAGGED** · [Navigating the Jagged Technological Frontier](https://pubsonline.informs.org/doi/10.1287/orsc.2025.21838) · Dell'Acqua et al., HBS (2023) · `empirical` *(verification pending)*
+- **SRC-DELLACQUA-JAGGED** · [Navigating the Jagged Technological Frontier](https://pubsonline.informs.org/doi/10.1287/orsc.2025.21838) · Dell'Acqua et al., HBS (2023) · `empirical`
   Why it is here: The HBS consulting-task study showing GenAI helps unevenly across tasks (the 'jagged frontier'), good background for why the game treats automation benefits as uneven rather than uniform.
 
 ### leaderboard
@@ -538,5 +536,5 @@ grouped by topic.
   Why it is here: The one-sentence expert-consensus statement that AI extinction risk should be a global priority, evidence for a player wanting to know the game's doom worldview preset isn't fringe speculation.
 - **SRC-PRECIPICE** · [The Precipice: Existential Risk and the Future of Humanity](https://theprecipice.com/) · Toby Ord (2020) · `analysis` *(book, obtain manually)*
   Why it is here: Ord's canonical popular introduction to existential risk, a gentler companion to Carlsmith's technical paper for a reader building the case behind the game's doom-worldview preset.
-- **SRC-COMPENDIUM** · [The Compendium](https://www.thecompendium.ai/) · Leahy, Alfour et al. (2024) · `analysis` *(verification pending)*
+- **SRC-COMPENDIUM** · [The Compendium](https://www.thecompendium.ai/) · Leahy, Alfour et al. (2024) · `analysis`
   Why it is here: A risk-emphasizing synthesis of the AI existential-risk case for a player who finishes a cautious-worldview run wanting the fullest version of the doom argument in one place, alongside the game's already-cited Carlsmith and IABIED sources.

@@ -2,7 +2,7 @@
   "comment": "Descriptive UI anchors: each index translated back to the sourced reality it came from. NEVER read by the engine; zero balance impact. Nearest anchor at or below the value shows under the meter. Tracks with an honest real-world unit also carry a continuous mapping (unit.points, interpolated; capability log-scale over task-horizon hours); tracks without one keep qualitative rungs and never fake precision.",
   "tracks": {
     "capability": {
-      "sourceIds": ["SRC-METR-HORIZON", "SRC-AI2027"],
+      "sourceIds": ["SRC-METR-HORIZON", "SRC-AI2027", "SRC-AISI-FRONTIER-TRENDS"],
       "anchors": [
         {
           "at": 0,

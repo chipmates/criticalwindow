@@ -11,12 +11,12 @@ constants with no real-world referent cite the design handover and say so. The
 iron rule: no number ships without a source ID, `pnpm validate` fails CI
 otherwise. Run it yourself.
 
-**188 cited values across 324 citation sites.** By kind:
+**175 cited values across 309 citation sites.** By kind:
 
 - **22** analysis-based
-- **50** design choice
+- **40** design choice
 - **29** forecast-based
-- **87** measured
+- **84** measured
 
 A **measured** value cites only empirical evidence. A **forecast-based** or
 **analysis-based** value rests on somebody's argument about the future, which is
@@ -30,7 +30,7 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 
 | Where | Numbers | Kind | Sources | How the number was derived |
 |---|---|---|---|---|
-| tracks.capability |  | forecast-based | SRC-METR-HORIZON, SRC-AI2027 |  |
+| tracks.capability |  | forecast-based | SRC-METR-HORIZON, SRC-AI2027, SRC-AISI-FRONTIER-TRENDS |  |
 | tracks.compute |  | measured | SRC-EPOCH-COMPUTE |  |
 | tracks.energy |  | measured | SRC-IEA-ENERGY-AI |  |
 | tracks.talent |  | measured | SRC-AI-INDEX-2026 |  |
@@ -142,32 +142,19 @@ advisory board arbitrates realism disputes, see [`GOVERNANCE.md`](../GOVERNANCE.
 | thresholds.gridSlackBeforeCap | value 300 | measured | SRC-IEA-ENERGY-AI, SRC-DESIGN-HANDOVER | compute outrunning energy decays: IEA base case has datacentre demand rising 415 TWh (2024, ~1.5% of world electricity) to ~945 TWh by 2030; slack width is design-tuned |
 | thresholds.treatySignTurnMin | value 11 | analysis-based | SRC-HO-INTL-INSTITUTIONS, SRC-DESIGN-HANDOVER | earliest signing turn. Raised 8->11 on 2026-07-04: you must survive the dangerous middle before cooperation is real. |
 | thresholds.treatySignPoliticalCapitalMin | value 300 | analysis-based | SRC-PUTNAM-TWO-LEVEL, SRC-HO-INTL-INSTITUTIONS, SRC-SIM-GAMING-INSIGHTS | BOTH seats need this much standing political capital at signing: every treaty has two home fronts (Putnam's two-level games), and the rival's swings with era verdicts outside the player's control. The signature is a window to be read, not a recipe to execute. (2026-07-04, iter3: price-based gates alone could not cap recipe play.) |
-| worldRules.rivalMoves.race.capability | value 60 | design choice | SRC-DESIGN-HANDOVER | rival pace in race posture; tuned against the B6 simulation grid (median run length target 11+ turns) |
 | worldRules.rivalMoves.race.trust | value -50 | design choice | SRC-DESIGN-HANDOVER |  |
-| worldRules.rivalMoves.mirror.capability | value 30 | design choice | SRC-DESIGN-HANDOVER | unprovoked mirror pace; the rival mostly accelerates when YOU do (match bonus) or when provoked into race posture. Retuned with the alignment-earned model (2026-07-03 playtest follow-up) |
-| worldRules.rivalMoves.mirror.matchBonus | value 25 | design choice | SRC-DESIGN-HANDOVER | tit-for-tat: extra rival capability when the player gained 100+ this turn |
 | worldRules.rivalMoves.mirror.diplomacyTrust | value 50 | design choice | SRC-DESIGN-HANDOVER | trust gain when the player played a diplomacy-tagged card this turn |
-| worldRules.rivalMoves.mirror.matchTrigger | value 50 | design choice | SRC-DESIGN-HANDOVER | player capability gain this turn that triggers the tit-for-tat match bonus |
-| worldRules.rivalMoves.cautious.capability | value 30 | design choice | SRC-DESIGN-HANDOVER |  |
 | worldRules.rivalMoves.cautious.trust | value 50 | design choice | SRC-DESIGN-HANDOVER |  |
 | worldRules.postureChecks.cautiousTrustMin | value 700 | design choice | SRC-DESIGN-HANDOVER | trust + treatyChannel flag flips rival to cautious |
 | worldRules.postureChecks.raceGapMin | value 200 | design choice | SRC-DESIGN-HANDOVER | player capability lead that flips rival to race |
 | worldRules.postureChecks.raceTrustMax | value 250 | design choice | SRC-DESIGN-HANDOVER | trust at or below this flips rival to race |
-| worldRules.society.displacementCapabilityMin | value 400 | measured | SRC-IMF-GENAI, SRC-DESIGN-HANDOVER | capability level where displacement pressure starts; v2 uses the displacementFromCapability curve |
-| worldRules.society.displacementPerTurn | value 50 | design choice | SRC-DESIGN-HANDOVER |  |
-| worldRules.society.displacementSurgeCapability | value 700 | design choice | SRC-DESIGN-HANDOVER | above this, displacement accrues double |
 | worldRules.society.diffusionReliefPer | value 100 | design choice | SRC-DESIGN-HANDOVER | diffusion R&D points (digital) per unit of relief chosen in the society step |
 | worldRules.society.unrestFromDisplacementGap | value 50 | design choice | SRC-DESIGN-HANDOVER | unrest per turn while displacement exceeds public trust |
 | worldRules.society.unrestSurgeDisplacement | value 600 | design choice | SRC-DESIGN-HANDOVER | above this displacement, unrest accrues double |
-| worldRules.society.trustErosionUnrestMin | value 500 | design choice | SRC-DESIGN-HANDOVER | unrest level where public trust starts eroding |
-| worldRules.society.trustErosionPerTurn | value 50 | design choice | SRC-DESIGN-HANDOVER |  |
 | worldRules.election.trustMin | value 400 | design choice | SRC-DESIGN-HANDOVER | midterm verdict: trust at or above this AND unrest at or below unrestMax renews the mandate |
 | worldRules.election.unrestMax | value 400 | design choice | SRC-DESIGN-HANDOVER |  |
 | worldRules.election.mandateSwing | value 100 | design choice | SRC-DESIGN-HANDOVER | political capital gained on renewal, lost on rebuke |
 | worldRules.upkeep.capitalIncomePerDiffusion | value 25 | forecast-based | SRC-GATE, SRC-DESIGN-HANDOVER | diffusion converts capability into economic output (compute-centric growth models); the rate is design pacing |
-| worldRules.rivalDepth.substitutionBonusMin | value 700 | measured | SRC-CSIS-EXPORT, SRC-DEEPSEEK-COST | substitution maturity threshold: export controls accelerate domestic alternatives and efficiency under constraint |
-| worldRules.rivalDepth.substitutionBonus | value 25 | measured | SRC-CSIS-EXPORT, SRC-DESIGN-HANDOVER | extra rival capability per turn once substitution matured; magnitude design-tuned |
-| worldRules.rivalDepth.progressVariance | value 25 | design choice | SRC-DESIGN-HANDOVER | seeded per-turn rival capability variance (their progress is foggy too); drawn from the rival stream |
 | worldRules.societyDepth.trustCurveDivisor | value 4 | design choice | SRC-DESIGN-HANDOVER | trustFromUnrest(unrest)/divisor applied to public trust per turn |
 | worldRules.societyDepth.unrestEconomicDragMin | value 600 | measured | SRC-OECD-EMPLOYMENT, SRC-DESIGN-HANDOVER | sustained high unrest starts costing the economy (strikes, capital flight, risk premia); threshold design-tuned |
 | worldRules.societyDepth.unrestEconomicDrag | value 25 | design choice | SRC-DESIGN-HANDOVER | capital drag per turn at high unrest; talent drains at half rate |
