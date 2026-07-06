@@ -23,6 +23,8 @@ const files: string[] = [];
 let shot = 0;
 
 const dir = mkdtempSync(join(tmpdir(), 'cw-gif-'));
+/** Frames that double as README stills: shot number -> media file name. */
+const STILLS: Record<number, string> = { 1: 'title.png', 3: 'game.png' };
 
 async function capture(page: Page, hold: number): Promise<void> {
   shot += 1;
@@ -171,7 +173,22 @@ try {
     new URL('../docs/media/playthrough.gif', import.meta.url).pathname,
     ...sequenced,
   ]);
-  console.log(`playthrough.gif rebuilt from ${files.length} keyframes`);
+  // The README stills come from the same run, same theme, same cleanliness.
+  for (const [shotNo, name] of Object.entries(STILLS)) {
+    const source = files[Number(shotNo) - 1];
+    if (!source) {
+      continue;
+    }
+    execFileSync('ffmpeg', [
+      '-y',
+      '-i',
+      source,
+      '-vf',
+      'scale=1440:-1',
+      new URL(`../docs/media/${name}`, import.meta.url).pathname,
+    ]);
+  }
+  console.log(`playthrough.gif + ${Object.values(STILLS).join(' + ')} rebuilt from ${files.length} keyframes`);
 } finally {
   await browser.close();
   server?.kill();
