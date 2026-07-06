@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { GameMode, PlayableSeatId, WorldviewPresetId } from '../../engine/types';
 import { PLAYABLE_SEAT_IDS, WORLDVIEW_PRESET_IDS } from '../../engine/types';
 import { SourceChips } from '../components/SourceChip';
@@ -16,10 +16,17 @@ function rollSeed(): string {
 export function Setup() {
   const startRun = useStore((s) => s.startRun);
   const goTo = useStore((s) => s.goTo);
-  const [presetId, setPresetId] = useState<WorldviewPresetId>('consensus');
-  const [seed, setSeed] = useState(rollSeed());
-  const [mode, setMode] = useState<GameMode>('solo');
-  const [playerSeat, setPlayerSeat] = useState<PlayableSeatId>('usa');
+  const draft = useStore((s) => s.setupDraft);
+  const setSetupDraft = useStore((s) => s.setSetupDraft);
+  const [presetId, setPresetId] = useState<WorldviewPresetId>(draft?.presetId ?? 'consensus');
+  const [seed, setSeed] = useState(draft?.seed ?? rollSeed());
+  const [mode, setMode] = useState<GameMode>(draft?.mode ?? 'solo');
+  const [playerSeat, setPlayerSeat] = useState<PlayableSeatId>(draft?.playerSeat ?? 'usa');
+  // A detour to the sources screen remounts this component; the draft is
+  // what makes the player's half-made choices survive the trip.
+  useEffect(() => {
+    setSetupDraft({ presetId, seed, mode, playerSeat });
+  }, [presetId, seed, mode, playerSeat, setSetupDraft]);
   const data = gameData();
 
   return (

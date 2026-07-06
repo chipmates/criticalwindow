@@ -801,5 +801,7 @@
   "anchor.alignment.700": "holds up under adversarial testing",
   "anchor.alignment.850": "does what you meant, even unobserved",
   "title.imprint": "Imprint",
-  "title.privacyPage": "Privacy"
+  "title.privacyPage": "Privacy",
+  "title.resumeRun": "Return to your run",
+  "title.resumeDebrief": "Back to your debrief"
 }

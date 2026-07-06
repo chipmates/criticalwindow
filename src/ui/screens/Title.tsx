@@ -8,6 +8,7 @@ export function Title() {
   const goTo = useStore((s) => s.goTo);
   const loadFrom = useStore((s) => s.loadFrom);
   const hasAutosave = useStore((s) => s.hasAutosave)();
+  const liveRun = useStore((s) => s.run);
   const staleSaveSeed = useStore((s) => s.staleSaveSeed);
   const musicOn = useStore((s) => s.settings.musicOn);
   const voiceOn = useStore((s) => s.settings.voiceOn);
@@ -54,7 +55,20 @@ export function Title() {
           <li>{t('title.feature.offline')}</li>
         </ul>
         <div className="title-actions">
-          <button type="button" className="btn btn-primary btn-big" onClick={() => goTo('setup')}>
+          {liveRun && (
+            <button
+              type="button"
+              className="btn btn-primary btn-big"
+              onClick={() => goTo(liveRun.phase === 'ended' ? 'debrief' : 'game')}
+            >
+              {liveRun.phase === 'ended' ? t('title.resumeDebrief') : t('title.resumeRun')}
+            </button>
+          )}
+          <button
+            type="button"
+            className={liveRun ? 'btn btn-big' : 'btn btn-primary btn-big'}
+            onClick={() => goTo('setup')}
+          >
             {t('setup.newRun')}
           </button>
           {hasAutosave && !staleSaveSeed && (

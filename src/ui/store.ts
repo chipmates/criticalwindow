@@ -40,7 +40,17 @@ interface RunMeta {
 
 interface UiStore {
   screen: Screen;
-  helpReturn: Screen;
+  /** Where overlay screens (help, sources) return to; a stack so chains reverse cleanly. */
+  navStack: Screen[];
+  goBack: () => void;
+  /** Setup choices survive a detour to sources/help; cleared when a run starts. */
+  setupDraft: {
+    presetId: WorldviewPresetId;
+    seed: string;
+    mode: GameMode;
+    playerSeat: PlayableSeatId;
+  } | null;
+  setSetupDraft: (draft: UiStore['setupDraft']) => void;
   run: GameState | null;
   runMeta: RunMeta | null;
   actionsLog: Action[];
@@ -110,7 +120,11 @@ function applyDocumentSettings(settings: Settings): void {
 
 export const useStore = create<UiStore>((set, get) => ({
   screen: 'title',
-  helpReturn: 'title',
+  navStack: [],
+  setupDraft: null,
+  setSetupDraft(draft) {
+    set({ setupDraft: draft });
+  },
   run: null,
   runMeta: null,
   actionsLog: [],
@@ -122,13 +136,26 @@ export const useStore = create<UiStore>((set, get) => ({
 
   goTo(screen) {
     const { settings } = get();
-    if (screen === 'help') {
-      set({ helpReturn: get().screen });
+    const current = get().screen;
+    if ((screen === 'help' || screen === 'sources') && screen !== current) {
+      set({ navStack: [...get().navStack, current] });
+    } else if (screen !== 'help' && screen !== 'sources') {
+      // Arriving anywhere else by a normal route invalidates old detour history.
+      set({ navStack: [] });
     }
     if (settings.musicOn) {
       setMusic(true);
     }
     set({ screen });
+  },
+
+  goBack() {
+    const stack = get().navStack;
+    const target = stack[stack.length - 1] ?? 'title';
+    if (get().settings.musicOn) {
+      setMusic(true);
+    }
+    set({ navStack: stack.slice(0, -1), screen: target });
   },
 
   startRun(seed, presetId, mode = 'solo', playerSeat = 'usa') {

@@ -119,7 +119,7 @@ const SECTIONS: Section[] = [
  * a new tab. Flagged entries are labeled honestly; that is the point.
  */
 export function Sources() {
-  const goTo = useStore((s) => s.goTo);
+  const goBack = useStore((s) => s.goBack);
   const sourcesQuery = useStore((s) => s.sourcesQuery);
   const setSourcesQuery = useStore((s) => s.setSourcesQuery);
   // A chip elsewhere can hand us a search term; consume it once, then clear so
@@ -148,7 +148,7 @@ export function Sources() {
         </p>
         <p className="sources-legend">{t('sources.classes')}</p>
         <p className="sources-legend">{t('sources.legend')}</p>
-        <button type="button" className="btn" onClick={() => goTo('title')}>
+        <button type="button" className="btn" onClick={() => goBack()}>
           ← {t('help.back')}
         </button>
       </header>

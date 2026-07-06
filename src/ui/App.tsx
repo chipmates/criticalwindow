@@ -35,7 +35,7 @@ export function App() {
   let view: ReactNode = null;
   switch (screen) {
     case 'help':
-      view = <Help onBack={() => useStore.getState().goTo(useStore.getState().helpReturn)} />;
+      view = <Help onBack={() => useStore.getState().goBack()} />;
       break;
     case 'title':
       view = <Title />;
