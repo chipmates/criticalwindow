@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { replayTurns, runProbes } from '../../engine/probes';
 import { encodeShare } from '../../engine/save';
 import { scoreRun } from '../../engine/score';
+import { anchorFor, unitFor } from '../anchors';
 import { playNarration } from '../audio';
 import { Timeline } from '../components/Timeline';
 import { TruthChart } from '../components/TruthChart';
@@ -43,6 +44,10 @@ export function Debrief() {
 
   const ending = run.endingId;
   const player = run.seats[run.playerSeat];
+  // China's publicTrust reads as Legitimacy; the debrief honors the same override.
+  const trustLabelKey =
+    data.seatsRules[run.playerSeat].trackLabelOverrides?.['publicTrust'] ??
+    'resource.publicTrust.label';
   const rivalSeat = run.seats[run.playerSeat === 'usa' ? 'china' : 'usa'];
   const windowOpen = run.world.flags.includes('windowStillOpen');
   // The hidden reveal must show the truth that DECIDED the ending: when the
@@ -205,6 +210,40 @@ export function Debrief() {
           </p>
         )}
         <p className="panel-explain">{t('debrief.hidden.explain')}</p>
+      </section>
+
+      <section className="panel">
+        <h2 className="panel-heading">{t('debrief.final.heading')}</h2>
+        <dl className="score-lines debrief-final">
+          {(
+            [
+              ['resource.capability.label', 'capability', player.resources.capability],
+              ['resource.compute.label', 'compute', player.resources.compute],
+              ['resource.energy.label', 'energy', player.resources.energy],
+              [trustLabelKey, 'publicTrust', player.resources.publicTrust],
+              ['resource.safetyInsight.label', 'safetyInsight', player.resources.safetyInsight],
+              ['society.jobDisplacement.label', 'jobDisplacement', player.society.jobDisplacement],
+              ['society.unrest.label', 'unrest', player.society.unrest],
+              ['rival.trust.label', 'bilateralTrust', run.world.bilateralTrust],
+            ] as Array<[string, string, number]>
+          ).map(([labelRef, track, value]) => {
+            const readings = [unitFor(track, value), anchorFor(track, value)]
+              .filter(Boolean)
+              .join(' · ');
+            return (
+              <div key={track}>
+                <dt>
+                  {labelRef.startsWith('strings:') ? tRef(labelRef) : t(labelRef as StringKey)}
+                </dt>
+                <dd>
+                  {value}
+                  {readings ? ` · ${readings}` : ''}
+                </dd>
+              </div>
+            );
+          })}
+        </dl>
+        <p className="panel-explain">{t('debrief.final.explain')}</p>
       </section>
 
       <section className="panel">
