@@ -2,10 +2,12 @@
  * pnpm gif — regenerate docs/media/playthrough.gif from a real, seeded run.
  *
  * Drives the actual game in headless Chromium (same selectors as the browser
- * tests), captures keyframes at 2x device scale so text stays crisp, and
- * assembles them with gifski. Deterministic: fixed seed, reduced motion,
- * fixed viewport with margin so nothing ever clips. Requires `pnpm dev
- * --port 5199` running (or starts one itself) and gifski on PATH.
+ * tests) and captures a nine-shot arc: title, worldview setup, clean turn-1
+ * board, a memo dilemma (modal intended, teaching hints dismissed), the
+ * incident shock, the late board under fog, the ending, the truth chart, the
+ * grade. Assembled with gifski. Deterministic: fixed seed, reduced motion,
+ * dark theme, 1440x860 at 2x scale so no text clips. Requires gifski on PATH;
+ * starts its own dev server if none is listening.
  */
 import { execFileSync, spawn, type ChildProcess } from 'node:child_process';
 import { mkdtempSync, rmSync } from 'node:fs';
@@ -40,6 +42,26 @@ async function clickIf(page: Page, name: string): Promise<boolean> {
   return false;
 }
 
+/** First-run teaching hints are for players, not for the trailer. */
+async function dismissHints(page: Page): Promise<void> {
+  for (let i = 0; i < 5; i += 1) {
+    if (!(await clickIf(page, 'Got it'))) {
+      return;
+    }
+    await page.waitForTimeout(120);
+  }
+}
+
+/** Unlock toasts auto-fade after 7s; the harness outruns them, a shot must not. */
+async function awaitToastsGone(page: Page): Promise<void> {
+  for (let i = 0; i < 40; i += 1) {
+    if ((await page.locator('.disclose-toast').count()) === 0) {
+      return;
+    }
+    await page.waitForTimeout(250);
+  }
+}
+
 async function serverUp(): Promise<boolean> {
   try {
     const res = await fetch(BASE);
@@ -69,48 +91,52 @@ const page = await context.newPage();
 try {
   await page.goto(BASE);
   await page.getByRole('button', { name: 'New run' }).waitFor({ timeout: 15_000 });
-  await capture(page, 7); // title
+  await capture(page, 7); // 1. title: the definition hook
 
   await page.getByRole('button', { name: 'New run' }).click();
   await page.getByLabel('Seed').fill(SEED);
-  await capture(page, 7); // setup: worldview + seed
+  await capture(page, 6); // 2. setup: pick your worldview, the transparency move
 
   await page.getByRole('button', { name: 'Take office' }).click();
 
-  // Prologue: play it for real, capture the allocation teach.
+  // Prologue: play through without capturing (it teaches; the gif pitches).
   await page.getByRole('button', { name: 'Continue' }).click();
-  await capture(page, 7); // prologue allocation lesson
+  await dismissHints(page);
   await page.getByRole('button', { name: 'Commit allocation' }).click();
   await page.getByRole('button', { name: 'Enact' }).click();
   await page.locator('.memo-choice').first().click();
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Take office' }).click();
   await page.waitForTimeout(400);
-  await capture(page, 9); // turn 1: the full dashboard
+  await dismissHints(page);
+  await capture(page, 9); // 3. turn-1 board, clean: race track, allocation, anchors
 
-  // Play forward; capture the first memo and a mid-game board.
+  // Play forward; capture the first memo and the first incident shock.
   let memoShot = false;
-  let midgameShot = false;
-  for (let i = 0; i < 220; i += 1) {
+  let shockShot = false;
+  for (let i = 0; i < 240; i += 1) {
     if (await page.getByRole('button', { name: 'See how it ends' }).isVisible()) {
-      await capture(page, 8); // final board
+      await capture(page, 8); // 6. the late board: fog closed in, band wide
       await page.getByRole('button', { name: 'See how it ends' }).click();
       break;
     }
+    if (!shockShot && (await page.locator('.memo-shock').isVisible())) {
+      await awaitToastsGone(page);
+      await capture(page, 7); // 5. incident shock: the truth leaks
+      shockShot = true;
+    }
     if (!memoShot && (await page.locator('.memo').isVisible())) {
-      await capture(page, 9); // a memo dilemma
+      await dismissHints(page);
+      await awaitToastsGone(page);
+      await capture(page, 9); // 4. a memo dilemma, citations in the footer
       memoShot = true;
     }
-    if (!midgameShot && i > 25) {
-      await capture(page, 8); // mid-game board state
-      midgameShot = true;
-    }
-    if (await clickIf(page, 'Commit allocation')) continue;
-    if (await clickIf(page, 'Pass this quarter')) continue;
     if (await page.locator('.memo-shock .btn-primary').isVisible()) {
       await page.locator('.memo-shock .btn-primary').click();
       continue;
     }
+    if (await clickIf(page, 'Commit allocation')) continue;
+    if (await clickIf(page, 'Pass this quarter')) continue;
     if (await clickIf(page, 'Next quarter')) continue;
     if (await page.locator('.memo-choice').first().isVisible()) {
       await page.locator('.memo-choice').first().click();
@@ -119,11 +145,13 @@ try {
     await page.waitForTimeout(200);
   }
 
-  // Debrief: the ending, then the truth chart (the envelope opening).
+  // Debrief: the envelope opens, the truth chart, the grade.
   await page.waitForTimeout(600);
-  await capture(page, 9); // ending title + what happened
+  await capture(page, 8); // 7. the ending
   await page.locator('.debrief .panel').nth(1).scrollIntoViewIfNeeded();
-  await capture(page, 10); // truth chart: evals said vs was true
+  await capture(page, 10); // 8. what your evals said, against the truth
+  await page.locator('.score-grade').scrollIntoViewIfNeeded();
+  await capture(page, 9); // 9. the grade: beat this seed
 
   // Assemble. gifski paces via per-frame duplication at a fixed fps.
   const sequenced: string[] = [];
