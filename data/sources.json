@@ -10,7 +10,8 @@
       "status": "verified",
       "tier": "load-bearing",
       "evidenceClass": "design",
-      "gameUse": "design constants with no empirical referent (turn counts, starting defaults, allocation defaults)"
+      "gameUse": "design constants with no empirical referent (turn counts, starting defaults, allocation defaults)",
+      "url": "https://github.com/chipmates/criticalwindow/blob/main/docs/HANDOVER.md"
     },
     {
       "id": "SRC-KAPLAN-SCALING",

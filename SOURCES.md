@@ -26,7 +26,7 @@ issue. That is a real contribution and it is welcome, see
 
 Every entry lists each place it is cited. Sorted by citation count.
 
-- **SRC-DESIGN-HANDOVER** · Design handover (founding document, drafted under the working title Race Conditions) · project (2026) · `design`
+- **SRC-DESIGN-HANDOVER** · [Design handover (founding document, drafted under the working title Race Conditions)](https://github.com/chipmates/criticalwindow/blob/main/docs/HANDOVER.md) · project (2026) · `design`
   Used for: design constants with no empirical referent (turn counts, starting defaults, allocation defaults)
   Cited 63× by: anchors.json → tracks.politicalCapital · anchors.json → tracks.unrest · mandates.json → mandates.3 · mandates.json → mandates.8 · mandates.json → sourceIds · parameters.json → worldviewPresets.cautious.displacementLagDivisor *(+57 more)*
 - **SRC-AI2027** · [AI 2027](https://ai-2027.com/) · Kokotajlo, Alexander, Larsen, Lifland, Dean, AI Futures Project (2025) · `forecast`

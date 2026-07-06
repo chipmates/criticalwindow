@@ -83,8 +83,7 @@ describe('mutations are caught (the rules bite)', () => {
       const mutated = structuredClone(registry);
       const entry = mutated.sources.find((s) => s.tier === tier);
       if (!entry) throw new Error(`no ${tier} source in registry`);
-      entry[field] =
-        'This source informed our thinking, as general background.';
+      entry[field] = 'This source informed our thinking, as general background.';
       const errors = registryHonestyErrors(mutated, usage);
       expect(
         errors.some((e) => e.includes(entry.id) && e.includes(field)),
